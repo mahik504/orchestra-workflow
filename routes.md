@@ -12,6 +12,7 @@ Jump table for this public template. **Open only the matching file.** Do not sca
 | Map / “where do I start?” | `START HERE.md` |
 | Taste, like/hate, stack, motion | `Preferences.md` |
 | How we work, models, Stitch vs 3D | `WORKFLOW.md` |
+| License / contributing | `LICENSE` · `CONTRIBUTING.md` |
 | Skills / MCP / refused tools | `STACK.md` |
 | Antigravity / friend prompt | `CONNECT.md` or `kit/antigravity/` |
 | Lasting workflow yes/no | `memory/decisions.md` |

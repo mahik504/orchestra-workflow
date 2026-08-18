@@ -43,7 +43,7 @@ Unpublished `idea.md` files still update on this PC even if the public template 
 
 ## End of a complete project
 
-Use `orchestra-ship`. Remind GitHub + LinkedIn. Draft the post. Do not skip.
+Use `orchestra-ship`. Remind `git push`, LinkedIn, and Instagram if we drafted a caption. Draft the post. Do not skip.
 
 ## Learn (reinforcement, not ML)
 

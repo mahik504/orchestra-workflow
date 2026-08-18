@@ -1,35 +1,39 @@
----
-title: Orchestra workflow
----
-
 # Orchestra workflow
 
-Public template for running the same Cursor + Antigravity loop. Product code and product briefs are **not** in this repo.
+A **Cursor + Antigravity** loop you can copy: Plan → Stitch (2D) → code (3D in the repo) → specialists only when named.
 
-**Start here:** [[START HERE]] · architecture: [[ARCHITECTURE]]
+This GitHub repo is the **public template**. It is not a dump of someone’s products, career plan, or API keys.
 
-| Remote | Visibility | What |
-| --- | --- | --- |
-| Private vault on the author’s PC | **private** | Full notes, career, product briefs. 12h backup. Never flip that remote public. |
-| [mahik504/orchestra-workflow](https://github.com/mahik504/orchestra-workflow) | **public** | This template: architecture, taste, friend kit, sync scripts. |
+[Architecture](./ARCHITECTURE.md) · [Start here](./START%20HERE.md) · [Workflow](./WORKFLOW.md) · [Taste](./Preferences.md)
 
-| Note | What it is |
+## Use it
+
+1. Clone this repo (or copy `kit/antigravity/` if a friend only has Antigravity).
+2. Point Cursor (or Antigravity) at the folder.
+3. Read [START HERE.md](./START%20HERE.md). Jump with [routes.md](./routes.md) — one note, not the whole vault.
+4. Fill [templates/plan-brief.md](./templates/plan-brief.md) before designing or coding.
+5. 2D chrome in Stitch. 3D in React Three Fiber or Spline. Android = Expo.
+
+Secrets never go in the vault. Friend zip = `kit/antigravity/` only — never `mcp_config.json`.
+
+## What is in here
+
+| Path | What |
 | --- | --- |
-| [[ARCHITECTURE]] | Dual-repo, jump table, 12h flow |
-| [[START HERE]] | Map. Open this first. |
-| [[WORKFLOW]] | Plan → Stitch → code → specialists |
-| [[routes]] | Keyword → one file (do not scan the vault) |
-| [[Preferences]] | Taste, motion, liked / hated |
-| [[memory/README]] | What stays off this public copy |
-| [[memory/decisions]] | Lasting workflow yes / no |
-| [[CONNECT]] | Antigravity, ChatGPT, optional Claude Code CLI |
-| [[STACK]] | Installed skills, MCP names, refused tools |
-| [[CHANGELOG]] | Real template changes (not a daily heartbeat) |
+| `ARCHITECTURE.md` | Dual-repo idea, 12h backup, jump table |
+| `WORKFLOW.md` | Who does Plan / Stitch / code / specialists |
+| `Preferences.md` | Taste, motion, liked / hated |
+| `CONNECT.md` | Antigravity / ChatGPT / Claude Code CLI packets |
+| `STACK.md` | Skills and MCP **names** (no keys), refused tools |
+| `templates/` | idea, plan-brief, design, packet, ship-post |
+| `kit/antigravity/` | Friend install |
 
-Each product the *user* works on lives in their own vault as `projects/<slug>/`. Every `idea.md` has a **kind**:
+Product briefs and internship notes stay on a **private** vault on the author’s machine. This clone has no `projects/<slug>/` notes. That is intended.
 
-- `college` — assignments, due-now, basic
-- `personal` — studio / parked
-- `hiring-cv` — public internship story
+## License
 
-Do not put API keys in a vault. Friend zip = `kit/antigravity/` only — never `mcp_config.json`.
+MIT. See [LICENSE](./LICENSE).
+
+## Contributing
+
+This is a personal workflow template. Open an issue if a friend-install step is wrong. Do not send secrets.
