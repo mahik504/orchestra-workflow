@@ -9,3 +9,4 @@ Real updates to this public template. Not a heartbeat. No empty days.
 - Web search when it will actually improve the work. Taste can still change.
 - 12h job publishes this repo **when allowlisted files changed**. Quiet days do not get dummy commits.
 - GitHub-facing README + MIT LICENSE + CONTRIBUTING.
+- Commits should show the human, not an agent co-author trailer.

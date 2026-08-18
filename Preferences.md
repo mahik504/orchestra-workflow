@@ -43,6 +43,7 @@ Web motion primitives: [React Bits](https://reactbits.dev/) when implementing, n
 - The brain learns by appending Liked/Hated/Thinking the same turn — including useful finds. Taste is allowed to change.
 - Jump `routes.md` to one note. Do not open every idea.md.
 - Search the web when it will actually improve the work. Not for idle trending lists.
+- Commits show the human, not the agent. Never leave an agent co-author trailer on a pushed commit.
 
 ## Liked
 
@@ -52,6 +53,7 @@ Web motion primitives: [React Bits](https://reactbits.dev/) when implementing, n
 ## Hated
 
 - Fake GitHub contribution graphs / dummy commits / typo-a-day green squares
+- Streak widgets, contribution snakes, fake counters on a profile README
 - Skill dumps (frontend-design, obra/superpowers, vercel skill packs, ui-ux-pro-max, addyosmani/agent-skills)
 - Cloning Notion / Linear / a studio site as *our* product UI
 - OpenCode / Kilo / OmniRoute **inside** Cursor or Antigravity
