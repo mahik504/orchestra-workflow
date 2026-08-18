@@ -55,7 +55,9 @@ If there is **no Cursor**, Antigravity is the conductor. Friend zip is only `kit
 | `impeccable` + Emil motion skills | Polish after a locked direction |
 | Strix trio | Scan / patch / CI on **our** apps |
 
-On-demand CLI, not a skill pack: `npx skillui` when Plan names **one** echo URL.
+On-demand CLI, not a skill pack: `npx skillui` when Plan names **one** echo URL. That is reverse-engineering for tokens — not a clone factory.
+
+No reminder MCP. Reminders live in the user rule and in chat.
 
 ## MCP (names only — no keys)
 
@@ -88,4 +90,4 @@ Second conductors: OpenHands, Dify, Langflow, Coolify, Maxun, OpenCode, Kilo, Om
 
 Skill dumps: `addyosmani/agent-skills`, vercel packs, obra/superpowers, frontend-design, ui-ux-pro-max.
 
-Also skipped: Stirling-PDF, Crawl4AI, browser-use, code-review-graph MCP, fake GitHub activity generators.
+Also skipped: Stirling-PDF, Crawl4AI, browser-use, code-review-graph MCP, fake GitHub activity generators, reminder MCP.

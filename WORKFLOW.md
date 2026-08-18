@@ -8,6 +8,20 @@ Global for every chat and repo until you say **skip orchestra**.
 
 You talk. Cursor **Plan**s. You follow. Specialists only when Plan names them.
 
+```mermaid
+flowchart TD
+  brief["plan-brief"]
+  planNode["Cursor Plan"]
+  routes["routes.md one note"]
+  skillui["optional skillui one URL"]
+  stitch["Stitch 2D chrome"]
+  threeD["R3F or Spline in code"]
+  agent["Agent implements"]
+  spec["specialists if named"]
+  ship["ship-safe then GitHub"]
+  brief --> planNode --> routes --> skillui --> stitch --> threeD --> agent --> spec --> ship
+```
+
 ```
 you fill templates/plan-brief.md (or paste those answers)
   → Cursor Plan (routes.md or START HERE → that one idea.md, not the whole vault)

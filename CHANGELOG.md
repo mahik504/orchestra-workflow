@@ -10,3 +10,4 @@ Real updates to this public template. Not a heartbeat. No empty days.
 - 12h job publishes this repo **when allowlisted files changed**. Quiet days do not get dummy commits.
 - GitHub-facing README + MIT LICENSE + CONTRIBUTING.
 - Commits should show the human, not an agent co-author trailer.
+- Loop diagram is mermaid in README / ARCHITECTURE (not Langflow).

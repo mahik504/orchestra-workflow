@@ -35,6 +35,8 @@ npx skillui --url https://example.com --mode ultra --format design-md --out "C:\
 
 Then lock **our** `projects/<slug>/design.md`. Delete `ref/` after Stitch is locked if it is just a third-party scrape. Never `skillui` Notion/Linear “because it looks good.” Never install SkillUI as a global skill pack.
 
+Academic monochrome workspace only if Plan named that world. Do not mix it onto a hiring ML product.
+
 Our own repo → Stitch: use existing `stitch-extract-design-md` / `stitch-code-to-design`, not SkillUI.
 
 - **R3F** (`@react-three/fiber` + `drei`): interactive 3D in React.

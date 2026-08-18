@@ -14,6 +14,20 @@ This GitHub repo is the **public template**. It is not a dump of someone’s pro
 4. Fill [templates/plan-brief.md](./templates/plan-brief.md) before designing or coding.
 5. 2D chrome in Stitch. 3D in React Three Fiber or Spline. Android = Expo.
 
+```mermaid
+flowchart TD
+  brief["plan-brief"]
+  planNode["Cursor Plan"]
+  routes["routes.md one note"]
+  skillui["optional skillui one URL"]
+  stitch["Stitch 2D chrome"]
+  threeD["R3F or Spline in code"]
+  agent["Agent implements"]
+  spec["specialists if named"]
+  ship["ship-safe then GitHub"]
+  brief --> planNode --> routes --> skillui --> stitch --> threeD --> agent --> spec --> ship
+```
+
 Secrets never go in the vault. Friend zip = `kit/antigravity/` only — never `mcp_config.json`.
 
 ## What is in here

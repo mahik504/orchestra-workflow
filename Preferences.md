@@ -48,6 +48,7 @@ Web motion primitives: [React Bits](https://reactbits.dev/) when implementing, n
 ## Liked
 
 - Echo-allowed studios (materials / motion, **not** a clone): [Nothin'](https://www.noth.in/) editorial-clarity, [K95](https://k95.it/en) grid + case-study density, [Wairk](https://wairk.fr/) sharp AI-studio editorial, [Lax Space](https://www.laxspace.co/) 3D-orbit playground
+- Academic monochrome workspace **only** when Plan names that visual world. Reverse-eng = `npx skillui` on one URL, not a skill pack.
 - Jump one note (`routes.md`) instead of scanning the vault; search when it will actually improve
 
 ## Hated
@@ -58,6 +59,7 @@ Web motion primitives: [React Bits](https://reactbits.dev/) when implementing, n
 - Cloning Notion / Linear / a studio site as *our* product UI
 - OpenCode / Kilo / OmniRoute **inside** Cursor or Antigravity
 - OpenHands / Dify / Langflow / Coolify / Maxun as a second conductor
+- Reminder MCP / unofficial scrapers. Reminders stay in the user rule and in chat.
 
 ## How to work
 

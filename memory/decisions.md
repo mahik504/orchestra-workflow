@@ -29,3 +29,4 @@ Lasting workflow choices. Do not re-argue. Product-specific decisions stay in th
 | 2026-08-18 | Dual-repo: private brain + public template | Public = workflow only. No empty 12h heartbeats |
 | 2026-08-18 | Search when it helps; jump via routes.md | Do not freeze taste. Do not scan the whole vault |
 | 2026-08-18 | Claude Code CLI is an optional think box | Own terminal. No OpenCode / Kilo inside the IDEs |
+| 2026-08-18 | MIT LICENSE the same day a public repo ships | Mermaid flowchart in README / ARCHITECTURE (not Langflow). SkillUI stays the reverse-eng CLI. No reminder MCP. |

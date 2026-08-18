@@ -32,6 +32,20 @@ The AI should not open every `idea.md` “just in case.” That burns tokens and
 
 ## Loop
 
+```mermaid
+flowchart TD
+  brief["plan-brief"]
+  planNode["Cursor Plan"]
+  routes["routes.md one note"]
+  skillui["optional skillui one URL"]
+  stitch["Stitch 2D chrome"]
+  threeD["R3F or Spline in code"]
+  agent["Agent implements"]
+  spec["specialists if named"]
+  ship["ship-safe then GitHub"]
+  brief --> planNode --> routes --> skillui --> stitch --> threeD --> agent --> spec --> ship
+```
+
 ```
 plan-brief.md
   → Cursor Plan (routes.md → one idea.md)

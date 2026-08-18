@@ -43,7 +43,7 @@ Unpublished `idea.md` files still update on this PC even if the public template 
 
 ## End of a complete project
 
-Use `orchestra-ship`. Remind `git push`, LinkedIn, and Instagram if we drafted a caption. Draft the post. Do not skip.
+Use `orchestra-ship`. Remind `git push`, LinkedIn, and Instagram if we drafted a caption. Draft the post. Do not skip. Every new **public** repo gets a LICENSE the same day.
 
 ## Learn (reinforcement, not ML)
 
@@ -75,4 +75,5 @@ Only official, needed, 10/10 (example: curated `expo/skills`). Never `npx skills
 - Put API keys, PATs, or secrets in the vault or in a shareable prompt
 - Build n8n / vector / voice Layer 2
 - Install Headroom, rtk, OpenHands, Dify, OpenCode, Kilo, addyosmani
+- Reminder MCP / LinkedIn scrapers (reminders stay in the user rule + chat)
 - Skill dumps (`addyosmani/agent-skills`, vercel/obra/frontend-design/ui-ux-pro-max). Catalog of refusals: vault `STACK.md`

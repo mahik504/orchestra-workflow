@@ -11,7 +11,7 @@ When a project is **done enough to show** (assignment submitted, MVP usable, pap
 2. Write `projects/<slug>/ship-post.md` from `templates/ship-post.md` (DSA: a short note in the dsa repo README or that template). Concrete, no fake stars/users.
 3. Point at `memory/career.md`. Do not start the next product in the same breath.
 
-Never use contribution-graph generators. Never typo-a-day commits. Real commits only.
+Never use contribution-graph generators. Never typo-a-day commits. Real commits only. Every new public repo gets a LICENSE the same day.
 
 Do not import LinkedIn “growth” skill packs. Do not add LinkedIn/Instagram MCP. Profile README = a public repo named exactly the user's GitHub username.
 
