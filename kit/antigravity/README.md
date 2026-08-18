@@ -14,7 +14,7 @@ A prompt cannot log into Google, create API keys, or install Docker by itself. A
 
 Every product idea has `kind`: `college` | `personal` | `hiring-cv`. Do not mix college assignments into hiring-cv work.
 
-## You (Mahik) — specialist mode
+## You (author) — specialist mode
 
 Cursor stays conductor. In Antigravity: open the **app repo** + add folder `C:\projects\orchestra-brain`. Paste `MASTER-PROMPT.md` with `MODE=specialist`. Read `STACK.md` for what is installed vs refused.
 
@@ -30,7 +30,7 @@ Cursor stays conductor. In Antigravity: open the **app repo** + add folder `C:\p
 
 OpenHands, Dify, Langflow, Coolify, Maxun, OpenCode, Kilo, OmniRoute, addyosmani/agent-skills, vercel/obra/frontend-design dumps. Optional Claude Code is a **separate CLI** think box, not an IDE plugin.
 
-Vault backup for Mahik is **private git** (`orchestra-brain`, 12h). The public template is `orchestra-workflow`. Friend vaults: clone the public template or this zip; never reuse the private remote.
+Vault backup for the author is **private git** (12h). The public template is `orchestra-workflow`. Friend vaults: clone the public template or this zip; never reuse the private remote.
 
 ## Do not share
 

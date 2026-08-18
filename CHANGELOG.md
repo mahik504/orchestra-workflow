@@ -1,11 +1,10 @@
 # Orchestra workflow changelog
 
-Real updates to the public template. Not a heartbeat. No empty days.
+Real updates to this public template. Not a heartbeat. No empty days.
 
 ## 2026-08-18
 
-- Jump table `routes.md`: open one product note, not the whole vault.
-- Web search when it will actually improve the work (new technique, current docs, a better pattern). Not “never search.” Not dump trending lists.
-- Taste can still change: new Liked / Hated from work and from useful research.
-- 12h job now also publishes this public template when allowlisted files changed (`kit/sync-both.ps1`).
-- Private `orchestra-brain` stays private. This repo stays the showable workflow.
+- Public copy is **workflow only**: architecture, taste, friend kit, sync scripts. No product names or product folders.
+- Jump table `routes.md`: open one note, not the whole vault.
+- Web search when it will actually improve the work. Taste can still change.
+- 12h job publishes this repo **when allowlisted files changed** (`kit/sync-both.ps1`). Quiet days do not get dummy commits.

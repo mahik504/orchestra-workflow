@@ -1,37 +1,35 @@
 ---
-title: Orchestra brain
+title: Orchestra workflow
 ---
 
-# Orchestra
+# Orchestra workflow
 
-Shared notes for **Cursor** and **Antigravity**. Product code lives in the repos on disk. This vault holds taste, decisions, and (on this PC) career — the things tools cannot DM to each other.
+Public template for running the same Cursor + Antigravity loop. Product code and product briefs are **not** in this repo.
 
-**Open this first:** [[START HERE]]
-
-This public GitHub copy is a **workflow template** for friends and for showing the loop. It is **not** a hiring pin. Hiring repos are [AstroVerse](https://github.com/mahik504/AstroVerse) and [AirLens](https://github.com/mahik504/AirLens).
+**Start here:** [[START HERE]] · architecture: [[ARCHITECTURE]]
 
 | Remote | Visibility | What |
 | --- | --- | --- |
-| [mahik504/orchestra-brain](https://github.com/mahik504/orchestra-brain) | **private** | Full backup of this PC’s vault, including career and unpublished ideas. 12h sync. Stay private — git history has personal files. |
-| [mahik504/orchestra-workflow](https://github.com/mahik504/orchestra-workflow) | **public** | Allowlisted template: workflow, taste, friend kit, public product stubs only. |
-
-Career notes and unpublished product briefs stay on this PC (and the private remote). They are **not** in the public template. See `memory/README.md`.
+| Private vault on the author’s PC | **private** | Full notes, career, product briefs. 12h backup. Never flip that remote public. |
+| [mahik504/orchestra-workflow](https://github.com/mahik504/orchestra-workflow) | **public** | This template: architecture, taste, friend kit, sync scripts. |
 
 | Note | What it is |
 | --- | --- |
-| [[START HERE]] | Map of the vault. Start here. |
-| [[WORKFLOW]] | How we work (jump one note, search when it helps) |
-| [[routes]] | Keyword → one file |
-| [[Preferences]] | Taste, stack, liked / hated |
-| [[memory/README]] | What stays local vs public |
-| [[memory/decisions]] | Lasting yes / no |
+| [[ARCHITECTURE]] | Dual-repo, jump table, 12h flow |
+| [[START HERE]] | Map. Open this first. |
+| [[WORKFLOW]] | Plan → Stitch → code → specialists |
+| [[routes]] | Keyword → one file (do not scan the vault) |
+| [[Preferences]] | Taste, motion, liked / hated |
+| [[memory/README]] | What stays off this public copy |
+| [[memory/decisions]] | Lasting workflow yes / no |
 | [[CONNECT]] | Antigravity, ChatGPT, optional Claude Code CLI |
-| [[STACK]] | Installed skills, MCP names, public GitHub, refused tools |
+| [[STACK]] | Installed skills, MCP names, refused tools |
+| [[CHANGELOG]] | Real template changes (not a daily heartbeat) |
 
-Each product is `projects/<slug>/`. Every `idea.md` has a **kind** so college work and hiring work do not mix:
+Each product the *user* works on lives in their own vault as `projects/<slug>/`. Every `idea.md` has a **kind**:
 
 - `college` — assignments, due-now, basic
-- `personal` — studio / parked products
+- `personal` — studio / parked
 - `hiring-cv` — public internship story
 
-Do not put API keys or tokens in this vault. Friend zip = `kit/antigravity/` only — never `mcp_config.json`.
+Do not put API keys in a vault. Friend zip = `kit/antigravity/` only — never `mcp_config.json`.

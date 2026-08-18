@@ -64,7 +64,7 @@ Only official, needed, 10/10 (example: curated `expo/skills`). Never `npx skills
 ## Vault remotes
 
 - **Private backup:** `mahik504/orchestra-brain` + `kit/sync-vault.ps1` (12h). Full notes including career and unpublished ideas. Stay private — history has personal files. Do not flip it public.
-- **Public template:** `mahik504/orchestra-workflow` via `kit/sync-both.ps1` (12h, only if allowlisted files changed). No empty commits. No career, no unpublished briefs.
+- **Public template:** `mahik504/orchestra-workflow` via `kit/sync-both.ps1` (12h, only if allowlisted files changed). Workflow / architecture / taste only. No empty commits. No career, no product names, no unpublished briefs. Overlays live in `kit/public-overlay/`.
 
 ## Never
 

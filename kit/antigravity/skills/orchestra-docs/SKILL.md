@@ -13,7 +13,7 @@ Do not install Anthropic `frontend-design`. Document skills only.
 | --- | --- |
 | Slides | Write content in markdown first. Build `.pptx` with `python-pptx` or `pptxgenjs`. Few slides, one idea each, real hierarchy. Optional later: Anthropic [pptx skill](https://github.com/anthropics/skills/tree/main/skills/pptx) inside Claude/Antigravity (proprietary — do not copy the whole anthropics/skills repo). |
 | Course report / README | Markdown in the repo. Honest, short. |
-| Research paper (AstroVerse) | LaTeX + `.bib`. Real citations only. Conference template from the venue. Thin MIT reference: [research-paper-writing](https://github.com/nousresearch/hermes-agent/blob/main/skills/research/research-paper-writing/SKILL.md) as **method**, not a 12-agent install. |
+| Research paper | LaTeX + `.bib`. Real citations only. Conference template from the venue. Thin MIT reference: [research-paper-writing](https://github.com/nousresearch/hermes-agent/blob/main/skills/research/research-paper-writing/SKILL.md) as **method**, not a 12-agent install. |
 
 ## Taste
 

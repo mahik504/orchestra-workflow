@@ -3,8 +3,8 @@
 # Does not skip hooks. Does not force-push. Does not change git config.
 # Obsidian Git only runs while Obsidian is open; schedule this with Task Scheduler instead.
 #
-# Register (once, in an elevated or same-user PowerShell):
-#   schtasks /Create /TN "OrchestraBrainVaultSync" /SC HOURLY /MO 12 /F /TR "powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\projects\orchestra-brain\kit\sync-vault.ps1"
+# Register (once): use kit\sync-both.ps1 instead — private backup then public template if files changed.
+#   schtasks /Create /TN "OrchestraBrainVaultSync" /SC HOURLY /MO 12 /F /TR "powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\projects\orchestra-brain\kit\sync-both.ps1"
 #
 # Secrets must stay out of git (.gitignore). Never commit mcp_config.json, .env, or keys.
 
