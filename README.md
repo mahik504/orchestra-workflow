@@ -11,21 +11,27 @@ This GitHub repo is the **public template**. It is not a dump of someone’s pro
 1. Clone this repo (or copy `kit/antigravity/` if a friend only has Antigravity).
 2. Point Cursor (or Antigravity) at the folder.
 3. Read [START HERE.md](./START%20HERE.md). Jump with [routes.md](./routes.md) — one note, not the whole vault.
-4. Fill [templates/plan-brief.md](./templates/plan-brief.md) before designing or coding.
-5. 2D chrome in Stitch. 3D in React Three Fiber or Spline. Android = Expo.
+4. Fill [templates/plan-brief.md](./templates/plan-brief.md) before designing or coding. Plan mode writes spec.md.
+5. Switch Cursor **Plan / Agent / Ask / Debug** when told. 2D chrome in Stitch. 3D in React Three Fiber or Spline. Android = Expo.
 
 ```mermaid
 flowchart TD
   brief["plan-brief"]
+  specFile["spec.md what and why"]
+  modePlan["You switch to Plan mode"]
+  modelPick["You switch thinking model if told"]
   planNode["Cursor Plan"]
   routes["routes.md one note"]
   skillui["optional skillui one URL"]
   stitch["Stitch 2D chrome"]
   threeD["R3F or Spline in code"]
-  agent["Agent implements"]
-  spec["specialists if named"]
-  ship["ship-safe then GitHub"]
-  brief --> planNode --> routes --> skillui --> stitch --> threeD --> agent --> spec --> ship
+  modeAgent["You switch to Agent mode"]
+  story["one story per fresh pass"]
+  agent["Agent or subagent implements"]
+  anti["Antigravity polish packet"]
+  ship["ship-safe Playwright GitHub"]
+  brief --> specFile --> modePlan --> modelPick --> planNode --> routes
+  planNode --> skillui --> stitch --> threeD --> modeAgent --> story --> agent --> anti --> ship
 ```
 
 Secrets never go in the vault. Friend zip = `kit/antigravity/` only — never `mcp_config.json`.
@@ -39,7 +45,7 @@ Secrets never go in the vault. Friend zip = `kit/antigravity/` only — never `m
 | `Preferences.md` | Taste, motion, liked / hated |
 | `CONNECT.md` | Antigravity / ChatGPT / Claude Code CLI packets |
 | `STACK.md` | Skills and MCP **names** (no keys), refused tools |
-| `templates/` | idea, plan-brief, design, packet, ship-post |
+| `templates/` | idea, plan-brief, spec, design, packet, ship-post |
 | `kit/antigravity/` | Friend install |
 
 Product briefs and internship notes stay on a **private** vault on the author’s machine. This clone has no `projects/<slug>/` notes. That is intended.

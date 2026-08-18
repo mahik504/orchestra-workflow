@@ -2,6 +2,12 @@
 
 Real updates to this public template. Not a heartbeat. No empty days.
 
+## 2026-08-19
+
+- Model router: switch Cursor Plan / Agent / Ask / Debug and the model dropdown when told. Subagents for UI and hostile review.
+- Spec Kit / Ralph as templates and one-story loops. No Spec Kit CLI. No Ralph CLI.
+- Loop diagram includes spec.md and story passes.
+
 ## 2026-08-18
 
 - Public copy is **workflow only**: architecture, taste, friend kit, sync scripts. No product names or product folders.

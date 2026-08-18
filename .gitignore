@@ -20,6 +20,9 @@ mcp_config.json
 # Private diary nits (career.md stays tracked on the private remote)
 memory/local-notes.md
 
+# Optional large refs (Drive dumps, screenshots)
+memory/attachments/
+
 # Sync noise
 kit/sync-vault.log
 

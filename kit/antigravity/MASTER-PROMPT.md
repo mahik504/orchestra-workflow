@@ -1,6 +1,6 @@
 # MASTER PROMPT — paste into a new Antigravity chat
 
-Fill the three lines, then paste everything below the line into Antigravity. Use a strong model (Gemini 3.1 Pro or Claude Opus/Sonnet thinking).
+Fill the three lines, then paste everything below the line into Antigravity. Use **Gemini 3.7 Flash High** for specialist polish (high quota). Conductor-only (no Cursor): strongest thinking model first.
 
 ```
 MODE: specialist | conductor
@@ -44,15 +44,16 @@ Body rules:
 - Jump `routes.md` to one file. Do not read the whole vault. `START HERE.md` / `WORKFLOW.md` / `Preferences.md` only if needed. `memory/career.md` only for hiring jobs and only if it exists.
 - specialist vs conductor as above.
 - Repo on disk beats vault notes.
-- New idea → `projects/<slug>/idea.md` from `templates/idea.md`. No code until that exists.
-- End of a showable project: remind GitHub push + LinkedIn; write `projects/<slug>/ship-post.md`. No fake contribution graphs. No typo-a-day commits.
+- New idea → `projects/<slug>/idea.md` from `templates/idea.md`. After Plan, `spec.md`. No code until those exist. One story per implement pass.
+- Tell them to switch Cursor **Plan / Agent / Ask / Debug**. You cannot flip those.
+- End of a showable project: remind GitHub push + LinkedIn; write `projects/<slug>/ship-post.md`. No fake contribution graphs. No typo-a-day commits. LICENSE the same day on a new public repo.
 - Like/hate/thinking → `Preferences.md` the same turn. Do not dump chats or trending-tool lists into the vault.
 - Search when it will actually improve the work (current docs, a better pattern, a named reference). Not idle browsing. Adopt one line into Preferences if we will use it.
 - Never skill-pack dumps (frontend-design, obra/superpowers, vercel `skills add --all`).
 - Never copy AGENTS.md into every repo.
 - Secrets never in the vault.
 - idea.md has `kind`: college | personal | hiring-cv. Do not mix college into hiring-cv.
-- Never OpenCode / Kilo / OmniRoute / OpenHands / Dify / Langflow / Coolify / Maxun / Headroom / rtk inside Antigravity. Optional Claude Code is a separate CLI only if a packet names it.
+- Never OpenCode / Kilo / OmniRoute / OpenHands / Dify / Langflow / Coolify / Maxun / Headroom / rtk / Spec Kit CLI / Ralph CLI inside Antigravity. Optional Claude Code is a separate CLI only if a packet names it.
 - Showable catalog if the vault has `STACK.md` — read it only if asked to explain the stack or check refused tools.
 
 **orchestra-vault** — lasting notes only under `projects/<slug>/`. Global stack in Preferences; per-product stack and **kind** in that idea.md. Delete junk the same turn. Empty `00-inbox`…`07-reviews` folders are forbidden. Private git backup is Layer-2-lite; public template is a separate allowlisted repo.

@@ -15,7 +15,7 @@ Do **not** open the whole brain. Jump `routes.md` → one file → the repo. `ST
 
 | Path | What |
 | --- | --- |
-| `projects/<slug>/` | That product only. Start with `idea.md` (includes **this product's stack** and **kind**). Add architecture/design/research/packet/review/ship-post **only when they exist**. |
+| `projects/<slug>/` | That product only. Start with `idea.md` (includes **this product's stack** and **kind**). Add architecture/design/research/packet/review/ship-post/`spec.md`/`progress.md` **only when they exist**. |
 | `templates/` | Copy, then fill |
 | `memory/` | Global decisions. Career is on this PC + the **private** remote. Public template has `memory/README.md` + `decisions.md`. |
 | `memory/local-notes.md` | Gitignored diary nits. Not the public template. Not a second taste file. |

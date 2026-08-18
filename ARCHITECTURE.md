@@ -35,24 +35,30 @@ The AI should not open every `idea.md` “just in case.” That burns tokens and
 ```mermaid
 flowchart TD
   brief["plan-brief"]
+  specFile["spec.md what and why"]
+  modePlan["You switch to Plan mode"]
+  modelPick["You switch thinking model if told"]
   planNode["Cursor Plan"]
   routes["routes.md one note"]
   skillui["optional skillui one URL"]
   stitch["Stitch 2D chrome"]
   threeD["R3F or Spline in code"]
-  agent["Agent implements"]
-  spec["specialists if named"]
-  ship["ship-safe then GitHub"]
-  brief --> planNode --> routes --> skillui --> stitch --> threeD --> agent --> spec --> ship
+  modeAgent["You switch to Agent mode"]
+  story["one story per fresh pass"]
+  agent["Agent or subagent implements"]
+  anti["Antigravity polish packet"]
+  ship["ship-safe Playwright GitHub"]
+  brief --> specFile --> modePlan --> modelPick --> planNode --> routes
+  planNode --> skillui --> stitch --> threeD --> modeAgent --> story --> agent --> anti --> ship
 ```
 
 ```
-plan-brief.md
-  → Cursor Plan (routes.md → one idea.md)
+plan-brief.md + spec.md
+  → Cursor Plan mode (thinking model)
   → Stitch = 2D chrome
   → 3D in code (R3F or Spline)
-  → Agent implements
-  → specialists only if Plan named them
+  → Agent: one story per pass
+  → Antigravity polish on showable web
   → ship-safe on the author's app
 ```
 

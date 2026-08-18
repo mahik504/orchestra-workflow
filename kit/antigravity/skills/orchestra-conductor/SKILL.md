@@ -19,12 +19,37 @@ Do **not** read the entire vault. Jump with `routes.md`:
 
 ## Which tool is conductor
 
-- **Cursor present:** Cursor Plans and implements. Antigravity is a specialist (polish, tests, CI, hostile review) only when Plan names it. Packet in, summary out.
+- **Cursor present:** Cursor Plans and implements. Antigravity is a specialist (polish, tests, CI, hostile review) only when Plan names it **or** the work is showable web/Android (then a polish packet is required). Packet in, summary out.
 - **Antigravity only (no Cursor):** Antigravity **is** the conductor. Same vault rules. Plan first (strongest thinking model), then Stitch, then implement. Do not wait for a Cursor packet.
+
+## Cursor modes (the human switches these)
+
+You cannot flip Plan / Agent / Ask / Debug / Multitask. Say it:
+
+| Mode | Say this | When |
+| --- | --- | --- |
+| Plan | “Switch to **Plan** mode.” | Architecture, spec.md, before code |
+| Agent | “Switch to **Agent** mode.” | Implementing after spec.md exists |
+| Ask | “Switch to **Ask** mode.” | Read-only |
+| Debug | “Switch to **Debug** mode.” | Runtime failure |
+| Multitask | “Switch to **Multitask** only if two jobs are independent.” | Rare. Never two products |
+
+## Models (must-do)
+
+This parent chat **cannot** become Opus/Fable. If this chat is Grok (or another glue model) and the job is UI, architecture, or hostile review:
+
+1. Tell them the **dropdown** to pick for the next Plan/Agent turn (Opus / Fable / GPT 5.6 thinking for Plan; Fable or Opus for UI).
+2. **Spawn a Task subagent** with the slug from `WORKFLOW.md` (Fable for UI, Opus for hostile review, Gemini Flash or Kimi for mechanical). Do not implement a Stitch-match UI entirely as Grok.
+
+Antigravity Pro: **Gemini 3.7 Flash High** packet for polish/CI on showable web/Android. ChatGPT Go or Perplexity = research packets only.
 
 ## Default
 
-Stay in the conductor tool. Packet only when WORKFLOW names a specialist (ChatGPT research, Claude hostile review / optional Claude Code CLI think box).
+Stay in the conductor tool. Packet only when WORKFLOW names a specialist.
+
+## Spec + Ralph-thin
+
+After Plan: write `projects/<slug>/spec.md` from `templates/spec.md`. One user story per Agent/subagent pass. Learnings in `progress.md`. Do **not** install the Ralph CLI, Spec Kit `specify init`, or slash-command packs. Those fight this loop.
 
 ## Core projects
 
@@ -34,12 +59,12 @@ New idea → `projects/<slug>/idea.md` from `templates/idea.md`. Stack for **tha
 
 Unpublished `idea.md` files still update on this PC even if the public template omits them.
 
-## Specialists (only if Plan names them)
+## Specialists (only if Plan names them, except Antigravity polish on showable web)
 
-- ChatGPT = research packet
+- ChatGPT Go or Perplexity = research packet
 - Claude.ai or **Claude Code CLI in a separate terminal** = hostile review / deep think. Keys in env, never in the vault.
 - Manus 1.6 Max until 25 Aug 2026 = long browse, packet only
-- Never OpenCode, Kilo Code, OmniRoute, 9router, OpenHands, Dify, Langflow, Coolify, or Maxun **inside Cursor or Antigravity**
+- Never OpenCode, Kilo Code, OmniRoute, 9router, OpenHands, Dify, Langflow, Coolify, Maxun, or the Ralph CLI **inside Cursor or Antigravity**
 
 ## End of a complete project
 
@@ -74,6 +99,6 @@ Only official, needed, 10/10 (example: curated `expo/skills`). Never `npx skills
 - Copy AGENTS.md into each repo
 - Put API keys, PATs, or secrets in the vault or in a shareable prompt
 - Build n8n / vector / voice Layer 2
-- Install Headroom, rtk, OpenHands, Dify, OpenCode, Kilo, addyosmani
+- Install Headroom, rtk, OpenHands, Dify, OpenCode, Kilo, addyosmani, Spec Kit CLI, Ralph CLI
 - Reminder MCP / LinkedIn scrapers (reminders stay in the user rule + chat)
 - Skill dumps (`addyosmani/agent-skills`, vercel/obra/frontend-design/ui-ux-pro-max). Catalog of refusals: vault `STACK.md`

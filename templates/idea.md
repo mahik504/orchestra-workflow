@@ -37,6 +37,10 @@ none | hover | loader | entrance | micro | stagger | parallax | 3d-hero
 
 ## Out of scope this round
 
+## Spec
+
+After Plan: `spec.md` in this folder (copy `templates/spec.md`). Stories drive Agent passes. Learnings: `progress.md` if we loop more than one story.
+
 ## Open questions
 
 - [ ]

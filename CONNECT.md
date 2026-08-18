@@ -28,7 +28,7 @@ You are Antigravity Pro in our orchestra. Cursor is the conductor. You never see
 
 1) Confirm you can read START HERE.md in the vault. If you cannot, tell me to Add Folder that vault and stop.
 2) Jump routes.md to one file. Do not read the whole vault.
-3) You are a specialist: extra UI polish, tests, CI, or a second implementation pass.
+3) You are a specialist: extra UI polish, tests, CI, or a second implementation pass. Prefer Gemini 3.7 Flash High.
 4) Follow Preferences.md. No generic AI SaaS UI. No skill packs. No fake GitHub graphs.
 5) 2D UI matches locked Stitch / projects/<slug>/design.md. 3D = R3F or Spline only if the packet says so. Android = Expo.
 6) Secrets never in the vault. Lasting notes only under projects/<slug>/.
@@ -42,6 +42,10 @@ Do not start a product. Wait for a packet.
 ## ChatGPT Go (research only)
 
 Upload `WORKFLOW.md` + `Preferences.md`. Custom instructions: specialist only; return markdown; search only if the packet says the fact must be current.
+
+## Perplexity (research only)
+
+Same job as ChatGPT Go. Packet in, markdown out. Do not implement the repo. No Perplexity MCP.
 
 ## Manus 1.6 (until 25 Aug 2026 only)
 

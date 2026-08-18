@@ -44,12 +44,14 @@ Web motion primitives: [React Bits](https://reactbits.dev/) when implementing, n
 - Jump `routes.md` to one note. Do not open every idea.md.
 - Search the web when it will actually improve the work. Not for idle trending lists.
 - Commits show the human, not the agent. Never leave an agent co-author trailer on a pushed commit.
+- Switch Cursor Plan / Agent / Ask / Debug when told. Subagents carry UI and hostile review if this chat is a glue model.
 
 ## Liked
 
 - Echo-allowed studios (materials / motion, **not** a clone): [Nothin'](https://www.noth.in/) editorial-clarity, [K95](https://k95.it/en) grid + case-study density, [Wairk](https://wairk.fr/) sharp AI-studio editorial, [Lax Space](https://www.laxspace.co/) 3D-orbit playground
 - Academic monochrome workspace **only** when Plan names that visual world. Reverse-eng = `npx skillui` on one URL, not a skill pack.
 - Jump one note (`routes.md`) instead of scanning the vault; search when it will actually improve
+- Spec.md + one story per Agent pass. Plan is the prompt; implement is a loop.
 
 ## Hated
 
@@ -60,6 +62,7 @@ Web motion primitives: [React Bits](https://reactbits.dev/) when implementing, n
 - OpenCode / Kilo / OmniRoute **inside** Cursor or Antigravity
 - OpenHands / Dify / Langflow / Coolify / Maxun as a second conductor
 - Reminder MCP / unofficial scrapers. Reminders stay in the user rule and in chat.
+- Installing Spec Kit CLI or Ralph as a second conductor
 
 ## How to work
 

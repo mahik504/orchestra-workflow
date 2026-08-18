@@ -18,6 +18,9 @@ ONE REFERENCE SITE WE MAY ECHO (optional, one URL):
 ONE REFERENCE WE MUST NOT COPY:
 BACKEND / DATA (what must be true):
 OUT OF SCOPE THIS ROUND:
+USER STORIES THIS ROUND (small enough for one Agent pass each):
+CLARIFY (unknowns, or none):
+CURSOR MODE I SHOULD BE IN: Plan (until spec.md exists) then Agent
 ```
 
-I will ask only the holes. Then I write `projects/<slug>/idea.md` and the build order. No code until that exists.
+I will ask only the holes. Then I write `projects/<slug>/idea.md` + `spec.md`. No code until those exist. One story per Agent pass after that.
