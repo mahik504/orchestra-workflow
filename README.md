@@ -20,7 +20,8 @@ Career notes and unpublished product briefs stay on this PC (and the private rem
 | Note | What it is |
 | --- | --- |
 | [[START HERE]] | Map of the vault. Start here. |
-| [[WORKFLOW]] | How we work (read order, learn, search) |
+| [[WORKFLOW]] | How we work (jump one note, search when it helps) |
+| [[routes]] | Keyword → one file |
 | [[Preferences]] | Taste, stack, liked / hated |
 | [[memory/README]] | What stays local vs public |
 | [[memory/decisions]] | Lasting yes / no |

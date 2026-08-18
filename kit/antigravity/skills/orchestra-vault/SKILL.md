@@ -9,7 +9,7 @@ Root: `C:\projects\orchestra-brain`
 
 ## Read (save tokens)
 
-Do **not** open the whole brain. Order: `START HERE.md` → `WORKFLOW.md` / `Preferences.md` only if needed → that product’s `idea.md` → the repo. `STACK.md` is a catalog — map, do not duplicate idea.md, do not paste it unless asked. `memory/career.md` only for hiring jobs; it may be absent on the public template.
+Do **not** open the whole brain. Jump `routes.md` → one file → the repo. `STACK.md` only if asked to catalog. `memory/career.md` only for hiring.
 
 ## Layout
 
@@ -17,10 +17,11 @@ Do **not** open the whole brain. Order: `START HERE.md` → `WORKFLOW.md` / `Pre
 | --- | --- |
 | `projects/<slug>/` | That product only. Start with `idea.md` (includes **this product's stack** and **kind**). Add architecture/design/research/packet/review/ship-post **only when they exist**. |
 | `templates/` | Copy, then fill |
-| `memory/` | Global decisions. Career is on this PC + the **private** remote. Public template has `memory/README.md` only. |
+| `memory/` | Global decisions. Career is on this PC + the **private** remote. Public template has `memory/README.md` + `decisions.md`. |
 | `memory/local-notes.md` | Gitignored diary nits. Not the public template. Not a second taste file. |
 | `kit/sync-vault.ps1` | Private git backup (12h) of this vault. |
-| `kit/publish-public-vault.ps1` | Allowlisted export to the public template repo. |
+| `kit/sync-both.ps1` | 12h: private backup, then public template if files changed. |
+| `routes.md` | Keyword → one note. Do not scan every idea.md. |
 | `STACK.md` | Installed skills, MCP names, GitHub we have, refused tools. |
 
 No `00-inbox`. No numbered dump folders. No chat recaps. No trending-tool lists.
@@ -57,7 +58,7 @@ Polish H1s and YAML `title:` so the vault looks professional when shown. **Do no
 
 ## Learn (reinforcement, not ML)
 
-After they love or hate an output, **or after a finished task**, append **Liked** / **Hated** / **Thinking** in `Preferences.md` the same turn. Prefer editing the existing bullets. Their words compressed, not a new file. Do not file chats. That is how the brain learns.
+After they love or hate an output, a finished task, **or a useful find**, append **Liked** / **Hated** / **Thinking** in `Preferences.md` the same turn. Taste may change. Prefer editing the existing bullets. Do not file chats.
 
 Do not create a second taste file. `memory/local-notes.md` is only for private diary nits that must not go public.
 
@@ -68,8 +69,8 @@ When a decision or ship happens, update that product’s `idea.md`, `memory/deci
 ## Remotes
 
 - **Private** `mahik504/orchestra-brain`: full backup, including career and unpublished ideas. 12h sync. Do not gitignore career.md here. Do not make this repo public (history leak).
-- **Public** `mahik504/orchestra-workflow`: allowlisted workflow template only. Career and unpublished briefs stay on this PC.
+- **Public** `mahik504/orchestra-workflow`: allowlisted template. 12h publish only when those files changed. No empty green-square commits.
 
 ## Internet
 
-Do not web-search by default. Search only if they asked, or a Plan needs a current library/version/CVE.
+Search when it will actually improve the work. Not by default-for-fun. Not trending lists in the vault. Adopt into Preferences if we will use it.

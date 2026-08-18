@@ -41,13 +41,13 @@ Write these five folders (SKILL.md only is enough) into the global skills dir. O
 **orchestra-conductor** — description: Global orchestra unless they say skip orchestra.
 
 Body rules:
-- Read `START HERE.md` first. Then `WORKFLOW.md` / `Preferences.md` only if needed, then that product’s `idea.md`. Do not read the whole vault. `memory/career.md` only for hiring jobs and only if it exists.
+- Jump `routes.md` to one file. Do not read the whole vault. `START HERE.md` / `WORKFLOW.md` / `Preferences.md` only if needed. `memory/career.md` only for hiring jobs and only if it exists.
 - specialist vs conductor as above.
 - Repo on disk beats vault notes.
 - New idea → `projects/<slug>/idea.md` from `templates/idea.md`. No code until that exists.
 - End of a showable project: remind GitHub push + LinkedIn; write `projects/<slug>/ship-post.md`. No fake contribution graphs. No typo-a-day commits.
 - Like/hate/thinking → `Preferences.md` the same turn. Do not dump chats or trending-tool lists into the vault.
-- Do not web-search unless they asked or a Plan needs a current library/version/CVE.
+- Search when it will actually improve the work (current docs, a better pattern, a named reference). Not idle browsing. Adopt one line into Preferences if we will use it.
 - Never skill-pack dumps (frontend-design, obra/superpowers, vercel `skills add --all`).
 - Never copy AGENTS.md into every repo.
 - Secrets never in the vault.

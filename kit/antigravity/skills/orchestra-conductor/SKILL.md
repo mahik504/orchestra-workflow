@@ -9,14 +9,13 @@ Vault: `C:\projects\orchestra-brain` (or the vault path in WORKFLOW.md)
 
 ## Read (save tokens)
 
-Do **not** read the entire vault. Order:
+Do **not** read the entire vault. Jump with `routes.md`:
 
-1. `START HERE.md`
-2. `WORKFLOW.md` / `Preferences.md` only if this job needs them
-3. That product’s `projects/<slug>/idea.md`
-4. The **repo on disk/GitHub**. Repo beats the idea note.
+1. Match what they said → **one** file in the table
+2. If no match: `START HERE.md` state table only, then ask which product
+3. Then the **repo on disk/GitHub**. Repo beats the idea note.
 
-Read `memory/career.md` only for hiring, GitHub/LinkedIn, or internship “what next.” It may be missing on the public template clone — that is intended. Read `STACK.md` only if asked to explain the stack or to check installed vs refused. Do not paste STACK into the reply unless asked. Delete junk the same turn.
+`WORKFLOW.md` / `Preferences.md` only if this job needs them. `memory/career.md` only for hiring. `STACK.md` only if asked to catalog. Delete junk the same turn.
 
 ## Which tool is conductor
 
@@ -48,11 +47,11 @@ Use `orchestra-ship`. Remind GitHub + LinkedIn. Draft the post. Do not skip.
 
 ## Learn (reinforcement, not ML)
 
-After a like/hate **or a finished task**, append `Preferences.md` Liked / Hated / Thinking the same turn. Prefer editing the existing note. Do not file chats. That is how the brain learns.
+After a like/hate, a finished task, **or a useful find**, append `Preferences.md` Liked / Hated / Thinking the same turn. Taste is allowed to change. Prefer editing the existing note. Do not file chats.
 
 ## Internet
 
-Do **not** web-search by default. Search only if the user asked, or a Plan needs a current library/version/CVE. Tool research stays **in chat**. Adopt into Preferences only if we will use it. Do not file trending lists.
+Search when it will **actually improve** the work (current docs, a better pattern, a named reference). Not idle browsing. Not trending-tool dumps in the vault. Adopt one line into Preferences if we will use it.
 
 ## Keep the brain current
 
@@ -65,7 +64,7 @@ Only official, needed, 10/10 (example: curated `expo/skills`). Never `npx skills
 ## Vault remotes
 
 - **Private backup:** `mahik504/orchestra-brain` + `kit/sync-vault.ps1` (12h). Full notes including career and unpublished ideas. Stay private — history has personal files. Do not flip it public.
-- **Public template:** `mahik504/orchestra-workflow` + `kit/publish-public-vault.ps1`. Workflow + friend kit. No career, no unpublished briefs.
+- **Public template:** `mahik504/orchestra-workflow` via `kit/sync-both.ps1` (12h, only if allowlisted files changed). No empty commits. No career, no unpublished briefs.
 
 ## Never
 

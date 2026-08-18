@@ -10,7 +10,7 @@ You talk. Cursor **Plan**s. You follow. Specialists only when Plan names them.
 
 ```
 you fill templates/plan-brief.md (or paste those answers)
-  → Cursor Plan (questions + START HERE + that idea.md, not the whole vault)
+  → Cursor Plan (routes.md or START HERE → that one idea.md, not the whole vault)
   → optional: npx skillui on ONE echo URL Plan named → projects/<slug>/ref/
   → Stitch = 2D screens / app chrome
   → 3D scenes in code (R3F or Spline), not in Stitch
@@ -22,22 +22,21 @@ you fill templates/plan-brief.md (or paste those answers)
 
 ## Read the vault (save tokens)
 
-Do **not** read the entire vault. Order:
+Do **not** read the entire vault. Jump:
 
-1. `START HERE.md`
-2. `WORKFLOW.md` / `Preferences.md` only if this job needs them
-3. That product’s `projects/<slug>/idea.md`
-4. The repo on disk
+1. `routes.md` (keyword → one file) or `START HERE.md` if nothing matches
+2. That one `projects/<slug>/idea.md` (or career / Preferences if the table says so)
+3. The repo on disk
 
-Do not paste `STACK.md` unless asked to explain the stack. `memory/career.md` only for hiring jobs; it lives on this PC and the private remote. Delete junk the same turn.
+`WORKFLOW.md` / `Preferences.md` only if this job needs them. Do not paste `STACK.md` unless asked. `memory/career.md` only for hiring jobs. Delete junk the same turn.
 
 ## Learn (same turn)
 
-After a like/hate or a finished task, append Preferences Liked / Hated / Thinking. Prefer editing existing notes. Do not file chats. That is how the brain learns (reinforcement, not ML). Unpublished `idea.md` still updates on disk even if the public template omits that folder.
+After a like/hate, a finished task, **or a useful find**, append Preferences Liked / Hated / Thinking. Taste is allowed to change. Prefer editing existing notes. Do not file chats. Unpublished `idea.md` still updates on disk even if the public template omits that folder.
 
 ## Internet
 
-Do **not** web-search by default. Search only if the user asked, or a Plan needs a current library/version/CVE. Tool research stays in chat unless we adopt it into Preferences.
+Search when it will **actually improve** the work: current library docs, a CVE, a motion/pattern we have not used, a reference the Plan named. Do not search to fill time. Do not dump trending-tool lists into the vault. If we adopt it, one line in Preferences. That is how we keep learning instead of freezing taste.
 
 ## Keep the brain current
 
@@ -103,5 +102,5 @@ If Cursor quota dies: packet to ChatGPT Go and/or Antigravity. Same vault.
 8. When a project is showable: remind GitHub + LinkedIn and write `projects/<slug>/ship-post.md`. Never fake contribution graphs. Never typo-a-day commits.
 9. Six-month internship: follow `memory/career.md` when it exists on disk. Do not run four products in parallel.
 10. Tool research stays in chat unless we adopt it into Preferences. Official Expo skills are already installed (curated). Do not add skill packs. `npx skillui` is a CLI, not a pack — only when Plan names one echo URL.
-11. Vault backup is **private git** (`kit/sync-vault.ps1` + private GitHub `mahik504/orchestra-brain`). Public template is a **separate** repo (`kit/publish-public-vault.ps1` + `mahik504/orchestra-workflow`). Do not flip the private remote public — history has career and unpublished ideas. Do not build n8n / Supabase / embeddings until an automation must query the vault without us.
+11. Vault backup is **private git** (`kit/sync-both.ps1` every 12h → private `mahik504/orchestra-brain`, then public template if allowlisted files changed). Do not flip the private remote public. Do not empty-commit the public repo for green squares. Do not build n8n / embeddings until an automation must query the vault without us.
 12. Installed vs refused tools: `STACK.md`. Do not install OpenHands, Dify, Langflow, Coolify, Maxun, Headroom, rtk, or skill dumps.

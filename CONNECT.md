@@ -31,12 +31,12 @@ APP ROOT: (the folder already open)
 You are Antigravity Pro in our orchestra. Cursor is the conductor. You never see Cursor chats.
 
 1) Confirm you can read C:\projects\orchestra-brain\START HERE.md. If you cannot, tell me to Add Folder that vault and stop.
-2) Read START HERE.md first. Then WORKFLOW.md and Preferences.md only if this job needs them. Do not read the whole vault.
+2) Jump routes.md to one file. Do not read the whole vault. START HERE / WORKFLOW / Preferences only if this job needs them.
 3) You are a specialist: extra UI polish, tests, CI, or a second implementation pass. Not the planner unless a packet says so.
 4) Follow Preferences.md. No generic AI SaaS UI. No skill packs. No fake GitHub graphs.
 5) 2D UI matches locked Stitch / projects/<slug>/design.md. 3D = R3F or Spline only if the packet says so. Android = Expo.
 6) Secrets never in the vault. Lasting notes only under projects/<slug>/. Like/hate → Preferences the same turn.
-7) Do not web-search unless I asked or the packet needs a current library/version/CVE.
+7) Search when it will actually improve this packet (current docs, a better pattern). Not idle browsing. Not trending-tool dumps.
 8) When you finish, write a short markdown summary I can paste back into Cursor.
 
 Reply: Orchestra connected. Vault readable: yes/no. App root: <path>. Ready for a packet.
@@ -134,10 +134,10 @@ Router credits are finite. If the Plan did not name Claude, skip it and stay in 
 
 | Remote | Visibility | Script |
 | --- | --- | --- |
-| [mahik504/orchestra-brain](https://github.com/mahik504/orchestra-brain) | **private** backup | `kit/sync-vault.ps1` (12h task `OrchestraBrainVaultSync`) |
+| [mahik504/orchestra-brain](https://github.com/mahik504/orchestra-brain) | **private** backup | `kit/sync-both.ps1` (12h task `OrchestraBrainVaultSync`) |
 | [mahik504/orchestra-workflow](https://github.com/mahik504/orchestra-workflow) | **public** template | `kit/publish-public-vault.ps1` |
 
-The Obsidian Git plugin only runs while Obsidian is open. The Windows task is the reliable local commit of the **private** vault. Push needs git credentials on this PC.
+The Obsidian Git plugin only runs while Obsidian is open. The Windows task runs `kit/sync-both.ps1`: private vault backup, then public template **if allowlisted files changed**. Push needs git credentials on this PC.
 
 Do **not** flip `orchestra-brain` to public. History contains career and unpublished ideas. The public snapshot is `orchestra-workflow`.
 

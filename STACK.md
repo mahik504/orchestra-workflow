@@ -11,7 +11,7 @@ Vault on this PC: `C:\projects\orchestra-brain`
 | Remote | Visibility | Role |
 | --- | --- | --- |
 | [mahik504/orchestra-brain](https://github.com/mahik504/orchestra-brain) | **private** | Full backup (career + unpublished ideas). 12h sync. Do not make public — history has personal files. |
-| [mahik504/orchestra-workflow](https://github.com/mahik504/orchestra-workflow) | **public** | Workflow template for friends. No career.md, no unpublished briefs. |
+| [mahik504/orchestra-workflow](https://github.com/mahik504/orchestra-workflow) | **public** | Workflow template. 12h publish when those files changed. Real commits only. |
 
 Hiring pins are product repos, not this catalog: [AstroVerse](https://github.com/mahik504/AstroVerse), [AirLens](https://github.com/mahik504/AirLens).
 
@@ -19,7 +19,7 @@ Hiring pins are product repos, not this catalog: [AstroVerse](https://github.com
 
 ```
 you fill templates/plan-brief.md
-  → Cursor Plan (START HERE + that idea.md, not the whole vault)
+  → Cursor Plan (routes.md → that one idea.md, not the whole vault)
   → optional: npx skillui on ONE echo URL Plan named → projects/<slug>/ref/
   → Stitch = 2D screens / app chrome
   → 3D in code (R3F or Spline), not Stitch

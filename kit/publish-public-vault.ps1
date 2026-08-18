@@ -62,7 +62,10 @@ $files = @(
   "CONNECT.md",
   "STACK.md",
   "STITCH.md",
+  "CHANGELOG.md",
+  "routes.md",
   "kit\sync-vault.ps1",
+  "kit\sync-both.ps1",
   "kit\publish-public-vault.ps1",
   "memory\README.md",
   "memory\decisions.md",
@@ -77,6 +80,32 @@ foreach ($f in $files) {
 Copy-Tree "templates" @()
 Copy-Tree "kit\antigravity" @("mcp_config.json")
 Copy-Tree ".obsidian" @("workspace.json", "workspace-mobile.json", "cache")
+
+# Public routes must only point at files that exist in this template.
+# Unpublished product paths stay in the private vault routes.md.
+@"
+---
+title: Routes
+---
+
+# Routes
+
+Jump table for this public template. **Open only the matching file.**
+
+| If they are talking about | Open |
+| --- | --- |
+| AirLens, college GUI, AQI | ``projects/airlens/idea.md`` |
+| AstroVerse, exoplanet | ``projects/astroverse/idea.md`` |
+| Taste, like/hate, stack, motion | ``Preferences.md`` |
+| How we work, models, Stitch vs 3D | ``WORKFLOW.md`` |
+| Skills / MCP / refused tools | ``STACK.md`` |
+| Antigravity / friend prompt | ``CONNECT.md`` or ``kit/antigravity/`` |
+| Lasting yes/no | ``memory/decisions.md`` |
+| What changed in this template | ``CHANGELOG.md`` |
+
+Unpublished product notes live only on the author's private vault.
+"@ | Set-Content -LiteralPath (Join-Path $PublicRoot "routes.md") -Encoding utf8
+
 
 # Guard: these must never appear in the public tree
 $forbidden = @(
@@ -119,7 +148,8 @@ if (-not (Test-Path -LiteralPath (Join-Path $PublicRoot ".git"))) {
 git add -A
 $porcelain = git status --porcelain
 if ($porcelain) {
-  git commit -m "Publish public orchestra workflow template without personal career or unpublished ideas."
+  $stamp = Get-Date -Format "yyyy-MM-dd"
+  git commit -m "Publish orchestra workflow template $stamp"
 } else {
   Write-Host "public tree unchanged"
 }

@@ -43,6 +43,7 @@ Lasting choices. Do not re-argue.
 | 2026-08-18 | Vault private remote = `mahik504/orchestra-brain` | Full backup. Stay private — history has career/unpublished ideas. Never a hiring pin |
 | 2026-08-18 | GitHub dump: skip other products; thin-adopt slop/YAGNI | No Dify/Langflow/Coolify/OpenHands/Maxun. no-ai-slop + ponytail principles only. build-your-own-x = career practice URL. Headroom/rtk stay deferred |
 | 2026-08-18 | addyosmani/agent-skills still refused | Skill dump. Already Hated. Never `npx skills add` |
+| 2026-08-18 | Search when it helps; jump via routes.md | Do not freeze taste. Do not scan the whole vault. Public template 12h only on real file changes |
 | 2026-08-18 | Vault memory folder is `memory/` | User renamed the old numbered folder. Paths follow `memory/`. Do not re-rename. |
 | 2026-08-18 | Headroom MCP and rtk still not installed | Quota is not failing. Token control = vault hygiene (short notes, router, don’t dump chats). Optional later if quota hurts. |
 | 2026-08-18 | Dual-repo: private brain + public template | Do not flip `orchestra-brain` public. Export allowlist to `mahik504/orchestra-workflow`. Career + unpublished ideas stay on this PC + private remote. |

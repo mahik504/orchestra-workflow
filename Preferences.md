@@ -40,8 +40,9 @@ Web motion primitives: [React Bits](https://reactbits.dev/) when implementing, n
 - College due-now GUI is a workflow test: skip Stitch, ship real git.
 - I want studio-site craft (hover, reveal, micro) on surfaces that are *shown*, not on every form.
 - College vs hiring must stay labeled. Showing the vault to someone should not mix AirLens with AstroVerse.
-- The brain learns by appending Liked/Hated/Thinking the same turn — not by dumping chats.
-- Read START HERE first, not the whole vault. Search the web only when asked or a Plan needs a current version/CVE.
+- The brain learns by appending Liked/Hated/Thinking the same turn — including useful finds, not only my reactions. Taste is allowed to change.
+- Jump `routes.md` to one note. Do not open every idea.md.
+- Search the web when it will actually improve the work. Not for idle trending lists.
 
 ## Liked (append when something is right)
 
@@ -49,6 +50,7 @@ Web motion primitives: [React Bits](https://reactbits.dev/) when implementing, n
 - AirLens map: click for a bright mark at the exact point plus that city’s AQI, then a real GitHub push
 - AirLens India silhouette under the city dots, viva deck in the same lamp-black / rust
 - Echo-allowed studios (materials / motion, **not** a clone): [Nothin'](https://www.noth.in/) editorial-clarity, [K95](https://k95.it/en) grid + case-study density, [Wairk](https://wairk.fr/) sharp AI-studio editorial, [Lax Space](https://www.laxspace.co/) 3D-orbit playground
+- Jump one note (`routes.md`) instead of scanning the vault; search when it will actually improve, so taste can still change
 
 ## Hated (append when something is wrong)
 
@@ -100,7 +102,7 @@ Adopted tools (not a wishlist):
 - **SkillUI** CLI on demand (`npx skillui`) when Plan names **one** live URL to echo. Output goes in `projects/<slug>/ref/`, then we lock *our* `design.md`. Not a global skill pack. Not a clone factory.
 - **Manus 1.6 Max** until **2026-08-25**: packet specialist for long cloud browse / wide research. Not conductor. Not a second app factory.
 - **Claude Code CLI** (own terminal only): optional think / refine specialist when Plan names it. Point it at a router with **env vars on this PC**. Never install OpenCode, Kilo, OmniRoute, or 9router packs into Cursor or Antigravity.
-- Vault **private git** + `kit/sync-vault.ps1` (12h) = Layer-2-lite backup. Public template = `kit/publish-public-vault.ps1`. Not n8n / Vapi / embeddings.
+- Vault **private git** + `kit/sync-both.ps1` (12h) = backup, then public template if allowlisted files changed. Not empty green-square commits. Not n8n / Vapi.
 - Catalog of what is installed vs refused: [[STACK]].
 - Not adopted: Expo MCP, EAS Observe/Simulator, NativeWind-as-religion, daily dummy commits, n8n/Vapi vector brain, GetLayers templates, ui-ux-pro-max, OpenCode/Kilo/OmniRoute as IDE plugins, OpenHands/Dify/Langflow/Coolify/Maxun, gstack, browser-use, Stirling-PDF, Crawl4AI, code-review-graph MCP, addyosmani/agent-skills.
 - Headroom MCP and rtk still deferred (quota is not failing). Token control is vault hygiene: short notes, read START HERE first, router, don’t dump chats. Optional later if quota hurts.
