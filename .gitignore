@@ -1,0 +1,35 @@
+# Orchestra brain — git ignore
+
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+**/secrets/
+mcp_config.json
+**/mcp_config.json
+!kit/antigravity/mcp_config.example.json
+*credentials*
+*secret*
+*.token
+
+# Private diary nits (career.md stays tracked on the private remote)
+memory/local-notes.md
+
+# Sync noise
+kit/sync-vault.log
+
+# Obsidian session (keep appearance / core-plugins)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache/
+.trash/
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
