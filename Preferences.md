@@ -63,6 +63,8 @@ Web motion primitives: [React Bits](https://reactbits.dev/) when implementing, n
 - OpenHands / Dify / Langflow / Coolify / Maxun as a second conductor
 - Reminder MCP / unofficial scrapers. Reminders stay in the user rule and in chat.
 - Installing Spec Kit CLI or Ralph as a second conductor
+- Guildly / overnight AI-employee factories (second conductor)
+- Pasting API tokens into chat
 
 ## How to work
 
@@ -75,7 +77,7 @@ Before adding code: skip it if it is not needed; reuse what this repo already ha
 
 - Web: TypeScript, React, Vite or Next (whatever the repo is)
 - Android + later iOS: **Expo**
-- 3D: R3F + drei, or Spline
+- 3D: **Three.js via R3F** (or Spline). Vanilla Three.js only if the surface is not React.
 - 2D games: canvas + Rapier/Matter
 - Per-product stack lives in that product’s `idea.md` (private vault)
 

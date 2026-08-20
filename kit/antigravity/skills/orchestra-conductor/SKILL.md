@@ -64,7 +64,7 @@ Unpublished `idea.md` files still update on this PC even if the public template 
 - ChatGPT Go or Perplexity = research packet
 - Claude.ai or **Claude Code CLI in a separate terminal** = hostile review / deep think. Keys in env, never in the vault.
 - Manus 1.6 Max until 25 Aug 2026 = long browse, packet only
-- Never OpenCode, Kilo Code, OmniRoute, 9router, OpenHands, Dify, Langflow, Coolify, Maxun, or the Ralph CLI **inside Cursor or Antigravity**
+- Never OpenCode, Kilo Code, OmniRoute, 9router, OpenHands, Dify, Langflow, Coolify, Maxun, Guildly, or the Ralph CLI **inside Cursor or Antigravity**
 
 ## End of a complete project
 

@@ -88,7 +88,9 @@ Per-product stack lives in that `idea.md` on the **private** vault.
 
 ## Refused on purpose (do not install)
 
-Second conductors: OpenHands, Dify, Langflow, Coolify, Maxun, OpenCode, Kilo, OmniRoute, 9router, gstack.
+Second conductors: OpenHands, Dify, Langflow, Coolify, Maxun, OpenCode, Kilo, OmniRoute, 9router, gstack, Guildly.
+
+3D is **Three.js through React Three Fiber** (or Spline). shadcn is not the default chrome (Stitch is). Do not add a second BaaS globally (Convex vs the product’s existing backend — pick one in that product’s idea file).
 
 Skill dumps: `addyosmani/agent-skills`, vercel packs, obra/superpowers, frontend-design, ui-ux-pro-max.
 

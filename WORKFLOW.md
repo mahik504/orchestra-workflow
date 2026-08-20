@@ -118,7 +118,7 @@ Do not copy AGENTS.md into every repo. Learnings go in progress.md or that produ
 | Hostile think box | Claude.ai or Claude Code CLI (own window) if Plan names it | — |
 | Android | **Expo** | curated expo-* |
 
-Do **not** install OpenCode, Kilo, OmniRoute, OpenHands, Dify, Langflow, Coolify, Maxun, or the Ralph CLI **inside** Cursor or Antigravity.
+Do **not** install OpenCode, Kilo, OmniRoute, OpenHands, Dify, Langflow, Coolify, Maxun, Guildly, or the Ralph CLI **inside** Cursor or Antigravity. 3D = Three.js via R3F. shadcn and Convex are per-product if Plan names them, never a global dump.
 
 ## Read the vault (save tokens)
 
