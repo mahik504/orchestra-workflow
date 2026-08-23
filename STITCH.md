@@ -6,15 +6,18 @@ title: Stitch
 
 Stitch designs **screens**. It does not design real-time 3D. Cursor (and Antigravity) build 3D **inside** those screens.
 
+**Stitch is not required every time.** If Plan named a library, template, shader, or animation, combine those against `projects/<slug>/design.md` and tint.
+
 ```
 Plan brief
-  → optional SkillUI on ONE echo URL (see below)
-  → taste-design → DESIGN.md
-  → Stitch: layout, type, color, components, mobile frames
+  → read kind
+  → named source? combine against design.md (skip Stitch)
+  → else college: SkillUI / kit block / React Bits / one ThreeUI
+  → hiring: Stitch + one echo or named library
+  → operator HUD: Stitch screens, no shadcn; 3D = volume R3F
   → lock projects/<slug>/design.md
-  → Agent: implement chrome to match Stitch
-  → Agent: R3F or Spline only where Plan marked 3D
-  → earned motion (hover / reveal / micro) — Emil; React Bits if needed
+  → Agent: implement the lock
+  → one motion engine — React Bits on college web
   → optional Antigravity polish
   → Playwright on web
 ```
@@ -34,6 +37,16 @@ npx skillui --url https://example.com --mode ultra --format design-md --out "C:\
 ```
 
 Then lock **our** `projects/<slug>/design.md`. Delete `ref/` after Stitch is locked if it is just a third-party scrape. Never `skillui` Notion/Linear “because it looks good.” Never install SkillUI as a global skill pack.
+
+## Dual-track import (by kind)
+
+| kind | 2D import | Forbidden |
+| --- | --- | --- |
+| college / hackathon | One SkillUI URL or one 21st / shadcn / unlumen / smoothui / neo block or React Bits or one ThreeUI. Tint to one world. React Bits required on web. Stitch optional | Mixing five kits. Generating chrome from zero |
+| hiring-cv | Stitch + one echo **or** named library against design.md | Kit look as the product |
+| personal operator HUD | Stitch. No shadcn. No 21st. Volume R3F | Kit HUD, CSS planet |
+
+Always-on 21st / Aceternity / Magic MCP stay off. `neo` = neobrutalism.com (college / loud marketing). Ditther / Pryzm / notyourtype = Plan-named craft. react-spring = one motion engine option. Do not clone screenshot-to-code.
 
 Academic monochrome workspace only if Plan named that world. Do not mix it onto a hiring ML product.
 

@@ -52,8 +52,9 @@ Body rules:
 - Never skill-pack dumps (frontend-design, obra/superpowers, vercel `skills add --all`).
 - Never copy AGENTS.md into every repo.
 - Secrets never in the vault.
-- idea.md has `kind`: college | personal | hiring-cv. Do not mix college into hiring-cv.
-- Never OpenCode / Kilo / OmniRoute / OpenHands / Dify / Langflow / Coolify / Maxun / Headroom / rtk / Spec Kit CLI / Ralph CLI inside Antigravity. Optional Claude Code is a separate CLI only if a packet names it.
+- idea.md has `kind`: college | personal | hiring-cv. College includes hackathon kit-assembly (one source + React Bits). Hiring = Stitch + one echo **or** named library against design.md. Operator HUD = Stitch + volume R3F, no kits. Stitch is optional when Plan named a library/shader/animation.
+- OpenHuman = desktop specialist the human installs. Packet in / summary out. Not conductor. Do not dump its skills into Cursor. Do not install ECC into Antigravity.
+- Never OpenCode / Kilo / OmniRoute / OpenHands / Dify / Langflow / Coolify / Maxun / Guildly / ECC / always-on 21st.dev MCP / Aceternity MCP / Magic UI MCP / Headroom / rtk / Spec Kit CLI / Ralph CLI inside Antigravity. Optional Claude Code is a separate CLI only if a packet names it. `hackathon-rocket` only if kind is college.
 - Showable catalog if the vault has `STACK.md` — read it only if asked to explain the stack or check refused tools.
 
 **orchestra-vault** — lasting notes only under `projects/<slug>/`. Global stack in Preferences; per-product stack and **kind** in that idea.md. Delete junk the same turn. Empty `00-inbox`…`07-reviews` folders are forbidden. Private git backup is Layer-2-lite; public template is a separate allowlisted repo.
@@ -117,7 +118,7 @@ Add these if missing (Playwright + Context7 need no key):
 - Prefer Antigravity MCP Store → GitHub (OAuth).
 - Do not put a GitHub PAT in JSON. If they already have a GitHub server, leave it, and warn them plaintext PATs in mcp_config.json should be rotated and moved to env.
 
-Do not add Expo MCP, Slack, Firebase Studio, Headroom, code-review-graph, Dify, Langflow, or extra hosts unless they ask. Never docker-compose Dify / Coolify / OpenHands as part of this install.
+Do not add Expo MCP, Slack, Firebase Studio, Headroom, code-review-graph, Dify, Langflow, 21st.dev, Aceternity, Magic UI, or extra hosts unless they ask. Never docker-compose Dify / Coolify / OpenHands as part of this install. shadcn MCP is optional and **hiring-web only**.
 
 ### 4) Vault files
 
@@ -140,9 +141,9 @@ Do not copy another person’s product ideas. Friend zip is **only** this `kit/a
 ```
 fill templates/plan-brief.md
   → Plan (questions + vault)
-  → Stitch = 2D screens
-  → 3D in code (R3F or Spline), not Stitch
-  → implement to match Stitch
+  → Read kind. College: one kit/SkillUI/shader/animation + React Bits (Stitch optional). Hiring: Stitch + one echo or named library. Operator HUD: Stitch + volume R3F.
+  → Load only the skills for this job. Isolate plan / implement / review.
+  → implement the lock
   → ship-safe on their app; Strix only on apps they own, when Docker works
   → when showable: GitHub push + LinkedIn draft in projects/<slug>/ship-post.md
 ```
@@ -164,4 +165,4 @@ Human gates left:
 Ready for: (specialist: packet | conductor: plan brief)
 ```
 
-Then **stop**. Do not start building a product. Do not clone random repos. Do not dump trending tools into the vault. Do not install OpenHands, Dify, Langflow, Coolify, Maxun, or addyosmani/agent-skills.
+Then **stop**. Do not start building a product. Do not clone random repos. Do not dump trending tools into the vault. Do not install OpenHands, Dify, Langflow, Coolify, Maxun, ECC, vercel-labs/agent-skills `--all`, or addyosmani/agent-skills.

@@ -39,7 +39,8 @@ Web motion primitives: [React Bits](https://reactbits.dev/) when implementing, n
 - Tools cannot DM each other. Vault packets are the handshake.
 - College due-now GUI: skip Stitch, ship real git.
 - Studio-site craft (hover, reveal, micro) on surfaces that are *shown*, not on every form.
-- College vs hiring must stay labeled (`kind` on every idea.md).
+- Dual-track: college may assemble one kit + React Bits in a **fresh** chat. Hiring and operator HUD stay original. Orchestra opens the import list but keeps jump-one-note. Loading every skill is how a UI pass burns quota.
+- Import shelf (2026-08-23): named library + design.md beats Stitch-every-time. ECC method without the dump. OpenHuman is a desktop specialist, not conductor.
 - The brain learns by appending Liked/Hated/Thinking the same turn — including useful finds. Taste is allowed to change.
 - Jump `routes.md` to one note. Do not open every idea.md.
 - Search the web when it will actually improve the work. Not for idle trending lists.
@@ -48,16 +49,16 @@ Web motion primitives: [React Bits](https://reactbits.dev/) when implementing, n
 
 ## Liked
 
-- Echo-allowed studios (materials / motion, **not** a clone): [Nothin'](https://www.noth.in/) editorial-clarity, [K95](https://k95.it/en) grid + case-study density, [Wairk](https://wairk.fr/) sharp AI-studio editorial, [Lax Space](https://www.laxspace.co/) 3D-orbit playground
-- Academic monochrome workspace **only** when Plan names that visual world. Reverse-eng = `npx skillui` on one URL, not a skill pack.
-- Jump one note (`routes.md`) instead of scanning the vault; search when it will actually improve
-- Spec.md + one story per Agent pass. Plan is the prompt; implement is a loop.
+- Echo-allowed studios (materials / motion, **not** a clone): [Nothin'](https://www.noth.in/), [K95](https://k95.it/en), [Wairk](https://wairk.fr/), [Lax Space](https://www.laxspace.co/), [godly.design](https://godly.design/), [unitedcarriers.com](https://unitedcarriers.com/), [peteroravec.com](https://peteroravec.com/), [styles.refero.design](https://styles.refero.design/), [ditther.com](https://www.ditther.com/), [neobrutalism.com](https://neobrutalism.com/) as `neo`. SkillUI **one URL** when Plan names it.
+- [pryzm.design](https://pryzm.design/), [notyourtype.nl](https://www.notyourtype.nl/) (licensed type), [ui.unlumen.com](https://ui.unlumen.com/) / [smoothui.dev](https://smoothui.dev/) one block, ThreeUI one component, react-spring as one motion engine.
+- Dual-track: college kit-assembly; hiring Stitch or named library; operator HUD original. Stitch not required every time. Import then edit.
 
 ## Hated
 
 - Fake GitHub contribution graphs / dummy commits / typo-a-day green squares
 - Streak widgets, contribution snakes, fake counters on a profile README
-- Skill dumps (frontend-design, obra/superpowers, vercel skill packs, ui-ux-pro-max, addyosmani/agent-skills)
+- Skill dumps (frontend-design, obra/superpowers, vercel skill packs, vercel-labs/agent-skills `--all`, ui-ux-pro-max as a global skill, addyosmani/agent-skills, science plugin packs, ECC into Cursor)
+- Making OpenHuman the conductor
 - Cloning Notion / Linear / a studio site as *our* product UI
 - OpenCode / Kilo / OmniRoute **inside** Cursor or Antigravity
 - OpenHands / Dify / Langflow / Coolify / Maxun as a second conductor
@@ -65,6 +66,9 @@ Web motion primitives: [React Bits](https://reactbits.dev/) when implementing, n
 - Installing Spec Kit CLI or Ralph as a second conductor
 - Guildly / overnight AI-employee factories (second conductor)
 - Pasting API tokens into chat
+- 21st.dev / Aceternity / Magic UI as **always-on** MCP. College may name one 21st.dev page.
+- Loading every skill on a UI pass
+- Huge daily-note PKM dumps. Jump one note. Same-chat lasting notes only.
 
 ## How to work
 
@@ -90,7 +94,7 @@ Adopted tools:
 - **Manus 1.6 Max** until **2026-08-25**: packet specialist for long cloud browse. Not conductor.
 - **Claude Code CLI** (own terminal only) when Plan names it. Keys in env, never in the vault.
 - Vault **private git** + `kit/sync-both.ps1` (12h) = backup, then this public template if allowlisted files changed. Not empty green-square commits.
-- Catalog: [[STACK]].
+- Catalog: [[STACK]]. Dual-track: college kits + React Bits; hiring Stitch; operator HUD original. Load skills by job.
 
 ## Anti-references
 

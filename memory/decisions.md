@@ -8,6 +8,8 @@ Lasting workflow choices. Do not re-argue. Product-specific decisions stay in th
 
 | Date | Decision | Why |
 | --- | --- | --- |
+| 2026-08-23 | Import shelf open; ECC steal-thin; OpenHuman not conductor | Load-by-job + isolate plan/implement/review without installing 286 skills. Stitch optional when a named library exists. OpenHuman = desktop packet specialist. Vault may still change. |
+| 2026-08-22 | Dual-track frontend; vault still allowed to change | College/hackathon may assemble one kit + React Bits. Hiring = Stitch + one echo. Operator HUD = original Stitch + volume R3F. Load skills by job, not all at once. |
 | 2026-08-14 | No bulk skill packs | They produced vibe-coded UI |
 | 2026-08-14 | Vault is the shared brain | Tools cannot DM each other |
 | 2026-08-14 | Cursor-first, specialists optional | Five tools on every idea loses context |
@@ -31,3 +33,4 @@ Lasting workflow choices. Do not re-argue. Product-specific decisions stay in th
 | 2026-08-18 | Claude Code CLI is an optional think box | Own terminal. No OpenCode / Kilo inside the IDEs |
 | 2026-08-18 | MIT LICENSE the same day a public repo ships | Mermaid flowchart in README / ARCHITECTURE (not Langflow). SkillUI stays the reverse-eng CLI. No reminder MCP. |
 | 2026-08-19 | Model router + spec.md + story loop | Human switches Plan/Agent. Spec Kit/Ralph are templates, not CLIs. |
+| 2026-08-21 | Import-then-edit; shadcn MCP hiring-web only | Name the source. Skip 21st/Aceternity/Magic MCP. Vault stays small. |

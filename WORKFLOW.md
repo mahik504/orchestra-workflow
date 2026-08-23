@@ -16,9 +16,9 @@ flowchart TD
   modelPick["You switch thinking model if told"]
   planNode["Cursor Plan"]
   routes["routes.md one note"]
-  skillui["optional skillui one URL"]
-  stitch["Stitch 2D chrome"]
-  threeD["R3F or Spline in code"]
+  skillui["import 2D: SkillUI or Stitch"]
+  stitch["lock DESIGN.md"]
+  threeD["import 3D: Shadertoy or R3F pattern"]
   modeAgent["You switch to Agent mode"]
   story["one story per fresh pass"]
   agent["Agent or subagent implements"]
@@ -30,11 +30,9 @@ flowchart TD
 
 ```
 you fill templates/plan-brief.md
-  → Cursor Plan mode (thinking model) writes idea.md + spec.md
-  → optional: npx skillui on ONE echo URL Plan named
-  → Stitch = 2D chrome (skip only for due-now college GUI or a locked 3D fork)
-  → 3D in code (R3F or Spline)
-  → Agent mode: one spec story per pass (Ralph-thin). Subagents when this chat is Grok and the job is UI or review
+  → Cursor Plan mode (thinking model) writes idea.md + spec.md (read kind)
+  → **Import, then edit by kind.** Stitch optional if a named library/shader/animation exists — combine against design.md. College: one kit/SkillUI/React Bits. Hiring: Stitch + one echo or named library. Operator HUD: Stitch + volume R3F. Load only the skills for this job. Isolate plan / implement / review.
+  → Agent mode: one spec story per pass (Ralph-thin)
   → Antigravity Gemini packet on showable web/Android
   → ship-safe; Playwright; GitHub as the author
 ```
@@ -100,6 +98,32 @@ Adopted:
 
 Do not copy AGENTS.md into every repo. Learnings go in progress.md or that product’s idea.md.
 
+## When to load (skills by job — not all at once)
+
+| Job | Load |
+| --- | --- |
+| Plan / spec.md | orchestra-conductor, orchestra-vault |
+| 2D lock | stitch-* + taste-design |
+| UI polish after a still | impeccable + animate / review-animations |
+| Android | curated expo-* |
+| Security | ship-safe always; Strix only on **our** app |
+| Docs / papers | orchestra-docs |
+| College 0-to-1 | Antigravity may use hackathon-rocket if installed. Do not add it to Cursor always-on |
+
+## ECC method (not the dump)
+
+Load skills when the job needs them. Isolate plan / implement / review. Instincts = Preferences same turn. **Do not** install ECC (68 agents / ~286 skills) into Cursor or Antigravity. Stay open: new named sources in STACK. Vault may still change.
+
+## Dual-track frontend (by `kind`)
+
+College includes hackathon.
+
+| kind | 2D import | Forbidden |
+| --- | --- | --- |
+| college / hackathon | One SkillUI URL **or** one 21st / shadcn / unlumen / smoothui / neo block **or** React Bits **or** one ThreeUI. Tint to one world. React Bits required on web. Stitch optional if a named library/shader exists | Mixing five kits. Generating chrome from zero |
+| hiring-cv | Stitch + one echo **or** named library against design.md | Kit look as the product |
+| personal operator HUD | Stitch. No shadcn. No 21st. Volume R3F | Kit HUD |
+
 ## Who does which part
 
 | Job | Use | Skills |
@@ -118,7 +142,7 @@ Do not copy AGENTS.md into every repo. Learnings go in progress.md or that produ
 | Hostile think box | Claude.ai or Claude Code CLI (own window) if Plan names it | — |
 | Android | **Expo** | curated expo-* |
 
-Do **not** install OpenCode, Kilo, OmniRoute, OpenHands, Dify, Langflow, Coolify, Maxun, Guildly, or the Ralph CLI **inside** Cursor or Antigravity. 3D = Three.js via R3F. shadcn and Convex are per-product if Plan names them, never a global dump.
+Do **not** install OpenCode, Kilo, OmniRoute, OpenHands, Dify, Langflow, Coolify, Maxun, Guildly, ECC, always-on 21st.dev / Aceternity / Magic MCP, vercel-labs/agent-skills dump, or the Ralph CLI **inside** Cursor or Antigravity. Stitch optional when a named library/shader/animation exists. OpenHuman is a desktop specialist the human installs — packet in / summary out, not conductor.
 
 ## Read the vault (save tokens)
 
@@ -136,7 +160,7 @@ After a like/hate, a finished task, **or a useful find**, append Preferences Lik
 
 ## Internet
 
-Search when it will **actually improve** the work: current library docs, a CVE, a motion/pattern we have not used, a reference the Plan named. Do not dump trending-tool lists into the vault. If we adopt it, one line in Preferences.
+Search when it will **actually improve** the work: current library docs, a CVE, a motion/pattern we have not used, a reference the Plan named. If spec.md has a problem statement, one competitor/paper pass — file `projects/<slug>/research.md` only if we will use it. Do not dump trending-tool lists into the vault. If we adopt it, one line in Preferences.
 
 ## Keep the brain current
 
@@ -155,14 +179,14 @@ When a decision or ship happens, update that product’s `idea.md`, `memory/deci
 ## Hard rules
 
 1. Fill `templates/plan-brief.md` before design or code. Then write `projects/<slug>/spec.md`.
-2. No frontend until Stitch chrome is locked, except a Plan-approved 3D/game scene **or** a due-now college desktop GUI — then skip Stitch.
-3. Cursor implements Stitch. It does not invent a generic SaaS look.
+2. No frontend until the **import lock** exists: named kit / shader / animation against `design.md`, **or** Stitch when original chrome is still needed. Exception: Plan-approved 3D/game **or** due-now college GUI.
+3. Cursor implements the lock. Do not run Stitch just because it is installed. College may assemble one kit; hiring and operator HUD do not become vibe-design-pro.
 4. Expo for mobile until you explicitly switch.
 5. Secrets never in git or the vault. `ship-safe` on every ship.
 6. No skill packs. No extra MCP unless a product needs that host/db. No reminder MCP.
 7. Vault: lasting notes only, under `projects/<slug>/`. Each idea has `kind`: college | personal | hiring-cv.
 8. When showable: GitHub + LinkedIn. Never fake graphs. Never typo-a-day. Every new public repo gets a LICENSE the same day. Commits show the human, never an agent co-author trailer.
 9. Do not run four products in parallel.
-10. `npx skillui` only when Plan names one echo URL.
+10. `npx skillui` only when Plan names one echo URL. College may name one kit block instead.
 11. Backup is private git + `kit/sync-both.ps1` every 12h, then this public template if allowlisted files changed.
 12. Installed vs refused: `STACK.md`.

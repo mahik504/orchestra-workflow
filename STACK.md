@@ -15,11 +15,9 @@ Catalog of **this** orchestra loop. Product facts do not belong in this public t
 
 ```
 you fill templates/plan-brief.md
-  → Cursor Plan mode → idea.md + spec.md
-  → optional: npx skillui on ONE echo URL Plan named → projects/<slug>/ref/
-  → Stitch = 2D screens / app chrome
-  → 3D in code (R3F or Spline), not Stitch
-  → Agent: one spec story per pass. Subagents if this chat is Grok and the job is UI or review
+  → Cursor Plan mode → idea.md + spec.md (read kind)
+  → **Import, then edit by kind**. Stitch optional if a named library/shader exists — combine against design.md.
+  → Agent: one spec story per pass
   → Antigravity Gemini packet on showable web/Android
   → ship-safe on our app; Strix when Docker is ready and the app is ours
 ```
@@ -27,7 +25,7 @@ you fill templates/plan-brief.md
 | Step | Who | Notes |
 | --- | --- | --- |
 | Idea / architecture / spec.md | **Cursor Plan** | Thinking model. Brief + spec required. |
-| 2D screens / DESIGN.md | **Stitch** | Chrome only. One visual world per product. |
+| 2D screens / DESIGN.md | **Stitch** when original chrome is needed; else named kit against design.md | One visual world. |
 | Code | **Cursor Agent** | One story per pass. Subagent Fable/Opus for UI if this chat is Grok. |
 | It broke | **Cursor Debug** | |
 | Extra polish / tests / CI | **Antigravity** | Required on showable web. Gemini 3.7 Flash High. |
@@ -90,8 +88,8 @@ Per-product stack lives in that `idea.md` on the **private** vault.
 
 Second conductors: OpenHands, Dify, Langflow, Coolify, Maxun, OpenCode, Kilo, OmniRoute, 9router, gstack, Guildly.
 
-3D is **Three.js through React Three Fiber** (or Spline). shadcn is not the default chrome (Stitch is). Do not add a second BaaS globally (Convex vs the product’s existing backend — pick one in that product’s idea file).
+UI kit MCPs: always-on 21st.dev / Aceternity / Magic stay **off**. College Plan may name one 21st.dev page. **shadcn MCP** = hiring or college when Plan names primitives. Never on an operator HUD. React Bits required on college web.
 
-Skill dumps: `addyosmani/agent-skills`, vercel packs, obra/superpowers, frontend-design, ui-ux-pro-max.
+Skill dumps: `addyosmani/agent-skills`, vercel packs, vercel-labs/agent-skills `--all`, obra/superpowers, frontend-design, ui-ux-pro-max as a **global** skill, ECC into Cursor/Antigravity. `hackathon-rocket` only if kind is college (Antigravity). OpenHuman is a desktop app the human installs — not a Cursor skill pack.
 
-Also skipped: Stirling-PDF, Crawl4AI, browser-use, code-review-graph MCP, fake GitHub activity generators, reminder MCP, Spec Kit CLI, Ralph CLI.
+Also skipped: Stirling-PDF, Crawl4AI, browser-use, code-review-graph MCP, fake GitHub activity generators, reminder MCP, Spec Kit CLI, Ralph CLI, screenshot-to-code.

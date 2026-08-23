@@ -13,11 +13,11 @@ This clone is the **public workflow template**.
 Do **not** read the entire vault.
 
 1. [[routes]] if you already know the job; otherwise this file (map)
-2. `WORKFLOW.md` · `Preferences.md` only if this job needs them
+2. [[WORKFLOW]] · [[Preferences]] · [[STITCH]] only if this job needs them
 3. In a **full** vault: `projects/<slug>/idea.md` (read **kind**), then the repo on disk. This public clone has no product folders.
-4. Fill `templates/plan-brief.md` → Cursor **Plan mode** → `spec.md`
-5. Antigravity: `CONNECT.md` (daily) or `kit/antigravity/MASTER-PROMPT.md` (install / friend)
-6. Optional think box: Claude Code **CLI** in a separate window, only if Plan names it. Switch Cursor Plan / Agent / Ask / Debug when told. Never OpenCode / Kilo / OmniRoute / Ralph CLI inside Cursor or Antigravity.
+4. Fill `templates/plan-brief.md` → Cursor **Plan mode** → `spec.md`. Read kind. Stitch optional if a named library/shader exists. College: kit/SkillUI + React Bits. Hiring: Stitch + one echo or named library. Operator HUD: Stitch + volume R3F.
+5. Antigravity: `CONNECT.md` (daily) or `kit/antigravity/MASTER-PROMPT.md` (install / friend). OpenHuman: CONNECT (desktop you install).
+6. Optional think box: Claude Code **CLI** in a separate window, only if Plan names it. Switch Cursor Plan / Agent / Ask / Debug when told. Never OpenCode / Kilo / OmniRoute / ECC / Ralph CLI inside Cursor or Antigravity.
 7. When something ships: GitHub + LinkedIn (`projects/<slug>/ship-post.md` in the full vault)
 8. Like / hate / thinking → `Preferences.md` the same turn. Do not file chats.
 9. Web search when it will **actually improve** the work. Not idle browsing. If adopted, one line in Preferences.
@@ -40,9 +40,9 @@ Do **not** read the entire vault.
 
 | kind | Meaning |
 | --- | --- |
-| `college` | Assignments, basic, due-now |
-| `personal` | Studio / parked products |
-| `hiring-cv` | Tough, public, internship story |
+| `college` | Assignments, due-now, hackathon 0-to-1 (one kit + React Bits) |
+| `personal` | Studio / parked. Operator HUD = Stitch + volume R3F, no kits |
+| `hiring-cv` | Tough, public, internship. Stitch + one echo |
 
 Hiring order lives only in the author’s private vault.
 

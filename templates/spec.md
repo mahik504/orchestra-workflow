@@ -31,3 +31,7 @@ Cap about 8 stories this round. Split anything that smells like “build the who
 Holes Plan must ask before coding. Delete a line when answered.
 
 - [ ]
+
+## Research (optional)
+
+If this spec has a problem statement (college or hiring): one web pass. File `research.md` in this folder **only if we will use it**. Not a new MCP.

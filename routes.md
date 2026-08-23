@@ -10,8 +10,9 @@ Jump table for this public template. **Open only the matching file.** Do not sca
 | --- | --- |
 | How this orchestra is wired, 12h backup | `ARCHITECTURE.md` |
 | Map / “where do I start?” | `START HERE.md` |
-| Taste, like/hate, stack, motion | `Preferences.md` |
-| How we work, models, Cursor modes, Stitch vs 3D | `WORKFLOW.md` |
+| Taste, like/hate, stack, motion, echo studios | `Preferences.md` |
+| How we work, models, Cursor modes, dual-track, ECC method, which skills to load | `WORKFLOW.md` |
+| OpenHuman desktop specialist | `CONNECT.md` |
 | License / contributing | `LICENSE` · `CONTRIBUTING.md` |
 | Skills / MCP / refused tools | `STACK.md` |
 | Antigravity / friend prompt | `CONNECT.md` or `kit/antigravity/` |

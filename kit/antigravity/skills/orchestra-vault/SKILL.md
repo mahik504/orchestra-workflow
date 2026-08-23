@@ -24,11 +24,11 @@ Do **not** open the whole brain. Jump `routes.md` → one file → the repo. `ST
 | `routes.md` | Keyword → one note. Do not scan every idea.md. |
 | `STACK.md` | Installed skills, MCP names, GitHub we have, refused tools. |
 
-No `00-inbox`. No numbered dump folders. No chat recaps. No trending-tool lists.
+No `00-inbox`. No numbered dump folders. No chat recaps. No trending-tool lists. No YouTube-style huge PKM. Add a `[[wikilink]]` only when two notes actually belong together.
 
 ## Kind (on every idea.md)
 
-`college` = assignments / due-now. `personal` = studio or parked. `hiring-cv` = public internship work.
+`college` = assignments / due-now / hackathon (kit-assembly allowed). `personal` = studio or parked (operator HUD = Stitch + volume R3F). `hiring-cv` = public internship work (Stitch + one echo).
 
 ## Showable titles, not structure
 
