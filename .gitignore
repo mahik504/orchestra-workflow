@@ -1,6 +1,5 @@
-# Orchestra brain — git ignore
+# Git ignore (Orchestra Workflow public template)
 
-# Secrets — never commit
 .env
 .env.*
 !.env.example
@@ -17,22 +16,14 @@ mcp_config.json
 *secret*
 *.token
 
-# Private diary nits (career.md stays tracked on the private remote)
 memory/local-notes.md
-
-# Optional large refs (Drive dumps, screenshots)
 memory/attachments/
 
-# Sync noise
-kit/sync-vault.log
-
-# Obsidian session (keep appearance / core-plugins)
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
 .obsidian/cache/
 .trash/
 
-# OS
 Thumbs.db
 Desktop.ini
 .DS_Store

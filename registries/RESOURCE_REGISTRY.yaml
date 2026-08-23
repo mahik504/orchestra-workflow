@@ -1,0 +1,77 @@
+version: 2
+updated: 2026-08-24
+# Libraries, sites, CLIs. Not always-on prompts.
+# class MUST be one of: CORE | SPECIALIST | OPTIONAL | EXPERIMENTAL | REJECTED
+
+resources:
+  inspiration:
+    - { name: Awwwards, url: https://www.awwwards.com/, class: OPTIONAL, use: named_reference }
+    - { name: Godly, url: https://godly.design/, class: OPTIONAL, use: one_echo }
+    - { name: Land-book, url: https://land-book.com/, class: OPTIONAL }
+    - { name: SiteInspire, url: https://www.siteinspire.com/, class: OPTIONAL }
+    - { name: Mobbin, url: https://mobbin.com/, class: OPTIONAL, use: mobile_refs }
+    - { name: Lapa Ninja, url: https://www.lapa.ninja/, class: OPTIONAL }
+    - { name: Framer gallery, url: https://www.framer.com/, class: OPTIONAL, note: echo in React not Framer-as-builder }
+    - { name: Refero, url: https://styles.refero.design/, class: OPTIONAL }
+    - { name: SmoothUI, url: https://smoothui.dev/, class: OPTIONAL, use: college_one_block }
+    - { name: Neobrutalism, url: https://neobrutalism.com/, class: OPTIONAL, world: neo, avoid: [operator HUD, nfc_unless_new_plan] }
+
+  reverse_engineering:
+    - { name: SkillUI, source: https://github.com/amaancoderx/npxskillui, npm: skillui, install: "npx skillui", class: SPECIALIST, license: MIT, note: "verified CLI; not a skill pack" }
+    - { name: amaancoderx/skillui, url: https://github.com/amaancoderx/skillui, class: REJECTED, reason: older_duplicate_repo; npm_points_at_npxskillui }
+    - { name: kachamo/SkillUI, url: https://github.com/kachamo/SkillUI, class: REJECTED, reason: empty_wrong_repo }
+    - { name: extract-design-system, url: https://github.com/arvindrk/extract-design-system, class: OPTIONAL, fallback: true }
+    - { name: screenshot-to-code, url: https://github.com/abi/screenshot-to-code, class: REJECTED }
+    - { name: screenshot-to-html, class: REJECTED }
+
+  typography:
+    - { name: Apple HIG Typography, url: https://developer.apple.com/design/human-interface-guidelines/typography, class: SPECIALIST }
+    - { name: Material 3 Typography, url: https://m3.material.io/styles/typography/overview, class: SPECIALIST }
+    - { name: MDN CSS fonts, url: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_fonts, class: SPECIALIST }
+    - { name: simongonzalezdc/web-typography-skill, url: https://github.com/simongonzalezdc/web-typography-skill, class: OPTIONAL, status: registry_only, reason: apache2_but_1star_not_installed; Orchestra uses TYPOGRAPHY_PROTOCOL.md }
+
+  sensory:
+    - { name: Apple Playing Haptics, url: https://developer.apple.com/design/human-interface-guidelines/playing-haptics, class: SPECIALIST }
+    - { name: Android VibrationEffect, url: https://developer.android.com/reference/android/os/VibrationEffect, class: SPECIALIST }
+    - { name: expo-haptics, url: https://docs.expo.dev/versions/latest/sdk/haptics/, class: SPECIALIST }
+    - { name: expo-speech, url: https://docs.expo.dev/versions/latest/sdk/speech/, class: OPTIONAL, use: accessibility_tts }
+    - { name: ElevenLabs, class: OPTIONAL, when: plan_named_product_voice, note: keys in app env never vault }
+    - { name: unnamed free TTS packs, class: REJECTED, reason: mediocre_robot_default }
+
+  components:
+    - { name: shadcn/ui, url: https://ui.shadcn.com/, class: SPECIALIST, when: plan_named_hiring_or_college }
+    - { name: React Bits, url: https://reactbits.dev/, class: SPECIALIST, when: college_hackathon_web_required }
+    - { name: Magic UI, class: REJECTED, reason: always_on_mcp_forbidden, college_echo: one_page_ok }
+    - { name: Kokonut UI, class: OPTIONAL, use: bookmark_or_one_echo }
+    - { name: Bklit UI, class: OPTIONAL }
+    - { name: mapcn, url: https://github.com/AnmolSaini16/mapcn, class: OPTIONAL, when: maps }
+
+  motion:
+    - { name: Motion, url: https://motion.dev/, class: SPECIALIST, rule: one_engine }
+    - { name: GSAP, class: SPECIALIST, when: complex_timelines }
+    - { name: Lenis, url: https://github.com/darkroomengineering/lenis, class: OPTIONAL, when: scroll_story }
+    - { name: Lottie, class: OPTIONAL, when: authored_assets }
+
+  web_stack_default:
+    prefer: [TypeScript, React, Next_or_Vite_per_repo, Tailwind]
+    repo_wins: true
+
+  backend_families:
+    - { name: Node/TS, class: OPTIONAL }
+    - { name: FastAPI, class: OPTIONAL }
+    - { name: Prisma, class: OPTIONAL }
+    - { name: Drizzle, class: OPTIONAL }
+    - { name: Postgres, class: OPTIONAL }
+    - { name: SQLite, class: OPTIONAL }
+    - { name: Supabase, class: OPTIONAL }
+    - { name: Redis, class: OPTIONAL }
+    rule: pick_one_family_in_idea.md
+
+  research:
+    - { name: public_research_extract, class: OPTIONAL, when: mahi_names_url_and_job, tools: [WebSearch, WebFetch, Context7, SkillUI_named_page], trust: untrusted_data }
+    - { name: Agent-Reach, class: REJECTED, reason: bulk_scrape_ToS }
+    - { name: ChatGPT_Go, class: SPECIALIST, mode: packet }
+    - { name: Perplexity, class: SPECIALIST, mode: packet }
+
+  creative:
+    - { name: Higgsfield MCP, class: REJECTED, reason: paid_extra_studio; Stitch remains 2D path }

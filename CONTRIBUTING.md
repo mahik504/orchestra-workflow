@@ -1,9 +1,23 @@
 # Contributing
 
-This is a **workflow template**, not an app.
+This is a **methodology template**, not an application.
 
-- Fix friend-install steps in `kit/antigravity/` or `CONNECT.md`.
-- Do not add skill packs, extra MCP servers, or product briefs.
-- Never commit `.env`, `mcp_config.json`, tokens, or career notes.
+## Welcome
 
-Open an issue describing what broke. No secrets in issues.
+- Fixes to init/install scripts
+- Clearer docs and adapters
+- Registry rows with license + maintenance evidence
+- Protocol clarifications that do not add skill dumps
+
+## Not welcome
+
+- Skill packs (`--all`, ECC catalogs, marketplace dumps)
+- Always-on UI kit MCP
+- Screenshot-to-code factories
+- Personal brains, product briefs, career notes
+- Secrets, `.env`, MCP JSON with keys
+- Fake benchmarks (“X% faster”) without a described measurement
+
+## License
+
+MIT. See [LICENSE](./LICENSE).

@@ -1,0 +1,22 @@
+{
+  "$comment": "Copy into projects/<slug>/design-tokens.json and edit. Empty means not locked yet.",
+  "color": {
+    "bg": "",
+    "fg": "",
+    "accent": "",
+    "muted": "",
+    "danger": ""
+  },
+  "font": {
+    "display": "",
+    "body": "",
+    "mono": "",
+    "scale": ["0.75rem", "0.875rem", "1rem", "1.25rem", "1.5rem", "2rem"]
+  },
+  "space": [4, 8, 12, 16, 24, 32, 48],
+  "radius": { "sm": 4, "md": 8, "lg": 16 },
+  "motion": {
+    "engine": "one of: css | motion | gsap | react-bits",
+    "durationMs": { "fast": 120, "base": 200, "slow": 400 }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"],
+      "comment": "Example only. Add keys in your local MCP UI, never in git."
+    }
+  }
+}

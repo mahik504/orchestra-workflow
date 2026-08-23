@@ -6,7 +6,7 @@ created:
 path:
 github:
 
-`kind` keeps college assignments out of the hiring story. **college** = due-now / course work / hackathon 0-to-1. **personal** = studio or parked (LYRA-class operator = Stitch + volume R3F, no kits). **hiring-cv** = public internship work (tough, shippable).
+`kind` keeps college assignments out of the hiring story. **college** = due-now / course work / hackathon 0-to-1. **personal** = studio or parked (operator-HUD operator = Stitch + volume R3F, no kits). **hiring-cv** = public internship work (tough, shippable).
 
 ## The idea
 
@@ -24,7 +24,7 @@ Match **kind**. Stitch is optional if a named library / shader / animation exist
 
 - college / hackathon: one SkillUI URL **or** one 21st / shadcn / unlumen / smoothui / neo block **or** React Bits **or** one ThreeUI component. React Bits required on web.
 - hiring-cv: Stitch + one echo URL, **or** named library/shader if Plan skipped Stitch. shadcn primitives only if Plan named them.
-- personal LYRA-class: Stitch Screen 1. No shadcn. No 21st. 3D = one Shadertoy/drei volume.
+- personal operator-HUD: Stitch Screen 1. No shadcn. No 21st. 3D = one Shadertoy/drei volume.
 
 Name the source. Port, then tint. Do not generate chrome or a nucleus from a screenshot loop.
 
@@ -39,7 +39,7 @@ what / why:
 
 swiss | editorial | apple-ios | bento | bauhaus | glass | clay | neo | none
 
-`neo` = [neobrutalism.com](https://neobrutalism.com/). College / loud marketing. Not LYRA-class. Not NFC unless a new Plan.
+`neo` = [neobrutalism.com](https://neobrutalism.com/). College / loud marketing. Not operator-HUD. Not a side-ops dashboard unless a new Plan.
 
 ## Motion (earned only)
 

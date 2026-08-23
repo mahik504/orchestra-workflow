@@ -4,7 +4,7 @@ This folder is what you send a friend who has **Antigravity Pro** and no Cursor.
 
 Zip **only this folder**. Never the private vault. Never `mcp_config.json` (secrets). Never `memory/career.md`.
 
-Public template (workflow + this kit, no career/unpublished briefs): [mahik504/orchestra-workflow](https://github.com/mahik504/orchestra-workflow). Private backup stays [mahik504/orchestra-brain](https://github.com/mahik504/orchestra-brain).
+Public template (workflow + this kit, no career/unpublished briefs): [mahik504/orchestra-workflow](https://github.com/mahik504/orchestra-workflow). Private backup stays [<your-private-vault>](https://github.com/example/your-private-vault).
 
 ## Honest limit
 
@@ -16,12 +16,12 @@ Every product idea has `kind`: `college` | `personal` | `hiring-cv`. Do not mix 
 
 ## You (author) — specialist mode
 
-Cursor stays conductor. In Antigravity: open the **app repo** + add folder `C:\projects\orchestra-brain`. Paste `MASTER-PROMPT.md` with `MODE=specialist`. Read `STACK.md` for what is installed vs refused.
+Cursor stays conductor. In Antigravity: open the **app repo** + add folder `<ORCHESTRA_HOME>`. Paste `MASTER-PROMPT.md` with `MODE=specialist`. Read `STACK.md` for what is installed vs refused.
 
 ## Friend — conductor mode
 
 1. Copy this `kit/antigravity` folder to them (zip). Do **not** send your whole vault (`career.md`, product ideas, Preferences with your notes, `STACK.md`).
-2. They pick a vault path, e.g. `C:\projects\orchestra-brain`.
+2. They pick a vault path, e.g. `<ORCHESTRA_HOME>`.
 3. Antigravity: open their **app folder**, Add Folder the vault (create it if missing).
 4. Paste `MASTER-PROMPT.md` with `MODE=conductor` and their vault path.
 5. They put **their** Stitch key into MCP config. Never yours.

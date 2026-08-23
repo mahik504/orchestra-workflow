@@ -1,0 +1,82 @@
+version: 2
+updated: 2026-08-24
+policy: connected != called. Never paste keys into the vault.
+
+mcp:
+  - name: orchestra-brain
+    class: CORE
+    layer: CORE
+    type: filesystem
+    config: "%USERPROFILE%/.cursor/mcp.json"
+    purpose: vault IO
+    r_w: read_write_vault
+    auth: local_path
+    status: ready
+  - name: stitch
+    class: SPECIALIST
+    layer: DESIGN
+    purpose: Google Stitch screens
+    auth: STITCH_API_KEY in mcp.json (plaintext — rotate)
+    status: ready
+    avoid_on: [when Plan named a library/shader instead]
+  - name: shadcn
+    class: SPECIALIST
+    layer: DESIGN
+    purpose: primitives when Plan names them
+    status: error_this_environment
+    forbid_on: [lyra_operator_hud]
+  - name: playwright
+    class: CORE
+    layer: CORE
+    purpose: click OUR running UI
+    plugin: plugin-playwright-playwright
+    status: ready
+  - name: context7
+    class: CORE
+    layer: CORE
+    purpose: library docs
+    plugin: plugin-context7-plugin-context7
+    status: ready
+  - name: github
+    class: CORE
+    layer: CORE
+    purpose: GitHub API
+    status: error_this_environment
+    fallback: gh CLI in the operator terminal
+  - name: vercel
+    class: SPECIALIST
+    layer: DEPLOYMENT
+    status: needsAuth
+    call_only_when: deploying
+  - name: cursor-ide-browser
+    class: CORE
+    layer: CORE
+    purpose: Cursor-owned browser
+    status: ready
+  - name: cursor-app-control
+    class: CORE
+    layer: CORE
+    purpose: workspace/project UI
+    status: ready
+
+  - name: higgsfield
+    layer: CREATIVE
+    class: REJECTED
+    reason: paid extra studio; Stitch remains 2D path
+  - name: 21st / aceternity / magicui
+    class: REJECTED
+    reason: always-on kit glow
+  - name: Agent-Reach
+    class: REJECTED
+    reason: scraper ToS
+  - name: extract-design-system MCP
+    class: OPTIONAL
+    note: prefer npx skillui CLI first
+
+antigravity_servers_named_in_STACK:
+  - orchestra-brain
+  - StitchMCP
+  - github-mcp-server
+  - playwright
+  - context7
+live_antigravity_mcp_config: not_opened_secrets

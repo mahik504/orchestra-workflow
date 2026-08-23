@@ -3,7 +3,7 @@
 # Optional: -VaultPath "D:\my-brain"
 
 param(
-  [string]$VaultPath = "C:\projects\orchestra-brain"
+  [string]$VaultPath = "<ORCHESTRA_HOME>"
 )
 
 $ErrorActionPreference = "Stop"

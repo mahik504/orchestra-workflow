@@ -12,7 +12,7 @@ You are {{role}}.
 
 You do not have our Cursor chat. This packet is the entire brief.
 
-VAULT (if you can open local files): C:\projects\orchestra-brain
+VAULT (if you can open local files): <ORCHESTRA_HOME>
 If you cannot open local files, use only what is pasted here.
 
 READ (in order):

@@ -1,23 +1,20 @@
----
-title: Routes
----
-
 # Routes
 
-Jump table for this public template. **Open only the matching file.** Do not scan the rest.
+Jump table for **this public template**. Open only the matching file.
 
 | If they are talking about | Open |
 | --- | --- |
-| How this orchestra is wired, 12h backup | `ARCHITECTURE.md` |
-| Map / “where do I start?” | `START HERE.md` |
-| Taste, like/hate, stack, motion, echo studios | `Preferences.md` |
-| How we work, models, Cursor modes, dual-track, ECC method, which skills to load | `WORKFLOW.md` |
-| OpenHuman desktop specialist | `CONNECT.md` |
-| License / contributing | `LICENSE` · `CONTRIBUTING.md` |
-| Skills / MCP / refused tools | `STACK.md` |
-| Antigravity / friend prompt | `CONNECT.md` or `kit/antigravity/` |
-| Lasting workflow yes/no | `memory/decisions.md` |
-| What changed in this template | `CHANGELOG.md` |
-| 2D chrome vs 3D | `STITCH.md` |
+| How to clone and init | `docs/getting-started.md` |
+| Architecture / router | `docs/architecture.md` |
+| Loop / kinds / Ralph-thin | `docs/workflow.md` |
+| Cursor, Antigravity, Claude, Codex, Gemini, OpenCode, Hermes | `docs/adapters.md` |
+| v1 vs v2 | `docs/versioning.md` |
+| Security / privacy of this template | `docs/security-and-privacy.md` |
+| Taste defaults | `Preferences.md` |
+| 2D vs 3D | `STITCH.md` |
+| Protocols | `protocols/` |
+| Registries | `registries/` |
+| Antigravity adapter | `kit/antigravity/` |
+| Changelog | `CHANGELOG.md` |
 
-Product briefs live only on the author’s private vault. This clone has no `projects/<slug>/` notes.
+Your **private** workspace gets its own `routes.md` with **your** product names. This table must not list private products.
