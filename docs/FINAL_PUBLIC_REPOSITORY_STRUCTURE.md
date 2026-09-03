@@ -9,7 +9,8 @@ orchestra-workflow/
 │       └── ci.yml                (GitHub Actions CI for Go runtime & schemas)
 ├── docs/
 │   └── (Public documentation & benchmark methodologies)
-├── memory/                       (DELETED - private brain material strictly excluded)
+├── kit/
+│   └── (Orchestration setup utilities)
 ├── protocols/
 │   └── (Public workflow protocols)
 ├── registries/
@@ -37,19 +38,21 @@ orchestra-workflow/
 ├── skills/
 │   └── (Publicly accessible skill definitions)
 ├── templates/
-│   └── (Baseline prompt scaffolds)
+│   └── Preferences.template.md   (Clean user preferences template)
 ├── workspace-template/
 │   └── (Clean `.orchestra/` init template)
 ├── .gitignore                    (Global git exclusions)
 ├── AGENTS.md                     (Supported agents documentation)
 ├── ARCHITECTURE.md               (V3 architectural diagram & explanation)
 ├── CHANGELOG.md                  (Version history)
+├── CONTRIBUTING.md               (Contribution guide)
 ├── LICENSE                       (MIT)
 ├── README.md                     (Comprehensive 20-section Production Documentation)
 ├── STACK.md                      (Supported technology stack)
+├── VERSION                       (Contains exact string: 3.0.0)
 └── WORKFLOW.md                   (End-to-end V3 workflow process)
 ```
 
 ## Privacy Assurance
 The above tree represents the exact final state committed in V3. 
-**Verification Status:** Confirmed that `memory/`, `.obsidian/`, `Mahi.plan/`, and all private project notes (`TTB Agro`, `Lyra`, etc.) have been completely eradicated from the public repository.
+**Verification Status:** Confirmed that `memory/`, `.obsidian/`, `Mahi.plan/`, all private project notes (`TTB Agro`, `Lyra`, etc.), and stale V2 onboarding instructions (`START.md`, `STITCH.md`, `CONNECT.md`) have been completely eradicated from the public repository.

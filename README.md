@@ -1,8 +1,8 @@
-﻿# Orchestra V3 — Autonomous Agentic Orchestration Architecture
+# Orchestra V3 � Autonomous Agentic Orchestration Architecture
 
 [![Go Runtime CI](https://github.com/mahik504/orchestra-workflow/actions/workflows/ci.yml/badge.svg)](https://github.com/mahik504/orchestra-workflow/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Release: V3.1-Production](https://img.shields.io/badge/Release-V3.1--Production-0A2118.svg)](#)
+[![Release: V3.1-Production](https://img.shields.io/badge/Release-3.0.0-0A2118.svg)](#)
 
 > **Orchestra V3** is a high-performance, contract-driven agent orchestration kernel engineered for professional AI pair programming and multi-agent development. It coordinates specialized coding models, governs cognitive load, enforces strict human approval gates, and guarantees reproducible, production-grade deliverables across **Cursor**, **Antigravity**, and **Claude Code**.
 
@@ -15,7 +15,7 @@ Modern AI coding agents frequently fail at two extremes: they either produce sha
 Orchestra solves this by acting as an **operating system kernel for AI coding**:
 - **Normalized Task Contracts:** Deconstructs complex user briefs into validated JSON schemas.
 - **Dynamic Capability Composition:** Evaluates tasks and selects only the minimal sufficient skill set.
-- **4-Stage Capability Pipeline:** Moves beyond nominal "skill naming" to enforce *Retrieval → Analysis → Application Directives → Adversarial Verification*.
+- **4-Stage Capability Pipeline:** Moves beyond nominal "skill naming" to enforce *Retrieval ? Analysis ? Application Directives ? Adversarial Verification*.
 - **Multi-Agent Handoff:** Provides versioned state transfer between Cursor and Antigravity with cryptographic file integrity and out-of-band conflict detection.
 - **Strict Storage Governance:** Maintains a clean, permanent memory layer with complete private/public boundary isolation.
 
@@ -33,17 +33,17 @@ Orchestra solves this by acting as an **operating system kernel for AI coding**:
 
 ---
 
-## 3. Architecture Evolution: V1 → V2 → V3
+## 3. Architecture Evolution: V1 ? V2 ? V3
 
 ```
 V1: Monolithic Markdown Prompts & Manual Clipboard Handoffs
-    └── 35% goal completion, prompt drift, no verification contracts.
+    +-- 35% goal completion, prompt drift, no verification contracts.
 
 V2: Python Scripts & Modular Rule Injection
-    └── 72% goal completion, improved classification, but high context burn and tool bloat.
+    +-- 72% goal completion, improved classification, but high context burn and tool bloat.
 
 V3: Compiled Go Runtime & Contract-Driven Multi-Agent Kernel
-    └── Modular 4-stage pipeline, lazy capability loading, versioned handoffs, and adversarial verification gates.
+    +-- Modular 4-stage pipeline, lazy capability loading, versioned handoffs, and adversarial verification gates.
 ```
 
 ---
@@ -125,7 +125,7 @@ Orchestra matches task profiles to agent execution engines:
 
 ## 7. Versioned Handoff Protocol
 
-When switching between development environments (e.g., planning in Antigravity → bulk editing in Cursor → verifying in Antigravity), Orchestra writes a versioned `.orchestra/handoff/state.json`:
+When switching between development environments (e.g., planning in Antigravity ? bulk editing in Cursor ? verifying in Antigravity), Orchestra writes a versioned `.orchestra/handoff/state.json`:
 
 ```json
 {
@@ -152,7 +152,7 @@ If an external tool or human edits a tracked file out-of-band, `DetectConflicts(
 
 ---
 
-## 8. Real Benchmark Validation — TTB Agro Redesign
+## 8. Real Benchmark Validation � TTB Agro Redesign
 
 The Orchestra V3 system was tested by driving a full corporate multi-route overhaul of **TTB Agro India Private Limited**, a B2B agricultural trading house.
 
@@ -219,7 +219,7 @@ Orchestra maintains strict data privacy:
 ## 11. Project Roadmap
 
 - [x] Compiled Go runtime kernel with sub-second execution
-- [x] 4-Stage Capability Pipeline (Retrieval → Analysis → Application → Verification)
+- [x] 4-Stage Capability Pipeline (Retrieval ? Analysis ? Application ? Verification)
 - [x] Cryptographic state handoff between Cursor and Antigravity
 - [x] Production benchmark verification on TTB Agro
 - [ ] Direct IDE extension integration for native VS Code / Cursor status bar
