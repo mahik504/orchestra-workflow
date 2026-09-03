@@ -1,19 +1,26 @@
-# Workflow
+﻿# Orchestra V3 Workflow
 
-Full text: [docs/workflow.md](./docs/workflow.md).
+Orchestra governs execution via a strict pipeline. Agents may not write code until the pipeline completes.
 
-Until the human says **skip orchestra**, the agent is a **capability router**:
+## 1. Init & Classification
+The user executes `orchestra init` to mount the workspace, followed by `orchestra classify [Task]`.
+Orchestra evaluates the complexity, visual demands, and security requirements of the task.
 
-1. Activation card
-2. `routes.md` → one note → app repo
-3. Load only matching protocols/skills
-4. High-visual: design pipeline before chrome
-5. One spec story per pass
-6. Worker packet only when named; conductor rereads git
-7. Visual QA / ship-safe before “done”
+## 2. Resource Gap Analysis
+If the task requests a framework/technology not present in the local `registries/`, Orchestra halts and executes an external documentation lookup (Capability Gap Research).
 
-The agent **cannot** flip Cursor Plan/Agent/Ask/Debug. It must **say** when to switch.
+## 3. Plan & Execution Manifest
+Orchestra generates an Execution Manifest (e.g., `handoff/state.json`). This manifest specifies:
+- Which agent should execute the task.
+- Which specific skills (e.g., `taste-design`) are active.
+- Which rules are explicitly disabled.
 
-Kinds: `college` | `personal` | `hiring-cv` — do not mix college into hiring.
+## 4. Execution
+The target agent (Cursor, Antigravity, Claude) consumes the manifest and implements the changes. 
 
-Stitch is optional if a named library/shader/animation exists — combine against `design.md`.
+## 5. Verification
+Visual tasks trigger Playwright captures. Backend tasks trigger static analysis. 
+Output is either flagged for revision or approved.
+
+## 6. Distillation
+The session is aggressively summarized (Ponytail), and only durable project knowledge is committed to the private Brain.
