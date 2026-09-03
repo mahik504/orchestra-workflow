@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Handoff",
+  "type": "object",
+  "properties": {
+    "sourceAgent": { "type": "string" },
+    "targetAgent": { "type": "string" },
+    "contextPayload": { "type": "object" },
+    "timestamp": { "type": "string", "format": "date-time" }
+  },
+  "required": ["sourceAgent", "targetAgent", "contextPayload"]
+}

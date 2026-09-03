@@ -27,3 +27,7 @@ memory/attachments/
 Thumbs.db
 Desktop.ini
 .DS_Store
+
+runtime/go-portable/
+runtime/go-portable.zip
+

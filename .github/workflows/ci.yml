@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./runtime
+        
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.22'
+
+    - name: Verify dependencies
+      run: go mod verify
+
+    - name: Build
+      run: go build -v ./...
+
+    - name: Run go fmt
+      run: if [ "$(go fmt ./... | wc -l)" -gt 0 ]; then exit 1; fi
+
+    - name: Validate Schemas
+      run: |
+        for file in ./schemas/*.json; do
+          if ! jq empty "$file"; then
+            echo "Invalid JSON in $file"
+            exit 1
+          fi
+        done
+
+    - name: Test
+      run: go test -v ./...

@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Capability",
+  "description": "Definition of an Orchestra Resource or Capability",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "category",
+    "capability",
+    "status"
+  ],
+  "properties": {
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "repository": { "type": "string" },
+    "category": {
+      "type": "string",
+      "enum": [
+        "CORE",
+        "SPECIALIST",
+        "VERIFICATION ADAPTER",
+        "EXECUTION ADAPTER",
+        "REFERENCE",
+        "EXPERIMENTAL",
+        "REJECTED"
+      ]
+    },
+    "capability": { "type": "string" },
+    "license": { "type": "string" },
+    "maturity": { "type": "string" },
+    "maintenance_signal": { "type": "string" },
+    "supported_environments": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "installation_method": { "type": "string" },
+    "runtime_dependency": { "type": "boolean" },
+    "token_context_weight": { "type": "number" },
+    "activation_conditions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "conflicts": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "alternatives": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "integration_mode": { "type": "string" },
+    "verification_method": { "type": "string" },
+    "provenance": { "type": "string" },
+    "rationale": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["ACTIVE", "INACTIVE", "EVALUATING", "DEPRECATED"]
+    }
+  },
+  "additionalProperties": false
+}
