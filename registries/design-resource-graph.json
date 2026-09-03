@@ -1,0 +1,23 @@
+﻿{
+  "domains": {
+    "visual_research": ["awwwards", "jiro", "cari", "designmd"],
+    "design_synthesis": ["taste-design", "impeccable", "emil-design-eng", "ui-ux-pro-max"],
+    "motion": ["gsap", "lenis"],
+    "webgl": ["r3f", "shadergradient", "liquid-glass-js"]
+  },
+  "capabilities": {
+    "premium-website": {
+      "discovery": ["visual_research"],
+      "synthesis": ["design_synthesis"],
+      "implementation": ["motion"],
+      "optional_extensions": ["webgl"],
+      "qa": ["playwright", "lighthouse"]
+    },
+    "3d-portfolio": {
+      "discovery": ["visual_research"],
+      "synthesis": ["design_synthesis"],
+      "implementation": ["motion", "webgl"],
+      "qa": ["playwright"]
+    }
+  }
+}
