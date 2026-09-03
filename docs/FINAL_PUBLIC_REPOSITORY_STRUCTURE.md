@@ -6,9 +6,13 @@ Target: `mahik504/orchestra-workflow`
 orchestra-workflow/
 ├── .github/
 │   └── workflows/
-│       └── ci.yml                (GitHub Actions CI for Go runtime & schemas)
+│       └── ci.yml                (GitHub Actions CI for Go runtime)
 ├── docs/
-│   └── (Public documentation & benchmark methodologies)
+│   ├── FINAL_PUBLIC_RELEASE_AUDIT.md
+│   ├── FINAL_PUBLIC_REPOSITORY_STRUCTURE.md
+│   ├── FINAL_REPOSITORY_RECONCILIATION.md
+│   ├── PROMPTING_ORCHESTRA_V3.md
+│   └── USING_ORCHESTRA_V3.md
 ├── kit/
 │   └── (Orchestration setup utilities)
 ├── protocols/
@@ -18,23 +22,23 @@ orchestra-workflow/
 ├── runtime/                      (Core V3 Engine - Pure Go)
 │   ├── cmd/
 │   │   └── orchestra/
-│   │       └── main.go           (Compiled orchestra CLI binary source)
+│   │       └── main.go
 │   ├── internal/
-│   │   ├── adapters/             (Verification and external runners)
-│   │   ├── classifier/           (Task classification engine)
-│   │   ├── handoff/              (SHA256 versioned state protocol)
-│   │   ├── kernel/               (Core execution context)
-│   │   ├── memory/               (Ponytail management)
-│   │   ├── planner/              (Execution manifesto builder)
-│   │   ├── resources/            (Capability metadata loader)
-│   │   ├── router/               (4-Stage Capability Router)
-│   │   └── verify/               (Verification gates)
-│   ├── schemas/                  (JSON Schemas for Task, Plan, Handoff, etc.)
-│   ├── tests/                    (Benchmark protocols and results)
-│   ├── .gitignore                (Excludes go-portable binary layer)
-│   └── go.mod                    (Go module root)
+│   │   ├── adapters/
+│   │   ├── classifier/
+│   │   ├── handoff/
+│   │   ├── kernel/
+│   │   ├── memory/
+│   │   ├── planner/
+│   │   ├── resources/
+│   │   ├── router/
+│   │   └── verify/
+│   ├── schemas/
+│   ├── tests/
+│   ├── .gitignore
+│   └── go.mod
 ├── scripts/
-│   └── (Public installation & utility scripts)
+│   └── (Public installation utilities)
 ├── skills/
 │   └── (Publicly accessible skill definitions)
 ├── templates/
@@ -43,16 +47,16 @@ orchestra-workflow/
 │   └── (Clean `.orchestra/` init template)
 ├── .gitignore                    (Global git exclusions)
 ├── AGENTS.md                     (Supported agents documentation)
-├── ARCHITECTURE.md               (V3 architectural diagram & explanation)
+├── ARCHITECTURE.md               (V3 architectural diagram)
 ├── CHANGELOG.md                  (Version history)
 ├── CONTRIBUTING.md               (Contribution guide)
 ├── LICENSE                       (MIT)
 ├── README.md                     (Comprehensive 20-section Production Documentation)
 ├── STACK.md                      (Supported technology stack)
-├── VERSION                       (Contains exact string: 3.0.0)
+├── VERSION                       (3.0.0)
 └── WORKFLOW.md                   (End-to-end V3 workflow process)
 ```
 
 ## Privacy Assurance
 The above tree represents the exact final state committed in V3. 
-**Verification Status:** Confirmed that `memory/`, `.obsidian/`, `Mahi.plan/`, all private project notes (`TTB Agro`, `Lyra`, etc.), and stale V2 onboarding instructions (`START.md`, `STITCH.md`, `CONNECT.md`) have been completely eradicated from the public repository.
+**Verification Status:** Confirmed that `memory/`, `.obsidian/`, `Mahi.plan/`, all private project notes, and stale V2 onboarding instructions have been completely eradicated.
