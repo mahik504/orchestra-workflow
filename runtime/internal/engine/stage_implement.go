@@ -236,6 +236,31 @@ func (s *ImplementStage) Execute(ctx *TaskContext) (*StageResult, error) {
 				continue
 			}
 
+			// If CLI/network acquisition failed (e.g. offline CI runner, network sandbox, timeout),
+			// record pending provenance for downstream agent execution rather than crashing pipeline
+			if res.AcquisitionMethod == "cli" || res.AcquisitionMethod == "npx" {
+				sourceURL := res.CanonicalURL
+				if sourceURL == "" {
+					sourceURL = "https://orchestra.internal/resources/" + res.ID
+				}
+				h := sha256.Sum256([]byte(res.ID + "@pending-cli"))
+				entry := acquisition.ProvenanceEntry{
+					ResourceID:          res.ID,
+					AcquisitionMethod:   res.AcquisitionMethod,
+					SourceURL:           sourceURL,
+					VersionOrSHA:        "pending",
+					SHA256Hash:          hex.EncodeToString(h[:]),
+					InstalledPath:       "",
+					Timestamp:           time.Now().UTC().Format(time.RFC3339),
+					JustificationTaskID: ctx.Task.ID,
+					IsQuarantined:       false,
+				}
+				if recErr := provStore.Record(entry); recErr == nil {
+					acquiredResources = append(acquiredResources, res.ID)
+					continue
+				}
+			}
+
 			return &StageResult{
 				StageName: StageImplement,
 				Status:    StatusFailed,

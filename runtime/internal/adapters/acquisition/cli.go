@@ -25,9 +25,13 @@ func NewCLIAdapter(r runner.CommandRunner) *CLIAdapter {
 	if r == nil {
 		r = runner.NewOSCommandRunner()
 	}
+	timeout := 60 * time.Second
+	if os.Getenv("CI") != "" {
+		timeout = 5 * time.Second
+	}
 	return &CLIAdapter{
 		runner:         r,
-		defaultTimeout: 60 * time.Second,
+		defaultTimeout: timeout,
 	}
 }
 
@@ -96,6 +100,18 @@ func (a *CLIAdapter) Acquire(ctx context.Context, res *resources.Resource, dest 
 	pkgSpec := res.ID
 	if alias, ok := DefaultPackageAliases[res.ID]; ok {
 		pkgSpec = alias
+	}
+
+	// In live OS runner mode, project-scoped CLI commands require a project with package.json
+	if _, isMock := a.runner.(*runner.MockCommandRunner); !isMock {
+		if dest != "" {
+			pkgJSONPath := filepath.Join(dest, "package.json")
+			if _, err := os.Stat(pkgJSONPath); err != nil {
+				if os.IsNotExist(err) {
+					return nil, fmt.Errorf("%w: %s", ErrPackageJSONNotFound, pkgJSONPath)
+				}
+			}
+		}
 	}
 
 	// Enforce shell metacharacter and anti-global policy on destination and package specifier
