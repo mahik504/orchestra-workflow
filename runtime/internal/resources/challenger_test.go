@@ -668,7 +668,7 @@ func TestChallenger_Concurrency_LiveRegistriesUnderLoad(t *testing.T) {
 					// Concurrent Loaders
 					if j%50 == 0 {
 						c, e := LoadResourceCatalog(resourcesPath)
-						if e != nil || c.Count() < 126 {
+						if e != nil || c.Count() < 90 {
 							atomic.AddInt64(&errorCount, 1)
 						}
 					}

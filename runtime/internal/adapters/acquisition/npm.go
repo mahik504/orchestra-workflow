@@ -31,6 +31,7 @@ var BannedGlobalFlags = []string{
 var DefaultPackageAliases = map[string]string{
 	"r3f":            "@react-three/fiber",
 	"drei":           "@react-three/drei",
+	"vgpu-shaders":   "vgpu",
 	"gsap":           "gsap",
 	"lenis":          "lenis",
 	"motion-dev":     "framer-motion",

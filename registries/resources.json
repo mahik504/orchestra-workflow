@@ -80,7 +80,7 @@
     ],
     "acquisition_method": "none",
     "runtime_method": "reference_only",
-    "status": "ACTIVE",
+    "status": "REJECTED",
     "trigger_conditions": [
       "complex multi-stage task planning",
       "context isolation design"
@@ -88,35 +88,8 @@
     "avoid_conditions": [
       "direct installation of 68 agents / 286 skills into runtime"
     ],
-    "policy_verdict": "STEAL-THIN",
-    "rationale": "Load-by-job + isolate plan/implement/review. Do not install into Cursor or Antigravity. Steal the methodology only."
-  },
-  {
-    "id": "open-generative-ai",
-    "name": "Open Generative AI",
-    "canonical_url": "https://github.com/Anil-matcha/Open-Generative-AI",
-    "source_type": "github_repository",
-    "source_repository": "https://github.com/Anil-matcha/Open-Generative-AI.git",
-    "documentation_url": "https://github.com/Anil-matcha/Open-Generative-AI/blob/main/README.md",
-    "license": "Apache-2.0",
-    "category": [
-      "generative_ai",
-      "media_studio"
-    ],
-    "representation": "reference",
-    "routing_tags": [
-      "image-video-studio",
-      "unrelated"
-    ],
-    "acquisition_method": "none",
-    "runtime_method": "reference_only",
-    "status": "REJECTED",
-    "trigger_conditions": [],
-    "avoid_conditions": [
-      "video/image generation pipelines"
-    ],
-    "policy_verdict": "REJECTED",
-    "rationale": "Unrelated image/video studio. Outside Orchestra core architectural focus."
+    "policy_verdict": "REJECTED (STEAL-THIN)",
+    "rationale": "Load-by-job + isolate plan/implement/review. Do not install 68 agents / 286 skills into Cursor or Antigravity. Steal the methodology only."
   },
   {
     "id": "anthropics-skills",
@@ -145,62 +118,6 @@
     ],
     "policy_verdict": "REJECTED",
     "rationale": "Marketplace dump. Orchestra-docs already covers PPTX/PDF. Do not '/plugin marketplace add'."
-  },
-  {
-    "id": "vengeance-ui",
-    "name": "VengeanceUI",
-    "canonical_url": "https://github.com/Ashutoshx7/VengeanceUI",
-    "source_type": "github_repository",
-    "source_repository": "https://github.com/Ashutoshx7/VengeanceUI.git",
-    "documentation_url": "https://github.com/Ashutoshx7/VengeanceUI/blob/main/README.md",
-    "license": "MIT",
-    "category": [
-      "ui_kit",
-      "tailwind"
-    ],
-    "representation": "dependency",
-    "routing_tags": [
-      "generic-framer",
-      "tailwind",
-      "ui-kit"
-    ],
-    "acquisition_method": "none",
-    "runtime_method": "reference_only",
-    "status": "REJECTED",
-    "trigger_conditions": [],
-    "avoid_conditions": [
-      "all installations",
-      "operator HUD surfaces"
-    ],
-    "policy_verdict": "REJECTED",
-    "rationale": "Generic Framer/Tailwind landing kit. Not a bespoke operator-HUD taste profile."
-  },
-  {
-    "id": "agentation",
-    "name": "Agentation",
-    "canonical_url": "https://github.com/benjitaylor/agentation",
-    "source_type": "github_repository",
-    "source_repository": "https://github.com/benjitaylor/agentation.git",
-    "documentation_url": "https://github.com/benjitaylor/agentation/blob/main/README.md",
-    "license": "MIT",
-    "category": [
-      "visual_qa",
-      "browser_automation"
-    ],
-    "representation": "cli",
-    "routing_tags": [
-      "visual-feedback",
-      "redundant-playwright"
-    ],
-    "acquisition_method": "none",
-    "runtime_method": "reference_only",
-    "status": "REJECTED",
-    "trigger_conditions": [],
-    "avoid_conditions": [
-      "visual verification tasks"
-    ],
-    "policy_verdict": "REJECTED",
-    "rationale": "Extra visual-feedback agent. Playwright already clicks and verifies our UI."
   },
   {
     "id": "browser-use",
@@ -325,35 +242,6 @@
     "rationale": "Skill dump directory. Violates quarantine boundary and curated skill governance."
   },
   {
-    "id": "coolify",
-    "name": "Coolify",
-    "canonical_url": "https://github.com/coollabsio/coolify",
-    "source_type": "github_repository",
-    "source_repository": "https://github.com/coollabsio/coolify.git",
-    "documentation_url": "https://coolify.io/docs",
-    "license": "Apache-2.0",
-    "category": [
-      "devops",
-      "paas",
-      "self_hosted"
-    ],
-    "representation": "service",
-    "routing_tags": [
-      "self-hosted",
-      "deployment",
-      "paas"
-    ],
-    "acquisition_method": "none",
-    "runtime_method": "reference_only",
-    "status": "REJECTED",
-    "trigger_conditions": [],
-    "avoid_conditions": [
-      "orchestra deployment pipeline"
-    ],
-    "policy_verdict": "REJECTED",
-    "rationale": "Self-host PaaS. Not our deployment story (Vercel / Cloudflare / GitHub Pages)."
-  },
-  {
     "id": "lenis",
     "name": "Lenis Smooth Scroll",
     "canonical_url": "https://lenis.darkroom.engineering/",
@@ -442,7 +330,7 @@
     ],
     "acquisition_method": "git",
     "runtime_method": "local_daemon",
-    "status": "CURATED_OPTIONAL",
+    "status": "REJECTED",
     "trigger_conditions": [
       "operator self-hosting local gateway on localhost:20128/v1"
     ],
@@ -450,8 +338,8 @@
       "direct integration inside Cursor/Antigravity",
       "admin APIs in kernel"
     ],
-    "policy_verdict": "ENV-ONLY OK",
-    "rationale": "Can be self-hosted (for example localhost:20128/v1) and pointed at from an application .env.local. Do not install it inside the IDE."
+    "policy_verdict": "REJECTED",
+    "rationale": "Second conductor. Do not install inside Cursor or Antigravity."
   },
   {
     "id": "ponytail",
@@ -487,148 +375,6 @@
     "rationale": "YAGNI ladder folded into How to work and Go memory module. Do not install the external plugin."
   },
   {
-    "id": "g0dm0d3",
-    "name": "G0DM0D3",
-    "canonical_url": "https://github.com/elder-plinius/G0DM0D3",
-    "source_type": "github_repository",
-    "source_repository": "https://github.com/elder-plinius/G0DM0D3.git",
-    "documentation_url": "https://github.com/elder-plinius/G0DM0D3/blob/main/README.md",
-    "license": "GPL-3.0",
-    "category": [
-      "security",
-      "jailbreak",
-      "adversarial"
-    ],
-    "representation": "reference",
-    "routing_tags": [
-      "jailbreak-ui",
-      "out-of-scope",
-      "adversarial"
-    ],
-    "acquisition_method": "none",
-    "runtime_method": "reference_only",
-    "status": "REJECTED",
-    "trigger_conditions": [],
-    "avoid_conditions": [
-      "all orchestra operations"
-    ],
-    "policy_verdict": "REJECTED",
-    "rationale": "Jailbreak race UI. Not our product or security domain."
-  },
-  {
-    "id": "awesome-n8n-templates",
-    "name": "Awesome n8n Templates",
-    "canonical_url": "https://github.com/enescingoz/awesome-n8n-templates",
-    "source_type": "github_repository",
-    "source_repository": "https://github.com/enescingoz/awesome-n8n-templates.git",
-    "documentation_url": "https://github.com/enescingoz/awesome-n8n-templates/blob/main/README.md",
-    "license": "MIT",
-    "category": [
-      "workflow_automation",
-      "integration"
-    ],
-    "representation": "reference",
-    "routing_tags": [
-      "n8n",
-      "unadopted",
-      "workflow-templates"
-    ],
-    "acquisition_method": "none",
-    "runtime_method": "reference_only",
-    "status": "REJECTED",
-    "trigger_conditions": [],
-    "avoid_conditions": [
-      "n8n pipeline orchestration"
-    ],
-    "policy_verdict": "REJECTED",
-    "rationale": "Layer 2 n8n remains unbuilt and unadopted. Skipped."
-  },
-  {
-    "id": "gstack",
-    "name": "Garry Tan gstack",
-    "canonical_url": "https://github.com/garrytan/gstack",
-    "source_type": "github_repository",
-    "source_repository": "https://github.com/garrytan/gstack.git",
-    "documentation_url": "https://github.com/garrytan/gstack/blob/main/README.md",
-    "license": "MIT",
-    "category": [
-      "agent_framework",
-      "multi_role"
-    ],
-    "representation": "reference",
-    "routing_tags": [
-      "multi-role",
-      "second-conductor",
-      "claude-code-pack"
-    ],
-    "acquisition_method": "none",
-    "runtime_method": "reference_only",
-    "status": "REJECTED",
-    "trigger_conditions": [],
-    "avoid_conditions": [
-      "importing multi-role agent templates"
-    ],
-    "policy_verdict": "REJECTED",
-    "rationale": "23-role Claude Code factory. Competes with Orchestra Conductor loop. Rejected."
-  },
-  {
-    "id": "maxun",
-    "name": "Maxun",
-    "canonical_url": "https://github.com/getmaxun/maxun",
-    "source_type": "github_repository",
-    "source_repository": "https://github.com/getmaxun/maxun.git",
-    "documentation_url": "https://docs.maxun.dev/",
-    "license": "AGPL-3.0",
-    "category": [
-      "web_scraping",
-      "automation"
-    ],
-    "representation": "service",
-    "routing_tags": [
-      "no-code-crawler",
-      "scraping-tos"
-    ],
-    "acquisition_method": "none",
-    "runtime_method": "reference_only",
-    "status": "REJECTED",
-    "trigger_conditions": [],
-    "avoid_conditions": [
-      "web data harvesting"
-    ],
-    "policy_verdict": "REJECTED",
-    "rationale": "No-code scrape platform. We use targeted CLI or Scrapling when authorized."
-  },
-  {
-    "id": "gh-aw",
-    "name": "GitHub Agentic Workflows (gh-aw)",
-    "canonical_url": "https://github.com/github/gh-aw",
-    "source_type": "github_repository",
-    "source_repository": "https://github.com/github/gh-aw.git",
-    "documentation_url": "https://github.com/github/gh-aw/blob/main/.github/aw/token-optimization.md",
-    "license": "MIT",
-    "category": [
-      "github_automation",
-      "token_optimization"
-    ],
-    "representation": "reference",
-    "routing_tags": [
-      "agentic-workflows",
-      "github-actions",
-      "token-optimization"
-    ],
-    "acquisition_method": "none",
-    "runtime_method": "reference_only",
-    "status": "REFERENCE",
-    "trigger_conditions": [
-      "token optimization architecture design"
-    ],
-    "avoid_conditions": [
-      "installing gh-aw extension directly into runtime"
-    ],
-    "policy_verdict": "REFERENCE",
-    "rationale": "Steal token-optimization rules (deterministic work outside the model, prune tools). Do not install extension."
-  },
-  {
     "id": "spec-kit",
     "name": "GitHub Spec Kit",
     "canonical_url": "https://github.com/github/spec-kit",
@@ -649,7 +395,7 @@
     ],
     "acquisition_method": "none",
     "runtime_method": "reference_only",
-    "status": "ACTIVE",
+    "status": "REJECTED",
     "trigger_conditions": [
       "specification generation",
       "task breakdown"
@@ -657,64 +403,8 @@
     "avoid_conditions": [
       "running specify init CLI"
     ],
-    "policy_verdict": "ADOPT-THIN",
-    "rationale": "Specify/clarify/analyze methodology folded into templates/spec.md. No specify init command."
-  },
-  {
-    "id": "headroom",
-    "name": "Headroom Context Optimizer",
-    "canonical_url": "https://github.com/headroomlabs-ai/headroom",
-    "source_type": "github_repository",
-    "source_repository": "https://github.com/headroomlabs-ai/headroom.git",
-    "documentation_url": "https://docs.headroom.ai",
-    "license": "Proprietary",
-    "category": [
-      "context_hygiene",
-      "compression"
-    ],
-    "representation": "service",
-    "routing_tags": [
-      "token-compression",
-      "context-control",
-      "proxy"
-    ],
-    "acquisition_method": "none",
-    "runtime_method": "reference_only",
-    "status": "DEFERRED",
-    "trigger_conditions": [],
-    "avoid_conditions": [
-      "standard execution without severe quota exhaustion"
-    ],
-    "policy_verdict": "DEFERRED",
-    "rationale": "Still skipped. Vault hygiene is the token control we have. Optional later if quota hurts."
-  },
-  {
-    "id": "trae-skills",
-    "name": "TRAE Skills",
-    "canonical_url": "https://github.com/HighMark-31/TRAE-Skills",
-    "source_type": "github_repository",
-    "source_repository": "https://github.com/HighMark-31/TRAE-Skills.git",
-    "documentation_url": "https://github.com/HighMark-31/TRAE-Skills/blob/main/README.md",
-    "license": "MIT",
-    "category": [
-      "ide_skills",
-      "skill_pack"
-    ],
-    "representation": "skill",
-    "routing_tags": [
-      "abandoned-dump",
-      "nativewind",
-      "obsolete"
-    ],
-    "acquisition_method": "none",
-    "runtime_method": "reference_only",
-    "status": "REJECTED",
-    "trigger_conditions": [],
-    "avoid_conditions": [
-      "all imports"
-    ],
     "policy_verdict": "REJECTED",
-    "rationale": "Abandoned TRAE dump. Redux/Jest/Express essays. NativeWind. Discontinued."
+    "rationale": "Specify-init factory fights Orchestra. Spec and story templates may be copied; do not run a second factory."
   },
   {
     "id": "trig-js",
@@ -749,62 +439,6 @@
     ],
     "policy_verdict": "SKIP (UNLESS GAME)",
     "rationale": "Canvas math helper. Skip unless a 2D canvas game requires raw trig functions."
-  },
-  {
-    "id": "agency-agents-zh",
-    "name": "Agency Agents ZH",
-    "canonical_url": "https://github.com/jnMetaCode/agency-agents-zh",
-    "source_type": "github_repository",
-    "source_repository": "https://github.com/jnMetaCode/agency-agents-zh.git",
-    "documentation_url": "https://github.com/jnMetaCode/agency-agents-zh/blob/main/README.md",
-    "license": "MIT",
-    "category": [
-      "agent_pack",
-      "multi_role"
-    ],
-    "representation": "skill",
-    "routing_tags": [
-      "bulk-dump",
-      "chinese-translation",
-      "agency-agents"
-    ],
-    "acquisition_method": "none",
-    "runtime_method": "reference_only",
-    "status": "REJECTED",
-    "trigger_conditions": [],
-    "avoid_conditions": [
-      "all loads"
-    ],
-    "policy_verdict": "REJECTED",
-    "rationale": "Bulk translated agent dump. Redundant and risks severe context prompt pollution."
-  },
-  {
-    "id": "langflow",
-    "name": "Langflow",
-    "canonical_url": "https://github.com/langflow-ai/langflow",
-    "source_type": "github_repository",
-    "source_repository": "https://github.com/langflow-ai/langflow.git",
-    "documentation_url": "https://docs.langflow.org/",
-    "license": "MIT",
-    "category": [
-      "visual_builder",
-      "agent_platform"
-    ],
-    "representation": "service",
-    "routing_tags": [
-      "visual-flow",
-      "separate-platform",
-      "gui-builder"
-    ],
-    "acquisition_method": "none",
-    "runtime_method": "reference_only",
-    "status": "REJECTED",
-    "trigger_conditions": [],
-    "avoid_conditions": [
-      "orchestra workflow execution"
-    ],
-    "policy_verdict": "REJECTED",
-    "rationale": "Other product (agent workflow builder). Distinct runtime architecture."
   },
   {
     "id": "dify",
@@ -900,63 +534,38 @@
     "rationale": "230-role agency pack. Warns 186 rules dilute matching. We have dedicated specialists."
   },
   {
-    "id": "open-design",
-    "name": "Open Design",
-    "canonical_url": "https://github.com/nexu-io/open-design",
-    "source_type": "github_repository",
-    "source_repository": "https://github.com/nexu-io/open-design.git",
-    "documentation_url": "https://opendesign.dev",
-    "license": "MIT",
-    "category": [
-      "design_tooling",
-      "mcp_server"
-    ],
-    "representation": "mcp",
-    "routing_tags": [
-      "design-studio",
-      "conflicts-stitch",
-      "design-mcp"
-    ],
-    "acquisition_method": "none",
-    "runtime_method": "reference_only",
-    "status": "REJECTED",
-    "trigger_conditions": [],
-    "avoid_conditions": [
-      "all installations",
-      "conflicts with Google Stitch"
-    ],
-    "policy_verdict": "REJECTED",
-    "rationale": "Second design studio vs Stitch. We already ship DESIGN.md. Do not od mcp install cursor."
-  },
-  {
     "id": "skiper-ui",
     "name": "Skiper UI",
-    "canonical_url": "https://github.com/nischayhq/skiper-ui",
+    "canonical_url": "https://skiper-ui.com/",
     "source_type": "github_repository",
     "source_repository": "https://github.com/nischayhq/skiper-ui.git",
-    "documentation_url": "https://skiper-ui.com",
+    "documentation_url": "https://skiper-ui.com/",
     "license": "MIT",
     "category": [
       "ui_kit",
       "components",
       "shadcn"
     ],
-    "representation": "dependency",
+    "representation": "research_source",
     "routing_tags": [
       "shadcn-wrapper",
       "forbidden-on-hud",
       "component-clone"
     ],
-    "acquisition_method": "none",
-    "runtime_method": "reference_only",
-    "status": "REJECTED",
-    "trigger_conditions": [],
-    "avoid_conditions": [
-      "all installations",
-      "operator HUD"
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "college kit assembly",
+      "named shadcn-style marketing kit"
     ],
-    "policy_verdict": "REJECTED",
-    "rationale": "Frontend clone + shadcn. Operator forbids shadcn on HUD surfaces."
+    "avoid_conditions": [
+      "operator HUD",
+      "hiring flagship",
+      "always-on global skill"
+    ],
+    "policy_verdict": "CURATED OPTIONAL",
+    "rationale": "College or marketing kit when the plan names it. Never on an operator HUD. Never a hiring visual world. Not a 31st global skill."
   },
   {
     "id": "hermes-agent",
@@ -988,36 +597,6 @@
     ],
     "policy_verdict": "REFERENCE",
     "rationale": "Reference autonomous agent architecture for local LLM function calling."
-  },
-  {
-    "id": "awesome-hackathon-projects",
-    "name": "Awesome Hackathon Projects",
-    "canonical_url": "https://github.com/Olanetsoft/awesome-hackathon-projects",
-    "source_type": "github_repository",
-    "source_repository": "https://github.com/Olanetsoft/awesome-hackathon-projects.git",
-    "documentation_url": "https://github.com/Olanetsoft/awesome-hackathon-projects/blob/main/README.md",
-    "license": "CC0-1.0",
-    "category": [
-      "hackathon",
-      "showcase",
-      "ideation"
-    ],
-    "representation": "reference",
-    "routing_tags": [
-      "hackathon-ideas",
-      "benchmarks",
-      "project-showcase"
-    ],
-    "acquisition_method": "none",
-    "runtime_method": "reference_only",
-    "status": "BOOKMARK",
-    "trigger_conditions": [
-      "hackathon project ideation",
-      "benchmarking winning projects"
-    ],
-    "avoid_conditions": [],
-    "policy_verdict": "BOOKMARK",
-    "rationale": "Showcase of successful hackathon projects for idea benchmarking."
   },
   {
     "id": "openhands",
@@ -1068,16 +647,17 @@
     ],
     "acquisition_method": "git",
     "runtime_method": "project_scoped_install",
-    "status": "BOOKMARK",
+    "status": "CURATED_OPTIONAL",
     "trigger_conditions": [
       "3D scroll storytelling journey",
-      "spatial camera path animation"
+      "spatial camera path animation",
+      "scroll-world named by the brief"
     ],
     "avoid_conditions": [
       "standard corporate landing pages"
     ],
-    "policy_verdict": "BOOKMARK (LATER)",
-    "rationale": "Scroll-driven 3D WebGL camera journey reference. Bookmark for later interactive stories."
+    "policy_verdict": "CURATED OPTIONAL",
+    "rationale": "Scroll-driven 3D landing skill. Project-scoped on EXPERIMENTAL 3D/scroll jobs only. Always ship a low-end flat fallback. Not a school SaaS default."
   },
   {
     "id": "no-ai-slop",
@@ -1141,34 +721,6 @@
     ],
     "policy_verdict": "SPECIALIST",
     "rationale": "Approved motion engine option. Enforces single motion engine rule per project."
-  },
-  {
-    "id": "rtk",
-    "name": "RTK (Real-Time Agent Kit)",
-    "canonical_url": "https://github.com/rtk-ai/rtk",
-    "source_type": "github_repository",
-    "source_repository": "https://github.com/rtk-ai/rtk.git",
-    "documentation_url": "https://github.com/rtk-ai/rtk/blob/main/README.md",
-    "license": "MIT",
-    "category": [
-      "realtime_audio",
-      "agent_voice"
-    ],
-    "representation": "dependency",
-    "routing_tags": [
-      "realtime-voice",
-      "token-budget",
-      "audio-agent"
-    ],
-    "acquisition_method": "none",
-    "runtime_method": "reference_only",
-    "status": "DEFERRED",
-    "trigger_conditions": [],
-    "avoid_conditions": [
-      "all installations until real-time voice pipeline approved"
-    ],
-    "policy_verdict": "DEFERRED",
-    "rationale": "Deferred along with Headroom. High token and quota overhead."
   },
   {
     "id": "awesome-llm-apps",
@@ -1248,7 +800,7 @@
     ],
     "acquisition_method": "none",
     "runtime_method": "reference_only",
-    "status": "ACTIVE",
+    "status": "REJECTED",
     "trigger_conditions": [
       "story-by-story agent execution",
       "context reset planning"
@@ -1256,8 +808,8 @@
     "avoid_conditions": [
       "running ralph.sh daemon"
     ],
-    "policy_verdict": "ADOPT-THIN",
-    "rationale": "Adopted as pattern: fresh context per story. Do not run external daemon."
+    "policy_verdict": "REJECTED",
+    "rationale": "Second loop. Steal the story-loop idea; do not install Ralph CLI inside Cursor or Antigravity."
   },
   {
     "id": "awesome-cursor-skills",
@@ -1286,64 +838,6 @@
     ],
     "policy_verdict": "REJECTED",
     "rationale": "Link directory. Features already exist natively or in curated Orchestra skills."
-  },
-  {
-    "id": "stirling-pdf",
-    "name": "Stirling-PDF",
-    "canonical_url": "https://github.com/Stirling-Tools/Stirling-PDF",
-    "source_type": "github_repository",
-    "source_repository": "https://github.com/Stirling-Tools/Stirling-PDF.git",
-    "documentation_url": "https://docs.stirlingpdf.com/",
-    "license": "GPL-3.0",
-    "category": [
-      "pdf_utilities",
-      "server"
-    ],
-    "representation": "service",
-    "routing_tags": [
-      "pdf-server",
-      "out-of-scope"
-    ],
-    "acquisition_method": "none",
-    "runtime_method": "reference_only",
-    "status": "REJECTED",
-    "trigger_conditions": [],
-    "avoid_conditions": [
-      "all installations"
-    ],
-    "policy_verdict": "REJECTED",
-    "rationale": "PDF processing server. Orchestra-docs already handles documentation needs."
-  },
-  {
-    "id": "freellmapi",
-    "name": "Free LLM API Aggregator",
-    "canonical_url": "https://github.com/tashfeenahmed/freellmapi",
-    "source_type": "github_repository",
-    "source_repository": "https://github.com/tashfeenahmed/freellmapi.git",
-    "documentation_url": "https://github.com/tashfeenahmed/freellmapi/blob/main/README.md",
-    "license": "MIT",
-    "category": [
-      "api_gateway",
-      "llm_pool"
-    ],
-    "representation": "service",
-    "routing_tags": [
-      "free-llm-pool",
-      "failover-only",
-      "api-aggregator"
-    ],
-    "acquisition_method": "none",
-    "runtime_method": "reference_only",
-    "status": "BOOKMARK",
-    "trigger_conditions": [
-      "emergency fallback when primary LLM studio APIs exhausted"
-    ],
-    "avoid_conditions": [
-      "primary runtime routing",
-      "tool-dependent tasks"
-    ],
-    "policy_verdict": "BOOKMARK (FAILOVER)",
-    "rationale": "Free-tier aggregator. Fallback only when the primary providers are unavailable."
   },
   {
     "id": "vanta",
@@ -1411,63 +905,6 @@
     "rationale": "Desktop specialist app installed locally. Packet in / summary out."
   },
   {
-    "id": "code-review-graph",
-    "name": "Code Review Graph",
-    "canonical_url": "https://github.com/tirth8205/code-review-graph",
-    "source_type": "github_repository",
-    "source_repository": "https://github.com/tirth8205/code-review-graph.git",
-    "documentation_url": "https://github.com/tirth8205/code-review-graph/blob/main/README.md",
-    "license": "MIT",
-    "category": [
-      "code_review",
-      "mcp_server",
-      "graph"
-    ],
-    "representation": "mcp",
-    "routing_tags": [
-      "graph-mcp",
-      "unnecessary-overhead"
-    ],
-    "acquisition_method": "none",
-    "runtime_method": "reference_only",
-    "status": "REJECTED",
-    "trigger_conditions": [],
-    "avoid_conditions": [
-      "adding to mcp_config.json"
-    ],
-    "policy_verdict": "REJECTED",
-    "rationale": "Extra MCP that writes into every AI tool. Cursor/Antigravity already read repos directly."
-  },
-  {
-    "id": "crawl4ai",
-    "name": "Crawl4AI",
-    "canonical_url": "https://github.com/unclecode/crawl4ai",
-    "source_type": "github_repository",
-    "source_repository": "https://github.com/unclecode/crawl4ai.git",
-    "documentation_url": "https://crawl4ai.com/",
-    "license": "Apache-2.0",
-    "category": [
-      "web_crawler",
-      "scraper"
-    ],
-    "representation": "service",
-    "routing_tags": [
-      "bulk-scraper",
-      "unpermitted",
-      "crawler"
-    ],
-    "acquisition_method": "none",
-    "runtime_method": "reference_only",
-    "status": "REJECTED",
-    "trigger_conditions": [],
-    "avoid_conditions": [
-      "unauthorized web scraping",
-      "bulk crawl"
-    ],
-    "policy_verdict": "REJECTED",
-    "rationale": "Bulk crawl/scrape server. Violates policy of lightweight authorized research extraction."
-  },
-  {
     "id": "vercel-agent-skills",
     "name": "Vercel Agent Skills",
     "canonical_url": "https://github.com/vercel-labs/agent-skills",
@@ -1485,9 +922,9 @@
       "single-skill",
       "a11y"
     ],
-    "acquisition_method": "git",
-    "runtime_method": "global_active_skill",
-    "status": "ACTIVE",
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REFERENCE",
     "trigger_conditions": [
       "web interface guidelines check",
       "accessibility and UX audit"
@@ -1497,7 +934,7 @@
       "importing whole vercel pack"
     ],
     "policy_verdict": "SPECIALIST (FILTERED)",
-    "rationale": "Single skill copy (web-design-guidelines) curated into allowlist. Do not install entire repo."
+    "rationale": "Provenance for the one curated skill web-design-guidelines. Never npx skills add vercel-labs/agent-skills --all."
   },
   {
     "id": "awesome-design-md",
@@ -1530,63 +967,6 @@
     ],
     "policy_verdict": "ADOPT-THIN",
     "rationale": "Design token references. Hackathon Plan may copy one DESIGN.md into projects/<slug>/ref/."
-  },
-  {
-    "id": "local-vite-server",
-    "name": "Local Vite Dev Server",
-    "canonical_url": "http://localhost:5173",
-    "source_type": "local_runtime",
-    "documentation_url": "https://vite.dev/",
-    "category": [
-      "local_runtime",
-      "frontend_dev"
-    ],
-    "representation": "dev_utility",
-    "routing_tags": [
-      "frontend-dev",
-      "vite",
-      "live-preview",
-      "hot-reload"
-    ],
-    "acquisition_method": "none",
-    "runtime_method": "local_daemon",
-    "status": "ACTIVE",
-    "trigger_conditions": [
-      "visual QA capture with Playwright",
-      "frontend development preview"
-    ],
-    "avoid_conditions": [],
-    "policy_verdict": "LOCAL RUNTIME",
-    "rationale": "Standard local Vite development server port used for development and visual verification.",
-    "license": "not-applicable"
-  },
-  {
-    "id": "example-com",
-    "name": "RFC 2606 Example Domain",
-    "canonical_url": "https://example.com",
-    "source_type": "web_reference",
-    "documentation_url": "https://www.iana.org/domains/reserved",
-    "category": [
-      "test_fixture",
-      "networking"
-    ],
-    "representation": "reference",
-    "routing_tags": [
-      "cli-smoke-test",
-      "rfc-2606",
-      "network-test"
-    ],
-    "acquisition_method": "web_fetch",
-    "runtime_method": "on_demand_research",
-    "status": "ACTIVE",
-    "trigger_conditions": [
-      "CLI smoke tests",
-      "SkillUI connectivity verification"
-    ],
-    "avoid_conditions": [],
-    "policy_verdict": "TEST FIXTURE",
-    "rationale": "RFC-reserved domain used as a lightweight, safe smoke-test target.",
-    "license": "site-terms"
   },
   {
     "id": "godly-design",
@@ -1804,34 +1184,6 @@
     "avoid_conditions": [],
     "policy_verdict": "SPECIALIST ENGINE",
     "rationale": "Official portal for React Bits interactive animated primitives.",
-    "license": "site-terms"
-  },
-  {
-    "id": "sagar-tamang-ultron",
-    "name": "Sagar Tamang Ultron Portfolio",
-    "canonical_url": "https://sagartamang.com/projects/ultron",
-    "source_type": "web_reference",
-    "documentation_url": "https://sagartamang.com/projects/ultron",
-    "category": [
-      "craft_echo",
-      "portfolio",
-      "interaction"
-    ],
-    "representation": "reference",
-    "routing_tags": [
-      "portfolio-craft",
-      "interaction-pattern",
-      "craft-echo"
-    ],
-    "acquisition_method": "none",
-    "runtime_method": "reference_only",
-    "status": "BOOKMARK",
-    "trigger_conditions": [
-      "portfolio project showcase study"
-    ],
-    "avoid_conditions": [],
-    "policy_verdict": "REFERENCE",
-    "rationale": "Ultron project showcase and sophisticated interaction pattern reference.",
     "license": "site-terms"
   },
   {
@@ -2627,35 +1979,6 @@
     ],
     "policy_verdict": "SPECIALIST (RESTRICTED)",
     "rationale": "Plan-named hiring/college only. Strictly forbidden on an operator HUD surfaces."
-  },
-  {
-    "id": "kokonut-ui",
-    "name": "Kokonut UI",
-    "canonical_url": "https://kokonutui.com/",
-    "source_type": "web_reference",
-    "documentation_url": "https://kokonutui.com/docs",
-    "license": "MIT",
-    "category": [
-      "component_blocks",
-      "ui_inspiration"
-    ],
-    "representation": "research_source",
-    "routing_tags": [
-      "kokonut",
-      "animated-cards",
-      "tailwind-blocks"
-    ],
-    "acquisition_method": "web_fetch",
-    "runtime_method": "on_demand_research",
-    "status": "BOOKMARK",
-    "trigger_conditions": [
-      "isolated animated card pattern study"
-    ],
-    "avoid_conditions": [
-      "installing as entire framework"
-    ],
-    "policy_verdict": "OPTIONAL BOOKMARK",
-    "rationale": "Copy-paste animated UI components. Reference for single block inspiration."
   },
   {
     "id": "mapcn",
@@ -3617,11 +2940,11 @@
   },
   {
     "id": "liquid-glass",
-    "name": "Liquid Glass",
-    "canonical_url": "https://github.com/kbrgl/liquid-glass",
+    "name": "Liquid Glass JS",
+    "canonical_url": "https://github.com/dashersw/liquid-glass-js",
     "source_type": "github_repository",
-    "source_repository": "https://github.com/kbrgl/liquid-glass.git",
-    "documentation_url": "https://github.com/kbrgl/liquid-glass#readme",
+    "source_repository": "https://github.com/dashersw/liquid-glass-js.git",
+    "documentation_url": "https://dashersw.github.io/liquid-glass-js/",
     "license": "MIT",
     "category": [
       "shaders",
@@ -3647,7 +2970,7 @@
       "accessible corporate documentation"
     ],
     "policy_verdict": "CURATED OPTIONAL",
-    "rationale": "WebGL/GLSL liquid refractive glass shader effect for premium editorial headers."
+    "rationale": "Apple-inspired WebGL glass (dashersw/liquid-glass-js). Project-scoped only when the approved stack names glass. Unmotivated glassmorphism stays banned."
   },
   {
     "id": "liquid-logo",
@@ -3684,11 +3007,11 @@
   },
   {
     "id": "vgpu-shaders",
-    "name": "vGPU Shaders",
-    "canonical_url": "https://github.com/bhouston/vgpu",
-    "source_type": "github_repository",
-    "source_repository": "https://github.com/bhouston/vgpu.git",
-    "documentation_url": "https://github.com/bhouston/vgpu#readme",
+    "name": "vgpu (Vercel)",
+    "canonical_url": "https://github.com/vercel-labs/vgpu",
+    "source_type": "npm_package",
+    "source_repository": "https://github.com/vercel-labs/vgpu.git",
+    "documentation_url": "https://vgpu.sh/",
     "license": "MIT",
     "category": [
       "webgpu",
@@ -3702,7 +3025,7 @@
       "shader-pipeline",
       "compute-graphics"
     ],
-    "acquisition_method": "git_clone",
+    "acquisition_method": "npm",
     "runtime_method": "project_scoped_install",
     "status": "CURATED_OPTIONAL",
     "trigger_conditions": [
@@ -3714,7 +3037,8 @@
       "css layouts"
     ],
     "policy_verdict": "CURATED OPTIONAL",
-    "rationale": "Modern virtualized GPU compute shader pipeline helper for cutting-edge WebGPU/WebGL canvas effects."
+    "rationale": "Official Vercel WebGPU library (npm vgpu). EXPERIMENTAL shader/3D jobs only. Always ship a CSS/canvas fallback. Do not install globally.",
+    "npm_package": "vgpu"
   },
   {
     "id": "hugeicons",
@@ -3979,5 +3303,325 @@
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
     "rationale": "Canonical skill for papers and docs. Never invent citations."
+  },
+  {
+    "id": "ui-ux-pro-max",
+    "name": "UI UX Pro Max",
+    "canonical_url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git",
+    "documentation_url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+    "license": "see-upstream",
+    "category": [
+      "refused"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "refuse-map",
+      "do-not-install"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "all installations"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Global UI pack. Already hated as an always-on skill. Do not add to the 30. College kits stay one named source, not this dump."
+  },
+  {
+    "id": "google-skills",
+    "name": "Google Skills dump",
+    "canonical_url": "https://github.com/google/skills",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/google/skills.git",
+    "documentation_url": "https://github.com/google/skills",
+    "license": "see-upstream",
+    "category": [
+      "refused"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "refuse-map",
+      "do-not-install"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "all installations"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Official Google skill dump. Never skills add --all. Promote one named skill only if a job fails without it."
+  },
+  {
+    "id": "graft",
+    "name": "Graft (trailhq)",
+    "canonical_url": "https://github.com/trailhq/Graft",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/trailhq/Graft.git",
+    "documentation_url": "https://github.com/trailhq/Graft",
+    "license": "see-upstream",
+    "category": [
+      "refused"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "refuse-map",
+      "do-not-install"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "all installations"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Writes AGENTS.md / Cursor rules. Second context layer. Orchestra already routes a capability graph. Do not graft init onto this method."
+  },
+  {
+    "id": "agentic-seek",
+    "name": "AgenticSeek",
+    "canonical_url": "https://github.com/Fosowl/agenticSeek",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/Fosowl/agenticSeek.git",
+    "documentation_url": "https://github.com/Fosowl/agenticSeek",
+    "license": "see-upstream",
+    "category": [
+      "refused"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "refuse-map",
+      "do-not-install"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "all installations"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Autonomous agent OS. Competes with the chat conductor. Do not install."
+  },
+  {
+    "id": "getlayers",
+    "name": "GetLayers",
+    "canonical_url": "https://getlayers.com",
+    "source_type": "web_reference",
+    "documentation_url": "https://getlayers.com",
+    "license": "site-terms",
+    "category": [
+      "refused",
+      "template_kit"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "refuse-map",
+      "template-kit"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "all installations"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Template kits. Refused. Not a visual world."
+  },
+  {
+    "id": "ibelick-ui-skills",
+    "name": "ibelick/ui-skills",
+    "canonical_url": "https://github.com/ibelick/ui-skills",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/ibelick/ui-skills.git",
+    "documentation_url": "https://github.com/ibelick/ui-skills",
+    "license": "see-upstream",
+    "category": [
+      "refused"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "refuse-map",
+      "do-not-install"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "all installations"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Design-engineer skill pack. taste-design + impeccable + emil already cover the hole. Do not dump the pack into runtime."
+  },
+  {
+    "id": "soup-llm",
+    "name": "Soup (LLM fine-tune)",
+    "canonical_url": "https://github.com/MakazhanAlpamys/Soup",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/MakazhanAlpamys/Soup.git",
+    "documentation_url": "https://github.com/MakazhanAlpamys/Soup",
+    "license": "see-upstream",
+    "category": [
+      "refused"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "refuse-map",
+      "do-not-install"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "all installations"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Fine-tunes LLMs. Not the Orchestra control plane. Do not install as an MCP or skill."
+  },
+  {
+    "id": "vane",
+    "name": "Vane",
+    "canonical_url": "https://github.com/ItzCrazyKns/Vane",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/ItzCrazyKns/Vane.git",
+    "documentation_url": "https://github.com/ItzCrazyKns/Vane",
+    "license": "see-upstream",
+    "category": [
+      "refused"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "refuse-map",
+      "do-not-install"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "all installations"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Self-hosted answering engine. Human browser, not the conductor. Do not run inside the Orchestra loop."
+  },
+  {
+    "id": "google-opal",
+    "name": "Google Opal",
+    "canonical_url": "https://opal.google/",
+    "source_type": "web_reference",
+    "documentation_url": "https://opal.google/",
+    "license": "site-terms",
+    "category": [
+      "tool"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "google-opal"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "reference_only",
+    "status": "BOOKMARK",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "always-on in the classify loop"
+    ],
+    "policy_verdict": "BOOKMARK",
+    "rationale": "Human automation product. Not a classifier route. Use outside the Orchestra loop if you want it."
+  },
+  {
+    "id": "uptimerobot",
+    "name": "UptimeRobot",
+    "canonical_url": "https://uptimerobot.com/",
+    "source_type": "web_reference",
+    "documentation_url": "https://uptimerobot.com/",
+    "license": "site-terms",
+    "category": [
+      "tool"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "uptimerobot"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "reference_only",
+    "status": "BOOKMARK",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "always-on in the classify loop"
+    ],
+    "policy_verdict": "BOOKMARK",
+    "rationale": "Keep-alive for free-tier hosts. Not visual research. Prefer GitHub Actions cron when the app repo can run a scheduled ping."
+  },
+  {
+    "id": "presenton",
+    "name": "Presenton",
+    "canonical_url": "https://github.com/presenton/presenton",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/presenton/presenton.git",
+    "documentation_url": "https://docs.presenton.ai/quickstart",
+    "license": "see-upstream",
+    "category": [
+      "presentations",
+      "desktop"
+    ],
+    "representation": "desktop_app",
+    "routing_tags": [
+      "slides",
+      "pptx",
+      "deck"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "local_daemon",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "generate a slide deck",
+      "editable PPTX"
+    ],
+    "avoid_conditions": [
+      "methods paper",
+      "thesis citations",
+      "always-on MCP"
+    ],
+    "policy_verdict": "CURATED OPTIONAL",
+    "rationale": "Self-hosted / API slide generator for deck jobs. Does not replace orchestra-docs for papers. Not a 31st Cursor skill."
+  },
+  {
+    "id": "codebase-memory-mcp",
+    "name": "Codebase Memory MCP",
+    "canonical_url": "https://github.com/DeusData/codebase-memory-mcp",
+    "source_type": "mcp_server",
+    "source_repository": "https://github.com/DeusData/codebase-memory-mcp.git",
+    "documentation_url": "https://github.com/DeusData/codebase-memory-mcp#readme",
+    "license": "MIT",
+    "category": [
+      "mcp",
+      "code_intelligence"
+    ],
+    "representation": "mcp",
+    "routing_tags": [
+      "code-graph",
+      "structural-query"
+    ],
+    "acquisition_method": "mcp_install",
+    "runtime_method": "mcp_connection",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "large application repository",
+      "trace call paths without dumping files"
+    ],
+    "avoid_conditions": [
+      "auto-install on every host",
+      "replacing the Brain overlay"
+    ],
+    "policy_verdict": "CURATED OPTIONAL",
+    "rationale": "Optional host MCP for large app repos. Never auto-install. Not a second Brain. Vault memory stays the filesystem MCP."
   }
 ]

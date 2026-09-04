@@ -1,134 +1,14 @@
-version: 2
-updated: 2026-08-24
+# Skills live in skills/ (30 canonical) and registries/host-stack.json.
+# This file is a pointer, not a second skill OS. Do not npx skills add --all.
+#
+# Source of truth:
+#   - ids: registries/host-stack.json → skills
+#   - files: skills/<id>/SKILL.md
+#   - refuse: registries/resources.json rows with status REJECTED
+#
+# Available != loaded. Classify picks a route. Host adapters copy the 30; they do not dump 260.
+
+version: 3.1.0
+updated: 2026-09-04
 policy: available != loaded
-# class MUST be one of: CORE | SPECIALIST | OPTIONAL | EXPERIMENTAL | REJECTED
-# status is install state, not class: installed | registry_only
-
-skills:
-  - name: orchestra-conductor
-    class: CORE
-    path: "%USERPROFILE%/.cursor/skills/orchestra-conductor"
-    triggers: [every chat unless skip orchestra]
-    status: installed
-  - name: orchestra-vault
-    class: CORE
-    triggers: [lasting notes]
-    status: installed
-  - name: orchestra-ship
-    class: CORE
-    triggers: [showable ship]
-    status: installed
-  - name: orchestra-docs
-    class: SPECIALIST
-    triggers: [slides, reports, papers]
-    status: installed
-  - name: ship-safe
-    class: CORE
-    triggers: [our apps]
-    status: installed
-  - name: taste-design
-    class: SPECIALIST
-    triggers: [DESIGN.md, 2D lock]
-    status: installed
-  - name: stitch-*
-    class: SPECIALIST
-    source: google-labs-code/stitch-skills
-    license: Apache-2.0
-    triggers: [2D lock when Stitch is the lock]
-    status: installed
-  - name: impeccable
-    class: SPECIALIST
-    source: pbakaus/impeccable
-    license: Apache-2.0
-    triggers: [after a keepable still]
-    status: installed
-  - name: animate
-    class: SPECIALIST
-    source: emilkowalski/skills
-    triggers: [motion from scratch]
-    status: installed
-  - name: review-animations
-    class: SPECIALIST
-    status: installed
-  - name: emil-design-eng
-    class: SPECIALIST
-    status: installed
-  - name: expo-*
-    class: SPECIALIST
-    source: expo/skills curated
-    triggers: [Android/Expo jobs]
-    status: installed
-  - name: strix-trio
-    class: SPECIALIST
-    source: usestrix/strix
-    triggers: [scan OUR app]
-    status: installed
-  - name: web-design-guidelines
-    class: SPECIALIST
-    source: vercel-labs/agent-skills (ONE skill only)
-    license: MIT (README)
-    triggers: [review UI, a11y audit]
-    status: installed
-    avoid: ["npx skills add vercel-labs/agent-skills --all"]
-
-  - name: OWASP code-review-security
-    class: OPTIONAL
-    source: OWASP/secure-agent-playbook
-    triggers: [higher-risk auth/payments/public API]
-    status: registry_only
-    note: read on high-risk jobs; do not install the whole playbook
-  - name: lottie-motion-design
-    class: OPTIONAL
-    source: LottieFiles/motion-design-skill
-    license: MIT
-    status: registry_only
-  - name: apple-design-skill
-    class: OPTIONAL
-    source: dickwu/apple-design-skill
-    status: registry_only
-    license: unspecified
-  - name: paper-writing-suite
-    class: OPTIONAL
-    source: jin-s13/paper-writing-suite
-    status: registry_only
-  - name: presentation-skill
-    class: OPTIONAL
-    source: siril9/presentation-skill
-    status: registry_only
-  - name: caveman-engine
-    class: OPTIONAL
-    source: JuliusBrussee/caveman
-    note: Cursor plugin already terse; do not install proxy
-    status: registry_only
-  - name: simongonzalezdc/web-typography-skill
-    class: OPTIONAL
-    status: registry_only
-    reason: not installed; TYPOGRAPHY_PROTOCOL.md + official platform docs cover the gap
-
-  - name: frontend-design (anthropics/skills folder)
-    class: REJECTED
-    reason: overlaps taste-design + Stitch + impeccable; dump risk
-  - name: genjutsu / ui-ux-pro-max
-    class: REJECTED
-    reason: global UI pack already hated
-  - name: ECC
-    class: REJECTED
-    reason: steal method only
-  - name: swiftui-design-skill
-    class: REJECTED
-    reason: no SwiftUI product this season; Expo path
-  - name: jetpack-compose-skills
-    class: REJECTED
-    reason: Expo path
-  - name: UnitOneAI/SecuritySkills
-    class: REJECTED
-    reason: essay pack; ship-safe + Strix exist; OWASP row is the optional specialist
-  - name: semgrep/skills
-    class: REJECTED
-    reason: dump + unclear skill license
-  - name: Li-Bailiang/prompt-refine-skill
-    class: REJECTED
-    reason: silent rewriter; Orchestra uses bounded PROMPT_BRIEF_PROTOCOL.md
-  - name: wondelai/web-typography
-    class: REJECTED
-    reason: book-pack install; not needed on top of TYPOGRAPHY_PROTOCOL.md
+see: registries/host-stack.json

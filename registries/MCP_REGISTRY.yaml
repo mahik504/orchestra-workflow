@@ -82,6 +82,22 @@ mcp:
       Sign in for the specific job that needs it, then return it to AUTH_REQUIRED.
       Listing it in a host's plugin panel does not make it active.
 
+  - name: codebase-memory-mcp
+    class: SPECIALIST
+    layer: RESEARCH
+    purpose: structural code graph for large application repositories
+    health: OPTIONAL
+    note: >
+      Never auto-install. Not a second Brain. Vault memory stays the filesystem MCP.
+
+  - name: presenton
+    class: SPECIALIST
+    layer: DOCS
+    purpose: slide deck generation (PPTX/PDF) for deck jobs
+    health: OPTIONAL
+    note: >
+      Desktop or API. Does not replace orchestra-docs for papers. Not a 31st skill.
+
   - name: vercel
     class: SPECIALIST
     layer: DEPLOYMENT
@@ -99,6 +115,8 @@ rejected:
     reason: terms-of-service risk, and the output is vanity metrics
   - name: screenshot-to-code services
     reason: a clone factory is not a design process
+  - name: Graft / google/skills / ui-ux-pro-max dumps
+    reason: second conductors and skill packs fight the 30-skill allowlist
 
 optional_on_demand:
   - name: extract-design-system

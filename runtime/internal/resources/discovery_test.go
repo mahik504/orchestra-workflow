@@ -395,13 +395,13 @@ func TestLiveRegistryFiles(t *testing.T) {
 	resourcesPath := filepath.Join(workflowRoot, "registries", "resources.json")
 	graphPath := filepath.Join(workflowRoot, "registries", "design-resource-graph.json")
 
-	// 1. Validate resources.json has all 126 canonical resources
+	// 1. Validate resources.json still has the curated public catalog
 	cat, err := LoadResourceCatalog(resourcesPath)
 	if err != nil {
 		t.Fatalf("Failed to load live resources.json: %v", err)
 	}
-	if cat.Count() < 126 {
-		t.Errorf("expected at least 126 resources in canonical registry, got %d", cat.Count())
+	if cat.Count() < 90 {
+		t.Errorf("expected at least 90 resources in canonical registry, got %d", cat.Count())
 	}
 
 	// Verify required canonical resources exist
@@ -411,11 +411,11 @@ func TestLiveRegistryFiles(t *testing.T) {
 		"r3f",
 		"drei",
 		"awwwards",
-		"godly",
-		"refero",
-		"jiro",
-		"cari",
-		"designmd",
+		"godly-design",
+		"refero-design",
+		"jiro-design",
+		"cari-institute",
+		"design-md",
 		"taste-design",
 		"impeccable",
 		"emil-design-eng",
@@ -423,7 +423,12 @@ func TestLiveRegistryFiles(t *testing.T) {
 		"trig-js",
 		"playwright",
 		"strix",
-		"semgrep-adapter",
+		"geist-font",
+		"scroll-world",
+		"liquid-glass",
+		"vgpu-shaders",
+		"hugeicons",
+		"presenton",
 	}
 
 	for _, id := range requiredResources {

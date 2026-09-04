@@ -53,6 +53,7 @@ binary. `docs/getting-started.md` treats `classify` / `plan` as optional.
 
 **Catalog.** `build-your-own-x` rationale is a public bookmark sentence. It does not name private notes.
 `drei` (`@react-three/drei`) is a public catalog row, project-scoped npm, so a clone does not need the author's overlay.
+Public catalog slimed to the named design stack plus a small refuse map. `liquid-glass` points at dashersw/liquid-glass-js. `vgpu-shaders` points at Vercel `vgpu`. `scroll-world` is optional on 3D routes. School SaaS no longer loads Awwwards or museums.
 
 **Host stack.** `registries/host-stack.json` names the 30 skills, MCP templates, and marketplace plugins per host.
 `kit/bootstrap.ps1` / `.sh` is the clone front door: pick hosts, copy skills and adapters, never overwrite a live MCP config.

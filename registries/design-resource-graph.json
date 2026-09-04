@@ -11,7 +11,35 @@
       "cari-institute",
       "awesome-design-md",
       "land-book",
-      "siteinspire"
+      "siteinspire",
+      "ux-planet",
+      "archives-design",
+      "letterform-archive"
+    ],
+    "art_reference": [
+      "curationist",
+      "rijksmuseum-archive",
+      "nypl-digital-collections"
+    ],
+    "icon_system": [
+      "hugeicons",
+      "thesvg",
+      "morphicons",
+      "keyline-icons"
+    ],
+    "motion_optional": [
+      "transitions-dev",
+      "its-hover",
+      "moving-icons",
+      "animate-icons",
+      "animemaster"
+    ],
+    "webgl_optional": [
+      "liquid-logo",
+      "liquid-glass",
+      "vgpu-shaders",
+      "scroll-world",
+      "vanta"
     ],
     "editorial_research": [
       "peter-oravec",
@@ -43,7 +71,8 @@
     "interaction_research": [
       "godly-design",
       "refero-design",
-      "jiro-design"
+      "jiro-design",
+      "uiverse"
     ],
     "reverse_engineering": [
       "skillui"
@@ -58,7 +87,9 @@
       "apple-hig-typography",
       "material-3-typography",
       "mdn-css-fonts",
-      "not-your-type"
+      "not-your-type",
+      "geist-font",
+      "geist-mono-font"
     ],
     "motion": [
       "gsap",
@@ -153,7 +184,9 @@
         "motion"
       ],
       "optional_extensions": [
-        "webgl"
+        "webgl",
+        "icon_system",
+        "motion_optional"
       ],
       "qa": [
         "playwright",
@@ -209,7 +242,8 @@
         "motion"
       ],
       "optional_extensions": [
-        "sensory"
+        "sensory",
+        "webgl_optional"
       ],
       "qa": [
         "playwright",
@@ -552,8 +586,7 @@
         "metrics"
       ],
       "discovery": [
-        "saas_research",
-        "visual_research"
+        "saas_research"
       ],
       "synthesis": [
         "design_synthesis",
