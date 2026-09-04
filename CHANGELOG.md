@@ -52,6 +52,10 @@ and `go install` `orchestra` onto `~/go/bin`. Chat still uses the markdown contr
 binary. `docs/getting-started.md` treats `classify` / `plan` as optional.
 
 **Catalog.** `build-your-own-x` rationale is a public bookmark sentence. It does not name private notes.
+`drei` (`@react-three/drei`) is a public catalog row, project-scoped npm, so a clone does not need the author's overlay.
+
+**Host stack.** `registries/host-stack.json` names the 30 skills, MCP templates, and marketplace plugins per host.
+`kit/bootstrap.ps1` / `.sh` is the clone front door: pick hosts, copy skills and adapters, never overwrite a live MCP config.
 
 ## [3.0.0] - The Castle Pass Release
 *Orchestra V3: Capability router and Go execution layer.*

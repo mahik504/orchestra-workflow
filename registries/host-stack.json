@@ -1,0 +1,115 @@
+{
+  "version": "3.1.0",
+  "skills": [
+    "animate",
+    "ci-security-scanning-with-strix",
+    "eas-app-stores",
+    "emil-design-eng",
+    "expo-data-fetching",
+    "expo-dev-client",
+    "expo-native-ui",
+    "expo-project-structure",
+    "expo-router",
+    "expo-upgrade",
+    "fix-security-vulnerabilities-with-strix",
+    "impeccable",
+    "orchestra-conductor",
+    "orchestra-docs",
+    "orchestra-ship",
+    "orchestra-vault",
+    "penetration-testing-with-strix",
+    "review-animations",
+    "semgrep-adapter",
+    "ship-safe",
+    "stitch-code-to-design",
+    "stitch-extract-design-md",
+    "stitch-extract-static-html",
+    "stitch-generate-design",
+    "stitch-manage-design-system",
+    "stitch-react-components",
+    "stitch-upload-to-stitch",
+    "superpowers-planning",
+    "taste-design",
+    "web-design-guidelines"
+  ],
+  "mcp": {
+    "core": [
+      {
+        "id": "vault-memory",
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-filesystem", "REPLACE_WITH_VAULT_PATH"]
+      },
+      {
+        "id": "stitch",
+        "command": "npx",
+        "args": ["-y", "mcp-remote", "https://stitch.googleapis.com/mcp", "--header", "X-Goog-Api-Key: REPLACE_WITH_YOUR_STITCH_KEY"]
+      },
+      {
+        "id": "playwright",
+        "command": "npx",
+        "args": ["-y", "@playwright/mcp@latest"]
+      },
+      {
+        "id": "context7",
+        "command": "npx",
+        "args": ["-y", "@upstash/context7-mcp"]
+      }
+    ],
+    "optional_by_host": {
+      "cursor": [
+        { "id": "gmail", "state": "CURSOR_PLUGIN", "note": "Mail. Do not install on Antigravity." },
+        { "id": "google-calendar", "state": "CURSOR_PLUGIN", "note": "Calendar. Cursor only." },
+        { "id": "google-drive", "state": "CURSOR_PLUGIN", "note": "Drive. Cursor only." },
+        { "id": "stripe", "state": "CURSOR_PLUGIN", "note": "Payments. Cursor only." },
+        { "id": "zapier", "state": "CURSOR_PLUGIN", "note": "Cross-app glue when no native MCP exists." },
+        { "id": "shadcn", "state": "OPTIONAL", "note": "Hiring or college primitives when the plan names them. Never on an operator HUD." },
+        { "id": "mobbin", "state": "OPTIONAL", "note": "Production app screens. Connect in the host MCP UI." },
+        { "id": "github", "state": "CURSOR_PLUGIN", "note": "GitHub marketplace plugin on Cursor." }
+      ],
+      "antigravity": [
+        { "id": "mobbin", "state": "OPTIONAL", "note": "Connect in the MCP Store if the job needs screens." },
+        { "id": "firebase", "state": "OPTIONAL", "note": "Cloud data when AUTH is done for that job. Do not install on Cursor to match." },
+        { "id": "supabase", "state": "AUTH_REQUIRED", "note": "Unauthorized is AUTH_REQUIRED, not active." },
+        { "id": "github", "state": "OPTIONAL", "note": "Local GitHub MCP if configured; token stays in the host, never in git." },
+        { "id": "science", "state": "DISABLED_GLOBAL", "note": "Keep off as Global. Re-enable only for a job that needs it." },
+        { "id": "data-agent-kit-plugin", "state": "DISABLED_GLOBAL", "note": "Keep off as Global." }
+      ],
+      "claude": [
+        { "id": "github", "state": "OPTIONAL", "note": "Claude Code MCP if you add it locally." },
+        { "id": "shadcn", "state": "OPTIONAL", "note": "Same rule as Cursor: never on an operator HUD." }
+      ]
+    }
+  },
+  "plugins": {
+    "cursor": [
+      "Playwright",
+      "Context7",
+      "Gmail",
+      "Google Calendar",
+      "Google Drive",
+      "Stripe",
+      "Zapier",
+      "shadcn",
+      "caveman"
+    ],
+    "antigravity": [
+      "Playwright MCP",
+      "Context7",
+      "StitchMCP",
+      "science (keep Global off)",
+      "data-agent-kit-plugin (keep Global off)"
+    ]
+  },
+  "refused": [
+    "npx skills add --all",
+    "ECC / affaan-m skill dumps into runtime",
+    "always-on 21st.dev / Aceternity / Magic UI MCP",
+    "screenshot-to-code factories",
+    "GetLayers template kits",
+    "Gmail on Antigravity",
+    "Firebase on Cursor to match Antigravity"
+  ],
+  "resources": {
+    "see": "registries/resources.json"
+  }
+}

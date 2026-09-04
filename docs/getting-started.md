@@ -1,13 +1,15 @@
 # Getting started
 
-The **chat is Orchestra**. Open the app repo, keep `AGENTS.md` in reach, and talk. You do not run `orchestra classify` at the start of every conversation.
+The **chat is Orchestra**. After bootstrap, open the app repo plus your private workspace and talk. You do not run `orchestra classify` at the start of every conversation.
 
-This repository is the **Orchestra Workflow** (public method). Your notes and products belong in a **separate private Brain**. Persist `ORCHESTRA_HOME` to that workspace so the optional Go engine binds memory there.
+This repository is the **Orchestra Workflow** (public method). Your notes and products belong in a **separate private Brain**. Named skills, MCP templates, and the public resource catalog ship with the clone. Your taste, keys, and overlay memory do not.
 
 ```
-clone → private workspace → install skills → chat
+clone → bootstrap (pick hosts) → paste your keys → restart → chat
 optional: persist ORCHESTRA_HOME, install orchestra.exe, doctor / classify / plan
 ```
+
+Reference URLs (awwwards, shadcn/ui, GSAP, R3F, Drei, React Bits, …) live in [`registries/resources.json`](../registries/resources.json). Host extras (Gmail, Stripe, …) are a **checklist**, not a git install. See [`registries/host-stack.json`](../registries/host-stack.json).
 
 ## 1. Clone
 
@@ -16,76 +18,60 @@ git clone https://github.com/mahik504/orchestra-workflow.git
 cd orchestra-workflow
 ```
 
-## 2. Initialize a private workspace
+## 2. Bootstrap (pick hosts)
 
 Windows:
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File kit/init-workspace.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File kit/bootstrap.ps1
+```
+
+Non-interactive:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File kit/bootstrap.ps1 -Hosts cursor,antigravity -Target "D:\work\my-orchestra"
 ```
 
 macOS / Linux:
 
 ```bash
-chmod +x kit/init-workspace.sh
-./kit/init-workspace.sh
+chmod +x kit/bootstrap.sh kit/init-workspace.sh kit/install-local-engine.sh
+./kit/bootstrap.sh
+# or:
+./kit/bootstrap.sh --hosts cursor,antigravity --target /path/to/my-orchestra
 ```
 
-Default location: `../orchestra-workspace` (sibling of this clone), or `$ORCHESTRA_HOME` if that env var is already set. Override:
+Bootstrap will:
 
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File kit/init-workspace.ps1 -Target "D:\work\my-orchestra"
-```
+1. Create an empty private workspace if it is missing (`projects/`, `memory/`, `Preferences.md`, `routes.md`).
+2. Copy the 30 canonical skills onto the hosts you picked.
+3. Copy `AGENTS.md` and the matching adapter (`.cursorrules`, `CLAUDE.md`, Antigravity MASTER-PROMPT).
+4. Write MCP **templates** with `REPLACE_WITH_*` placeholders. It will not overwrite a live `mcp_config.json`.
+5. Print the marketplace plugin checklist. You click Connect. Orchestra cannot log into Google, Stripe, or Stitch for you.
 
-```bash
-ORCHESTRA_HOME=/path/to/my-orchestra ./kit/init-workspace.sh
-```
-
-The workspace is empty on purpose: `projects/`, `memory/`, `Preferences.md`, `routes.md`. Fill them with **your** work.
+It does **not** run `npx skills add --all`. It does not copy anyone's Brain.
 
 ## 3. Configure the window
 
-1. Open **the app repo** you are building. Add the private workspace as a second folder. The workflow clone can sit in the same window.
-2. Put API keys in the **agent’s** env / MCP UI — never in the workspace git.
-3. Edit workspace `Preferences.md` (taste) and `routes.md` (your slugs).
+1. Open **the app repo** you are building. Add the private workspace as a second folder.
+2. Paste API keys in the **agent's** MCP UI — never in git.
+3. Edit workspace `Preferences.md` (your taste) and `routes.md` (your slugs).
 
-Cursor already reads `.cursorrules` + `AGENTS.md` + the `orchestra-conductor` skill. Antigravity: see [`kit/antigravity/ALWAYS-ON.md`](../kit/antigravity/ALWAYS-ON.md) (open app + Brain, paste `MASTER-PROMPT.md` once per new AG chat).
+Restart the IDE. The next chat in that workspace reads `AGENTS.md`. Antigravity: still paste `kit/antigravity/MASTER-PROMPT.md` once per **new** AG chat (VAULT + APP ROOT). See [`kit/antigravity/ALWAYS-ON.md`](../kit/antigravity/ALWAYS-ON.md).
 
-## 4. Activate skills (once)
+## 4. Optional: persist the engine
 
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File kit/install-skills.ps1
-```
-
-```bash
-./kit/install-skills.sh
-```
-
-This copies `skills/*` into common locations **if they exist** on your machine:
-
-- `~/.cursor/skills/`
-- `~/.claude/skills/`
-- `~/.agents/skills/`
-- `~/.gemini/config/skills/`
-
-It does **not** run `npx skills add --all`. It does **not** invent logins.
-
-For Codex / OpenCode / Hermes: keep `AGENTS.md` in the app repo or workspace root.
-
-## 5. Optional: persist the engine
-
-Only if you want `orchestra` on your PATH (Design Lab write lock, `classify` / `plan` / `doctor`):
+Only if you want `orchestra` on PATH (Design Lab write lock, `classify` / `plan` / `doctor`):
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File kit/install-local-engine.ps1 -HomeDir "D:\work\my-orchestra"
 ```
 
 ```bash
-chmod +x kit/install-local-engine.sh
 ./kit/install-local-engine.sh /path/to/my-orchestra
 ```
 
-That sets a **user** `ORCHESTRA_HOME` and installs `orchestra` into `~/go/bin`. Restart the IDE so PATH and env refresh. Then:
+Then:
 
 ```bash
 orchestra doctor
@@ -95,7 +81,7 @@ orchestra plan --task "optional: dry-run the pipeline"
 
 A fresh clone without `ORCHESTRA_HOME` writes only under that clone's `.orchestra/` directory.
 
-## 6. Route the task (in chat)
+## 5. Route the task (in chat)
 
 Say what you are building. The conductor should:
 
@@ -105,25 +91,27 @@ Say what you are building. The conductor should:
 
 PREMIUM / EXPERIMENTAL visual work: **Design Lab is a write lock**. Do not write frontend files until a stack card is approved. Say `skip the lab` to bypass one task.
 
-## 7. Load relevant capabilities
+Installing Stitch, Fiber, or Stripe does not load them on every prompt.
+
+## 6. Load relevant capabilities
 
 Read the protocol files for **this** job. Examples:
 
 - Showable web: `protocols/DESIGN_SYSTEM_PROTOCOL.md` + `TYPOGRAPHY_PROTOCOL.md` + `VISUAL_QA_PROTOCOL.md`
-- “Make it like this URL”: `REVERSE_ENGINEERING_PROTOCOL.md` then originality gate
+- "Make it like this URL": `REVERSE_ENGINEERING_PROTOCOL.md` then originality gate
 - Auth/payments: `SECURITY_PROTOCOL.md` (ship-safe + Strix on **your** app)
 
-## 8. Execute
+## 7. Execute
 
 Implement in the **application repository**. One spec story per pass. Packet a worker only when the conductor says so. After a worker returns, the conductor **re-reads the git diff**.
 
-## 9. Verify
+## 8. Verify
 
-UI: visual QA protocol on a running app (Playwright or the agent’s browser). Zero screenshots is not a Playwright pass.
+UI: visual QA protocol on a running app (Playwright or the agent's browser). Zero screenshots is not a Playwright pass.
 Security: ship-safe always; Strix only on your code.
-Never claim “looks good” from a single chat screenshot. `DONE` / `VERIFIED` needs evidence in the same message.
+Never claim "looks good" from a single chat screenshot. `DONE` / `VERIFIED` needs evidence in the same message.
 
-## 10. Persist (small)
+## 9. Persist (small)
 
 Lasting taste → workspace `Preferences.md`.
 Decisions → `memory/decisions.md`.

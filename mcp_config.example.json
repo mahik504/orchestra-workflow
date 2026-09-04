@@ -1,9 +1,27 @@
 {
   "mcpServers": {
+    "vault-memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "REPLACE_WITH_VAULT_PATH"],
+      "comment": "Example only. Point at YOUR private workspace. Never commit the live config."
+    },
+    "stitch": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://stitch.googleapis.com/mcp",
+        "--header",
+        "X-Goog-Api-Key: REPLACE_WITH_YOUR_STITCH_KEY"
+      ]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"]
+    },
     "context7": {
       "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp"],
-      "comment": "Example only. Add keys in your local MCP UI, never in git."
+      "args": ["-y", "@upstash/context7-mcp"]
     }
   }
 }

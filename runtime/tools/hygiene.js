@@ -18,6 +18,7 @@ const EXPECTED_VERSION = '3.1.0';
 const SELF = new Set([
   'runtime/tools/hygiene.js',
   'runtime/tools/check-registry.js',
+  'runtime/tools/check-host-stack.js',
   'runtime/tools/strip-personal.js',
   'runtime/tools/genericize.js',
   '.github/workflows/hygiene.yml',
@@ -91,4 +92,11 @@ console.log(`scanned files: ${files.length}`);
 console.log(`VERSION:       ${version}`);
 console.log(`failures:      ${failures.length}`);
 for (const f of failures) console.log(`  ${f}`);
-process.exit(failures.length ? 1 : 0);
+if (failures.length) process.exit(1);
+
+try {
+  execSync('node runtime/tools/check-host-stack.js', { cwd: REPO, stdio: 'inherit' });
+} catch (e) {
+  process.exit(1);
+}
+process.exit(0);

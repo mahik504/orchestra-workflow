@@ -409,6 +409,7 @@ func TestLiveRegistryFiles(t *testing.T) {
 		"gsap",
 		"lenis",
 		"r3f",
+		"drei",
 		"awwwards",
 		"godly",
 		"refero",

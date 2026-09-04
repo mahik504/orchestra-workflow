@@ -8,7 +8,7 @@ This map defines how capability gaps are satisfied by specific curated resources
 | **Visual Design Polish** | `taste-design` + `impeccable` | `emil-design-eng` for interaction |
 | **Visual QA / Browser Auto** | `playwright` (MCP) | `chrome-devtools-plugin` |
 | **Security Validation** | `semgrep-adapter` | `strix` skills |
-| **3D / WebGL** | `r3f-threejs` (Curated Catalog) | `shader-gradient` |
+| **3D / WebGL** | `r3f` + `drei` | `shadergradient` |
 | **Memory Extraction** | `orchestra-vault` | `vault-memory` (MCP) |
 | **Figma / Design Sync** | `stitch-code-to-design` | `StitchMCP` |
 | **Mobile Development** | `expo-router` + `expo-native-ui` | `eas-app-stores` |

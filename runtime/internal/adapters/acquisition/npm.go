@@ -30,6 +30,7 @@ var BannedGlobalFlags = []string{
 // DefaultPackageAliases maps canonical resource IDs to exact NPM package specifiers
 var DefaultPackageAliases = map[string]string{
 	"r3f":            "@react-three/fiber",
+	"drei":           "@react-three/drei",
 	"gsap":           "gsap",
 	"lenis":          "lenis",
 	"motion-dev":     "framer-motion",

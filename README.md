@@ -191,21 +191,23 @@ cd orchestra-workflow
 Windows:
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File kit/init-workspace.ps1
-powershell -NoProfile -ExecutionPolicy Bypass -File kit/install-skills.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File kit/bootstrap.ps1
 ```
 
 macOS / Linux:
 
 ```bash
-chmod +x kit/init-workspace.sh kit/install-skills.sh
-./kit/init-workspace.sh
-./kit/install-skills.sh
+chmod +x kit/bootstrap.sh kit/init-workspace.sh
+./kit/bootstrap.sh
 ```
 
-Then open **your private workspace** (default `../orchestra-workspace`) alongside the app repo you are building, and point your agent at `AGENTS.md`. That is enough for Orchestra to run in chat. The Go binary is optional. Start with [docs/getting-started.md](docs/getting-started.md).
+Bootstrap asks which hosts to wire (Cursor, Antigravity, Claude Code, Codex/Hermes/OpenCode), creates an empty private workspace, copies the 30 skills, writes adapter files, and prints the plugin checklist. Paste your own keys in the host MCP UI. Restart. Talk.
 
-Init gives you an empty `projects/`, an empty `memory/`, and example routes. Do not copy someone else's populated workspace.
+Named references (awwwards, shadcn/ui, GSAP, R3F, Drei, …) are already in [`registries/resources.json`](registries/resources.json). Host extras are not git-cloned into someone else's Cursor account.
+
+The Go binary is optional. Details: [docs/getting-started.md](docs/getting-started.md).
+
+Init/bootstrap gives you an empty `projects/`, an empty `memory/`, and example routes. Do not copy someone else's populated workspace.
 
 ### With the engine
 

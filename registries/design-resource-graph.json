@@ -74,6 +74,7 @@
     ],
     "webgl": [
       "r3f",
+      "drei",
       "shadergradient",
       "threeui",
       "shaders-com"

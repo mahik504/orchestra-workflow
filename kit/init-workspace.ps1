@@ -20,7 +20,7 @@ if (-not (Test-Path -LiteralPath $Target)) {
   New-Item -ItemType Directory -Path $Target | Out-Null
 }
 
-Copy-Item -LiteralPath (Join-Path $template "*") -Destination $Target -Recurse -Force
+Get-ChildItem -LiteralPath $template -Force | Copy-Item -Destination $Target -Recurse -Force
 
 foreach ($dir in @("protocols", "registries", "templates", "docs")) {
   $src = Join-Path $Root $dir

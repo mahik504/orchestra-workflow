@@ -3079,6 +3079,43 @@
     "rationale": "Standard React declarative renderer for Three.js 3D spatial scenes."
   },
   {
+    "id": "drei",
+    "name": "Drei",
+    "canonical_url": "https://github.com/pmndrs/drei",
+    "source_type": "npm_package",
+    "source_repository": "https://github.com/pmndrs/drei.git",
+    "documentation_url": "https://github.com/pmndrs/drei#readme",
+    "license": "MIT",
+    "category": [
+      "3d",
+      "webgl",
+      "helpers"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "3d",
+      "r3f",
+      "drei",
+      "helpers",
+      "webgl"
+    ],
+    "acquisition_method": "npm",
+    "runtime_method": "project_scoped_install",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "R3F helpers (Stage, Environment, Html, useGLTF)",
+      "drei mentioned by name",
+      "3D scene needs ready-made R3F abstractions"
+    ],
+    "avoid_conditions": [
+      "pure 2D layouts",
+      "global npm install"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "Official R3F helper library. Project-scoped npm only. Complements r3f; not a second Three.js stack.",
+    "npm_package": "@react-three/drei"
+  },
+  {
     "id": "strix",
     "name": "Strix Security Pentest Suite",
     "canonical_url": "https://strix.ai/",

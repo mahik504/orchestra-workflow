@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://orchestra.workflow/schemas/host-stack.schema.json",
+  "title": "OrchestraHostStack",
+  "description": "Clone-safe named inventory of skills, MCP templates, and marketplace plugins. No secrets. No personal vault path.",
+  "type": "object",
+  "required": ["version", "skills", "mcp", "plugins", "refused", "resources"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "type": "string", "const": "3.1.0" },
+    "skills": {
+      "type": "array",
+      "minItems": 30,
+      "maxItems": 30,
+      "items": { "type": "string", "pattern": "^[a-z0-9-]+$" }
+    },
+    "mcp": {
+      "type": "object",
+      "required": ["core", "optional_by_host"],
+      "additionalProperties": false,
+      "properties": {
+        "core": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "command", "args"],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "type": "string" },
+              "command": { "type": "string" },
+              "args": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "optional_by_host": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "state", "note"],
+              "additionalProperties": false,
+              "properties": {
+                "id": { "type": "string" },
+                "state": { "type": "string", "enum": ["OPTIONAL", "AUTH_REQUIRED", "CURSOR_PLUGIN", "DISABLED_GLOBAL"] },
+                "note": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "plugins": {
+      "type": "object",
+      "required": ["cursor", "antigravity"],
+      "additionalProperties": false,
+      "properties": {
+        "cursor": { "type": "array", "items": { "type": "string" } },
+        "antigravity": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "refused": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "resources": {
+      "type": "object",
+      "required": ["see"],
+      "additionalProperties": false,
+      "properties": {
+        "see": { "type": "string", "const": "registries/resources.json" }
+      }
+    }
+  }
+}

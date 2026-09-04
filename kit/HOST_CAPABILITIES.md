@@ -26,6 +26,6 @@ Rules:
 - Do not install Gmail on Antigravity. Do not install Firebase on Cursor "to match."
 - A server in `AUTH_REQUIRED` is not active.
 - Host extras are OPTIONAL capabilities. The 30-skill core is the contract.
-- After `kit/sync-ides.ps1`, a new Cursor session and the AG kit both identify as Orchestra 3.1.0.
+- After `kit/bootstrap.ps1` (or `kit/sync-ides.ps1`), a new Cursor session and the AG kit both identify as Orchestra 3.1.0.
 
 Rollback: `ORCHESTRA_CONTRACT` (see `kit/ROLLBACK.md`). A bad sync is not a git revert of the vault.

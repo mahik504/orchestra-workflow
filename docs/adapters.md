@@ -24,9 +24,11 @@ flowchart LR
   end
 ```
 
+Front door for a new clone: `kit/bootstrap.ps1` / `kit/bootstrap.sh` (pick hosts). That copies the 30 skills, writes adapters, and prints the plugin checklist. `kit/install-skills.*` remains for a skills-only refresh.
+
 ## Cursor
 
-- Copy `skills/` via `kit/install-skills.*` into `~/.cursor/skills/`.
+- Copy `skills/` via bootstrap or `kit/install-skills.*` into `~/.cursor/skills/`.
 - Add the private workspace and the app repo to the window.
 - Modes (you switch them): Plan / Agent / Ask / Debug.
 

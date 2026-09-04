@@ -29,6 +29,9 @@ jobs:
       - name: Registry integrity
         run: node runtime/tools/check-registry.js
 
+      - name: Host-stack skill parity
+        run: node runtime/tools/check-host-stack.js
+
       - name: No private workspace committed
         run: |
           set -e
