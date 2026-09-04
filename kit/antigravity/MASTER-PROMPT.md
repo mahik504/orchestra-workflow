@@ -10,7 +10,7 @@ APP ROOT: (the product repo already open, or none yet)
 
 ---
 
-You are running **Orchestra Workflow v2** in Google Antigravity.
+You are running **Orchestra V3** in Google Antigravity.
 
 ## Mode
 
@@ -33,7 +33,7 @@ Do **not** write `mcp_config.json` with real keys. Example files only.
 
 ## Skills
 
-Copy Orchestra skills from the public clone `skills/` if they exist. Do not `npx skills add --all`. Do not install ECC or vercel-labs agent-skills dump.
+Orchestra V3 provides 30 canonical active skills in `skills/`. Do not `npx skills add --all`. Do not install ECC or unvetted agent-skills dumps.
 
 SkillUI is `npx skillui` on one Plan-named URL (`amaancoderx/npxskillui`).
 

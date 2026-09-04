@@ -36,7 +36,40 @@ function Copy-Skill([string]$Name) {
   Write-Host "copied $Name"
 }
 
-foreach ($n in @("orchestra-conductor", "orchestra-vault", "orchestra-ship", "orchestra-docs", "ship-safe")) {
+$canonicalSkills = @(
+  "animate",
+  "ci-security-scanning-with-strix",
+  "eas-app-stores",
+  "emil-design-eng",
+  "expo-data-fetching",
+  "expo-dev-client",
+  "expo-native-ui",
+  "expo-project-structure",
+  "expo-router",
+  "expo-upgrade",
+  "fix-security-vulnerabilities-with-strix",
+  "impeccable",
+  "orchestra-conductor",
+  "orchestra-docs",
+  "orchestra-ship",
+  "orchestra-vault",
+  "penetration-testing-with-strix",
+  "review-animations",
+  "semgrep-adapter",
+  "ship-safe",
+  "stitch-code-to-design",
+  "stitch-extract-design-md",
+  "stitch-extract-static-html",
+  "stitch-generate-design",
+  "stitch-manage-design-system",
+  "stitch-react-components",
+  "stitch-upload-to-stitch",
+  "superpowers-planning",
+  "taste-design",
+  "web-design-guidelines"
+)
+
+foreach ($n in $canonicalSkills) {
   Copy-Skill $n
 }
 

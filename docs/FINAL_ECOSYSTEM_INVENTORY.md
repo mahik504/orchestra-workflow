@@ -1,4 +1,4 @@
-﻿# Final Ecosystem Inventory (Orchestra V3)
+# Final Ecosystem Inventory (Orchestra V3)
 
 ## A. ACTIVE WORKING SET (Curated core loaded by agents)
 
@@ -30,12 +30,12 @@
 - `stitch-generate-design`, `stitch-manage-design-system`, `stitch-extract-design-md`, `stitch-extract-static-html`, `stitch-code-to-design`, `stitch-upload-to-stitch`, `stitch-react-components`
 
 ## B. CURATED OPTIONAL CATALOG (Not automatically loaded)
-Located in `C:\Users\Asus\.gemini\config\curated_catalog`
+Located in `~/.gemini/config/curated_catalog`
 - `r3f-threejs`: React Three Fiber, loaded only upon WebGL request.
 - `shader-gradient`: WebGL shader liquid effects.
 
 ## C. QUARANTINED ITEMS
-- The `C:\Users\Asus\.gemini\config\skills_library` (1,598 items) remains quarantined on disk. It is strictly excluded from Orchestra's context window. 
+- The `~/.gemini/config/skills_library` (1,598 items) remains quarantined on disk. It is strictly excluded from Orchestra's context window. 
 
 ## D. DELETED ITEMS
 - `github-mcp-server` (Docker connection failures; removed to prevent silent token drain).

@@ -1,0 +1,172 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://orchestra.workflow/schemas/resources.schema.json",
+  "title": "OrchestraResourceRegistry",
+  "description": "Canonical machine-readable registry of verified Orchestra resources, tools, libraries, standards, and references",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "name",
+      "canonical_url",
+      "source_type",
+      "category",
+      "representation",
+      "routing_tags",
+      "acquisition_method",
+      "runtime_method",
+      "status"
+    ],
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[a-z0-9-]+$",
+        "description": "Unique kebab-case identifier for the resource"
+      },
+      "name": {
+        "type": "string",
+        "description": "Human-readable display name"
+      },
+      "canonical_url": {
+        "type": "string",
+        "format": "uri",
+        "description": "Direct official website, documentation, or portal URL"
+      },
+      "source_type": {
+        "type": "string",
+        "enum": [
+          "github_repository",
+          "web_reference",
+          "npm_package",
+          "pypi_package",
+          "cli_tool",
+          "mcp_server",
+          "standard_specification",
+          "agent_skill",
+          "desktop_application",
+          "local_runtime"
+        ],
+        "description": "Origin type of the resource"
+      },
+      "source_repository": {
+        "type": "string",
+        "format": "uri",
+        "description": "Git clone URL or GitHub repository link"
+      },
+      "documentation_url": {
+        "type": "string",
+        "format": "uri",
+        "description": "Direct link to official API / SDK documentation"
+      },
+      "license": {
+        "type": "string",
+        "description": "Open source or proprietary license identifier"
+      },
+      "category": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Functional domain classifications"
+      },
+      "representation": {
+        "type": "string",
+        "enum": [
+          "dependency",
+          "research_source",
+          "cli",
+          "mcp",
+          "skill",
+          "standard",
+          "desktop_app",
+          "service",
+          "code_repo",
+          "profile",
+          "reference",
+          "infrastructure",
+          "dev_utility"
+        ],
+        "description": "How the runtime represents this resource"
+      },
+      "routing_tags": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Capability matching keywords used by router"
+      },
+      "acquisition_method": {
+        "type": "string",
+        "enum": [
+          "npm",
+          "git",
+          "pip",
+          "npx",
+          "web_fetch",
+          "mcp_install",
+          "manual",
+          "none"
+        ],
+        "description": "Engine acquisition mechanism"
+      },
+      "runtime_method": {
+        "type": "string",
+        "enum": [
+          "project_scoped_install",
+          "on_demand_research",
+          "on_demand_cli",
+          "global_active_skill",
+          "curated_catalog_lazy_load",
+          "mcp_connection",
+          "reference_only",
+          "local_daemon",
+          "desktop_exec"
+        ],
+        "description": "Activation lifecycle in the execution environment"
+      },
+      "status": {
+        "type": "string",
+        "enum": [
+          "ACTIVE",
+          "CURATED_OPTIONAL",
+          "REJECTED",
+          "BOOKMARK",
+          "DEFERRED",
+          "CORE",
+          "REFERENCE",
+          "ARCHIVED",
+          "LEFTOVER"
+        ],
+        "description": "Curation status per Orchestra policy"
+      },
+      "trigger_conditions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Explicit task requirements that trigger this resource"
+      },
+      "avoid_conditions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Scenarios where resource invocation is forbidden"
+      },
+      "policy_verdict": {
+        "type": "string",
+        "description": "Authoritative policy verdict from STACK.md"
+      },
+      "rationale": {
+        "type": "string",
+        "description": "Contextual reason for verdict or operational usage constraints"
+      },
+      "token_context_weight": {
+        "type": "number",
+        "description": "Estimated token context weight when activated"
+      }
+    },
+    "additionalProperties": false
+  }
+}

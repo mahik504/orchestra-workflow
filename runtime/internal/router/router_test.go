@@ -1,6 +1,8 @@
-﻿package router
+package router
 
 import (
+	"os"
+	"path/filepath"
 	"testing"
 
 	"github.com/user/orchestra-v3/internal/classifier"
@@ -30,6 +32,39 @@ func setupTestRegistry() *resources.Registry {
 		TokenContextWeight: 1200,
 	}
 	return reg
+}
+
+func setupLiveCatalogAndGraph(t *testing.T) (*resources.ResourceCatalog, *resources.DesignResourceGraph) {
+	t.Helper()
+	candidates := []string{
+		filepath.Join("..", "..", "..", "registries"),
+		filepath.Join("..", "..", "registries"),
+		filepath.Join("registries"),
+		`C:\projects\orchestra-workflow\registries`,
+	}
+
+	var regDir string
+	for _, c := range candidates {
+		if fi, err := os.Stat(c); err == nil && fi.IsDir() {
+			regDir = c
+			break
+		}
+	}
+	if regDir == "" {
+		t.Fatalf("Could not locate registries directory in candidates: %v", candidates)
+	}
+
+	cat, err := resources.LoadResourceCatalog(filepath.Join(regDir, "resources.json"))
+	if err != nil {
+		t.Fatalf("Failed to load live catalog: %v", err)
+	}
+
+	graph, err := resources.LoadDesignGraph(filepath.Join(regDir, "design-resource-graph.json"))
+	if err != nil {
+		t.Fatalf("Failed to load live design graph: %v", err)
+	}
+
+	return cat, graph
 }
 
 func TestVisualTaskRouting(t *testing.T) {
@@ -66,6 +101,12 @@ func TestVisualTaskRouting(t *testing.T) {
 	if len(plan.ExecutionDirectives) < 3 {
 		t.Errorf("Expected at least 3 execution directives, got %d", len(plan.ExecutionDirectives))
 	}
+
+	// Verify token weight was accumulated for all selected capabilities
+	expectedMinTokens := 1500.0 + 2000.0 + 1800.0 // superpowers + taste + impeccable
+	if plan.EstimatedTokenCost < expectedMinTokens {
+		t.Errorf("Expected token cost >= %.0f, got %.0f", expectedMinTokens, plan.EstimatedTokenCost)
+	}
 }
 
 func TestBackendBugRouting(t *testing.T) {
@@ -89,6 +130,11 @@ func TestBackendBugRouting(t *testing.T) {
 		if cap.ID == "taste-skill" || cap.ID == "impeccable" {
 			t.Errorf("Backend bug task should NOT activate visual capabilities, found %s", cap.ID)
 		}
+	}
+
+	// Baseline token cost
+	if plan.EstimatedTokenCost < 1500 {
+		t.Errorf("Expected baseline token cost >= 1500, got %.0f", plan.EstimatedTokenCost)
 	}
 }
 
@@ -119,6 +165,11 @@ func TestMixedApplicationRouting(t *testing.T) {
 	if !hasVisual || !hasSecurity {
 		t.Errorf("Expected mixed application to compose both visual and security capabilities")
 	}
+
+	expectedMinTokens := 1500.0 + 2000.0 + 1800.0 + 1200.0
+	if plan.EstimatedTokenCost < expectedMinTokens {
+		t.Errorf("Expected token cost >= %.0f, got %.0f", expectedMinTokens, plan.EstimatedTokenCost)
+	}
 }
 
 func TestUnknownTechnologyRouting(t *testing.T) {
@@ -146,5 +197,89 @@ func TestUnknownTechnologyRouting(t *testing.T) {
 
 	if !hasGapDirective {
 		t.Errorf("Expected capability-gap-research directive to be generated")
+	}
+}
+
+func TestRouter_10DesignArchetypesResolution(t *testing.T) {
+	cat, graph := setupLiveCatalogAndGraph(t)
+	r := NewRouterWithGraph(nil, cat, graph)
+
+	archetypes := []string{
+		"premium-website",
+		"3d-portfolio",
+		"operator-hud",
+		"b2b-portal",
+		"academic-reader",
+		"micro-interactions",
+		"physics-canvas",
+		"saas-dashboard",
+		"mobile-app",
+		"security-audit",
+	}
+
+	for _, arch := range archetypes {
+		t.Run(arch, func(t *testing.T) {
+			task := &classifier.Task{
+				ID:                "task-" + arch,
+				Type:              "FEATURE",
+				ExtractedKeywords: []string{arch},
+			}
+
+			plan := r.Compose(task)
+			if len(plan.ExecutionDirectives) == 0 {
+				t.Errorf("Archetype %s produced 0 execution directives", arch)
+			}
+
+			if plan.EstimatedTokenCost <= 1500 {
+				t.Errorf("Archetype %s did not accumulate resource token weights, cost=%.0f", arch, plan.EstimatedTokenCost)
+			}
+		})
+	}
+}
+
+func TestRouter_DynamicTokenCalculation(t *testing.T) {
+	cat, graph := setupLiveCatalogAndGraph(t)
+	r := NewRouterWithGraph(nil, cat, graph)
+
+	// Standard task
+	standardTask := &classifier.Task{
+		ID:             "standard-task",
+		Type:           "BUGFIX",
+		RequiresVisual: false,
+	}
+	standardPlan := r.Compose(standardTask)
+
+	// Premium high-visual task with WebGL and 3D
+	premiumTask := &classifier.Task{
+		ID:                "premium-task",
+		Type:              "DESIGN",
+		RequiresVisual:    true,
+		ExtractedKeywords: []string{"3d-portfolio", "webgl", "premium-website"},
+	}
+	premiumPlan := r.Compose(premiumTask)
+
+	if standardPlan.EstimatedTokenCost > 3000 {
+		t.Errorf("Standard task token cost too high: %.0f", standardPlan.EstimatedTokenCost)
+	}
+
+	if premiumPlan.EstimatedTokenCost < 6000 {
+		t.Errorf("Premium task token cost should scale > 6000 tokens, got %.0f", premiumPlan.EstimatedTokenCost)
+	}
+
+	if premiumPlan.EstimatedTokenCost <= standardPlan.EstimatedTokenCost {
+		t.Errorf("Premium task should have significantly higher token cost than standard task")
+	}
+}
+
+func TestRouter_PipelineStage8Stages(t *testing.T) {
+	reg := setupTestRegistry()
+	r := NewRouter(reg)
+
+	task := &classifier.Task{ID: "stage-test", Type: "FEATURE"}
+	plan := r.Compose(task)
+
+	expectedStage := "Discover -> Classify -> Research -> Synthesize -> Design System -> Implement -> Visual QA -> Iterate"
+	if plan.PipelineStage != expectedStage {
+		t.Errorf("Expected 8-stage pipeline string %q, got %q", expectedStage, plan.PipelineStage)
 	}
 }

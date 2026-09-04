@@ -31,3 +31,6 @@ Desktop.ini
 runtime/go-portable/
 runtime/go-portable.zip
 
+# Agent metadata and runs
+.agents/
+

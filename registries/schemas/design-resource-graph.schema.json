@@ -1,0 +1,136 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://orchestra.workflow/schemas/design-resource-graph.schema.json",
+  "title": "OrchestraDesignResourceGraph",
+  "description": "Canonical Draft-07 JSON Schema for Orchestra V3 Design Resource Graph, validating capability routes, domain clusters, and execution phases.",
+  "type": "object",
+  "required": [
+    "version",
+    "description",
+    "domains",
+    "capabilities"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Reference to the schema definition"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Semantic versioning of the design resource graph"
+    },
+    "description": {
+      "type": "string",
+      "description": "Summary of the graph and ecosystem scope"
+    },
+    "domains": {
+      "type": "object",
+      "description": "Dictionary of functional domain clusters mapping domain names to lists of resource identifiers",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^[a-z0-9-_.]+$"
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "description": "Dictionary of task archetype capabilities mapping lifecycle phases to domains or concrete resources",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "discovery",
+          "synthesis",
+          "implementation",
+          "qa"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Human-readable display name for the capability"
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed explanation of the capability archetype"
+          },
+          "primary_archetype": {
+            "type": "string",
+            "description": "High-level classification archetype"
+          },
+          "trigger_tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true,
+            "description": "Routing keywords that trigger this capability"
+          },
+          "discovery": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true,
+            "description": "Phase 1: Visual and technical research domains or resources queried before implementation"
+          },
+          "reverse_engineering": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true,
+            "description": "Phase 1b (Optional): CLI tools for extracting design systems from reference URLs"
+          },
+          "synthesis": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true,
+            "description": "Phase 2: Design system definition, typography standards, and architectural contracts"
+          },
+          "implementation": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true,
+            "description": "Phase 3: Runtime code dependencies, component primitives, and motion libraries"
+          },
+          "optional_extensions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true,
+            "description": "Phase 3b (Optional): Conditional add-ons (WebGL, sensory, audio, security)"
+          },
+          "qa": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true,
+            "description": "Phase 4: Automated visual verification, browser testing, performance, and security gates"
+          },
+          "anti_patterns": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true,
+            "description": "Explicitly forbidden design choices, libraries, or architectural anti-patterns"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

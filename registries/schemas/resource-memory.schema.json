@@ -1,0 +1,171 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://orchestra.workflow/schemas/resource-memory.schema.json",
+  "title": "OrchestraResourceMemory",
+  "description": "Canonical Draft-07 JSON Schema for Orchestra V3 Private Brain Memory, validating structured resource evaluations, historical performance, and success rates.",
+  "type": "object",
+  "required": [
+    "$schema",
+    "schema_version",
+    "last_updated",
+    "total_evaluations",
+    "resources",
+    "evaluations"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "URI to the schema definition"
+    },
+    "schema_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Semantic versioning of the memory schema"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "RFC3339 timestamp of the most recent evaluation or sync"
+    },
+    "total_evaluations": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total number of evaluations recorded across all resources"
+    },
+    "resources": {
+      "type": "object",
+      "description": "Map of resource IDs to aggregated historical performance metrics",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "resource_id",
+          "total_evaluations",
+          "success_count",
+          "failure_count",
+          "success_rate",
+          "average_latency_ms",
+          "average_quality_score",
+          "last_used_timestamp",
+          "last_outcome"
+        ],
+        "properties": {
+          "resource_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-_.]+$"
+          },
+          "domain": {
+            "type": "string"
+          },
+          "capability": {
+            "type": "string"
+          },
+          "total_evaluations": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "success_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "failure_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "success_rate": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0
+          },
+          "average_latency_ms": {
+            "type": "number",
+            "minimum": 0.0
+          },
+          "average_quality_score": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0
+          },
+          "last_used_timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "last_outcome": {
+            "type": "string",
+            "enum": ["success", "failure"]
+          },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "evaluations": {
+      "type": "array",
+      "description": "Chronological audit ledger of all resource evaluation events",
+      "items": {
+        "type": "object",
+        "required": [
+          "evaluation_id",
+          "resource_id",
+          "domain",
+          "capability",
+          "evaluation_timestamp",
+          "task_context",
+          "task_id",
+          "outcome",
+          "quality_score",
+          "latency_ms"
+        ],
+        "properties": {
+          "evaluation_id": {
+            "type": "string"
+          },
+          "resource_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-_.]+$"
+          },
+          "domain": {
+            "type": "string"
+          },
+          "capability": {
+            "type": "string"
+          },
+          "evaluation_timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "task_context": {
+            "type": "string"
+          },
+          "task_id": {
+            "type": "string"
+          },
+          "outcome": {
+            "type": "string",
+            "enum": ["success", "failure"]
+          },
+          "quality_score": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0
+          },
+          "latency_ms": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "error_details": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      }
+    }
+  }
+}

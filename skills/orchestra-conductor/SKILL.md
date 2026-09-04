@@ -1,100 +1,173 @@
 ---
 name: orchestra-conductor
-description: Orchestra Workflow v2 capability router. Plan, build, UI, packets. Load only matching skills. Skip when the human says skip orchestra.
+description: Global orchestra for every chat and repo unless skip orchestra. Ideas, plans, builds, UI, career ship posts, Antigravity/ChatGPT packets. Vault hygiene. Learns taste and thinking.
 ---
 
-# Orchestra conductor (public)
+# Orchestra conductor
 
-Workspace: the **private** Orchestra workspace the human initialized (see `kit/init-workspace`), or the vault path in `WORKFLOW.md`. This GitHub repo is the **method**, not their product list.
+Vault: `C:\projects\orchestra-brain` (or the vault path in WORKFLOW.md)
 
 ## Read (save tokens)
 
-Do **not** read the entire workspace.
+Do **not** read the entire vault. Jump with `routes.md`:
 
-1. Match what they said → **one** row in `routes.md`
-2. If no match: `START.md` only, then ask which product
-3. Then the **application repo** on disk. Repo beats the idea note.
+1. Match what they said → **one** file in the table
+2. If no match: `START HERE.md` state table only, then ask which product
+3. Then the **repo on disk/GitHub**. Repo beats the idea note.
 
-`WORKFLOW.md` / `Preferences.md` only if this job needs them. Career notes only if they exist **and** the job is hiring. Do not catalog `STACK.md` unless asked.
+`WORKFLOW.md` / `Preferences.md` only if this job needs them. `memory/career.md` only for hiring. `STACK.md` only if asked to catalog. Delete junk the same turn.
 
 ## Which tool is conductor
 
-- **Cursor present:** Cursor is the **only** conductor. Antigravity (and other IDEs/CLIs) are workers: packet in, repo/handoff out, Cursor rereads. Never a second conductor in parallel.
-- **No Cursor:** the open agent (Antigravity, Claude Code, Codex, Gemini, OpenCode, Hermes) **is** the conductor. Same rules. Do not invent a second conductor.
+- **Cursor present:** Cursor is the **only** conductor. Antigravity is a delegated worker (polish, tests, CI, hostile review, visual alternatives) when Plan names it **or** the work is showable web/Android. Packet in, repo/handoff out, Cursor rereads. Never a second conductor in parallel.
+- **Antigravity only (no Cursor):** Antigravity **is** the conductor for that session. Same vault rules. Do not invent a second conductor.
 
-## Modes (the human switches these)
+## Cursor modes (the human switches these)
 
-You cannot flip Plan / Agent / Ask / Debug. Say it: “Switch to **Plan** mode,” etc.
+You cannot flip Plan / Agent / Ask / Debug / Multitask. Say it:
 
-## Models
+| Mode | Say this | When |
+| --- | --- | --- |
+| Plan | “Switch to **Plan** mode.” | Architecture, spec.md, before code |
+| Agent | “Switch to **Agent** mode.” | Implementing after spec.md exists |
+| Ask | “Switch to **Ask** mode.” | Read-only |
+| Debug | “Switch to **Debug** mode.” | Runtime failure |
+| Multitask | “Switch to **Multitask** only if two jobs are independent.” | Rare. Never two products |
 
-Parent glue models cannot become Opus/Fable by themselves. Tell the human the dropdown. Spawn a subagent when the host allows it. Do not implement showable UI entirely on a glue model.
+## Models (must-do)
 
-Antigravity worker: packet for polish/CI on showable web/Android. ChatGPT / Perplexity = research packets only.
+This parent chat **cannot** become Opus/Fable. If this chat is Grok (or another glue model) and the job is UI, architecture, or hostile review:
 
-## v2 router
+1. Tell them the **dropdown** to pick for the next Plan/Agent turn (Opus / Fable / GPT 5.6 thinking for Plan; Fable or Opus for UI).
+2. **Spawn a Task subagent** with the slug from `WORKFLOW.md` (Fable for UI, Opus for hostile review, Gemini Flash or Kimi for mechanical). Do not implement a Stitch-match UI entirely as Grok.
 
-Canonical protocols: `protocols/` (in this workflow clone and/or copied into the workspace). **Available ≠ loaded.**
+Antigravity Pro: **Gemini 3.7 Flash High** packet for polish/CI on showable web/Android. ChatGPT Go or Perplexity = research packets only.
 
-Before expensive design/code, print an **activation card**. For high-visual jobs, these fields are mandatory **before UI**:
+## Default
 
-- project / platform / phase / visual ambition / risk
-- capabilities ON
+Stay in the conductor tool. Packet only when WORKFLOW names a specialist.
+
+## Orchestra V3 Capability Router
+
+Canonical: `protocols/`. **Available ≠ loaded.**
+
+Before expensive design/code, print an **activation card**. For high-visual jobs, these fields are mandatory **before UI implementation**:
+
+- project / platform / phase / visual_ambition / risk
+- capabilities ON (minimum)
 - skills to Read this turn / MCPs to **call**
 - model class
 - **references required:** yes/no (0–5 URLs)
-- **reverse engineering:** yes/no (`npx skillui` from amaancoderx/npxskillui only)
-- **typography:** ON + `TYPOGRAPHY_PROTOCOL.md` (mandatory in DESIGN.md)
+- **reverse engineering:** yes/no (SkillUI = `npx skillui` from amaancoderx/npxskillui only)
+- **typography:** ON + `protocols/TYPOGRAPHY_PROTOCOL.md` (mandatory in DESIGN.md)
 - **motion:** ON/OFF + engine
 - **3D/shader:** ON/OFF + justify
 - **visual QA:** required if UI
-- **delegated worker:** yes/no + why (packet only)
+- **Antigravity:** yes/no + why (packet only; never a second conductor)
 - artifacts expected
 
-High-visual:
+High-visual (`frontend_premium` / marketing / showable hackathon web / LYRA HUD):
 
-1. Do **not** jump to chrome. `DESIGN_SYSTEM_PROTOCOL.md`
-2. If references exist: originality gate, then original direction. Reverse-engineering protocol if “like this URL”
-3. Artifacts from `templates/`
-4. Load typography protocol. Visual QA includes type
-5. One motion engine. 3D only if justified
-6. Implement, then visual QA. Then web-design-guidelines on UI audit
-7. Haptics / UI audio / voice only when native or assistant. Skip mediocre TTS
-8. Vague brief: prompt-brief protocol **once**. No infinite rewrite loops
+1. Do **not** jump to chrome. Run `protocols/DESIGN_SYSTEM_PROTOCOL.md`.
+2. If references exist: originality gate (composition, type, motion, interaction, color relationships, grid, component ideas) → original direction. `protocols/REVERSE_ENGINEERING_PROTOCOL.md` if “like this URL”.
+3. Artifacts: `design.md` + tokens + motion-spec + component-map + reference-log (`templates/`).
+4. Load `protocols/TYPOGRAPHY_PROTOCOL.md`. Visual QA includes type.
+5. One motion engine. 3D/shaders only if justified.
+6. Implement, then `protocols/VISUAL_QA_PROTOCOL.md`. Then impeccable + `web-design-guidelines` on UI audit.
+7. Haptics / UI audio / voice only when native or assistant (`protocols/SENSORY_PROTOCOL.md`). Skip mediocre TTS.
+8. Vague brief: `protocols/PROMPT_BRIEF_PROTOCOL.md` once. No RALF loop.
 
-Shared disk/git with a worker is **controlled repository synchronization**, not a live auto-sync daemon.
+Cursor = only conductor when Cursor is in the job. Antigravity = fill `templates/antigravity-packet.md` → AG writes repo/`handoff.md` → Cursor **re-reads** the diff and QAs. Shared disk/git is **controlled repository synchronization**, not a live auto-sync daemon. ChatGPT / Claude Code: exact paste for MAHI; do not pretend you ran them; do not auto-connect to this vault.
 
-New GitHub/MCP/library: inspect → CORE/SPECIALIST/OPTIONAL/EXPERIMENTAL/REJECTED → one registry row. Never `skills add --all`.
+New GitHub/MCP/library: inspect → CORE/SPECIALIST/OPTIONAL/EXPERIMENTAL/REJECTED → registry row. Never `skills add --all`. Forced install: obey after safety/license.
 
-Token: jump-one-note, load-by-job, one story per pass. Do not cut design/security reasoning.
+Token: jump-one-note, load-by-job, one story per pass. Caveman may shorten talk. Do not cut design/security reasoning.
+
+After a showable ship: one durable Preferences/decisions line if something actually changed.
+
+12h private backup: `kit/sync-vault.ps1` / `OrchestraBrainVaultSync` → `mahik504/orchestra-brain` only. Public template is **manual** (`kit/sync-both.ps1`). See `docs/orchestra-v2/EXTENSION_LAYER.md`. Not verified until MAHI runs it successfully from his terminal.
 
 ## Spec + Ralph-thin
 
-After Plan: `spec.md` from templates. One user story per pass. Do **not** install Ralph CLI or Spec Kit `specify init`.
+After Plan: write `projects/<slug>/spec.md` from `templates/spec.md`. One user story per Agent/subagent pass. Learnings in `progress.md`. Do **not** install the Ralph CLI, Spec Kit `specify init`, or slash-command packs. Those fight this loop.
 
 ## Import then edit (by kind)
 
-- **college:** one SkillUI URL **or** one kit block **or** React Bits **or** one ThreeUI. Tint one world. React Bits on hackathon web. Never chrome from zero.
-- **hiring-cv:** Stitch + one echo, **or** named library/shader if Plan skipped Stitch.
-- **personal operator HUD:** Stitch screen 1. No shadcn/21st. One volume 3D if needed.
+Read `kind` on idea.md. College includes hackathon. Stitch is **not** mandatory if Plan named a library / template / shader / animation — combine those against `projects/<slug>/design.md` and tint.
 
-Always-on kit MCP stay off.
+- **college:** one SkillUI URL **or** one 21st / shadcn / unlumen / smoothui / neobrutalism block **or** React Bits layout **or** one ThreeUI component. Tint to one visual world (`neo` = neobrutalism.com). React Bits required on hackathon web. Never generate chrome from zero.
+- **hiring-cv:** Stitch + one echo URL, **or** named library/shader if Plan said skip Stitch. shadcn primitives only if Plan named them.
+- **personal LYRA-class:** Stitch Screen 1. No shadcn. No 21st. 3D = one Shadertoy/drei volume port.
+
+Always-on 21st / Aceternity / Magic MCP stay off. Do not call shadcn MCP on a LYRA-class operator HUD. Do not generate a widget or nucleus from a screenshot loop.
 
 ## ECC method (not the dump)
 
-Load-by-job; isolate plan / implement / review. Do **not** install ECC packs.
+[affaan-m/ECC](https://github.com/affaan-m/ECC) proves load-by-job and isolate plan / implement / review. **Do not** install ECC into Cursor or Antigravity. Instincts = Preferences same turn. No homunculus hooks. Stay open: new named sources in STACK; vault may still change.
 
-## When to load
+## When to load (do not dump every skill)
 
 | Job | Load |
 | --- | --- |
-| Plan / spec | conductor + workspace only |
+| Plan / spec | conductor + vault only |
 | 2D lock | stitch-* + taste-design |
-| Premium visual | impeccable + motion review + web-design-guidelines (audit) |
+| Premium visual / after a still | impeccable + animate / review-animations + web-design-guidelines (audit only) |
 | Android | curated expo-* |
-| Security | ship-safe; Strix only on **our** app |
+| Security | ship-safe; Strix only on **our** app when scanning |
 | Docs / papers | orchestra-docs |
+| College 0-to-1 | Antigravity may use hackathon-rocket if installed. Do not add it to Cursor always-on |
+
+Never load science plugins, ui-ux-pro-max, vibe-design-pro, ECC’s 286 skills, or the whole skill folder on a LYRA orb pass.
+
+## Core projects
+
+Every idea has **kind**: `college` | `personal` | `hiring-cv`. Do not mix college assignments into the internship story. Hiring order is in `memory/career.md` when that file exists on disk.
+
+New idea → `projects/<slug>/idea.md` from `templates/idea.md`. Stack for **that** product lives in the idea file. Do not code yet.
+
+Unpublished `idea.md` files still update on this PC even if the public template omits them.
+
+## Specialists (only if Plan names them, except Antigravity polish on showable web)
+
+- ChatGPT Go or Perplexity = research packet
+- **OpenHuman** (desktop you install) = packet specialist. Not conductor. Do not dump its skill catalog into Cursor.
+- Claude.ai or **Claude Code CLI in a separate terminal** = hostile review / deep think. Keys in env, never in the vault.
+- Manus 1.6 Max until 25 Aug 2026 = long browse, packet only
+- Never OpenCode, Kilo Code, OmniRoute, 9router, OpenHands, Dify, Langflow, Coolify, Maxun, Guildly, ECC in Cursor/Antigravity, always-on 21st.dev / Aceternity / Magic MCP, or the Ralph CLI **inside Cursor or Antigravity**
+
+## End of a complete project
+
+Use `orchestra-ship`. Remind `git push`, LinkedIn, and Instagram if we drafted a caption. Draft the post. Do not skip. Every new **public** repo gets a LICENSE the same day.
+
+## Learn (reinforcement, not ML)
+
+After a like/hate, a finished task, **or a useful find**, append `Preferences.md` Liked / Hated / Thinking **in this same chat**. Taste is allowed to change. Prefer editing the existing note. Do not file chats. Do not wait for a later session.
+
+## Internet
+
+Search when it will **actually improve** the work (current docs, a better pattern, a named reference). If spec.md has a problem statement (college or hiring), one competitor/paper pass — file `projects/<slug>/research.md` only if we will use it. Not idle browsing. Not trending-tool dumps in the vault. Adopt one line into Preferences if we will use it.
+
+## Keep the brain current
+
+When a decision or ship happens, update that product’s `idea.md`, `memory/decisions.md`, and the START HERE state table the same turn.
+
+## Skills from GitHub
+
+Only official, needed, 10/10 (example: curated `expo/skills`). Never `npx skills add … --all`. Never vercel/obra/frontend-design/ui-ux-pro-max/`addyosmani/agent-skills` as **global** dumps. College Plan may copy **one** DESIGN.md from awesome-design-md into `projects/<slug>/ref/`. SkillUI is a **CLI** (`npx skillui` from [amaancoderx/npxskillui](https://github.com/amaancoderx/npxskillui)) when Plan names one echo URL. Not `kachamo/SkillUI`.
+
+## Vault remotes
+
+- **Private backup:** `mahik504/orchestra-brain` + `kit/sync-vault.ps1` (12h). Full notes including career and unpublished ideas. Stay private — history has personal files. Do not flip it public.
+- **Public template:** `mahik504/orchestra-workflow` via **manual** `kit/sync-both.ps1` (allowlisted files only). Not on the 12h task. No empty commits. No career, no product names, no unpublished briefs. Overlays live in `kit/public-overlay/`.
 
 ## Never
 
-Skill dumps, fake GitHub graphs, secrets in the workspace, scrape MCP, screenshot-to-code factory, connecting a cloud chat to a private workspace unless the human explicitly asks.
+- File everything they say into the vault
+- Skill dumps, fake GitHub graphs, typo-a-day commits
+- Four products in parallel when career.md says focus
+- Copy AGENTS.md into each repo
+- Put API keys, PATs, or secrets in the vault or in a shareable prompt
+- Build n8n / vector / voice Layer 2
+- Install Headroom, rtk, OpenHands, Dify, OpenCode, Kilo, addyosmani, Spec Kit CLI, Ralph CLI, ECC into Cursor/Antigravity, always-on 21st.dev / Aceternity / Magic MCP, ui-ux-pro-max as a global skill, science plugin packs, vercel-labs/agent-skills dump, screenshot-to-code
+- Reminder MCP / LinkedIn scrapers (reminders stay in the user rule + chat)
+- Skill dumps (`addyosmani/agent-skills`, vercel/obra/frontend-design/ui-ux-pro-max, vercel-labs/agent-skills `--all`). Catalog of refusals: vault `STACK.md`

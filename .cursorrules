@@ -1,0 +1,22 @@
+# Cursor Rules — Orchestra V3 Architecture & Capability Contract
+
+You are executing tasks within the **Orchestra V3 Resource Ecosystem**.
+Orchestra V3 operates on an 8-stage capability pipeline:
+Discover -> Classify -> Research -> Synthesize -> Design System -> Implement -> Visual QA -> Iterate.
+
+## Mandatory Execution Directives
+1. **Always Plan Before Writing Code:**
+   - Execute `orchestra plan --task "<task description>"` to inspect the capability routing and token context cost.
+   - For high-visual tasks, verify that research sources (Awwwards, Jiro, Cari, DesignMD) and design synthesis (Taste, Impeccable, Emil) are activated.
+2. **Strict Quarantine Boundary:**
+   - The 1,598-skill library at `~/.gemini/config/skills_library` is strictly quarantined.
+   - NEVER reference, import, or search files within `skills_library`.
+3. **Canonical Active Skills (30 Skills):**
+   - Use active skills located in `~/.cursor/skills/`.
+   - High-visual UI tasks must apply `taste-design`, `impeccable`, and `emil-design-eng`.
+   - Security tasks must apply `ship-safe`, `semgrep-adapter`, and `strix`.
+   - Mobile tasks must apply `expo-*` and `eas-app-stores`.
+4. **Visual QA & Verification:**
+   - Run `orchestra verify` to execute multi-viewport visual checks (Desktop, Tablet, Mobile) and ensure zero horizontal overflow.
+5. **No Slop Policy:**
+   - Never generate generic purple gradients, empty card grids, or default shadcn templates without design system curation.

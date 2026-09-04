@@ -1,10 +1,12 @@
 package resources
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io"
 	"os"
+	"strings"
 )
 
 type CapabilityCategory string
@@ -75,21 +77,34 @@ func NewRegistry() *Registry {
 	}
 }
 
-// LoadFromJSON loads a capability from a JSON file and adds it to the registry
+// LoadFromJSON loads a capability or resource catalog from a JSON file and adds it to the registry.
+// If the target file is a JSON array (like resources.json), it automatically imports all catalog items.
 func (r *Registry) LoadFromJSON(filepath string) error {
+	if err := CheckQuarantineBoundary(filepath); err != nil {
+		return err
+	}
+
 	file, err := os.Open(filepath)
 	if err != nil {
 		return fmt.Errorf("failed to open file %s: %w", filepath, err)
 	}
 	defer file.Close()
 
-	bytes, err := io.ReadAll(file)
+	data, err := io.ReadAll(file)
 	if err != nil {
 		return fmt.Errorf("failed to read file %s: %w", filepath, err)
 	}
 
+	// Strip UTF-8 Byte Order Mark (BOM) if present (common on Windows)
+	data = bytes.TrimPrefix(data, []byte("\xef\xbb\xbf"))
+
+	trimmed := strings.TrimSpace(string(data))
+	if strings.HasPrefix(trimmed, "[") {
+		return r.LoadResourceCatalog(filepath)
+	}
+
 	var cap Capability
-	if err := json.Unmarshal(bytes, &cap); err != nil {
+	if err := json.Unmarshal(data, &cap); err != nil {
 		return fmt.Errorf("failed to parse JSON from %s: %w", filepath, err)
 	}
 
@@ -101,3 +116,33 @@ func (r *Registry) LoadFromJSON(filepath string) error {
 	r.Capabilities[cap.ID] = &cap
 	return nil
 }
+
+// LoadResourceCatalog loads resources from a JSON array catalog (e.g. registries/resources.json)
+// and imports all items into r.Capabilities, preserving backwards compatibility with existing consumers.
+func (r *Registry) LoadResourceCatalog(filepath string) error {
+	cat, err := LoadResourceCatalog(filepath)
+	if err != nil {
+		return err
+	}
+	r.ImportCatalog(cat)
+	return nil
+}
+
+// ImportCatalog populates the registry with capabilities converted from the given ResourceCatalog.
+func (r *Registry) ImportCatalog(cat *ResourceCatalog) {
+	if r == nil || cat == nil {
+		return
+	}
+	for _, res := range cat.All() {
+		r.Capabilities[res.ID] = res.ToCapability()
+	}
+}
+
+// ImportResource converts a Resource and adds it into r.Capabilities.
+func (r *Registry) ImportResource(res *Resource) {
+	if r == nil || res == nil {
+		return
+	}
+	r.Capabilities[res.ID] = res.ToCapability()
+}
+

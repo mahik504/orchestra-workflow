@@ -1,109 +1,3780 @@
-﻿[
+[
   {
-    "id": "gsap",
-    "name": "GSAP",
-    "canonical_url": "https://gsap.com/",
+    "id": "screenshot-to-code",
+    "name": "Screenshot to Code",
+    "canonical_url": "https://github.com/abi/screenshot-to-code",
     "source_type": "github_repository",
-    "source_repository": "https://github.com/greensock/GSAP.git",
-    "category": ["motion", "frontend"],
+    "source_repository": "https://github.com/abi/screenshot-to-code.git",
+    "documentation_url": "https://github.com/abi/screenshot-to-code/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "ai",
+      "vision",
+      "code_generation"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "screenshot-loop",
+      "reverse-engineering",
+      "vision-to-code"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "automatic code generation from screenshots",
+      "competing with Stitch/SkillUI loop"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Screenshot-loop rejected; SkillUI + Stitch (when needed) stay per STACK.md."
+  },
+  {
+    "id": "addyosmani-agent-skills",
+    "name": "Addy Osmani Agent Skills",
+    "canonical_url": "https://github.com/addyosmani/agent-skills",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/addyosmani/agent-skills.git",
+    "documentation_url": "https://github.com/addyosmani/agent-skills/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "agent_skills",
+      "skill_pack"
+    ],
+    "representation": "skill",
+    "routing_tags": [
+      "skill-dump",
+      "anti-pattern",
+      "bulk-skills"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "npx skills add",
+      "bulk skill imports"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Skill dump. Already on Hated. Never 'npx skills add'. Quarantined to prevent context bloat."
+  },
+  {
+    "id": "affaan-ecc",
+    "name": "ECC (Efficient Context Control)",
+    "canonical_url": "https://github.com/affaan-m/ECC",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/affaan-m/ECC.git",
+    "documentation_url": "https://github.com/affaan-m/ECC/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "workflow",
+      "architecture",
+      "context_management"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "method-only",
+      "isolation",
+      "planning",
+      "subagent-specialization"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "complex multi-stage task planning",
+      "context isolation design"
+    ],
+    "avoid_conditions": [
+      "direct installation of 68 agents / 286 skills into runtime"
+    ],
+    "policy_verdict": "STEAL-THIN",
+    "rationale": "Load-by-job + isolate plan/implement/review. Do not install into Cursor or Antigravity. Steal the methodology only."
+  },
+  {
+    "id": "open-generative-ai",
+    "name": "Open Generative AI",
+    "canonical_url": "https://github.com/Anil-matcha/Open-Generative-AI",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/Anil-matcha/Open-Generative-AI.git",
+    "documentation_url": "https://github.com/Anil-matcha/Open-Generative-AI/blob/main/README.md",
+    "license": "Apache-2.0",
+    "category": [
+      "generative_ai",
+      "media_studio"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "image-video-studio",
+      "unrelated"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "video/image generation pipelines"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Unrelated image/video studio. Outside Orchestra core architectural focus."
+  },
+  {
+    "id": "anthropics-skills",
+    "name": "Anthropic Skills Marketplace",
+    "canonical_url": "https://github.com/anthropics/skills",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/anthropics/skills.git",
+    "documentation_url": "https://github.com/anthropics/skills/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "agent_skills",
+      "marketplace"
+    ],
+    "representation": "skill",
+    "routing_tags": [
+      "skill-dump",
+      "marketplace",
+      "claude-skills"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "plugin marketplace add"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Marketplace dump. Orchestra-docs already covers PPTX/PDF. Do not '/plugin marketplace add'."
+  },
+  {
+    "id": "aryan-dani-profile",
+    "name": "Aryan Dani Profile",
+    "canonical_url": "https://github.com/aryan-dani",
+    "source_type": "github_repository",
+    "documentation_url": "https://github.com/aryan-dani",
+    "category": [
+      "collaborator",
+      "profile"
+    ],
+    "representation": "profile",
+    "routing_tags": [
+      "contributor",
+      "network",
+      "collaborator"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REFERENCE",
+    "trigger_conditions": [],
+    "avoid_conditions": [],
+    "policy_verdict": "REFERENCE",
+    "rationale": "Collaborator profile referenced in internship transcript and Evocentric collaboration."
+  },
+  {
+    "id": "evocentric",
+    "name": "Evocentric",
+    "canonical_url": "https://github.com/aryan-dani/Evocentric",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/aryan-dani/Evocentric.git",
+    "documentation_url": "https://github.com/aryan-dani/Evocentric/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "fullstack",
+      "collaboration",
+      "hackathon"
+    ],
+    "representation": "code_repo",
+    "routing_tags": [
+      "collaboration",
+      "benchmarking",
+      "internship"
+    ],
+    "acquisition_method": "git",
+    "runtime_method": "reference_only",
+    "status": "REFERENCE",
+    "trigger_conditions": [
+      "benchmarking collaborative hackathon codebase"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "REFERENCE",
+    "rationale": "Collaborative fullstack project referenced in internship preparation transcripts."
+  },
+  {
+    "id": "vengeance-ui",
+    "name": "VengeanceUI",
+    "canonical_url": "https://github.com/Ashutoshx7/VengeanceUI",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/Ashutoshx7/VengeanceUI.git",
+    "documentation_url": "https://github.com/Ashutoshx7/VengeanceUI/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "ui_kit",
+      "tailwind"
+    ],
     "representation": "dependency",
-    "routing_tags": ["motion", "microinteraction", "timeline", "scroll"],
+    "routing_tags": [
+      "generic-framer",
+      "tailwind",
+      "ui-kit"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "all installations",
+      "LYRA HUD surfaces"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Generic Framer/Tailwind landing kit. Not LYRA crimson taste profile."
+  },
+  {
+    "id": "agentation",
+    "name": "Agentation",
+    "canonical_url": "https://github.com/benjitaylor/agentation",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/benjitaylor/agentation.git",
+    "documentation_url": "https://github.com/benjitaylor/agentation/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "visual_qa",
+      "browser_automation"
+    ],
+    "representation": "cli",
+    "routing_tags": [
+      "visual-feedback",
+      "redundant-playwright"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "visual verification tasks"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Extra visual-feedback agent. Playwright already clicks and verifies our UI."
+  },
+  {
+    "id": "browser-use",
+    "name": "Browser Use",
+    "canonical_url": "https://github.com/browser-use/browser-use",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/browser-use/browser-use.git",
+    "documentation_url": "https://docs.browser-use.com",
+    "license": "MIT",
+    "category": [
+      "browser_automation",
+      "agent_tool"
+    ],
+    "representation": "service",
+    "routing_tags": [
+      "web-automation",
+      "redundant-playwright",
+      "agent-scraping"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "browser automation on our apps"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Agent web automation platform. Redundant because Playwright already verifies our UI."
+  },
+  {
+    "id": "pretext",
+    "name": "Pretext",
+    "canonical_url": "https://github.com/chenglou/pretext",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/chenglou/pretext.git",
+    "documentation_url": "https://github.com/chenglou/pretext/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "layout_engine",
+      "text_measurement",
+      "canvas"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "text-layout",
+      "canvas",
+      "no-reflow",
+      "performance-typography"
+    ],
     "acquisition_method": "npm",
     "runtime_method": "project_scoped_install",
-    "trigger_conditions": ["complex timeline animation", "orchestrated motion"],
-    "avoid_conditions": ["simple hover transition"]
+    "status": "BOOKMARK",
+    "trigger_conditions": [
+      "dense HUD text layout",
+      "high-frequency DOM layout reflow bottleneck"
+    ],
+    "avoid_conditions": [
+      "standard static web layout"
+    ],
+    "policy_verdict": "BOOKMARK",
+    "rationale": "Real text-layout lib (no DOM reflow). Fable HUD Plan may npm install if labels wrap badly. Keep on-demand."
+  },
+  {
+    "id": "build-your-own-x",
+    "name": "Build Your Own X",
+    "canonical_url": "https://github.com/codecrafters-io/build-your-own-x",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/codecrafters-io/build-your-own-x.git",
+    "documentation_url": "https://github.com/codecrafters-io/build-your-own-x/blob/master/README.md",
+    "license": "CC0-1.0",
+    "category": [
+      "education",
+      "systems_programming",
+      "curriculum"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "curriculum",
+      "systems-programming",
+      "step-by-step-guide"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "BOOKMARK",
+    "trigger_conditions": [
+      "systems building reference",
+      "learning protocol"
+    ],
+    "avoid_conditions": [
+      "cloning entire monorepo",
+      "installing as runtime skill"
+    ],
+    "policy_verdict": "BOOKMARK (HIGH)",
+    "rationale": "Learning curriculum. Practice track in career.md. Not a skill. Do not clone the monorepo."
+  },
+  {
+    "id": "awesome-claude-skills",
+    "name": "Awesome Claude Skills",
+    "canonical_url": "https://github.com/ComposioHQ/awesome-claude-skills",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/ComposioHQ/awesome-claude-skills.git",
+    "documentation_url": "https://github.com/ComposioHQ/awesome-claude-skills/blob/master/README.md",
+    "license": "MIT",
+    "category": [
+      "skill_directory",
+      "catalog"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "skill-dump",
+      "catalog",
+      "unvetted-skills"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "importing bulk claude skills"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Skill dump directory. Violates quarantine boundary and curated skill governance."
+  },
+  {
+    "id": "coolify",
+    "name": "Coolify",
+    "canonical_url": "https://github.com/coollabsio/coolify",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/coollabsio/coolify.git",
+    "documentation_url": "https://coolify.io/docs",
+    "license": "Apache-2.0",
+    "category": [
+      "devops",
+      "paas",
+      "self_hosted"
+    ],
+    "representation": "service",
+    "routing_tags": [
+      "self-hosted",
+      "deployment",
+      "paas"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "orchestra deployment pipeline"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Self-host PaaS. Not our deployment story (Vercel / Cloudflare / GitHub Pages)."
+  },
+  {
+    "id": "lenis",
+    "name": "Lenis Smooth Scroll",
+    "canonical_url": "https://lenis.darkroom.engineering/",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/darkroomengineering/lenis.git",
+    "documentation_url": "https://github.com/darkroomengineering/lenis/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "motion",
+      "frontend",
+      "scroll"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "smooth-scroll",
+      "parallax",
+      "scroll-story"
+    ],
+    "acquisition_method": "npm",
+    "runtime_method": "project_scoped_install",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "premium scroll experience",
+      "custom scroll hijacking",
+      "editorial scroll"
+    ],
+    "avoid_conditions": [
+      "basic content sites",
+      "conflicting with heavy WebGL camera controls"
+    ],
+    "policy_verdict": "SPECIALIST",
+    "rationale": "Active specialist for smooth scroll in storytelling / editorial pages."
+  },
+  {
+    "id": "react-bits",
+    "name": "React Bits",
+    "canonical_url": "https://reactbits.dev/",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/DavidHDev/react-bits.git",
+    "documentation_url": "https://reactbits.dev/",
+    "license": "MIT",
+    "category": [
+      "motion",
+      "frontend",
+      "components"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "motion-primitive",
+      "microinteractions",
+      "animated-components"
+    ],
+    "acquisition_method": "npm",
+    "runtime_method": "project_scoped_install",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "college web",
+      "hackathon web",
+      "interactive micro-animations"
+    ],
+    "avoid_conditions": [
+      "stacking with full GSAP suite unnecessarily"
+    ],
+    "policy_verdict": "SPECIALIST (ADOPT)",
+    "rationale": "Motion primitive. Required on college/hackathon web. Not a skill pack."
+  },
+  {
+    "id": "omniroute",
+    "name": "OmniRoute",
+    "canonical_url": "https://github.com/diegosouzapw/OmniRoute",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/diegosouzapw/OmniRoute.git",
+    "documentation_url": "https://github.com/diegosouzapw/OmniRoute/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "llm_gateway",
+      "proxy",
+      "networking"
+    ],
+    "representation": "service",
+    "routing_tags": [
+      "llm-routing",
+      "api-gateway",
+      "failover",
+      "openai-compat"
+    ],
+    "acquisition_method": "git",
+    "runtime_method": "local_daemon",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "operator self-hosting local gateway on localhost:20128/v1"
+    ],
+    "avoid_conditions": [
+      "direct integration inside Cursor/Antigravity",
+      "admin APIs in kernel"
+    ],
+    "policy_verdict": "ENV-ONLY OK",
+    "rationale": "MAHI may self-host (localhost:20128/v1) and point LYRA .env.local at it. Skip inside Cursor/Antigravity."
+  },
+  {
+    "id": "ponytail",
+    "name": "Ponytail Memory Architecture",
+    "canonical_url": "https://github.com/DietrichGebert/ponytail",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/DietrichGebert/ponytail.git",
+    "documentation_url": "https://github.com/DietrichGebert/ponytail/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "memory",
+      "context_hygiene",
+      "distillation"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "context-distillation",
+      "yagni",
+      "durable-memory",
+      "vault-distillation"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "session context distillation",
+      "memory consolidation"
+    ],
+    "avoid_conditions": [
+      "installing third-party OpenCode plugin directly"
+    ],
+    "policy_verdict": "ADOPT-THIN",
+    "rationale": "YAGNI ladder folded into How to work and Go memory module. Do not install the external plugin."
+  },
+  {
+    "id": "g0dm0d3",
+    "name": "G0DM0D3",
+    "canonical_url": "https://github.com/elder-plinius/G0DM0D3",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/elder-plinius/G0DM0D3.git",
+    "documentation_url": "https://github.com/elder-plinius/G0DM0D3/blob/main/README.md",
+    "license": "GPL-3.0",
+    "category": [
+      "security",
+      "jailbreak",
+      "adversarial"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "jailbreak-ui",
+      "out-of-scope",
+      "adversarial"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "all orchestra operations"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Jailbreak race UI. Not our product or security domain."
+  },
+  {
+    "id": "awesome-n8n-templates",
+    "name": "Awesome n8n Templates",
+    "canonical_url": "https://github.com/enescingoz/awesome-n8n-templates",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/enescingoz/awesome-n8n-templates.git",
+    "documentation_url": "https://github.com/enescingoz/awesome-n8n-templates/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "workflow_automation",
+      "integration"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "n8n",
+      "unadopted",
+      "workflow-templates"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "n8n pipeline orchestration"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Layer 2 n8n remains unbuilt and unadopted. Skipped."
+  },
+  {
+    "id": "gstack",
+    "name": "Garry Tan gstack",
+    "canonical_url": "https://github.com/garrytan/gstack",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/garrytan/gstack.git",
+    "documentation_url": "https://github.com/garrytan/gstack/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "agent_framework",
+      "multi_role"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "multi-role",
+      "second-conductor",
+      "claude-code-pack"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "importing multi-role agent templates"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "23-role Claude Code factory. Competes with Orchestra Conductor loop. Rejected."
+  },
+  {
+    "id": "maxun",
+    "name": "Maxun",
+    "canonical_url": "https://github.com/getmaxun/maxun",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/getmaxun/maxun.git",
+    "documentation_url": "https://docs.maxun.dev/",
+    "license": "AGPL-3.0",
+    "category": [
+      "web_scraping",
+      "automation"
+    ],
+    "representation": "service",
+    "routing_tags": [
+      "no-code-crawler",
+      "scraping-tos"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "web data harvesting"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "No-code scrape platform. We use targeted CLI or Scrapling when authorized."
+  },
+  {
+    "id": "gh-aw",
+    "name": "GitHub Agentic Workflows (gh-aw)",
+    "canonical_url": "https://github.com/github/gh-aw",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/github/gh-aw.git",
+    "documentation_url": "https://github.com/github/gh-aw/blob/main/.github/aw/token-optimization.md",
+    "license": "MIT",
+    "category": [
+      "github_automation",
+      "token_optimization"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "agentic-workflows",
+      "github-actions",
+      "token-optimization"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REFERENCE",
+    "trigger_conditions": [
+      "token optimization architecture design"
+    ],
+    "avoid_conditions": [
+      "installing gh-aw extension directly into runtime"
+    ],
+    "policy_verdict": "REFERENCE",
+    "rationale": "Steal token-optimization rules (deterministic work outside the model, prune tools). Do not install extension."
+  },
+  {
+    "id": "spec-kit",
+    "name": "GitHub Spec Kit",
+    "canonical_url": "https://github.com/github/spec-kit",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/github/spec-kit.git",
+    "documentation_url": "https://github.com/github/spec-kit/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "specification",
+      "requirements",
+      "planning"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "spec-driven",
+      "clarify-analyze",
+      "spec-templates"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "specification generation",
+      "task breakdown"
+    ],
+    "avoid_conditions": [
+      "running specify init CLI"
+    ],
+    "policy_verdict": "ADOPT-THIN",
+    "rationale": "Specify/clarify/analyze methodology folded into templates/spec.md. No specify init command."
+  },
+  {
+    "id": "headroom",
+    "name": "Headroom Context Optimizer",
+    "canonical_url": "https://github.com/headroomlabs-ai/headroom",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/headroomlabs-ai/headroom.git",
+    "documentation_url": "https://docs.headroom.ai",
+    "license": "Proprietary",
+    "category": [
+      "context_hygiene",
+      "compression"
+    ],
+    "representation": "service",
+    "routing_tags": [
+      "token-compression",
+      "context-control",
+      "proxy"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "DEFERRED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "standard execution without severe quota exhaustion"
+    ],
+    "policy_verdict": "DEFERRED",
+    "rationale": "Still skipped. Vault hygiene is the token control we have. Optional later if quota hurts."
+  },
+  {
+    "id": "trae-skills",
+    "name": "TRAE Skills",
+    "canonical_url": "https://github.com/HighMark-31/TRAE-Skills",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/HighMark-31/TRAE-Skills.git",
+    "documentation_url": "https://github.com/HighMark-31/TRAE-Skills/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "ide_skills",
+      "skill_pack"
+    ],
+    "representation": "skill",
+    "routing_tags": [
+      "abandoned-dump",
+      "nativewind",
+      "obsolete"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "all imports"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Abandoned TRAE dump. Redux/Jest/Express essays. NativeWind. Discontinued."
+  },
+  {
+    "id": "trig-js",
+    "name": "Trig-JS",
+    "canonical_url": "https://github.com/iDev-Games/Trig-JS",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/iDev-Games/Trig-JS.git",
+    "documentation_url": "https://github.com/iDev-Games/Trig-JS/blob/master/README.md",
+    "license": "MIT",
+    "category": [
+      "canvas_math",
+      "math_library",
+      "gamedev"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "trigonometry",
+      "canvas-math",
+      "2d-games",
+      "physics"
+    ],
+    "acquisition_method": "npm",
+    "runtime_method": "project_scoped_install",
+    "status": "BOOKMARK",
+    "trigger_conditions": [
+      "2D canvas trigonometry",
+      "custom vector game physics"
+    ],
+    "avoid_conditions": [
+      "standard UI",
+      "HUD apps"
+    ],
+    "policy_verdict": "SKIP (UNLESS GAME)",
+    "rationale": "Canvas math helper. Skip unless a 2D canvas game requires raw trig functions."
+  },
+  {
+    "id": "agency-agents-zh",
+    "name": "Agency Agents ZH",
+    "canonical_url": "https://github.com/jnMetaCode/agency-agents-zh",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/jnMetaCode/agency-agents-zh.git",
+    "documentation_url": "https://github.com/jnMetaCode/agency-agents-zh/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "agent_pack",
+      "multi_role"
+    ],
+    "representation": "skill",
+    "routing_tags": [
+      "bulk-dump",
+      "chinese-translation",
+      "agency-agents"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "all loads"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Bulk translated agent dump. Redundant and risks severe context prompt pollution."
+  },
+  {
+    "id": "langflow",
+    "name": "Langflow",
+    "canonical_url": "https://github.com/langflow-ai/langflow",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/langflow-ai/langflow.git",
+    "documentation_url": "https://docs.langflow.org/",
+    "license": "MIT",
+    "category": [
+      "visual_builder",
+      "agent_platform"
+    ],
+    "representation": "service",
+    "routing_tags": [
+      "visual-flow",
+      "separate-platform",
+      "gui-builder"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "orchestra workflow execution"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Other product (agent workflow builder). Distinct runtime architecture."
+  },
+  {
+    "id": "dify",
+    "name": "Dify",
+    "canonical_url": "https://github.com/langgenius/dify",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/langgenius/dify.git",
+    "documentation_url": "https://docs.dify.ai/",
+    "license": "Apache-2.0",
+    "category": [
+      "llm_platform",
+      "service"
+    ],
+    "representation": "service",
+    "routing_tags": [
+      "full-platform",
+      "docker-compose",
+      "backend-service"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "docker-compose deployment",
+      "orchestra runtime"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Competing LLM application platform. No docker-compose overhead permitted in runtime."
+  },
+  {
+    "id": "ai-job-search",
+    "name": "AI Job Search",
+    "canonical_url": "https://github.com/MadsLorentzen/ai-job-search",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/MadsLorentzen/ai-job-search.git",
+    "documentation_url": "https://github.com/MadsLorentzen/ai-job-search/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "career",
+      "job_automation",
+      "cv_matching"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "job-matching",
+      "cv-tailor",
+      "career-automation"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "BOOKMARK",
+    "trigger_conditions": [
+      "career CV tailoring strategy",
+      "job match heuristic"
+    ],
+    "avoid_conditions": [
+      "bulk job portal scraping",
+      "installing as global skill"
+    ],
+    "policy_verdict": "BOOKMARK (LATER)",
+    "rationale": "Useful apply method (fit -> tailor CV). Not a global skill. Internship story requires shipped code."
+  },
+  {
+    "id": "mahik504-profile",
+    "name": "Mahaveer (mahik504) Profile",
+    "canonical_url": "https://github.com/mahik504",
+    "source_type": "github_repository",
+    "documentation_url": "https://github.com/mahik504",
+    "category": [
+      "identity",
+      "profile",
+      "portfolio"
+    ],
+    "representation": "profile",
+    "routing_tags": [
+      "identity",
+      "public-presence",
+      "developer-profile"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "CORE",
+    "trigger_conditions": [],
+    "avoid_conditions": [],
+    "policy_verdict": "CORE",
+    "rationale": "Primary GitHub identity and public recruiter-facing hub."
+  },
+  {
+    "id": "airlens",
+    "name": "AirLens",
+    "canonical_url": "https://github.com/mahik504/AirLens",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/mahik504/AirLens.git",
+    "documentation_url": "https://github.com/mahik504/AirLens/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "college",
+      "computer_vision",
+      "gui"
+    ],
+    "representation": "code_repo",
+    "routing_tags": [
+      "computer-vision",
+      "opencv",
+      "gui",
+      "college-work"
+    ],
+    "acquisition_method": "git",
+    "runtime_method": "reference_only",
+    "status": "CORE",
+    "trigger_conditions": [
+      "course GUI demo",
+      "OpenCV visual benchmark"
+    ],
+    "avoid_conditions": [
+      "presenting as internship hiring flagship"
+    ],
+    "policy_verdict": "CORE (COLLEGE)",
+    "rationale": "Course GUI in C:\\projects\\DVP. Public, real course work, not the internship flagship."
+  },
+  {
+    "id": "astroverse",
+    "name": "AstroVerse",
+    "canonical_url": "https://github.com/mahik504/AstroVerse",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/mahik504/AstroVerse.git",
+    "documentation_url": "https://github.com/mahik504/AstroVerse/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "hiring_flagship",
+      "machine_learning",
+      "astronomy"
+    ],
+    "representation": "code_repo",
+    "routing_tags": [
+      "hiring-flagship",
+      "ml",
+      "astronomy",
+      "exoplanet-detection"
+    ],
+    "acquisition_method": "git",
+    "runtime_method": "reference_only",
+    "status": "CORE",
+    "trigger_conditions": [
+      "hiring portfolio presentation",
+      "ML exoplanet benchmark"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "CORE (PIN)",
+    "rationale": "Hiring flagship until something else ships. High-integrity machine learning showcase."
+  },
+  {
+    "id": "dbms-tsh",
+    "name": "DBMS-TSH",
+    "canonical_url": "https://github.com/mahik504/DBMS-TSH",
+    "source_type": "github_repository",
+    "documentation_url": "https://github.com/mahik504/DBMS-TSH",
+    "category": [
+      "academic",
+      "database",
+      "archived"
+    ],
+    "representation": "code_repo",
+    "routing_tags": [
+      "academic",
+      "database",
+      "deleted"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "ARCHIVED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "all builds",
+      "do not recreate"
+    ],
+    "policy_verdict": "ARCHIVED",
+    "rationale": "Academic database repo, already deleted on GitHub remote. Maintained in audit memory only."
+  },
+  {
+    "id": "evonex",
+    "name": "EvoNex",
+    "canonical_url": "https://github.com/mahik504/EvoNex",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/mahik504/EvoNex.git",
+    "documentation_url": "https://github.com/mahik504/EvoNex/blob/main/README.md",
+    "category": [
+      "hackathon",
+      "fullstack",
+      "collaboration"
+    ],
+    "representation": "code_repo",
+    "routing_tags": [
+      "hackathon",
+      "collaborative-app",
+      "internship-audit"
+    ],
+    "acquisition_method": "git",
+    "runtime_method": "reference_only",
+    "status": "REFERENCE",
+    "trigger_conditions": [
+      "hackathon reference pattern"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "REFERENCE",
+    "rationale": "Hackathon collaboration referenced in historical internship preparation transcripts."
+  },
+  {
+    "id": "lyra",
+    "name": "LYRA Operator HUD",
+    "canonical_url": "https://github.com/mahik504/lyra",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/mahik504/lyra.git",
+    "documentation_url": "https://github.com/mahik504/lyra/blob/main/README.md",
+    "category": [
+      "operator_hud",
+      "personal",
+      "ai_assistant"
+    ],
+    "representation": "code_repo",
+    "routing_tags": [
+      "personal-hud",
+      "ai-operator",
+      "dark-crimson",
+      "r3f-orb"
+    ],
+    "acquisition_method": "git",
+    "runtime_method": "reference_only",
+    "status": "CORE",
+    "trigger_conditions": [
+      "operator HUD development",
+      "crimson visual world"
+    ],
+    "avoid_conditions": [
+      "shadcn UI kits",
+      "generic Tailwind"
+    ],
+    "policy_verdict": "CORE (PERSONAL)",
+    "rationale": "Personal AI operator HUD. Local clone at C:\\projects\\LYRA. Strict aesthetic controls."
+  },
+  {
+    "id": "mahik504-readme",
+    "name": "mahik504 Profile README",
+    "canonical_url": "https://github.com/mahik504/mahik504",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/mahik504/mahik504.git",
+    "documentation_url": "https://github.com/mahik504/mahik504/blob/main/README.md",
+    "category": [
+      "developer_card",
+      "profile",
+      "metrics"
+    ],
+    "representation": "code_repo",
+    "routing_tags": [
+      "developer-card",
+      "svg-metrics",
+      "github-profile"
+    ],
+    "acquisition_method": "git",
+    "runtime_method": "reference_only",
+    "status": "CORE",
+    "trigger_conditions": [
+      "profile card update",
+      "metric badge synchronization"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "CORE",
+    "rationale": "Public developer profile README displaying live SVG metrics and recruiter bio."
+  },
+  {
+    "id": "orchestra-brain",
+    "name": "Orchestra Brain Master Vault",
+    "canonical_url": "https://github.com/mahik504/orchestra-brain",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/mahik504/orchestra-brain.git",
+    "documentation_url": "https://github.com/mahik504/orchestra-brain/blob/master/README.md",
+    "category": [
+      "private_vault",
+      "durable_memory",
+      "knowledge_base"
+    ],
+    "representation": "code_repo",
+    "routing_tags": [
+      "durable-memory",
+      "preferences",
+      "projects",
+      "private-vault"
+    ],
+    "acquisition_method": "git",
+    "runtime_method": "reference_only",
+    "status": "CORE",
+    "trigger_conditions": [
+      "durable preference retrieval",
+      "project memory update"
+    ],
+    "avoid_conditions": [
+      "making public",
+      "leaking private notes or tokens"
+    ],
+    "policy_verdict": "CORE (PRIVATE)",
+    "rationale": "Private master vault and durable memory on C:\\projects\\orchestra-brain. Never public."
+  },
+  {
+    "id": "orchestra-workflow",
+    "name": "Orchestra Workflow Engine",
+    "canonical_url": "https://github.com/mahik504/orchestra-workflow",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/mahik504/orchestra-workflow.git",
+    "documentation_url": "https://github.com/mahik504/orchestra-workflow/blob/master/README.md",
+    "license": "MIT",
+    "category": [
+      "workflow_engine",
+      "registries",
+      "runtime"
+    ],
+    "representation": "code_repo",
+    "routing_tags": [
+      "runtime-engine",
+      "registries",
+      "skills",
+      "public-workflow"
+    ],
+    "acquisition_method": "git",
+    "runtime_method": "project_scoped_install",
+    "status": "CORE",
+    "trigger_conditions": [
+      "orchestra task execution",
+      "capability graph resolution"
+    ],
+    "avoid_conditions": [
+      "leaking private brain memory into public repo"
+    ],
+    "policy_verdict": "CORE (PUBLIC)",
+    "rationale": "Public capability engine and Go runtime at C:\\projects\\orchestra-workflow."
+  },
+  {
+    "id": "pbl",
+    "name": "Project Based Learning (PBL)",
+    "canonical_url": "https://github.com/mahik504/PBL",
+    "source_type": "github_repository",
+    "documentation_url": "https://github.com/mahik504/PBL",
+    "category": [
+      "academic",
+      "archived"
+    ],
+    "representation": "code_repo",
+    "routing_tags": [
+      "academic",
+      "deleted-remote"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "ARCHIVED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "all builds",
+      "do not recreate"
+    ],
+    "policy_verdict": "ARCHIVED",
+    "rationale": "Academic coursework repository, deleted from remote. Kept in historical audit only."
+  },
+  {
+    "id": "smart-event-access",
+    "name": "Smart Event Access & Catering System",
+    "canonical_url": "https://github.com/mahik504/SMART-EVENT-ACCESS-AND-CATERING-CONTROL-SYSTEM",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/mahik504/SMART-EVENT-ACCESS-AND-CATERING-CONTROL-SYSTEM.git",
+    "category": [
+      "iot",
+      "access_control",
+      "embedded"
+    ],
+    "representation": "code_repo",
+    "routing_tags": [
+      "iot",
+      "rfid",
+      "catering",
+      "private-leftover"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "LEFTOVER",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "active promotion",
+      "hiring pins"
+    ],
+    "policy_verdict": "LEFTOVER",
+    "rationale": "Private leftover repository slated for deletion via GitHub UI."
+  },
+  {
+    "id": "xplain-ai",
+    "name": "XplainAI",
+    "canonical_url": "https://github.com/mahik504/XplainAI",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/mahik504/XplainAI.git",
+    "documentation_url": "https://github.com/mahik504/XplainAI/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "hackathon",
+      "explainable_ai",
+      "machine_learning"
+    ],
+    "representation": "code_repo",
+    "routing_tags": [
+      "iiit-pune-hackathon",
+      "explainable-ai",
+      "ml-models"
+    ],
+    "acquisition_method": "git",
+    "runtime_method": "reference_only",
+    "status": "CORE",
+    "trigger_conditions": [
+      "IIIT Pune hackathon verification",
+      "XAI demonstration"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "CORE (HACKATHON)",
+    "rationale": "IIIT Pune hackathon finalist project. Public codebase, not flagship pin."
+  },
+  {
+    "id": "threeui",
+    "name": "ThreeUI",
+    "canonical_url": "https://github.com/MengTo/threeui",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/MengTo/threeui.git",
+    "documentation_url": "https://github.com/MengTo/threeui/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "3d",
+      "spatial_ui",
+      "threejs"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "spatial-ui",
+      "threejs",
+      "3d-buttons",
+      "webgl-ui"
+    ],
+    "acquisition_method": "npm",
+    "runtime_method": "project_scoped_install",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "3D spatial buttons",
+      "Three.js interactive UI components"
+    ],
+    "avoid_conditions": [
+      "LYRA HUD surfaces",
+      "flat 2D dashboards"
+    ],
+    "policy_verdict": "OPTIONAL (NPM)",
+    "rationale": "@designcodeio/threeui one component when Plan names it. Not LYRA HUD."
+  },
+  {
+    "id": "agency-agents",
+    "name": "Agency Agents",
+    "canonical_url": "https://github.com/msitarzewski/agency-agents",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/msitarzewski/agency-agents.git",
+    "documentation_url": "https://github.com/msitarzewski/agency-agents/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "agent_framework",
+      "multi_role",
+      "skill_pack"
+    ],
+    "representation": "skill",
+    "routing_tags": [
+      "230-roles",
+      "rule-dilution",
+      "agency-agents"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "all installations",
+      "diluting agent rules"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "230-role agency pack. Warns 186 rules dilute matching. We have dedicated specialists."
+  },
+  {
+    "id": "open-design",
+    "name": "Open Design",
+    "canonical_url": "https://github.com/nexu-io/open-design",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/nexu-io/open-design.git",
+    "documentation_url": "https://opendesign.dev",
+    "license": "MIT",
+    "category": [
+      "design_tooling",
+      "mcp_server"
+    ],
+    "representation": "mcp",
+    "routing_tags": [
+      "design-studio",
+      "conflicts-stitch",
+      "design-mcp"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "all installations",
+      "conflicts with Google Stitch"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Second design studio vs Stitch. We already ship DESIGN.md. Do not od mcp install cursor."
+  },
+  {
+    "id": "skiper-ui",
+    "name": "Skiper UI",
+    "canonical_url": "https://github.com/nischayhq/skiper-ui",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/nischayhq/skiper-ui.git",
+    "documentation_url": "https://skiper-ui.com",
+    "license": "MIT",
+    "category": [
+      "ui_kit",
+      "components",
+      "shadcn"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "shadcn-wrapper",
+      "forbidden-on-hud",
+      "component-clone"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "all installations",
+      "LYRA HUD"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Frontend clone + shadcn. Operator forbids shadcn on HUD surfaces."
+  },
+  {
+    "id": "hermes-agent",
+    "name": "Hermes Agent",
+    "canonical_url": "https://github.com/nousresearch/hermes-agent",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/nousresearch/hermes-agent.git",
+    "documentation_url": "https://github.com/nousresearch/hermes-agent/blob/main/README.md",
+    "license": "Apache-2.0",
+    "category": [
+      "autonomous_agent",
+      "local_llm",
+      "reasoning"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "hermes",
+      "local-llm-agent",
+      "function-calling"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REFERENCE",
+    "trigger_conditions": [
+      "local model function-calling architecture research"
+    ],
+    "avoid_conditions": [
+      "replacing orchestra conductor"
+    ],
+    "policy_verdict": "REFERENCE",
+    "rationale": "Reference autonomous agent architecture for local LLM function calling."
+  },
+  {
+    "id": "awesome-hackathon-projects",
+    "name": "Awesome Hackathon Projects",
+    "canonical_url": "https://github.com/Olanetsoft/awesome-hackathon-projects",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/Olanetsoft/awesome-hackathon-projects.git",
+    "documentation_url": "https://github.com/Olanetsoft/awesome-hackathon-projects/blob/main/README.md",
+    "license": "CC0-1.0",
+    "category": [
+      "hackathon",
+      "showcase",
+      "ideation"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "hackathon-ideas",
+      "benchmarks",
+      "project-showcase"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "BOOKMARK",
+    "trigger_conditions": [
+      "hackathon project ideation",
+      "benchmarking winning projects"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "BOOKMARK",
+    "rationale": "Showcase of successful hackathon projects for idea benchmarking."
+  },
+  {
+    "id": "openhands",
+    "name": "OpenHands",
+    "canonical_url": "https://github.com/OpenHands/OpenHands",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/OpenHands/OpenHands.git",
+    "documentation_url": "https://docs.all-hands.dev/",
+    "license": "MIT",
+    "category": [
+      "coding_agent",
+      "autonomous_agent"
+    ],
+    "representation": "service",
+    "routing_tags": [
+      "competing-agent",
+      "monorepo",
+      "docker-agent"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "running in orchestra loop"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Competing autonomous coding agent. Would conflict with Cursor/Antigravity loop."
+  },
+  {
+    "id": "scroll-world",
+    "name": "Scroll World",
+    "canonical_url": "https://github.com/oso95/scroll-world",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/oso95/scroll-world.git",
+    "documentation_url": "https://github.com/oso95/scroll-world/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "3d",
+      "scroll",
+      "webgl"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "scroll-driven-3d",
+      "webgl-story",
+      "spatial-journey"
+    ],
+    "acquisition_method": "git",
+    "runtime_method": "project_scoped_install",
+    "status": "BOOKMARK",
+    "trigger_conditions": [
+      "3D scroll storytelling journey",
+      "spatial camera path animation"
+    ],
+    "avoid_conditions": [
+      "standard corporate landing pages"
+    ],
+    "policy_verdict": "BOOKMARK (LATER)",
+    "rationale": "Scroll-driven 3D WebGL camera journey reference. Bookmark for later interactive stories."
+  },
+  {
+    "id": "no-ai-slop",
+    "name": "No AI Slop UI Guidelines",
+    "canonical_url": "https://github.com/petergyang/no-ai-slop",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/petergyang/no-ai-slop.git",
+    "documentation_url": "https://github.com/petergyang/no-ai-slop/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "ui_guidelines",
+      "design_philosophy",
+      "taste"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "anti-generic-ui",
+      "taste-rules",
+      "clean-layout",
+      "no-ai-glow"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "design system synthesis",
+      "visual audit"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "ADOPT-THIN",
+    "rationale": "Anti-slop principles folded into Taste Design skill (no purple glows, no generic cards)."
+  },
+  {
+    "id": "react-spring",
+    "name": "React Spring",
+    "canonical_url": "https://www.react-spring.dev/",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/pmndrs/react-spring.git",
+    "documentation_url": "https://www.react-spring.dev/docs/getting-started",
+    "license": "MIT",
+    "category": [
+      "motion",
+      "physics_animation",
+      "frontend"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "spring-physics",
+      "one-motion-engine",
+      "fluid-gesture"
+    ],
+    "acquisition_method": "npm",
+    "runtime_method": "project_scoped_install",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "physics-based spring animations",
+      "gesture tracking"
+    ],
+    "avoid_conditions": [
+      "already using GSAP or Motion.dev in same project"
+    ],
+    "policy_verdict": "SPECIALIST",
+    "rationale": "Approved motion engine option. Enforces single motion engine rule per project."
+  },
+  {
+    "id": "rtk",
+    "name": "RTK (Real-Time Agent Kit)",
+    "canonical_url": "https://github.com/rtk-ai/rtk",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/rtk-ai/rtk.git",
+    "documentation_url": "https://github.com/rtk-ai/rtk/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "realtime_audio",
+      "agent_voice"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "realtime-voice",
+      "token-budget",
+      "audio-agent"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "DEFERRED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "all installations until real-time voice pipeline approved"
+    ],
+    "policy_verdict": "DEFERRED",
+    "rationale": "Deferred along with Headroom. High token and quota overhead."
+  },
+  {
+    "id": "awesome-llm-apps",
+    "name": "Awesome LLM Apps",
+    "canonical_url": "https://github.com/Shubhamsaboo/awesome-llm-apps",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/Shubhamsaboo/awesome-llm-apps.git",
+    "documentation_url": "https://github.com/Shubhamsaboo/awesome-llm-apps/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "llm_apps",
+      "showcase"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "streamlit-clone-factory",
+      "dump",
+      "uncurated"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "all imports"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Streamlit clone factory + npx skills add. Promotes poor architecture practices."
+  },
+  {
+    "id": "agentic-awesome-skills",
+    "name": "Agentic Awesome Skills",
+    "canonical_url": "https://github.com/sickn33/agentic-awesome-skills",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/sickn33/agentic-awesome-skills.git",
+    "documentation_url": "https://github.com/sickn33/agentic-awesome-skills/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "bulk_skills",
+      "offensive_security"
+    ],
+    "representation": "skill",
+    "routing_tags": [
+      "2019-skills",
+      "crash-loop-hazard",
+      "unvetted-dump"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "npx agentic-awesome-skills --cursor",
+      "all loads"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "2,019 unvetted skills. README warns of Antigravity crash loops. Strictly quarantined."
+  },
+  {
+    "id": "ralph",
+    "name": "Ralph Autonomous Loop",
+    "canonical_url": "https://github.com/snarktank/ralph",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/snarktank/ralph.git",
+    "documentation_url": "https://github.com/snarktank/ralph/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "workflow",
+      "autonomous_loop",
+      "process_pattern"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "fresh-context",
+      "story-by-story",
+      "atomic-commits"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "story-by-story agent execution",
+      "context reset planning"
+    ],
+    "avoid_conditions": [
+      "running ralph.sh daemon"
+    ],
+    "policy_verdict": "ADOPT-THIN",
+    "rationale": "Adopted as pattern: fresh context per story. Do not run external daemon."
+  },
+  {
+    "id": "awesome-cursor-skills",
+    "name": "Awesome Cursor Skills",
+    "canonical_url": "https://github.com/spencerpauly/awesome-cursor-skills",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/spencerpauly/awesome-cursor-skills.git",
+    "documentation_url": "https://github.com/spencerpauly/awesome-cursor-skills/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "cursor_skills",
+      "catalog"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "link-list",
+      "redundant",
+      "cursor-skills"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "copying folder into .cursor/skills"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Link directory. Features already exist natively or in curated Orchestra skills."
+  },
+  {
+    "id": "stirling-pdf",
+    "name": "Stirling-PDF",
+    "canonical_url": "https://github.com/Stirling-Tools/Stirling-PDF",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/Stirling-Tools/Stirling-PDF.git",
+    "documentation_url": "https://docs.stirlingpdf.com/",
+    "license": "GPL-3.0",
+    "category": [
+      "pdf_utilities",
+      "server"
+    ],
+    "representation": "service",
+    "routing_tags": [
+      "pdf-server",
+      "out-of-scope"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "all installations"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "PDF processing server. Orchestra-docs already handles documentation needs."
+  },
+  {
+    "id": "freellmapi",
+    "name": "Free LLM API Aggregator",
+    "canonical_url": "https://github.com/tashfeenahmed/freellmapi",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/tashfeenahmed/freellmapi.git",
+    "documentation_url": "https://github.com/tashfeenahmed/freellmapi/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "api_gateway",
+      "llm_pool"
+    ],
+    "representation": "service",
+    "routing_tags": [
+      "free-llm-pool",
+      "failover-only",
+      "api-aggregator"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "BOOKMARK",
+    "trigger_conditions": [
+      "emergency fallback when primary LLM studio APIs exhausted"
+    ],
+    "avoid_conditions": [
+      "primary runtime routing",
+      "tool-dependent tasks"
+    ],
+    "policy_verdict": "BOOKMARK (FAILOVER)",
+    "rationale": "Free tier aggregator. LYRA has Studio/Groq. Fallback only if both die."
+  },
+  {
+    "id": "vanta",
+    "name": "Vanta.js Animated Backgrounds",
+    "canonical_url": "https://www.vantajs.com/",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/tengbao/vanta.git",
+    "documentation_url": "https://github.com/tengbao/vanta/blob/master/README.md",
+    "license": "MIT",
+    "category": [
+      "visual_effects",
+      "3d_background",
+      "canvas"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "three-effects",
+      "animated-backgrounds",
+      "college-web-only"
+    ],
+    "acquisition_method": "npm",
+    "runtime_method": "project_scoped_install",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "college project hero backgrounds",
+      "fast 3D animated canvas"
+    ],
+    "avoid_conditions": [
+      "LYRA HUD",
+      "production hiring pins"
+    ],
+    "policy_verdict": "OPTIONAL (COLLEGE)",
+    "rationale": "Three.js animated background effects. Allowed on college web when named."
+  },
+  {
+    "id": "openhuman",
+    "name": "OpenHuman Desktop Assistant",
+    "canonical_url": "https://tinyhumans.ai/openhuman",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/tinyhumansai/openhuman.git",
+    "documentation_url": "https://github.com/tinyhumansai/openhuman/blob/main/README.md",
+    "license": "Apache-2.0",
+    "category": [
+      "desktop_assistant",
+      "automation"
+    ],
+    "representation": "desktop_app",
+    "routing_tags": [
+      "desktop-automation",
+      "packet-io",
+      "desktop-specialist"
+    ],
+    "acquisition_method": "manual",
+    "runtime_method": "desktop_exec",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "native desktop workflow automation",
+      "packet exchange"
+    ],
+    "avoid_conditions": [
+      "cloning monorepo into project",
+      "dumping 90k skills"
+    ],
+    "policy_verdict": "SPECIALIST",
+    "rationale": "Desktop specialist app installed locally. Packet in / summary out."
+  },
+  {
+    "id": "code-review-graph",
+    "name": "Code Review Graph",
+    "canonical_url": "https://github.com/tirth8205/code-review-graph",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/tirth8205/code-review-graph.git",
+    "documentation_url": "https://github.com/tirth8205/code-review-graph/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "code_review",
+      "mcp_server",
+      "graph"
+    ],
+    "representation": "mcp",
+    "routing_tags": [
+      "graph-mcp",
+      "unnecessary-overhead"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "adding to mcp_config.json"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Extra MCP that writes into every AI tool. Cursor/Antigravity already read repos directly."
+  },
+  {
+    "id": "crawl4ai",
+    "name": "Crawl4AI",
+    "canonical_url": "https://github.com/unclecode/crawl4ai",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/unclecode/crawl4ai.git",
+    "documentation_url": "https://crawl4ai.com/",
+    "license": "Apache-2.0",
+    "category": [
+      "web_crawler",
+      "scraper"
+    ],
+    "representation": "service",
+    "routing_tags": [
+      "bulk-scraper",
+      "unpermitted",
+      "crawler"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "unauthorized web scraping",
+      "bulk crawl"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Bulk crawl/scrape server. Violates policy of lightweight authorized research extraction."
+  },
+  {
+    "id": "vercel-agent-skills",
+    "name": "Vercel Agent Skills",
+    "canonical_url": "https://github.com/vercel-labs/agent-skills",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/vercel-labs/agent-skills.git",
+    "documentation_url": "https://github.com/vercel-labs/agent-skills/blob/main/README.md",
+    "license": "Apache-2.0",
+    "category": [
+      "agent_skills",
+      "web_guidelines"
+    ],
+    "representation": "skill",
+    "routing_tags": [
+      "web-design-guidelines-only",
+      "single-skill",
+      "a11y"
+    ],
+    "acquisition_method": "git",
+    "runtime_method": "global_active_skill",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "web interface guidelines check",
+      "accessibility and UX audit"
+    ],
+    "avoid_conditions": [
+      "npx skills add --all",
+      "importing whole vercel pack"
+    ],
+    "policy_verdict": "SPECIALIST (FILTERED)",
+    "rationale": "Single skill copy (web-design-guidelines) curated into allowlist. Do not install entire repo."
+  },
+  {
+    "id": "awesome-design-md",
+    "name": "Awesome Design MD",
+    "canonical_url": "https://github.com/VoltAgent/awesome-design-md",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/VoltAgent/awesome-design-md.git",
+    "documentation_url": "https://github.com/VoltAgent/awesome-design-md/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "design_tokens",
+      "design_md",
+      "specification"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "design-tokens",
+      "anti-generic-md",
+      "design-contracts"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "drafting DESIGN.md",
+      "extracting token structures"
+    ],
+    "avoid_conditions": [
+      "installing as global active skill"
+    ],
+    "policy_verdict": "ADOPT-THIN",
+    "rationale": "Design token references. Hackathon Plan may copy one DESIGN.md into projects/<slug>/ref/."
+  },
+  {
+    "id": "local-omniroute",
+    "name": "Local OmniRoute Gateway",
+    "canonical_url": "http://localhost:20128/v1",
+    "source_type": "local_runtime",
+    "documentation_url": "https://github.com/diegosouzapw/OmniRoute",
+    "category": [
+      "local_runtime",
+      "llm_gateway"
+    ],
+    "representation": "service",
+    "routing_tags": [
+      "llm-gateway",
+      "openai-compat",
+      "proxy",
+      "local-daemon"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "local_daemon",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "local LLM proxy configured in .env.local"
+    ],
+    "avoid_conditions": [
+      "automatic start without operator daemon"
+    ],
+    "policy_verdict": "LOCAL RUNTIME",
+    "rationale": "Local OmniRoute LLM gateway proxy endpoint on port 20128."
+  },
+  {
+    "id": "local-vite-server",
+    "name": "Local Vite Dev Server",
+    "canonical_url": "http://localhost:5173",
+    "source_type": "local_runtime",
+    "documentation_url": "https://vite.dev/",
+    "category": [
+      "local_runtime",
+      "frontend_dev"
+    ],
+    "representation": "dev_utility",
+    "routing_tags": [
+      "frontend-dev",
+      "vite",
+      "live-preview",
+      "hot-reload"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "local_daemon",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "visual QA capture with Playwright",
+      "frontend development preview"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "LOCAL RUNTIME",
+    "rationale": "Standard local Vite development server port used for development and visual verification."
+  },
+  {
+    "id": "leetsync",
+    "name": "LeetSync Chrome Extension",
+    "canonical_url": "https://chromewebstore.google.com/detail/leetsync-leetcode-to-gith/ppkbejeolfcbaomanmbpjdbkfcjfhjnd",
+    "source_type": "web_reference",
+    "documentation_url": "https://chromewebstore.google.com/detail/leetsync-leetcode-to-gith/ppkbejeolfcbaomanmbpjdbkfcjfhjnd",
+    "category": [
+      "dev_utility",
+      "dsa",
+      "git_automation"
+    ],
+    "representation": "dev_utility",
+    "routing_tags": [
+      "dsa-sync",
+      "git-automation",
+      "leetcode",
+      "practice"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "BOOKMARK",
+    "trigger_conditions": [
+      "DSA LeetCode practice sync to GitHub"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "DEV UTILITY",
+    "rationale": "Chrome extension for automatically syncing LeetCode submissions to GitHub."
+  },
+  {
+    "id": "gcp-student-credits",
+    "name": "Google Cloud Student Portal",
+    "canonical_url": "https://cloud.google.com/edu/students",
+    "source_type": "web_reference",
+    "documentation_url": "https://cloud.google.com/edu/students",
+    "category": [
+      "infrastructure",
+      "cloud_credits"
+    ],
+    "representation": "infrastructure",
+    "routing_tags": [
+      "gcp",
+      "cloud-credits",
+      "hosting",
+      "student-sandbox"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "BOOKMARK",
+    "trigger_conditions": [
+      "cloud deployment credit redemption",
+      "GCP sandbox"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "INFRASTRUCTURE",
+    "rationale": "Google Cloud student credit redemption and learning sandbox."
+  },
+  {
+    "id": "hackathons-master-sheet",
+    "name": "Harnoor Singh Hackathons Tracker",
+    "canonical_url": "https://docs.google.com/spreadsheets/d/1VeK0Y0bSJrQZFywF-qdnwBQz6id1-YPuctTggoCHxqg/htmlview",
+    "source_type": "web_reference",
+    "documentation_url": "https://docs.google.com/spreadsheets/d/1VeK0Y0bSJrQZFywF-qdnwBQz6id1-YPuctTggoCHxqg/htmlview",
+    "category": [
+      "hackathon",
+      "career",
+      "inventory"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "hackathon-inventory",
+      "sih-strategy",
+      "dates",
+      "competitions"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "REFERENCE",
+    "trigger_conditions": [
+      "hackathon calendar sync",
+      "SIH team strategy"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "NOTION / VAULT NOTE",
+    "rationale": "Harnoor Singh's August 2026 hackathons master tracker spreadsheet."
+  },
+  {
+    "id": "example-com",
+    "name": "RFC 2606 Example Domain",
+    "canonical_url": "https://example.com",
+    "source_type": "web_reference",
+    "documentation_url": "https://www.iana.org/domains/reserved",
+    "category": [
+      "test_fixture",
+      "networking"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "cli-smoke-test",
+      "rfc-2606",
+      "network-test"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "CLI smoke tests",
+      "SkillUI connectivity verification"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "TEST FIXTURE",
+    "rationale": "RFC-reserved domain used as a lightweight, safe smoke-test target."
+  },
+  {
+    "id": "godly-design",
+    "name": "Godly Design Gallery",
+    "canonical_url": "https://godly.design/",
+    "source_type": "web_reference",
+    "documentation_url": "https://godly.design/",
+    "category": [
+      "visual_research",
+      "design_inspiration"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "award-winning-ui",
+      "typography",
+      "layout",
+      "visual-research"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "high-visual design research",
+      "creative web showcase"
+    ],
+    "avoid_conditions": [
+      "pure backend tasks"
+    ],
+    "policy_verdict": "VISUAL RESEARCH",
+    "rationale": "Curated web design inspiration gallery for modern typography and layout."
+  },
+  {
+    "id": "k95-studio",
+    "name": "K95 Design Studio",
+    "canonical_url": "https://k95.it/en",
+    "source_type": "web_reference",
+    "documentation_url": "https://k95.it/en",
+    "category": [
+      "craft_echo",
+      "editorial_grid",
+      "typography"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "editorial-grid",
+      "density",
+      "case-study",
+      "craft-echo"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "BOOKMARK",
+    "trigger_conditions": [
+      "high-density editorial layout",
+      "case study design"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "CRAFT ECHO",
+    "rationale": "Italian studio K95. Dense editorial grid and case-study layout echo."
+  },
+  {
+    "id": "motion-dev",
+    "name": "Motion (Framer Motion)",
+    "canonical_url": "https://motion.dev/",
+    "source_type": "npm_package",
+    "documentation_url": "https://motion.dev/docs",
+    "category": [
+      "motion",
+      "frontend",
+      "animation"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "motion-spec",
+      "timeline",
+      "micro-interaction",
+      "layout-animation"
+    ],
+    "acquisition_method": "npm",
+    "runtime_method": "project_scoped_install",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "React component animations",
+      "layout transitions"
+    ],
+    "avoid_conditions": [
+      "conflicting with GSAP in same project"
+    ],
+    "policy_verdict": "SPECIALIST ENGINE",
+    "rationale": "Core motion engine option (formerly Framer Motion). One motion engine rule strictly applies."
+  },
+  {
+    "id": "neobrutalism",
+    "name": "Neobrutalism Design System",
+    "canonical_url": "https://neobrutalism.com/",
+    "source_type": "web_reference",
+    "documentation_url": "https://neobrutalism.com/docs",
+    "category": [
+      "visual_world",
+      "styling",
+      "tokens"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "world-neo",
+      "high-contrast",
+      "thick-borders",
+      "hard-shadows"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "college projects",
+      "loud marketing sites",
+      "neo-brutalist aesthetic"
+    ],
+    "avoid_conditions": [
+      "LYRA HUD",
+      "minimalist luxury brands"
+    ],
+    "policy_verdict": "VISUAL WORLD",
+    "rationale": "High-contrast neo-brutalist tokens and styling rules."
+  },
+  {
+    "id": "penfight",
+    "name": "Penfight Interactive Canvas",
+    "canonical_url": "https://penfight.xyz/",
+    "source_type": "web_reference",
+    "documentation_url": "https://penfight.xyz/",
+    "category": [
+      "physics_simulation",
+      "canvas_game"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "physics-simulation",
+      "canvas-game",
+      "2d-physics"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REFERENCE",
+    "trigger_conditions": [
+      "canvas game physics reference"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "REFERENCE",
+    "rationale": "Interactive web game physics & canvas reference."
+  },
+  {
+    "id": "peter-oravec",
+    "name": "Peter Oravec Portfolio",
+    "canonical_url": "https://peteroravec.com/",
+    "source_type": "web_reference",
+    "documentation_url": "https://peteroravec.com/",
+    "category": [
+      "craft_echo",
+      "minimalism",
+      "typography"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "minimalist-craft",
+      "whitespace",
+      "mono-type",
+      "craft-echo"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "BOOKMARK",
+    "trigger_conditions": [
+      "minimalist portfolio design",
+      "editorial whitespace calibration"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "CRAFT ECHO",
+    "rationale": "Peter Oravec portfolio: restrained typography and whitespace discipline."
+  },
+  {
+    "id": "planner-app",
+    "name": "Planner Production App",
+    "canonical_url": "https://planner-flax-six.vercel.app/",
+    "source_type": "web_reference",
+    "documentation_url": "https://planner-flax-six.vercel.app/",
+    "category": [
+      "deployed_benchmark",
+      "production"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "vercel-deployment",
+      "live-production",
+      "benchmarking"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "live production verification",
+      "responsive mobile test"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "DEPLOYED BENCHMARK",
+    "rationale": "Deployed planner production verification site on Vercel."
+  },
+  {
+    "id": "pryzm-design",
+    "name": "Pryzm Mesh Gradients",
+    "canonical_url": "https://pryzm.design/",
+    "source_type": "web_reference",
+    "documentation_url": "https://pryzm.design/",
+    "category": [
+      "craft_asset",
+      "gradients",
+      "svg"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "hero-background",
+      "mesh-gradient",
+      "svg",
+      "craft-asset"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "mesh gradient generation",
+      "hero SVG background export"
+    ],
+    "avoid_conditions": [
+      "LYRA nucleus"
+    ],
+    "policy_verdict": "CRAFT ASSET",
+    "rationale": "WebGL and SVG gradient background asset generator."
+  },
+  {
+    "id": "reactbits-portal",
+    "name": "React Bits Portal",
+    "canonical_url": "https://reactbits.dev/",
+    "source_type": "web_reference",
+    "documentation_url": "https://reactbits.dev/",
+    "category": [
+      "component_library",
+      "motion_primitives"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "react-primitives",
+      "college-required",
+      "npm",
+      "interactive-blocks"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "college web",
+      "hackathon web interactive blocks"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "SPECIALIST ENGINE",
+    "rationale": "Official portal for React Bits interactive animated primitives."
+  },
+  {
+    "id": "sagar-tamang-ultron",
+    "name": "Sagar Tamang Ultron Portfolio",
+    "canonical_url": "https://sagartamang.com/projects/ultron",
+    "source_type": "web_reference",
+    "documentation_url": "https://sagartamang.com/projects/ultron",
+    "category": [
+      "craft_echo",
+      "portfolio",
+      "interaction"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "portfolio-craft",
+      "interaction-pattern",
+      "craft-echo"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "BOOKMARK",
+    "trigger_conditions": [
+      "portfolio project showcase study"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "REFERENCE",
+    "rationale": "Ultron project showcase and sophisticated interaction pattern reference."
+  },
+  {
+    "id": "shaders-com",
+    "name": "Shaders.com Catalog",
+    "canonical_url": "https://shaders.com/",
+    "source_type": "web_reference",
+    "documentation_url": "https://shaders.com/",
+    "category": [
+      "shaders",
+      "webgl",
+      "r3f"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "glsl-shaders",
+      "webgl",
+      "r3f-materials",
+      "craft-asset"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "WebGL custom shaders",
+      "R3F custom material creation"
+    ],
+    "avoid_conditions": [
+      "flat 2D interfaces"
+    ],
+    "policy_verdict": "CRAFT ASSET",
+    "rationale": "Curated WebGL/GLSL shader catalog and R3F porting source."
+  },
+  {
+    "id": "smooth-ui",
+    "name": "Smooth UI Components",
+    "canonical_url": "https://smoothui.dev/",
+    "source_type": "web_reference",
+    "documentation_url": "https://smoothui.dev/",
+    "category": [
+      "component_blocks",
+      "ui_kit"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "component-block",
+      "college-echo-only",
+      "animated-ui"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "college web single block echo"
+    ],
+    "avoid_conditions": [
+      "LYRA HUD",
+      "always-on installation"
+    ],
+    "policy_verdict": "COMPONENT ECHO",
+    "rationale": "Smooth UI copy-paste animated component blocks. Single block echo only."
+  },
+  {
+    "id": "stitch-mcp",
+    "name": "Google Stitch MCP Remote",
+    "canonical_url": "https://stitch.googleapis.com/mcp",
+    "source_type": "mcp_server",
+    "documentation_url": "https://stitch.withgoogle.com",
+    "category": [
+      "mcp_server",
+      "design_sync",
+      "stitch"
+    ],
+    "representation": "mcp",
+    "routing_tags": [
+      "stitch-mcp",
+      "remote-mcp",
+      "design-sync",
+      "token-sync"
+    ],
+    "acquisition_method": "mcp_install",
+    "runtime_method": "mcp_connection",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "Stitch design sync",
+      "DESIGN.md synchronization",
+      "screen generation"
+    ],
+    "avoid_conditions": [
+      "backend without UI"
+    ],
+    "policy_verdict": "MCP ENDPOINT",
+    "rationale": "Google Stitch remote MCP endpoint for JSON-RPC design synchronization."
+  },
+  {
+    "id": "stitch-studio",
+    "name": "Google Stitch Web Studio",
+    "canonical_url": "https://stitch.withgoogle.com",
+    "source_type": "web_reference",
+    "documentation_url": "https://stitch.withgoogle.com",
+    "category": [
+      "design_studio",
+      "visual_design",
+      "stitch"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "stitch-studio",
+      "2d-design-lock",
+      "screens",
+      "design-system"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "2D screen design lock",
+      "visual design review"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "CLOUD STUDIO",
+    "rationale": "Google Stitch web UI interface for design system curation and screen lock."
+  },
+  {
+    "id": "refero-design",
+    "name": "Refero Design Search",
+    "canonical_url": "https://styles.refero.design/",
+    "source_type": "web_reference",
+    "documentation_url": "https://styles.refero.design/",
+    "category": [
+      "visual_research",
+      "product_screens",
+      "saas_flows"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "product-ui",
+      "saas-flows",
+      "screen-patterns",
+      "visual-research"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "SaaS dashboard design research",
+      "real-world flow analysis"
+    ],
+    "avoid_conditions": [
+      "pure backend tasks"
+    ],
+    "policy_verdict": "VISUAL RESEARCH",
+    "rationale": "Refero design search engine for real-world product screens and flows."
+  },
+  {
+    "id": "openhuman-portal",
+    "name": "OpenHuman Portal",
+    "canonical_url": "https://tinyhumans.ai/openhuman",
+    "source_type": "web_reference",
+    "documentation_url": "https://tinyhumans.ai/openhuman",
+    "category": [
+      "desktop_agent",
+      "portal"
+    ],
+    "representation": "dev_utility",
+    "routing_tags": [
+      "desktop-assistant",
+      "packet-processing",
+      "download"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "OpenHuman desktop client setup"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "DESKTOP AGENT",
+    "rationale": "OpenHuman native desktop assistant download portal."
+  },
+  {
+    "id": "unlumen-ui",
+    "name": "Unlumen UI",
+    "canonical_url": "https://ui.unlumen.com/",
+    "source_type": "web_reference",
+    "documentation_url": "https://ui.unlumen.com/",
+    "category": [
+      "component_blocks",
+      "dark_mode"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "dark-mode-blocks",
+      "college-echo-only",
+      "minimalist-blocks"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "college web dark mode block echo"
+    ],
+    "avoid_conditions": [
+      "LYRA HUD",
+      "always-on installation"
+    ],
+    "policy_verdict": "COMPONENT ECHO",
+    "rationale": "Unlumen minimalist dark-mode component blocks. Single block echo only."
+  },
+  {
+    "id": "united-carriers",
+    "name": "United Carriers Web Experience",
+    "canonical_url": "https://unitedcarriers.com/",
+    "source_type": "web_reference",
+    "documentation_url": "https://unitedcarriers.com/",
+    "category": [
+      "craft_echo",
+      "editorial_typography"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "logistics-editorial",
+      "typography-scale",
+      "craft-echo"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "BOOKMARK",
+    "trigger_conditions": [
+      "editorial typography scale research"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "CRAFT ECHO",
+    "rationale": "United Carriers logistics web experience: editorial typography scale echo."
+  },
+  {
+    "id": "wairk-studio",
+    "name": "Wairk Creative Studio",
+    "canonical_url": "https://wairk.fr/",
+    "source_type": "web_reference",
+    "documentation_url": "https://wairk.fr/",
+    "category": [
+      "craft_echo",
+      "sharp_angles",
+      "motion"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "french-editorial",
+      "sharp-angles",
+      "motion",
+      "craft-echo"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "BOOKMARK",
+    "trigger_conditions": [
+      "sharp angled layouts",
+      "editorial motion research"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "CRAFT ECHO",
+    "rationale": "Wairk French creative studio: sharp editorial layout & motion echo."
+  },
+  {
+    "id": "ditther",
+    "name": "Ditther Dither Tool",
+    "canonical_url": "https://www.ditther.com/",
+    "source_type": "web_reference",
+    "documentation_url": "https://www.ditther.com/",
+    "category": [
+      "craft_asset",
+      "halftone",
+      "dither"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "dither-craft",
+      "halftone",
+      "retro-digital",
+      "craft-asset"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "retro-digital dither textures",
+      "halftone asset generation"
+    ],
+    "avoid_conditions": [
+      "sleek corporate SaaS"
+    ],
+    "policy_verdict": "CRAFT ASSET",
+    "rationale": "Ditther browser-based halftone and matrix dither image tool."
+  },
+  {
+    "id": "future-ready-talent",
+    "name": "Future Ready Talent Portal",
+    "canonical_url": "https://www.futurereadytalent.in/",
+    "source_type": "web_reference",
+    "documentation_url": "https://www.futurereadytalent.in/",
+    "category": [
+      "career_portal",
+      "certifications"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "internship-tracking",
+      "certifications",
+      "career-portal"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REFERENCE",
+    "trigger_conditions": [
+      "internship certification tracking"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "CAREER PORTAL",
+    "rationale": "Future Ready Talent internship registration & project tracking portal."
+  },
+  {
+    "id": "lax-space",
+    "name": "Lax Space 3D Orbit Canvas",
+    "canonical_url": "https://www.laxspace.co/",
+    "source_type": "web_reference",
+    "documentation_url": "https://www.laxspace.co/",
+    "category": [
+      "craft_echo",
+      "3d",
+      "r3f"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "3d-orbit",
+      "canvas-playground",
+      "r3f",
+      "spatial-web"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "BOOKMARK",
+    "trigger_conditions": [
+      "3D orbit camera controls",
+      "interactive canvas playground"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "CRAFT ECHO",
+    "rationale": "Lax Space interactive 3D orbit camera & spatial web canvas echo."
+  },
+  {
+    "id": "noth-in",
+    "name": "Nothin Studio",
+    "canonical_url": "https://www.noth.in/",
+    "source_type": "web_reference",
+    "documentation_url": "https://www.noth.in/",
+    "category": [
+      "craft_echo",
+      "editorial_clarity",
+      "typography"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "editorial-clarity",
+      "typographic-restraint",
+      "craft-echo"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "BOOKMARK",
+    "trigger_conditions": [
+      "radical typographic restraint",
+      "editorial clarity"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "CRAFT ECHO",
+    "rationale": "Nothin' design studio: radical editorial clarity & typography echo."
+  },
+  {
+    "id": "not-your-type",
+    "name": "Not Your Type Foundry",
+    "canonical_url": "https://www.notyourtype.nl/",
+    "source_type": "web_reference",
+    "documentation_url": "https://www.notyourtype.nl/",
+    "category": [
+      "type_craft",
+      "typography",
+      "foundry"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "bespoke-typography",
+      "licensed-type",
+      "no-scrape"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "BOOKMARK",
+    "trigger_conditions": [
+      "licensed font / logo study when named"
+    ],
+    "avoid_conditions": [
+      "scraping font files directly"
+    ],
+    "policy_verdict": "TYPE CRAFT",
+    "rationale": "Not Your Type foundry: bespoke licensed typecraft reference. Do not scrape."
+  },
+  {
+    "id": "tryguildly",
+    "name": "Guildly Agent Simulator",
+    "canonical_url": "https://www.tryguildly.com/",
+    "source_type": "web_reference",
+    "documentation_url": "https://www.tryguildly.com/",
+    "category": [
+      "agent_simulator",
+      "rejected_tool"
+    ],
+    "representation": "service",
+    "routing_tags": [
+      "agent-org-simulator",
+      "fights-cursor-loop"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [],
+    "avoid_conditions": [
+      "all installations"
+    ],
+    "policy_verdict": "REJECTED",
+    "rationale": "Desktop multi-agent team simulator. Fights Cursor-first plan loop. Rejected."
   },
   {
     "id": "awwwards",
     "name": "Awwwards",
     "canonical_url": "https://www.awwwards.com/",
     "source_type": "web_reference",
-    "category": ["visual_research", "design_reference"],
+    "documentation_url": "https://www.awwwards.com/websites/",
+    "category": [
+      "visual_research",
+      "design_reference"
+    ],
     "representation": "research_source",
-    "routing_tags": ["premium", "award-winning", "layout", "typography"],
+    "routing_tags": [
+      "premium",
+      "award-winning",
+      "layout",
+      "creative-direction"
+    ],
     "acquisition_method": "web_fetch",
     "runtime_method": "on_demand_research",
-    "trigger_conditions": ["premium visual quality", "landing page", "creative direction"],
-    "avoid_conditions": ["basic admin screens", "backend bugs"]
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "premium visual quality",
+      "landing page",
+      "design research"
+    ],
+    "avoid_conditions": [
+      "basic admin screens",
+      "backend bugs"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "Primary benchmark source for award-winning creative direction and interaction design."
   },
   {
-    "id": "lenis",
-    "name": "Lenis",
-    "canonical_url": "https://lenis.darkroom.engineering/",
-    "source_type": "github_repository",
-    "source_repository": "https://github.com/darkroomengineering/lenis.git",
-    "category": ["motion", "scroll"],
+    "id": "gsap",
+    "name": "GSAP",
+    "canonical_url": "https://gsap.com/",
+    "source_type": "npm_package",
+    "source_repository": "https://github.com/greensock/GSAP.git",
+    "documentation_url": "https://gsap.com/docs/v3/",
+    "license": "Standard GreenSock License",
+    "category": [
+      "motion",
+      "frontend"
+    ],
     "representation": "dependency",
-    "routing_tags": ["smooth scroll", "parallax"],
+    "routing_tags": [
+      "motion",
+      "timeline",
+      "scroll-trigger",
+      "orchestrated-animation"
+    ],
     "acquisition_method": "npm",
     "runtime_method": "project_scoped_install",
-    "trigger_conditions": ["premium scroll experience", "custom scroll hijacking"],
-    "avoid_conditions": ["basic content sites without scroll motion"]
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "complex timeline animation",
+      "interactive story",
+      "orchestrated motion"
+    ],
+    "avoid_conditions": [
+      "simple css hover",
+      "react-spring already installed"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "Primary industrial motion engine for choreographed SVG and DOM timeline animations."
   },
   {
-    "id": "r3f",
-    "name": "React Three Fiber",
-    "canonical_url": "https://docs.pmnd.rs/react-three-fiber",
-    "source_type": "github_repository",
-    "source_repository": "https://github.com/pmndrs/react-three-fiber.git",
-    "category": ["3d", "webgl"],
+    "id": "skillui",
+    "name": "SkillUI CLI",
+    "canonical_url": "https://github.com/amaancoderx/npxskillui",
+    "source_type": "cli_tool",
+    "source_repository": "https://github.com/amaancoderx/npxskillui.git",
+    "documentation_url": "https://github.com/amaancoderx/npxskillui/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "reverse_engineering",
+      "design_extraction"
+    ],
+    "representation": "cli",
+    "routing_tags": [
+      "reverse-engineer",
+      "echo-url",
+      "token-extraction"
+    ],
+    "acquisition_method": "npx",
+    "runtime_method": "on_demand_cli",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "user supplies reference URL",
+      "study site design tokens"
+    ],
+    "avoid_conditions": [
+      "wholesale cloning",
+      "stealing brand assets"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "On-demand CLI tool for extracting DESIGN.md tokens from one designated echo URL."
+  },
+  {
+    "id": "apple-hig-typography",
+    "name": "Apple HIG Typography Guidelines",
+    "canonical_url": "https://developer.apple.com/design/human-interface-guidelines/typography",
+    "source_type": "standard_specification",
+    "documentation_url": "https://developer.apple.com/design/human-interface-guidelines/typography",
+    "category": [
+      "typography_standard",
+      "mobile_guidelines"
+    ],
+    "representation": "standard",
+    "routing_tags": [
+      "apple-hig",
+      "dynamic-type",
+      "sf-pro",
+      "system-fonts"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "iOS typography audit",
+      "native mobile interface design"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "CORE SPECIALIST",
+    "rationale": "Mandatory standard for iOS font metrics, dynamic type scales, and optical sizing."
+  },
+  {
+    "id": "material-3-typography",
+    "name": "Material 3 Typography Scale",
+    "canonical_url": "https://m3.material.io/styles/typography/overview",
+    "source_type": "standard_specification",
+    "documentation_url": "https://m3.material.io/styles/typography/overview",
+    "category": [
+      "typography_standard",
+      "android_guidelines"
+    ],
+    "representation": "standard",
+    "routing_tags": [
+      "material-3",
+      "android-type",
+      "roboto",
+      "type-scale"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "Android typography scale",
+      "Material Design token alignment"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "CORE SPECIALIST",
+    "rationale": "Official Google Material 3 typography specification for cross-device hierarchy."
+  },
+  {
+    "id": "mdn-css-fonts",
+    "name": "MDN CSS Font Specifications",
+    "canonical_url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_fonts",
+    "source_type": "standard_specification",
+    "documentation_url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_fonts",
+    "category": [
+      "web_typography",
+      "standards"
+    ],
+    "representation": "standard",
+    "routing_tags": [
+      "css-fonts",
+      "font-face",
+      "font-optical-sizing",
+      "font-feature-settings"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "web font implementation",
+      "variable font axis configuration"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "CORE SPECIALIST",
+    "rationale": "W3C/MDN web typography standards baseline governing CSS font properties."
+  },
+  {
+    "id": "apple-playing-haptics",
+    "name": "Apple Playing Haptics Guidelines",
+    "canonical_url": "https://developer.apple.com/design/human-interface-guidelines/playing-haptics",
+    "source_type": "standard_specification",
+    "documentation_url": "https://developer.apple.com/design/human-interface-guidelines/playing-haptics",
+    "category": [
+      "sensory_standard",
+      "haptics",
+      "mobile"
+    ],
+    "representation": "standard",
+    "routing_tags": [
+      "ios-haptics",
+      "taptic-engine",
+      "sensory-feedback"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "iOS sensory feedback implementation",
+      "native mobile haptics"
+    ],
+    "avoid_conditions": [
+      "desktop-only web apps"
+    ],
+    "policy_verdict": "SPECIALIST",
+    "rationale": "Apple Human Interface Guidelines governing tactile feedback and taptic patterns."
+  },
+  {
+    "id": "android-vibration-effect",
+    "name": "Android VibrationEffect API Standard",
+    "canonical_url": "https://developer.android.com/reference/android/os/VibrationEffect",
+    "source_type": "standard_specification",
+    "documentation_url": "https://developer.android.com/reference/android/os/VibrationEffect",
+    "category": [
+      "sensory_standard",
+      "haptics",
+      "android"
+    ],
+    "representation": "standard",
+    "routing_tags": [
+      "android-vibration",
+      "vibration-effect",
+      "haptic-primitives"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "Android haptic effects",
+      "vibration pattern orchestration"
+    ],
+    "avoid_conditions": [
+      "desktop-only web apps"
+    ],
+    "policy_verdict": "SPECIALIST",
+    "rationale": "Android native SDK standard for composing one-shot and waveform vibration effects."
+  },
+  {
+    "id": "expo-haptics",
+    "name": "Expo Haptics",
+    "canonical_url": "https://docs.expo.dev/versions/latest/sdk/haptics/",
+    "source_type": "npm_package",
+    "source_repository": "https://github.com/expo/expo.git",
+    "documentation_url": "https://docs.expo.dev/versions/latest/sdk/haptics/",
+    "license": "MIT",
+    "category": [
+      "sensory_library",
+      "mobile_react_native"
+    ],
     "representation": "dependency",
-    "routing_tags": ["3d", "canvas", "webgl", "threejs"],
+    "routing_tags": [
+      "expo-haptics",
+      "cross-platform-tactile",
+      "mobile-sensory"
+    ],
     "acquisition_method": "npm",
     "runtime_method": "project_scoped_install",
-    "trigger_conditions": ["3d elements requested", "spatial UI", "WebGL scenes"],
-    "avoid_conditions": ["2D flat design"]
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "React Native tactile feedback",
+      "Expo mobile buttons"
+    ],
+    "avoid_conditions": [
+      "pure web without touch screen"
+    ],
+    "policy_verdict": "SPECIALIST",
+    "rationale": "Cross-platform haptic feedback adapter for Expo and React Native applications."
   },
   {
-    "id": "taste-design",
-    "name": "Taste Design",
-    "canonical_url": "https://github.com/Leonxlnx/taste-skill",
-    "source_type": "github_repository",
-    "category": ["design_direction", "typography"],
-    "representation": "skill",
-    "routing_tags": ["high-end", "typography", "layout"],
-    "acquisition_method": "git",
-    "runtime_method": "global_active_skill",
-    "trigger_conditions": ["premium visual quality", "design synthesis"],
-    "avoid_conditions": ["backend tasks"]
+    "id": "expo-speech",
+    "name": "Expo Speech",
+    "canonical_url": "https://docs.expo.dev/versions/latest/sdk/speech/",
+    "source_type": "npm_package",
+    "source_repository": "https://github.com/expo/expo.git",
+    "documentation_url": "https://docs.expo.dev/versions/latest/sdk/speech/",
+    "license": "MIT",
+    "category": [
+      "audio_speech",
+      "accessibility"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "tts",
+      "speech-synthesis",
+      "expo-speech",
+      "accessibility"
+    ],
+    "acquisition_method": "npm",
+    "runtime_method": "project_scoped_install",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "text-to-speech accessibility",
+      "voice narration on mobile"
+    ],
+    "avoid_conditions": [
+      "silent HUD interfaces"
+    ],
+    "policy_verdict": "OPTIONAL",
+    "rationale": "Native text-to-speech synthesis engine for mobile Expo environments."
   },
   {
-    "id": "impeccable",
-    "name": "Impeccable",
-    "canonical_url": "https://github.com/pbakaus/impeccable",
+    "id": "elevenlabs",
+    "name": "ElevenLabs Voice API",
+    "canonical_url": "https://elevenlabs.io/",
+    "source_type": "web_reference",
+    "documentation_url": "https://elevenlabs.io/docs",
+    "license": "Proprietary",
+    "category": [
+      "voice_synthesis",
+      "audio_ai"
+    ],
+    "representation": "service",
+    "routing_tags": [
+      "realistic-voice",
+      "voice-cloning",
+      "elevenlabs",
+      "neural-audio"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "expressive AI narrator voice",
+      "audio companion features"
+    ],
+    "avoid_conditions": [
+      "pure code refactoring tasks",
+      "storing API keys in repo"
+    ],
+    "policy_verdict": "OPTIONAL SPECIALIST",
+    "rationale": "High-fidelity neural voice synthesis service. Credentials managed in local env only."
+  },
+  {
+    "id": "shadcn-ui",
+    "name": "shadcn/ui",
+    "canonical_url": "https://ui.shadcn.com/",
+    "source_type": "cli_tool",
+    "source_repository": "https://github.com/shadcn-ui/ui.git",
+    "documentation_url": "https://ui.shadcn.com/docs",
+    "license": "MIT",
+    "category": [
+      "ui_components",
+      "radix_primitives"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "shadcn",
+      "radix-ui",
+      "accessible-components",
+      "tailwind-components"
+    ],
+    "acquisition_method": "npx",
+    "runtime_method": "project_scoped_install",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "college web primitives",
+      "hiring web chrome when plan explicitly names it"
+    ],
+    "avoid_conditions": [
+      "LYRA operator HUD",
+      "defaulting without plan instruction"
+    ],
+    "policy_verdict": "SPECIALIST (RESTRICTED)",
+    "rationale": "Plan-named hiring/college only. Strictly forbidden on LYRA operator HUD surfaces."
+  },
+  {
+    "id": "kokonut-ui",
+    "name": "Kokonut UI",
+    "canonical_url": "https://kokonutui.com/",
+    "source_type": "web_reference",
+    "documentation_url": "https://kokonutui.com/docs",
+    "license": "MIT",
+    "category": [
+      "component_blocks",
+      "ui_inspiration"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "kokonut",
+      "animated-cards",
+      "tailwind-blocks"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "BOOKMARK",
+    "trigger_conditions": [
+      "isolated animated card pattern study"
+    ],
+    "avoid_conditions": [
+      "installing as entire framework"
+    ],
+    "policy_verdict": "OPTIONAL BOOKMARK",
+    "rationale": "Copy-paste animated UI components. Reference for single block inspiration."
+  },
+  {
+    "id": "mapcn",
+    "name": "Mapcn Geospatial UI",
+    "canonical_url": "https://github.com/AnmolSaini16/mapcn",
     "source_type": "github_repository",
-    "category": ["visual_qa", "design_polish"],
-    "representation": "skill",
-    "routing_tags": ["ux", "ui", "polish"],
-    "acquisition_method": "git",
-    "runtime_method": "global_active_skill",
-    "trigger_conditions": ["premium visual quality", "frontend QA"],
-    "avoid_conditions": ["backend tasks"]
+    "source_repository": "https://github.com/AnmolSaini16/mapcn.git",
+    "documentation_url": "https://github.com/AnmolSaini16/mapcn/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "geospatial_ui",
+      "maps",
+      "components"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "map-components",
+      "geospatial",
+      "leaflet-tailwind"
+    ],
+    "acquisition_method": "npm",
+    "runtime_method": "project_scoped_install",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "interactive mapping components",
+      "geospatial data overlays"
+    ],
+    "avoid_conditions": [
+      "standard non-geographic dashboards"
+    ],
+    "policy_verdict": "OPTIONAL",
+    "rationale": "Geospatial map components tailored for modern Tailwind UI integration."
+  },
+  {
+    "id": "playwright",
+    "name": "Playwright Visual QA Adapter",
+    "canonical_url": "https://playwright.dev/",
+    "source_type": "mcp_server",
+    "source_repository": "https://github.com/microsoft/playwright.git",
+    "documentation_url": "https://playwright.dev/docs/intro",
+    "license": "Apache-2.0",
+    "category": [
+      "qa",
+      "verification",
+      "browser_automation"
+    ],
+    "representation": "mcp",
+    "routing_tags": [
+      "browser-qa",
+      "visual-capture",
+      "e2e-testing",
+      "screenshot"
+    ],
+    "acquisition_method": "mcp_install",
+    "runtime_method": "mcp_connection",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "UI implementation complete",
+      "verify responsive viewports",
+      "visual regression check"
+    ],
+    "avoid_conditions": [
+      "pure backend endpoints"
+    ],
+    "policy_verdict": "CORE MCP",
+    "rationale": "Mandatory visual verification adapter capturing Desktop, Tablet, and Mobile DOM viewports."
+  },
+  {
+    "id": "lighthouse",
+    "name": "Lighthouse CI Performance Gate",
+    "canonical_url": "https://github.com/GoogleChrome/lighthouse",
+    "source_type": "cli_tool",
+    "source_repository": "https://github.com/GoogleChrome/lighthouse.git",
+    "documentation_url": "https://developer.chrome.com/docs/lighthouse/overview",
+    "license": "Apache-2.0",
+    "category": [
+      "performance",
+      "seo",
+      "core_web_vitals"
+    ],
+    "representation": "cli",
+    "routing_tags": [
+      "performance-audit",
+      "core-web-vitals",
+      "cls-check",
+      "lcp-check"
+    ],
+    "acquisition_method": "npx",
+    "runtime_method": "on_demand_cli",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "production build audit",
+      "verify Core Web Vitals score"
+    ],
+    "avoid_conditions": [
+      "development hot-reload iteration"
+    ],
+    "policy_verdict": "CORE CLI",
+    "rationale": "Automated performance and SEO audit gate asserting CLS < 0.05 and LCP < 2.5s."
+  },
+  {
+    "id": "jiro-design",
+    "name": "Jiro Design Inspiration",
+    "canonical_url": "https://jiro.design/",
+    "source_type": "web_reference",
+    "documentation_url": "https://jiro.design/",
+    "category": [
+      "visual_research",
+      "creative_direction"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "jiro",
+      "creative-layouts",
+      "visual-direction"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "high-visual design phase",
+      "creative layout research"
+    ],
+    "avoid_conditions": [
+      "backend tasks"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "Curated visual direction portal queried during multi-source research before synthesis."
+  },
+  {
+    "id": "cari-institute",
+    "name": "CARI Aesthetic Archive",
+    "canonical_url": "https://cari.institute/",
+    "source_type": "web_reference",
+    "documentation_url": "https://cari.institute/",
+    "category": [
+      "visual_research",
+      "aesthetic_classification"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "cari",
+      "aesthetic-history",
+      "visual-subcultures",
+      "design-taxonomy"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "defining custom design language",
+      "aesthetic movement analysis"
+    ],
+    "avoid_conditions": [
+      "cookie-cutter corporate templates"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "Consumer Aesthetics Research Institute: authoritative taxonomies of visual movements."
   },
   {
     "id": "scrapling",
     "name": "Scrapling",
     "canonical_url": "https://github.com/D4Vinci/Scrapling.git",
     "source_type": "github_repository",
-    "category": ["research", "extraction"],
+    "source_repository": "https://github.com/D4Vinci/Scrapling.git",
+    "documentation_url": "https://github.com/D4Vinci/Scrapling/blob/main/README.md",
+    "license": "BSD-3-Clause",
+    "category": [
+      "research",
+      "data_extraction",
+      "dom_parser"
+    ],
     "representation": "cli",
-    "routing_tags": ["web scraping", "data extraction"],
+    "routing_tags": [
+      "scrapling",
+      "dom-extraction",
+      "fast-fetch"
+    ],
     "acquisition_method": "pip",
     "runtime_method": "on_demand_cli",
-    "trigger_conditions": ["massive data extraction", "competitor research"],
-    "avoid_conditions": ["simple API calls"]
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "research data extraction",
+      "gathering public DOM snippets"
+    ],
+    "avoid_conditions": [
+      "bulk unauthorized scraping"
+    ],
+    "policy_verdict": "SPECIALIST CLI",
+    "rationale": "High-speed DOM extraction engine used for sanctioned visual research harvest."
   },
   {
     "id": "shadergradient",
     "name": "ShaderGradient",
     "canonical_url": "https://github.com/ruucm/shadergradient.git",
     "source_type": "github_repository",
-    "category": ["webgl", "visual_effects"],
+    "source_repository": "https://github.com/ruucm/shadergradient.git",
+    "documentation_url": "https://www.shadergradient.co/",
+    "license": "MIT",
+    "category": [
+      "webgl",
+      "visual_effects",
+      "threejs"
+    ],
     "representation": "dependency",
-    "routing_tags": ["gradients", "shader", "webgl"],
+    "routing_tags": [
+      "shadergradient",
+      "fluid-mesh",
+      "webgl-background",
+      "r3f-materials"
+    ],
     "acquisition_method": "npm",
     "runtime_method": "project_scoped_install",
-    "trigger_conditions": ["liquid background", "mesh gradient"],
-    "avoid_conditions": ["minimalist solid design"]
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "liquid background",
+      "mesh gradient hero",
+      "spatial WebGL visual"
+    ],
+    "avoid_conditions": [
+      "minimalist monochrome surfaces"
+    ],
+    "policy_verdict": "CURATED CATALOG",
+    "rationale": "Staged in curated_catalog for on-demand lazy loading in 3D spatial web tasks."
+  },
+  {
+    "id": "taste-design",
+    "name": "Taste Design",
+    "canonical_url": "https://github.com/Leonxlnx/taste-skill",
+    "source_type": "agent_skill",
+    "source_repository": "https://github.com/Leonxlnx/taste-skill.git",
+    "documentation_url": "https://github.com/Leonxlnx/taste-skill/blob/main/README.md",
+    "license": "Apache-2.0",
+    "category": [
+      "design_direction",
+      "typography",
+      "layout"
+    ],
+    "representation": "skill",
+    "routing_tags": [
+      "anti-generic",
+      "typography",
+      "asymmetry",
+      "design-tokens"
+    ],
+    "acquisition_method": "git",
+    "runtime_method": "global_active_skill",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "visual design lock",
+      "DESIGN.md generation"
+    ],
+    "avoid_conditions": [
+      "backend tasks",
+      "headless scripts"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "Mandatory design governance skill generating opinionated, premium DESIGN.md specifications."
+  },
+  {
+    "id": "impeccable",
+    "name": "Impeccable Visual Polish",
+    "canonical_url": "https://github.com/pbakaus/impeccable",
+    "source_type": "agent_skill",
+    "source_repository": "https://github.com/pbakaus/impeccable.git",
+    "documentation_url": "https://github.com/pbakaus/impeccable/blob/main/README.md",
+    "license": "MIT",
+    "category": [
+      "visual_qa",
+      "design_polish",
+      "interaction"
+    ],
+    "representation": "skill",
+    "routing_tags": [
+      "ux-audit",
+      "visual-hierarchy",
+      "cognitive-load",
+      "design-critique"
+    ],
+    "acquisition_method": "git",
+    "runtime_method": "global_active_skill",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "frontend visual audit",
+      "UI polish review",
+      "component critique"
+    ],
+    "avoid_conditions": [
+      "backend tasks"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "Core UI polish and design critique skill ensuring exceptional frontend craftsmanship."
+  },
+  {
+    "id": "emil-design-eng",
+    "name": "Emil Design Engineering Philosophy",
+    "canonical_url": "https://emilkowal.ski/",
+    "source_type": "agent_skill",
+    "documentation_url": "https://emilkowal.ski/",
+    "license": "MIT",
+    "category": [
+      "ui_polish",
+      "micro_interactions",
+      "animation_philosophy"
+    ],
+    "representation": "skill",
+    "routing_tags": [
+      "emil-kowalski",
+      "micro-interactions",
+      "motion-principles",
+      "delight"
+    ],
+    "acquisition_method": "git",
+    "runtime_method": "global_active_skill",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "micro-interaction implementation",
+      "component transition polish"
+    ],
+    "avoid_conditions": [
+      "backend tasks"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "Encodes Emil Kowalski's philosophy on UI polish, subtle transitions, and kinetic feedback."
+  },
+  {
+    "id": "land-book",
+    "name": "Land-book Showcase",
+    "canonical_url": "https://land-book.com/",
+    "source_type": "web_reference",
+    "documentation_url": "https://land-book.com/",
+    "category": [
+      "visual_research",
+      "landing_pages"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "land-book",
+      "landing-page-patterns",
+      "hero-layouts"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "landing page visual research",
+      "marketing website structuring"
+    ],
+    "avoid_conditions": [
+      "backend tasks"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "Curated repository of top landing pages queried by the research coordinator."
+  },
+  {
+    "id": "siteinspire",
+    "name": "Siteinspire Directory",
+    "canonical_url": "https://www.siteinspire.com/",
+    "source_type": "web_reference",
+    "documentation_url": "https://www.siteinspire.com/",
+    "category": [
+      "visual_research",
+      "web_showcase"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "siteinspire",
+      "minimalist-showcase",
+      "grid-systems"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "creative web direction",
+      "minimalist layout discovery"
+    ],
+    "avoid_conditions": [
+      "backend tasks"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "Authoritative gallery of real-world editorial and creative website layouts."
+  },
+  {
+    "id": "r3f",
+    "name": "React Three Fiber",
+    "canonical_url": "https://docs.pmnd.rs/react-three-fiber",
+    "source_type": "npm_package",
+    "source_repository": "https://github.com/pmndrs/react-three-fiber.git",
+    "documentation_url": "https://docs.pmnd.rs/react-three-fiber/getting-started/introduction",
+    "license": "MIT",
+    "category": [
+      "3d",
+      "webgl",
+      "scene_graph"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "3d",
+      "canvas",
+      "webgl",
+      "threejs",
+      "r3f"
+    ],
+    "acquisition_method": "npm",
+    "runtime_method": "project_scoped_install",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "3D spatial UI",
+      "WebGL canvas elements",
+      "interactive 3D hero"
+    ],
+    "avoid_conditions": [
+      "pure 2D flat layouts"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "Standard React declarative renderer for Three.js 3D spatial scenes."
+  },
+  {
+    "id": "strix",
+    "name": "Strix Security Pentest Suite",
+    "canonical_url": "https://strix.ai/",
+    "source_type": "cli_tool",
+    "source_repository": "https://github.com/usestrix/strix.git",
+    "documentation_url": "https://docs.strix.ai",
+    "license": "MIT",
+    "category": [
+      "security",
+      "pentest",
+      "vulnerability_scanner"
+    ],
+    "representation": "cli",
+    "routing_tags": [
+      "strix",
+      "pentest",
+      "vulnerability-scan",
+      "owasp-check"
+    ],
+    "acquisition_method": "pip",
+    "runtime_method": "on_demand_cli",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "pre-release security scan",
+      "vulnerability audit on our applications"
+    ],
+    "avoid_conditions": [
+      "scanning third-party networks without authorization"
+    ],
+    "policy_verdict": "CORE CLI",
+    "rationale": "Autonomous AI penetration testing tool that exploits and proves vulnerabilities in our apps."
+  },
+  {
+    "id": "ship-safe",
+    "name": "Ship-Safe Defensive Security Baseline",
+    "canonical_url": "https://github.com/orchestra-org/ship-safe",
+    "source_type": "agent_skill",
+    "documentation_url": "https://github.com/orchestra-org/ship-safe/blob/main/README.md",
+    "category": [
+      "defensive_security",
+      "ci_cd",
+      "best_practices"
+    ],
+    "representation": "skill",
+    "routing_tags": [
+      "ship-safe",
+      "defensive-hardening",
+      "secrets-prevention",
+      "ci-security"
+    ],
+    "acquisition_method": "git",
+    "runtime_method": "global_active_skill",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "adding auth endpoints",
+      "configuring CI/CD",
+      "deploying apps"
+    ],
+    "avoid_conditions": [
+      "attacking external systems"
+    ],
+    "policy_verdict": "CORE SPECIALIST",
+    "rationale": "Mandatory defensive baseline preventing token leaks, misconfigured CORS, and auth flaws."
+  },
+  {
+    "id": "semgrep",
+    "name": "Semgrep Static Analysis Adapter",
+    "canonical_url": "https://semgrep.dev/",
+    "source_type": "cli_tool",
+    "source_repository": "https://github.com/semgrep/semgrep.git",
+    "documentation_url": "https://semgrep.dev/docs/",
+    "license": "LGPL-2.1",
+    "category": [
+      "security",
+      "sast",
+      "code_analysis"
+    ],
+    "representation": "cli",
+    "routing_tags": [
+      "sast",
+      "semgrep",
+      "security-lint",
+      "static-analysis"
+    ],
+    "acquisition_method": "pip",
+    "runtime_method": "on_demand_cli",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "automated code security linting",
+      "pre-commit scan"
+    ],
+    "avoid_conditions": [],
+    "policy_verdict": "VERIFICATION ADAPTER",
+    "rationale": "Fast static analysis scanner checking codebases against vetted security rulesets."
   }
 ]
