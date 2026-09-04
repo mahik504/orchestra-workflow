@@ -34,7 +34,7 @@ func CheckQuarantineBoundary(path string) error {
 		lookupPath = unescaped
 	}
 
-	normalized := strings.ToLower(filepath.ToSlash(lookupPath))
+	normalized := strings.ToLower(strings.ReplaceAll(lookupPath, "\\", "/"))
 	for _, banned := range BannedPathSubstrings {
 		if strings.Contains(normalized, banned) {
 			return fmt.Errorf("%w: path '%s' violates quarantine boundaries", ErrQuarantinedPath, path)

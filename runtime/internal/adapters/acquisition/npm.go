@@ -229,10 +229,12 @@ func isSystemDirectory(path string) bool {
 	if trimmed == "" {
 		return true
 	}
-	norm := strings.ToLower(filepath.ToSlash(filepath.Clean(trimmed)))
-	normNoSlash := strings.TrimSuffix(norm, "/")
+	// Explicit cross-platform slash conversion (filepath.ToSlash is a no-op on Linux for backslashes)
+	cleanPath := strings.ReplaceAll(trimmed, "\\", "/")
+	norm := strings.ToLower(filepath.ToSlash(filepath.Clean(cleanPath)))
+	normNoSlash := strings.TrimRight(norm, "/\\")
 
-	if norm == "/" || norm == "\\" || normNoSlash == "c:" || norm == "c:/" {
+	if norm == "/" || norm == "\\" || normNoSlash == "c:" || norm == "c:/" || norm == "c:\\" {
 		return true
 	}
 
@@ -250,8 +252,9 @@ func isSystemDirectory(path string) bool {
 		"c:/programdata",
 	}
 	for _, sys := range systemPaths {
-		sysNoSlash := strings.TrimSuffix(sys, "/")
-		if norm == sys || normNoSlash == sysNoSlash || strings.HasPrefix(norm, sysNoSlash+"/") {
+		sysClean := strings.ToLower(filepath.ToSlash(filepath.Clean(strings.ReplaceAll(sys, "\\", "/"))))
+		sysNoSlash := strings.TrimRight(sysClean, "/\\")
+		if norm == sysClean || normNoSlash == sysNoSlash || strings.HasPrefix(norm, sysNoSlash+"/") {
 			return true
 		}
 	}
