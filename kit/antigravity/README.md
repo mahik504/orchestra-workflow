@@ -16,7 +16,7 @@ Every product idea has `kind`: `college` | `personal` | `hiring-cv`. Do not mix 
 
 ## You (author) — specialist mode
 
-Cursor stays conductor. In Antigravity: open the **app repo** + add folder `<ORCHESTRA_HOME>`. Paste `MASTER-PROMPT.md` with `MODE=specialist`. Read `STACK.md` for what is installed vs refused.
+Cursor stays conductor. In Antigravity: open the **app repo** + add folder `<ORCHESTRA_HOME>`. See `ALWAYS-ON.md`. Paste `MASTER-PROMPT.md` with `MODE=specialist`. Read `STACK.md` for what is installed vs refused.
 
 ## Friend — conductor mode
 

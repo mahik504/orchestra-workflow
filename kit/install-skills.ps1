@@ -24,4 +24,4 @@ Get-ChildItem -LiteralPath $Skills -Directory | ForEach-Object {
   }
 }
 
-Write-Host "Done. Restart the agent. If a dest folder was missing, that product is not installed — skip it."
+Write-Host "Done. Restart the agent. If a dest folder was missing, that product is not installed - skip it."

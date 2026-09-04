@@ -41,7 +41,17 @@ reinforcement learning. `orchestra lifecycle` prints the 15-step proof for one U
 
 **README.** Rewritten against the code. The previous version cited capability and domain names that
 do not exist in the graph, and described research as querying live design indexes when
-`ResearchCoordinator` defaults to offline fixtures.
+`ResearchCoordinator` defaults to offline fixtures. CI and Hygiene badges sit on the README.
+The eight-stage architecture diagram from `ARCHITECTURE.md` is inlined there.
+
+**Doctor.** Playwright is checked as `npx playwright --version` (split argv). Missing Playwright
+is `[OPTIONAL]` — visual jobs use a project install or the agent browser. Global npm stays blocked.
+
+**Engine install.** `kit/install-local-engine.ps1` / `.sh` persist `ORCHESTRA_HOME` as a user env
+and `go install` `orchestra` onto `~/go/bin`. Chat still uses the markdown contract without the
+binary. `docs/getting-started.md` treats `classify` / `plan` as optional.
+
+**Catalog.** `build-your-own-x` rationale is a public bookmark sentence. It does not name private notes.
 
 ## [3.0.0] - The Castle Pass Release
 *Orchestra V3: Capability router and Go execution layer.*

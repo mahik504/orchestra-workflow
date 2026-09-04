@@ -153,8 +153,8 @@ func runDoctor(args []string) {
 		fmt.Println("Contract pin:    unset (using VERSION 3.1.0)")
 	}
 
-	checkCmd := func(name string, arg string) (string, bool) {
-		out, err := exec.Command(name, arg).Output()
+	checkCmd := func(name string, args ...string) (string, bool) {
+		out, err := exec.Command(name, args...).Output()
 		if err != nil {
 			return "[MISSING] Not detected in PATH", false
 		}
@@ -208,12 +208,12 @@ func runDoctor(args []string) {
 		fmt.Printf("Quarantine:      [FAIL] Quarantine boundary check failed to reject isolated library\n")
 	}
 
-	// 4. Visual QA Tooling
-	pwOut, pwOk := checkCmd("npx", "playwright --version")
+	// 4. Visual QA Tooling (project-scoped; global npm is blocked)
+	pwOut, pwOk := checkCmd("npx", "playwright", "--version")
 	if pwOk {
 		fmt.Printf("Playwright CLI:  %s\n", pwOut)
 	} else {
-		fmt.Println("Playwright CLI:  [NOTE] npx playwright not installed globally (mock verifier active)")
+		fmt.Println("Playwright CLI:  [OPTIONAL] not on PATH — visual jobs use project Playwright or the agent browser")
 	}
 
 	// 5. Resource memory diagnostics

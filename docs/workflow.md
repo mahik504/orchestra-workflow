@@ -8,12 +8,12 @@ Understand → Classify → Search graph → Design Lab / Technical plan → HUM
 ```
 
 1. **Classify** into one capability in `registries/design-resource-graph.json`.
-2. **Plan** with `orchestra plan` (no side effects).
+2. **Plan** in chat. `orchestra plan` is optional (no side effects) when you want the engine to score the brief.
 3. **Design Lab** is a write lock on PREMIUM / EXPERIMENTAL visual work until a stack card is approved. Say `skip the lab` to bypass one task.
 4. **Implement** only the approved direction. Project-scoped installs. No global npm.
 5. **Verify** on the running app. `DONE` / `VERIFIED` needs evidence in the same message.
 
-Commands: `orchestra classify`, `orchestra plan`, `orchestra run`, `orchestra doctor`.
+Optional engine: `orchestra classify`, `orchestra plan`, `orchestra run`, `orchestra doctor`. The markdown contract is on whether or not the binary is in PATH.
 
 Say **skip orchestra** to stand the contract down for the session.
 

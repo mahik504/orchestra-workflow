@@ -1,5 +1,10 @@
 # Orchestra 3.1.0
 
+[![CI](https://github.com/mahik504/orchestra-workflow/actions/workflows/ci.yml/badge.svg)](https://github.com/mahik504/orchestra-workflow/actions/workflows/ci.yml)
+[![Hygiene](https://github.com/mahik504/orchestra-workflow/actions/workflows/hygiene.yml/badge.svg)](https://github.com/mahik504/orchestra-workflow/actions/workflows/hygiene.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/mahik504/orchestra-workflow?include_prereleases&sort=semver)](https://github.com/mahik504/orchestra-workflow/releases)
+
 A control plane for agentic development. It decides *what* to build before the agent decides *how*, and it stops work a stranger will see from being designed one file at a time.
 
 Orchestra is a **contract** (markdown your agent reads) plus an **engine** (a Go binary that enforces the parts a contract cannot). The contract works in any agent that can read markdown. The engine is optional.
@@ -34,6 +39,29 @@ Understand → Classify → Search graph → Design Lab / Technical plan → HUM
 ```
 
 The Go engine runs the same shape as eight stages: Discover, Classify, Research, Synthesize, Design System, Implement, Visual QA, Iterate.
+
+### Architecture
+
+```mermaid
+flowchart TD
+  discover[1 Discover: inspect workspace and existing tooling]
+  classify[2 Classify: archetype, quality bar, platform]
+  research[3 Research: walk the capability graph]
+  synth[4 Synthesize: tokens, type, motion, rules]
+  design[5 Design System: stack card and DESIGN contract]
+  gate{Human gate}
+  implement[6 Implement: acquire scoped resources, write code]
+  qa[7 Visual QA: multi-viewport, console, contrast]
+  iterate[8 Iterate: route defects back]
+
+  discover --> classify --> research --> synth --> design --> gate
+  gate -->|approved| implement --> qa --> iterate
+  gate -->|edit| research
+  iterate -->|layout defect| implement
+  iterate -->|token defect| design
+```
+
+Backend, research, and documentation tasks run the same spine with stages 4–5 collapsed into a technical plan and stage 7 replaced by tests and static analysis. Full notes: [`ARCHITECTURE.md`](ARCHITECTURE.md).
 
 **Available is not loaded.** A registry row is not permission to dump a pack into context. **Repo beats notes** — code on disk is the source of truth. **Jump one note** — `routes.md` to one file to the app repo, never a scan of the whole workspace just in case.
 
@@ -175,13 +203,17 @@ chmod +x kit/init-workspace.sh kit/install-skills.sh
 ./kit/install-skills.sh
 ```
 
-Then open **your private workspace** (default `../orchestra-workspace`) alongside the app repo you are building, and point your agent at `AGENTS.md`. Start with [docs/getting-started.md](docs/getting-started.md).
+Then open **your private workspace** (default `../orchestra-workspace`) alongside the app repo you are building, and point your agent at `AGENTS.md`. That is enough for Orchestra to run in chat. The Go binary is optional. Start with [docs/getting-started.md](docs/getting-started.md).
 
 Init gives you an empty `projects/`, an empty `memory/`, and example routes. Do not copy someone else's populated workspace.
 
 ### With the engine
 
-Requires Go 1.22+, Node 18+, Git 2.30+.
+Requires Go 1.22+, Node 18+, Git 2.30+. Persist `ORCHESTRA_HOME` and install onto PATH (once):
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File kit/install-local-engine.ps1 -HomeDir "D:\work\my-orchestra"
+```
 
 ```bash
 cd runtime

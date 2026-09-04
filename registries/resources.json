@@ -294,7 +294,7 @@
       "installing as runtime skill"
     ],
     "policy_verdict": "BOOKMARK (HIGH)",
-    "rationale": "Learning curriculum. Practice track in career.md. Not a skill. Do not clone the monorepo."
+    "rationale": "Learning curriculum. Bookmark only; not a runtime skill. Do not clone the monorepo."
   },
   {
     "id": "awesome-claude-skills",
