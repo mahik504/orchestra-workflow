@@ -33,10 +33,13 @@ jobs:
 
     - name: Validate Schemas
       run: |
+        shopt -s nullglob
         for file in ./schemas/*.json; do
-          if ! jq empty "$file"; then
-            echo "Invalid JSON in $file"
-            exit 1
+          if [ -f "$file" ]; then
+            if ! jq empty "$file"; then
+              echo "Invalid JSON in $file"
+              exit 1
+            fi
           fi
         done
 

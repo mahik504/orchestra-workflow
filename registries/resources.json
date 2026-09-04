@@ -3776,5 +3776,727 @@
     "avoid_conditions": [],
     "policy_verdict": "VERIFICATION ADAPTER",
     "rationale": "Fast static analysis scanner checking codebases against vetted security rulesets."
+  },
+  {
+    "id": "design-md",
+    "name": "DesignMD",
+    "canonical_url": "https://designmd.io",
+    "source_type": "specification",
+    "documentation_url": "https://designmd.io/docs",
+    "category": [
+      "design_system",
+      "tokens",
+      "specification"
+    ],
+    "representation": "prompt_library",
+    "routing_tags": [
+      "design-system-spec",
+      "design-tokens",
+      "designmd",
+      "design-contract"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "design system documentation",
+      "token extraction",
+      "designmd"
+    ],
+    "avoid_conditions": [
+      "simple bug fix",
+      "backend task"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "Markdown-based design system standard and prompt framework for AI agents."
+  },
+  {
+    "id": "archives-design",
+    "name": "archives.design",
+    "canonical_url": "https://archives.design",
+    "source_type": "digital_archive",
+    "documentation_url": "https://archives.design/about",
+    "category": [
+      "visual_research",
+      "design_history",
+      "graphic_design"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "graphic-design-archive",
+      "vintage-design",
+      "design-history",
+      "visual-research"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "editorial design",
+      "vintage typography",
+      "design history research"
+    ],
+    "avoid_conditions": [
+      "standard dashboard",
+      "cli tool"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "Curated digital archive of graphic design history, typography, and timeless layouts."
+  },
+  {
+    "id": "ux-planet",
+    "name": "UX Planet",
+    "canonical_url": "https://uxplanet.org",
+    "source_type": "web_reference",
+    "documentation_url": "https://uxplanet.org",
+    "category": [
+      "ux_research",
+      "usability",
+      "interaction_design"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "ux-research",
+      "ux-patterns",
+      "design-articles",
+      "usability"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "ux usability audit",
+      "information architecture",
+      "interaction research"
+    ],
+    "avoid_conditions": [
+      "low-level backend bug",
+      "database schema"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "Comprehensive publication and reference for UX/UI design heuristics and usability patterns."
+  },
+  {
+    "id": "uiverse",
+    "name": "Uiverse",
+    "canonical_url": "https://uiverse.io",
+    "source_type": "component_gallery",
+    "documentation_url": "https://uiverse.io",
+    "license": "MIT",
+    "category": [
+      "components",
+      "css_ui",
+      "micro_interactions"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "community-ui",
+      "css-elements",
+      "micro-components",
+      "buttons-inputs"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "custom css buttons",
+      "cards",
+      "loaders",
+      "micro-ui elements"
+    ],
+    "avoid_conditions": [
+      "full application architecture",
+      "heavy frameworks"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "Open-source community library of custom CSS/Tailwind UI elements and micro-interactions."
+  },
+  {
+    "id": "letterform-archive",
+    "name": "Letterform Archive",
+    "canonical_url": "https://letterformarchive.org",
+    "source_type": "digital_archive",
+    "documentation_url": "https://oa.letterformarchive.org",
+    "category": [
+      "typography",
+      "historical_archive",
+      "lettering"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "typography",
+      "letterforms",
+      "editorial-fonts",
+      "font-history"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "editorial typography",
+      "bespoke display type",
+      "letterform research"
+    ],
+    "avoid_conditions": [
+      "generic sans-serif system defaults"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "Nonprofit center dedicated to the history of written and printed letters, serving as historical typography reference."
+  },
+  {
+    "id": "geist-font",
+    "name": "Geist Font",
+    "canonical_url": "https://vercel.com/font",
+    "source_type": "npm_package",
+    "source_repository": "https://github.com/vercel/geist-font.git",
+    "documentation_url": "https://vercel.com/font/sans",
+    "license": "SIL Open Font License 1.1",
+    "category": [
+      "typography",
+      "fonts",
+      "sans_serif"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "typography",
+      "geist-sans",
+      "modern-sans",
+      "vercel-font"
+    ],
+    "acquisition_method": "npm",
+    "runtime_method": "project_scoped_install",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "modern technical UI",
+      "developer dashboard",
+      "clean typography"
+    ],
+    "avoid_conditions": [
+      "heritage serif editorial branding"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "High-precision geometric sans font family crafted for developer tools and modern web UI."
+  },
+  {
+    "id": "geist-mono-font",
+    "name": "Geist Mono Font",
+    "canonical_url": "https://vercel.com/font",
+    "source_type": "npm_package",
+    "source_repository": "https://github.com/vercel/geist-font.git",
+    "documentation_url": "https://vercel.com/font/mono",
+    "license": "SIL Open Font License 1.1",
+    "category": [
+      "typography",
+      "fonts",
+      "monospace"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "typography",
+      "monospace",
+      "code-editor-font",
+      "technical-mono"
+    ],
+    "acquisition_method": "npm",
+    "runtime_method": "project_scoped_install",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "data tables",
+      "terminal displays",
+      "code editors",
+      "metrics"
+    ],
+    "avoid_conditions": [
+      "marketing headlines",
+      "prose body text"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "Monospaced companion font to Geist, tailored for code, data tables, and terminal UIs."
+  },
+  {
+    "id": "animemaster",
+    "name": "AnimeMaster",
+    "canonical_url": "https://github.com/juliangarnier/anime",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/juliangarnier/anime.git",
+    "documentation_url": "https://animejs.com/documentation/",
+    "license": "MIT",
+    "category": [
+      "motion",
+      "animation",
+      "svg_motion"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "animation",
+      "micro-motion",
+      "animejs",
+      "timeline-animation"
+    ],
+    "acquisition_method": "npm",
+    "runtime_method": "project_scoped_install",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "discrete svg animation",
+      "complex path morphing"
+    ],
+    "avoid_conditions": [
+      "gsap already handles choreographies",
+      "simple css transitions"
+    ],
+    "policy_verdict": "CURATED OPTIONAL",
+    "rationale": "Lightweight JavaScript animation engine alternative for discrete SVG and DOM micro-motion."
+  },
+  {
+    "id": "transitions-dev",
+    "name": "transitions.dev",
+    "canonical_url": "https://transitions.dev",
+    "source_type": "web_reference",
+    "documentation_url": "https://transitions.dev",
+    "category": [
+      "motion",
+      "view_transitions",
+      "page_routing"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "page-transitions",
+      "view-transitions",
+      "css-transitions",
+      "motion-patterns"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "page transition choreographies",
+      "view transitions api"
+    ],
+    "avoid_conditions": [
+      "single page static forms",
+      "backend microservices"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "Interactive gallery and reference for modern View Transitions API implementations."
+  },
+  {
+    "id": "moving-icons",
+    "name": "Moving Icons",
+    "canonical_url": "https://movingicons.dev",
+    "source_type": "component_gallery",
+    "documentation_url": "https://movingicons.dev",
+    "license": "MIT",
+    "category": [
+      "icons",
+      "motion",
+      "animated_icons"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "animated-icons",
+      "lottie-icons",
+      "svg-motion",
+      "icon-transitions"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "reference_only",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "interactive status icons",
+      "animated feedback states"
+    ],
+    "avoid_conditions": [
+      "static document icons",
+      "high density data tables"
+    ],
+    "policy_verdict": "CURATED OPTIONAL",
+    "rationale": "Curated collection of smoothly animated SVG icons for interactive feedback states."
+  },
+  {
+    "id": "animate-icons",
+    "name": "Animate Icons",
+    "canonical_url": "https://animateicons.com",
+    "source_type": "component_gallery",
+    "documentation_url": "https://animateicons.com",
+    "category": [
+      "icons",
+      "micro_interactions",
+      "animation"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "icon-animation",
+      "hover-icons",
+      "micro-interactions"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "reference_only",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "hover micro-interactions on icons",
+      "subtle reactive UI"
+    ],
+    "avoid_conditions": [
+      "distracting looping animations"
+    ],
+    "policy_verdict": "CURATED OPTIONAL",
+    "rationale": "Configurable, animated SVG icon components with physics-based hover states."
+  },
+  {
+    "id": "its-hover",
+    "name": "It's Hover",
+    "canonical_url": "https://hover.dev",
+    "source_type": "component_gallery",
+    "documentation_url": "https://hover.dev",
+    "category": [
+      "interaction",
+      "hover_effects",
+      "motion"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "hover-effects",
+      "framer-motion-effects",
+      "interaction-patterns"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "rich button hovers",
+      "card tilt physics",
+      "tactile interaction feedback"
+    ],
+    "avoid_conditions": [
+      "mobile-only screens without pointer"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "Collection of creative hover animations and component interaction recipes built with Framer Motion/Tailwind."
+  },
+  {
+    "id": "liquid-glass",
+    "name": "Liquid Glass",
+    "canonical_url": "https://github.com/kbrgl/liquid-glass",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/kbrgl/liquid-glass.git",
+    "documentation_url": "https://github.com/kbrgl/liquid-glass#readme",
+    "license": "MIT",
+    "category": [
+      "shaders",
+      "webgl",
+      "glassmorphism"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "shaders",
+      "webgl",
+      "liquid-distortion",
+      "glassmorphism"
+    ],
+    "acquisition_method": "git_clone",
+    "runtime_method": "project_scoped_install",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "liquid refractive glass effects",
+      "distorted luxury hero backgrounds"
+    ],
+    "avoid_conditions": [
+      "low-end mobile devices",
+      "accessible corporate documentation"
+    ],
+    "policy_verdict": "CURATED OPTIONAL",
+    "rationale": "WebGL/GLSL liquid refractive glass shader effect for premium editorial headers."
+  },
+  {
+    "id": "liquid-logo",
+    "name": "Liquid Logo",
+    "canonical_url": "https://github.com/akella/liquid-logo",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/akella/liquid-logo.git",
+    "documentation_url": "https://github.com/akella/liquid-logo#readme",
+    "license": "MIT",
+    "category": [
+      "shaders",
+      "threejs",
+      "branding"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "threejs-logo",
+      "fluid-simulation",
+      "interactive-logo"
+    ],
+    "acquisition_method": "git_clone",
+    "runtime_method": "project_scoped_install",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "interactive brand mark",
+      "fluid dispersion logo hero"
+    ],
+    "avoid_conditions": [
+      "static logo headers",
+      "content-first articles"
+    ],
+    "policy_verdict": "CURATED OPTIONAL",
+    "rationale": "Interactive particle-fluid simulation shader for hero brand marks."
+  },
+  {
+    "id": "vgpu-shaders",
+    "name": "vGPU Shaders",
+    "canonical_url": "https://github.com/bhouston/vgpu",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/bhouston/vgpu.git",
+    "documentation_url": "https://github.com/bhouston/vgpu#readme",
+    "license": "MIT",
+    "category": [
+      "webgpu",
+      "shaders",
+      "compute_graphics"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "webgpu",
+      "glsl",
+      "shader-pipeline",
+      "compute-graphics"
+    ],
+    "acquisition_method": "git_clone",
+    "runtime_method": "project_scoped_install",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "webgpu compute passes",
+      "high performance particle systems"
+    ],
+    "avoid_conditions": [
+      "standard html5 canvas",
+      "css layouts"
+    ],
+    "policy_verdict": "CURATED OPTIONAL",
+    "rationale": "Modern virtualized GPU compute shader pipeline helper for cutting-edge WebGPU/WebGL canvas effects."
+  },
+  {
+    "id": "hugeicons",
+    "name": "Hugeicons",
+    "canonical_url": "https://hugeicons.com",
+    "source_type": "npm_package",
+    "source_repository": "https://github.com/hugeicons/hugeicons-react.git",
+    "documentation_url": "https://hugeicons.com/docs",
+    "license": "Commercial / Free Tier",
+    "category": [
+      "icons",
+      "vector",
+      "stroke_icons"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "icons",
+      "stroke-icons",
+      "hugeicons-react",
+      "icon-library"
+    ],
+    "acquisition_method": "npm",
+    "runtime_method": "project_scoped_install",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "consistent stroke icon system",
+      "4000+ icons in react/vue/svg"
+    ],
+    "avoid_conditions": [
+      "feather or lucide already chosen and sufficient"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "Extensive icon family with 4,000+ stroke and duotone icons in React/Vue/SVG formats."
+  },
+  {
+    "id": "keyline-icons",
+    "name": "Keyline Icons",
+    "canonical_url": "https://keyline.design",
+    "source_type": "specification",
+    "documentation_url": "https://keyline.design",
+    "category": [
+      "icons",
+      "design_specs",
+      "geometry"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "pixel-grid",
+      "keyline-system",
+      "icon-grid-specs",
+      "craft"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "reference_only",
+    "status": "BOOKMARK",
+    "trigger_conditions": [
+      "bespoke icon design",
+      "optical grid alignment"
+    ],
+    "avoid_conditions": [
+      "standard ready-made icon libraries"
+    ],
+    "policy_verdict": "BOOKMARK",
+    "rationale": "Systematic geometric keyline grid specification for designing optically balanced icon families."
+  },
+  {
+    "id": "morphicons",
+    "name": "Morphicons",
+    "canonical_url": "https://github.com/alexkuz/morphicons",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/alexkuz/morphicons.git",
+    "documentation_url": "https://github.com/alexkuz/morphicons#readme",
+    "license": "MIT",
+    "category": [
+      "icons",
+      "svg_morphing",
+      "animation"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "svg-morphing",
+      "icon-transitions",
+      "shape-tweening"
+    ],
+    "acquisition_method": "git_clone",
+    "runtime_method": "project_scoped_install",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "hamburger to close morph",
+      "play to pause morph",
+      "stateful icon shape tweening"
+    ],
+    "avoid_conditions": [
+      "static icon states"
+    ],
+    "policy_verdict": "CURATED OPTIONAL",
+    "rationale": "SVG icon morphing utility transitioning cleanly between disparate icon shapes."
+  },
+  {
+    "id": "thesvg",
+    "name": "thesvg",
+    "canonical_url": "https://thesvg.xyz",
+    "source_type": "asset_archive",
+    "documentation_url": "https://thesvg.xyz",
+    "category": [
+      "vectors",
+      "svg_assets",
+      "brand_logos"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "svg-patterns",
+      "svg-illustrations",
+      "brand-logos",
+      "vector-assets"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "high quality brand vector logos",
+      "geometric svg patterns"
+    ],
+    "avoid_conditions": [
+      "raster photos"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "Curated vector asset repository offering production-ready SVG brand assets and geometric patterns."
+  },
+  {
+    "id": "curationist",
+    "name": "Curationist",
+    "canonical_url": "https://curationist.org",
+    "source_type": "digital_archive",
+    "documentation_url": "https://curationist.org/about",
+    "category": [
+      "assets",
+      "public_domain",
+      "cultural_heritage"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "public-domain-art",
+      "cultural-archive",
+      "heritage-imagery",
+      "visual-assets"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "heritage brand aesthetics",
+      "public domain historical art",
+      "editorial provenance"
+    ],
+    "avoid_conditions": [
+      "generic stock photography",
+      "modern saas illustrations"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "Nonprofit free global archive of museum and cultural heritage images in public domain."
+  },
+  {
+    "id": "rijksmuseum-archive",
+    "name": "Rijksmuseum Open Data",
+    "canonical_url": "https://www.rijksmuseum.nl/en/research/conduct-research/data",
+    "source_type": "digital_archive",
+    "documentation_url": "https://data.rijksmuseum.nl/",
+    "category": [
+      "assets",
+      "fine_art",
+      "high_res_scans"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "fine-art",
+      "dutch-masters",
+      "high-resolution-scans",
+      "heritage-assets"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "high-res art scans",
+      "historical botanical/trading paintings",
+      "museum-grade visual storytelling"
+    ],
+    "avoid_conditions": [
+      "contemporary flat vector ui"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "World-class public domain art imagery with high-res scans for authentic heritage aesthetics."
+  },
+  {
+    "id": "nypl-digital-collections",
+    "name": "NYPL Digital Collections",
+    "canonical_url": "https://digitalcollections.nypl.org",
+    "source_type": "digital_archive",
+    "documentation_url": "https://api.repo.nypl.org/",
+    "category": [
+      "assets",
+      "historical_prints",
+      "cartography"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "historical-prints",
+      "cartography",
+      "manuscripts",
+      "botanical-plates"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "historical maps",
+      "vintage trading route cartography",
+      "botanical plates"
+    ],
+    "avoid_conditions": [
+      "minimalist saas apps"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "New York Public Library collection of historical botanical plates, vintage maps, and manuscripts."
   }
 ]

@@ -7,7 +7,7 @@ import (
 
 // Standard Engine Errors
 var (
-	ErrHumanGateRequired    = errors.New("human approval gate required before writing code")
+	ErrHumanGateRequired     = errors.New("human approval gate required before writing code")
 	ErrMaxIterationsExceeded = errors.New("maximum QA iteration loops exceeded without resolution")
 	ErrQuarantinedPath       = errors.New("quarantined path violation")
 )

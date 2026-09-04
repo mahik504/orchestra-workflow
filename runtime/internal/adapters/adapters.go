@@ -25,7 +25,7 @@ type HostAdapter interface {
 // CursorAdapter handles execution via Cursor IDE
 type CursorAdapter struct{}
 
-func (a *CursorAdapter) Name() string { return "cursor" }
+func (a *CursorAdapter) Name() string                    { return "cursor" }
 func (a *CursorAdapter) SupportedEnvironments() []string { return []string{"vscode", "cursor"} }
 func (a *CursorAdapter) ExecutePlan(state *handoff.HandoffState) error {
 	fmt.Println("[Adapter: Cursor] Writing context and instructing IDE...")
@@ -50,7 +50,7 @@ Discover -> Classify -> Research -> Synthesize -> Design System -> Implement -> 
 // ClaudeAdapter handles execution via Claude Code CLI
 type ClaudeAdapter struct{}
 
-func (a *ClaudeAdapter) Name() string { return "claude" }
+func (a *ClaudeAdapter) Name() string                    { return "claude" }
 func (a *ClaudeAdapter) SupportedEnvironments() []string { return []string{"cli", "terminal"} }
 func (a *ClaudeAdapter) ExecutePlan(state *handoff.HandoffState) error {
 	fmt.Println("[Adapter: Claude Code] Generating CLAUDE.md context and terminal execution packet...")
@@ -73,7 +73,7 @@ You are Claude Code operating in the Orchestra V3 framework.
 // AntigravityAdapter handles execution via Google Antigravity Agent
 type AntigravityAdapter struct{}
 
-func (a *AntigravityAdapter) Name() string { return "antigravity" }
+func (a *AntigravityAdapter) Name() string                    { return "antigravity" }
 func (a *AntigravityAdapter) SupportedEnvironments() []string { return []string{"cli", "ide"} }
 func (a *AntigravityAdapter) ExecutePlan(state *handoff.HandoffState) error {
 	fmt.Println("[Adapter: Antigravity] Dispatching JSON handoff state to Antigravity runtime...")

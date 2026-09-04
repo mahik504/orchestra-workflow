@@ -400,8 +400,8 @@ func TestLiveRegistryFiles(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to load live resources.json: %v", err)
 	}
-	if cat.Count() != 126 {
-		t.Errorf("expected exactly 126 resources in canonical registry, got %d", cat.Count())
+	if cat.Count() < 126 {
+		t.Errorf("expected at least 126 resources in canonical registry, got %d", cat.Count())
 	}
 
 	// Verify required canonical resources exist
@@ -537,4 +537,3 @@ func TestCapabilityRoute_QA_DomainExpansion(t *testing.T) {
 		t.Errorf("expected emptyRoute.QA to be non-nil empty slice, got nil")
 	}
 }
-

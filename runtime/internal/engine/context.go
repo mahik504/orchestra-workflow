@@ -72,12 +72,12 @@ type ResearchData struct {
 
 // SynthesisData contains actionable rules and token weights from Stage 4
 type SynthesisData struct {
-	ActionableRules    []string                                `json:"actionable_rules"`
-	AntiPatterns       []string                                `json:"anti_patterns"`
-	VerificationChecks []string                                `json:"verification_checks"`
-	TokenContextCost   float64                                 `json:"token_context_cost"`
-	DirectionApproved  bool                                    `json:"direction_approved"`
-	ActiveDirectives   []*router.CapabilityExecutionDirective  `json:"active_directives"`
+	ActionableRules    []string                               `json:"actionable_rules"`
+	AntiPatterns       []string                               `json:"anti_patterns"`
+	VerificationChecks []string                               `json:"verification_checks"`
+	TokenContextCost   float64                                `json:"token_context_cost"`
+	DirectionApproved  bool                                   `json:"direction_approved"`
+	ActiveDirectives   []*router.CapabilityExecutionDirective `json:"active_directives"`
 }
 
 // DesignSystemData contains concrete tokens, styles, and DESIGN.md path from Stage 5
@@ -127,11 +127,11 @@ type VisualQAData struct {
 
 // IterationData tracks self-healing loop cycles and feedback in Stage 8
 type IterationData struct {
-	CurrentIteration   int      `json:"current_iteration"`
-	MaxIterations      int      `json:"max_iterations"`
-	History            []string `json:"history"`
-	CorrectiveFeedback []string `json:"corrective_feedback"`
-	FinalVerdict       string   `json:"final_verdict"` // "PASSED", "EXHAUSTED", "GATED"
+	CurrentIteration   int       `json:"current_iteration"`
+	MaxIterations      int       `json:"max_iterations"`
+	History            []string  `json:"history"`
+	CorrectiveFeedback []string  `json:"corrective_feedback"`
+	FinalVerdict       string    `json:"final_verdict"` // "PASSED", "EXHAUSTED", "GATED"
 	LoopTargetStage    StageName `json:"loop_target_stage,omitempty"`
 }
 

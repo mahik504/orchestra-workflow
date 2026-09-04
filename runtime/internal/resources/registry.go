@@ -42,11 +42,11 @@ type Capability struct {
 	Provenance            string             `json:"provenance,omitempty"`
 	Rationale             string             `json:"rationale,omitempty"`
 	Status                string             `json:"status"`
-	
+
 	// Lazy Loading
-	LazyLoadPath          string             `json:"-"`
-	IsLoaded              bool               `json:"-"`
-	RawContent            []byte             `json:"-"`
+	LazyLoadPath string `json:"-"`
+	IsLoaded     bool   `json:"-"`
+	RawContent   []byte `json:"-"`
 }
 
 func (c *Capability) LoadDetails() error {
@@ -56,12 +56,12 @@ func (c *Capability) LoadDetails() error {
 	if c.LazyLoadPath == "" {
 		return fmt.Errorf("no path specified for lazy loading capability %s", c.ID)
 	}
-	
+
 	bytes, err := os.ReadFile(c.LazyLoadPath)
 	if err != nil {
 		return err
 	}
-	
+
 	c.RawContent = bytes
 	c.IsLoaded = true
 	return nil
@@ -145,4 +145,3 @@ func (r *Registry) ImportResource(res *Resource) {
 	}
 	r.Capabilities[res.ID] = res.ToCapability()
 }
-

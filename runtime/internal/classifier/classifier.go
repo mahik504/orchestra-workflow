@@ -32,7 +32,7 @@ func NewClassifier() *Classifier {
 // Classify takes a raw PRD or string request and returns a normalized Task struct.
 func (c *Classifier) Classify(rawRequest string) (*Task, error) {
 	lowerReq := strings.ToLower(rawRequest)
-	
+
 	task := &Task{
 		ID:         "task-stub-001",
 		RawRequest: rawRequest,
@@ -42,7 +42,7 @@ func (c *Classifier) Classify(rawRequest string) (*Task, error) {
 	if strings.Contains(lowerReq, "ui") || strings.Contains(lowerReq, "frontend") || strings.Contains(lowerReq, "design") {
 		task.RequiresVisual = true
 	}
-	
+
 	if strings.Contains(lowerReq, "auth") || strings.Contains(lowerReq, "security") || strings.Contains(lowerReq, "login") {
 		task.RequiresSecurity = true
 	}

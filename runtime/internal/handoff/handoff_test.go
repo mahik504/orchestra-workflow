@@ -1,4 +1,4 @@
-﻿package handoff
+package handoff
 
 import (
 	"os"

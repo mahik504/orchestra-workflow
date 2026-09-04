@@ -15,7 +15,7 @@ type Resource struct {
 	ID                 string   `json:"id"`
 	Name               string   `json:"name"`
 	CanonicalURL       string   `json:"canonical_url"`
-	SourceType         string   `json:"source_type"`                  // "github_repository", "web_reference", "npm_package", "cli_binary"
+	SourceType         string   `json:"source_type"`                 // "github_repository", "web_reference", "npm_package", "cli_binary"
 	SourceRepository   string   `json:"source_repository,omitempty"` // Git repository URL if applicable
 	DocumentationURL   string   `json:"documentation_url,omitempty"`
 	DocURL             string   `json:"doc_url,omitempty"`

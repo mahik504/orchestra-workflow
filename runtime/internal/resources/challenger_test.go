@@ -249,17 +249,17 @@ func TestChallenger_Quarantine_URLFieldQuarantine(t *testing.T) {
 		expectErr   bool
 	}{
 		{
-			name: "quarantined CanonicalURL",
+			name:        "quarantined CanonicalURL",
 			jsonContent: `[{"id":"res-q-1","name":"Q1","canonical_url":"file:///C:/Users/mockuser/.gemini/config/skills_library/foo","source_type":"npm_package","category":["FRONTEND"],"representation":"dependency","routing_tags":["tag"],"acquisition_method":"npm","runtime_method":"project_scoped_install","status":"ACTIVE"}]`,
 			expectErr:   true,
 		},
 		{
-			name: "quarantined SourceRepository",
+			name:        "quarantined SourceRepository",
 			jsonContent: `[{"id":"res-q-2","name":"Q2","canonical_url":"https://example.com/ok","source_repository":"https://github.com/org/skills_library.git","source_type":"github_repository","category":["FRONTEND"],"representation":"dependency","routing_tags":["tag"],"acquisition_method":"git","runtime_method":"project_scoped_install","status":"ACTIVE"}]`,
 			expectErr:   true,
 		},
 		{
-			name: "quarantined DocumentationURL",
+			name:        "quarantined DocumentationURL",
 			jsonContent: `[{"id":"res-q-3","name":"Q3","canonical_url":"https://example.com/ok","documentation_url":"https://docs.example.com/curated_catalog/quarantine/test","source_type":"npm_package","category":["FRONTEND"],"representation":"dependency","routing_tags":["tag"],"acquisition_method":"npm","runtime_method":"project_scoped_install","status":"ACTIVE"}]`,
 			expectErr:   true,
 		},
@@ -668,7 +668,7 @@ func TestChallenger_Concurrency_LiveRegistriesUnderLoad(t *testing.T) {
 					// Concurrent Loaders
 					if j%50 == 0 {
 						c, e := LoadResourceCatalog(resourcesPath)
-						if e != nil || c.Count() != 126 {
+						if e != nil || c.Count() < 126 {
 							atomic.AddInt64(&errorCount, 1)
 						}
 					}

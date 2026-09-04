@@ -660,4 +660,3 @@ func runMemory(args []string) {
 		fmt.Printf("Unknown memory command: %s. Use list, record, or stats.\n", sub)
 	}
 }
-

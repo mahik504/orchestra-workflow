@@ -19,10 +19,10 @@ import (
 
 // Provenance Errors
 var (
-	ErrProvenanceEntryInvalid  = errors.New("provenance entry failed validation")
-	ErrProvenanceNotFound      = errors.New("resource ID not found in provenance store")
-	ErrProvenanceStoreCorrupt  = errors.New("provenance ledger file is corrupted or invalid")
-	ErrIntegrityCheckFailed    = errors.New("provenance integrity verification failed")
+	ErrProvenanceEntryInvalid = errors.New("provenance entry failed validation")
+	ErrProvenanceNotFound     = errors.New("resource ID not found in provenance store")
+	ErrProvenanceStoreCorrupt = errors.New("provenance ledger file is corrupted or invalid")
+	ErrIntegrityCheckFailed   = errors.New("provenance integrity verification failed")
 )
 
 // ProvenanceEntry models the mandatory 9-field provenance ledger record.
@@ -70,7 +70,7 @@ type ProvenanceStore struct {
 	workspaceRoot string
 	storePath     string
 	entries       map[string]ProvenanceEntry // keyed by resource_id (case-insensitive)
-	order         []string                  // preserve insertion order
+	order         []string                   // preserve insertion order
 	mu            sync.RWMutex
 }
 

@@ -792,14 +792,14 @@ func TestAdversary_Provenance_FileContentTampering(t *testing.T) {
 
 	relPath, _ := filepath.Rel(tempDir, installedFile)
 	entry := acquisition.ProvenanceEntry{
-		ResourceID:           "ui-component",
-		AcquisitionMethod:    "npm",
-		SourceURL:            "https://registry.npmjs.org/ui-component",
-		VersionOrSHA:         "1.0.0",
-		SHA256Hash:           originalHash,
-		InstalledPath:        relPath,
-		JustificationTaskID:  "task-m3-tamper-test",
-		IsQuarantined:        false,
+		ResourceID:          "ui-component",
+		AcquisitionMethod:   "npm",
+		SourceURL:           "https://registry.npmjs.org/ui-component",
+		VersionOrSHA:        "1.0.0",
+		SHA256Hash:          originalHash,
+		InstalledPath:       relPath,
+		JustificationTaskID: "task-m3-tamper-test",
+		IsQuarantined:       false,
 	}
 
 	if err := store.Record(entry); err != nil {

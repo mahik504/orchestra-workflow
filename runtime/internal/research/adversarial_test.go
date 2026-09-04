@@ -200,9 +200,9 @@ func TestAdversarial_Quarantine_CandidateInjection(t *testing.T) {
 	coord := NewResearchCoordinator(cat, graph)
 
 	task := &classifier.Task{
-		ID:                "task-malicious-candidates",
-		Type:              "DESIGN",
-		RequiresVisual:    true,
+		ID:                 "task-malicious-candidates",
+		Type:               "DESIGN",
+		RequiresVisual:     true,
 		SuggestedResources: []string{"skills_library", "skills~1", "curated_catalog/quarantine"},
 	}
 
@@ -451,9 +451,9 @@ func TestAdversarial_Diversity_SingleSourceSuggestionRejection(t *testing.T) {
 
 	// User suggests only a single source for a high-visual task
 	task := &classifier.Task{
-		ID:                "task-single-source",
-		Type:              "DESIGN",
-		RequiresVisual:    true,
+		ID:                 "task-single-source",
+		Type:               "DESIGN",
+		RequiresVisual:     true,
 		SuggestedResources: []string{"awwwards"},
 	}
 

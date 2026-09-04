@@ -23,7 +23,7 @@ func NewPonytailOptimizer(mode PonytailMode) *PonytailOptimizer {
 // OptimizeContext prunes redundant context to maximize the quality to useful-token-cost ratio
 func (p *PonytailOptimizer) OptimizeContext(rawContext string) string {
 	fmt.Printf("[Ponytail] Optimizing context in %s mode: maximizing quality / useful-token-cost ratio...\n", p.Mode)
-	
+
 	switch p.Mode {
 	case ModeOff:
 		return rawContext

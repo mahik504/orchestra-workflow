@@ -302,5 +302,3 @@ func TestResearchCoordinator_OfflineBenchmarkMode(t *testing.T) {
 		t.Errorf("Expected at least 3 typography tokens in offline benchmark, got %d", len(res.SynthesizedTypography))
 	}
 }
-
-

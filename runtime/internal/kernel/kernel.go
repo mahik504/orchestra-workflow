@@ -32,12 +32,12 @@ func NewKernel() *Kernel {
 // PRD -> Task -> Classify -> Capability Selection -> Plan -> Approval Gate
 func (k *Kernel) ProcessRequest(raw string) error {
 	fmt.Println("Orchestra Intake: Processing Request...")
-	
+
 	task, err := k.Classifier.Classify(raw)
 	if err != nil {
 		return fmt.Errorf("classification failed: %w", err)
 	}
-	
+
 	fmt.Printf("Classified Task [%s]: Visual=%v, Security=%v\n", task.Type, task.RequiresVisual, task.RequiresSecurity)
 
 	allocation := k.Allocator.Allocate(task)
@@ -62,6 +62,6 @@ func (k *Kernel) ProcessRequest(raw string) error {
 
 	fmt.Println("Handoff state generation starting...")
 	// call internal/handoff logic here
-	
+
 	return nil
 }

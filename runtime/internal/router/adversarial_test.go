@@ -16,13 +16,13 @@ func TestAdversarial_Router_All10DesignArchetypesTokenScaling(t *testing.T) {
 	r := NewRouterWithGraph(nil, cat, graph)
 
 	type ArchetypeTestDef struct {
-		ID             string
-		Name           string
-		RequiresVisual bool
-		RequiresSec    bool
-		Keywords       []string
-		MinTokens      float64
-		MaxTokens      float64
+		ID                    string
+		Name                  string
+		RequiresVisual        bool
+		RequiresSec           bool
+		Keywords              []string
+		MinTokens             float64
+		MaxTokens             float64
 		ExpectedDirectivesMin int
 	}
 

@@ -36,7 +36,7 @@ func (a *Allocator) Allocate(task *classifier.Task) AllocationRecommendation {
 			Reason:       "Task requires visual redesign or heavy research, best suited for Antigravity.",
 		}
 	}
-	
+
 	if task.RequiresSecurity {
 		return AllocationRecommendation{
 			PrimaryAgent: AgentClaudeCode,
@@ -46,7 +46,7 @@ func (a *Allocator) Allocate(task *classifier.Task) AllocationRecommendation {
 			Reason:       "Task involves security or requires hostile review, best suited for Claude Code.",
 		}
 	}
-	
+
 	// Default to Cursor for implementation tasks
 	return AllocationRecommendation{
 		PrimaryAgent: AgentCursor,

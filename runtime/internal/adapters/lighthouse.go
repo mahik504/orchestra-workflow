@@ -13,13 +13,13 @@ func (l *LighthouseAdapter) Run(target string) (*verify.VerificationResult, erro
 	fmt.Printf("[Adapter: Lighthouse] Auditing performance/accessibility for %s\n", target)
 	// In production, this execs lighthouse CLI and parses the JSON report.
 	// Implementing graceful failure if lighthouse is not installed on the system.
-	
+
 	metrics := map[string]float64{
 		"performance":   0.98,
 		"accessibility": 1.00,
 		"seo":           1.00,
 	}
-	
+
 	return &verify.VerificationResult{
 		Passed:  true,
 		Metrics: metrics,

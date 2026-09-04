@@ -13,7 +13,7 @@ func (d *DesignLab) Run(task *classifier.Task) {
 		fmt.Println("[DesignLab] Bypassing design laboratory for non-visual task. Keeping runtime lightweight.")
 		return
 	}
-	
+
 	fmt.Println("[DesignLab] High-impact visual task detected.")
 	fmt.Println("[DesignLab] Generating 2-3 distinct visual candidates (typography, motion, composition)...")
 	fmt.Println("[DesignLab] HUMAN APPROVAL GATE: Lock design direction before writing DESIGN.md")

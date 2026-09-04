@@ -371,4 +371,3 @@ func (p *DesignPipeline) RecordPipelineMemory(taskCtx *TaskContext, res *DesignE
 
 	return nil
 }
-

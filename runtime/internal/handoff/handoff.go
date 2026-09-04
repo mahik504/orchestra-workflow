@@ -1,4 +1,4 @@
-﻿package handoff
+package handoff
 
 import (
 	"crypto/sha256"
@@ -16,17 +16,17 @@ type FileChecksum struct {
 }
 
 type HandoffState struct {
-	SessionID         string         `json:"session_id"`
-	Version           int            `json:"version"`
-	Timestamp         string         `json:"timestamp"`
-	SourceAgent       string         `json:"source_agent"` // e.g. "antigravity"
-	TargetAgent       string         `json:"target_agent"` // e.g. "cursor"
-	ActiveTasks       []string       `json:"active_tasks"`
-	PlanURI           string         `json:"plan_uri"`
-	ChangedFiles      []FileChecksum `json:"changed_files"`
-	CompletedSteps    []string       `json:"completed_steps"`
-	PendingSteps      []string       `json:"pending_steps"`
-	FailureRecovery   *RecoveryPoint `json:"failure_recovery,omitempty"`
+	SessionID       string         `json:"session_id"`
+	Version         int            `json:"version"`
+	Timestamp       string         `json:"timestamp"`
+	SourceAgent     string         `json:"source_agent"` // e.g. "antigravity"
+	TargetAgent     string         `json:"target_agent"` // e.g. "cursor"
+	ActiveTasks     []string       `json:"active_tasks"`
+	PlanURI         string         `json:"plan_uri"`
+	ChangedFiles    []FileChecksum `json:"changed_files"`
+	CompletedSteps  []string       `json:"completed_steps"`
+	PendingSteps    []string       `json:"pending_steps"`
+	FailureRecovery *RecoveryPoint `json:"failure_recovery,omitempty"`
 }
 
 type RecoveryPoint struct {
