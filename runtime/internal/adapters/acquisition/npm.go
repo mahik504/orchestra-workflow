@@ -2,6 +2,8 @@ package acquisition
 
 import (
 	"context"
+	"crypto/sha256"
+	"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -290,7 +292,9 @@ func (a *NPMAdapter) Acquire(ctx context.Context, res *resources.Resource, dest 
 
 	// 2. Resolve Package Name early
 	pkgName := res.ID
-	if alias, ok := a.options.PackageAliases[res.ID]; ok {
+	if strings.TrimSpace(res.NpmPackage) != "" {
+		pkgName = strings.TrimSpace(res.NpmPackage)
+	} else if alias, ok := a.options.PackageAliases[res.ID]; ok {
 		pkgName = alias
 	}
 
@@ -357,14 +361,16 @@ func (a *NPMAdapter) Acquire(ctx context.Context, res *resources.Resource, dest 
 	}
 
 	if alreadyDeclared && nodeModulesExist {
+		installedPath := filepath.Dir(nodeModulesPkgPath)
 		return &AcquisitionResult{
 			ResourceID:        res.ID,
 			AdapterName:       a.Name(),
 			AcquisitionMethod: "npm",
 			PackageName:       pkgName,
 			VersionOrSHA:      installedVersion,
-			ResolvedTarget:    filepath.Dir(nodeModulesPkgPath),
-			InstalledPath:     filepath.Dir(nodeModulesPkgPath),
+			SHA256Hash:        hashFileSHA256(nodeModulesPkgPath),
+			ResolvedTarget:    installedPath,
+			InstalledPath:     installedPath,
 			AlreadyInstalled:  true,
 			Duration:          time.Since(start),
 			Metadata: map[string]string{
@@ -441,12 +447,14 @@ func (a *NPMAdapter) Acquire(ctx context.Context, res *resources.Resource, dest 
 	}
 
 	installedPath := filepath.Join(dest, "node_modules", filepath.FromSlash(pkgName))
+	installedPkgJSON := filepath.Join(installedPath, "package.json")
 	return &AcquisitionResult{
 		ResourceID:        res.ID,
 		AdapterName:       a.Name(),
 		AcquisitionMethod: "npm",
 		PackageName:       pkgName,
 		VersionOrSHA:      installedVersion,
+		SHA256Hash:        hashFileSHA256(installedPkgJSON),
 		ResolvedTarget:    installedPath,
 		InstalledPath:     installedPath,
 		AlreadyInstalled:  false,
@@ -512,4 +520,13 @@ func (a *NPMAdapter) detectPackageManager(dest string, pkgJSON *PackageJSON) (Pa
 	}
 
 	return "", ErrPackageManagerNotFound
+}
+
+func hashFileSHA256(path string) string {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return ""
+	}
+	sum := sha256.Sum256(data)
+	return hex.EncodeToString(sum[:])
 }

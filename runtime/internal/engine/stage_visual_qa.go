@@ -69,6 +69,9 @@ func (s *VisualQAStage) Execute(ctx *TaskContext) (*StageResult, error) {
 	}
 
 	ctx.VisualQA = qaRes
+	if ctx.VisualQA != nil {
+		ctx.VisualQA.VerifierRan = true
+	}
 
 	// Record verifier telemetry (Playwright) into Private Brain Memory
 	memPath := memory.ResolveDefaultMemoryPath(ctx.Task.WorkspaceRoot)

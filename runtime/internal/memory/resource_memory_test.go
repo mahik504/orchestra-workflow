@@ -270,3 +270,34 @@ func TestLiveWorkspaceMemoryFileValid(t *testing.T) {
 		}
 	}
 }
+
+func TestResolveDefaultMemoryPath_HomeBeatsWorkspaceSeed(t *testing.T) {
+	tmp := t.TempDir()
+	home := filepath.Join(tmp, "brain")
+	clone := filepath.Join(tmp, "method")
+	if err := os.MkdirAll(filepath.Join(home, "memory"), 0755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.MkdirAll(filepath.Join(clone, "memory"), 0755); err != nil {
+		t.Fatal(err)
+	}
+	seed := filepath.Join(clone, "memory", "resource-memory.json")
+	if err := os.WriteFile(seed, []byte(`{}`), 0644); err != nil {
+		t.Fatal(err)
+	}
+
+	t.Setenv("ORCHESTRA_MEMORY_PATH", "")
+	t.Setenv("ORCHESTRA_HOME", home)
+	got := ResolveDefaultMemoryPath(clone)
+	want := filepath.Join(home, "memory", "resource-memory.json")
+	if got != filepath.Clean(want) {
+		t.Fatalf("HOME set: got %s want %s", got, want)
+	}
+
+	t.Setenv("ORCHESTRA_HOME", "")
+	got = ResolveDefaultMemoryPath(clone)
+	want = filepath.Join(clone, ".orchestra", "memory", "resource-memory.json")
+	if got != filepath.Clean(want) {
+		t.Fatalf("HOME unset: got %s want %s (must not pick clone memory/ seed)", got, want)
+	}
+}

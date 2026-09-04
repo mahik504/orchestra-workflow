@@ -6,6 +6,20 @@ import (
 	"testing"
 )
 
+func TestMain(m *testing.M) {
+	dir, err := os.MkdirTemp("", "orchestra-cli-mem-*")
+	if err != nil {
+		os.Stderr.WriteString(err.Error() + "\n")
+		os.Exit(1)
+	}
+	_ = os.Unsetenv("ORCHESTRA_HOME")
+	_ = os.Setenv("ORCHESTRA_MEMORY_PATH", filepath.Join(dir, "resource-memory.json"))
+	_ = os.Setenv("ORCHESTRA_OVERLAY_PATH", filepath.Join(dir, "added-resources.json"))
+	code := m.Run()
+	_ = os.RemoveAll(dir)
+	os.Exit(code)
+}
+
 func TestCLI_ResolveRegistryFile(t *testing.T) {
 	resPath := resolveRegistryFile("resources.json", "")
 	if _, err := os.Stat(resPath); err != nil {

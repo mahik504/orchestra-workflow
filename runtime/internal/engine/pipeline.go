@@ -292,8 +292,9 @@ func (p *DesignPipeline) RecordPipelineMemory(taskCtx *TaskContext, res *DesignE
 
 	now := time.Now().UTC().Format(time.RFC3339)
 
-	// 1. Record Visual QA Verifier (Stage 7) if executed
-	if taskCtx.VisualQA != nil {
+	requiresVisual := taskCtx.Classification != nil && taskCtx.Classification.RequiresVisual
+	verifierRan := taskCtx.VisualQA != nil && taskCtx.VisualQA.VerifierRan
+	if requiresVisual && verifierRan {
 		qaOutcome := memory.OutcomeSuccess
 		qaScore := 1.0
 		errDetails := ""
@@ -328,11 +329,11 @@ func (p *DesignPipeline) RecordPipelineMemory(taskCtx *TaskContext, res *DesignE
 			Metadata: map[string]any{
 				"stage":         string(StageVisualQA),
 				"failure_class": string(taskCtx.VisualQA.FailureClass),
+				"verifier_ran":  true,
 			},
 		})
 	}
 
-	// 2. Record Acquired Implementation Resources (Stage 6 / 8)
 	taskOutcome := memory.OutcomeSuccess
 	qualityScore := 1.0
 	if res.Status != PipelineStatusSuccess {
@@ -345,14 +346,31 @@ func (p *DesignPipeline) RecordPipelineMemory(taskCtx *TaskContext, res *DesignE
 		primaryCap = res.ActiveCapabilities[0]
 	}
 
-	for _, resID := range res.AcquiredResources {
+	recorded := map[string]bool{}
+	recordOne := func(resID, why, installed, command, verification string, outcome memory.Outcome, score float64) {
+		resID = strings.TrimSpace(resID)
+		if resID == "" || recorded[resID] {
+			return
+		}
+		recorded[resID] = true
 		domain := "component_library"
 		if p.Catalog != nil {
 			if r, found := p.Catalog.FindByID(resID); found && len(r.Category) > 0 {
 				domain = strings.ToLower(r.Category[0])
 			}
 		}
-
+		meta := map[string]any{
+			"archetype":    res.Archetype,
+			"status":       string(res.Status),
+			"why_selected": why,
+			"verification": verification,
+		}
+		if installed != "" {
+			meta["installed_path"] = installed
+		}
+		if command != "" {
+			meta["executed_command"] = command
+		}
 		_ = store.Record(&memory.ResourceEvaluation{
 			ResourceID:          resID,
 			Domain:              domain,
@@ -360,15 +378,48 @@ func (p *DesignPipeline) RecordPipelineMemory(taskCtx *TaskContext, res *DesignE
 			EvaluationTimestamp: now,
 			TaskContext:         taskCtx.Task.RawRequest,
 			TaskID:              taskCtx.Task.ID,
-			Outcome:             taskOutcome,
-			QualityScore:        qualityScore,
+			Outcome:             outcome,
+			QualityScore:        score,
 			LatencyMs:           res.TotalDuration.Milliseconds(),
 			Notes:               fmt.Sprintf("Pipeline %s after %d iteration(s)", res.Status, res.IterationCount),
-			Metadata: map[string]any{
-				"archetype": res.Archetype,
-				"status":    string(res.Status),
-			},
+			Metadata:            meta,
 		})
+	}
+
+	whyFor := func(id string) string {
+		if taskCtx.Classification != nil {
+			for _, line := range taskCtx.Classification.OverlayActivations {
+				if line == id {
+					return "overlay trigger matched this task"
+				}
+			}
+		}
+		return "acquired during implement stage"
+	}
+	installedFor := func(id string) string {
+		if taskCtx.Implementation != nil && taskCtx.Implementation.InstalledPaths != nil {
+			return taskCtx.Implementation.InstalledPaths[id]
+		}
+		return ""
+	}
+	cmdFor := func(id string) string {
+		if taskCtx.Implementation != nil && taskCtx.Implementation.AcquireCommands != nil {
+			return taskCtx.Implementation.AcquireCommands[id]
+		}
+		return ""
+	}
+
+	for _, resID := range res.AcquiredResources {
+		o, s := taskOutcome, qualityScore
+		if installedFor(resID) != "" {
+			o, s = memory.OutcomeSuccess, 1.0
+		}
+		recordOne(resID, whyFor(resID), installedFor(resID), cmdFor(resID), "acquired in implement stage", o, s)
+	}
+	if taskCtx.Classification != nil {
+		for _, resID := range taskCtx.Classification.OverlayActivations {
+			recordOne(resID, whyFor(resID), installedFor(resID), cmdFor(resID), "overlay resource activated for this task", taskOutcome, qualityScore)
+		}
 	}
 
 	return nil

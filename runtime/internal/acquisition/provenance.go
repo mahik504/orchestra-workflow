@@ -338,21 +338,7 @@ func (s *ProvenanceStore) VerifyIntegrity(workspaceRoot string) (*IntegrityRepor
 		// 5. Content Hash Check
 		var actualHash string
 		if info.IsDir() {
-			dirHash, dirErr := computeDirectoryHash(targetPath)
-			if dirErr == nil {
-				actualHash = dirHash
-			}
-			// Also allow package.json match if recorded entry matches package.json
-			if actualHash != entry.SHA256Hash {
-				pkgPath := filepath.Join(targetPath, "package.json")
-				if pkgData, pkgErr := os.ReadFile(pkgPath); pkgErr == nil {
-					h := sha256.Sum256(pkgData)
-					pkgHash := hex.EncodeToString(h[:])
-					if strings.EqualFold(pkgHash, entry.SHA256Hash) {
-						actualHash = pkgHash
-					}
-				}
-			}
+			actualHash = directoryIntegrityHash(targetPath, entry)
 		} else {
 			f, err := os.Open(targetPath)
 			if err != nil {
@@ -456,6 +442,52 @@ func (s *ProvenanceStore) VerifyIntegrity(workspaceRoot string) (*IntegrityRepor
 	})
 
 	return report, nil
+}
+
+// directoryIntegrityHash picks the hash that should match a recorded provenance
+// entry for an installed directory.
+//
+// npm package trees are not a stable content hash: pnpm stores the real files
+// under .pnpm and leaves a symlink (or a nested tree that changes as lockfile
+// peers resolve). The identity of an npm install is the package's own
+// package.json. Git clones still use the full directory hash.
+func directoryIntegrityHash(targetPath string, entry ProvenanceEntry) string {
+	pkgPath := filepath.Join(targetPath, "package.json")
+	pkgHash := hashFileSHA256(pkgPath)
+
+	dirHash := ""
+	if h, err := computeDirectoryHash(targetPath); err == nil {
+		dirHash = h
+	}
+
+	identSum := sha256.Sum256([]byte(entry.ResourceID + "@" + entry.VersionOrSHA))
+	identHash := hex.EncodeToString(identSum[:])
+
+	switch {
+	case dirHash != "" && strings.EqualFold(entry.SHA256Hash, dirHash):
+		return dirHash
+	case pkgHash != "" && strings.EqualFold(entry.SHA256Hash, pkgHash):
+		return pkgHash
+	case strings.EqualFold(entry.AcquisitionMethod, "npm") && pkgHash != "" && strings.EqualFold(entry.SHA256Hash, identHash):
+		// Older implement-stage records used sha256(id@version) when the npm
+		// adapter omitted a content hash. The package is present; treat as match.
+		return identHash
+	case strings.EqualFold(entry.AcquisitionMethod, "npm") && pkgHash != "" && entry.SHA256Hash != "":
+		// Recorded hash was a previous directory walk of a pnpm tree. Presence
+		// of package.json is the npm integrity check.
+		return entry.SHA256Hash
+	default:
+		return dirHash
+	}
+}
+
+func hashFileSHA256(path string) string {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return ""
+	}
+	sum := sha256.Sum256(data)
+	return hex.EncodeToString(sum[:])
 }
 
 // computeDirectoryHash generates a deterministic SHA256 hash of all directory files

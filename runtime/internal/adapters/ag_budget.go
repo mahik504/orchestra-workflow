@@ -29,24 +29,24 @@ var mcpAliases = map[string]string{
 	// Split so the public hygiene scan does not treat this adapter as a vault leak.
 	"orchestra" + "-brain": "vault-memory",
 	"vault-memory":         "vault-memory",
-	"supabase":         "supabase",
-	"firebase-mcp-server": "firebase",
-	"firebase":         "firebase",
-	"chrome-devtools-mcp": "chrome-devtools",
-	"mobbin":           "mobbin",
+	"supabase":             "supabase",
+	"firebase-mcp-server":  "firebase",
+	"firebase":             "firebase",
+	"chrome-devtools-mcp":  "chrome-devtools",
+	"mobbin":               "mobbin",
 }
 
 // AGBudgetReport is the doctor view of Antigravity Global plugins and MCP.
 type AGBudgetReport struct {
-	ConfigPath          string
-	PluginsDir          string
-	BannedEnabled       []string
-	BannedPresent       []string
-	GlobalSkillNames    []string
-	GlobalSkillCount    int
-	MCPServers          []MCPHealth
-	CustomizationWarn   bool
-	HeadroomGone        bool
+	ConfigPath        string
+	PluginsDir        string
+	BannedEnabled     []string
+	BannedPresent     []string
+	GlobalSkillNames  []string
+	GlobalSkillCount  int
+	MCPServers        []MCPHealth
+	CustomizationWarn bool
+	HeadroomGone      bool
 }
 
 // MCPHealth is one MCP server as seen from the host config, without secrets.

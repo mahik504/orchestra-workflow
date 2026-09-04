@@ -17,3 +17,6 @@
 go-portable/
 go-portable.zip
 
+testdata/lifecycle-drei/node_modules/
+testdata/lifecycle-drei/.orchestra/
+

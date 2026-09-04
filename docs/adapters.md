@@ -61,7 +61,7 @@ flowchart LR
 ## Hermes (and other AGENTS-compatible CLIs)
 
 - Point the agent at `AGENTS.md` + `protocols/`.
-- Same activation card and available ≠ loaded rules.
+- Same 3.1 contract and available ≠ loaded rules. Design Lab is a write lock on PREMIUM / EXPERIMENTAL visual work.
 
 ## ChatGPT / Perplexity / cloud chats
 

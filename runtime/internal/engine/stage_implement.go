@@ -125,6 +125,8 @@ func (s *ImplementStage) Execute(ctx *TaskContext) (*StageResult, error) {
 	}
 
 	var acquiredResources []string
+	installedPaths := map[string]string{}
+	acquireCommands := map[string]string{}
 
 	// 4. Conditional Acquisition & Provenance Recording
 	for _, resID := range candidateList {
@@ -151,6 +153,9 @@ func (s *ImplementStage) Execute(ctx *TaskContext) (*StageResult, error) {
 		// Check if already acquired in provenance ledger
 		if existing, err := provStore.GetByResourceID(resID); err == nil && !existing.IsQuarantined {
 			acquiredResources = append(acquiredResources, resID)
+			if existing.InstalledPath != "" {
+				installedPaths[res.ID] = existing.InstalledPath
+			}
 			continue
 		}
 
@@ -331,6 +336,23 @@ func (s *ImplementStage) Execute(ctx *TaskContext) (*StageResult, error) {
 		}
 
 		acquiredResources = append(acquiredResources, res.ID)
+		if acqResult.InstalledPath != "" {
+			installedPaths[res.ID] = acqResult.InstalledPath
+		}
+		if acqResult.ExecutedCommand != "" {
+			acquireCommands[res.ID] = acqResult.ExecutedCommand
+		}
+	}
+
+	// Stash acquisition telemetry before integrity so a later hash mismatch
+	// still records installed paths into pipeline memory.
+	ctx.Implementation = &ImplementationData{
+		TargetAgent:       "implementer",
+		AcquiredResources: acquiredResources,
+		InstalledPaths:    installedPaths,
+		AcquireCommands:   acquireCommands,
+		BuildOutput:       "implementation acquisition complete; provenance integrity pending",
+		BuildPassed:       false,
 	}
 
 	// 5. Verify Provenance Integrity
@@ -413,6 +435,8 @@ func (s *ImplementStage) Execute(ctx *TaskContext) (*StageResult, error) {
 		HandoffStatePath:  statePath,
 		BuildOutput:       "Implementation completed with contract-locked design system tokens",
 		BuildPassed:       true,
+		InstalledPaths:    installedPaths,
+		AcquireCommands:   acquireCommands,
 	}
 
 	ctx.AddArtifact("handoff_state.json", statePath)

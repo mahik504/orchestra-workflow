@@ -243,3 +243,66 @@ func TestProvenanceStore_ConcurrentWrites(t *testing.T) {
 		t.Errorf("expected %d entries, got %d", count, len(all))
 	}
 }
+
+func TestVerifyIntegrity_NPMPackageJSONNotDirectoryHash(t *testing.T) {
+	tempDir := t.TempDir()
+	store, err := NewProvenanceStore(tempDir)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	pkgDir := filepath.Join(tempDir, "node_modules", "@react-three", "drei")
+	if err := os.MkdirAll(pkgDir, 0755); err != nil {
+		t.Fatal(err)
+	}
+	pkgJSON := []byte(`{"name":"@react-three/drei","version":"10.7.8"}`)
+	if err := os.WriteFile(filepath.Join(pkgDir, "package.json"), pkgJSON, 0644); err != nil {
+		t.Fatal(err)
+	}
+	// Extra file so a full directory walk cannot equal the package.json hash.
+	if err := os.WriteFile(filepath.Join(pkgDir, "index.js"), []byte("module.exports = {}"), 0644); err != nil {
+		t.Fatal(err)
+	}
+
+	pkgHash := sha256.Sum256(pkgJSON)
+	pkgHex := hex.EncodeToString(pkgHash[:])
+	ident := sha256.Sum256([]byte("drei@10.7.8"))
+	identHex := hex.EncodeToString(ident[:])
+	if pkgHex == identHex {
+		t.Fatal("package.json hash unexpectedly equals identity hash")
+	}
+
+	rel, _ := filepath.Rel(tempDir, pkgDir)
+	entry := ProvenanceEntry{
+		ResourceID:          "drei",
+		AcquisitionMethod:   "npm",
+		SourceURL:           "https://github.com/pmndrs/drei",
+		VersionOrSHA:        "10.7.8",
+		SHA256Hash:          identHex,
+		InstalledPath:       rel,
+		JustificationTaskID: "task-drei",
+	}
+	if err := store.Record(entry); err != nil {
+		t.Fatal(err)
+	}
+
+	report, err := store.VerifyIntegrity(tempDir)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !report.AllValid || report.FailedCount != 0 {
+		t.Fatalf("npm identity hash should verify when package.json exists, got %+v", report)
+	}
+
+	entry.SHA256Hash = pkgHex
+	if err := store.Record(entry); err != nil {
+		t.Fatal(err)
+	}
+	report, err = store.VerifyIntegrity(tempDir)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !report.AllValid || report.FailedCount != 0 {
+		t.Fatalf("npm package.json hash should verify, got %+v", report)
+	}
+}

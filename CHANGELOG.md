@@ -25,10 +25,19 @@ See `protocols/DESIGN_LAB_PROTOCOL.md`.
 **No second conductor.** Deleted the unreferenced `internal/kernel` and `internal/planner` packages,
 which duplicated the pipeline's approval and execution logic.
 
-**Isolation.** A fresh clone now keeps resource memory at `.orchestra/memory/resource-memory.json`
-instead of creating a `memory/` directory in the host repository.
+**Isolation.** A fresh clone keeps resource memory at `.orchestra/memory/resource-memory.json`.
+The public method repo does not ship a live `memory/resource-memory.json`. Set `ORCHESTRA_HOME`
+to a private Brain so overlay and outcomes resolve there instead of the clone.
 
 **Phase 7 evidence.** Twelve capability rows. `research-paper` loads `orchestra-docs` and does not arm the Design Lab. Restaurant / school SaaS / 3D portfolio resolve to three different resource graphs. A premium brief that names no libraries still surfaces research, design, and motion. `pixi.js` is reported as unknown technology rather than forced into a route. References acquire `on_demand` via `web_fetch`; GSAP is `project_scoped_install`; global npm stays blocked. Live fixture screenshots at 1440×900, 768×1024, 390×844; click wrote a hold; heading contrast 14.43:1; no horizontal overflow.
+
+**User-added resources.** `orchestra add --intent "..."` inspects a URL, infers kind
+(skill / dependency / MCP / plugin / subagent / reference / adapter), and writes a Brain overlay
+at `memory/added-resources.json`. It does not edit `registries/resources.json` or the capability
+graph. Matching tasks activate the overlay row; non-matching tasks skip it. Recorded outcomes in
+`memory/resource-memory.json` update overlay routing: last failure suppresses auto-activation.
+That loop is experience → evaluation → memory → routing update → future selection. It is not
+reinforcement learning. `orchestra lifecycle` prints the 15-step proof for one URL.
 
 **README.** Rewritten against the code. The previous version cited capability and domain names that
 do not exist in the graph, and described research as querying live design indexes when

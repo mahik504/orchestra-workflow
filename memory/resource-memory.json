@@ -1,8 +1,0 @@
-{
-  "$schema": "https://orchestra.workflow/schemas/resource-memory.schema.json",
-  "schema_version": "1.0.0",
-  "last_updated": "2026-09-04T12:00:00Z",
-  "total_evaluations": 0,
-  "resources": {},
-  "evaluations": []
-}

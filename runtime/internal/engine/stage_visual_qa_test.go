@@ -207,22 +207,103 @@ func TestPipeline_RecordPipelineMemory(t *testing.T) {
 		t.Fatalf("Failed to load recorded store: %v", err)
 	}
 
-	// Playwright should be recorded as failure due to violations
-	pwAgg, ok := store.GetAggregate("playwright")
-	if !ok {
-		t.Fatalf("Expected playwright aggregate")
-	}
-	if pwAgg.FailureCount != 1 || pwAgg.LastOutcome != memory.OutcomeFailure {
-		t.Errorf("Expected playwright failure, got: %+v", pwAgg)
+	if _, ok := store.GetAggregate("playwright"); ok {
+		t.Fatal("non-visual VisualQA must not record playwright")
 	}
 
-	// gsap should be recorded as success
 	gsapAgg, ok := store.GetAggregate("gsap")
 	if !ok {
 		t.Fatalf("Expected gsap aggregate")
 	}
 	if gsapAgg.SuccessCount != 1 || gsapAgg.LastOutcome != memory.OutcomeSuccess {
 		t.Errorf("Expected gsap success, got: %+v", gsapAgg)
+	}
+}
+
+func TestPipeline_RecordPipelineMemory_AcquiredSuccessOnFailedPipeline(t *testing.T) {
+	tmpDir := t.TempDir()
+	memFile := filepath.Join(tmpDir, "pipeline-acquired.json")
+	t.Setenv("ORCHESTRA_MEMORY_PATH", memFile)
+
+	pipeline := &DesignPipeline{}
+	taskCtx := &TaskContext{
+		Task: &TaskRequest{
+			ID:            "task-drei-integrity",
+			RawRequest:    "Install the drei helper library into this Node fixture so the package resolves",
+			WorkspaceRoot: tmpDir,
+		},
+		Classification: &ClassificationData{
+			OverlayActivations: []string{"drei"},
+		},
+		Implementation: &ImplementationData{
+			AcquiredResources: []string{"drei"},
+			InstalledPaths:    map[string]string{"drei": filepath.Join(tmpDir, "node_modules", "@react-three", "drei")},
+			AcquireCommands:   map[string]string{"drei": "pnpm add @react-three/drei"},
+		},
+		StageResults: make(map[StageName]*StageResult),
+	}
+
+	err := pipeline.RecordPipelineMemory(taskCtx, &DesignExecutionResult{
+		TaskID:            "task-drei-integrity",
+		Status:            PipelineStatusFailed,
+		Archetype:         "standard-feature",
+		AcquiredResources: []string{"drei"},
+		TotalDuration:     800 * time.Millisecond,
+	})
+	if err != nil {
+		t.Fatalf("RecordPipelineMemory failed: %v", err)
+	}
+
+	store, err := memory.NewResourceMemoryStore(memFile)
+	if err != nil {
+		t.Fatal(err)
+	}
+	agg, ok := store.GetAggregate("drei")
+	if !ok {
+		t.Fatal("expected drei aggregate")
+	}
+	if agg.LastOutcome != memory.OutcomeSuccess || agg.SuccessCount != 1 {
+		t.Fatalf("acquired install path must record success even when later pipeline stages fail, got %+v", agg)
+	}
+}
+
+func TestPipeline_RecordPipelineMemory_PlaywrightOnlyWhenVerifierRan(t *testing.T) {
+	tmpDir := t.TempDir()
+	memFile := filepath.Join(tmpDir, "pipeline-memory-visual.json")
+	t.Setenv("ORCHESTRA_MEMORY_PATH", memFile)
+
+	pipeline := &DesignPipeline{}
+	taskCtx := &TaskContext{
+		Task: &TaskRequest{
+			ID:            "task-visual-mem",
+			RawRequest:    "Awwwards portfolio",
+			WorkspaceRoot: tmpDir,
+		},
+		Classification: &ClassificationData{RequiresVisual: true},
+		VisualQA: &VisualQAData{
+			AllPassed:          false,
+			DetectedViolations: []string{"horizontal overflow on mobile"},
+			FailureClass:       FailureClassLayoutCode,
+			VerifierRan:        true,
+		},
+		StageResults: make(map[StageName]*StageResult),
+	}
+	taskCtx.SetStageResult(StageVisualQA, &StageResult{
+		StageName: StageVisualQA,
+		Duration:  350 * time.Millisecond,
+	})
+	if err := pipeline.RecordPipelineMemory(taskCtx, &DesignExecutionResult{
+		TaskID: "task-visual-mem", Status: PipelineStatusSuccess,
+	}); err != nil {
+		t.Fatal(err)
+	}
+	store, err := memory.NewResourceMemoryStore(memFile)
+	if err != nil {
+		t.Fatal(err)
+	}
+	pwAgg, ok := store.GetAggregate("playwright")
+	if !ok || pwAgg.FailureCount != 1 {
+		t.Fatalf("expected playwright failure when verifier ran, got %+v ok=%v", pwAgg, ok)
 	}
 }
 

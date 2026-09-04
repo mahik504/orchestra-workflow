@@ -32,6 +32,7 @@ type Resource struct {
 	Rationale          string   `json:"rationale,omitempty"`
 	TokenContextWeight float64  `json:"token_context_weight,omitempty"`
 	TokenWeight        float64  `json:"token_weight,omitempty"`
+	NpmPackage         string   `json:"npm_package,omitempty"`
 }
 
 // ToCapability converts a Resource to the backwards-compatible Capability model.
@@ -355,6 +356,97 @@ func (c *ResourceCatalog) Tags() []string {
 	}
 	sort.Strings(tags)
 	return tags
+}
+
+// EmptyCatalog returns an indexed catalog with no resources.
+func EmptyCatalog() *ResourceCatalog {
+	return &ResourceCatalog{
+		resourcesByID:       make(map[string]*Resource),
+		resourcesByTag:      make(map[string][]*Resource),
+		resourcesByCategory: make(map[string][]*Resource),
+		resourcesByAcq:      make(map[string][]*Resource),
+		resourcesByRep:      make(map[string][]*Resource),
+		aliases:             make(map[string]*Resource),
+		allResources:        make([]*Resource, 0),
+	}
+}
+
+// Upsert inserts or replaces a resource in the live catalog. Overlay rows use
+// this so a user-added GitHub URL can participate in routing without editing
+// registries/resources.json.
+func (c *ResourceCatalog) Upsert(res *Resource) error {
+	if c == nil {
+		return fmt.Errorf("resource catalog is nil")
+	}
+	if res == nil {
+		return fmt.Errorf("resource is nil")
+	}
+	res.ID = strings.TrimSpace(res.ID)
+	if res.ID == "" {
+		return fmt.Errorf("resource id is required")
+	}
+	if err := CheckQuarantineBoundary(res.CanonicalURL); err != nil {
+		return fmt.Errorf("resource %s has quarantined canonical_url: %w", res.ID, err)
+	}
+	if err := CheckQuarantineBoundary(res.SourceRepository); err != nil {
+		return fmt.Errorf("resource %s has quarantined source_repository: %w", res.ID, err)
+	}
+	if err := CheckQuarantineBoundary(res.DocumentationURL); err != nil {
+		return fmt.Errorf("resource %s has quarantined documentation_url: %w", res.ID, err)
+	}
+	if res.DocumentationURL == "" && res.DocURL != "" {
+		res.DocumentationURL = res.DocURL
+	} else if res.DocURL == "" && res.DocumentationURL != "" {
+		res.DocURL = res.DocumentationURL
+	}
+
+	if c.resourcesByID == nil {
+		c.resourcesByID = make(map[string]*Resource)
+	}
+	if c.resourcesByTag == nil {
+		c.resourcesByTag = make(map[string][]*Resource)
+	}
+	if c.resourcesByCategory == nil {
+		c.resourcesByCategory = make(map[string][]*Resource)
+	}
+	if c.resourcesByAcq == nil {
+		c.resourcesByAcq = make(map[string][]*Resource)
+	}
+	if c.resourcesByRep == nil {
+		c.resourcesByRep = make(map[string][]*Resource)
+	}
+	if c.aliases == nil {
+		c.aliases = make(map[string]*Resource)
+	}
+
+	lowerID := strings.ToLower(res.ID)
+	if existing, ok := c.resourcesByID[lowerID]; ok {
+		*existing = *res
+		return nil
+	}
+
+	c.resourcesByID[lowerID] = res
+	c.allResources = append(c.allResources, res)
+
+	for _, tag := range res.RoutingTags {
+		normTag := strings.ToLower(strings.TrimSpace(tag))
+		if normTag != "" {
+			c.resourcesByTag[normTag] = append(c.resourcesByTag[normTag], res)
+		}
+	}
+	for _, cat := range res.Category {
+		normCat := strings.ToLower(strings.TrimSpace(cat))
+		if normCat != "" {
+			c.resourcesByCategory[normCat] = append(c.resourcesByCategory[normCat], res)
+		}
+	}
+	if acq := strings.ToLower(strings.TrimSpace(res.AcquisitionMethod)); acq != "" {
+		c.resourcesByAcq[acq] = append(c.resourcesByAcq[acq], res)
+	}
+	if rep := strings.ToLower(strings.TrimSpace(res.Representation)); rep != "" {
+		c.resourcesByRep[rep] = append(c.resourcesByRep[rep], res)
+	}
+	return nil
 }
 
 // ToRegistry converts the entire catalog into a backwards-compatible Registry.

@@ -15,6 +15,7 @@ import (
 	"github.com/user/orchestra-v3/internal/engine"
 	"github.com/user/orchestra-v3/internal/handoff"
 	"github.com/user/orchestra-v3/internal/memory"
+	"github.com/user/orchestra-v3/internal/onboard"
 	"github.com/user/orchestra-v3/internal/resources"
 )
 
@@ -46,6 +47,10 @@ func main() {
 		runSync(args)
 	case "memory":
 		runMemory(args)
+	case "add":
+		runAdd(args)
+	case "lifecycle":
+		runLifecycle(args)
 	default:
 		fmt.Printf("Unknown command: %s\n", command)
 		printUsage()
@@ -70,7 +75,9 @@ func printUsage() {
 	fmt.Println("  verify    Run standalone multi-viewport Visual QA and project verification")
 	fmt.Println("  handoff   Inspect or initialize state handoff between agents")
 	fmt.Println("  sync      Synchronize and verify active skill parity across Cursor, Claude, Antigravity")
-	fmt.Println("  memory    Query or record private brain resource outcome memory (list, stats, record)")
+	fmt.Println("  memory     Query or record private brain resource outcome memory (list, stats, record)")
+	fmt.Println("  add        Add a resource URL from user intent (Brain overlay, not the public router)")
+	fmt.Println("  lifecycle  Prove submit → inspect → infer → route → memory for one resource")
 }
 
 func resolveRegistryFile(filename string, customPath string) string {
@@ -221,6 +228,13 @@ func runDoctor(args []string) {
 		fmt.Printf("Memory:          [NOTE] %s ready for milestone sync (%v)\n", memPath, err)
 	}
 
+	overlayPath := onboard.ResolveOverlayPath(workdir)
+	if doc, err := onboard.LoadOverlay(overlayPath); err == nil {
+		fmt.Printf("Overlay:         [OK] %s (%d user-added resources)\n", overlayPath, len(doc.Resources))
+	} else {
+		fmt.Printf("Overlay:         [NOTE] %s (%v)\n", overlayPath, err)
+	}
+
 	// 6. Host Synchronization & Skill Parity
 	syncEngine := adapters.NewHostSyncEngine(workdir)
 	userHome, _ := os.UserHomeDir()
@@ -292,7 +306,7 @@ func runClassify(args []string) {
 		os.Exit(1)
 	}
 
-	brief := classifier.NewClassifierWithGraph(graph).ClassifyBrief(raw, classifier.Options{})
+	brief := classifier.NewClassifierWithGraph(graph).ClassifyBrief(raw, classifier.Options{ExtraTags: overlayTags(raw)})
 	if brief.Ambiguous && *silent {
 		brief.ResolveSilence()
 	}
@@ -300,10 +314,12 @@ func runClassify(args []string) {
 	if *asJSON {
 		out, _ := json.MarshalIndent(brief, "", "  ")
 		fmt.Println(string(out))
+		printOverlayDecisions(raw)
 		return
 	}
 
 	printBrief(brief)
+	printOverlayDecisions(raw)
 }
 
 // printBrief renders the re-brief a human is expected to correct before any
@@ -371,6 +387,7 @@ func runPlan(args []string) {
 		fmt.Printf("[FAIL] Could not load resource catalog from %s: %v\n", resolvedCat, err)
 		os.Exit(1)
 	}
+	attachOverlay(catalog)
 
 	resolvedGraph := resolveRegistryFile("design-resource-graph.json", *graphPath)
 	graph, err := resources.LoadDesignGraph(resolvedGraph)
@@ -416,6 +433,7 @@ func runRun(args []string) {
 	taskStr := fs.String("task", "", "Task description")
 	workdir := fs.String("workdir", ".", "Project working directory")
 	autoApprove := fs.Bool("auto-approve", false, "Auto-approve human design gate")
+	skipGate := fs.Bool("skip-visual-gate", false, "Bypass Design Lab write lock")
 	maxIterations := fs.Int("max-iterations", 3, "Max QA iteration loops")
 	catalogPath := fs.String("catalog", "", "Path to resources.json")
 	graphPath := fs.String("graph", "", "Path to design-resource-graph.json")
@@ -436,6 +454,7 @@ func runRun(args []string) {
 		fmt.Printf("[FAIL] Resource catalog error from %s: %v\n", resolvedCat, err)
 		os.Exit(1)
 	}
+	attachOverlay(catalog)
 
 	resolvedGraph := resolveRegistryFile("design-resource-graph.json", *graphPath)
 	graph, err := resources.LoadDesignGraph(resolvedGraph)
@@ -451,7 +470,7 @@ func runRun(args []string) {
 		ID:             "cli-exec-task",
 		RawRequest:     rawTask,
 		WorkspaceRoot:  *workdir,
-		SkipVisualGate: *autoApprove,
+		SkipVisualGate: *autoApprove || *skipGate,
 		MaxIterations:  *maxIterations,
 	}
 
@@ -767,4 +786,157 @@ func runMemory(args []string) {
 	default:
 		fmt.Printf("Unknown memory command: %s. Use list, record, or stats.\n", sub)
 	}
+}
+
+func attachOverlay(catalog *resources.ResourceCatalog) {
+	path := onboard.ResolveOverlayPath(".")
+	doc, err := onboard.LoadOverlay(path)
+	if err != nil {
+		return
+	}
+	store, _ := memory.NewResourceMemoryStore(memory.ResolveDefaultMemoryPath("."))
+	onboard.ApplyMemoryPolicy(doc, store)
+	_ = onboard.MergeIntoCatalog(catalog, doc)
+}
+
+func loadedOverlay() *onboard.OverlayDocument {
+	doc, err := onboard.LoadOverlay(onboard.ResolveOverlayPath("."))
+	if err != nil {
+		return nil
+	}
+	store, _ := memory.NewResourceMemoryStore(memory.ResolveDefaultMemoryPath("."))
+	onboard.ApplyMemoryPolicy(doc, store)
+	return doc
+}
+
+func overlayTags(task string) []string {
+	var tags []string
+	for _, d := range onboard.EvaluateTask(task, loadedOverlay()) {
+		if d.Action == onboard.ActionActivated {
+			tags = append(tags, d.ResourceID)
+		}
+	}
+	return tags
+}
+
+func printOverlayDecisions(task string) {
+	doc := loadedOverlay()
+	if doc == nil || len(doc.Resources) == 0 {
+		return
+	}
+	fmt.Println("\nOverlay resources (Brain, not public registry):")
+	for _, d := range onboard.EvaluateTask(task, doc) {
+		fmt.Printf("  [%s] %s — %s\n", d.Action, d.ResourceID, d.Reason)
+	}
+}
+
+func resolveWorkflowRoot() string {
+	if r := os.Getenv("ORCHESTRA_WORKFLOW_ROOT"); r != "" {
+		return r
+	}
+	dir, _ := os.Getwd()
+	for i := 0; i < 8; i++ {
+		if _, err := os.Stat(filepath.Join(dir, "AGENTS.md")); err == nil {
+			if _, err := os.Stat(filepath.Join(dir, "registries")); err == nil {
+				return dir
+			}
+		}
+		parent := filepath.Dir(dir)
+		if parent == dir {
+			break
+		}
+		dir = parent
+	}
+	return "."
+}
+
+func runAdd(args []string) {
+	fs := flag.NewFlagSet("add", flag.ExitOnError)
+	urlFlag := fs.String("url", "", "Resource URL")
+	intent := fs.String("intent", "", "Natural-language add request")
+	_ = fs.Parse(args)
+	rest := strings.Join(fs.Args(), " ")
+
+	rawURL := *urlFlag
+	text := *intent
+	if text == "" {
+		text = rest
+	} else if rest != "" && rawURL == "" {
+		rawURL = rest
+	}
+	if rawURL == "" {
+		rawURL = onboard.ExtractURL(text)
+	}
+	if rawURL == "" && rest != "" && !strings.Contains(rest, " ") {
+		rawURL = rest
+	}
+	if rawURL == "" {
+		fmt.Println("Usage: orchestra add [--url URL] [--intent \"Add this GitHub repository...\"]")
+		fmt.Println("The resource is stored in the Brain overlay. registries/resources.json is not edited.")
+		os.Exit(1)
+	}
+
+	entry, _, err := onboard.AddFromIntent(onboard.Options{
+		URL:    rawURL,
+		Intent: text,
+		Origin: "user_intent",
+	})
+	if err != nil {
+		fmt.Printf("[FAIL] add: %v\n", err)
+		os.Exit(1)
+	}
+	fmt.Printf("[OK] added %s as %s (%s)\n", entry.Resource.ID, entry.Kind, entry.KindReason)
+	fmt.Printf("     overlay: %s\n", onboard.ResolveOverlayPath("."))
+	fmt.Printf("     scope:   %s via %s\n", entry.InstallScope, entry.Resource.AcquisitionMethod)
+	fmt.Printf("     public registries/resources.json was not written\n")
+}
+
+func runLifecycle(args []string) {
+	fs := flag.NewFlagSet("lifecycle", flag.ExitOnError)
+	urlFlag := fs.String("url", "", "Resource URL")
+	intent := fs.String("intent", "", "Natural-language add request")
+	match := fs.String("match", "", "Matching task")
+	mismatch := fs.String("mismatch", "", "Non-matching task")
+	artifacts := fs.String("artifacts", "", "Directory for per-step proof files")
+	_ = fs.Parse(args)
+	rest := strings.Join(fs.Args(), " ")
+
+	rawURL := *urlFlag
+	text := *intent
+	if text == "" {
+		text = rest
+	}
+	if rawURL == "" {
+		rawURL = onboard.ExtractURL(text)
+	}
+	if rawURL == "" {
+		fmt.Println("Usage: orchestra lifecycle --url URL [--intent \"...\"] [--match \"...\"] [--mismatch \"...\"]")
+		os.Exit(1)
+	}
+
+	root := resolveWorkflowRoot()
+	artifactDir := *artifacts
+	if artifactDir == "" {
+		if home := os.Getenv("ORCHESTRA_HOME"); home != "" {
+			artifactDir = filepath.Join(home, "memory", "lifecycle-pass-a")
+		}
+	}
+	rep, err := onboard.RunLifecycle(onboard.Options{
+		URL:           rawURL,
+		Intent:        text,
+		Origin:        "user_intent",
+		MatchTask:     *match,
+		MismatchTask:  *mismatch,
+		PublicCatalog: resolveRegistryFile("resources.json", ""),
+		WorkflowRoot:  root,
+		ArtifactDir:   artifactDir,
+	})
+	if err != nil {
+		if rep != nil {
+			fmt.Print(onboard.FormatReport(rep))
+		}
+		fmt.Printf("[FAIL] lifecycle: %v\n", err)
+		os.Exit(1)
+	}
+	fmt.Print(onboard.FormatReport(rep))
 }

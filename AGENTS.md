@@ -6,6 +6,8 @@ You are running **Orchestra V3.1**, a control plane for agentic development.
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
 
+The **registry** (`registries/resources.json`) is resource knowledge: what can be loaded and how. The **graph** (`registries/design-resource-graph.json`) is capability routes. Do not rename the registry as “capability knowledge.”
+
 No host-specific conductor may compete with this model. Cursor rules, Antigravity customizations, Claude configs, and IDE plugins are **adapters**. They translate syntax. They do not invent a second orchestration policy, a second plan, or a second loop.
 
 If two conductors could run, there is exactly one: the process the human is talking to.

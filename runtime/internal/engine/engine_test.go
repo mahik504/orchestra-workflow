@@ -11,8 +11,31 @@ import (
 	"github.com/user/orchestra-v3/internal/resources"
 )
 
+func TestMain(m *testing.M) {
+	dir, err := os.MkdirTemp("", "orchestra-engine-mem-*")
+	if err != nil {
+		os.Stderr.WriteString(err.Error() + "\n")
+		os.Exit(1)
+	}
+	_ = os.Unsetenv("ORCHESTRA_HOME")
+	_ = os.Setenv("ORCHESTRA_MEMORY_PATH", filepath.Join(dir, "resource-memory.json"))
+	_ = os.Setenv("ORCHESTRA_OVERLAY_PATH", filepath.Join(dir, "added-resources.json"))
+	code := m.Run()
+	_ = os.RemoveAll(dir)
+	os.Exit(code)
+}
+
+func isolatePipelineMemory(t *testing.T) {
+	t.Helper()
+	t.Setenv("ORCHESTRA_HOME", "")
+	dir := t.TempDir()
+	t.Setenv("ORCHESTRA_MEMORY_PATH", filepath.Join(dir, "resource-memory.json"))
+	t.Setenv("ORCHESTRA_OVERLAY_PATH", filepath.Join(dir, "added-resources.json"))
+}
+
 func setupEngineFixtures(t *testing.T) (*resources.ResourceCatalog, *resources.DesignResourceGraph, string) {
 	t.Helper()
+	isolatePipelineMemory(t)
 	candidates := []string{
 		filepath.Join("..", "..", "..", "registries"),
 		filepath.Join("..", "..", "registries"),

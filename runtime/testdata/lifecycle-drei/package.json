@@ -1,0 +1,12 @@
+{
+  "name": "lifecycle-drei-fixture",
+  "private": true,
+  "version": "0.0.0",
+  "description": "STANDARD glue fixture for Orchestra Pass B. Not a product.",
+  "dependencies": {
+    "@react-three/drei": "^10.7.8",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "three": "^0.175.0"
+  }
+}

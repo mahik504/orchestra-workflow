@@ -84,32 +84,19 @@ type ResourceMemoryStore struct {
 
 // ResolveDefaultMemoryPath resolves the prioritized path to resource-memory.json.
 //
-// Resolution is relative to the caller's workspace so that a fresh clone writes
-// memory into that clone's own workspace. Point ORCHESTRA_HOME at a private
-// workspace to keep resource memory outside the repository.
+// ORCHESTRA_HOME is the Brain. When it is set, memory always lives there — even
+// if a seed file exists in the method clone. When it is unset, state is created
+// under the workspace .orchestra/ directory, never a host memory/ ledger.
 func ResolveDefaultMemoryPath(workspaceRoot string) string {
 	if envPath := os.Getenv("ORCHESTRA_MEMORY_PATH"); envPath != "" {
 		return filepath.Clean(envPath)
 	}
-
-	var candidates []string
 	if home := os.Getenv("ORCHESTRA_HOME"); home != "" {
-		candidates = append(candidates, filepath.Join(home, "memory", "resource-memory.json"))
+		return filepath.Clean(filepath.Join(home, "memory", "resource-memory.json"))
 	}
-	candidates = append(candidates,
-		filepath.Join(workspaceRoot, "memory", "resource-memory.json"),
-		filepath.Join(workspaceRoot, ".orchestra", "memory", "resource-memory.json"),
-		filepath.Join(workspaceRoot, "..", "orchestra-workspace", "memory", "resource-memory.json"),
-	)
-
-	for _, c := range candidates {
-		if _, err := os.Stat(c); err == nil {
-			return filepath.Clean(c)
-		}
+	if strings.TrimSpace(workspaceRoot) == "" {
+		workspaceRoot = "."
 	}
-
-	// Nothing on disk yet. Keep Orchestra's own state under .orchestra/ rather
-	// than dropping a memory/ directory into somebody else's repository.
 	return filepath.Clean(filepath.Join(workspaceRoot, ".orchestra", "memory", "resource-memory.json"))
 }
 

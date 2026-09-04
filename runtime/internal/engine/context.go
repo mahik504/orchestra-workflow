@@ -49,21 +49,23 @@ type DiscoveryData struct {
 
 // ClassificationData contains capability mappings and governance gates from Stage 2
 type ClassificationData struct {
-	Archetype         string                          `json:"archetype"`
-	NormalizedTags    []string                        `json:"normalized_tags"`
-	ResolvedRoutes    []resources.CapabilityRoute     `json:"resolved_routes"`
-	RequiresVisual    bool                            `json:"requires_visual"`
-	RequiresSecurity  bool                            `json:"requires_security"`
-	RequiresHumanGate bool                            `json:"requires_human_gate"`
-	GateReason        string                          `json:"gate_reason"`
-	GapTechnologies   []string                        `json:"gap_technologies"`
-	RecommendedAgent  router.AllocationRecommendation `json:"recommended_agent"`
-	Brief             *classifier.Brief               `json:"brief,omitempty"`
-	QualityBar        string                          `json:"quality_bar"`
-	Platform          string                          `json:"platform"`
-	ResearchDepth     string                          `json:"research_depth"`
-	VerifyDepth       string                          `json:"verify_depth"`
-	DeclinedRoutes    []classifier.Candidate          `json:"declined_routes,omitempty"`
+	Archetype           string                          `json:"archetype"`
+	NormalizedTags      []string                        `json:"normalized_tags"`
+	ResolvedRoutes      []resources.CapabilityRoute     `json:"resolved_routes"`
+	RequiresVisual      bool                            `json:"requires_visual"`
+	RequiresSecurity    bool                            `json:"requires_security"`
+	RequiresHumanGate   bool                            `json:"requires_human_gate"`
+	GateReason          string                          `json:"gate_reason"`
+	GapTechnologies     []string                        `json:"gap_technologies"`
+	RecommendedAgent    router.AllocationRecommendation `json:"recommended_agent"`
+	Brief               *classifier.Brief               `json:"brief,omitempty"`
+	QualityBar          string                          `json:"quality_bar"`
+	Platform            string                          `json:"platform"`
+	ResearchDepth       string                          `json:"research_depth"`
+	VerifyDepth         string                          `json:"verify_depth"`
+	DeclinedRoutes      []classifier.Candidate          `json:"declined_routes,omitempty"`
+	OverlayActivations  []string                        `json:"overlay_activations,omitempty"`
+	OverlaySuppressions []string                        `json:"overlay_suppressions,omitempty"`
 }
 
 // ResearchData contains visual inspirations, palettes, typography from Stage 3
@@ -108,6 +110,8 @@ type ImplementationData struct {
 	HandoffStatePath  string                 `json:"handoff_state_path"`
 	BuildOutput       string                 `json:"build_output"`
 	BuildPassed       bool                   `json:"build_passed"`
+	InstalledPaths    map[string]string      `json:"installed_paths,omitempty"`
+	AcquireCommands   map[string]string      `json:"acquire_commands,omitempty"`
 }
 
 // ViewportCheckResult defines QA output for a specific responsive viewport
@@ -130,6 +134,7 @@ type VisualQAData struct {
 	Metrics            map[string]float64    `json:"metrics"`
 	DetectedViolations []string              `json:"detected_violations"`
 	FailureClass       string                `json:"failure_class"` // "NONE", "TOKEN_STYLE", "LAYOUT_CODE", "FATAL"
+	VerifierRan        bool                  `json:"verifier_ran,omitempty"`
 }
 
 // IterationData tracks self-healing loop cycles and feedback in Stage 8

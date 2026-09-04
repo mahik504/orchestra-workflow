@@ -171,6 +171,10 @@
       "token_context_weight": {
         "type": "number",
         "description": "Estimated token context weight when activated"
+      },
+      "npm_package": {
+        "type": "string",
+        "description": "Exact npm specifier when it differs from the resource id (e.g. @react-three/drei)"
       }
     },
     "additionalProperties": false

@@ -1,45 +1,20 @@
 # Workflow
 
-The conductor skill is the runtime. This page is the loop in plain language.
+The conductor is the process you are talking to. The loop lives in [`WORKFLOW.md`](../WORKFLOW.md) and [`AGENTS.md`](../AGENTS.md). This page is a short pointer, not a second control plane.
 
-```mermaid
-flowchart TD
-  brief[execution-brief / plan-brief]
-  spec[spec.md]
-  plan[Conductor Plan]
-  jump[routes.md → one note → app repo]
-  design[Design pipeline if visual]
-  impl[One story per pass]
-  worker[Optional worker packet]
-  qa[Visual QA / tests / ship-safe]
-  brief --> spec --> plan --> jump
-  jump --> design --> impl --> worker --> qa
+```
+Understand → Classify → Search graph → Design Lab / Technical plan → HUMAN GATE
+ → Implement → Verify on the real app → Correctness review → Simplify review → Remember
 ```
 
-## Dual-track import (by `kind`)
+1. **Classify** into one capability in `registries/design-resource-graph.json`.
+2. **Plan** with `orchestra plan` (no side effects).
+3. **Design Lab** is a write lock on PREMIUM / EXPERIMENTAL visual work until a stack card is approved. Say `skip the lab` to bypass one task.
+4. **Implement** only the approved direction. Project-scoped installs. No global npm.
+5. **Verify** on the running app. `DONE` / `VERIFIED` needs evidence in the same message.
 
-Stitch is **optional** if the Plan already named a library, shader, or motion system. Combine that source against `design.md`.
+Commands: `orchestra classify`, `orchestra plan`, `orchestra run`, `orchestra doctor`.
 
-| kind | Import | Avoid |
-| --- | --- | --- |
-| `college` / hackathon | One kit or SkillUI URL or React Bits or one ThreeUI piece. Tint to one world. React Bits required on hackathon web. | Five kits. Chrome from zero. |
-| `hiring-cv` | Stitch + one echo **or** named library vs `design.md` | Mixing college kits into the internship story |
-| `personal` operator HUD | Stitch screen 1, no shadcn/21st, one volume 3D if needed | Kit dashboards as identity |
+Say **skip orchestra** to stand the contract down for the session.
 
-Always-on 21st / Aceternity / Magic MCP stay **off**.
-
-## Ralph-thin (no Ralph CLI)
-
-After Plan: `spec.md`. One user story per agent pass. Learnings in `progress.md`. Do not install Ralph CLI, Spec Kit `specify init`, or slash-command packs.
-
-## ECC method (not the dump)
-
-Load-by-job and isolate plan / implement / review. Do **not** install ECC skill catalogs.
-
-## Tokens
-
-Jump-one-note, load-by-job, one story per pass. Short talk is fine. **Do not** shorten design or security reasoning to save tokens.
-
-## Skip
-
-Say **skip orchestra** to disable the router for that chat.
+Host files (`.cursorrules`, `CLAUDE.md`, `kit/antigravity/MASTER-PROMPT.md`) are adapters. They translate syntax. They do not invent a second plan.

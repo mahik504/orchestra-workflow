@@ -66,18 +66,18 @@ type Task struct {
 // graph produces a Candidate, including the ones we decline, so that "why not
 // that route?" always has an answer.
 type Candidate struct {
-	CapabilityID    string   `json:"capability_id"`
-	Name            string   `json:"name"`
-	PrimaryArchetype string  `json:"primary_archetype"`
-	QualityBar      string   `json:"quality_bar"`
-	RiskRank        int      `json:"risk_rank"`
-	Platform        string   `json:"platform"`
-	Score           float64  `json:"score"`
-	MatchedTags     []string `json:"matched_tags,omitempty"`
-	FiredTriggers   []string `json:"fired_triggers,omitempty"`
-	FiredSkips      []string `json:"fired_skips,omitempty"`
-	Declined        bool     `json:"declined"`
-	DeclineReason   string   `json:"decline_reason,omitempty"`
+	CapabilityID     string   `json:"capability_id"`
+	Name             string   `json:"name"`
+	PrimaryArchetype string   `json:"primary_archetype"`
+	QualityBar       string   `json:"quality_bar"`
+	RiskRank         int      `json:"risk_rank"`
+	Platform         string   `json:"platform"`
+	Score            float64  `json:"score"`
+	MatchedTags      []string `json:"matched_tags,omitempty"`
+	FiredTriggers    []string `json:"fired_triggers,omitempty"`
+	FiredSkips       []string `json:"fired_skips,omitempty"`
+	Declined         bool     `json:"declined"`
+	DeclineReason    string   `json:"decline_reason,omitempty"`
 }
 
 // Brief is the structured re-brief. Ambiguous/ClarifyingQuestion carry the one

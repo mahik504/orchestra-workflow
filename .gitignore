@@ -16,6 +16,12 @@ mcp_config.json
 *secret*
 *.token
 
+# Live Brain ledgers never belong in this method clone
+.orchestra/
+memory/resource-memory.json
+memory/added-resources.json
+memory/lifecycle-pass-*/
+memory/lifecycle-audit.json
 memory/local-notes.md
 memory/attachments/
 
@@ -31,10 +37,15 @@ Desktop.ini
 runtime/go-portable/
 runtime/go-portable.zip
 
+runtime/testdata/lifecycle-drei/node_modules/
+runtime/testdata/lifecycle-drei/package-lock.json
+runtime/testdata/lifecycle-drei/pnpm-lock.yaml
+runtime/testdata/lifecycle-drei/yarn.lock
+runtime/testdata/lifecycle-drei/.orchestra/
+
 __pycache__/
 *.pyc
 .pytest_cache/
 
 # Agent metadata and runs
 .agents/
-

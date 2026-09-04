@@ -1,8 +1,8 @@
 # Getting started
 
-**clone → initialize → configure → activate → route → load → execute → verify**
+**clone → private workspace → doctor → classify → plan → Design Lab (if visual) → implement → verify**
 
-This repository is the **Orchestra Workflow** (public). Your notes and products belong in a **separate private workspace**.
+This repository is the **Orchestra Workflow** (public method). Your notes and products belong in a **separate private Brain**. Set `ORCHESTRA_HOME` to that workspace.
 
 ## 1. Clone
 
@@ -26,7 +26,7 @@ chmod +x kit/init-workspace.sh
 ./kit/init-workspace.sh
 ```
 
-Default location: `../orchestra-workspace` (sibling of this clone). Override:
+Default location: `../orchestra-workspace` (sibling of this clone), or `$ORCHESTRA_HOME` if that env var is already set. Override:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File kit/init-workspace.ps1 -Target "D:\work\my-orchestra"
@@ -40,10 +40,10 @@ The workspace is empty on purpose: `projects/`, `memory/`, `Preferences.md`, `ro
 
 ## 3. Configure
 
-1. Open **both** folders in your agent: this workflow repo **or** just the copied `protocols/` + skills, **and** your private workspace, **and** the application repo you are building.
+1. Open **both** folders in your agent: this workflow repo, your private workspace, and the application repo you are building.
 2. Put API keys in the **agent’s** env / MCP UI — never in the workspace git.
 3. Edit workspace `Preferences.md` (taste) and `routes.md` (your slugs).
-4. Optional: copy `protocols/` and `registries/` into the workspace if you want a single root. The init script can symlink or copy; default is copy of protocols/templates into the workspace so the private brain stays self-contained.
+4. Set `ORCHESTRA_HOME` to the private workspace. `orchestra doctor` prints the Memory and Overlay paths it bound.
 
 ## 4. Activate
 
@@ -72,11 +72,11 @@ For Codex / OpenCode / Hermes: keep `AGENTS.md` in the app repo or workspace roo
 
 In chat: say what you are building. The conductor should:
 
-1. Print an **activation card** (job, risk, visual ambition, capabilities ON).
-2. Open **one** `routes.md` target, then the **app repo**.
-3. Load only matching protocols/skills.
+1. Re-brief (archetype, quality bar, platform, hard constraints).
+2. Classify into one capability. Load that route. Leave other routes closed.
+3. Open the **app repo** before trusting a brief.
 
-High-visual UI: no chrome until the card includes references, reverse engineering, typography, motion, 3D/shader, visual QA, and whether a worker IDE is packeted.
+PREMIUM / EXPERIMENTAL visual work: **Design Lab is a write lock**. Do not write frontend files until a stack card is approved. Say `skip the lab` to bypass one task.
 
 ## 6. Load relevant capabilities
 
@@ -85,23 +85,22 @@ Read the protocol files for **this** job. Examples:
 - Showable web: `protocols/DESIGN_SYSTEM_PROTOCOL.md` + `TYPOGRAPHY_PROTOCOL.md` + `VISUAL_QA_PROTOCOL.md`
 - “Make it like this URL”: `REVERSE_ENGINEERING_PROTOCOL.md` then originality gate
 - Auth/payments: `SECURITY_PROTOCOL.md` (ship-safe + Strix on **your** app)
-- Vague ask: `PROMPT_BRIEF_PROTOCOL.md` once
 
 ## 7. Execute
 
-Implement in the **application repository**. One spec story per pass. Packet Antigravity (or any worker) only when the conductor says so. After a worker returns, the conductor **re-reads the git diff**.
+Implement in the **application repository**. One spec story per pass. Packet a worker only when the conductor says so. After a worker returns, the conductor **re-reads the git diff**.
 
 ## 8. Verify
 
-UI: visual QA protocol on a running app (Playwright or the agent’s browser).  
-Security: ship-safe always; Strix only on your code.  
-Never claim “looks good” from a single chat screenshot.
+UI: visual QA protocol on a running app (Playwright or the agent’s browser). Zero screenshots is not a Playwright pass.
+Security: ship-safe always; Strix only on your code.
+Never claim “looks good” from a single chat screenshot. `DONE` / `VERIFIED` needs evidence in the same message.
 
 ## 9. Persist (small)
 
-Lasting taste → workspace `Preferences.md`.  
-Decisions → `memory/decisions.md`.  
-Product facts → `projects/<your-slug>/idea.md`.  
+Lasting taste → workspace `Preferences.md`.
+Decisions → `memory/decisions.md`.
+Product facts → `projects/<your-slug>/idea.md`.
 Do not file chat logs.
 
 ## Skip Orchestra

@@ -142,9 +142,9 @@ func TestPhase7_ThreeGraphsDiffer(t *testing.T) {
 
 	ids := []string{"saas-dashboard", "premium-website", "3d-portfolio"}
 	briefs := map[string]string{
-		"saas-dashboard":   "Build a scheduling dashboard for a school with attendance charts",
-		"premium-website":  "Build a landing page for a friend's coffee roastery, they want it to feel expensive",
-		"3d-portfolio":     "Build a 3D WebGL portfolio with R3F camera orbits and custom shaders",
+		"saas-dashboard":  "Build a scheduling dashboard for a school with attendance charts",
+		"premium-website": "Build a landing page for a friend's coffee roastery, they want it to feel expensive",
+		"3d-portfolio":    "Build a 3D WebGL portfolio with R3F camera orbits and custom shaders",
 	}
 
 	sets := map[string]string{}

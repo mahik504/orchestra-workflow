@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/user/orchestra-v3/internal/classifier"
+	"github.com/user/orchestra-v3/internal/onboard"
 	"github.com/user/orchestra-v3/internal/resources"
 	"github.com/user/orchestra-v3/internal/verify"
 )
@@ -128,6 +129,30 @@ func (s *ClassifyStage) Execute(ctx *TaskContext) (*StageResult, error) {
 	}
 	gapTechnologies = append(gapTechnologies, brief.UnknownTechnology...)
 
+	var overlayOn []string
+	var overlayOff []string
+	if ctx.Catalog != nil && ctx.Task != nil {
+		for _, res := range ctx.Catalog.All() {
+			if res == nil {
+				continue
+			}
+			if res.PolicyVerdict != onboard.PolicyOverlay && res.PolicyVerdict != onboard.PolicySuppressed {
+				continue
+			}
+			d := onboard.DecideResource(ctx.Task.RawRequest, *res)
+			if d.Action == onboard.ActionActivated {
+				overlayOn = append(overlayOn, res.ID)
+				addTag(res.ID)
+				for _, t := range res.RoutingTags {
+					addTag(t)
+				}
+				ctx.Task.SuggestedResources = append(ctx.Task.SuggestedResources, res.ID)
+			} else {
+				overlayOff = append(overlayOff, res.ID+": "+d.Reason)
+			}
+		}
+	}
+
 	var declined []classifier.Candidate
 	for _, c := range brief.Considered {
 		if c.Declined {
@@ -136,20 +161,22 @@ func (s *ClassifyStage) Execute(ctx *TaskContext) (*StageResult, error) {
 	}
 
 	ctx.Classification = &ClassificationData{
-		Archetype:         archetype,
-		NormalizedTags:    allTags,
-		ResolvedRoutes:    resolvedRoutes,
-		RequiresVisual:    brief.RequiresVisual,
-		RequiresSecurity:  brief.RequiresSecurity,
-		RequiresHumanGate: requiresHumanGate,
-		GateReason:        gateReason,
-		GapTechnologies:   gapTechnologies,
-		Brief:             brief,
-		QualityBar:        brief.QualityBar,
-		Platform:          brief.Platform,
-		ResearchDepth:     brief.ResearchDepth,
-		VerifyDepth:       brief.VerifyDepth,
-		DeclinedRoutes:    declined,
+		Archetype:           archetype,
+		NormalizedTags:      allTags,
+		ResolvedRoutes:      resolvedRoutes,
+		RequiresVisual:      brief.RequiresVisual,
+		RequiresSecurity:    brief.RequiresSecurity,
+		RequiresHumanGate:   requiresHumanGate,
+		GateReason:          gateReason,
+		GapTechnologies:     gapTechnologies,
+		Brief:               brief,
+		QualityBar:          brief.QualityBar,
+		Platform:            brief.Platform,
+		ResearchDepth:       brief.ResearchDepth,
+		VerifyDepth:         brief.VerifyDepth,
+		DeclinedRoutes:      declined,
+		OverlayActivations:  overlayOn,
+		OverlaySuppressions: overlayOff,
 	}
 
 	// 7. Lock frontend writes until a direction is approved.

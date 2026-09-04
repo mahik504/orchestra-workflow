@@ -190,20 +190,26 @@ go build -o orchestra ./cmd/orchestra
 ./orchestra doctor
 ./orchestra classify "build a reading app for arXiv papers with footnotes and math"
 ./orchestra plan --task "a scheduling dashboard for a school with attendance charts"
+./orchestra add --intent "Add this GitHub repository to Orchestra and make it available whenever the task requires its capability. https://github.com/example/example-resource"
 ```
 
-Commands: `init`, `doctor`, `classify`, `plan` (alias `route`), `run`, `verify`, `handoff`, `sync`, `memory`.
+Commands: `init`, `doctor`, `classify`, `plan` (alias `route`), `run`, `verify`, `handoff`, `sync`, `memory`, `add`, `lifecycle`.
+
+`add` inspects a URL and writes it to the Brain overlay (`memory/added-resources.json` when `ORCHESTRA_HOME` is set). It does not edit `registries/resources.json`. `lifecycle` prints the 15-step proof for one resource. Recorded outcomes update overlay routing; that is not reinforcement learning.
 
 `plan` has no side effects. `run` executes the pipeline and honours the gate unless you pass `--auto-approve`.
 
 ### Your clone stays yours
 
-A fresh clone writes only inside itself, and never to anyone else's workspace. This repo ships an empty `memory/resource-memory.json`; if you point Orchestra at a project that has no memory file, it creates one under that project's `.orchestra/` rather than adding a `memory/` directory to your repository.
+This repository is the method: registries, graph, and the Go engine. Your private Brain is a separate workspace. Set `ORCHESTRA_HOME` to that workspace so overlay and resource memory resolve there. `orchestra doctor` prints the Memory and Overlay paths it bound.
+
+A fresh clone without `ORCHESTRA_HOME` writes only under that clone's `.orchestra/` directory. It does not ship a live `memory/resource-memory.json`.
 
 | Variable | Effect |
 | --- | --- |
-| `ORCHESTRA_HOME` | your private workspace root, if you keep one outside the clone |
+| `ORCHESTRA_HOME` | your private workspace root (Brain). Overlay and resource memory live here |
 | `ORCHESTRA_MEMORY_PATH` | exact path to `resource-memory.json` |
+| `ORCHESTRA_OVERLAY_PATH` | exact path to `added-resources.json` (user-added catalog) |
 | `ORCHESTRA_WORKFLOW_ROOT` | where the registries live |
 | `ORCHESTRA_QUARANTINE_PATH` | the bulk skill library to refuse |
 | `ORCHESTRA_CONTRACT` | pin an older contract version if a rollout misbehaves |

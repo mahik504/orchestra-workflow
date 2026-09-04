@@ -6,7 +6,11 @@ param(
 $ErrorActionPreference = "Stop"
 $Root = Split-Path -Parent $PSScriptRoot
 if (-not $Target) {
-  $Target = Join-Path (Split-Path -Parent $Root) "orchestra-workspace"
+  if ($env:ORCHESTRA_HOME) {
+    $Target = $env:ORCHESTRA_HOME
+  } else {
+    $Target = Join-Path (Split-Path -Parent $Root) "orchestra-workspace"
+  }
 }
 
 $template = Join-Path $Root "workspace-template"

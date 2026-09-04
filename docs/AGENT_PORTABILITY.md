@@ -1,13 +1,13 @@
-﻿# Agent Portability Matrix
+﻿# Agent portability
 
-Orchestra V3 operates as an abstracted capability router. The capability set is verified to be identical across supported environments.
+Orchestra 3.1 is one contract. Hosts are adapters. They do not invent a second plan.
 
-| Environment | Skill Dir | MCP Config | Adapter Role | Status |
-|---|---|---|---|---|
-| **Cursor** | `.cursor/skills` | `.cursor/mcp.json` | Implementation, component tuning | `SYNCED` |
-| **Antigravity** | `.gemini/config/skills` | `.gemini/config/mcp_config.json` | Master orchestration, QA, Architecture | `SYNCED` |
-| **Claude Code** | `.claude/skills` | `.claude/mcp.json` (via env) | Terminal automation, server-side debugging | `SYNCED` |
-| **OpenCode/Agents** | `.agents/skills` | N/A | Batch tasks | `SYNCED` |
+| Host | Adapter | Native strength |
+| --- | --- | --- |
+| Cursor | `.cursorrules` | Bulk implementation, in-file diffing |
+| Antigravity | `kit/antigravity/MASTER-PROMPT.md` | Visual QA, architecture planning |
+| Claude Code | `CLAUDE.md` | Terminal execution, backend refactor |
 
-## Enforcement Policy
-The `skills` directories have been programmatically truncated. Unauthorized generic AI skills (`hackathon-vibe-coder`, `no-ai-slop`, etc.) were eradicated to guarantee a 1:1 consistent Execution Manifest across all adapters.
+See [`AGENTS.md`](../AGENTS.md), [`WORKFLOW.md`](../WORKFLOW.md), and [`docs/adapters.md`](adapters.md).
+
+A host may own a capability the others lack. Map it. Do not clone plugin lists between hosts. Sync means the same contract, not the same installed extras.
