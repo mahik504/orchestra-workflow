@@ -28,6 +28,8 @@ which duplicated the pipeline's approval and execution logic.
 **Isolation.** A fresh clone now keeps resource memory at `.orchestra/memory/resource-memory.json`
 instead of creating a `memory/` directory in the host repository.
 
+**Phase 7 evidence.** Twelve capability rows. `research-paper` loads `orchestra-docs` and does not arm the Design Lab. Restaurant / school SaaS / 3D portfolio resolve to three different resource graphs. A premium brief that names no libraries still surfaces research, design, and motion. `pixi.js` is reported as unknown technology rather than forced into a route. References acquire `on_demand` via `web_fetch`; GSAP is `project_scoped_install`; global npm stays blocked. Live fixture screenshots at 1440×900, 768×1024, 390×844; click wrote a hold; heading contrast 14.43:1; no horizontal overflow.
+
 **README.** Rewritten against the code. The previous version cited capability and domain names that
 do not exist in the graph, and described research as querying live design indexes when
 `ResearchCoordinator` defaults to offline fixtures.

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kiln &amp; Copper — Phase 7 fixture</title>
+  <style>
+    :root {
+      --bone: #f3eadc;
+      --umber: #2a1610;
+      --ember: #b85a2a;
+      --ink: #1c100c;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--umber); color: var(--bone); }
+    body {
+      font-family: Palatino, "Palatino Linotype", "Iowan Old Style", Georgia, serif;
+      min-height: 100vh;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 1.25rem 8vw;
+      border-bottom: 1px solid color-mix(in srgb, var(--bone) 18%, transparent);
+    }
+    .mark { letter-spacing: 0.18em; text-transform: uppercase; font-size: 0.72rem; }
+    main { padding: 12vh 8vw 8vh; max-width: 42rem; }
+    h1 {
+      font-size: clamp(2.4rem, 7vw, 4.8rem);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      margin: 0 0 1.25rem;
+    }
+    p { font-size: 1.15rem; line-height: 1.55; max-width: 36ch; }
+    button {
+      margin-top: 2rem;
+      background: var(--ember);
+      color: var(--bone);
+      border: 0;
+      padding: 0.9rem 1.4rem;
+      font: inherit;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+    }
+    button:focus-visible { outline: 2px solid var(--bone); outline-offset: 3px; }
+    #status { min-height: 1.5rem; margin-top: 1rem; font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="mark">Kiln &amp; Copper</div>
+    <div class="mark">Roastery</div>
+  </header>
+  <main>
+    <h1>Roast held just short of smoke.</h1>
+    <p>Small-batch coffee for a table of two. No kits. No purple. A fixture so Orchestra can prove it launches, clicks, and screenshots a real page.</p>
+    <button id="reserve" type="button">Reserve a table</button>
+    <p id="status" aria-live="polite"></p>
+  </main>
+  <script>
+    document.getElementById("reserve").addEventListener("click", function () {
+      document.getElementById("status").textContent = "Held — Friday 7:30, window two.";
+    });
+  </script>
+</body>
+</html>

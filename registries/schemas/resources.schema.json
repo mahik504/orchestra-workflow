@@ -43,9 +43,13 @@
           "cli_tool",
           "mcp_server",
           "standard_specification",
+          "specification",
           "agent_skill",
           "desktop_application",
-          "local_runtime"
+          "local_runtime",
+          "digital_archive",
+          "component_gallery",
+          "asset_archive"
         ],
         "description": "Origin type of the resource"
       },
@@ -85,7 +89,8 @@
           "profile",
           "reference",
           "infrastructure",
-          "dev_utility"
+          "dev_utility",
+          "prompt_library"
         ],
         "description": "How the runtime represents this resource"
       },
@@ -106,7 +111,8 @@
           "web_fetch",
           "mcp_install",
           "manual",
-          "none"
+          "none",
+          "git_clone"
         ],
         "description": "Engine acquisition mechanism"
       },

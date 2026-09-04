@@ -97,13 +97,30 @@ const GOV = {
     platform: 'web',
     trigger_conditions: [
       'Long-form prose is the product and reading comfort is the metric',
-      'The brief names papers, arXiv, footnotes, citations, or math typesetting',
+      'The brief names papers, arXiv, footnotes, or math typesetting',
       'Reflow, measure, and vertical rhythm are explicit concerns',
     ],
     skip_conditions: [
       'The content is short marketing copy',
       'Interaction or dashboards dominate the surface',
       'The brief wants heavy motion; this route protects reading',
+      'The job is to write a paper or produce citations rather than a reading surface — route to research-paper',
+    ],
+  },
+  'research-paper': {
+    quality_bar: 'STANDARD',
+    risk_rank: 2,
+    platform: 'any',
+    trigger_conditions: [
+      'The job is producing a paper, thesis, or methods writeup',
+      'Citations must be real; inventing sources is forbidden',
+      'There is no reading UI to design — the deliverable is prose',
+    ],
+    add_trigger_tags: ['citations', 'thesis', 'manuscript', 'methods-paper', 'academic-writing', 'write-a-paper'],
+    skip_conditions: [
+      'The job is a reading viewer or arXiv app — route to academic-reader',
+      'The brief is a marketing page about research',
+      'The request is a UI or dashboard, not a document',
     ],
   },
   'micro-interactions': {

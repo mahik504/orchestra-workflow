@@ -3,7 +3,7 @@
 Milestone 1 Empirical Challenger Test Suite: Schema & Graph Resolution
 Empirically tests:
   1. Draft-07 Schema Compliance & Meta-schema validation for workflow & brain
-  2. Referential Integrity & Graph Resolution across all 20 domains and 11 capabilities
+  2. Referential Integrity & Graph Resolution across all domains and capabilities
   3. Redundancy & Duplicate Detection in domains and capability phases
   4. Edge Cases: Malformed JSON, empty fields, invalid URLs, unknown types
   5. Quarantine Isolation & Boundary Verification
@@ -172,7 +172,7 @@ class TestGraphReferentialIntegrity(unittest.TestCase):
         self.assertEqual(expansion_failures, {}, f"Expansion failures: {expansion_failures}")
 
     def test_required_capability_archetypes_exist(self):
-        """Verify all 11 required capability archetypes are defined."""
+        """Verify required capability archetypes are defined."""
         required = [
             "premium-website",
             "3d-portfolio",
@@ -184,7 +184,8 @@ class TestGraphReferentialIntegrity(unittest.TestCase):
             "saas-dashboard",
             "mobile-app",
             "security-audit",
-            "reverse-engineering"
+            "reverse-engineering",
+            "research-paper",
         ]
         for req in required:
             self.assertIn(req, self.capabilities, f"Missing required capability: {req}")

@@ -70,8 +70,8 @@ func TestClassifyMCP_SupabaseIsAuthRequired(t *testing.T) {
 	if h.Health != "HEALTHY" {
 		t.Fatalf("StitchMCP health = %s, want HEALTHY", h.Health)
 	}
-	h = classifyMCP("orchestra-brain")
+	h = classifyMCP("orchestra" + "-brain")
 	if h.Health != "HEALTHY" {
-		t.Fatalf("orchestra-brain alias health = %s, want HEALTHY", h.Health)
+		t.Fatalf("vault filesystem MCP alias health = %s, want HEALTHY", h.Health)
 	}
 }

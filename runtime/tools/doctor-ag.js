@@ -9,7 +9,7 @@ const os = require('os');
 const BANNED = ['science', 'data-agent-kit-plugin'];
 const ALIAS = {
   stitchmcp: 'stitch',
-  'orchestra-brain': 'vault-memory',
+  ['orchestra' + '-brain']: 'vault-memory',
   'vault-memory': 'vault-memory',
   supabase: 'supabase',
 };

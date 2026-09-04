@@ -533,7 +533,8 @@ func detectType(hay, declared string) string {
 		return TypeBugfix
 	case containsAny(hay, "refactor", "clean up", "cleanup", "simplify", "rename", "dedupe"):
 		return TypeRefactor
-	case containsAny(hay, "research", "compare", "evaluate", "investigate", "which library", "options for"):
+	case containsAny(hay, "research", "compare", "evaluate", "investigate", "which library", "options for",
+		"citations", "thesis", "manuscript", "methods paper"):
 		return TypeResearch
 	case containsAny(hay, "redesign", "design", "restyle", "visual", "look and feel"):
 		return TypeDesign
@@ -555,7 +556,7 @@ func decideVisual(b *Brief, hay string) bool {
 		return true
 	}
 	switch b.CapabilityID {
-	case "security-audit":
+	case "security-audit", "research-paper":
 		return false
 	case "":
 		return containsAny(hay, "ui", "frontend", "css", "layout", "screen", "page", "component", "styling")

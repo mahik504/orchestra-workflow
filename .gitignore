@@ -31,6 +31,10 @@ Desktop.ini
 runtime/go-portable/
 runtime/go-portable.zip
 
+__pycache__/
+*.pyc
+.pytest_cache/
+
 # Agent metadata and runs
 .agents/
 

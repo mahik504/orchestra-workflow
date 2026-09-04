@@ -3908,5 +3908,39 @@
     "policy_verdict": "ACTIVE SPECIALIST",
     "rationale": "New York Public Library collection of historical botanical plates, vintage maps, and manuscripts.",
     "license": "site-terms"
+  },
+  {
+    "id": "orchestra-docs",
+    "name": "Orchestra Docs",
+    "canonical_url": "https://github.com/mahik504/orchestra-workflow",
+    "source_type": "agent_skill",
+    "source_repository": "https://github.com/mahik504/orchestra-workflow.git",
+    "documentation_url": "https://github.com/mahik504/orchestra-workflow/blob/main/skills/orchestra-docs/SKILL.md",
+    "license": "MIT",
+    "category": [
+      "documentation",
+      "academic_writing"
+    ],
+    "representation": "skill",
+    "routing_tags": [
+      "paper",
+      "citations",
+      "thesis",
+      "never-invent-citations"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "global_active_skill",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "methods paper",
+      "citations required",
+      "thesis or manuscript"
+    ],
+    "avoid_conditions": [
+      "invented sources",
+      "marketing copy dressed as research"
+    ],
+    "policy_verdict": "ACTIVE SPECIALIST",
+    "rationale": "Canonical skill for papers and docs. Never invent citations."
   }
 ]

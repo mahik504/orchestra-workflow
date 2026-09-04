@@ -78,7 +78,7 @@ Typography is mandatory in `DESIGN.md`. Visual QA is mandatory before "done." Ex
 
 ## Routing
 
-`registries/design-resource-graph.json` holds 11 capability rows across 20 domains. Every row carries **both** a trigger and a skip — a capability that can only be entered and never declined is a default in disguise, and defaults are how everything ends up looking the same.
+`registries/design-resource-graph.json` holds 12 capability rows across 21 domains. Every row carries **both** a trigger and a skip — a capability that can only be entered and never declined is a default in disguise, and defaults are how everything ends up looking the same.
 
 | Capability | Archetype | Bar | Risk |
 | --- | --- | --- | --- |
@@ -87,6 +87,7 @@ Typography is mandatory in `DESIGN.md`. Visual QA is mandatory before "done." Ex
 | `operator-hud` | mission_control | PREMIUM | 7 |
 | `b2b-portal` | enterprise_portal | STANDARD | 4 |
 | `academic-reader` | longform_reading | PREMIUM | 3 |
+| `research-paper` | academic_writing | STANDARD | 2 |
 | `micro-interactions` | interaction_design | PREMIUM | 5 |
 | `physics-canvas` | gamified_canvas | EXPERIMENTAL | 7 |
 | `saas-dashboard` | analytics_dashboard | STANDARD | 4 |

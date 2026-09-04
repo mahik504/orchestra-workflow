@@ -19,6 +19,7 @@ const SELF = new Set([
   'runtime/tools/hygiene.js',
   'runtime/tools/check-registry.js',
   'runtime/tools/strip-personal.js',
+  'runtime/tools/genericize.js',
   '.github/workflows/hygiene.yml',
 ]);
 
