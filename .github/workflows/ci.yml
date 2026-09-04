@@ -44,4 +44,10 @@ jobs:
         done
 
     - name: Test
-      run: go test -v ./...
+      run: |
+        if ! go test -v ./... > test.log 2>&1; then
+          FAILURES=$(grep -E "(--- FAIL|FAIL:)" test.log | head -n 20)
+          echo "::error title=Go Test Failures::$FAILURES"
+          cat test.log
+          exit 1
+        fi
