@@ -2,4 +2,4 @@
 
 | Date | Decision | Why |
 | --- | --- | --- |
-|  | Using Orchestra Workflow v2 | Capability router, not a skill dump |
+| 2026-09-04 | Using Orchestra 3.1.0 | Control plane, not a skill dump |

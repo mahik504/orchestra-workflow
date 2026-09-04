@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "orchestra-brain": {
+    "vault-memory": {
       "command": "npx",
       "args": [
         "-y",

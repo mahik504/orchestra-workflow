@@ -9,7 +9,7 @@ This map defines how capability gaps are satisfied by specific curated resources
 | **Visual QA / Browser Auto** | `playwright` (MCP) | `chrome-devtools-plugin` |
 | **Security Validation** | `semgrep-adapter` | `strix` skills |
 | **3D / WebGL** | `r3f-threejs` (Curated Catalog) | `shader-gradient` |
-| **Memory Extraction** | `orchestra-vault` | `orchestra-brain` (MCP) |
+| **Memory Extraction** | `orchestra-vault` | `vault-memory` (MCP) |
 | **Figma / Design Sync** | `stitch-code-to-design` | `StitchMCP` |
 | **Mobile Development** | `expo-router` + `expo-native-ui` | `eas-app-stores` |
 | **Task Planning** | `superpowers-planning` | `orchestra-conductor` |

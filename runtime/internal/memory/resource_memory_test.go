@@ -246,28 +246,27 @@ func TestInvalidEvaluationInputs(t *testing.T) {
 	}
 }
 
-func TestLiveBrainMemoryFileValid(t *testing.T) {
-	brainMemPath := `C:\projects\orchestra-brain\memory\resource-memory.json`
-	if _, err := os.Stat(brainMemPath); os.IsNotExist(err) {
-		t.Skip("Live brain memory file not present on disk, skipping")
+// A real workspace's memory file must parse and stay internally consistent.
+// It asserts nothing about which resources are present: an empty memory file is
+// the correct state for a fresh install, and seeding it would be fabricated
+// learning rather than recorded outcomes.
+func TestLiveWorkspaceMemoryFileValid(t *testing.T) {
+	memPath := os.Getenv("ORCHESTRA_MEMORY_PATH")
+	if memPath == "" {
+		t.Skip("ORCHESTRA_MEMORY_PATH not set, skipping live workspace check")
+	}
+	if _, err := os.Stat(memPath); os.IsNotExist(err) {
+		t.Skipf("no memory file at %s, skipping", memPath)
 	}
 
-	store, err := NewResourceMemoryStore(brainMemPath)
+	store, err := NewResourceMemoryStore(memPath)
 	if err != nil {
-		t.Fatalf("Failed to load live brain memory: %v", err)
+		t.Fatalf("Failed to load workspace memory: %v", err)
 	}
 
-	aggs := store.ListAggregates()
-	if len(aggs) < 6 {
-		t.Errorf("Expected at least 6 seeded resources in live memory, got %d", len(aggs))
-	}
-
-	for _, reqID := range []string{"playwright", "react-bits", "awwwards", "gsap", "three", "lucide-react"} {
-		agg, exists := store.GetAggregate(reqID)
-		if !exists {
-			t.Errorf("Missing seeded resource: %s", reqID)
-		} else if agg.TotalEvaluations < 1 {
-			t.Errorf("Resource %s has 0 evaluations", reqID)
+	for _, agg := range store.ListAggregates() {
+		if agg.TotalEvaluations < 0 {
+			t.Errorf("resource %s has negative evaluation count", agg.ResourceID)
 		}
 	}
 }

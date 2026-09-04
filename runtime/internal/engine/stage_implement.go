@@ -15,6 +15,7 @@ import (
 	"github.com/user/orchestra-v3/internal/handoff"
 	"github.com/user/orchestra-v3/internal/resources"
 	"github.com/user/orchestra-v3/internal/runner"
+	"github.com/user/orchestra-v3/internal/verify"
 )
 
 // ImplementStage executes Stage 6 of the design engine: acquiring resources and recording provenance.
@@ -42,6 +43,24 @@ func (s *ImplementStage) ShouldSkip(ctx *TaskContext) (bool, string) {
 
 func (s *ImplementStage) Execute(ctx *TaskContext) (*StageResult, error) {
 	start := time.Now()
+
+	// The Design Lab gate is a lock, not a warning. If a direction is owed and
+	// has not been approved, no frontend file gets written on this run — and
+	// that includes dry runs, which used to slip past the synthesize halt.
+	if ctx.DesignLab != nil && !ctx.DesignLab.Cleared() {
+		err := &verify.ErrGateNotCleared{
+			Path:   "<frontend implementation>",
+			Reason: ctx.DesignLab.Reason,
+		}
+		return &StageResult{
+			StageName: StageImplement,
+			Status:    StatusFailed,
+			StartTime: start,
+			EndTime:   time.Now(),
+			Duration:  time.Since(start),
+			Error:     err,
+		}, err
+	}
 
 	handoffDir := filepath.Join(ctx.Task.WorkspaceRoot, ".orchestra", "handoff")
 	if err := resources.CheckQuarantineBoundary(handoffDir); err != nil {
@@ -317,14 +336,15 @@ func (s *ImplementStage) Execute(ctx *TaskContext) (*StageResult, error) {
 	// 5. Verify Provenance Integrity
 	integrityReport, err := provStore.VerifyIntegrity(ctx.Task.WorkspaceRoot)
 	if err != nil || !integrityReport.AllValid {
+		detail := fmt.Errorf("provenance integrity verification failed: %+v", integrityReport.Issues)
 		return &StageResult{
 			StageName: StageImplement,
 			Status:    StatusFailed,
 			StartTime: start,
 			EndTime:   time.Now(),
 			Duration:  time.Since(start),
-			Error:     fmt.Errorf("provenance integrity verification failed: %+v", integrityReport.Issues),
-		}, fmt.Errorf("provenance integrity verification failed")
+			Error:     detail,
+		}, detail
 	}
 
 	// 6. Track Modified Files & Checksums (including provenance.json)

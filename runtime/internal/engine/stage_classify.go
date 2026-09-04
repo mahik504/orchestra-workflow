@@ -5,9 +5,14 @@ import (
 	"strings"
 	"time"
 
+	"github.com/user/orchestra-v3/internal/classifier"
 	"github.com/user/orchestra-v3/internal/resources"
+	"github.com/user/orchestra-v3/internal/verify"
 )
 
+// ClassifyStage runs the real classifier: it weighs every capability row in the
+// graph against the request, records why the losing routes were declined, and
+// arms the Design Lab gate before anything can be written.
 type ClassifyStage struct{}
 
 func NewClassifyStage() *ClassifyStage {
@@ -25,7 +30,7 @@ func (s *ClassifyStage) ShouldSkip(ctx *TaskContext) (bool, string) {
 func (s *ClassifyStage) Execute(ctx *TaskContext) (*StageResult, error) {
 	start := time.Now()
 
-	// 1. Tag Aggregation & Normalization
+	// 1. Gather every tag we know about before scoring.
 	tagSet := make(map[string]bool)
 	var allTags []string
 	addTag := func(t string) {
@@ -35,7 +40,6 @@ func (s *ClassifyStage) Execute(ctx *TaskContext) (*StageResult, error) {
 			allTags = append(allTags, trimmed)
 		}
 	}
-
 	if ctx.Discovery != nil {
 		for _, t := range ctx.Discovery.DetectedTags {
 			addTag(t)
@@ -48,80 +52,68 @@ func (s *ClassifyStage) Execute(ctx *TaskContext) (*StageResult, error) {
 		addTag(ctx.Task.ArchetypeHint)
 	}
 
-	// 2. Resolve Capability Routes from Graph
+	// 2. Score every capability row.
+	cls := classifier.NewClassifierWithGraph(ctx.Graph)
+	brief := cls.ClassifyBrief(ctx.Task.RawRequest, classifier.Options{
+		TaskID:        ctx.Task.ID,
+		ExtraTags:     allTags,
+		ArchetypeHint: ctx.Task.ArchetypeHint,
+		SkipLab:       ctx.Task.SkipVisualGate,
+		DeclaredType:  ctx.Task.Type,
+	})
+
+	// 3. Nobody is here to answer a clarifying question inside a pipeline run,
+	//    so an ambiguous brief resolves to the lower-risk route and says so.
+	if brief.Ambiguous {
+		brief.ResolveSilence()
+	}
+
+	// 4. Expand the chosen routes into full execution routes.
 	var resolvedRoutes []resources.CapabilityRoute
-	if ctx.Graph != nil && len(allTags) > 0 {
-		resolvedRoutes = ctx.Graph.ResolveCapabilities(allTags)
-	}
-
-	// Fallback to explicit ArchetypeHint if not resolved
-	if len(resolvedRoutes) == 0 && ctx.Graph != nil && ctx.Task.ArchetypeHint != "" {
-		if route, ok := ctx.Graph.ResolveCapabilityRoute(ctx.Task.ArchetypeHint, []string{ctx.Task.ArchetypeHint}); ok {
-			resolvedRoutes = append(resolvedRoutes, *route)
+	if ctx.Graph != nil {
+		for _, cand := range brief.Selected {
+			if route, ok := ctx.Graph.ResolveCapabilityRoute(cand.CapabilityID, cand.MatchedTags); ok {
+				resolvedRoutes = append(resolvedRoutes, *route)
+			}
+		}
+		// Keep the assumed or hinted route first, whatever the raw score said.
+		for i, r := range resolvedRoutes {
+			if r.CapabilityID == brief.CapabilityID && i != 0 {
+				resolvedRoutes[0], resolvedRoutes[i] = resolvedRoutes[i], resolvedRoutes[0]
+				break
+			}
+		}
+		if len(resolvedRoutes) == 0 && ctx.Task.ArchetypeHint != "" {
+			if route, ok := ctx.Graph.ResolveCapabilityRoute(ctx.Task.ArchetypeHint, []string{ctx.Task.ArchetypeHint}); ok {
+				resolvedRoutes = append(resolvedRoutes, *route)
+			}
 		}
 	}
 
-	// Determine Primary Archetype
-	archetype := "standard-feature"
-	if len(resolvedRoutes) > 0 && resolvedRoutes[0].PrimaryArchetype != "" {
-		archetype = resolvedRoutes[0].PrimaryArchetype
-	} else if ctx.Task.ArchetypeHint != "" {
-		archetype = ctx.Task.ArchetypeHint
-	} else if len(allTags) > 0 {
-		archetype = allTags[0]
+	archetype := brief.Archetype
+	if archetype == "" {
+		archetype = "standard-feature"
 	}
 
-	// 3. Determine Visual & Security Requirements
-	reqLower := strings.ToLower(ctx.Task.RawRequest)
-	requiresVisual := ctx.Task.Type == "DESIGN"
-	requiresSecurity := false
-
-	visualKeywords := []string{
-		"ui", "frontend", "design", "landing", "3d", "creative", "showcase",
-		"portfolio", "hud", "dashboard", "portal", "mobile", "responsive",
-		"agro", "typography", "palette", "animation", "motion",
-	}
-	for _, kw := range visualKeywords {
-		if strings.Contains(reqLower, kw) || tagSet[kw] {
-			requiresVisual = true
-			break
-		}
-	}
-
-	securityKeywords := []string{
-		"security", "audit", "auth", "login", "token", "secret", "leak",
-		"vulnerability", "sanitize", "sast",
-	}
-	for _, kw := range securityKeywords {
-		if strings.Contains(reqLower, kw) || tagSet[kw] {
-			requiresSecurity = true
-			break
-		}
-	}
-
-	// Explicit override for backend bugfix
-	if ctx.Task.Type == "BUGFIX" && !strings.Contains(reqLower, "ui") && !strings.Contains(reqLower, "frontend") && !strings.Contains(reqLower, "css") {
-		requiresVisual = false
-	}
-
-	// 4. Human Approval Gate Evaluation
-	requiresHumanGate := false
-	gateReason := ""
-
-	if requiresVisual {
+	// 5. Arm the gate. RequiresHumanGate now means "a Design Lab is owed",
+	//    which is a narrower and more honest claim than "this looks visual".
+	requiresHumanGate := brief.DesignLabRequired
+	gateReason := brief.DesignLabReason
+	if requiresHumanGate {
 		if ctx.Task.SkipVisualGate {
 			requiresHumanGate = false
-			gateReason = "Bypassed visual gate via TaskRequest.SkipVisualGate"
+			gateReason = "bypassed via TaskRequest.SkipVisualGate"
 		} else if ctx.Task.UserOverride != nil && (ctx.Task.UserOverride.SkipVisualGate || ctx.Task.UserOverride.ForceBypassGate) {
 			requiresHumanGate = false
-			gateReason = "Bypassed visual gate via user override"
+			gateReason = "bypassed via user override"
 		} else {
-			requiresHumanGate = true
-			gateReason = fmt.Sprintf("High-impact visual task (Archetype: %s) requires design laboratory approval before coding", archetype)
+			gateReason = fmt.Sprintf("%s bar on %s: %s", brief.QualityBar, archetype, brief.DesignLabReason)
 		}
 	}
+	brief.DesignLabRequired = requiresHumanGate
+	brief.DesignLabReason = gateReason
 
-	// 5. Gap Technologies Detection
+	// 6. Resources the request names but the catalog has never heard of.
 	var gapTechnologies []string
 	for _, resID := range ctx.Task.SuggestedResources {
 		found := false
@@ -134,17 +126,34 @@ func (s *ClassifyStage) Execute(ctx *TaskContext) (*StageResult, error) {
 			gapTechnologies = append(gapTechnologies, resID)
 		}
 	}
+	gapTechnologies = append(gapTechnologies, brief.UnknownTechnology...)
+
+	var declined []classifier.Candidate
+	for _, c := range brief.Considered {
+		if c.Declined {
+			declined = append(declined, c)
+		}
+	}
 
 	ctx.Classification = &ClassificationData{
 		Archetype:         archetype,
 		NormalizedTags:    allTags,
 		ResolvedRoutes:    resolvedRoutes,
-		RequiresVisual:    requiresVisual,
-		RequiresSecurity:  requiresSecurity,
+		RequiresVisual:    brief.RequiresVisual,
+		RequiresSecurity:  brief.RequiresSecurity,
 		RequiresHumanGate: requiresHumanGate,
 		GateReason:        gateReason,
 		GapTechnologies:   gapTechnologies,
+		Brief:             brief,
+		QualityBar:        brief.QualityBar,
+		Platform:          brief.Platform,
+		ResearchDepth:     brief.ResearchDepth,
+		VerifyDepth:       brief.VerifyDepth,
+		DeclinedRoutes:    declined,
 	}
+
+	// 7. Lock frontend writes until a direction is approved.
+	ctx.DesignLab = verify.NewDesignLab(brief, ctx.Task.WorkspaceRoot)
 
 	return &StageResult{
 		StageName: StageClassify,

@@ -1,5 +1,37 @@
 ﻿# Changelog
 
+## [3.1.0] - Control plane
+*One contract. Design Lab is a gate. Evidence-first completion.*
+
+- Overlay, Cursor, Antigravity, and Claude Code share the same 3.1.0 rule.
+- Public registry stripped of personal catalog rows. MCP health is explicit.
+- `orchestra doctor` warns if Antigravity science or data-agent-kit plugins are Global.
+
+**Routing.** The classifier was a keyword stub returning `task-stub-001`; it now scores every
+capability row against the brief and produces a structured re-brief (type, archetype, quality bar,
+platform, research depth, verify depth, hard constraints). Every row in
+`design-resource-graph.json` gained `trigger_conditions`, `skip_conditions`, `quality_bar`, and
+`risk_rank` — a route that can never decline itself is a default in disguise. Declined routes are
+reported with the skip condition that fired. Two close routes produce exactly one question; silence
+takes the lower `risk_rank` and logs `assumed <capability>, no response`.
+
+**Design Lab is a lock, not a warning.** `verify.DesignLab` blocks writes to anything a browser
+renders while the gate is `PENDING`, including on dry runs, which previously slipped past the
+synthesize halt. Directions must number 2 or 3 and name a source for typography, colour, and motion.
+Rejections persist to `.orchestra/design-lab/rejected-directions.json`, fingerprinted by stack, so a
+renamed rejected direction cannot be re-offered. Bypass is allowed but requires a note.
+See `protocols/DESIGN_LAB_PROTOCOL.md`.
+
+**No second conductor.** Deleted the unreferenced `internal/kernel` and `internal/planner` packages,
+which duplicated the pipeline's approval and execution logic.
+
+**Isolation.** A fresh clone now keeps resource memory at `.orchestra/memory/resource-memory.json`
+instead of creating a `memory/` directory in the host repository.
+
+**README.** Rewritten against the code. The previous version cited capability and domain names that
+do not exist in the graph, and described research as querying live design indexes when
+`ResearchCoordinator` defaults to offline fixtures.
+
 ## [3.0.0] - The Castle Pass Release
 *Orchestra V3: Capability router and Go execution layer.*
 
@@ -9,7 +41,7 @@
 - **Cryptography-Backed Handoffs**: Added `internal/handoff` system utilizing SHA256 file checksums and `state.json` versioning to prevent Cursor/Antigravity collision and silent data corruption.
 - **Clean Workspace Generation**: Added `orchestra init` to template private local Brains safely isolated from the public repository.
 - **Adversarial Playwright/Lighthouse Integration**: Enforced visual QA workflows directly out-of-the-box via programmatic verification steps.
-- **Clean-Clone Tested**: Absolute separation of public `orchestra-workflow` and private `orchestra-brain` data boundaries.
+- **Clean-Clone Tested**: Absolute separation between this public workflow repository and any private workspace it is pointed at.
 
 ## [2.0.0] - Orchestra Workflow v2
 *Capability router release.*

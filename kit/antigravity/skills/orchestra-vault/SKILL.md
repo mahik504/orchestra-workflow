@@ -1,76 +1,56 @@
 ---
 name: orchestra-vault
-description: Maintains the Obsidian vault at C:\projects\orchestra-brain. Per-project folders. File only lasting notes. Delete junk the same turn. Learn taste and thinking into Preferences.md.
+description: Maintain the private Orchestra workspace and its memory. Jump one note. Lasting files only. Record real outcomes, never synthetic ones. No secrets.
 ---
 
-# Orchestra vault
+# Orchestra vault — 3.1.0
 
-Root: `C:\projects\orchestra-brain`
+**BRAIN = MEMORY.** The workspace is where Orchestra remembers; it is not a second control plane.
 
-## Read (save tokens)
+Root: the private workspace created by `kit/init-workspace`, or the path named in `WORKFLOW.md`. Not this public repo.
 
-Do **not** open the whole brain. Jump `routes.md` → one file → the repo. `STACK.md` only if asked to catalog. `memory/career.md` only for hiring.
+## Read
+
+Do not open the whole workspace. `routes.md` → one file → the app repo. Catalog files only when asked to catalog.
 
 ## Layout
 
 | Path | What |
 | --- | --- |
-| `projects/<slug>/` | That product only. Start with `idea.md` (includes **this product's stack** and **kind**). Add architecture/design/research/packet/review/ship-post/`spec.md`/`progress.md` **only when they exist**. |
+| `projects/<slug>/` | One product. Starts with `idea.md`. Add design, spec, progress, review, ship-post only when they exist. |
 | `templates/` | Copy, then fill |
-| `memory/` | Global decisions. Career is on this PC + the **private** remote. Public template has `memory/README.md` + `decisions.md`. |
-| `memory/local-notes.md` | Gitignored diary nits. Not the public template. Not a second taste file. |
-| `kit/sync-vault.ps1` | Private git backup (12h) of this vault. |
-| `kit/sync-both.ps1` | 12h: private backup, then public template if files changed. |
-| `routes.md` | Keyword → one note. Do not scan every idea.md. |
-| `STACK.md` | Installed skills, MCP names, GitHub we have, refused tools. |
+| `memory/decisions.md` | Dated architecture and product decisions |
+| `memory/resource-memory.json` | Real resource outcomes only |
+| `Preferences.md` | Taste, stack, how the human thinks |
+| `kit/` | Host adapters and sync scripts |
 
-No `00-inbox`. No numbered dump folders. No chat recaps. No trending-tool lists. No YouTube-style huge PKM. Add a `[[wikilink]]` only when two notes actually belong together.
+## What memory is for
 
-## Kind (on every idea.md)
+Three layers:
 
-`college` = assignments / due-now / hackathon (kit-assembly allowed). `personal` = studio or parked (operator HUD = Stitch + volume R3F). `hiring-cv` = public internship work (Stitch + one echo).
+- **Global** — taste and stack in `Preferences.md`; dated yes/no in `memory/decisions.md`.
+- **Project** — one product's context in `projects/<slug>/idea.md`.
+- **Session** — distilled at the end. Discarded, not filed.
 
-## Showable titles, not structure
+Record after a real job: which resource combination improved the result, what failed, what the human liked or hated, and why a route was chosen.
 
-Polish H1s and YAML `title:` so the vault looks professional when shown. **Do not rename** `memory`, `projects/`, `templates/`, `kit/`, or `C:\projects\orchestra-brain`.
+**Never** write synthetic evaluations. Generated or duplicated rows in `resource-memory.json` are not learning — they are noise that will mislead future routing. Only an executed job writes a row.
 
-## What belongs where
+Do not file chat transcripts. Do not restate facts the repository already shows.
 
-| Kind | Where |
-| --- | --- |
-| Product idea, stack, open questions | `projects/<slug>/idea.md` |
-| Global taste, interests, how they think | `Preferences.md` |
-| Lasting yes/no we already decided | `memory/decisions.md` |
-| Internship / GitHub / LinkedIn | `memory/career.md` (private backup; omit from public export) |
-| Assignment / viva diary | `memory/local-notes.md` (gitignored) |
-| Tool we actually adopted | one line in Preferences Stack |
-| Chat, “maybe later” tools, session recap | **do not file** |
+## Write hygiene
 
-## Hygiene (every write)
+1. Will this matter in a month? If not, say it in chat and do not file it.
+2. Prefer editing the existing note over creating a new one.
+3. One idea per note, self-contained, headed so a later reader can split it.
+4. A map points; it does not duplicate.
+5. Delete junk the same turn you notice it.
+6. Secrets never here. Never commit MCP configs, `.env`, or tokens.
 
-1. Will this still matter in a month? If no, do not file. Say it in chat.
-2. Prefer editing `idea.md` / Preferences over a new file.
-3. Answer first. One idea per note. Self-contained. Headings so a later reader (or retrieval) can split it.
-4. A map points; it does not duplicate. Do not copy pricing, eval numbers, or stack into `START HERE.md`.
-5. After a ship, delete stale packets and duplicate drafts in that project folder.
-6. If you find empty numbered folders (`00-inbox` … `07-reviews`) or paths to them, delete the folders and fix the path.
-7. Secrets never here. Never invent facts that are not in the repo or a note. Never commit `mcp_config.json`, `.env`, or tokens.
+## Learning
 
-## Learn (reinforcement, not ML)
+After a like, a hate, a finished task, or a genuinely useful find, append to `Preferences.md` in the **same turn**. Taste is allowed to change; prefer editing the existing bullet. Do not create a second taste file.
 
-After they love or hate an output, a finished task, **or a useful find**, append **Liked** / **Hated** / **Thinking** in `Preferences.md` the same turn. Taste may change. Prefer editing the existing bullets. Do not file chats.
+## Git
 
-Do not create a second taste file. `memory/local-notes.md` is only for private diary nits that must not go public.
-
-## Keep updated
-
-When a decision or ship happens, update that product’s `idea.md`, `memory/decisions.md`, and the START HERE state table the same turn. Unpublished `idea.md` still updates on disk even if the public template omits that folder.
-
-## Remotes
-
-- **Private** `mahik504/orchestra-brain`: full backup, including career and unpublished ideas. 12h sync. Do not gitignore career.md here. Do not make this repo public (history leak).
-- **Public** `mahik504/orchestra-workflow`: allowlisted template. 12h publish only when those files changed. No empty green-square commits.
-
-## Internet
-
-Search when it will actually improve the work. Not by default-for-fun. Not trending lists in the vault. Adopt into Preferences if we will use it.
+The workspace may have a **private** remote. This public template is a different repo. Do not flip a populated workspace public — its history contains personal files.

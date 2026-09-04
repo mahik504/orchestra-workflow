@@ -1,6 +1,6 @@
 {
   "$schema": "./schemas/design-resource-graph.schema.json",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Canonical Orchestra V3 Capability-to-Resource Execution Graph mapping task archetypes across Discovery, Synthesis, Implementation, and QA phases.",
   "domains": {
     "visual_research": [
@@ -37,7 +37,6 @@
       "awwwards"
     ],
     "physics_research": [
-      "penfight",
       "shaders-com",
       "pryzm-design"
     ],
@@ -128,7 +127,13 @@
         "agency",
         "award-winning",
         "portfolio-hero",
-        "high-aesthetic"
+        "high-aesthetic",
+        "portfolio",
+        "shop",
+        "storefront",
+        "ecommerce",
+        "checkout",
+        "marketing-site"
       ],
       "discovery": [
         "visual_research"
@@ -156,6 +161,23 @@
         "Generic 3-column equal card layouts",
         "Neon purple AI gradient backgrounds",
         "Pure black #000000 surfaces without chromatic depth"
+      ],
+      "quality_bar": "PREMIUM",
+      "risk_rank": 6,
+      "platform": "web",
+      "trigger_conditions": [
+        "A stranger, client, or recruiter is the audience",
+        "The brief names a brand, studio, agency, restaurant, or launch page",
+        "Marketing or conversion copy is the primary content",
+        "The request asks for a distinctive look rather than a working form",
+        "A showcase carries commerce alongside the story — a shop or checkout bolted onto a brand page"
+      ],
+      "skip_conditions": [
+        "The surface is behind a login and only staff will see it",
+        "The request is a bugfix, refactor, or backend change",
+        "The product is a dense data tool — route to saas-dashboard or b2b-portal",
+        "The human said \"skip the lab\" and only wants the page wired up",
+        "A 3D scene is the point rather than the decoration — route to 3d-portfolio"
       ]
     },
     "3d-portfolio": {
@@ -193,6 +215,21 @@
         "Uncapped framerate animation loops causing CPU thermal throttling",
         "Missing mobile fallback for low-end WebGL GPUs",
         "Blocking main thread during 3D asset initialization"
+      ],
+      "quality_bar": "EXPERIMENTAL",
+      "risk_rank": 8,
+      "platform": "web",
+      "trigger_conditions": [
+        "The brief names WebGL, Three.js, R3F, shaders, or a 3D scene",
+        "Camera movement or spatial navigation is part of the concept",
+        "The showcase itself is the product, not a page describing a product"
+      ],
+      "skip_conditions": [
+        "No low-end or reduced-motion fallback is acceptable to the human",
+        "3D is decorative and a flat hero would carry the same message",
+        "The target is a low-power device or an audience on poor connections",
+        "The brief is a portfolio but never mentions depth, scene, or motion — route to premium-website",
+        "Physics simulation is the point rather than presentation — route to physics-canvas"
       ]
     },
     "operator-hud": {
@@ -206,7 +243,12 @@
         "telemetry",
         "dark-crimson",
         "terminal-ui",
-        "cockpit"
+        "cockpit",
+        "monitoring",
+        "uptime",
+        "observability",
+        "status-board",
+        "incident"
       ],
       "discovery": [
         "hud_research"
@@ -232,6 +274,22 @@
         "Light mode or pure white background panels",
         "Floating decorative gradients without data utility",
         "Proportional fonts on live fluctuating data values"
+      ],
+      "quality_bar": "PREMIUM",
+      "risk_rank": 7,
+      "platform": "web",
+      "trigger_conditions": [
+        "A single operator monitors live state and acts on it",
+        "The brief names telemetry, cockpit, mission control, or a command surface",
+        "Information density matters more than whitespace",
+        "Monospace figures and always-on status are expected",
+        "The brief describes watching servers, jobs, or streams while they run"
+      ],
+      "skip_conditions": [
+        "The audience is many casual users rather than one trained operator",
+        "The data is reported after the fact — route to saas-dashboard",
+        "The brief expects a component kit look; this route is bespoke by definition",
+        "Administrative CRUD is the real job — route to b2b-portal"
       ]
     },
     "b2b-portal": {
@@ -270,6 +328,21 @@
         "Non-accessible form elements failing WCAG 2.1 AA",
         "Unresponsive data tables that cause horizontal screen clipping",
         "Slow unpaginated table queries without skeleton loaders"
+      ],
+      "quality_bar": "STANDARD",
+      "risk_rank": 4,
+      "platform": "web",
+      "trigger_conditions": [
+        "Authenticated users perform recurring transactional work",
+        "The brief names admin, tenants, roles, billing, or approvals",
+        "Tables, forms, and workflow states are the core surface",
+        "Accessibility and predictability outrank visual novelty"
+      ],
+      "skip_conditions": [
+        "The page is public marketing — route to premium-website",
+        "The value is charts and trends rather than records — route to saas-dashboard",
+        "The human explicitly asked for an award-winning visual treatment",
+        "There is no authentication and no multi-user concept"
       ]
     },
     "academic-reader": {
@@ -305,6 +378,19 @@
         "Lines longer than 75 characters causing reading fatigue",
         "Low contrast text below 7:1 for continuous body reading",
         "Layout shifts during font or LaTeX equation loading"
+      ],
+      "quality_bar": "PREMIUM",
+      "risk_rank": 3,
+      "platform": "web",
+      "trigger_conditions": [
+        "Long-form prose is the product and reading comfort is the metric",
+        "The brief names papers, arXiv, footnotes, citations, or math typesetting",
+        "Reflow, measure, and vertical rhythm are explicit concerns"
+      ],
+      "skip_conditions": [
+        "The content is short marketing copy",
+        "Interaction or dashboards dominate the surface",
+        "The brief wants heavy motion; this route protects reading"
       ]
     },
     "micro-interactions": {
@@ -341,6 +427,20 @@
         "Animating layout-triggering properties (width, height, top, margin)",
         "Overly sluggish springs with duration > 400ms on button clicks",
         "Missing active state press compression (scale 0.98)"
+      ],
+      "quality_bar": "PREMIUM",
+      "risk_rank": 5,
+      "platform": "web",
+      "trigger_conditions": [
+        "The unit of work is a component, not a page",
+        "The brief names feel, tactility, spring, press feedback, or haptics",
+        "An existing UI is being refined rather than created"
+      ],
+      "skip_conditions": [
+        "No product surface exists yet to attach the interaction to",
+        "The whole page or product needs a direction first",
+        "Motion has no stated purpose — do not animate to look busy",
+        "The platform is native mobile — route to mobile-app"
       ]
     },
     "physics-canvas": {
@@ -374,6 +474,19 @@
         "DOM-based physics calculations instead of Canvas/WebGL context",
         "Frame rate tied to wall-clock time instead of delta time (dt)",
         "Missing canvas DPI resolution scaling on Retina viewports"
+      ],
+      "quality_bar": "EXPERIMENTAL",
+      "risk_rank": 7,
+      "platform": "web",
+      "trigger_conditions": [
+        "Collision, gravity, particles, or rigid bodies are simulated",
+        "The brief names a game, playground, or interactive simulation",
+        "Per-frame computation drives the visuals"
+      ],
+      "skip_conditions": [
+        "The motion is scripted presentation rather than simulated behaviour",
+        "A CSS or timeline animation achieves the same result",
+        "The scene is a spatial showcase without simulation — route to 3d-portfolio"
       ]
     },
     "saas-dashboard": {
@@ -384,7 +497,11 @@
         "saas-dashboard",
         "analytics",
         "kpi-charts",
-        "metrics-grid"
+        "metrics-grid",
+        "dashboard",
+        "charts",
+        "reporting",
+        "metrics"
       ],
       "discovery": [
         "saas_research",
@@ -408,6 +525,20 @@
       "anti_patterns": [
         "Pie charts with more than 5 slices",
         "Unlabeled axes or missing tooltip hover coordinate snaps"
+      ],
+      "quality_bar": "STANDARD",
+      "risk_rank": 4,
+      "platform": "web",
+      "trigger_conditions": [
+        "Metrics, KPIs, charts, or trends are the primary content",
+        "The brief names reporting, analytics, or an overview screen",
+        "Users filter and compare rather than transact",
+        "A school, clinic, or internal management tool needs its numbers surfaced"
+      ],
+      "skip_conditions": [
+        "The screens are records and forms rather than charts — route to b2b-portal",
+        "The surface is live operational control — route to operator-hud",
+        "The page is public marketing — route to premium-website"
       ]
     },
     "mobile-app": {
@@ -442,6 +573,19 @@
         "Tap targets smaller than 44x44px",
         "Horizontal viewport overflow causing unintentional horizontal panning",
         "Double-tap zoom not disabled on interactive touch targets"
+      ],
+      "quality_bar": "PREMIUM",
+      "risk_rank": 5,
+      "platform": "mobile",
+      "trigger_conditions": [
+        "The target is iOS, Android, Expo, or React Native",
+        "Touch, gesture, or device haptics are part of the design",
+        "Platform conventions (HIG, Material 3) constrain the layout"
+      ],
+      "skip_conditions": [
+        "The target is a responsive website that merely works on phones",
+        "No device capability is used and no store build is planned",
+        "The brief is a desktop-first dense tool"
       ]
     },
     "security-audit": {
@@ -453,7 +597,14 @@
         "pentest",
         "sast",
         "vulnerability-scan",
-        "hardened-ci"
+        "hardened-ci",
+        "security",
+        "injection",
+        "xss",
+        "csrf",
+        "owasp",
+        "dependency-audit",
+        "supply-chain"
       ],
       "discovery": [],
       "synthesis": [
@@ -470,6 +621,19 @@
       "anti_patterns": [
         "Committing hardcoded secrets or environment variables",
         "Disabling CORS checks or Content Security Policy headers"
+      ],
+      "quality_bar": "STANDARD",
+      "risk_rank": 1,
+      "platform": "any",
+      "trigger_conditions": [
+        "The job is to find or fix vulnerabilities in your own application",
+        "The brief names SAST, DAST, pentest, dependency audit, or attack surface",
+        "Secrets, authorization, or input handling are under review"
+      ],
+      "skip_conditions": [
+        "The target is not owned by the human — never scan someone else's system",
+        "The request is a feature build; security review is a later gate, not this route",
+        "The finding is a plain bug with no security consequence"
       ]
     },
     "reverse-engineering": {
@@ -503,6 +667,19 @@
       "anti_patterns": [
         "Wholesale scraping of copyrighted intellectual property",
         "Copying proprietary SVG logos without explicit authorization"
+      ],
+      "quality_bar": "STANDARD",
+      "risk_rank": 2,
+      "platform": "web",
+      "trigger_conditions": [
+        "The human supplied a specific URL to learn from",
+        "The goal is to extract tokens, type scale, or layout rules into a design note",
+        "A reference needs to become a documented system before any build"
+      ],
+      "skip_conditions": [
+        "No concrete URL was named — this is not a browsing route",
+        "The intent is to copy branding, assets, copy, or source rather than principles",
+        "A direction already exists and only needs implementing"
       ]
     }
   }

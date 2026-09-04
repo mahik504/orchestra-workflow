@@ -1,269 +1,275 @@
-# Orchestra V3
+# Orchestra 3.1.0
 
-[![Go Version](https://img.shields.io/badge/go-1.22%2B-blue.svg)](https://golang.org)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Architecture: Capability--Graph](https://img.shields.io/badge/architecture-Capability--Graph-emerald.svg)](#architecture)
-[![Agents: Cursor%20%7C%20Antigravity%20%7C%20Claude](https://img.shields.io/badge/agents-Cursor%20%7C%20Antigravity%20%7C%20Claude-purple.svg)](#cross-agent-portability)
+A control plane for agentic development. It decides *what* to build before the agent decides *how*, and it stops work a stranger will see from being designed one file at a time.
 
-**A portable, capability-driven execution engine and resource orchestration layer for AI-assisted software engineering.**
-
-Orchestra V3 replaces the obsolete "load every AI skill into prompt context" anti-pattern with a dynamic, mathematically sound **Capability Graph** and a compiled Go runtime engine. Rather than guessing which dependencies or scripts to install, Orchestra automatically infers, discovers, acquires, and verifies the exact resources required to achieve a production-grade quality bar.
-
----
-
-## Table of Contents
-
-- [Why Orchestra V3](#why-orchestra-v3)
-- [Architecture Overview](#architecture-overview)
-- [Canonical Registries & Graph](#canonical-registries--graph)
-- [Design-First Go Execution Engine](#design-first-go-execution-engine)
-  - [The 8-Stage Pipeline](#the-8-stage-pipeline)
-  - [Multi-Source Research](#multi-source-research)
-  - [Automated Visual QA & Verification](#automated-visual-qa--verification)
-- [Resource Acquisition Adapters](#resource-acquisition-adapters)
-  - [Supported Adapters](#supported-adapters)
-  - [Provenance Tracking](#provenance-tracking)
-- [Cross-Agent Portability & Quarantine](#cross-agent-portability--quarantine)
-  - [The 30-Skill Active Core](#the-30-skill-active-core)
-  - [Quarantine Boundary Isolation](#quarantine-boundary-isolation)
-- [CLI Reference & Commands](#cli-reference--commands)
-- [Quick Start](#quick-start)
-- [Verification & Testing](#verification--testing)
-- [License](#license)
-
----
-
-## Why Orchestra V3
-
-Generic AI coding agents dump uncurated skills and bloated prompts into context windows, resulting in degraded reasoning, hallucinations, generic purple-gradient UIs, and unvetted global package installations.
-
-Orchestra V3 introduces a strict division of responsibility:
-1. **Agents are Executors**: Cursor, Google Antigravity, and Claude Code execute tasks within their respective IDEs and runners.
-2. **Orchestra is the Engine**: A lightweight, compiled Go kernel that manages capability resolution, multi-source research, design system synthesis, conditional dependency acquisition, visual verification, and durable memory.
+Orchestra is a **contract** (markdown your agent reads) plus an **engine** (a Go binary that enforces the parts a contract cannot). The contract works in any agent that can read markdown. The engine is optional.
 
 ```
-+-----------------------------------------------------------------------------+
-|                                 USER INTENT                                 |
-+-----------------------------------------------------------------------------+
-                                       |
-                                       v
-+-----------------------------------------------------------------------------+
-|                           ORCHESTRA GO RUNTIME                              |
-|                                                                             |
-|  [Classify] -> [Research] -> [Synthesize] -> [Acquire] -> [Implement] ->   |
-|                                                                             |
-|                      [Visual QA Gate] -> [Remember]                         |
-+-----------------------------------------------------------------------------+
-        |                               |                              |
-        v                               v                              v
-+----------------+             +------------------+           +---------------+
-|  Cursor Rules  |             | Antigravity Kit  |           |  Claude Code  |
-|  (.cursorrules)|             | (kit/antigravity)|           |  (CLAUDE.md)  |
-+----------------+             +------------------+           +---------------+
+ORCHESTRA = CONTROL PLANE
+SKILLS / MCPs / PLUGINS = CAPABILITIES
+AGENTS  = EXECUTORS
+BRAIN   = MEMORY
+REGISTRY = RESOURCE KNOWLEDGE
 ```
 
----
+Host rules are **adapters**. They translate syntax. They do not invent a second plan or a second loop. One session, one conductor.
 
-## Architecture Overview
-
-Orchestra V3 comprises five decoupled subsystems:
-
-1. **Canonical Registries (`registries/`)**: Machine-readable JSON specifications validated by JSON Schema (`registries/schemas/`). These define all verified tools, repositories, packages, MCP servers, and their capability mappings.
-2. **Design-First Engine (`runtime/internal/engine`)**: An 8-stage state machine that enforces multi-source research and design synthesis before code generation.
-3. **Acquisition Adapters (`runtime/internal/adapters/acquisition`)**: Kernel adapters that verify, sandbox, and conditionally install resources without polluting the global system.
-4. **Agent Host Adapters (`runtime/internal/adapters/`)**: Configuration sync guaranteeing identical capability contracts across Cursor, Antigravity, and Claude Code.
-5. **Durable Resource Memory (`memory/resource-memory.json`)**: Persistent JSON memory capturing quantitative outcomes (success rates, latencies, failure modes) for every resource utilized.
+This repo is the **system**. It is not anyone's second brain, not a RAG index, and not a mega-prompt that replaces model reasoning. You clone the method and fill *your* workspace with *your* projects.
 
 ---
 
-## Canonical Registries & Graph
+## The problem this solves
 
-Orchestra decouples resource declarations from runtime logic:
+Ask three agents for three different products and you tend to get one product three times: Inter, a purple gradient, three equal cards, glass nobody asked for, motion with no purpose. Not because the models are bad — because nothing forces the *research → compare → synthesize* step, so the model reaches for its priors.
 
-- **`registries/resources.json`**: Authoritative inventory of vetted resources across categories (`FRONTEND`, `BACKEND`, `SECURITY`, `MOBILE`, `DESIGN`, `TESTING`). Each entry specifies:
-  - `id`: Canonical identifier (e.g., `playwright`, `gsap`, `taste-design`).
-  - `canonical_url`: Upstream repository or official documentation link.
-  - `representation`: Nature of resource (`skill`, `dependency`, `cli`, `mcp`, `reference`).
-  - `acquisition_method`: How the resource is retrieved (`npm`, `git`, `cli`, `mcp`, `web_fetch`).
-  - `runtime_method`: Execution scope (`project_scoped_install`, `on_demand_exec`, `global_tool`).
-- **`registries/design-resource-graph.json`**: Directed capability graph mapping high-level domains (`visual_design`, `qa_testing`, `animation_motion`) and capabilities (`premium-editorial-web`, `visual-regression`, `physics-springs`) to prioritized resource sequences.
-- **Validation**: All registries are validated against strict JSON schemas in `registries/schemas/resource-catalog.schema.json` and `registries/schemas/design-resource-graph.schema.json`.
+Orchestra puts a checkpoint between understanding the brief and writing frontend files. For premium work, that checkpoint is a lock.
 
 ---
 
-## Design-First Go Execution Engine
-
-### The 8-Stage Pipeline
-
-When given a high-ambition task, the Go runtime router (`runtime/internal/engine`) executes an 8-stage sequential pipeline:
+## The loop
 
 ```
-[1. Discover]      Inspect workspace state and identify existing tooling
-       |
-[2. Classify]      Analyze prompt complexity, quality bar, and archetype
-       |
-[3. Research]      Aggregate external curated design and architecture references
-       |
-[4. Synthesize]    Compile typography, palette tokens, motion curves, and rules
-       |
-[5. Design System] Generate contract-bound DESIGN.md specification
-       |
-[6. Implement]     Acquire approved scoped resources and execute code changes
-       |
-[7. Visual QA]     Run multi-viewport headless verification and layout audit
-       |
-[8. Iterate]       Self-heal visual regressions up to max iteration threshold
+Understand → Classify → Search graph → Design Lab / Technical plan → HUMAN GATE
+  → Implement → Verify on the real app → Correctness review → Simplify review → Remember
 ```
 
-### Multi-Source Research
+The Go engine runs the same shape as eight stages: Discover, Classify, Research, Synthesize, Design System, Implement, Visual QA, Iterate.
 
-For `frontend_premium` or high-visual tasks, Orchestra queries curated design indexes (Awwwards, Jiro, Cari, DesignMD) to extract:
-- Dominant aesthetic philosophies (Swiss Editorial, Brutalist, Glassmorphism, Industrial).
-- Exact semantic color tokens (`--color-bg-base`, `--color-surface-elevated`, `--color-accent-primary`).
-- Contrast ratios meeting WCAG AAA specifications.
-
-### Automated Visual QA & Verification
-
-The Visual QA stage (`runtime/internal/engine/stage_visual_qa.go`) evaluates output against rigorous design heuristics:
-- **Multi-Viewport Audit**: Desktop (`1440x900`), Tablet (`768x1024`), Mobile (`390x844`).
-- **Horizontal Overflow Protection**: Programmatic rejection of mobile horizontal scrollbars (`scrollWidth > clientWidth`).
-- **Anti-Pattern Detection**: Prohibits uncalibrated pure black (`#000000`), generic purple-to-blue gradient cards, unstyled default fonts, and missing touch targets (`< 44x44px`).
-- **Iterative Self-Healing**: Automatically routes layout defects to `StageImplement` and token style defects to `StageDesignSystem`.
+**Available is not loaded.** A registry row is not permission to dump a pack into context. **Repo beats notes** — code on disk is the source of truth. **Jump one note** — `routes.md` to one file to the app repo, never a scan of the whole workspace just in case.
 
 ---
 
-## Resource Acquisition Adapters
+## Quality bars
 
-### Supported Adapters
+| Bar | When | Design Lab |
+| --- | --- | --- |
+| `STANDARD` | Internal tools, fixes, glue, backend | **Off** by default. Ask to opt in. |
+| `PREMIUM` | Anything a stranger will see | **On** by default. Opt out with "skip the lab". |
+| `EXPERIMENTAL` | 3D, shaders, WebGL, novel interaction | **On**. Always ship a low-end fallback. |
 
-Orchestra acquires dependencies through sandboxed, policy-enforcing adapters in `runtime/internal/adapters/acquisition/`:
-
-| Adapter | Capability | Installation Policy |
-|---|---|---|
-| **NPM** | React/Vue packages, animation libraries, UI components | Project-scoped only (`npm install --save`). **Global flags (`-g`, `--global`) are programmatically blocked.** |
-| **Git** | Verified reference repos and component sources | Clones to ephemeral cache or submodules with commit pin verification. |
-| **CLI** | Compilers, linters, and verification binaries | Checks existence in `$PATH`; instructs non-destructive local installation. |
-| **MCP** | Model Context Protocol servers | Verified against approved manifest (`Stitch`, `orchestra-brain`, `playwright`). |
-| **Web Fetch** | Documentation lookups and design reference assets | Offline fallback caching; strict URI scheme validation (`https://` only). |
-
-### Provenance Tracking
-
-All acquisitions are immutably logged to `.orchestra/provenance.json`:
-- Exact timestamp and installing agent.
-- Target workspace path.
-- Source URL and upstream package registry version.
-- Cryptographic SHA-256 integrity hash of acquired assets.
+The bar comes from the capability the brief routes to, then adjusts: work described as internal or throwaway drops to `STANDARD`; work a stranger will see rises to `PREMIUM`.
 
 ---
 
-## Cross-Agent Portability & Quarantine
+## The Design Lab gate
 
-### The 30-Skill Active Core
+For `PREMIUM` and `EXPERIMENTAL` visual work, the engine **refuses to write files a browser renders** until a named direction is approved.
 
-Orchestra maintains a lean, unified active skill set of **30 verified skills** synchronized across all supported AI coding hosts:
-- **Cursor**: Configured via `.cursorrules` and `.cursor/skills/`.
-- **Google Antigravity**: Configured via `kit/antigravity/` and workspace settings.
-- **Claude Code**: Configured via `CLAUDE.md` and `~/.claude/skills/`.
+Blocked while pending: `.css`, `.scss`, `.html`, `.jsx`, `.tsx`, `.vue`, `.svelte`, `.astro`, `.glsl`, `.frag`, `.vert`, and token/theme files (`tailwind.config.*`, `theme.*`, `tokens.*`, `globals.*`).
 
-Active skills span:
-- **Core Orchestration**: `orchestra-conductor`, `orchestra-vault`, `orchestra-ship`, `orchestra-docs`.
-- **Visual Design**: `taste-design`, `emil-design-eng`, `impeccable`, `animate`, `review-animations`.
-- **Security & CI**: `ship-safe`, `semgrep-adapter`, `penetration-testing-with-strix`, `ci-security-scanning-with-strix`.
-- **Mobile Development**: `expo-router`, `expo-native-ui`, `expo-data-fetching`, `eas-app-stores`.
-- **Visual Synthesis (Stitch)**: `stitch-generate-design`, `stitch-react-components`, `stitch-manage-design-system`.
+Still writable: backend code, migrations, notes, and `DESIGN.md` — the human needs something to read before they can approve anything.
 
-### Quarantine Boundary Isolation
+Each gate offers **2 or 3** directions. Every direction must name its typography source, its colour source, and why it picked one motion engine. Unsourced claims are refused by the API, not by convention.
 
-The legacy 1,598-skill uncurated library remains **strictly quarantined** on disk:
-- Physical and logical separation prevents token bloat and unvetted code execution.
-- The Go runtime kernel enforces hard path boundaries: any attempt to traverse, index, or load files from quarantined paths triggers an immediate `ErrQuarantinedPath` security violation.
+Rejections are recorded with the human's stated reason and fingerprinted by the actual stack, so renaming a rejected direction and re-offering it fails. A bypass is allowed but never silent — it requires a note.
+
+| State | Frontend writes |
+| --- | --- |
+| `NOT_REQUIRED` | allowed |
+| `PENDING` | **blocked** |
+| `APPROVED` | allowed |
+| `BYPASSED` | allowed, recorded |
+
+Full rules: [`protocols/DESIGN_LAB_PROTOCOL.md`](protocols/DESIGN_LAB_PROTOCOL.md).
+
+Typography is mandatory in `DESIGN.md`. Visual QA is mandatory before "done." Extract principles from references — composition, type, motion, interaction, colour relationships, grid — then design yours. Never copy branding, assets, copy, trademarks, or source.
 
 ---
 
-## CLI Reference & Commands
+## Routing
 
-The compiled Orchestra CLI (`orchestra` or `orchestra.exe`) provides standard lifecycle commands:
+`registries/design-resource-graph.json` holds 11 capability rows across 20 domains. Every row carries **both** a trigger and a skip — a capability that can only be entered and never declined is a default in disguise, and defaults are how everything ends up looking the same.
 
-```bash
-# Display system overview and command reference
-orchestra
+| Capability | Archetype | Bar | Risk |
+| --- | --- | --- | --- |
+| `premium-website` | creative_showcase | PREMIUM | 6 |
+| `3d-portfolio` | spatial_experience | EXPERIMENTAL | 8 |
+| `operator-hud` | mission_control | PREMIUM | 7 |
+| `b2b-portal` | enterprise_portal | STANDARD | 4 |
+| `academic-reader` | longform_reading | PREMIUM | 3 |
+| `micro-interactions` | interaction_design | PREMIUM | 5 |
+| `physics-canvas` | gamified_canvas | EXPERIMENTAL | 7 |
+| `saas-dashboard` | analytics_dashboard | STANDARD | 4 |
+| `mobile-app` | mobile_experience | PREMIUM | 5 |
+| `security-audit` | security_hardening | STANDARD | 1 |
+| `reverse-engineering` | token_extraction | STANDARD | 2 |
 
-# Initialize fresh Orchestra workspace (.orchestra/, memory/, registries/)
-orchestra init [directory]
+The classifier scores every row against the brief and reports the ones it declined, naming the skip condition that fired. When two rows genuinely fit it asks **one** question; if nobody answers it takes the lower `risk_rank` and logs `assumed <capability>, no response`.
 
-# Exhaustive environment, registry, toolchain, and quarantine diagnostic
-orchestra doctor
+```
+$ orchestra classify "a portfolio site that also sells prints, with an admin area for orders"
 
-# Classify task prompt and resolve target archetype
-orchestra classify --task "Build interactive WebGL solar system showcase"
+Archetype:     creative_showcase  (premium-website)
+               premium-website scored 5.50 on tags: portfolio, checkout
+Quality bar:   PREMIUM — default for premium-website
+Design Lab:    true — PREMIUM visual work: directions must be approved before frontend files are written
 
-# Synthesize capability routing and execution manifest (zero side effects)
-orchestra plan --task "Create responsive financial analytics dashboard"
+[QUESTION] This reads as both "Premium Creative Website" and "B2B Enterprise Portal & SaaS".
+Which is the primary job? ... if you say nothing I will assume b2b-portal, the lower-risk of the two.
 
-# Execute complete 8-stage pipeline with automated acquisition and QA
-orchestra run --task "Build luxury timepiece storefront" --auto-approve
-
-# Run standalone multi-viewport visual verification
-orchestra verify --strict --workdir ./my-project
-
-# Synchronize host adapter configurations across Cursor, Antigravity, Claude
-orchestra sync
-
-# Query or record resource evaluation outcomes in durable memory
-orchestra memory --list
-orchestra memory --stats
+Routes considered:
+  [take] premium-website         5.50
+  [take] b2b-portal              4.00
+  [skip] 3d-portfolio            1.50  skip condition fired: The brief is a portfolio but never
+                                       mentions depth, scene, or motion — route to premium-website
+  [skip] saas-dashboard          0.00  no trigger condition met (score 0.00 below floor 2.00)
+  ...
 ```
 
+An unknown library is not forced into the nearest archetype. It is surfaced, researched, and registered as its own capability row.
+
 ---
 
-## Quick Start
+## Evidence-first completion
 
-### 1. Prerequisites
-- **Go**: Version 1.22 or higher
-- **Node.js**: Version 18 or higher (with `npm`)
-- **Git**: Version 2.30 or higher
+**DONE / FIXED / VERIFIED / PASSED / SHIPPED** may only appear alongside observed evidence in the same message: command output, a test result, a diff, a screenshot, browser state, a CI conclusion, or git state.
 
-### 2. Clone and Build
+Intention is not evidence. Another agent's summary is not evidence. If a step failed or was skipped, that gets said *before* any success claim.
+
+---
+
+## Resource discipline
+
+Lifecycle is `discovered → selected → acquired → used → verified`. Presence in a registry is **not** usage.
+
+Acquisition adapters in `runtime/internal/adapters/acquisition/` enforce policy:
+
+| Adapter | Policy |
+| --- | --- |
+| npm | project-scoped only; `-g` and `--global` are blocked in code |
+| git | pinned commit, cloned to cache |
+| cli | checks `$PATH`, never installs globally |
+| mcp | must appear in the approved manifest |
+| web fetch | `https://` only, offline fallback cache |
+
+Every acquisition is logged to `.orchestra/provenance.json` with source URL, version, SHA-256, and the task that justified it.
+
+MCP state is explicit — `HEALTHY`, `OPTIONAL`, `AUTH_REQUIRED`, `BROKEN`, `DISABLED`. An unauthorized server is not "active".
+
+30 skills stay active, synchronized across hosts. Bulk skill libraries stay quarantined on disk, and the Go runtime refuses to traverse them — including via backslash, percent-encoded, and `SKILLS~1` short-name paths. There is no `skills add --all`.
+
+---
+
+## Getting started
+
+### As a method (no Go required)
+
 ```bash
 git clone https://github.com/mahik504/orchestra-workflow.git
-cd orchestra-workflow/runtime
-
-# Build the runtime binary
-go build -o orchestra.exe ./cmd/orchestra
-
-# Run system doctor diagnostic
-./orchestra.exe doctor
+cd orchestra-workflow
 ```
 
-### 3. Generate a Plan
+Windows:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File kit/init-workspace.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File kit/install-skills.ps1
+```
+
+macOS / Linux:
+
 ```bash
-./orchestra.exe plan --task "Develop an editorial coffee roastery showcase with smooth parallax scrolling"
+chmod +x kit/init-workspace.sh kit/install-skills.sh
+./kit/init-workspace.sh
+./kit/install-skills.sh
+```
+
+Then open **your private workspace** (default `../orchestra-workspace`) alongside the app repo you are building, and point your agent at `AGENTS.md`. Start with [docs/getting-started.md](docs/getting-started.md).
+
+Init gives you an empty `projects/`, an empty `memory/`, and example routes. Do not copy someone else's populated workspace.
+
+### With the engine
+
+Requires Go 1.22+, Node 18+, Git 2.30+.
+
+```bash
+cd runtime
+go build -o orchestra ./cmd/orchestra
+
+./orchestra doctor
+./orchestra classify "build a reading app for arXiv papers with footnotes and math"
+./orchestra plan --task "a scheduling dashboard for a school with attendance charts"
+```
+
+Commands: `init`, `doctor`, `classify`, `plan` (alias `route`), `run`, `verify`, `handoff`, `sync`, `memory`.
+
+`plan` has no side effects. `run` executes the pipeline and honours the gate unless you pass `--auto-approve`.
+
+### Your clone stays yours
+
+A fresh clone writes only inside itself, and never to anyone else's workspace. This repo ships an empty `memory/resource-memory.json`; if you point Orchestra at a project that has no memory file, it creates one under that project's `.orchestra/` rather than adding a `memory/` directory to your repository.
+
+| Variable | Effect |
+| --- | --- |
+| `ORCHESTRA_HOME` | your private workspace root, if you keep one outside the clone |
+| `ORCHESTRA_MEMORY_PATH` | exact path to `resource-memory.json` |
+| `ORCHESTRA_WORKFLOW_ROOT` | where the registries live |
+| `ORCHESTRA_QUARANTINE_PATH` | the bulk skill library to refuse |
+| `ORCHESTRA_CONTRACT` | pin an older contract version if a rollout misbehaves |
+
+Rollback steps: [`kit/ROLLBACK.md`](kit/ROLLBACK.md).
+
+---
+
+## Works with the agent you already use
+
+| Environment | Role | How Orchestra attaches |
+| --- | --- | --- |
+| **Cursor** | Bulk implementation, in-file diffing, fast iteration | `.cursorrules` + project skills |
+| **Antigravity** | Visual QA, architecture planning, capability synthesis | `kit/antigravity/` + packet |
+| **Claude Code** | Terminal execution, backend refactor, server-side audit | `CLAUDE.md` + `skills/` |
+| **Codex / OpenCode / Gemini / Hermes** | Conductor in that session | `AGENTS.md`, same markdown skills |
+
+A host may own a capability the others lack — one has a browser MCP, another a cloud SDK. Map the capability; do not clone plugin lists between hosts. Sync means "same contract", not "same installed extras". See [docs/adapters.md](docs/adapters.md) and [kit/HOST_CAPABILITIES.md](kit/HOST_CAPABILITIES.md).
+
+---
+
+## Honest limits
+
+There is **no A/B study** here, and no "30% faster" number to cite. Anyone publishing that without a measured test is guessing. What this repo can show is how the work is structured. If you measure time-to-green or review passes on your own team, publish *your* numbers — do not paste invented percentages into a fork.
+
+Worth knowing before you rely on it:
+
+- **Research runs offline by default.** `ResearchCoordinator` ships curated fixtures in `runtime/internal/research/sources.go` for determinism. Attribution in those fixtures names the source of the *pattern*, not a live fetch performed on your behalf. Live sources are opt-in.
+- **The engine enforces structure, not taste.** It can refuse an unsourced direction and block a premature write. It cannot tell you whether a direction is good.
+- **Visual QA needs a running app.** Checks at 1440×900, 768×1024, and 390×844 require the app to actually launch. Code inspection is not verification, and one screenshot in chat is not a QA pass.
+- **Resource memory starts empty.** No seeded performance data — inherited numbers from someone else's machine are worse than none.
+
+---
+
+## What this repo will never contain
+
+- Anyone's product briefs, career notes, or private planning
+- `.env`, API keys, or MCP config with secrets
+- A populated `projects/` tree
+- Fake metrics, fake users, or contribution-graph painting
+
+---
+
+## Layout
+
+```
+AGENTS.md            the contract (Cursor + Antigravity + any AGENTS-aware CLI)
+.cursorrules         Cursor adapter
+CLAUDE.md            Claude Code adapter
+protocols/           job-scoped rules, loaded on demand
+registries/          resources.json, design-resource-graph.json, schemas
+runtime/             the Go engine and CLI
+skills/              the 30 active skills
+kit/                 host setup, sync, rollback
+docs/                getting started, workflow, adapters, portability, policy
+templates/           copy into your own workspace
+workspace-template/  empty workspace shape
 ```
 
 ---
 
-## Verification & Testing
+## Overrides
 
-Orchestra V3 includes an exhaustive, multi-layered test suite:
-
-```bash
-# Run all unit and integration tests
-cd runtime
-go test -v ./...
-
-# Run static analysis and linting
-go vet ./...
-```
-
-The test suite validates:
-- Complete 8-stage pipeline state transitions and early-halt invariants.
-- Programmatic rejection of global `-g` / `--global` npm installation attempts.
-- Quarantine path breach detection across backslash, forward-slash, percent-encoded, and 8.3 short-name variations.
-- Multi-viewport visual QA oscillation and eventual healing logic.
-- Concurrent execution determinism across parallel pipelines.
+Say **skip orchestra** and the contract stands down for the session. Say **skip the lab** to bypass the Design Lab for one task.
 
 ---
 
 ## License
 
-MIT License. See [LICENSE](LICENSE) for details.
+MIT. See [LICENSE](LICENSE). Contributions: [CONTRIBUTING.md](CONTRIBUTING.md) — no secrets, no private workspaces, no skill packs.

@@ -54,7 +54,11 @@ func main() {
 }
 
 func printUsage() {
-	fmt.Println("Orchestra V3 - Design-First Agentic Execution Engine")
+	fmt.Println("Orchestra 3.1.0 — control plane for agentic IDEs")
+	fmt.Println("ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.")
+	if pin := os.Getenv("ORCHESTRA_CONTRACT"); pin != "" {
+		fmt.Printf("ORCHESTRA_CONTRACT pin: %s (see kit/ROLLBACK.md)\n", pin)
+	}
 	fmt.Println("Usage: orchestra <command> [arguments]")
 	fmt.Println("\nCommands:")
 	fmt.Println("  init      Initialize a fresh orchestra workspace")
@@ -81,7 +85,9 @@ func resolveRegistryFile(filename string, customPath string) string {
 		filepath.Join("..", "registries", filename),
 		filepath.Join("..", "..", "registries", filename),
 		filepath.Join("..", "..", "..", "registries", filename),
-		filepath.Join(`C:\projects\orchestra-workflow\registries`, filename),
+	}
+	if root := os.Getenv("ORCHESTRA_WORKFLOW_ROOT"); root != "" {
+		candidates = append(candidates, filepath.Join(root, "registries", filename))
 	}
 
 	for _, c := range candidates {
@@ -133,7 +139,12 @@ func runInit(args []string) {
 }
 
 func runDoctor(args []string) {
-	fmt.Println("=== Orchestra V3 Environment & System Doctor ===")
+	fmt.Println("=== Orchestra 3.1.0 Environment & System Doctor ===")
+	if pin := os.Getenv("ORCHESTRA_CONTRACT"); pin != "" {
+		fmt.Printf("Contract pin:    ORCHESTRA_CONTRACT=%s (see kit/ROLLBACK.md)\n", pin)
+	} else {
+		fmt.Println("Contract pin:    unset (using VERSION 3.1.0)")
+	}
 
 	checkCmd := func(name string, arg string) (string, bool) {
 		out, err := exec.Command(name, arg).Output()
@@ -198,16 +209,16 @@ func runDoctor(args []string) {
 		fmt.Println("Playwright CLI:  [NOTE] npx playwright not installed globally (mock verifier active)")
 	}
 
-	// 5. Brain Memory Diagnostics
+	// 5. Resource memory diagnostics
 	workdir, _ := os.Getwd()
 	memPath := memory.ResolveDefaultMemoryPath(workdir)
 	if store, err := memory.NewResourceMemoryStore(memPath); err == nil {
 		total, _, _, rate := store.GetSummary()
 		aggs := store.ListAggregates()
-		fmt.Printf("Brain Memory:    [OK] %s (%d resources, %d evaluations, %.1f%% success rate)\n",
+		fmt.Printf("Memory:          [OK] %s (%d resources, %d evaluations, %.1f%% success rate)\n",
 			memPath, len(aggs), total, rate*100)
 	} else {
-		fmt.Printf("Brain Memory:    [NOTE] %s ready for milestone sync (%v)\n", memPath, err)
+		fmt.Printf("Memory:          [NOTE] %s ready for milestone sync (%v)\n", memPath, err)
 	}
 
 	// 6. Host Synchronization & Skill Parity
@@ -221,23 +232,120 @@ func runDoctor(args []string) {
 	} else {
 		fmt.Printf("Host Parity:     [FAIL] Could not verify host skill parity: %v\n", err)
 	}
+
+	// 7. Antigravity customization budget
+	if budget, err := adapters.CheckAntigravityBudget(userHome); err == nil {
+		printAGBudget(budget)
+	}
+}
+
+func printAGBudget(budget *adapters.AGBudgetReport) {
+	if budget.GlobalSkillCount > 0 {
+		fmt.Printf("AG Global skills: [OK] %d installed: %s\n",
+			budget.GlobalSkillCount, strings.Join(budget.GlobalSkillNames, ", "))
+	} else {
+		fmt.Println("AG Global skills: [NOTE] ~/.gemini/config/skills not present")
+	}
+
+	if len(budget.BannedEnabled) > 0 {
+		fmt.Printf("AG plugins:      [WARN] banned Global plugins enabled: %s\n",
+			strings.Join(budget.BannedEnabled, ", "))
+		fmt.Println("                 Disable science and data-agent-kit-plugin in Antigravity Settings > Customizations.")
+		fmt.Println("                 Re-enable only for a job that needs AlphaFold / BigQuery.")
+	} else if len(budget.BannedPresent) > 0 {
+		fmt.Printf("AG plugins:      [OK] %s installed but disabled\n",
+			strings.Join(budget.BannedPresent, ", "))
+	} else {
+		fmt.Println("AG plugins:      [OK] science / data-agent-kit not installed as Global")
+	}
+
+	if budget.HeadroomGone {
+		fmt.Println("AG headroom:     [WARN] customization budget is gone — banned plugins are Global on top of the 30-skill core")
+	}
+
+	if len(budget.MCPServers) == 0 {
+		fmt.Println("AG MCP:          [NOTE] no mcp_config.json (or empty)")
+		return
+	}
+	fmt.Println("AG MCP:")
+	for _, s := range budget.MCPServers {
+		fmt.Printf("  %-22s %s\n", s.Name, s.Health)
+	}
 }
 
 func runClassify(args []string) {
-	if len(args) == 0 {
-		fmt.Println("Usage: orchestra classify \"<task description>\"")
+	fs := flag.NewFlagSet("classify", flag.ExitOnError)
+	graphPath := fs.String("graph", "", "Path to design-resource-graph.json")
+	asJSON := fs.Bool("json", false, "Emit the full brief as JSON")
+	silent := fs.Bool("assume", false, "Answer no clarifying question; take the lower-risk route")
+	_ = fs.Parse(args)
+
+	raw := strings.Join(fs.Args(), " ")
+	if raw == "" {
+		fmt.Println("Usage: orchestra classify [--json] [--assume] \"<task description>\"")
 		os.Exit(1)
 	}
 
-	c := classifier.NewClassifier()
-	task, err := c.Classify(args[0])
+	graph, err := resources.LoadDesignGraph(resolveRegistryFile("design-resource-graph.json", *graphPath))
 	if err != nil {
-		fmt.Printf("Error classifying task: %v\n", err)
+		fmt.Printf("Error loading capability graph: %v\n", err)
 		os.Exit(1)
 	}
 
-	bytes, _ := json.MarshalIndent(task, "", "  ")
-	fmt.Println(string(bytes))
+	brief := classifier.NewClassifierWithGraph(graph).ClassifyBrief(raw, classifier.Options{})
+	if brief.Ambiguous && *silent {
+		brief.ResolveSilence()
+	}
+
+	if *asJSON {
+		out, _ := json.MarshalIndent(brief, "", "  ")
+		fmt.Println(string(out))
+		return
+	}
+
+	printBrief(brief)
+}
+
+// printBrief renders the re-brief a human is expected to correct before any
+// work starts. Declined routes are shown because "why not that one?" is the
+// question that catches a bad classification early.
+func printBrief(b *classifier.Brief) {
+	fmt.Printf("Archetype:     %s", b.Archetype)
+	if b.CapabilityID != "" {
+		fmt.Printf("  (%s)", b.CapabilityID)
+	}
+	fmt.Printf("\n               %s\n", b.ArchetypeReason)
+	fmt.Printf("Task type:     %s\n", b.Type)
+	fmt.Printf("Quality bar:   %s — %s\n", b.QualityBar, b.QualityBarReason)
+	fmt.Printf("Platform:      %s\n", b.Platform)
+	fmt.Printf("Research:      %s\n", b.ResearchDepth)
+	fmt.Printf("Verify:        %s\n", b.VerifyDepth)
+	fmt.Printf("Design Lab:    %v — %s\n", b.DesignLabRequired, b.DesignLabReason)
+
+	if len(b.HardConstraints) > 0 {
+		fmt.Println("Constraints:")
+		for _, c := range b.HardConstraints {
+			fmt.Printf("  - %s\n", c)
+		}
+	}
+	if b.Assumed {
+		fmt.Printf("\n[ASSUMED] %s\n", b.AssumptionNote)
+	}
+	if b.Ambiguous {
+		fmt.Printf("\n[QUESTION] %s\n", b.ClarifyingQuestion)
+	}
+	if len(b.UnknownTechnology) > 0 {
+		fmt.Printf("\n[UNKNOWN] not in the graph, research and register: %s\n", strings.Join(b.UnknownTechnology, ", "))
+	}
+
+	fmt.Println("\nRoutes considered:")
+	for _, c := range b.Considered {
+		mark := "take"
+		if c.Declined {
+			mark = "skip"
+		}
+		fmt.Printf("  [%s] %-21s %6.2f  %s\n", mark, c.CapabilityID, c.Score, c.DeclineReason)
+	}
 }
 
 func runPlan(args []string) {
@@ -443,14 +551,14 @@ func runVerify(args []string) {
 		}
 	}
 
-	// 3. Brain Memory Integrity Verification
+	// 3. Resource memory integrity verification
 	memPath := memory.ResolveDefaultMemoryPath(workdir)
 	if store, err := memory.NewResourceMemoryStore(memPath); err == nil {
 		total, succ, fail, rate := store.GetSummary()
-		fmt.Printf("Brain Memory:    [PASS] %s valid (total=%d, succ=%d, fail=%d, rate=%.1f%%)\n",
+		fmt.Printf("Memory:          [PASS] %s valid (total=%d, succ=%d, fail=%d, rate=%.1f%%)\n",
 			memPath, total, succ, fail, rate*100)
 	} else {
-		fmt.Printf("Brain Memory:    [WARN] %s unreadable: %v\n", memPath, err)
+		fmt.Printf("Memory:          [WARN] %s unreadable: %v\n", memPath, err)
 	}
 }
 

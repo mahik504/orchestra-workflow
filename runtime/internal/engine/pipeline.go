@@ -26,6 +26,7 @@ type DesignExecutionResult struct {
 	TaskID             string                      `json:"task_id"`
 	Status             PipelineStatus              `json:"status"`
 	Archetype          string                      `json:"archetype"`
+	Classification     *ClassificationData         `json:"classification,omitempty"`
 	ActiveCapabilities []string                    `json:"active_capabilities"`
 	ResolvedRoutes     []resources.CapabilityRoute `json:"resolved_routes"`
 	IterationCount     int                         `json:"iteration_count"`
@@ -237,6 +238,7 @@ func (p *DesignPipeline) buildResult(
 
 	if taskCtx.Classification != nil {
 		res.Archetype = taskCtx.Classification.Archetype
+		res.Classification = taskCtx.Classification
 		res.ResolvedRoutes = taskCtx.Classification.ResolvedRoutes
 		for _, r := range taskCtx.Classification.ResolvedRoutes {
 			res.ActiveCapabilities = append(res.ActiveCapabilities, r.CapabilityID)

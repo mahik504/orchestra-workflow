@@ -16,12 +16,12 @@ func TestCheckQuarantineBoundary(t *testing.T) {
 	}{
 		{
 			name:        "clean workspace path",
-			path:        "C:/projects/orchestra-workflow/registries/resources.json",
+			path:        "C:/dev/orchestra-workflow/registries/resources.json",
 			expectError: false,
 		},
 		{
-			name:        "clean brain path",
-			path:        "C:\\projects\\orchestra-brain\\registries\\design-resource-graph.json",
+			name:        "clean private workspace path",
+			path:        "C:\\dev\\my-workspace\\registries\\design-resource-graph.json",
 			expectError: false,
 		},
 		{

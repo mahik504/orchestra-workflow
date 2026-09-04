@@ -18,8 +18,13 @@ from urllib.parse import urlparse
 import jsonschema
 from jsonschema import Draft7Validator, FormatChecker
 
-WORKFLOW_ROOT = r"C:\projects\orchestra-workflow"
-BRAIN_ROOT = r"C:\projects\orchestra-brain"
+# Repo-relative so a fresh clone works anywhere. The private workspace is
+# optional: set ORCHESTRA_HOME to also validate that workspace's registries.
+WORKFLOW_ROOT = os.environ.get(
+    "ORCHESTRA_WORKFLOW_ROOT",
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")),
+)
+BRAIN_ROOT = os.environ.get("ORCHESTRA_HOME", "")
 
 WORKFLOW_RESOURCES_PATH = os.path.join(WORKFLOW_ROOT, "registries", "resources.json")
 WORKFLOW_GRAPH_PATH = os.path.join(WORKFLOW_ROOT, "registries", "design-resource-graph.json")
@@ -56,7 +61,9 @@ class TestDraft07SchemaCompliance(unittest.TestCase):
         self.assertEqual(len(errors), 0, f"Validation errors in workflow resources.json: {[e.message for e in errors]}")
 
     def test_brain_resources_validate_against_schema(self):
-        """Verify brain resources.json strictly validates against resources.schema.json."""
+        """Verify the private workspace resources.json validates, when one is configured."""
+        if not BRAIN_ROOT or not os.path.exists(BRAIN_RESOURCES_PATH):
+            self.skipTest("ORCHESTRA_HOME not set or has no registries; skipping private workspace check")
         brain_res = load_json_file(BRAIN_RESOURCES_PATH)
         validator = Draft7Validator(self.res_schema, format_checker=FormatChecker())
         errors = list(validator.iter_errors(brain_res))
@@ -69,7 +76,9 @@ class TestDraft07SchemaCompliance(unittest.TestCase):
         self.assertEqual(len(errors), 0, f"Validation errors in workflow graph: {[e.message for e in errors]}")
 
     def test_brain_graph_validates_against_schema(self):
-        """Verify brain design-resource-graph.json strictly validates against design-resource-graph.schema.json."""
+        """Verify the private workspace graph validates, when one is configured."""
+        if not BRAIN_ROOT or not os.path.exists(BRAIN_GRAPH_PATH):
+            self.skipTest("ORCHESTRA_HOME not set or has no registries; skipping private workspace check")
         brain_graph = load_json_file(BRAIN_GRAPH_PATH)
         validator = Draft7Validator(self.graph_schema, format_checker=FormatChecker())
         errors = list(validator.iter_errors(brain_graph))

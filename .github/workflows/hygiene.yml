@@ -1,0 +1,41 @@
+name: Hygiene
+
+# Public-repo guard. Fails the build if the operator's private paths, personal
+# product catalog, or credential-shaped strings reach this repository, or if the
+# contract version and the immutable control-plane rule drift out of sync.
+#
+# The same script runs locally:  node runtime/tools/hygiene.js
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  hygiene:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Personal data, secrets, VERSION, and contract check
+        run: node runtime/tools/hygiene.js
+
+      - name: Registry integrity
+        run: node runtime/tools/check-registry.js
+
+      - name: No private workspace committed
+        run: |
+          set -e
+          for p in projects memory/career.md memory/local-notes.md Preferences.md routes.md mcp_config.json; do
+            if [ -e "$p" ]; then
+              echo "::error::forbidden path committed to the public repo: $p"
+              exit 1
+            fi
+          done
+          echo "no forbidden paths"

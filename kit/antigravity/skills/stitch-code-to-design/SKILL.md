@@ -34,7 +34,7 @@ Follow these steps to convert your existing code.
 #### 1. Extract Self-Contained HTML
 
 Delegate to the `extract-static-html` skill to generate a standalone HTML file.
-Read [skills/extract-static-html/SKILL.md](../extract-static-html/SKILL.md) for detailed instructions and script usage.
+Read [skills/extract-static-html/SKILL.md](../stitch-extract-static-html/SKILL.md) for detailed instructions and script usage.
 
 Expected output: A single file like `/path/to/extracted/standalone.html`.
 
@@ -50,7 +50,7 @@ If the user reports issues after reviewing, fix them before continuing.
 
 Delegate to the `extract-design-md` skill to analyze the project's source files
 (components, stylesheets, theme configs) and produce a design system. Read
-[skills/extract-design-md/SKILL.md](../extract-design-md/SKILL.md) for the
+[skills/extract-design-md/SKILL.md](../stitch-extract-design-md/SKILL.md) for the
 full analysis workflow.
 
 Write `.stitch/DESIGN.md` following the `extract-design-md` skill's output
@@ -60,7 +60,7 @@ structure.
 
 Delegate to the `manage-design-system` skill to upload the `DESIGN.md` and
 create the design system in Stitch. Read
-[skills/manage-design-system/SKILL.md](../manage-design-system/SKILL.md) for
+[skills/manage-design-system/SKILL.md](../stitch-manage-design-system/SKILL.md) for
 the full workflow (upload script usage, `create_design_system_from_design_md`
 call, and required schemas). Pass
 `--generated-by 'stitch::code-to-design'` when uploading.
@@ -68,7 +68,7 @@ call, and required schemas). Pass
 #### 5. Upload HTML to Stitch
 
 Use the same `upload-to-stitch` skill's script to upload the extracted HTML file.
-Read [skills/upload-to-stitch/SKILL.md](../upload-to-stitch/SKILL.md) for detailed instructions and script usage.
+Read [skills/upload-to-stitch/SKILL.md](../stitch-upload-to-stitch/SKILL.md) for detailed instructions and script usage.
 
 You will need:
 - The path to the standalone HTML file generated in Step 1.

@@ -1,82 +1,110 @@
-version: 2
-updated: 2026-08-24
-policy: connected != called. Never paste keys into the vault.
+version: 3.1.0
+updated: 2026-09-04
+
+# Connected is not called, and configured is not connected.
+# Every server carries an explicit health state. An unauthorized server is NOT active.
+#
+#   HEALTHY        reachable now, safe to call
+#   OPTIONAL       installed but only called when a job names it
+#   AUTH_REQUIRED  configured, but sign-in is needed before any call will work
+#   BROKEN         configured and failing in this environment; use the fallback
+#   DISABLED       deliberately off; re-enable only for a job that needs it
+#
+# Never paste API keys into the workspace or a registry. Keys live in the host's
+# own MCP config, which is never committed.
+
+health_states: [HEALTHY, OPTIONAL, AUTH_REQUIRED, BROKEN, DISABLED]
 
 mcp:
-  - name: orchestra-brain
+  - name: vault-memory
     class: CORE
     layer: CORE
     type: filesystem
-    config: "%USERPROFILE%/.cursor/mcp.json"
-    purpose: vault IO
-    r_w: read_write_vault
+    purpose: read and write the private workspace
+    access: read_write_workspace
     auth: local_path
-    status: ready
+    health: HEALTHY
+    note: >
+      Points at the workspace created by kit/init-workspace. The server name is
+      whatever the operator called it in their host MCP config.
+
+  - name: playwright
+    class: CORE
+    layer: VERIFY
+    purpose: drive the running application for real-app verification
+    health: HEALTHY
+    note: Required for the visual QA gate. Screenshots are evidence.
+
+  - name: context7
+    class: CORE
+    layer: RESEARCH
+    purpose: current library and framework documentation
+    health: HEALTHY
+    note: Prefer over recalled API knowledge when a version matters.
+
+  - name: browser
+    class: CORE
+    layer: VERIFY
+    purpose: host-owned browser tab for interactive checks
+    health: HEALTHY
+    note: Host-native alternative to playwright where the IDE provides one.
+
   - name: stitch
     class: SPECIALIST
     layer: DESIGN
-    purpose: Google Stitch screens
-    auth: STITCH_API_KEY in mcp.json (plaintext — rotate)
-    status: ready
-    avoid_on: [when Plan named a library/shader instead]
+    purpose: 2D screen generation and design-system sync
+    auth: api key in the host MCP config
+    health: OPTIONAL
+    call_when: [2D screen lock, design system extraction]
+    avoid_when: [the plan named a library, shader, or 3D route instead]
+
   - name: shadcn
     class: SPECIALIST
     layer: DESIGN
-    purpose: primitives when Plan names them
-    status: error_this_environment
-    forbid_on: [lyra_operator_hud]
-  - name: playwright
-    class: CORE
-    layer: CORE
-    purpose: click OUR running UI
-    plugin: plugin-playwright-playwright
-    status: ready
-  - name: context7
-    class: CORE
-    layer: CORE
-    purpose: library docs
-    plugin: plugin-context7-plugin-context7
-    status: ready
+    purpose: component primitives when the plan names them
+    health: OPTIONAL
+    avoid_when: [operator HUD or any product with a bespoke visual world]
+
   - name: github
-    class: CORE
-    layer: CORE
-    purpose: GitHub API
-    status: error_this_environment
-    fallback: gh CLI in the operator terminal
+    class: SPECIALIST
+    layer: DELIVERY
+    purpose: repository, issue, and pull request operations
+    health: OPTIONAL
+    fallback: the gh CLI in the operator's own terminal
+    note: Cannot pin repos, delete repos, or set a profile bio.
+
+  - name: supabase
+    class: SPECIALIST
+    layer: DATA
+    purpose: hosted Postgres, auth, and storage
+    health: AUTH_REQUIRED
+    note: >
+      Sign in for the specific job that needs it, then return it to AUTH_REQUIRED.
+      Listing it in a host's plugin panel does not make it active.
+
   - name: vercel
     class: SPECIALIST
     layer: DEPLOYMENT
-    status: needsAuth
-    call_only_when: deploying
-  - name: cursor-ide-browser
-    class: CORE
-    layer: CORE
-    purpose: Cursor-owned browser
-    status: ready
-  - name: cursor-app-control
-    class: CORE
-    layer: CORE
-    purpose: workspace/project UI
-    status: ready
+    purpose: deployment and preview inspection
+    health: AUTH_REQUIRED
+    call_when: [deploying]
 
+# Rejected. Do not install; the reason is the record.
+rejected:
   - name: higgsfield
-    layer: CREATIVE
-    class: REJECTED
-    reason: paid extra studio; Stitch remains 2D path
-  - name: 21st / aceternity / magicui
-    class: REJECTED
-    reason: always-on kit glow
-  - name: Agent-Reach
-    class: REJECTED
-    reason: scraper ToS
-  - name: extract-design-system MCP
-    class: OPTIONAL
-    note: prefer npx skillui CLI first
+    reason: paid extra studio; the 2D path is already covered
+  - name: always-on component kits (21st, aceternity, magicui)
+    reason: always-on kit glow produces the same landing page for every product
+  - name: social and coding-profile scrapers
+    reason: terms-of-service risk, and the output is vanity metrics
+  - name: screenshot-to-code services
+    reason: a clone factory is not a design process
 
-antigravity_servers_named_in_STACK:
-  - orchestra-brain
-  - StitchMCP
-  - github-mcp-server
-  - playwright
-  - context7
-live_antigravity_mcp_config: not_opened_secrets
+optional_on_demand:
+  - name: extract-design-system
+    reason: prefer the reverse-engineering CLI first; use only if that fails
+
+policy:
+  - A server in a plugin list is not a capability until it is HEALTHY and called.
+  - Record which server actually ran, not which were available.
+  - Do not install a second server for a capability a host already provides natively.

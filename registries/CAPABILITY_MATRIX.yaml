@@ -1,4 +1,4 @@
-# Capability → minimum activation. Conductor prints this card before coding.
+﻿# Capability â†’ minimum activation. Conductor prints this card before coding.
 # class: CORE | SPECIALIST | OPTIONAL | EXPERIMENTAL | REJECTED
 
 version: 2
@@ -13,14 +13,14 @@ capabilities:
     class: CORE
     activate_when: ["web UI", "static pages", "CRUD screens"]
     skills: [orchestra-conductor, taste-design]
-    mcp_call: [orchestra-brain]
+    mcp_call: [vault-memory]
     model_class: coding-fast
     agents: [FRONTEND_ENGINEER]
   frontend_premium:
     class: SPECIALIST
     activate_when: ["showable web", "hackathon demo", "hiring site", "SaaS marketing", "premium dashboard"]
     skills: [orchestra-conductor, taste-design, stitch-generate-design, impeccable, web-design-guidelines]
-    mcp_call: [orchestra-brain, stitch, playwright]
+    mcp_call: [vault-memory, stitch, playwright]
     extra_mcp_if_named: [shadcn]
     model_class: frontend-design-high
     agents: [DESIGN_DIRECTOR, UI_ENGINEER, VISUAL_QA]

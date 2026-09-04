@@ -375,6 +375,11 @@ type CapabilityWorkflow struct {
 	Description        string   `json:"description,omitempty"`
 	PrimaryArchetype   string   `json:"primary_archetype,omitempty"`
 	TriggerTags        []string `json:"trigger_tags,omitempty"`
+	QualityBar         string   `json:"quality_bar,omitempty"`
+	RiskRank           int      `json:"risk_rank,omitempty"`
+	Platform           string   `json:"platform,omitempty"`
+	TriggerConditions  []string `json:"trigger_conditions,omitempty"`
+	SkipConditions     []string `json:"skip_conditions,omitempty"`
 	Discovery          []string `json:"discovery"`
 	ReverseEngineering []string `json:"reverse_engineering,omitempty"`
 	Synthesis          []string `json:"synthesis"`
@@ -403,6 +408,11 @@ type CapabilityRoute struct {
 	CapabilityID       string   `json:"capability_id,omitempty"`
 	Name               string   `json:"name,omitempty"`
 	PrimaryArchetype   string   `json:"primary_archetype,omitempty"`
+	QualityBar         string   `json:"quality_bar,omitempty"`
+	RiskRank           int      `json:"risk_rank,omitempty"`
+	Platform           string   `json:"platform,omitempty"`
+	TriggerConditions  []string `json:"trigger_conditions,omitempty"`
+	SkipConditions     []string `json:"skip_conditions,omitempty"`
 	MatchedTags        []string `json:"matched_tags,omitempty"`
 	DiscoveryDomains   []string `json:"discovery_domains"`
 	DiscoveryResources []string `json:"discovery_resources"`
@@ -541,6 +551,11 @@ func (g *DesignResourceGraph) ResolveCapabilityRoute(name string, matchedTags []
 		CapabilityID:       name,
 		Name:               workflow.Name,
 		PrimaryArchetype:   workflow.PrimaryArchetype,
+		QualityBar:         workflow.QualityBar,
+		RiskRank:           workflow.RiskRank,
+		Platform:           workflow.Platform,
+		TriggerConditions:  workflow.TriggerConditions,
+		SkipConditions:     workflow.SkipConditions,
 		MatchedTags:        matchedTags,
 		DiscoveryDomains:   discDom,
 		DiscoveryResources: discRes,

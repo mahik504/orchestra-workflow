@@ -10,6 +10,7 @@ import (
 	"github.com/user/orchestra-v3/internal/research"
 	"github.com/user/orchestra-v3/internal/resources"
 	"github.com/user/orchestra-v3/internal/router"
+	"github.com/user/orchestra-v3/internal/verify"
 )
 
 // Failure classification constants for closed-loop self-healing
@@ -57,6 +58,12 @@ type ClassificationData struct {
 	GateReason        string                          `json:"gate_reason"`
 	GapTechnologies   []string                        `json:"gap_technologies"`
 	RecommendedAgent  router.AllocationRecommendation `json:"recommended_agent"`
+	Brief             *classifier.Brief               `json:"brief,omitempty"`
+	QualityBar        string                          `json:"quality_bar"`
+	Platform          string                          `json:"platform"`
+	ResearchDepth     string                          `json:"research_depth"`
+	VerifyDepth       string                          `json:"verify_depth"`
+	DeclinedRoutes    []classifier.Candidate          `json:"declined_routes,omitempty"`
 }
 
 // ResearchData contains visual inspirations, palettes, typography from Stage 3
@@ -144,6 +151,10 @@ type TaskContext struct {
 	Router        *router.Router
 	ResearchCoord *research.ResearchCoordinator
 	Verifier      VisualVerifier
+
+	// DesignLab is the write-blocking gate. While it is PENDING, the implement
+	// stage refuses to write any file a browser would render.
+	DesignLab *verify.DesignLab
 
 	// Stage-Specific Data Payloads
 	Discovery      *DiscoveryData

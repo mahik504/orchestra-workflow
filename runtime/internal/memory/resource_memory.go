@@ -82,18 +82,25 @@ type ResourceMemoryStore struct {
 	mu       sync.RWMutex
 }
 
-// ResolveDefaultMemoryPath resolves the prioritized path to resource-memory.json
+// ResolveDefaultMemoryPath resolves the prioritized path to resource-memory.json.
+//
+// Resolution is relative to the caller's workspace so that a fresh clone writes
+// memory into that clone's own workspace. Point ORCHESTRA_HOME at a private
+// workspace to keep resource memory outside the repository.
 func ResolveDefaultMemoryPath(workspaceRoot string) string {
 	if envPath := os.Getenv("ORCHESTRA_MEMORY_PATH"); envPath != "" {
 		return filepath.Clean(envPath)
 	}
 
-	candidates := []string{
-		`C:\projects\orchestra-brain\memory\resource-memory.json`,
-		filepath.Join("..", "orchestra-brain", "memory", "resource-memory.json"),
+	var candidates []string
+	if home := os.Getenv("ORCHESTRA_HOME"); home != "" {
+		candidates = append(candidates, filepath.Join(home, "memory", "resource-memory.json"))
+	}
+	candidates = append(candidates,
 		filepath.Join(workspaceRoot, "memory", "resource-memory.json"),
 		filepath.Join(workspaceRoot, ".orchestra", "memory", "resource-memory.json"),
-	}
+		filepath.Join(workspaceRoot, "..", "orchestra-workspace", "memory", "resource-memory.json"),
+	)
 
 	for _, c := range candidates {
 		if _, err := os.Stat(c); err == nil {
@@ -101,8 +108,9 @@ func ResolveDefaultMemoryPath(workspaceRoot string) string {
 		}
 	}
 
-	// Default canonical path
-	return `C:\projects\orchestra-brain\memory\resource-memory.json`
+	// Nothing on disk yet. Keep Orchestra's own state under .orchestra/ rather
+	// than dropping a memory/ directory into somebody else's repository.
+	return filepath.Clean(filepath.Join(workspaceRoot, ".orchestra", "memory", "resource-memory.json"))
 }
 
 // NewResourceMemoryStore loads or initializes a ResourceMemoryStore at filePath

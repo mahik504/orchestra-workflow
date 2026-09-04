@@ -33,7 +33,6 @@ var SourceFamilyMap = map[string]string{
 	"shaders-com":       FamilySpecialistEcho,
 	"lax-space":         FamilySpecialistEcho,
 	"pryzm-design":      FamilySpecialistEcho,
-	"penfight":          FamilySpecialistEcho,
 }
 
 // PaletteToken represents an extracted or synthesized design token for color
