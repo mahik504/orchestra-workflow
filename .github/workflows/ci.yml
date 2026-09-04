@@ -45,9 +45,12 @@ jobs:
 
     - name: Test
       run: |
-        if ! go test -v ./... > test.log 2>&1; then
-          FAILURES=$(grep -E "(--- FAIL|FAIL:)" test.log | head -n 20)
-          echo "::error title=Go Test Failures::$FAILURES"
+        go test -v ./... > test.log 2>&1 || {
+          while IFS= read -r line; do
+            if [[ "$line" == *"--- FAIL"* || "$line" == *"FAIL:"* || "$line" == *"panic:"* ]]; then
+              echo "::error::$line"
+            fi
+          done < test.log
           cat test.log
           exit 1
-        fi
+        }
