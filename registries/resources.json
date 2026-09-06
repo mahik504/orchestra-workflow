@@ -12,22 +12,27 @@
       "vision",
       "code_generation"
     ],
-    "representation": "reference",
+    "representation": "cli",
     "routing_tags": [
-      "screenshot-loop",
+      "screenshot-to-code",
       "reverse-engineering",
       "vision-to-code"
     ],
-    "acquisition_method": "none",
-    "runtime_method": "reference_only",
-    "status": "REJECTED",
-    "trigger_conditions": [],
-    "avoid_conditions": [
-      "automatic code generation from screenshots",
-      "competing with Stitch/SkillUI loop"
+    "acquisition_method": "git",
+    "runtime_method": "on_demand_cli",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "human attached a screenshot or mock and asked to recreate layout",
+      "screenshot-to-code",
+      "screenshot to reference"
     ],
-    "policy_verdict": "REJECTED",
-    "rationale": "Screenshot-loop rejected; SkillUI + Stitch (when needed) stay per STACK.md."
+    "avoid_conditions": [
+      "cloning logos trademarks or their source",
+      "LinkedIn or Instagram scrape",
+      "skills add --all"
+    ],
+    "policy_verdict": "CURATED OPTIONAL",
+    "rationale": "On-demand when a screenshot is the reference. Extract layout/type into DESIGN.md, then implement original. Not always-on."
   },
   {
     "id": "addyosmani-agent-skills",
@@ -1702,6 +1707,42 @@
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
     "rationale": "On-demand CLI tool for extracting DESIGN.md tokens from one designated echo URL."
+  },
+  {
+    "id": "firecrawl",
+    "name": "Firecrawl",
+    "canonical_url": "https://github.com/firecrawl/firecrawl",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/firecrawl/firecrawl.git",
+    "documentation_url": "https://docs.firecrawl.dev",
+    "license": "AGPL-3.0",
+    "category": [
+      "research",
+      "web_scrape",
+      "mcp"
+    ],
+    "representation": "mcp",
+    "routing_tags": [
+      "firecrawl",
+      "llm-scrape",
+      "link-to-reference"
+    ],
+    "acquisition_method": "host_mcp_connect",
+    "runtime_method": "mcp_connection",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "firecrawl",
+      "scrape this public URL to markdown",
+      "link to reference for research"
+    ],
+    "avoid_conditions": [
+      "LinkedIn Instagram LeetCode scrapers",
+      "login walls and paywalled kits",
+      "bulk unauthorized scrape",
+      "skills add --all"
+    ],
+    "policy_verdict": "CURATED OPTIONAL",
+    "rationale": "Named public-page scrape to markdown for research and link-to-reference. API key stays in the host. Not a social scraper."
   },
   {
     "id": "apple-hig-typography",
@@ -3411,28 +3452,35 @@
   {
     "id": "getlayers",
     "name": "GetLayers",
-    "canonical_url": "https://getlayers.com",
-    "source_type": "web_reference",
-    "documentation_url": "https://getlayers.com",
+    "canonical_url": "https://getlayers.ai",
+    "source_type": "mcp_server",
+    "documentation_url": "https://www.getlayers.ai/mcp",
     "license": "site-terms",
     "category": [
-      "refused",
-      "template_kit"
+      "design_kit",
+      "mcp"
     ],
-    "representation": "reference",
+    "representation": "mcp",
     "routing_tags": [
-      "refuse-map",
-      "template-kit"
+      "getlayers",
+      "3d-background",
+      "section-library"
     ],
-    "acquisition_method": "none",
-    "runtime_method": "reference_only",
-    "status": "REJECTED",
-    "trigger_conditions": [],
+    "acquisition_method": "host_mcp_connect",
+    "runtime_method": "mcp_connection",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "human named GetLayers",
+      "GetLayers Ultimate",
+      "cinematic video background or GetLayers section"
+    ],
     "avoid_conditions": [
-      "all installations"
+      "always-on MCP on every chat",
+      "shipping an unmodified GetLayers demo as the product",
+      "operator HUD"
     ],
-    "policy_verdict": "REJECTED",
-    "rationale": "Template kits. Refused. Not a visual world."
+    "policy_verdict": "CURATED OPTIONAL",
+    "rationale": "Operator Connect GetLayers Ultimate. Import one section or scene, then tint to the approved stack. Not a second visual world by default."
   },
   {
     "id": "ibelick-ui-skills",

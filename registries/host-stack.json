@@ -66,7 +66,9 @@
         { "id": "mobbin", "state": "OPTIONAL", "note": "Production app screens. Connect in the host MCP UI." },
         { "id": "github", "state": "CURSOR_PLUGIN", "note": "GitHub marketplace plugin on Cursor." },
         { "id": "codebase-memory-mcp", "state": "OPTIONAL", "note": "Large app repos. Never auto-install. Not a second Brain." },
-        { "id": "presenton", "state": "OPTIONAL", "note": "Slide decks only. Does not replace orchestra-docs for papers." }
+        { "id": "presenton", "state": "OPTIONAL", "note": "Slide decks only. Does not replace orchestra-docs for papers." },
+        { "id": "getlayers", "state": "OPTIONAL", "note": "GetLayers Ultimate when Connect. One section/scene then tint. Not always-on." },
+        { "id": "firecrawl", "state": "OPTIONAL", "note": "Public URL to markdown. Not LinkedIn/IG scrape. Key in host." }
       ],
       "antigravity": [
         { "id": "mobbin", "state": "OPTIONAL", "note": "Connect in the MCP Store if the job needs screens." },
@@ -75,7 +77,9 @@
         { "id": "github", "state": "OPTIONAL", "note": "Local GitHub MCP if configured; token stays in the host, never in git." },
         { "id": "science", "state": "DISABLED_GLOBAL", "note": "Keep off as Global. Re-enable only for a job that needs it." },
         { "id": "data-agent-kit-plugin", "state": "DISABLED_GLOBAL", "note": "Keep off as Global." },
-        { "id": "presenton", "state": "OPTIONAL", "note": "Slide decks only. Desktop/API. Not a 31st skill." }
+        { "id": "presenton", "state": "OPTIONAL", "note": "Slide decks only. Desktop/API. Not a 31st skill." },
+        { "id": "getlayers", "state": "OPTIONAL", "note": "GetLayers Ultimate when Connect. Not Global always-on." },
+        { "id": "firecrawl", "state": "OPTIONAL", "note": "Public scrape to markdown. Auth in MCP Store." }
       ],
       "claude": [
         { "id": "github", "state": "OPTIONAL", "note": "Claude Code MCP if you add it locally." },
@@ -108,13 +112,12 @@
     "npx skills add --all",
     "ECC / affaan-m skill dumps into runtime",
     "always-on 21st.dev / Aceternity / Magic UI MCP",
-    "screenshot-to-code factories",
     "Graft / trailhq (writes AGENTS.md; second context layer)",
     "google/skills dump",
     "ui-ux-pro-max as a global skill",
-    "GetLayers template kits",
     "Gmail on Antigravity",
-    "Firebase on Cursor to match Antigravity"
+    "Firebase on Cursor to match Antigravity",
+    "LinkedIn Instagram LeetCode scrapers"
   ],
   "resources": {
     "see": "registries/resources.json"

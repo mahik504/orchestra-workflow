@@ -113,14 +113,18 @@ rejected:
     reason: always-on kit glow produces the same landing page for every product
   - name: social and coding-profile scrapers
     reason: terms-of-service risk, and the output is vanity metrics
-  - name: screenshot-to-code services
-    reason: a clone factory is not a design process
   - name: Graft / google/skills / ui-ux-pro-max dumps
     reason: second conductors and skill packs fight the 30-skill allowlist
 
 optional_on_demand:
   - name: extract-design-system
     reason: prefer the reverse-engineering CLI first; use only if that fails
+  - name: screenshot-to-code
+    reason: human attached a screenshot; extract layout then original DESIGN.md
+  - name: firecrawl
+    reason: public URL to markdown; not LinkedIn/IG
+  - name: getlayers
+    reason: GetLayers Ultimate MCP; one section then tint
 
 policy:
   - A server in a plugin list is not a capability until it is HEALTHY and called.

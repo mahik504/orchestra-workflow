@@ -64,7 +64,8 @@ capabilities:
     cli: ["npx skillui"]
     source: https://github.com/amaancoderx/npxskillui
     fallback_cli: ["extract-design-system"]
-    rejected: [screenshot-to-code, screenshot-to-html, kachamo/SkillUI]
+    optional: [screenshot-to-code, firecrawl, getlayers, scrapling]
+    rejected: [kachamo/SkillUI]
     protocol: REVERSE_ENGINEERING_PROTOCOL.md
   typography:
     class: SPECIALIST

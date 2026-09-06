@@ -21,8 +21,10 @@ resources:
     - { name: amaancoderx/skillui, url: https://github.com/amaancoderx/skillui, class: REJECTED, reason: older_duplicate_repo; npm_points_at_npxskillui }
     - { name: kachamo/SkillUI, url: https://github.com/kachamo/SkillUI, class: REJECTED, reason: empty_wrong_repo }
     - { name: extract-design-system, url: https://github.com/arvindrk/extract-design-system, class: OPTIONAL, fallback: true }
-    - { name: screenshot-to-code, url: https://github.com/abi/screenshot-to-code, class: REJECTED }
+    - { name: screenshot-to-code, url: https://github.com/abi/screenshot-to-code, class: OPTIONAL, when: screenshot_attached }
     - { name: screenshot-to-html, class: REJECTED }
+    - { name: Firecrawl, url: https://github.com/firecrawl/firecrawl, class: OPTIONAL, when: public_url_to_markdown }
+    - { name: GetLayers, url: https://getlayers.ai, class: OPTIONAL, when: human_connects_mcp }
 
   typography:
     - { name: Apple HIG Typography, url: https://developer.apple.com/design/human-interface-guidelines/typography, class: SPECIALIST }
@@ -68,7 +70,7 @@ resources:
     rule: pick_one_family_in_idea.md
 
   research:
-    - { name: public_research_extract, class: OPTIONAL, when: mahi_names_url_and_job, tools: [WebSearch, WebFetch, Context7, SkillUI_named_page], trust: untrusted_data }
+    - { name: public_research_extract, class: OPTIONAL, when: human_names_url_and_job, tools: [WebSearch, WebFetch, Context7, SkillUI_named_page, Firecrawl], trust: untrusted_data }
     - { name: Agent-Reach, class: REJECTED, reason: bulk_scrape_ToS }
     - { name: ChatGPT_Go, class: SPECIALIST, mode: packet }
     - { name: Perplexity, class: SPECIALIST, mode: packet }

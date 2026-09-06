@@ -75,7 +75,14 @@
       "uiverse"
     ],
     "reverse_engineering": [
-      "skillui"
+      "skillui",
+      "screenshot-to-code",
+      "getlayers",
+      "firecrawl",
+      "scrapling"
+    ],
+    "paid_kits": [
+      "getlayers"
     ],
     "design_synthesis": [
       "taste-design",
@@ -186,7 +193,8 @@
       "optional_extensions": [
         "webgl",
         "icon_system",
-        "motion_optional"
+        "motion_optional",
+        "paid_kits"
       ],
       "qa": [
         "playwright",
@@ -243,7 +251,8 @@
       ],
       "optional_extensions": [
         "sensory",
-        "webgl_optional"
+        "webgl_optional",
+        "paid_kits"
       ],
       "qa": [
         "playwright",
@@ -725,13 +734,22 @@
         "reverse-engineering",
         "url-extraction",
         "design-md-generator",
-        "echo-site"
+        "echo-site",
+        "screenshot-to-code",
+        "screenshot-to-reference",
+        "link-to-reference",
+        "getlayers",
+        "firecrawl"
       ],
       "discovery": [
         "visual_research"
       ],
       "reverse_engineering": [
-        "skillui"
+        "skillui",
+        "screenshot-to-code",
+        "getlayers",
+        "firecrawl",
+        "scrapling"
       ],
       "synthesis": [
         "design_synthesis"
@@ -740,7 +758,8 @@
         "motion"
       ],
       "optional_extensions": [
-        "webgl"
+        "webgl",
+        "paid_kits"
       ],
       "qa": [
         "playwright"
@@ -754,6 +773,8 @@
       "platform": "web",
       "trigger_conditions": [
         "The human supplied a specific URL to learn from",
+        "The human attached a screenshot or mock to recreate layout",
+        "The human named GetLayers, Firecrawl, or SkillUI",
         "The goal is to extract tokens, type scale, or layout rules into a design note",
         "A reference needs to become a documented system before any build"
       ],

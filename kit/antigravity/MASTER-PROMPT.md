@@ -54,7 +54,7 @@ Copy Orchestra skills from the public clone `skills/` if they exist. Do not `npx
 
 **Customization budget:** science and data-agent-kit plugins stay **off** as Global. Re-enable only for a job that needs them. If they are Global, say so and stop loading more plugins.
 
-SkillUI is `npx skillui` on one Plan-named URL (`amaancoderx/npxskillui`).
+SkillUI is `npx skillui` on one Plan-named URL. Screenshot attached → screenshot-to-code. Named scrape → Firecrawl. Named GetLayers → Connect MCP, one section, tint.
 
 ## Then
 

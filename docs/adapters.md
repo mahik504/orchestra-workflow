@@ -75,4 +75,4 @@ Front door for a new clone: `kit/bootstrap.ps1` / `kit/bootstrap.sh` (pick hosts
 - Auto-login to Google / GitHub / Vercel
 - Commit MCP files with keys
 - `npx skills add <org> --all`
-- Install ECC, Ralph CLI, or screenshot-to-code factories
+- Install ECC, Ralph CLI, or always-on kit MCP dumps

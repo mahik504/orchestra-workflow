@@ -111,5 +111,6 @@ A host may own a capability the others lack (one has a browser MCP, another has 
 - Say **skip orchestra** and this contract stands down for the session.
 - Say **skip the lab** to bypass the Design Lab for one task.
 - Set `ORCHESTRA_CONTRACT` to pin a previous contract version if a rollout misbehaves.
+- The graph **recommends**. The human decides. If they name a catalog tool (GetLayers, Firecrawl, screenshot-to-code, SkillUI), load that route. Do not refuse a named tool because an older preference said no.
 
 Protocols live in `protocols/`. Registries in `registries/`. Templates in `templates/`.
