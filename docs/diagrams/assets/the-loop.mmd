@@ -1,0 +1,13 @@
+flowchart TD
+  discover[1 Discover]
+  classify[2 Classify]
+  research[3 Research]
+  synth[4 Synthesize]
+  design[5 Design]
+  gate{Human gate}
+  implement[6 Implement]
+  qa[7 Verify]
+  remember[8 Remember]
+  discover --> classify --> research --> synth --> design --> gate
+  gate -->|approved| implement --> qa --> remember
+  gate -->|reject| research

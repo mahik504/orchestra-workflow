@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 400" width="880" height="400" role="img" aria-labelledby="title desc">
+  <title id="title">Orchestra eight-stage loop</title>
+  <desc id="desc">Discover, classify, research, synthesize, then a human gate. Approved work is implemented, verified on the real app, and remembered.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1A1814"/>
+    </marker>
+  </defs>
+  <rect width="880" height="400" fill="#F4F0E8"/>
+  <rect x="0.75" y="0.75" width="878.5" height="398.5" fill="none" stroke="#D9D1C3" stroke-width="1.5"/>
+  
+  <text x="36" y="36" fill="#5C564E" font-size="11" font-weight="600" letter-spacing="2.6" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">THE LOOP</text>
+  <g>
+  <rect x="36" y="56" width="188" height="56" rx="2" fill="#FFFCF7" stroke="#1A1814" stroke-width="1.35"/>
+  <text x="130" y="89" text-anchor="middle" fill="#1A1814" font-size="14" font-weight="600" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">1  Discover</text>
+  
+</g>
+  <g>
+  <rect x="244" y="56" width="188" height="56" rx="2" fill="#FFFCF7" stroke="#1A1814" stroke-width="1.35"/>
+  <text x="338" y="89" text-anchor="middle" fill="#1A1814" font-size="14" font-weight="600" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">2  Classify</text>
+  
+</g>
+  <g>
+  <rect x="452" y="56" width="188" height="56" rx="2" fill="#FFFCF7" stroke="#1A1814" stroke-width="1.35"/>
+  <text x="546" y="89" text-anchor="middle" fill="#1A1814" font-size="14" font-weight="600" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">3  Research</text>
+  
+</g>
+  <g>
+  <rect x="660" y="56" width="184" height="56" rx="2" fill="#FFFCF7" stroke="#1A1814" stroke-width="1.35"/>
+  <text x="752" y="89" text-anchor="middle" fill="#1A1814" font-size="14" font-weight="600" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">4  Synthesize</text>
+  
+</g>
+  <line x1="224" y1="84" x2="244" y2="84" stroke="#1A1814" stroke-width="1.35" marker-end="url(#arrow)"/>
+  <line x1="432" y1="84" x2="452" y2="84" stroke="#1A1814" stroke-width="1.35" marker-end="url(#arrow)"/>
+  <line x1="640" y1="84" x2="660" y2="84" stroke="#1A1814" stroke-width="1.35" marker-end="url(#arrow)"/>
+  <polyline points="752,112 752,148 110,148 110,196" fill="none" stroke="#1A1814" stroke-width="1.35" marker-end="url(#arrow)"/>
+  <g>
+  <rect x="36" y="196" width="148" height="56" rx="2" fill="#FFFCF7" stroke="#1A1814" stroke-width="1.35"/>
+  <text x="110" y="229" text-anchor="middle" fill="#1A1814" font-size="14" font-weight="600" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">5  Design</text>
+  
+</g>
+  <g>
+  <path d="M318,180 L396,224 L318,268 L240,224 Z" fill="#1A1814" stroke="#1A1814" stroke-width="1.35"/>
+  <text x="318" y="220" text-anchor="middle" fill="#FFFCF7" font-size="12" font-weight="600" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">Human</text>
+  <text x="318" y="238" text-anchor="middle" fill="#FFFCF7" font-size="12" font-weight="600" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">gate</text>
+</g>
+  <g>
+  <rect x="452" y="196" width="188" height="56" rx="2" fill="#FFFCF7" stroke="#1A1814" stroke-width="1.35"/>
+  <text x="546" y="229" text-anchor="middle" fill="#1A1814" font-size="14" font-weight="600" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">6  Implement</text>
+  
+</g>
+  <g>
+  <rect x="660" y="196" width="184" height="56" rx="2" fill="#FFFCF7" stroke="#1A1814" stroke-width="1.35"/>
+  <text x="752" y="229" text-anchor="middle" fill="#1A1814" font-size="14" font-weight="600" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">7  Verify</text>
+  
+</g>
+  <line x1="184" y1="224" x2="240" y2="224" stroke="#1A1814" stroke-width="1.35" marker-end="url(#arrow)"/>
+  <line x1="396" y1="224" x2="452" y2="224" stroke="#1A1814" stroke-width="1.35" marker-end="url(#arrow)"/>
+  <line x1="640" y1="224" x2="660" y2="224" stroke="#1A1814" stroke-width="1.35" marker-end="url(#arrow)"/>
+  <polyline points="752,252 752,292 442,292 442,312" fill="none" stroke="#1A1814" stroke-width="1.35" marker-end="url(#arrow)"/>
+  <g>
+  <rect x="244" y="312" width="396" height="52" rx="2" fill="#FFFCF7" stroke="#1A1814" stroke-width="1.35"/>
+  <text x="442" y="343" text-anchor="middle" fill="#1A1814" font-size="14" font-weight="600" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">8  Remember what actually ran</text>
+  
+</g>
+  <text x="546" y="176" text-anchor="middle" fill="#5C564E" font-size="11" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">reject returns to research</text>
+
+</svg>

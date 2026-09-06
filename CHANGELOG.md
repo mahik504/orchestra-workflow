@@ -8,9 +8,9 @@
 - Catalog: GetLayers `PURCHASE_PENDING`. Refero MCP AUTH_REQUIRED / PRO; Refero public pages FREE. 21st OPTIONAL_FREE_MCP (2 installs/day). Magic UI FREE MCP + OSS. Tailkit MCP PAID; public Tailkit RESOURCE.
 - 13th capability `interaction-components` (one route across kits, not a skill per library). Tint/adapt on `reverse-engineering`.
 - Free research: Godly, Land-book, Lapa, SaaSFrame. OSS 3D: three.js, R3F, drei, postprocessing, scroll-rig. Prompt catalogs as references. devops-skills quarantined (no 88 dump).
-- Docs: RESOURCE_INVENTORY A–Q, RESOURCE_HEALTH, DESIGN_RESOURCE_ROUTING, manual-setup 9-field, diagrams `01-control-plane`…`08-resource-combination`.
+- Docs: RESOURCE_INVENTORY A–Q, RESOURCE_HEALTH, DESIGN_RESOURCE_ROUTING, manual-setup 9-field, eight architecture notes plus three committed README SVGs (GitHub Mermaid treats `graph` / `click` as keywords).
 - Global skills added (wrappers, not dumps): refero-design, hallmark, unlazy, react-best-practices, gsap-core, supabase, postgres-best-practices, diagram-generator, pretty-mermaid, skill-security-check.
-- Job packs in `templates/packs/`. README comparison is architectural judgment with estimated token ranges — no fake A/B.
+- Job packs in `templates/packs/`. README states architectural facts — no fake A/B, no invented /10 scores.
 - Rollback: `v3.2.0` (`9d6900d`) and the 3.1 zip. Uncommitted 3.2 hygiene (YAML stubs, Go module rename) lands here.
 
 ## [3.2.0] - Intelligence planes on the same OS

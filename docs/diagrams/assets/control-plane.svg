@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 420" width="880" height="420" role="img" aria-labelledby="title desc">
+  <title id="title">Orchestra control plane</title>
+  <desc id="desc">The human talks to one conductor. The conductor reads the capability graph, curated skills, executors, and private memory.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1A1814"/>
+    </marker>
+  </defs>
+  <rect width="880" height="420" fill="#F4F0E8"/>
+  <rect x="0.75" y="0.75" width="878.5" height="418.5" fill="none" stroke="#D9D1C3" stroke-width="1.5"/>
+  
+  <text x="36" y="36" fill="#5C564E" font-size="11" font-weight="600" letter-spacing="2.6" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">CONTROL PLANE</text>
+  <g>
+  <rect x="320" y="56" width="240" height="52" rx="2" fill="#FFFCF7" stroke="#1A1814" stroke-width="1.35"/>
+  <text x="440" y="87" text-anchor="middle" fill="#1A1814" font-size="14" font-weight="600" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">Human</text>
+  
+</g>
+  <line x1="440" y1="108" x2="440" y2="142" stroke="#1A1814" stroke-width="1.35" marker-end="url(#arrow)"/>
+  <g>
+  <rect x="280" y="148" width="320" height="64" rx="2" fill="#FFFCF7" stroke="#1A1814" stroke-width="1.35"/>
+  <text x="440" y="175" text-anchor="middle" fill="#1A1814" font-size="14" font-weight="600" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">One conductor</text>
+  <text x="440" y="196" text-anchor="middle" fill="#5C564E" font-size="12" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">this session</text>
+</g>
+  <g>
+  <rect x="36" y="268" width="186" height="92" rx="2" fill="#FFFCF7" stroke="#1A1814" stroke-width="1.35"/>
+  <text x="129" y="309" text-anchor="middle" fill="#1A1814" font-size="14" font-weight="600" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">Capability graph</text>
+  <text x="129" y="330" text-anchor="middle" fill="#5C564E" font-size="12" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">13 routes</text>
+</g>
+  <g>
+  <rect x="244" y="268" width="186" height="92" rx="2" fill="#FFFCF7" stroke="#1A1814" stroke-width="1.35"/>
+  <text x="337" y="309" text-anchor="middle" fill="#1A1814" font-size="14" font-weight="600" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">Skills · MCP</text>
+  <text x="337" y="330" text-anchor="middle" fill="#5C564E" font-size="12" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">load by job</text>
+</g>
+  <g>
+  <rect x="452" y="268" width="186" height="92" rx="2" fill="#FFFCF7" stroke="#1A1814" stroke-width="1.35"/>
+  <text x="545" y="309" text-anchor="middle" fill="#1A1814" font-size="14" font-weight="600" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">Executors</text>
+  <text x="545" y="330" text-anchor="middle" fill="#5C564E" font-size="12" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">four hosts</text>
+</g>
+  <g>
+  <rect x="660" y="268" width="184" height="92" rx="2" fill="#FFFCF7" stroke="#1A1814" stroke-width="1.35"/>
+  <text x="752" y="309" text-anchor="middle" fill="#1A1814" font-size="14" font-weight="600" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">Private Brain</text>
+  <text x="752" y="330" text-anchor="middle" fill="#5C564E" font-size="12" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">your memory</text>
+</g>
+  <line x1="400" y1="212" x2="129" y2="268" stroke="#1A1814" stroke-width="1.35" marker-end="url(#arrow)"/>
+  <line x1="420" y1="212" x2="337" y2="268" stroke="#1A1814" stroke-width="1.35" marker-end="url(#arrow)"/>
+  <line x1="460" y1="212" x2="545" y2="268" stroke="#1A1814" stroke-width="1.35" marker-end="url(#arrow)"/>
+  <line x1="480" y1="212" x2="752" y2="268" stroke="#1A1814" stroke-width="1.35" marker-end="url(#arrow)"/>
+
+</svg>

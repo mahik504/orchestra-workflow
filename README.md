@@ -5,283 +5,106 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Release](https://img.shields.io/github/v/release/mahik504/orchestra-workflow?include_prereleases&sort=semver)](https://github.com/mahik504/orchestra-workflow/releases)
 
-A control plane for agentic development. **3.3 evolves 3.2 on the same OS.** Richer catalog, four-host sync, two-stage Design Lab, free resource graph. Not a second conductor. Not ECC. Not “load every library every job.”
+A **control plane for agentic development**. One conductor. Four hosts. A capability graph. A human design gate.
 
-The contract stays **open**: ingest-on-update, named override, `skip orchestra`. Available ≠ loaded. Registered ≠ active. Discovered ≠ verified.
-
-Orchestra is a **contract** (markdown your agent reads) plus an **engine** (a Go binary that enforces the parts a contract cannot). The contract works in any agent that can read markdown. The engine is optional.
+Orchestra is a markdown **contract** your agent already knows how to read, plus an optional **Go engine** that enforces the parts a contract cannot. Clone it. Keep products in a private workspace. This repository is the method.
 
 ```
-ORCHESTRA = CONTROL PLANE
+ORCHESTRA  = CONTROL PLANE
 SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES
-AGENTS  = EXECUTORS
-BRAIN   = MEMORY
-REGISTRY = RESOURCE KNOWLEDGE
+AGENTS     = EXECUTORS
+BRAIN      = MEMORY
+REGISTRY   = RESOURCE KNOWLEDGE
 ```
 
-This repo is the **method**. It is not anyone's second brain. You clone it and fill *your* workspace with *your* projects.
-
-- Inventory: [`docs/RESOURCE_INVENTORY.md`](docs/RESOURCE_INVENTORY.md)
-- Health (no fake HEALTHY): [`docs/RESOURCE_HEALTH.md`](docs/RESOURCE_HEALTH.md)
-- How sources combine: [`docs/DESIGN_RESOURCE_ROUTING.md`](docs/DESIGN_RESOURCE_ROUTING.md)
-- Human auth only: [`docs/manual-setup/`](docs/manual-setup/)
-- Diagrams: [`docs/diagrams/`](docs/diagrams/) (`01-control-plane.md` … `08-resource-combination.md`)
+Available ≠ loaded. Registered ≠ active. Discovered ≠ verified.
 
 ---
 
-## 1. Control plane
+## The problem
+
+Coding agents write files quickly and choose poorly. The default is to dump every skill into the chat, collage every UI kit, skip how the product should look, and call the job done after reading source. Marketplace skill packs make that worse.
+
+Orchestra is built for one person running serious work across Cursor, Antigravity, Claude Code, and jcode without a second conductor, a secret taste pack, or a fake “HEALTHY” label on a server nobody signed into.
+
+---
+
+## How it works
 
 Host rules are **adapters**. They translate syntax. They do not invent a second plan.
 
-```mermaid
-flowchart TD
-  human[Human]
-  cond[One conductor]
-  graph[Capability graph]
-  skills[Skills MCP libraries]
-  exec[Executors]
-  mem[Private Brain]
-  human --> cond
-  cond --> graph
-  cond --> skills
-  cond --> exec
-  cond --> mem
-```
+![Control plane: the human talks to one conductor, which reads the graph, skills, executors, and private memory](docs/diagrams/assets/control-plane.svg)
 
----
+The session follows one loop. Backend, research, and documentation jobs collapse the design stage into a technical plan. Visual jobs stop at the human gate before anything a browser renders is written.
 
-## 2. The loop
+![Eight-stage loop with a human gate before implementation](docs/diagrams/assets/the-loop.svg)
 
 ```
 Understand → Classify → Search graph → Design Lab / Technical plan → HUMAN GATE
   → Implement → Verify on the real app → Correctness review → Simplify review → Remember
 ```
 
-```mermaid
-flowchart TD
-  discover[1 Discover]
-  classify[2 Classify]
-  research[3 Research]
-  synth[4 Synthesize]
-  design[5 Design System]
-  gate{Human gate}
-  implement[6 Implement]
-  qa[7 Visual QA]
-  iterate[8 Iterate]
-  discover --> classify --> research --> synth --> design --> gate
-  gate -->|approved| implement --> qa --> iterate
-  gate -->|edit| research
-```
+The same contract is copied to four hosts. Skills come from an allowlist, not from `skills add --all`.
 
-Backend, research, and documentation tasks collapse stages 4–5 into a technical plan. Full notes: [`ARCHITECTURE.md`](ARCHITECTURE.md).
+![orchestra-workflow syncs one allowlist to Cursor, Antigravity, Claude Code, and jcode](docs/diagrams/assets/four-hosts.svg)
 
-**Repo beats notes.** Jump `routes.md` to one file to the app repo.
+Named override: if the prompt names a website, skill, MCP, pack, or `DESIGN.md`, **that outranks the graph**. Do not argue. Skip the survey. Extract the language. Write one `DESIGN.md`. Tint: keep structure, swap one token, extend the same system.
+
+Full notes: [`ARCHITECTURE.md`](ARCHITECTURE.md). Extra figures (Mermaid, for editors): [`docs/diagrams/`](docs/diagrams/).
 
 ---
 
-## 3. Design Lab (two-stage)
+## Design Lab
 
-For `PREMIUM` and `EXPERIMENTAL` visual work, the engine **refuses to write files a browser renders** until a direction is approved.
+On `PREMIUM` and `EXPERIMENTAL` visual work, the engine **refuses to write files a browser renders** until a direction is approved.
 
-```mermaid
-flowchart TD
-  prompt[PRD or prompt]
-  brief[Rebrief and classify]
-  named{Named site skill MCP pack or DESIGN.md}
-  survey[23 short direction cards]
-  oneD[One full DESIGN.md]
-  gate[Human gate]
-  impl[Implement]
-  prompt --> brief --> named
-  named -->|yes do not argue| oneD
-  named -->|no| survey --> oneD
-  oneD --> gate --> impl
-```
-
-Survey cards are cheap: name, one-liner, type pairing, color world, 3D yes/no, one motion engine. Not 23 full `DESIGN.md` files. A pasted `DESIGN.md` wins. Tint: keep structure, swap one token, extend the same system.
-
-GetLayers MCP is **`PURCHASE_PENDING`**. Do not connect it, fake it, or scrape the paid library. After you buy Full Stack lifetime, say **update**. Live checkout on 2026-09-06: Full Stack lifetime **$199** at [getlayers.ai/pricing](https://www.getlayers.ai/pricing) — re-check before you buy.
+1. Rebrief and classify.
+2. If nothing is named, show **23 short direction cards** (name, one-liner, type pairing, color world, 3D yes/no, one motion engine). Not 23 full `DESIGN.md` files.
+3. Write **one** sourced `DESIGN.md`. A pasted `DESIGN.md` wins.
+4. Human gate. Then implement.
 
 Protocol: [`protocols/DESIGN_LAB_PROTOCOL.md`](protocols/DESIGN_LAB_PROTOCOL.md).
 
----
-
-## 4. Four hosts
-
-Same contract. Different syntax. Skills copy via `kit/sync-ides.ps1`.
-
-```mermaid
-flowchart LR
-  wf[orchestra-workflow]
-  sync[sync-ides]
-  cur[Cursor]
-  ag[Antigravity]
-  cl[Claude Code]
-  jc[jcode]
-  wf --> sync --> cur
-  sync --> ag
-  sync --> cl
-  sync --> jc
-```
-
-Auth steps only: [`docs/manual-setup/`](docs/manual-setup/). Clones do **not** get your OmniRoute tokens or `~/.claude` secrets.
-
-College VS Code: Claude Code still reads `~/.claude/CLAUDE.md` unless that folder ships a competing file.
+GetLayers MCP is **`PURCHASE_PENDING`**. Do not connect it, fake it, or scrape the paid library. After a Full Stack lifetime purchase, say **update**. Re-check [getlayers.ai/pricing](https://www.getlayers.ai/pricing) before you buy.
 
 ---
 
-## 5. Named override
+## What 3.3.0 actually ships
 
-If the prompt names a website, skill, MCP, pack, or `DESIGN.md`, **that outranks the graph. Do not argue.**
-
-```mermaid
-flowchart TD
-  name[Prompt names a source]
-  skip[Skip 23-card survey]
-  extract[Extract language]
-  one[One DESIGN.md]
-  name --> skip --> extract --> one
-```
-
----
-
-## 6. Available ≠ loaded
-
-```mermaid
-flowchart LR
-  d[discovered]
-  s[selected]
-  a[acquired]
-  u[used]
-  v[verified]
-  d --> s --> a --> u --> v
-```
-
-~40 curated global skills. Job packs in `templates/packs/` are markdown routers, not five extra always-on skills. Bulk dumps stay quarantined. There is no `skills add --all`.
-
-MCP states: `HEALTHY` / `OPTIONAL` / `AUTH_REQUIRED` / `BROKEN` / `DISABLED` / `PURCHASE_PENDING`.
-
----
-
-## 7. Verify on the real app
-
-```mermaid
-flowchart TD
-  run[Launch the app]
-  click[Exercise it]
-  stills[2-3 viewports]
-  sos[Designer SOS]
-  hall[Hallmark]
-  led[Ledger]
-  run --> click --> stills --> sos --> hall --> led
-```
-
-Reading the source is not verification. Intention is not evidence. No “zero errors” slogan.
-
----
-
-## 8. Clone vs this machine
-
-```mermaid
-flowchart TD
-  pub[Public 3.3.0]
-  clone[A clone]
-  you[Operator PC]
-  pub --> clone
-  pub --> you
-  clone --> method[Contract graph skills]
-  you --> method
-  you --> profile[OmniRoute MCP tokens]
-```
-
-Rollback: tag **`v3.2.0`** and the 3.1 zip. Pin `ORCHESTRA_CONTRACT` before a git revert. [`kit/ROLLBACK.md`](kit/ROLLBACK.md).
-
----
-
-## Comparison (architectural judgment, not a timed lab)
-
-Token column = **estimated ranges** for one PREMIUM 3D marketing site, same brief. Not a measurement. Not “30% faster.”
-
-| Host / contract | Design quality /10 | Control /10 | Token estimate 3D site | Notes |
-| --- | --- | --- | --- | --- |
-| Cursor raw (no Orchestra) | 4 | 2 | low–mid | Fast slop; no gate |
-| Antigravity raw | 5 | 2 | mid | Better visuals, no graph |
-| Orchestra 3.1.0 | 8 | 8.5 | mid–high | Gate + 12 routes |
-| Orchestra 3.2.0 | 8.5 | 8.5 | mid–high | Research + SOS + ledger + jcode |
-| Orchestra 3.3.0 (this) | 9 | 8.5 | high if 23 cards + one DESIGN.md; still less than 23 full DESIGN.md | Richer catalog; still one conductor |
-
-Verification is ledger + Playwright + SOS.
-
----
-
-## Quality bars
+| Piece | Fact |
+| --- | --- |
+| Contract | `AGENTS.md` plus host adapters (`.cursorrules`, `CLAUDE.md`, Antigravity kit) |
+| Engine | Optional Go binary: classify, plan, Design Lab lock, `orchestra doctor` |
+| Graph | 13 capability routes in `registries/design-resource-graph.json` — every row has a trigger **and** a skip |
+| Skills | ~40 curated globals in `registries/host-stack.json`. Job packs in `templates/packs/` load by job |
+| Hosts | Cursor, Antigravity, Claude Code, jcode |
+| Honesty | MCP states: `HEALTHY` / `OPTIONAL` / `AUTH_REQUIRED` / `BROKEN` / `DISABLED` / `PURCHASE_PENDING` |
 
 | Bar | When | Design Lab |
 | --- | --- | --- |
-| `STANDARD` | Internal tools, fixes, glue, backend | **Off** by default. Ask to opt in. |
-| `PREMIUM` | Anything a stranger will see | **On** by default. Opt out with "skip the lab". |
-| `EXPERIMENTAL` | 3D, shaders, WebGL, novel interaction | **On**. Always ship a low-end fallback. |
+| `STANDARD` | Internal tools, fixes, glue, backend | Off unless you opt in |
+| `PREMIUM` | Anything a stranger will see | On. Opt out with “skip the lab” |
+| `EXPERIMENTAL` | 3D, shaders, WebGL, novel interaction | On. Ship a low-end fallback |
 
----
+Capabilities: `premium-website`, `3d-portfolio`, `operator-hud`, `b2b-portal`, `academic-reader`, `research-paper`, `micro-interactions`, `physics-canvas`, `saas-dashboard`, `mobile-app`, `security-audit`, `reverse-engineering`, `interaction-components`.
 
-## Routing
+`interaction-components` searches registered free kits for **one** control. Inspect existing project components first. It is not a skill per button library.
 
-`registries/design-resource-graph.json` holds **13** capability rows. Every row carries **both** a trigger and a skip.
+If the graph has no skill for the job: research a named public page, propose **one** capability, **wait for update**.
 
-| Capability | Archetype | Bar | Risk |
-| --- | --- | --- | --- |
-| `premium-website` | creative_showcase | PREMIUM | 6 |
-| `3d-portfolio` | spatial_experience | EXPERIMENTAL | 8 |
-| `operator-hud` | mission_control | PREMIUM | 7 |
-| `b2b-portal` | enterprise_portal | STANDARD | 4 |
-| `academic-reader` | longform_reading | PREMIUM | 3 |
-| `research-paper` | academic_writing | STANDARD | 2 |
-| `micro-interactions` | interaction_design | PREMIUM | 5 |
-| `physics-canvas` | gamified_canvas | EXPERIMENTAL | 7 |
-| `saas-dashboard` | analytics_dashboard | STANDARD | 4 |
-| `mobile-app` | mobile_experience | PREMIUM | 5 |
-| `security-audit` | security_hardening | STANDARD | 1 |
-| `reverse-engineering` | token_extraction | STANDARD | 2 |
-| `interaction-components` | interaction_design | PREMIUM | 5 |
+Inventory and health (no fake HEALTHY): [`docs/RESOURCE_INVENTORY.md`](docs/RESOURCE_INVENTORY.md) · [`docs/RESOURCE_HEALTH.md`](docs/RESOURCE_HEALTH.md) · [`docs/DESIGN_RESOURCE_ROUTING.md`](docs/DESIGN_RESOURCE_ROUTING.md)
 
-`interaction-components` searches registered free kits for **one** control. Inspect existing project components first. Not a skill per button library.
+### Free portion, used honestly
 
-If the graph has no skill for the job: research with Scrapling or the web, propose **one** named capability, **wait for update**.
-
-### Free resource ecosystem
-
-Use the free portion now. Do not claim Pro MCP as free.
+Use the free slice now. Do not claim a Pro MCP as free.
 
 - **Components:** shadcn (foundation, not identity), React Bits OSS, Magic UI OSS + free MCP, Aceternity public categories, Kokonut, Motion Primitives, Cult UI, HyperUI, Tailkit public pages, 21st catalog (2 installs/day after login)
-- **Research:** Godly, Land-book, Lapa Ninja, SaaSFrame, Refero public pages — no fake MCP, no bulk scrape
-- **Prompts:** awesome-chatgpt-prompts / awesome-prompts as searchable references, not dumped into context
+- **Research:** Godly, Land-book, Lapa Ninja, SaaSFrame, Refero public pages
 - **3D:** Three.js, R3F, drei, react-postprocessing, r3f-scroll-rig — project-scoped
 - **Motion:** one engine. GSAP for timelines. Do not stack every library
-- **Backend:** Supabase + Postgres skills when the project uses them
-- **DevOps:** `devops-skills` is a quarantined map of themes. Do not install 88
-- **Security admission:** `skill-security-check` on new external skills, not every turn
-- **Diagrams:** diagram-generator → Mermaid → Pretty-Mermaid. Grounded in the repo
-- **GetLayers:** `PURCHASE_PENDING`. No MCP, no scrape, no fake tools
+- **Refero MCP / Tailkit MCP:** `AUTH_REQUIRED`. Magic UI Pro, 21st Builder, Aceternity All-Access unpaid this pass
 
-Refero MCP and Tailkit MCP stay **AUTH_REQUIRED**. Magic UI Pro, 21st Builder, Aceternity All-Access are unpaid this pass.
-
-### MCP honesty
-
-States: `HEALTHY` / `OPTIONAL` / `AUTH_REQUIRED` / `BROKEN` / `DISABLED` / `PURCHASE_PENDING`.
-
-Configured is not HEALTHY. See [`docs/RESOURCE_HEALTH.md`](docs/RESOURCE_HEALTH.md). Example JSON: `mcp_config.example.json`. Live keys stay in the host.
-
-### Brain separation
-
-This repo never ships product briefs, career notes, Preferences, or live MCP secrets. `ORCHESTRA_HOME` is your private workspace.
-
----
-
-## Evidence-first completion
-
-**DONE / FIXED / VERIFIED / PASSED / SHIPPED** may only appear alongside observed evidence in the same message.
-
-Ledger: [`protocols/VERIFICATION_LEDGER_PROTOCOL.md`](protocols/VERIFICATION_LEDGER_PROTOCOL.md).
+Playwright verifies **our** app. Reading the source is not verification. `DONE` / `FIXED` / `VERIFIED` / `PASSED` / `SHIPPED` only with observed evidence in the same message. Ledger: [`protocols/VERIFICATION_LEDGER_PROTOCOL.md`](protocols/VERIFICATION_LEDGER_PROTOCOL.md).
 
 ---
 
@@ -305,38 +128,57 @@ chmod +x kit/bootstrap.sh kit/init-workspace.sh
 ./kit/bootstrap.sh
 ```
 
-Bootstrap asks which hosts to wire (Cursor, Antigravity, Claude Code, Codex/Hermes/OpenCode, jcode), creates an empty private workspace, copies the allowlisted skills, writes adapter files, and prints the plugin checklist. Paste your own keys in the host MCP UI. Restart. Talk.
+Bootstrap asks which hosts to wire, creates an empty private workspace, copies the allowlisted skills, writes adapter files, and prints the plugin checklist. Paste your own keys in the host MCP UI. Restart. Talk.
 
-The Go binary is optional. Details: [docs/getting-started.md](docs/getting-started.md). Host auth clicks: [docs/manual-setup/](docs/manual-setup/). Rollback: pin `ORCHESTRA_CONTRACT` or check out `v3.2.0`.
+The Go binary is optional. Host auth clicks: [`docs/manual-setup/`](docs/manual-setup/). Walkthrough: [`docs/getting-started.md`](docs/getting-started.md). Rollback: pin `ORCHESTRA_CONTRACT` or check out `v3.2.0` — [`kit/ROLLBACK.md`](kit/ROLLBACK.md).
 
 | Variable | Effect |
 | --- | --- |
-| `ORCHESTRA_HOME` | your private workspace root (Brain) |
+| `ORCHESTRA_HOME` | your private workspace root |
 | `ORCHESTRA_CONTRACT` | pin an older contract if a rollout misbehaves |
+
+Say **skip orchestra** and the contract stands down for the session. Say **skip the lab** to bypass Design Lab for one task. Plain text. Not a slash command.
+
+---
+
+## Contributing
+
+This is a methodology template, not an application. Strangers clone the method and fill their own workspace.
+
+**Useful PRs**
+
+- Init and install script fixes
+- Clearer docs and host adapters
+- Registry rows with license + maintenance evidence
+- Protocol clarifications that do not add skill dumps
+- Go tests around classify, the Design Lab lock, and MCP honesty
+
+**Not useful**
+
+- Skill packs (`--all`, marketplace dumps, “88 devops skills”)
+- Always-on UI-kit MCP
+- Screenshot-to-code factories
+- Personal brains, product briefs, or career notes
+- Secrets, `.env`, MCP JSON with keys
+- Fake benchmarks (“30% faster”, “zero errors”) without a described measurement
+
+Start with [`CONTRIBUTING.md`](CONTRIBUTING.md). Open an issue for a graph miss or a resource that is documented as free when the MCP is paid.
 
 ---
 
 ## Honest limits
 
-There is **no A/B study** here. Anyone publishing “30% faster” or “zero errors” without a measured test is guessing.
+There is no A/B study in this repository. Token columns and quality scores without a measured test are guesses — we do not publish them.
 
-- **Research runs offline by default** in the Go engine. Live sources are opt-in.
-- **The engine enforces structure, not taste.**
-- **Visual QA needs a running app.**
-- **Resource memory starts empty.**
-- **jcode is an optional executor.** Evidence (stdout) required.
-- **MCP servers you have not signed in to are AUTH_REQUIRED, not HEALTHY.**
-- **GetLayers is purchase-pending.** It is not connected.
+- Research in the Go engine runs **offline by default**. Live sources are opt-in.
+- The engine enforces **structure**, not taste.
+- Visual QA needs a **running app**.
+- Resource memory starts **empty**.
+- jcode is an optional executor. Evidence is stdout.
+- MCP servers you have not signed in to are `AUTH_REQUIRED`, not `HEALTHY`.
+- GetLayers is purchase-pending. It is not connected.
 
----
-
-## What this repo will never contain
-
-- Anyone's product briefs, career notes, or private planning
-- `.env`, API keys, or MCP config with secrets
-- A populated `projects/` tree
-- Fake metrics, fake users, or contribution-graph painting
-- LinkedIn / Instagram / LeetCode scrapers or ATS auto-submit bots
+This repo will never contain anyone’s product briefs, live keys, a populated `projects/` tree, or contribution-graph painting.
 
 ---
 
@@ -347,23 +189,17 @@ AGENTS.md            the contract
 .cursorrules         Cursor adapter
 CLAUDE.md            Claude Code adapter
 protocols/           job-scoped rules
-registries/          resources.json, graph, host-stack
+registries/          resources, graph, host-stack
 runtime/             Go engine
 skills/              curated global skills
 kit/                 host setup, sync, rollback
-docs/                getting started, inventory, health, routing, diagrams, manual-setup
+docs/                getting started, inventory, health, routing, diagrams
 templates/           packets and job packs
 workspace-template/  empty workspace shape
 ```
 
 ---
 
-## Overrides
-
-Say **skip orchestra** and the contract stands down for the session. Say **skip the lab** to bypass the Design Lab for one task. Plain text. Not a slash command.
-
----
-
 ## License
 
-MIT. See [LICENSE](LICENSE). Contributions: [CONTRIBUTING.md](CONTRIBUTING.md) — no secrets, no private workspaces, no skill packs.
+MIT. See [LICENSE](LICENSE). Copyright (c) 2026 Mahaveer Singh Gehlot.

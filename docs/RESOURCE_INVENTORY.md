@@ -154,7 +154,7 @@ Triggers: 3D website, WebGL, interactive 3D, portfolio, spatial experience, shad
 | mermaid | diagram language |
 | pretty-mermaid | optional render |
 
-Eight required diagrams live under `docs/diagrams/01-control-plane.md` … `08-resource-combination.md`. Older numbered notes remain as extra detail.
+Eight architecture notes live under `docs/diagrams/01-control-plane.md` … `08-resource-combination.md`. README embeds three committed SVGs in `docs/diagrams/assets/` — GitHub Mermaid is not used on the front page.
 
 ## N. CLIs
 

@@ -6,14 +6,14 @@ Orchestra is the only control plane. Skills, MCPs, plugins, and libraries are ca
 flowchart TD
   human[Human]
   cond[One conductor this session]
-  graph[Capability graph]
+  capGraph[Capability graph]
   reg[Resource registry]
   skills[Curated skills]
   mcp[MCP optional or auth]
   exec[Executors: Cursor / Antigravity / Claude Code / jcode]
   brain[Private Brain]
   human --> cond
-  cond --> graph
+  cond --> capGraph
   cond --> reg
   cond --> skills
   cond --> mcp
