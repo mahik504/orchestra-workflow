@@ -26,7 +26,7 @@ touch "$PROFILE"
 if ! grep -q 'export ORCHESTRA_HOME=' "$PROFILE"; then
   {
     echo ""
-    echo "# Orchestra 3.1.0"
+    echo "# Orchestra 3.2.0"
     echo "export ORCHESTRA_HOME=\"$HOME_DIR\""
     echo "export PATH=\"\$PATH:$GOBIN\""
   } >> "$PROFILE"

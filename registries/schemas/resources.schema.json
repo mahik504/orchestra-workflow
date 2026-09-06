@@ -110,6 +110,7 @@
           "npx",
           "web_fetch",
           "mcp_install",
+          "host_mcp_connect",
           "manual",
           "none",
           "git_clone"
@@ -175,6 +176,31 @@
       "npm_package": {
         "type": "string",
         "description": "Exact npm specifier when it differs from the resource id (e.g. @react-three/drei)"
+      },
+      "problem_solved": {
+        "type": "string",
+        "description": "One-line job this resource is for"
+      },
+      "upstream_version": {
+        "type": "string",
+        "description": "Upstream tag or channel (may differ from the installed variant)"
+      },
+      "installed_variant": {
+        "type": "string",
+        "description": "What is actually on disk if it is not the upstream default"
+      },
+      "preferred_harness": {
+        "type": "array",
+        "items": { "type": "string" },
+        "description": "Hosts or CLIs that should run this resource first"
+      },
+      "fallback": {
+        "type": "string",
+        "description": "What to try if this resource is unavailable"
+      },
+      "last_verified": {
+        "type": "string",
+        "description": "ISO date the row was last checked against a real job or live docs"
       }
     },
     "additionalProperties": false

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Wire Orchestra 3.1.0 onto chosen hosts. No secrets. No skills add --all.
+# Wire Orchestra 3.2.0 onto chosen hosts. No secrets. No skills add --all.
 #
 #   ./kit/bootstrap.sh
 #   ./kit/bootstrap.sh --hosts cursor,antigravity --target /path/to/workspace
@@ -26,7 +26,7 @@ pick_hosts() {
     echo "$HOSTS" | tr ',' ' '
     return
   fi
-  echo "Which hosts should use Orchestra 3.1.0?" >&2
+  echo "Which hosts should use Orchestra 3.2.0?" >&2
   echo "  [1] Cursor" >&2
   echo "  [2] Antigravity" >&2
   echo "  [3] Claude Code" >&2
@@ -137,7 +137,7 @@ node -e "
 " "$STACK" "${CHOSEN[@]}"
 
 echo
-echo "Restart the IDE. Next chat in this workspace uses Orchestra 3.1.0 (AGENTS.md)."
+echo "Restart the IDE. Next chat in this workspace uses Orchestra 3.2.0 (AGENTS.md)."
 echo "Optional Cursor User Rule for chats outside this folder: GLOBAL until I say skip orchestra."
 echo "We cannot log into Google, Stripe, or Stitch for you."
 echo "Private workspace: $TARGET"

@@ -60,10 +60,15 @@ Front door for a new clone: `kit/bootstrap.ps1` / `kit/bootstrap.sh` (pick hosts
 - Copy `skills/` into OpenCode’s skill directory (see its current docs).
 - Orchestra still forbids installing OpenCode **inside** Cursor as a nested conductor. Using OpenCode **as** the only environment is fine.
 
+## jcode (optional harness)
+
+- Fifth executor. Point it at this repo's `AGENTS.md`. Packet: `templates/jcode-omniroute-packet.md`.
+- Does not replace Cursor, Antigravity, or Claude Code. Evidence (stdout) before anyone claims it works.
+
 ## Hermes (and other AGENTS-compatible CLIs)
 
 - Point the agent at `AGENTS.md` + `protocols/`.
-- Same 3.1 contract and available ≠ loaded rules. Design Lab is a write lock on PREMIUM / EXPERIMENTAL visual work.
+- Same 3.2 contract and available ≠ loaded rules. Design Lab is a write lock on PREMIUM / EXPERIMENTAL visual work.
 
 ## ChatGPT / Perplexity / cloud chats
 

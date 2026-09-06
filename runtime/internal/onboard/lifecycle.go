@@ -497,7 +497,7 @@ func FormatReport(rep *Report) string {
 		return ""
 	}
 	var b strings.Builder
-	b.WriteString("Orchestra 3.1 lifecycle audit\n")
+	b.WriteString("Orchestra 3.2 lifecycle audit\n")
 	b.WriteString("Mechanism: " + rep.Mechanism + "\n")
 	b.WriteString(rep.NotRL + "\n\n")
 	for _, s := range rep.Steps {

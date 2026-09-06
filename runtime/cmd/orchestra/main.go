@@ -59,7 +59,7 @@ func main() {
 }
 
 func printUsage() {
-	fmt.Println("Orchestra 3.1.0 — control plane for agentic IDEs")
+	fmt.Println("Orchestra 3.2.0 — control plane for agentic IDEs")
 	fmt.Println("ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.")
 	if pin := os.Getenv("ORCHESTRA_CONTRACT"); pin != "" {
 		fmt.Printf("ORCHESTRA_CONTRACT pin: %s (see kit/ROLLBACK.md)\n", pin)
@@ -130,7 +130,7 @@ func runInit(args []string) {
 	configPath := filepath.Join(workdir, ".orchestra", "config.json")
 	if _, err := os.Stat(configPath); os.IsNotExist(err) {
 		cfg := map[string]interface{}{
-			"version":          "3.1.0",
+			"version":          "3.2.0",
 			"default_agent":    "antigravity",
 			"ponytail_mode":    "full",
 			"isolation_mode":   "strict_clean",
@@ -146,11 +146,11 @@ func runInit(args []string) {
 }
 
 func runDoctor(args []string) {
-	fmt.Println("=== Orchestra 3.1.0 Environment & System Doctor ===")
+	fmt.Println("=== Orchestra 3.2.0 Environment & System Doctor ===")
 	if pin := os.Getenv("ORCHESTRA_CONTRACT"); pin != "" {
 		fmt.Printf("Contract pin:    ORCHESTRA_CONTRACT=%s (see kit/ROLLBACK.md)\n", pin)
 	} else {
-		fmt.Println("Contract pin:    unset (using VERSION 3.1.0)")
+		fmt.Println("Contract pin:    unset (using VERSION 3.2.0)")
 	}
 
 	checkCmd := func(name string, args ...string) (string, bool) {

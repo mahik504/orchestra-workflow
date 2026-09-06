@@ -1,6 +1,6 @@
-﻿# Prompting Orchestra 3.1
+﻿# Prompting Orchestra 3.2
 
-A brief still needs intent, context, constraints, and what done looks like. Orchestra 3.1 classifies that brief against `registries/design-resource-graph.json`. It does not invent a second prompting language.
+A brief still needs intent, context, constraints, and what done looks like. Orchestra 3.2 classifies that brief against `registries/design-resource-graph.json`. It does not invent a second prompting language.
 
 Read [`AGENTS.md`](../AGENTS.md) and [`WORKFLOW.md`](../WORKFLOW.md).
 

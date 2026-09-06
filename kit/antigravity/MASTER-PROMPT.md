@@ -10,7 +10,7 @@ APP ROOT: (the product repo already open, or none yet)
 
 ---
 
-You are running **Orchestra 3.1.0** in Google Antigravity.
+You are running **Orchestra 3.2.0** in Google Antigravity.
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
 
@@ -42,7 +42,7 @@ You cannot log into Google for them, invent API keys, or finish OAuth. Secrets n
 - Vault = `VAULT` they filled.
 - Global skills: `%USERPROFILE%\.gemini\config\skills\` or `~/.gemini/config/skills/`
 - Also `~/.agents/skills/` if present.
-- Contract pin: `ORCHESTRA_CONTRACT` (see `kit/ROLLBACK.md`). Unset means 3.1.0.
+- Contract pin: `ORCHESTRA_CONTRACT` (see `kit/ROLLBACK.md`). Unset means 3.2.0.
 
 Do **not** write `mcp_config.json` with real keys. Example files only.
 

@@ -136,7 +136,7 @@ func get(target string) (string, Probe) {
 		p.Error = err.Error()
 		return "", p
 	}
-	req.Header.Set("User-Agent", "OrchestraLifecycle/3.1 (control-plane inspect)")
+	req.Header.Set("User-Agent", "OrchestraLifecycle/3.2 (control-plane inspect)")
 	req.Header.Set("Accept", "text/html,application/json,text/plain;q=0.9,*/*;q=0.8")
 
 	resp, err := HTTPClient.Do(req)

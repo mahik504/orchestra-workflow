@@ -1742,6 +1742,9 @@
       "skills add --all"
     ],
     "policy_verdict": "CURATED OPTIONAL",
+    "problem_solved": "On-demand public URL to markdown",
+    "fallback": "crawl4ai",
+    "last_verified": "2026-09-06",
     "rationale": "Named public-page scrape to markdown for research and link-to-reference. API key stays in the host. Not a social scraper."
   },
   {
@@ -2085,7 +2088,13 @@
       "pure backend endpoints"
     ],
     "policy_verdict": "CORE MCP",
-    "rationale": "Mandatory visual verification adapter capturing Desktop, Tablet, and Mobile DOM viewports."
+    "problem_solved": "Verify our running app in a real browser",
+    "preferred_harness": [
+      "playwright-mcp"
+    ],
+    "fallback": "playwright-cli",
+    "last_verified": "2026-09-06",
+    "rationale": "CORE MCP for visual verification. playwright-cli is optional. Do not playwright-cli install --skills -g. Not a LinkedIn/ATS robot."
   },
   {
     "id": "lighthouse",
@@ -2208,10 +2217,18 @@
       "gathering public DOM snippets"
     ],
     "avoid_conditions": [
-      "bulk unauthorized scraping"
+      "bulk unauthorized scraping",
+      "LinkedIn Instagram LeetCode scrapers",
+      "ATS Easy Apply Workday robots"
     ],
     "policy_verdict": "SPECIALIST CLI",
-    "rationale": "High-speed DOM extraction engine used for sanctioned visual research harvest."
+    "problem_solved": "Primary public-page DOM extract for research",
+    "preferred_harness": [
+      "scrapling-cli"
+    ],
+    "fallback": "firecrawl then crawl4ai",
+    "last_verified": "2026-09-06",
+    "rationale": "Primary public crawler in RESEARCH_PROTOCOL. Named URL only. Firecrawl on-demand; Crawl4AI catalog fallback. Not a social scraper."
   },
   {
     "id": "shadergradient",
@@ -2279,7 +2296,10 @@
       "headless scripts"
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
-    "rationale": "Mandatory design governance skill generating opinionated, premium DESIGN.md specifications."
+    "installed_variant": "stitch-wrapper-on-disk",
+    "upstream_version": "v2-experimental-do-not-npx-add-pack",
+    "last_verified": "2026-09-06",
+    "rationale": "On-disk skills/taste-design is the Stitch-wrapper variant in the 30. Upstream Leonxlnx Taste v2 is experimental. Do not npx skills add the whole pack."
   },
   {
     "id": "impeccable",
@@ -3472,15 +3492,20 @@
     "trigger_conditions": [
       "human named GetLayers",
       "GetLayers Ultimate",
-      "cinematic video background or GetLayers section"
+      "cinematic video background or GetLayers section",
+      "premium visual section",
+      "3d shader background"
     ],
     "avoid_conditions": [
       "always-on MCP on every chat",
       "shipping an unmodified GetLayers demo as the product",
-      "operator HUD"
+      "operator HUD",
+      "mirror the GetLayers library"
     ],
     "policy_verdict": "CURATED OPTIONAL",
-    "rationale": "Operator Connect GetLayers Ultimate. Import one section or scene, then tint to the approved stack. Not a second visual world by default."
+    "problem_solved": "One generative section or 3D/shader scene, then tint",
+    "last_verified": "2026-09-06",
+    "rationale": "Connect MCP on PREMIUM/EXPERIMENTAL 3D/shader/section jobs. One section or scene, then tint. Never mirror the library. Live checkout 2026-09-06: Unlimited $139 lifetime, Full Stack $199 lifetime (getlayers.ai/pricing)."
   },
   {
     "id": "ibelick-ui-skills",
@@ -3671,5 +3696,162 @@
     ],
     "policy_verdict": "CURATED OPTIONAL",
     "rationale": "Optional host MCP for large app repos. Never auto-install. Not a second Brain. Vault memory stays the filesystem MCP."
+  },
+  {
+    "id": "playwright-cli",
+    "name": "Playwright CLI",
+    "canonical_url": "https://github.com/microsoft/playwright-cli",
+    "source_type": "cli_tool",
+    "source_repository": "https://github.com/microsoft/playwright-cli.git",
+    "documentation_url": "https://github.com/microsoft/playwright-cli#readme",
+    "license": "Apache-2.0",
+    "category": [
+      "qa",
+      "cli"
+    ],
+    "representation": "cli",
+    "routing_tags": [
+      "playwright-cli",
+      "headed-browser"
+    ],
+    "acquisition_method": "npx",
+    "runtime_method": "on_demand_cli",
+    "status": "CURATED_OPTIONAL",
+    "npm_package": "@playwright/cli",
+    "problem_solved": "Optional headed CLI beside Playwright MCP",
+    "preferred_harness": [
+      "npx"
+    ],
+    "fallback": "playwright MCP",
+    "last_verified": "2026-09-06",
+    "trigger_conditions": [
+      "playwright-cli named",
+      "headed CLI verify of our app"
+    ],
+    "avoid_conditions": [
+      "playwright-cli install --skills -g",
+      "replacing Playwright MCP as CORE",
+      "LinkedIn ATS scrape"
+    ],
+    "policy_verdict": "CURATED OPTIONAL",
+    "rationale": "MCP stays CORE. Do not install --skills -g into the 30."
+  },
+  {
+    "id": "crawl4ai",
+    "name": "Crawl4AI",
+    "canonical_url": "https://github.com/unclecode/crawl4ai",
+    "source_type": "pypi_package",
+    "source_repository": "https://github.com/unclecode/crawl4ai.git",
+    "documentation_url": "https://docs.crawl4ai.com",
+    "license": "Apache-2.0",
+    "category": [
+      "research",
+      "crawler"
+    ],
+    "representation": "cli",
+    "routing_tags": [
+      "crawl4ai",
+      "fallback-crawler"
+    ],
+    "acquisition_method": "pip",
+    "runtime_method": "on_demand_cli",
+    "status": "CURATED_OPTIONAL",
+    "problem_solved": "Fallback public crawler if Scrapling and Firecrawl cannot run",
+    "preferred_harness": [
+      "pip-project"
+    ],
+    "fallback": "webfetch",
+    "last_verified": "2026-09-06",
+    "trigger_conditions": [
+      "crawl4ai named",
+      "scrapling and firecrawl unavailable"
+    ],
+    "avoid_conditions": [
+      "global pip install",
+      "LinkedIn Instagram LeetCode scrapers",
+      "always-on crawler"
+    ],
+    "policy_verdict": "CURATED OPTIONAL",
+    "rationale": "Catalog fallback only. Do not install Global this pass."
+  },
+  {
+    "id": "serena",
+    "name": "Serena",
+    "canonical_url": "https://github.com/oraios/serena",
+    "source_type": "mcp_server",
+    "source_repository": "https://github.com/oraios/serena.git",
+    "documentation_url": "https://github.com/oraios/serena#readme",
+    "license": "MIT",
+    "category": [
+      "mcp",
+      "code_intelligence"
+    ],
+    "representation": "mcp",
+    "routing_tags": [
+      "serena",
+      "repo-intelligence",
+      "symbols"
+    ],
+    "acquisition_method": "mcp_install",
+    "runtime_method": "mcp_connection",
+    "status": "CURATED_OPTIONAL",
+    "problem_solved": "Optional symbol-level repo intelligence on a named large codebase",
+    "preferred_harness": [
+      "cursor",
+      "claude"
+    ],
+    "fallback": "codebase-memory-mcp",
+    "last_verified": "2026-09-06",
+    "trigger_conditions": [
+      "human named Serena",
+      "large repo symbol navigation"
+    ],
+    "avoid_conditions": [
+      "always-on MCP",
+      "31st global skill",
+      "replacing Brain markdown memory"
+    ],
+    "policy_verdict": "CURATED OPTIONAL",
+    "rationale": "Optional MCP for repo intelligence. Not always-on. Not a 31st skill."
+  },
+  {
+    "id": "jcode",
+    "name": "jcode",
+    "canonical_url": "https://github.com/1jehuang/jcode",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/1jehuang/jcode.git",
+    "documentation_url": "https://github.com/1jehuang/jcode#readme",
+    "license": "see-upstream",
+    "category": [
+      "harness",
+      "executor"
+    ],
+    "representation": "cli",
+    "routing_tags": [
+      "jcode",
+      "omniroute",
+      "terminal-harness"
+    ],
+    "acquisition_method": "git",
+    "runtime_method": "on_demand_cli",
+    "status": "CURATED_OPTIONAL",
+    "problem_solved": "Fifth executor against an OpenAI-compatible endpoint",
+    "preferred_harness": [
+      "jcode"
+    ],
+    "fallback": "claude-code",
+    "last_verified": "2026-09-06",
+    "trigger_conditions": [
+      "jcode named",
+      "OmniRoute localhost:20128",
+      "bounded terminal harness job"
+    ],
+    "avoid_conditions": [
+      "replace Cursor Antigravity Claude Code",
+      "claim works without stdout",
+      "merge extra Claude disk skills into the 30"
+    ],
+    "policy_verdict": "CURATED OPTIONAL",
+    "rationale": "Optional terminal harness under the control plane. Point at Orchestra AGENTS.md. Test against OmniRoute http://localhost:20128. Evidence required. Not the brain."
   }
 ]

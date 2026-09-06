@@ -3,7 +3,7 @@ name: orchestra-vault
 description: Maintain the private Orchestra workspace and its memory. Jump one note. Lasting files only. Record real outcomes, never synthetic ones. No secrets.
 ---
 
-# Orchestra vault — 3.1.0
+# Orchestra vault — 3.2.0
 
 **BRAIN = MEMORY.** The workspace is where Orchestra remembers; it is not a second control plane.
 

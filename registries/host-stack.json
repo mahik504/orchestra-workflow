@@ -1,5 +1,5 @@
 {
-  "version": "3.1.0",
+  "version": "3.2.0",
   "skills": [
     "animate",
     "ci-security-scanning-with-strix",
@@ -68,7 +68,8 @@
         { "id": "codebase-memory-mcp", "state": "OPTIONAL", "note": "Large app repos. Never auto-install. Not a second Brain." },
         { "id": "presenton", "state": "OPTIONAL", "note": "Slide decks only. Does not replace orchestra-docs for papers." },
         { "id": "getlayers", "state": "OPTIONAL", "note": "GetLayers Ultimate when Connect. One section/scene then tint. Not always-on." },
-        { "id": "firecrawl", "state": "OPTIONAL", "note": "Public URL to markdown. Not LinkedIn/IG scrape. Key in host." }
+        { "id": "firecrawl", "state": "OPTIONAL", "note": "Public URL to markdown. Not LinkedIn/IG scrape. Key in host." },
+        { "id": "serena", "state": "OPTIONAL", "note": "Repo intelligence on a named large codebase. Never always-on. Not a 31st skill." }
       ],
       "antigravity": [
         { "id": "mobbin", "state": "OPTIONAL", "note": "Connect in the MCP Store if the job needs screens." },
@@ -79,12 +80,14 @@
         { "id": "data-agent-kit-plugin", "state": "DISABLED_GLOBAL", "note": "Keep off as Global." },
         { "id": "presenton", "state": "OPTIONAL", "note": "Slide decks only. Desktop/API. Not a 31st skill." },
         { "id": "getlayers", "state": "OPTIONAL", "note": "GetLayers Ultimate when Connect. Not Global always-on." },
-        { "id": "firecrawl", "state": "OPTIONAL", "note": "Public scrape to markdown. Auth in MCP Store." }
+        { "id": "firecrawl", "state": "OPTIONAL", "note": "Public scrape to markdown. Auth in MCP Store." },
+        { "id": "serena", "state": "OPTIONAL", "note": "Repo intelligence if Connect. Never Global always-on." }
       ],
       "claude": [
         { "id": "github", "state": "OPTIONAL", "note": "Claude Code MCP if you add it locally." },
         { "id": "shadcn", "state": "OPTIONAL", "note": "Same rule as Cursor: never on an operator HUD." },
-        { "id": "codebase-memory-mcp", "state": "OPTIONAL", "note": "Large app repos. Never auto-install. Not a second Brain." }
+        { "id": "codebase-memory-mcp", "state": "OPTIONAL", "note": "Large app repos. Never auto-install. Not a second Brain." },
+        { "id": "serena", "state": "OPTIONAL", "note": "Repo intelligence. Never auto-install. Not a 31st skill." }
       ]
     }
   },
@@ -117,7 +120,10 @@
     "ui-ux-pro-max as a global skill",
     "Gmail on Antigravity",
     "Firebase on Cursor to match Antigravity",
-    "LinkedIn Instagram LeetCode scrapers"
+    "LinkedIn Instagram LeetCode scrapers",
+    "playwright-cli install --skills -g",
+    "Chen 202-agent / 273-agent dumps",
+    "Workday Lever Easy Apply robots"
   ],
   "resources": {
     "see": "registries/resources.json"

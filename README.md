@@ -1,11 +1,13 @@
-# Orchestra 3.1.0
+# Orchestra 3.2.0
 
 [![CI](https://github.com/mahik504/orchestra-workflow/actions/workflows/ci.yml/badge.svg)](https://github.com/mahik504/orchestra-workflow/actions/workflows/ci.yml)
 [![Hygiene](https://github.com/mahik504/orchestra-workflow/actions/workflows/hygiene.yml/badge.svg)](https://github.com/mahik504/orchestra-workflow/actions/workflows/hygiene.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Release](https://img.shields.io/github/v/release/mahik504/orchestra-workflow?include_prereleases&sort=semver)](https://github.com/mahik504/orchestra-workflow/releases)
 
-A control plane for agentic development. It decides *what* to build before the agent decides *how*, and it stops work a stranger will see from being designed one file at a time.
+A control plane for agentic development. **3.2 evolves 3.1.** It does not rebuild the OS. 3.1 already was the control plane, the registries, the graph, the Design Lab write gate, and the 30-skill allowlist. 3.2 adds the intelligence planes that 3.1 was weaker on — research, repo, design sources, verification, and a fifth executor adapter — without becoming a swarm.
+
+The 30 skills stay. The contract stays open: the graph recommends, you decide.
 
 Orchestra is a **contract** (markdown your agent reads) plus an **engine** (a Go binary that enforces the parts a contract cannot). The contract works in any agent that can read markdown. The engine is optional.
 
@@ -20,6 +22,21 @@ REGISTRY = RESOURCE KNOWLEDGE
 Host rules are **adapters**. They translate syntax. They do not invent a second plan or a second loop. One session, one conductor.
 
 This repo is the **system**. It is not anyone's second brain, not a RAG index, and not a mega-prompt that replaces model reasoning. You clone the method and fill *your* workspace with *your* projects.
+
+---
+
+## What 3.2 adds (same OS)
+
+| Plane | What it is | What it is not |
+| --- | --- | --- |
+| Research | Scrapling is the primary public crawler; Firecrawl on-demand; Crawl4AI catalog fallback | LinkedIn / Instagram / ATS scrapers |
+| Repo | Serena as optional MCP | Always-on, or a 31st skill |
+| Design | GetLayers on premium / 3D / shader only; Designer SOS teardown; named source tiers | Mirroring a paid library; 23-option style swarms |
+| Quality | Unlazy-style evidence ledger + Playwright MCP (CLI optional) | `playwright-cli install --skills -g` |
+| Execution | jcode as a fifth **executor** under `AGENTS.md` | A second brain, or a Cursor replacement |
+| Ingest | Graph miss → research → one named capability → **wait for update** | Auto-installing internet packs |
+
+Taste on disk is the Stitch-wrapper skill in the 30. Upstream Taste v2 stays experimental; do not `npx skills add` that pack.
 
 ---
 
@@ -38,6 +55,8 @@ Understand → Classify → Search graph → Design Lab / Technical plan → HUM
   → Implement → Verify on the real app → Correctness review → Simplify review → Remember
 ```
 
+Visual jobs after the gate: Taste → `DESIGN.md` → named source tiers → implement → Impeccable → Playwright → Designer SOS → one consultant packet.
+
 The Go engine runs the same shape as eight stages: Discover, Classify, Research, Synthesize, Design System, Implement, Visual QA, Iterate.
 
 ### Architecture
@@ -51,7 +70,7 @@ flowchart TD
   design[5 Design System: stack card and DESIGN contract]
   gate{Human gate}
   implement[6 Implement: acquire scoped resources, write code]
-  qa[7 Visual QA: multi-viewport, console, contrast]
+  qa[7 Visual QA: multi-viewport, console, contrast, SOS]
   iterate[8 Iterate: route defects back]
 
   discover --> classify --> research --> synth --> design --> gate
@@ -89,6 +108,8 @@ Still writable: backend code, migrations, notes, and `DESIGN.md` — the human n
 
 Each gate offers **2 or 3** directions. Every direction must name its typography source, its colour source, and why it picked one motion engine. Unsourced claims are refused by the API, not by convention.
 
+Source tiers on the card (do not load all): shadcn only if the plan names it; React Bits for motion; GetLayers MCP for one premium/3D/shader section then tint; Aceternity / Cult / 21st as **one named echo**. Always-on kit MCPs stay refused.
+
 Rejections are recorded with the human's stated reason and fingerprinted by the actual stack, so renaming a rejected direction and re-offering it fails. A bypass is allowed but never silent — it requires a note.
 
 | State | Frontend writes |
@@ -98,7 +119,7 @@ Rejections are recorded with the human's stated reason and fingerprinted by the 
 | `APPROVED` | allowed |
 | `BYPASSED` | allowed, recorded |
 
-Full rules: [`protocols/DESIGN_LAB_PROTOCOL.md`](protocols/DESIGN_LAB_PROTOCOL.md).
+Full rules: [`protocols/DESIGN_LAB_PROTOCOL.md`](protocols/DESIGN_LAB_PROTOCOL.md). Designer SOS: [`protocols/DESIGNER_SOS_PROTOCOL.md`](protocols/DESIGNER_SOS_PROTOCOL.md).
 
 Typography is mandatory in `DESIGN.md`. Visual QA is mandatory before "done." Extract principles from references — composition, type, motion, interaction, colour relationships, grid — then design yours. Never copy branding, assets, copy, trademarks, or source.
 
@@ -106,7 +127,9 @@ Typography is mandatory in `DESIGN.md`. Visual QA is mandatory before "done." Ex
 
 ## Routing
 
-`registries/design-resource-graph.json` holds 12 capability rows across 21 domains. Every row carries **both** a trigger and a skip — a capability that can only be entered and never declined is a default in disguise, and defaults are how everything ends up looking the same.
+`registries/design-resource-graph.json` holds 12 capability rows. Every row carries **both** a trigger and a skip — a capability that can only be entered and never declined is a default in disguise, and defaults are how everything ends up looking the same.
+
+Cheap matching: capability `trigger_conditions` / `skip_conditions`, then catalog and overlay triggers. Optional telemetry fields (`problem_solved`, `preferred_harness`, `fallback`, `last_verified`) inform the recommendation. They do not auto-install.
 
 | Capability | Archetype | Bar | Risk |
 | --- | --- | --- | --- |
@@ -135,17 +158,9 @@ Design Lab:    true — PREMIUM visual work: directions must be approved before 
 
 [QUESTION] This reads as both "Premium Creative Website" and "B2B Enterprise Portal & SaaS".
 Which is the primary job? ... if you say nothing I will assume b2b-portal, the lower-risk of the two.
-
-Routes considered:
-  [take] premium-website         5.50
-  [take] b2b-portal              4.00
-  [skip] 3d-portfolio            1.50  skip condition fired: The brief is a portfolio but never
-                                       mentions depth, scene, or motion — route to premium-website
-  [skip] saas-dashboard          0.00  no trigger condition met (score 0.00 below floor 2.00)
-  ...
 ```
 
-An unknown library is not forced into the nearest archetype. It is surfaced, researched, and registered as its own capability row.
+If the graph has no skill for the job: research with Scrapling or the web, propose **one** named capability, **wait for update**. Optional [`templates/custom-skill.md`](templates/custom-skill.md). No auto-install of internet packs.
 
 ---
 
@@ -153,7 +168,7 @@ An unknown library is not forced into the nearest archetype. It is surfaced, res
 
 **DONE / FIXED / VERIFIED / PASSED / SHIPPED** may only appear alongside observed evidence in the same message: command output, a test result, a diff, a screenshot, browser state, a CI conclusion, or git state.
 
-Intention is not evidence. Another agent's summary is not evidence. If a step failed or was skipped, that gets said *before* any success claim.
+Intention is not evidence. Another agent's summary is not evidence. If a step failed or was skipped, that gets said *before* any success claim. Ledger: [`protocols/VERIFICATION_LEDGER_PROTOCOL.md`](protocols/VERIFICATION_LEDGER_PROTOCOL.md).
 
 ---
 
@@ -248,7 +263,7 @@ A fresh clone without `ORCHESTRA_HOME` writes only under that clone's `.orchestr
 | `ORCHESTRA_QUARANTINE_PATH` | the bulk skill library to refuse |
 | `ORCHESTRA_CONTRACT` | pin an older contract version if a rollout misbehaves |
 
-Rollback steps: [`kit/ROLLBACK.md`](kit/ROLLBACK.md).
+Rollback steps: [`kit/ROLLBACK.md`](kit/ROLLBACK.md). 3.1 zip snapshots live beside the clone if you took them before this bump.
 
 ---
 
@@ -259,9 +274,12 @@ Rollback steps: [`kit/ROLLBACK.md`](kit/ROLLBACK.md).
 | **Cursor** | Bulk implementation, in-file diffing, fast iteration | `.cursorrules` + project skills |
 | **Antigravity** | Visual QA, architecture planning, capability synthesis | `kit/antigravity/` + packet |
 | **Claude Code** | Terminal execution, backend refactor, server-side audit | `CLAUDE.md` + `skills/` |
+| **jcode** | Optional terminal harness (OpenAI-compatible / OmniRoute) | `templates/jcode-omniroute-packet.md` + this `AGENTS.md` |
 | **Codex / OpenCode / Gemini / Hermes** | Conductor in that session | `AGENTS.md`, same markdown skills |
 
 A host may own a capability the others lack — one has a browser MCP, another a cloud SDK. Map the capability; do not clone plugin lists between hosts. Sync means "same contract", not "same installed extras". See [docs/adapters.md](docs/adapters.md) and [kit/HOST_CAPABILITIES.md](kit/HOST_CAPABILITIES.md).
+
+Specialist packets (`templates/design-critic-packet.md`, `templates/research-extract-packet.md`, `templates/verify-ledger-packet.md`) are workers. They are not an always-on sub-agent swarm.
 
 ---
 
@@ -275,6 +293,7 @@ Worth knowing before you rely on it:
 - **The engine enforces structure, not taste.** It can refuse an unsourced direction and block a premature write. It cannot tell you whether a direction is good.
 - **Visual QA needs a running app.** Checks at 1440×900, 768×1024, and 390×844 require the app to actually launch. Code inspection is not verification, and one screenshot in chat is not a QA pass.
 - **Resource memory starts empty.** No seeded performance data — inherited numbers from someone else's machine are worse than none.
+- **jcode is catalogued, not certified here.** A packet exists. Do not claim the harness works until that packet returns stdout.
 
 ---
 
@@ -284,6 +303,7 @@ Worth knowing before you rely on it:
 - `.env`, API keys, or MCP config with secrets
 - A populated `projects/` tree
 - Fake metrics, fake users, or contribution-graph painting
+- LinkedIn / Instagram / LeetCode scrapers or ATS auto-submit bots
 
 ---
 
@@ -307,7 +327,7 @@ workspace-template/  empty workspace shape
 
 ## Overrides
 
-Say **skip orchestra** and the contract stands down for the session. Say **skip the lab** to bypass the Design Lab for one task.
+Say **skip orchestra** and the contract stands down for the session. Say **skip the lab** to bypass the Design Lab for one task. The contract is open, not a lock.
 
 ---
 

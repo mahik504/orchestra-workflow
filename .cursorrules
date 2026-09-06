@@ -1,4 +1,4 @@
-# Cursor adapter — Orchestra 3.1.0
+# Cursor adapter — Orchestra 3.2.0
 
 `AGENTS.md` is the contract. This file only maps it onto Cursor. It does not define a second orchestration policy.
 

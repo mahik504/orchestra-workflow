@@ -1,5 +1,5 @@
-version: 3.1.0
-updated: 2026-09-04
+version: 3.2.0
+updated: 2026-09-06
 
 # Connected is not called, and configured is not connected.
 # Every server carries an explicit health state. An unauthorized server is NOT active.
@@ -124,7 +124,11 @@ optional_on_demand:
   - name: firecrawl
     reason: public URL to markdown; not LinkedIn/IG
   - name: getlayers
-    reason: GetLayers Ultimate MCP; one section then tint
+    reason: GetLayers Ultimate MCP; one section then tint; premium/3D/shader only
+  - name: serena
+    reason: repo intelligence on a named large codebase; never always-on
+  - name: playwright-cli
+    reason: optional headed CLI; MCP stays CORE; never install --skills -g
 
 policy:
   - A server in a plugin list is not a capability until it is HEALTHY and called.

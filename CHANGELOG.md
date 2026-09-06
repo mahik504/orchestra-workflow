@@ -1,5 +1,17 @@
 ﻿# Changelog
 
+## [3.2.0] - Intelligence planes on the same OS
+*Evolve 3.1. Do not rebuild. Keep the 30 skills. Contract stays open.*
+
+- Research: Scrapling is the primary public crawler; Firecrawl on-demand; Crawl4AI catalog fallback. Playwright stays on **our** app.
+- Design: Designer SOS (S.A.V.E., six-pass, Keep/Kill/Park, Vault/Live/Anatomy); named source tiers; GetLayers on premium/3D/shader only.
+- Quality: Unlazy-style verification ledger; Taste → DESIGN.md → Impeccable → Playwright → SOS → one consultant packet.
+- Catalog (not global install): `playwright-cli`, `crawl4ai`, `serena`, `jcode`. Optional telemetry fields on rows. Cheap trigger matching in `AGENTS.md`.
+- Ingest: graph miss → research → one named capability → wait for **update**. `templates/custom-skill.md`.
+- Executors: jcode as a fifth host adapter under `AGENTS.md`. Does not replace Cursor / Antigravity / Claude Code.
+- Taste: on-disk Stitch wrapper vs upstream v2 experimental — do not `npx skills add` the pack.
+- README rewritten for the evolve story. Overlay + Antigravity adapters identify as 3.2.0.
+
 ## [3.1.0] - Control plane
 *One contract. Design Lab is a gate. Evidence-first completion.*
 

@@ -7,7 +7,7 @@
   "required": ["version", "skills", "mcp", "plugins", "refused", "resources"],
   "additionalProperties": false,
   "properties": {
-    "version": { "type": "string", "const": "3.1.0" },
+    "version": { "type": "string", "const": "3.2.0" },
     "skills": {
       "type": "array",
       "minItems": 30,

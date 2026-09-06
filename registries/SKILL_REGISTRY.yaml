@@ -8,7 +8,7 @@
 #
 # Available != loaded. Classify picks a route. Host adapters copy the 30; they do not dump 260.
 
-version: 3.1.0
-updated: 2026-09-04
+version: 3.2.0
+updated: 2026-09-06
 policy: available != loaded
 see: registries/host-stack.json
