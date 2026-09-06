@@ -14,6 +14,39 @@ const graph = JSON.parse(fs.readFileSync(path.join(REGDIR, 'design-resource-grap
 const ids = new Set(rows.map((r) => r.id));
 const problems = [];
 
+for (const r of rows) {
+  if (!Array.isArray(r.trigger_conditions) || r.trigger_conditions.length === 0) {
+    problems.push(`${r.id}: missing trigger_conditions`);
+  }
+  if (!Array.isArray(r.skip_conditions) || r.skip_conditions.length === 0) {
+    problems.push(`${r.id}: missing skip_conditions`);
+  }
+}
+
+for (const [dom, list] of Object.entries(graph.domains || {})) {
+  for (const id of list) {
+    if (!ids.has(id)) problems.push(`dangling domain '${dom}' id '${id}'`);
+  }
+}
+
+const phases = ['discovery', 'synthesis', 'implementation', 'qa', 'optional_extensions', 'reverse_engineering'];
+const domains = new Set(Object.keys(graph.domains || {}));
+for (const [capId, cap] of Object.entries(graph.capabilities || {})) {
+  if (!Array.isArray(cap.trigger_conditions) || cap.trigger_conditions.length === 0) {
+    problems.push(`capability ${capId}: missing trigger_conditions`);
+  }
+  if (!Array.isArray(cap.skip_conditions) || cap.skip_conditions.length === 0) {
+    problems.push(`capability ${capId}: missing skip_conditions`);
+  }
+  for (const phase of phases) {
+    for (const ref of cap[phase] || []) {
+      if (!domains.has(ref) && !ids.has(ref)) {
+        problems.push(`capability ${capId}.${phase}: unknown ref '${ref}'`);
+      }
+    }
+  }
+}
+
 // 1. dangling graph references
 function walk(node, trail) {
   if (Array.isArray(node)) {

@@ -106,6 +106,13 @@ func (s *DiscoverStage) Execute(ctx *TaskContext) (*StageResult, error) {
 		"audit":               "security-audit",
 		"reverse-engineering": "reverse-engineering",
 		"decompile":           "reverse-engineering",
+		"magnetic":            "interaction-components",
+		"shimmer":             "interaction-components",
+		"kokonut":             "interaction-components",
+		"react bits":          "interaction-components",
+		"aceternity":          "interaction-components",
+		"tint":                "reverse-engineering",
+		"recolor":             "reverse-engineering",
 		"agro":                "saas-dashboard",
 		"agriculture":         "saas-dashboard",
 	}

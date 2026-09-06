@@ -1,13 +1,16 @@
 ﻿# Changelog
 
-## [3.3.0] - Richer graph, four hosts, two-stage Design Lab
-*Evolve 3.2. Same OS. Curated ~40 skills. Contract stays open.*
+## [3.3.0] - Richer graph, four hosts, two-stage Design Lab, free-resource honesty
+*Evolve 3.2. Same OS. Curated 40 skills. Contract stays open. Version stays 3.3.0.*
 
 - Four-host sync: Cursor, Antigravity, Claude Code, jcode (`~/.jcode/skills`). Allowlist from `registries/host-stack.json`.
 - Design Lab: 23 short cards → one full `DESIGN.md`. Named override outranks the graph. Custom paste wins.
-- Catalog: GetLayers `PURCHASE_PENDING`. Refero AUTH. Optional 21st / Magic / Tailkit / agent-browser. OSS interaction-components domain.
+- Catalog: GetLayers `PURCHASE_PENDING`. Refero MCP AUTH_REQUIRED / PRO; Refero public pages FREE. 21st OPTIONAL_FREE_MCP (2 installs/day). Magic UI FREE MCP + OSS. Tailkit MCP PAID; public Tailkit RESOURCE.
+- 13th capability `interaction-components` (one route across kits, not a skill per library). Tint/adapt on `reverse-engineering`.
+- Free research: Godly, Land-book, Lapa, SaaSFrame. OSS 3D: three.js, R3F, drei, postprocessing, scroll-rig. Prompt catalogs as references. devops-skills quarantined (no 88 dump).
+- Docs: RESOURCE_INVENTORY A–Q, RESOURCE_HEALTH, DESIGN_RESOURCE_ROUTING, manual-setup 9-field, diagrams `01-control-plane`…`08-resource-combination`.
 - Global skills added (wrappers, not dumps): refero-design, hallmark, unlazy, react-best-practices, gsap-core, supabase, postgres-best-practices, diagram-generator, pretty-mermaid, skill-security-check.
-- Job packs in `templates/packs/`. Manual setup docs. RESOURCE_INVENTORY. README comparison is architectural judgment with estimated token ranges — no fake A/B.
+- Job packs in `templates/packs/`. README comparison is architectural judgment with estimated token ranges — no fake A/B.
 - Rollback: `v3.2.0` (`9d6900d`) and the 3.1 zip. Uncommitted 3.2 hygiene (YAML stubs, Go module rename) lands here.
 
 ## [3.2.0] - Intelligence planes on the same OS

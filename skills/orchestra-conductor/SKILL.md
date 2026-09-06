@@ -51,6 +51,10 @@ Different products must resolve differently. A restaurant site, a school managem
 
 Discover broadly, activate selectively. Load the **whole chosen route**. Leave other routes closed.
 
+`interaction-components` is one route. It searches shadcn, React Bits, Magic UI, Aceternity (free), Kokonut, Motion Primitives, Tailkit public pages, 21st free catalog, HyperUI, Cult UI. Inspect existing project components before generating another control. Do not load every kit.
+
+When a visual task arrives: understand product → classify archetype → quality bar → existing design system → research sources → component libraries → motion if needed → 3D if needed → **one** synthesis → DESIGN.md → human gate → implement → visual/a11y/perf/simplify → ledger. Combine compatible ideas. Do not collage.
+
 No strong match? Research with Scrapling/web, propose one named capability or `templates/custom-skill.md`, **wait for the human to say update**. Do not force a wrong archetype. Do not auto-install a pack.
 
 Job packs (`templates/packs/`) load here when the job matches: website, iOS, Android, research paper, ML fine-tune. Not in every chat.
@@ -104,6 +108,7 @@ Write `DONE / FIXED / VERIFIED / PASSED / SHIPPED` only with observed evidence i
 - Lifecycle: `discovered → selected → acquired → used → verified`. Registry presence is not usage.
 - MCP state is explicit: `HEALTHY` / `OPTIONAL` / `AUTH_REQUIRED` / `BROKEN` / `DISABLED` / `PURCHASE_PENDING`. Unauthorized or unpurchased is not active.
 - GetLayers: `PURCHASE_PENDING`. No MCP until the operator buys Full Stack and says **update**.
+- Magic UI free MCP is allowed. Magic UI Pro is not claimed. 21st is OPTIONAL_FREE_MCP (search free, 2 installs/day). Refero MCP is Pro. Tailkit MCP is paid. Public pages for those products stay searchable.
 - New URL: inspect → overlay or catalog → **wait for update**.
 - Never `skills add --all`. New third-party skills: `skill-security-check` at admission, not every turn.
 - Scrapling primary public crawler; Firecrawl on-demand; Crawl4AI catalog fallback. Playwright for **our** app. agent-browser OPTIONAL for foreign sites. Never `--tools all`. No LinkedIn/IG/ATS scrapers.

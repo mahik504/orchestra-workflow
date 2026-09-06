@@ -53,6 +53,7 @@ const GOV = {
       'The target is a low-power device or an audience on poor connections',
       'The brief is a portfolio but never mentions depth, scene, or motion — route to premium-website',
       'Physics simulation is the point rather than presentation — route to physics-canvas',
+      'Checkout or an orders console is the job rather than a spatial scene',
     ],
   },
   'operator-hud': {
@@ -81,6 +82,7 @@ const GOV = {
     trigger_conditions: [
       'Authenticated users perform recurring transactional work',
       'The brief names admin, tenants, roles, billing, or approvals',
+      'The brief names an orders console or admin area next to a shop',
       'Tables, forms, and workflow states are the core surface',
       'Accessibility and predictability outrank visual novelty',
     ],
@@ -210,11 +212,30 @@ const GOV = {
       'The human supplied a specific URL to learn from',
       'The goal is to extract tokens, type scale, or layout rules into a design note',
       'A reference needs to become a documented system before any build',
+      'A named reference, screenshot, or URL should keep structure while tokens change (tint)',
     ],
+    add_trigger_tags: ['tint', 'recolor', 'keep-the-structure', 'screenshot-to-code', 'design-adaptation'],
     skip_conditions: [
       'No concrete URL was named — this is not a browsing route',
       'The intent is to copy branding, assets, copy, or source rather than principles',
       'A direction already exists and only needs implementing',
+    ],
+  },
+  'interaction-components': {
+    quality_bar: 'PREMIUM',
+    risk_rank: 5,
+    platform: 'web',
+    trigger_conditions: [
+      'The unit of work is a control (button, card, drawer, input), not a whole product',
+      'The brief names a kit (shadcn, React Bits, Magic UI, Aceternity, Kokonut, Cult, HyperUI, Tailkit free, 21st free, Motion Primitives)',
+      'The brief names a control kind: primary, secondary, destructive, loading, success, disabled, icon, magnetic, shimmer, gradient, ripple, particle, liquid, glass, command, hold, stateful',
+      'Existing project components must be inspected before generating another',
+    ],
+    skip_conditions: [
+      'The job is a full page, product, or app — route to premium-website, saas-dashboard, mobile-app, or 3d-portfolio first',
+      'No product surface exists yet to attach the control to',
+      '3D/WebGL is the point — route to 3d-portfolio',
+      'The platform is native mobile — route to mobile-app',
     ],
   },
 };

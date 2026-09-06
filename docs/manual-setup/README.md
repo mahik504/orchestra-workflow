@@ -1,8 +1,8 @@
 # Manual setup — Orchestra 3.3.0
 
-Auth clicks only. **Never paste keys into git, the vault, or a prompt you will forward.**
+Only actions a human must take. Never paste keys into git, the vault, or a prompt you will forward.
 
-Clones keep optional adapters. Personal OmniRoute tokens, `~/.claude`, and `~/.jcode` stay on **your** machine.
+Clones keep optional adapters. Personal provider tokens and live MCP JSON stay on **your** machine.
 
 | Host | File | Skill dir |
 | --- | --- | --- |
@@ -14,3 +14,12 @@ Clones keep optional adapters. Personal OmniRoute tokens, `~/.claude`, and `~/.j
 After every workflow skill change: `kit/sync-ides.ps1`.
 
 Say **skip orchestra** (session) or **skip the lab** (one visual gate). Plain text. Not a slash command.
+
+Status labels used below:
+
+- **FREE NOW** — usable without purchase
+- **AUTH REQUIRED** — configured possible; you must sign in
+- **PAID BUT RESOURCE-AVAILABLE** — MCP/paid gated; public pages still registered
+- **PURCHASE PENDING** — GetLayers. Do not Connect.
+
+Example MCP JSON (placeholders only): `mcp_config.example.json`.

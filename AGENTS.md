@@ -21,7 +21,7 @@ Understand → Classify → Search graph → Design Lab / Technical plan → HUM
 
 1. **Understand.** Read the request. If it names a repo or a file, open the repo before trusting any brief.
 2. **Re-brief.** State back in one short paragraph: archetype, quality bar, platform, hard constraints. If two archetypes genuinely fit, ask **one** question. If nobody answers (autonomous run), pick the **lower-risk** archetype and log `assumed <archetype>, no response`.
-3. **Classify** into a capability in `registries/design-resource-graph.json`.
+3. **Classify** into a capability in `registries/design-resource-graph.json`. Thirteen routes. Every row has a trigger and a skip. `interaction-components` searches registered kits for one control — not a skill per library.
 4. **Search the graph.** Discover broadly, activate selectively. Load the **whole chosen route**, not every route.
 5. **Design Lab** for visual work (see gate below). Technical plan for backend/research.
 6. **Human gate.** Approve, edit, reject, or combine.
@@ -31,6 +31,8 @@ Understand → Classify → Search graph → Design Lab / Technical plan → HUM
 10. **Remember** what actually worked.
 
 Visual jobs after the gate: Taste → one `DESIGN.md` → named source tiers → implement → Impeccable → Playwright → Designer SOS (`protocols/DESIGNER_SOS_PROTOCOL.md`) → Hallmark audit → **one** consultant packet.
+
+Free ≠ unpaid MCP. Use the free portion of a resource now. Paid MCP stays `AUTH_REQUIRED`. GetLayers stays `PURCHASE_PENDING`. Combination rules: [`docs/DESIGN_RESOURCE_ROUTING.md`](docs/DESIGN_RESOURCE_ROUTING.md). Health: [`docs/RESOURCE_HEALTH.md`](docs/RESOURCE_HEALTH.md).
 
 Packs in `templates/packs/` load **by job**, not in every chat: website, iOS Expo, Android Expo, research paper, ML fine-tune.
 

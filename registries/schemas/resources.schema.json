@@ -16,7 +16,9 @@
       "routing_tags",
       "acquisition_method",
       "runtime_method",
-      "status"
+      "status",
+      "trigger_conditions",
+      "skip_conditions"
     ],
     "properties": {
       "id": {
@@ -90,7 +92,12 @@
           "reference",
           "infrastructure",
           "dev_utility",
-          "prompt_library"
+          "prompt_library",
+          "plugin",
+          "executor",
+          "quarantined_reference",
+          "project_tool",
+          "resource"
         ],
         "description": "How the runtime represents this resource"
       },
@@ -153,7 +160,8 @@
         "items": {
           "type": "string"
         },
-        "description": "Explicit task requirements that trigger this resource"
+        "description": "Explicit task requirements that trigger this resource",
+        "minItems": 1
       },
       "avoid_conditions": {
         "type": "array",
@@ -167,7 +175,8 @@
         "items": {
           "type": "string"
         },
-        "description": "Plain-language reasons to decline this resource on a job"
+        "description": "Plain-language reasons to decline this resource on a job",
+        "minItems": 1
       },
       "policy_verdict": {
         "type": "string",
@@ -199,7 +208,9 @@
       },
       "preferred_harness": {
         "type": "array",
-        "items": { "type": "string" },
+        "items": {
+          "type": "string"
+        },
         "description": "Hosts or CLIs that should run this resource first"
       },
       "fallback": {
@@ -209,6 +220,24 @@
       "last_verified": {
         "type": "string",
         "description": "ISO date the row was last checked against a real job or live docs"
+      },
+      "auth": {
+        "type": "string",
+        "enum": [
+          "NONE",
+          "HOST_CONNECT",
+          "AUTH_REQUIRED",
+          "PURCHASE_PENDING"
+        ],
+        "description": "Authentication boundary. Unauthorized is not HEALTHY."
+      },
+      "free_capability": {
+        "type": "string",
+        "description": "What is legally usable without purchase"
+      },
+      "paid_capability": {
+        "type": "string",
+        "description": "What remains paid or Pro-gated"
       }
     },
     "additionalProperties": false

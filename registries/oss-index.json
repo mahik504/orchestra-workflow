@@ -1,0 +1,188 @@
+{
+  "version": "3.3.0",
+  "description": "Searchable metadata for redistributable OSS. Not the Brain. Proprietary sites stay URL-only. No giant clones.",
+  "generated": "2026-09-06",
+  "entries": [
+    {
+      "id": "shadcn-ui",
+      "source_url": "https://github.com/shadcn-ui/ui",
+      "license": "MIT",
+      "acquisition": "metadata-only",
+      "local_copy": false,
+      "date": "2026-09-06",
+      "capability": "component foundation",
+      "categories": [
+        "components"
+      ]
+    },
+    {
+      "id": "react-bits",
+      "source_url": "https://github.com/DavidHDev/react-bits",
+      "license": "see-upstream",
+      "acquisition": "metadata-only",
+      "local_copy": false,
+      "date": "2026-09-06",
+      "capability": "motion components",
+      "categories": [
+        "motion",
+        "components"
+      ]
+    },
+    {
+      "id": "magic-ui-oss",
+      "source_url": "https://github.com/magicuidesign/magicui",
+      "license": "MIT",
+      "acquisition": "metadata-only",
+      "local_copy": false,
+      "date": "2026-09-06",
+      "capability": "animated UI OSS",
+      "categories": [
+        "components"
+      ]
+    },
+    {
+      "id": "kokonut-ui",
+      "source_url": "https://github.com/kokonut-labs/kokonutui",
+      "license": "see-upstream",
+      "acquisition": "metadata-only",
+      "local_copy": false,
+      "date": "2026-09-06",
+      "capability": "interaction controls",
+      "categories": [
+        "components"
+      ]
+    },
+    {
+      "id": "motion-primitives",
+      "source_url": "https://github.com/ibelick/motion-primitives",
+      "license": "see-upstream",
+      "acquisition": "metadata-only",
+      "local_copy": false,
+      "date": "2026-09-06",
+      "capability": "micro-interactions",
+      "categories": [
+        "motion"
+      ]
+    },
+    {
+      "id": "cult-ui",
+      "source_url": "https://github.com/nolly-studio/cult-ui",
+      "license": "see-upstream",
+      "acquisition": "metadata-only",
+      "local_copy": false,
+      "date": "2026-09-06",
+      "capability": "animated blocks",
+      "categories": [
+        "components"
+      ]
+    },
+    {
+      "id": "three-js",
+      "source_url": "https://github.com/mrdoob/three.js",
+      "license": "MIT",
+      "acquisition": "metadata-only",
+      "local_copy": false,
+      "date": "2026-09-06",
+      "capability": "WebGL renderer",
+      "categories": [
+        "3d"
+      ]
+    },
+    {
+      "id": "r3f",
+      "source_url": "https://github.com/pmndrs/react-three-fiber",
+      "license": "MIT",
+      "acquisition": "metadata-only",
+      "local_copy": false,
+      "date": "2026-09-06",
+      "capability": "React Three Fiber",
+      "categories": [
+        "3d"
+      ]
+    },
+    {
+      "id": "drei",
+      "source_url": "https://github.com/pmndrs/drei",
+      "license": "MIT",
+      "acquisition": "metadata-only",
+      "local_copy": false,
+      "date": "2026-09-06",
+      "capability": "R3F helpers",
+      "categories": [
+        "3d"
+      ]
+    },
+    {
+      "id": "react-postprocessing",
+      "source_url": "https://github.com/pmndrs/react-postprocessing",
+      "license": "MIT",
+      "acquisition": "metadata-only",
+      "local_copy": false,
+      "date": "2026-09-06",
+      "capability": "cinematic 3D",
+      "categories": [
+        "3d"
+      ]
+    },
+    {
+      "id": "r3f-scroll-rig",
+      "source_url": "https://github.com/14islands/r3f-scroll-rig",
+      "license": "MIT",
+      "acquisition": "metadata-only",
+      "local_copy": false,
+      "date": "2026-09-06",
+      "capability": "scroll-driven 3D",
+      "categories": [
+        "3d"
+      ]
+    },
+    {
+      "id": "gsap",
+      "source_url": "https://github.com/greensock/gsap",
+      "license": "see-upstream",
+      "acquisition": "metadata-only",
+      "local_copy": false,
+      "date": "2026-09-06",
+      "capability": "timeline motion",
+      "categories": [
+        "motion"
+      ]
+    },
+    {
+      "id": "scrapling",
+      "source_url": "https://github.com/D4Vinci/Scrapling",
+      "license": "see-upstream",
+      "acquisition": "metadata-only",
+      "local_copy": false,
+      "date": "2026-09-06",
+      "capability": "public web acquisition",
+      "categories": [
+        "research"
+      ]
+    },
+    {
+      "id": "mermaid",
+      "source_url": "https://github.com/mermaid-js/mermaid",
+      "license": "MIT",
+      "acquisition": "metadata-only",
+      "local_copy": false,
+      "date": "2026-09-06",
+      "capability": "diagram source",
+      "categories": [
+        "docs"
+      ]
+    },
+    {
+      "id": "screenshot-to-code",
+      "source_url": "https://github.com/abi/screenshot-to-code",
+      "license": "see-upstream",
+      "acquisition": "metadata-only",
+      "local_copy": false,
+      "date": "2026-09-06",
+      "capability": "reverse reference",
+      "categories": [
+        "design"
+      ]
+    }
+  ]
+}

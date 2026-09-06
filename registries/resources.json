@@ -32,7 +32,12 @@
       "skills add --all"
     ],
     "policy_verdict": "CURATED OPTIONAL",
-    "rationale": "On-demand when a screenshot is the reference. Extract layout/type into DESIGN.md, then implement original. Not always-on."
+    "rationale": "On-demand when a screenshot is the reference. Extract layout/type into DESIGN.md, then implement original. Not always-on.",
+    "skip_conditions": [
+      "cloning logos trademarks or their source",
+      "LinkedIn or Instagram scrape",
+      "skills add --all"
+    ]
   },
   {
     "id": "addyosmani-agent-skills",
@@ -55,13 +60,18 @@
     "acquisition_method": "none",
     "runtime_method": "reference_only",
     "status": "REJECTED",
-    "trigger_conditions": [],
+    "trigger_conditions": [
+      "human asked to dump-install this refused resource"
+    ],
     "avoid_conditions": [
       "npx skills add",
       "bulk skill imports"
     ],
     "policy_verdict": "REJECTED",
-    "rationale": "Skill dump. Already on Hated. Never 'npx skills add'. Quarantined to prevent context bloat."
+    "rationale": "Skill dump. Already on Hated. Never 'npx skills add'. Quarantined to prevent context bloat.",
+    "skip_conditions": [
+      "never load into runtime; quarantined or refused"
+    ]
   },
   {
     "id": "affaan-ecc",
@@ -94,7 +104,10 @@
       "direct installation of 68 agents / 286 skills into runtime"
     ],
     "policy_verdict": "REJECTED (STEAL-THIN)",
-    "rationale": "Load-by-job + isolate plan/implement/review. Do not install 68 agents / 286 skills into Cursor or Antigravity. Steal the methodology only."
+    "rationale": "Load-by-job + isolate plan/implement/review. Do not install 68 agents / 286 skills into Cursor or Antigravity. Steal the methodology only.",
+    "skip_conditions": [
+      "never load into runtime; quarantined or refused"
+    ]
   },
   {
     "id": "anthropics-skills",
@@ -117,12 +130,17 @@
     "acquisition_method": "none",
     "runtime_method": "reference_only",
     "status": "REJECTED",
-    "trigger_conditions": [],
+    "trigger_conditions": [
+      "human asked to dump-install this refused resource"
+    ],
     "avoid_conditions": [
       "plugin marketplace add"
     ],
     "policy_verdict": "REJECTED",
-    "rationale": "Marketplace dump. Orchestra-docs already covers PPTX/PDF. Do not '/plugin marketplace add'."
+    "rationale": "Marketplace dump. Orchestra-docs already covers PPTX/PDF. Do not '/plugin marketplace add'.",
+    "skip_conditions": [
+      "never load into runtime; quarantined or refused"
+    ]
   },
   {
     "id": "browser-use",
@@ -145,12 +163,17 @@
     "acquisition_method": "none",
     "runtime_method": "reference_only",
     "status": "REJECTED",
-    "trigger_conditions": [],
+    "trigger_conditions": [
+      "human asked to dump-install this refused resource"
+    ],
     "avoid_conditions": [
       "browser automation on our apps"
     ],
     "policy_verdict": "REJECTED",
-    "rationale": "Agent web automation platform. Redundant because Playwright already verifies our UI."
+    "rationale": "Agent web automation platform. Redundant because Playwright already verifies our UI.",
+    "skip_conditions": [
+      "never load into runtime; quarantined or refused"
+    ]
   },
   {
     "id": "pretext",
@@ -183,7 +206,10 @@
       "standard static web layout"
     ],
     "policy_verdict": "BOOKMARK",
-    "rationale": "Real text-layout lib (no DOM reflow). Fable HUD Plan may npm install if labels wrap badly. Keep on-demand."
+    "rationale": "Real text-layout lib (no DOM reflow). Fable HUD Plan may npm install if labels wrap badly. Keep on-demand.",
+    "skip_conditions": [
+      "standard static web layout"
+    ]
   },
   {
     "id": "build-your-own-x",
@@ -216,7 +242,11 @@
       "installing as runtime skill"
     ],
     "policy_verdict": "BOOKMARK (HIGH)",
-    "rationale": "Learning curriculum. Bookmark only; not a runtime skill. Do not clone the monorepo."
+    "rationale": "Learning curriculum. Bookmark only; not a runtime skill. Do not clone the monorepo.",
+    "skip_conditions": [
+      "cloning entire monorepo",
+      "installing as runtime skill"
+    ]
   },
   {
     "id": "awesome-claude-skills",
@@ -239,12 +269,17 @@
     "acquisition_method": "none",
     "runtime_method": "reference_only",
     "status": "REJECTED",
-    "trigger_conditions": [],
+    "trigger_conditions": [
+      "human asked to dump-install this refused resource"
+    ],
     "avoid_conditions": [
       "importing bulk claude skills"
     ],
     "policy_verdict": "REJECTED",
-    "rationale": "Skill dump directory. Violates quarantine boundary and curated skill governance."
+    "rationale": "Skill dump directory. Violates quarantine boundary and curated skill governance.",
+    "skip_conditions": [
+      "never load into runtime; quarantined or refused"
+    ]
   },
   {
     "id": "lenis",
@@ -278,7 +313,11 @@
       "conflicting with heavy WebGL camera controls"
     ],
     "policy_verdict": "SPECIALIST",
-    "rationale": "Active specialist for smooth scroll in storytelling / editorial pages."
+    "rationale": "Active specialist for smooth scroll in storytelling / editorial pages.",
+    "skip_conditions": [
+      "basic content sites",
+      "conflicting with heavy WebGL camera controls"
+    ]
   },
   {
     "id": "react-bits",
@@ -311,7 +350,10 @@
       "stacking with full GSAP suite unnecessarily"
     ],
     "policy_verdict": "SPECIALIST (ADOPT)",
-    "rationale": "Motion primitive. Required on college/hackathon web. Not a skill pack."
+    "rationale": "Motion primitive. Required on college/hackathon web. Not a skill pack.",
+    "skip_conditions": [
+      "stacking with full GSAP suite unnecessarily"
+    ]
   },
   {
     "id": "omniroute",
@@ -344,7 +386,10 @@
       "admin APIs in kernel"
     ],
     "policy_verdict": "REJECTED",
-    "rationale": "Second conductor. Do not install inside Cursor or Antigravity."
+    "rationale": "Second conductor. Do not install inside Cursor or Antigravity.",
+    "skip_conditions": [
+      "never load into runtime; quarantined or refused"
+    ]
   },
   {
     "id": "ponytail",
@@ -377,7 +422,10 @@
       "installing third-party OpenCode plugin directly"
     ],
     "policy_verdict": "ADOPT-THIN",
-    "rationale": "YAGNI ladder folded into How to work and Go memory module. Do not install the external plugin."
+    "rationale": "YAGNI ladder folded into How to work and Go memory module. Do not install the external plugin.",
+    "skip_conditions": [
+      "installing third-party OpenCode plugin directly"
+    ]
   },
   {
     "id": "spec-kit",
@@ -409,7 +457,10 @@
       "running specify init CLI"
     ],
     "policy_verdict": "REJECTED",
-    "rationale": "Specify-init factory fights Orchestra. Spec and story templates may be copied; do not run a second factory."
+    "rationale": "Specify-init factory fights Orchestra. Spec and story templates may be copied; do not run a second factory.",
+    "skip_conditions": [
+      "never load into runtime; quarantined or refused"
+    ]
   },
   {
     "id": "trig-js",
@@ -443,7 +494,11 @@
       "HUD apps"
     ],
     "policy_verdict": "SKIP (UNLESS GAME)",
-    "rationale": "Canvas math helper. Skip unless a 2D canvas game requires raw trig functions."
+    "rationale": "Canvas math helper. Skip unless a 2D canvas game requires raw trig functions.",
+    "skip_conditions": [
+      "standard UI",
+      "HUD apps"
+    ]
   },
   {
     "id": "dify",
@@ -466,13 +521,18 @@
     "acquisition_method": "none",
     "runtime_method": "reference_only",
     "status": "REJECTED",
-    "trigger_conditions": [],
+    "trigger_conditions": [
+      "human asked to dump-install this refused resource"
+    ],
     "avoid_conditions": [
       "docker-compose deployment",
       "orchestra runtime"
     ],
     "policy_verdict": "REJECTED",
-    "rationale": "Competing LLM application platform. No docker-compose overhead permitted in runtime."
+    "rationale": "Competing LLM application platform. No docker-compose overhead permitted in runtime.",
+    "skip_conditions": [
+      "never load into runtime; quarantined or refused"
+    ]
   },
   {
     "id": "threeui",
@@ -506,7 +566,11 @@
       "flat 2D dashboards"
     ],
     "policy_verdict": "OPTIONAL (NPM)",
-    "rationale": "@designcodeio/threeui one component when Plan names it. Not an operator HUD."
+    "rationale": "@designcodeio/threeui one component when Plan names it. Not an operator HUD.",
+    "skip_conditions": [
+      "operator HUD surfaces",
+      "flat 2D dashboards"
+    ]
   },
   {
     "id": "agency-agents",
@@ -530,13 +594,18 @@
     "acquisition_method": "none",
     "runtime_method": "reference_only",
     "status": "REJECTED",
-    "trigger_conditions": [],
+    "trigger_conditions": [
+      "human asked to dump-install this refused resource"
+    ],
     "avoid_conditions": [
       "all installations",
       "diluting agent rules"
     ],
     "policy_verdict": "REJECTED",
-    "rationale": "230-role agency pack. Warns 186 rules dilute matching. We have dedicated specialists."
+    "rationale": "230-role agency pack. Warns 186 rules dilute matching. We have dedicated specialists.",
+    "skip_conditions": [
+      "never load into runtime; quarantined or refused"
+    ]
   },
   {
     "id": "skiper-ui",
@@ -570,7 +639,12 @@
       "always-on global skill"
     ],
     "policy_verdict": "CURATED OPTIONAL",
-    "rationale": "College or marketing kit when the plan names it. Never on an operator HUD. Never a hiring visual world. Not a 31st global skill."
+    "rationale": "College or marketing kit when the plan names it. Never on an operator HUD. Never a hiring visual world. Not a 31st global skill.",
+    "skip_conditions": [
+      "operator HUD",
+      "hiring flagship",
+      "always-on global skill"
+    ]
   },
   {
     "id": "hermes-agent",
@@ -601,7 +675,10 @@
       "replacing orchestra conductor"
     ],
     "policy_verdict": "REFERENCE",
-    "rationale": "Reference autonomous agent architecture for local LLM function calling."
+    "rationale": "Reference autonomous agent architecture for local LLM function calling.",
+    "skip_conditions": [
+      "replacing orchestra conductor"
+    ]
   },
   {
     "id": "openhands",
@@ -624,12 +701,17 @@
     "acquisition_method": "none",
     "runtime_method": "reference_only",
     "status": "REJECTED",
-    "trigger_conditions": [],
+    "trigger_conditions": [
+      "human asked to dump-install this refused resource"
+    ],
     "avoid_conditions": [
       "running in orchestra loop"
     ],
     "policy_verdict": "REJECTED",
-    "rationale": "Competing autonomous coding agent. Would conflict with Cursor/Antigravity loop."
+    "rationale": "Competing autonomous coding agent. Would conflict with Cursor/Antigravity loop.",
+    "skip_conditions": [
+      "never load into runtime; quarantined or refused"
+    ]
   },
   {
     "id": "scroll-world",
@@ -662,7 +744,10 @@
       "standard corporate landing pages"
     ],
     "policy_verdict": "CURATED OPTIONAL",
-    "rationale": "Scroll-driven 3D landing skill. Project-scoped on EXPERIMENTAL 3D/scroll jobs only. Always ship a low-end flat fallback. Not a school SaaS default."
+    "rationale": "Scroll-driven 3D landing skill. Project-scoped on EXPERIMENTAL 3D/scroll jobs only. Always ship a low-end flat fallback. Not a school SaaS default.",
+    "skip_conditions": [
+      "standard corporate landing pages"
+    ]
   },
   {
     "id": "no-ai-slop",
@@ -693,7 +778,10 @@
     ],
     "avoid_conditions": [],
     "policy_verdict": "ADOPT-THIN",
-    "rationale": "Anti-slop principles folded into Taste Design skill (no purple glows, no generic cards)."
+    "rationale": "Anti-slop principles folded into Taste Design skill (no purple glows, no generic cards).",
+    "skip_conditions": [
+      "the chosen route does not name this resource"
+    ]
   },
   {
     "id": "react-spring",
@@ -725,7 +813,10 @@
       "already using GSAP or Motion.dev in same project"
     ],
     "policy_verdict": "SPECIALIST",
-    "rationale": "Approved motion engine option. Enforces single motion engine rule per project."
+    "rationale": "Approved motion engine option. Enforces single motion engine rule per project.",
+    "skip_conditions": [
+      "already using GSAP or Motion.dev in same project"
+    ]
   },
   {
     "id": "awesome-llm-apps",
@@ -748,12 +839,17 @@
     "acquisition_method": "none",
     "runtime_method": "reference_only",
     "status": "REJECTED",
-    "trigger_conditions": [],
+    "trigger_conditions": [
+      "human asked to dump-install this refused resource"
+    ],
     "avoid_conditions": [
       "all imports"
     ],
     "policy_verdict": "REJECTED",
-    "rationale": "Streamlit clone factory + npx skills add. Promotes poor architecture practices."
+    "rationale": "Streamlit clone factory + npx skills add. Promotes poor architecture practices.",
+    "skip_conditions": [
+      "never load into runtime; quarantined or refused"
+    ]
   },
   {
     "id": "agentic-awesome-skills",
@@ -776,13 +872,18 @@
     "acquisition_method": "none",
     "runtime_method": "reference_only",
     "status": "REJECTED",
-    "trigger_conditions": [],
+    "trigger_conditions": [
+      "human asked to dump-install this refused resource"
+    ],
     "avoid_conditions": [
       "npx agentic-awesome-skills --cursor",
       "all loads"
     ],
     "policy_verdict": "REJECTED",
-    "rationale": "2,019 unvetted skills. README warns of Antigravity crash loops. Strictly quarantined."
+    "rationale": "2,019 unvetted skills. README warns of Antigravity crash loops. Strictly quarantined.",
+    "skip_conditions": [
+      "never load into runtime; quarantined or refused"
+    ]
   },
   {
     "id": "ralph",
@@ -814,7 +915,10 @@
       "running ralph.sh daemon"
     ],
     "policy_verdict": "REJECTED",
-    "rationale": "Second loop. Steal the story-loop idea; do not install Ralph CLI inside Cursor or Antigravity."
+    "rationale": "Second loop. Steal the story-loop idea; do not install Ralph CLI inside Cursor or Antigravity.",
+    "skip_conditions": [
+      "never load into runtime; quarantined or refused"
+    ]
   },
   {
     "id": "awesome-cursor-skills",
@@ -837,12 +941,17 @@
     "acquisition_method": "none",
     "runtime_method": "reference_only",
     "status": "REJECTED",
-    "trigger_conditions": [],
+    "trigger_conditions": [
+      "human asked to dump-install this refused resource"
+    ],
     "avoid_conditions": [
       "copying folder into .cursor/skills"
     ],
     "policy_verdict": "REJECTED",
-    "rationale": "Link directory. Features already exist natively or in curated Orchestra skills."
+    "rationale": "Link directory. Features already exist natively or in curated Orchestra skills.",
+    "skip_conditions": [
+      "never load into runtime; quarantined or refused"
+    ]
   },
   {
     "id": "vanta",
@@ -875,7 +984,11 @@
       "production hiring pins"
     ],
     "policy_verdict": "OPTIONAL (COLLEGE)",
-    "rationale": "Three.js animated background effects. Allowed on college web when named."
+    "rationale": "Three.js animated background effects. Allowed on college web when named.",
+    "skip_conditions": [
+      "operator HUD",
+      "production hiring pins"
+    ]
   },
   {
     "id": "openhuman",
@@ -907,7 +1020,11 @@
       "dumping 90k skills"
     ],
     "policy_verdict": "SPECIALIST",
-    "rationale": "Desktop specialist app installed locally. Packet in / summary out."
+    "rationale": "Desktop specialist app installed locally. Packet in / summary out.",
+    "skip_conditions": [
+      "cloning monorepo into project",
+      "dumping 90k skills"
+    ]
   },
   {
     "id": "vercel-agent-skills",
@@ -939,7 +1056,11 @@
       "importing whole vercel pack"
     ],
     "policy_verdict": "SPECIALIST (FILTERED)",
-    "rationale": "Provenance for the one curated skill web-design-guidelines. Never npx skills add vercel-labs/agent-skills --all."
+    "rationale": "Provenance for the one curated skill web-design-guidelines. Never npx skills add vercel-labs/agent-skills --all.",
+    "skip_conditions": [
+      "npx skills add --all",
+      "importing whole vercel pack"
+    ]
   },
   {
     "id": "awesome-design-md",
@@ -971,7 +1092,10 @@
       "installing as global active skill"
     ],
     "policy_verdict": "ADOPT-THIN",
-    "rationale": "Design token references. Hackathon Plan may copy one DESIGN.md into projects/<slug>/ref/."
+    "rationale": "Design token references. Hackathon Plan may copy one DESIGN.md into projects/<slug>/ref/.",
+    "skip_conditions": [
+      "installing as global active skill"
+    ]
   },
   {
     "id": "godly-design",
@@ -1002,7 +1126,10 @@
     ],
     "policy_verdict": "VISUAL RESEARCH",
     "rationale": "Curated web design inspiration gallery for modern typography and layout.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "pure backend tasks"
+    ]
   },
   {
     "id": "k95-studio",
@@ -1032,7 +1159,10 @@
     "avoid_conditions": [],
     "policy_verdict": "CRAFT ECHO",
     "rationale": "Italian studio K95. Dense editorial grid and case-study layout echo.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "the chosen route does not name this resource"
+    ]
   },
   {
     "id": "motion-dev",
@@ -1064,7 +1194,10 @@
     ],
     "policy_verdict": "SPECIALIST ENGINE",
     "rationale": "Core motion engine option (formerly Framer Motion). One motion engine rule strictly applies.",
-    "license": "MIT"
+    "license": "MIT",
+    "skip_conditions": [
+      "conflicting with GSAP in same project"
+    ]
   },
   {
     "id": "neobrutalism",
@@ -1098,7 +1231,11 @@
     ],
     "policy_verdict": "VISUAL WORLD",
     "rationale": "High-contrast neo-brutalist tokens and styling rules.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "operator HUD",
+      "minimalist luxury brands"
+    ]
   },
   {
     "id": "peter-oravec",
@@ -1128,7 +1265,10 @@
     "avoid_conditions": [],
     "policy_verdict": "CRAFT ECHO",
     "rationale": "Peter Oravec portfolio: restrained typography and whitespace discipline.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "the chosen route does not name this resource"
+    ]
   },
   {
     "id": "pryzm-design",
@@ -1160,7 +1300,10 @@
     ],
     "policy_verdict": "CRAFT ASSET",
     "rationale": "WebGL and SVG gradient background asset generator.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "operator HUD core"
+    ]
   },
   {
     "id": "reactbits-portal",
@@ -1189,7 +1332,10 @@
     "avoid_conditions": [],
     "policy_verdict": "SPECIALIST ENGINE",
     "rationale": "Official portal for React Bits interactive animated primitives.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "the chosen route does not name this resource"
+    ]
   },
   {
     "id": "shaders-com",
@@ -1221,7 +1367,10 @@
     ],
     "policy_verdict": "CRAFT ASSET",
     "rationale": "Curated WebGL/GLSL shader catalog and R3F porting source.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "flat 2D interfaces"
+    ]
   },
   {
     "id": "smooth-ui",
@@ -1251,7 +1400,11 @@
     ],
     "policy_verdict": "COMPONENT ECHO",
     "rationale": "Smooth UI copy-paste animated component blocks. Single block echo only.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "operator HUD",
+      "always-on installation"
+    ]
   },
   {
     "id": "stitch-mcp",
@@ -1284,7 +1437,10 @@
     ],
     "policy_verdict": "MCP ENDPOINT",
     "rationale": "Google Stitch remote MCP endpoint for JSON-RPC design synchronization.",
-    "license": "vendor-service"
+    "license": "vendor-service",
+    "skip_conditions": [
+      "backend without UI"
+    ]
   },
   {
     "id": "stitch-studio",
@@ -1314,7 +1470,10 @@
     "avoid_conditions": [],
     "policy_verdict": "CLOUD STUDIO",
     "rationale": "Google Stitch web UI interface for design system curation and screen lock.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "the chosen route does not name this resource"
+    ]
   },
   {
     "id": "refero-design",
@@ -1348,14 +1507,17 @@
       "cloning a Refero screenshot as the product",
       "always-on MCP"
     ],
-    "policy_verdict": "AUTH REQUIRED MCP; skill is global wrapper",
-    "rationale": "Global research skill. MCP at https://api.refero.design/mcp stays AUTH_REQUIRED until Connect. Extract principles; never copy branding.",
+    "policy_verdict": "SKILL FREE; MCP AUTH_REQUIRED / PRO",
+    "rationale": "Global research skill (referodesign/refero_skill). MCP at https://api.refero.design/mcp needs Pro. Public styles, DESIGN.md references, and public resource pages are free. Never copy branding.",
     "license": "site-terms",
     "skip_conditions": [
-      "MCP is AUTH_REQUIRED and the job can use named public references instead",
+      "MCP is AUTH_REQUIRED / PRO and the job can use public Refero pages instead",
       "backend-only, papers, operator HUD"
     ],
-    "last_verified": "2026-09-06"
+    "last_verified": "2026-09-06",
+    "auth": "NONE",
+    "free_capability": "skill methodology + public Refero pages, styles, design prompts",
+    "paid_capability": "Refero MCP / Pro screen search"
   },
   {
     "id": "openhuman-portal",
@@ -1382,7 +1544,10 @@
     "avoid_conditions": [],
     "policy_verdict": "DESKTOP AGENT",
     "rationale": "OpenHuman native desktop assistant download portal.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "the chosen route does not name this resource"
+    ]
   },
   {
     "id": "unlumen-ui",
@@ -1412,7 +1577,11 @@
     ],
     "policy_verdict": "COMPONENT ECHO",
     "rationale": "Unlumen minimalist dark-mode component blocks. Single block echo only.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "operator HUD",
+      "always-on installation"
+    ]
   },
   {
     "id": "united-carriers",
@@ -1439,7 +1608,10 @@
     "avoid_conditions": [],
     "policy_verdict": "CRAFT ECHO",
     "rationale": "United Carriers logistics web experience: editorial typography scale echo.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "the chosen route does not name this resource"
+    ]
   },
   {
     "id": "wairk-studio",
@@ -1469,7 +1641,10 @@
     "avoid_conditions": [],
     "policy_verdict": "CRAFT ECHO",
     "rationale": "Wairk French creative studio: sharp editorial layout & motion echo.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "the chosen route does not name this resource"
+    ]
   },
   {
     "id": "ditther",
@@ -1501,7 +1676,10 @@
     ],
     "policy_verdict": "CRAFT ASSET",
     "rationale": "Ditther browser-based halftone and matrix dither image tool.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "sleek corporate SaaS"
+    ]
   },
   {
     "id": "lax-space",
@@ -1531,7 +1709,10 @@
     "avoid_conditions": [],
     "policy_verdict": "CRAFT ECHO",
     "rationale": "Lax Space interactive 3D orbit camera & spatial web canvas echo.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "the chosen route does not name this resource"
+    ]
   },
   {
     "id": "noth-in",
@@ -1560,7 +1741,10 @@
     "avoid_conditions": [],
     "policy_verdict": "CRAFT ECHO",
     "rationale": "Nothin' design studio: radical editorial clarity & typography echo.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "the chosen route does not name this resource"
+    ]
   },
   {
     "id": "not-your-type",
@@ -1590,7 +1774,10 @@
     ],
     "policy_verdict": "TYPE CRAFT",
     "rationale": "Not Your Type foundry: bespoke licensed typecraft reference. Do not scrape.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "scraping font files directly"
+    ]
   },
   {
     "id": "tryguildly",
@@ -1610,13 +1797,18 @@
     "acquisition_method": "none",
     "runtime_method": "reference_only",
     "status": "REJECTED",
-    "trigger_conditions": [],
+    "trigger_conditions": [
+      "human asked to dump-install this refused resource"
+    ],
     "avoid_conditions": [
       "all installations"
     ],
     "policy_verdict": "REJECTED",
     "rationale": "Desktop multi-agent team simulator. Fights Cursor-first plan loop. Rejected.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "never load into runtime; quarantined or refused"
+    ]
   },
   {
     "id": "awwwards",
@@ -1649,7 +1841,11 @@
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
     "rationale": "Primary benchmark source for award-winning creative direction and interaction design.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "basic admin screens",
+      "backend bugs"
+    ]
   },
   {
     "id": "gsap",
@@ -1683,7 +1879,11 @@
       "react-spring already installed"
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
-    "rationale": "Primary industrial motion engine for choreographed SVG and DOM timeline animations."
+    "rationale": "Primary industrial motion engine for choreographed SVG and DOM timeline animations.",
+    "skip_conditions": [
+      "simple css hover",
+      "react-spring already installed"
+    ]
   },
   {
     "id": "skillui",
@@ -1715,7 +1915,11 @@
       "stealing brand assets"
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
-    "rationale": "On-demand CLI tool for extracting DESIGN.md tokens from one designated echo URL."
+    "rationale": "On-demand CLI tool for extracting DESIGN.md tokens from one designated echo URL.",
+    "skip_conditions": [
+      "wholesale cloning",
+      "stealing brand assets"
+    ]
   },
   {
     "id": "firecrawl",
@@ -1754,7 +1958,13 @@
     "problem_solved": "On-demand public URL to markdown",
     "fallback": "crawl4ai",
     "last_verified": "2026-09-06",
-    "rationale": "Named public-page scrape to markdown for research and link-to-reference. API key stays in the host. Not a social scraper."
+    "rationale": "Named public-page scrape to markdown for research and link-to-reference. API key stays in the host. Not a social scraper.",
+    "skip_conditions": [
+      "LinkedIn Instagram LeetCode scrapers",
+      "login walls and paywalled kits",
+      "bulk unauthorized scrape",
+      "skills add --all"
+    ]
   },
   {
     "id": "apple-hig-typography",
@@ -1783,7 +1993,10 @@
     "avoid_conditions": [],
     "policy_verdict": "CORE SPECIALIST",
     "rationale": "Mandatory standard for iOS font metrics, dynamic type scales, and optical sizing.",
-    "license": "vendor-documentation"
+    "license": "vendor-documentation",
+    "skip_conditions": [
+      "the chosen route does not name this resource"
+    ]
   },
   {
     "id": "material-3-typography",
@@ -1812,7 +2025,10 @@
     "avoid_conditions": [],
     "policy_verdict": "CORE SPECIALIST",
     "rationale": "Official Google Material 3 typography specification for cross-device hierarchy.",
-    "license": "vendor-documentation"
+    "license": "vendor-documentation",
+    "skip_conditions": [
+      "the chosen route does not name this resource"
+    ]
   },
   {
     "id": "mdn-css-fonts",
@@ -1841,7 +2057,10 @@
     "avoid_conditions": [],
     "policy_verdict": "CORE SPECIALIST",
     "rationale": "W3C/MDN web typography standards baseline governing CSS font properties.",
-    "license": "vendor-documentation"
+    "license": "vendor-documentation",
+    "skip_conditions": [
+      "the chosen route does not name this resource"
+    ]
   },
   {
     "id": "apple-playing-haptics",
@@ -1872,7 +2091,10 @@
     ],
     "policy_verdict": "SPECIALIST",
     "rationale": "Apple Human Interface Guidelines governing tactile feedback and taptic patterns.",
-    "license": "vendor-documentation"
+    "license": "vendor-documentation",
+    "skip_conditions": [
+      "desktop-only web apps"
+    ]
   },
   {
     "id": "android-vibration-effect",
@@ -1903,7 +2125,10 @@
     ],
     "policy_verdict": "SPECIALIST",
     "rationale": "Android native SDK standard for composing one-shot and waveform vibration effects.",
-    "license": "vendor-documentation"
+    "license": "vendor-documentation",
+    "skip_conditions": [
+      "desktop-only web apps"
+    ]
   },
   {
     "id": "expo-haptics",
@@ -1934,7 +2159,10 @@
       "pure web without touch screen"
     ],
     "policy_verdict": "SPECIALIST",
-    "rationale": "Cross-platform haptic feedback adapter for Expo and React Native applications."
+    "rationale": "Cross-platform haptic feedback adapter for Expo and React Native applications.",
+    "skip_conditions": [
+      "pure web without touch screen"
+    ]
   },
   {
     "id": "expo-speech",
@@ -1966,7 +2194,10 @@
       "silent HUD interfaces"
     ],
     "policy_verdict": "OPTIONAL",
-    "rationale": "Native text-to-speech synthesis engine for mobile Expo environments."
+    "rationale": "Native text-to-speech synthesis engine for mobile Expo environments.",
+    "skip_conditions": [
+      "silent HUD interfaces"
+    ]
   },
   {
     "id": "elevenlabs",
@@ -1998,7 +2229,11 @@
       "storing API keys in repo"
     ],
     "policy_verdict": "OPTIONAL SPECIALIST",
-    "rationale": "High-fidelity neural voice synthesis service. Credentials managed in local env only."
+    "rationale": "High-fidelity neural voice synthesis service. Credentials managed in local env only.",
+    "skip_conditions": [
+      "pure code refactoring tasks",
+      "storing API keys in repo"
+    ]
   },
   {
     "id": "shadcn-ui",
@@ -2031,7 +2266,11 @@
       "defaulting without plan instruction"
     ],
     "policy_verdict": "SPECIALIST (RESTRICTED)",
-    "rationale": "Plan-named hiring/college only. Strictly forbidden on an operator HUD surfaces."
+    "rationale": "Plan-named hiring/college only. Strictly forbidden on an operator HUD surfaces.",
+    "skip_conditions": [
+      "an operator HUD",
+      "defaulting without plan instruction"
+    ]
   },
   {
     "id": "mapcn",
@@ -2063,7 +2302,10 @@
       "standard non-geographic dashboards"
     ],
     "policy_verdict": "OPTIONAL",
-    "rationale": "Geospatial map components tailored for modern Tailwind UI integration."
+    "rationale": "Geospatial map components tailored for modern Tailwind UI integration.",
+    "skip_conditions": [
+      "standard non-geographic dashboards"
+    ]
   },
   {
     "id": "playwright",
@@ -2103,7 +2345,10 @@
     ],
     "fallback": "playwright-cli",
     "last_verified": "2026-09-06",
-    "rationale": "CORE MCP for visual verification. playwright-cli is optional. Do not playwright-cli install --skills -g. Not a LinkedIn/ATS robot."
+    "rationale": "CORE MCP for visual verification. playwright-cli is optional. Do not playwright-cli install --skills -g. Not a LinkedIn/ATS robot.",
+    "skip_conditions": [
+      "pure backend endpoints"
+    ]
   },
   {
     "id": "lighthouse",
@@ -2136,7 +2381,10 @@
       "development hot-reload iteration"
     ],
     "policy_verdict": "CORE CLI",
-    "rationale": "Automated performance and SEO audit gate asserting CLS < 0.05 and LCP < 2.5s."
+    "rationale": "Automated performance and SEO audit gate asserting CLS < 0.05 and LCP < 2.5s.",
+    "skip_conditions": [
+      "development hot-reload iteration"
+    ]
   },
   {
     "id": "jiro-design",
@@ -2166,7 +2414,10 @@
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
     "rationale": "Curated visual direction portal queried during multi-source research before synthesis.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "backend tasks"
+    ]
   },
   {
     "id": "cari-institute",
@@ -2197,7 +2448,10 @@
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
     "rationale": "Consumer Aesthetics Research Institute: authoritative taxonomies of visual movements.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "cookie-cutter corporate templates"
+    ]
   },
   {
     "id": "scrapling",
@@ -2237,7 +2491,12 @@
     ],
     "fallback": "firecrawl then crawl4ai",
     "last_verified": "2026-09-06",
-    "rationale": "Primary public crawler in RESEARCH_PROTOCOL. Named URL only. Firecrawl on-demand; Crawl4AI catalog fallback. Not a social scraper."
+    "rationale": "Primary public crawler in RESEARCH_PROTOCOL. Named URL only. Firecrawl on-demand; Crawl4AI catalog fallback. Not a social scraper.",
+    "skip_conditions": [
+      "bulk unauthorized scraping",
+      "LinkedIn Instagram LeetCode scrapers",
+      "ATS Easy Apply Workday robots"
+    ]
   },
   {
     "id": "shadergradient",
@@ -2271,7 +2530,10 @@
       "minimalist monochrome surfaces"
     ],
     "policy_verdict": "CURATED CATALOG",
-    "rationale": "Staged in curated_catalog for on-demand lazy loading in 3D spatial web tasks."
+    "rationale": "Staged in curated_catalog for on-demand lazy loading in 3D spatial web tasks.",
+    "skip_conditions": [
+      "minimalist monochrome surfaces"
+    ]
   },
   {
     "id": "taste-design",
@@ -2308,7 +2570,11 @@
     "installed_variant": "stitch-wrapper-on-disk",
     "upstream_version": "v2-experimental-do-not-npx-add-pack",
     "last_verified": "2026-09-06",
-    "rationale": "On-disk skills/taste-design is the Stitch-wrapper variant in the 30. Upstream Leonxlnx Taste v2 is experimental. Do not npx skills add the whole pack."
+    "rationale": "On-disk skills/taste-design is the Stitch-wrapper variant in the 30. Upstream Leonxlnx Taste v2 is experimental. Do not npx skills add the whole pack.",
+    "skip_conditions": [
+      "backend tasks",
+      "headless scripts"
+    ]
   },
   {
     "id": "impeccable",
@@ -2342,7 +2608,10 @@
       "backend tasks"
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
-    "rationale": "Core UI polish and design critique skill ensuring exceptional frontend craftsmanship."
+    "rationale": "Core UI polish and design critique skill ensuring exceptional frontend craftsmanship.",
+    "skip_conditions": [
+      "backend tasks"
+    ]
   },
   {
     "id": "emil-design-eng",
@@ -2374,7 +2643,10 @@
       "backend tasks"
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
-    "rationale": "Encodes Emil Kowalski's philosophy on UI polish, subtle transitions, and kinetic feedback."
+    "rationale": "Encodes Emil Kowalski's philosophy on UI polish, subtle transitions, and kinetic feedback.",
+    "skip_conditions": [
+      "backend tasks"
+    ]
   },
   {
     "id": "land-book",
@@ -2404,7 +2676,10 @@
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
     "rationale": "Curated repository of top landing pages queried by the research coordinator.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "backend tasks"
+    ]
   },
   {
     "id": "siteinspire",
@@ -2434,7 +2709,10 @@
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
     "rationale": "Authoritative gallery of real-world editorial and creative website layouts.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "backend tasks"
+    ]
   },
   {
     "id": "r3f",
@@ -2469,7 +2747,10 @@
       "pure 2D flat layouts"
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
-    "rationale": "Standard React declarative renderer for Three.js 3D spatial scenes."
+    "rationale": "Standard React declarative renderer for Three.js 3D spatial scenes.",
+    "skip_conditions": [
+      "pure 2D flat layouts"
+    ]
   },
   {
     "id": "drei",
@@ -2506,7 +2787,11 @@
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
     "rationale": "Official R3F helper library. Project-scoped npm only. Complements r3f; not a second Three.js stack.",
-    "npm_package": "@react-three/drei"
+    "npm_package": "@react-three/drei",
+    "skip_conditions": [
+      "pure 2D layouts",
+      "global npm install"
+    ]
   },
   {
     "id": "strix",
@@ -2539,7 +2824,10 @@
       "scanning third-party networks without authorization"
     ],
     "policy_verdict": "CORE CLI",
-    "rationale": "Autonomous AI penetration testing tool that exploits and proves vulnerabilities in our apps."
+    "rationale": "Autonomous AI penetration testing tool that exploits and proves vulnerabilities in our apps.",
+    "skip_conditions": [
+      "scanning third-party networks without authorization"
+    ]
   },
   {
     "id": "ship-safe",
@@ -2572,7 +2860,10 @@
     ],
     "policy_verdict": "CORE SPECIALIST",
     "rationale": "Mandatory defensive baseline preventing token leaks, misconfigured CORS, and auth flaws.",
-    "license": "MIT"
+    "license": "MIT",
+    "skip_conditions": [
+      "attacking external systems"
+    ]
   },
   {
     "id": "semgrep",
@@ -2603,7 +2894,10 @@
     ],
     "avoid_conditions": [],
     "policy_verdict": "VERIFICATION ADAPTER",
-    "rationale": "Fast static analysis scanner checking codebases against vetted security rulesets."
+    "rationale": "Fast static analysis scanner checking codebases against vetted security rulesets.",
+    "skip_conditions": [
+      "the chosen route does not name this resource"
+    ]
   },
   {
     "id": "design-md",
@@ -2637,7 +2931,11 @@
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
     "rationale": "Markdown-based design system standard and prompt framework for AI agents.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "simple bug fix",
+      "backend task"
+    ]
   },
   {
     "id": "archives-design",
@@ -2671,7 +2969,11 @@
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
     "rationale": "Curated digital archive of graphic design history, typography, and timeless layouts.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "standard dashboard",
+      "cli tool"
+    ]
   },
   {
     "id": "ux-planet",
@@ -2705,7 +3007,11 @@
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
     "rationale": "Comprehensive publication and reference for UX/UI design heuristics and usability patterns.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "low-level backend bug",
+      "database schema"
+    ]
   },
   {
     "id": "uiverse",
@@ -2740,7 +3046,11 @@
       "heavy frameworks"
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
-    "rationale": "Open-source community library of custom CSS/Tailwind UI elements and micro-interactions."
+    "rationale": "Open-source community library of custom CSS/Tailwind UI elements and micro-interactions.",
+    "skip_conditions": [
+      "full application architecture",
+      "heavy frameworks"
+    ]
   },
   {
     "id": "letterform-archive",
@@ -2773,7 +3083,10 @@
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
     "rationale": "Nonprofit center dedicated to the history of written and printed letters, serving as historical typography reference.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "generic sans-serif system defaults"
+    ]
   },
   {
     "id": "geist-font",
@@ -2807,7 +3120,10 @@
       "heritage serif editorial branding"
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
-    "rationale": "High-precision geometric sans font family crafted for developer tools and modern web UI."
+    "rationale": "High-precision geometric sans font family crafted for developer tools and modern web UI.",
+    "skip_conditions": [
+      "heritage serif editorial branding"
+    ]
   },
   {
     "id": "geist-mono-font",
@@ -2843,7 +3159,11 @@
       "prose body text"
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
-    "rationale": "Monospaced companion font to Geist, tailored for code, data tables, and terminal UIs."
+    "rationale": "Monospaced companion font to Geist, tailored for code, data tables, and terminal UIs.",
+    "skip_conditions": [
+      "marketing headlines",
+      "prose body text"
+    ]
   },
   {
     "id": "animemaster",
@@ -2877,7 +3197,11 @@
       "simple css transitions"
     ],
     "policy_verdict": "CURATED OPTIONAL",
-    "rationale": "Lightweight JavaScript animation engine alternative for discrete SVG and DOM micro-motion."
+    "rationale": "Lightweight JavaScript animation engine alternative for discrete SVG and DOM micro-motion.",
+    "skip_conditions": [
+      "gsap already handles choreographies",
+      "simple css transitions"
+    ]
   },
   {
     "id": "transitions-dev",
@@ -2910,7 +3234,11 @@
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
     "rationale": "Interactive gallery and reference for modern View Transitions API implementations.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "single page static forms",
+      "backend microservices"
+    ]
   },
   {
     "id": "moving-icons",
@@ -2943,7 +3271,11 @@
       "high density data tables"
     ],
     "policy_verdict": "CURATED OPTIONAL",
-    "rationale": "Curated collection of smoothly animated SVG icons for interactive feedback states."
+    "rationale": "Curated collection of smoothly animated SVG icons for interactive feedback states.",
+    "skip_conditions": [
+      "static document icons",
+      "high density data tables"
+    ]
   },
   {
     "id": "animate-icons",
@@ -2974,7 +3306,10 @@
     ],
     "policy_verdict": "CURATED OPTIONAL",
     "rationale": "Configurable, animated SVG icon components with physics-based hover states.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "distracting looping animations"
+    ]
   },
   {
     "id": "its-hover",
@@ -3006,7 +3341,10 @@
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
     "rationale": "Collection of creative hover animations and component interaction recipes built with Framer Motion/Tailwind.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "mobile-only screens without pointer"
+    ]
   },
   {
     "id": "liquid-glass",
@@ -3040,7 +3378,11 @@
       "accessible corporate documentation"
     ],
     "policy_verdict": "CURATED OPTIONAL",
-    "rationale": "Apple-inspired WebGL glass (dashersw/liquid-glass-js). Project-scoped only when the approved stack names glass. Unmotivated glassmorphism stays banned."
+    "rationale": "Apple-inspired WebGL glass (dashersw/liquid-glass-js). Project-scoped only when the approved stack names glass. Unmotivated glassmorphism stays banned.",
+    "skip_conditions": [
+      "low-end mobile devices",
+      "accessible corporate documentation"
+    ]
   },
   {
     "id": "liquid-logo",
@@ -3073,7 +3415,11 @@
       "content-first articles"
     ],
     "policy_verdict": "CURATED OPTIONAL",
-    "rationale": "Interactive particle-fluid simulation shader for hero brand marks."
+    "rationale": "Interactive particle-fluid simulation shader for hero brand marks.",
+    "skip_conditions": [
+      "static logo headers",
+      "content-first articles"
+    ]
   },
   {
     "id": "vgpu-shaders",
@@ -3108,7 +3454,11 @@
     ],
     "policy_verdict": "CURATED OPTIONAL",
     "rationale": "Official Vercel WebGPU library (npm vgpu). EXPERIMENTAL shader/3D jobs only. Always ship a CSS/canvas fallback. Do not install globally.",
-    "npm_package": "vgpu"
+    "npm_package": "vgpu",
+    "skip_conditions": [
+      "standard html5 canvas",
+      "css layouts"
+    ]
   },
   {
     "id": "hugeicons",
@@ -3141,7 +3491,10 @@
       "feather or lucide already chosen and sufficient"
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
-    "rationale": "Extensive icon family with 4,000+ stroke and duotone icons in React/Vue/SVG formats."
+    "rationale": "Extensive icon family with 4,000+ stroke and duotone icons in React/Vue/SVG formats.",
+    "skip_conditions": [
+      "feather or lucide already chosen and sufficient"
+    ]
   },
   {
     "id": "keyline-icons",
@@ -3173,7 +3526,10 @@
     ],
     "policy_verdict": "BOOKMARK",
     "rationale": "Systematic geometric keyline grid specification for designing optically balanced icon families.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "standard ready-made icon libraries"
+    ]
   },
   {
     "id": "morphicons",
@@ -3206,7 +3562,10 @@
       "static icon states"
     ],
     "policy_verdict": "CURATED OPTIONAL",
-    "rationale": "SVG icon morphing utility transitioning cleanly between disparate icon shapes."
+    "rationale": "SVG icon morphing utility transitioning cleanly between disparate icon shapes.",
+    "skip_conditions": [
+      "static icon states"
+    ]
   },
   {
     "id": "thesvg",
@@ -3238,7 +3597,10 @@
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
     "rationale": "Curated vector asset repository offering production-ready SVG brand assets and geometric patterns.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "raster photos"
+    ]
   },
   {
     "id": "curationist",
@@ -3272,7 +3634,11 @@
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
     "rationale": "Nonprofit free global archive of museum and cultural heritage images in public domain.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "generic stock photography",
+      "modern saas illustrations"
+    ]
   },
   {
     "id": "rijksmuseum-archive",
@@ -3305,7 +3671,10 @@
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
     "rationale": "World-class public domain art imagery with high-res scans for authentic heritage aesthetics.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "contemporary flat vector ui"
+    ]
   },
   {
     "id": "nypl-digital-collections",
@@ -3338,7 +3707,10 @@
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
     "rationale": "New York Public Library collection of historical botanical plates, vintage maps, and manuscripts.",
-    "license": "site-terms"
+    "license": "site-terms",
+    "skip_conditions": [
+      "minimalist saas apps"
+    ]
   },
   {
     "id": "orchestra-docs",
@@ -3372,7 +3744,11 @@
       "marketing copy dressed as research"
     ],
     "policy_verdict": "ACTIVE SPECIALIST",
-    "rationale": "Canonical skill for papers and docs. Never invent citations."
+    "rationale": "Canonical skill for papers and docs. Never invent citations.",
+    "skip_conditions": [
+      "invented sources",
+      "marketing copy dressed as research"
+    ]
   },
   {
     "id": "ui-ux-pro-max",
@@ -3393,12 +3769,17 @@
     "acquisition_method": "none",
     "runtime_method": "reference_only",
     "status": "REJECTED",
-    "trigger_conditions": [],
+    "trigger_conditions": [
+      "human asked to dump-install this refused resource"
+    ],
     "avoid_conditions": [
       "all installations"
     ],
     "policy_verdict": "REJECTED",
-    "rationale": "Global UI pack. Already hated as an always-on skill. Do not add to the 30. College kits stay one named source, not this dump."
+    "rationale": "Global UI pack. Already hated as an always-on skill. Do not add to the 30. College kits stay one named source, not this dump.",
+    "skip_conditions": [
+      "never load into runtime; quarantined or refused"
+    ]
   },
   {
     "id": "google-skills",
@@ -3419,12 +3800,17 @@
     "acquisition_method": "none",
     "runtime_method": "reference_only",
     "status": "REJECTED",
-    "trigger_conditions": [],
+    "trigger_conditions": [
+      "human asked to dump-install this refused resource"
+    ],
     "avoid_conditions": [
       "all installations"
     ],
     "policy_verdict": "REJECTED",
-    "rationale": "Official Google skill dump. Never skills add --all. Promote one named skill only if a job fails without it."
+    "rationale": "Official Google skill dump. Never skills add --all. Promote one named skill only if a job fails without it.",
+    "skip_conditions": [
+      "never load into runtime; quarantined or refused"
+    ]
   },
   {
     "id": "graft",
@@ -3445,12 +3831,17 @@
     "acquisition_method": "none",
     "runtime_method": "reference_only",
     "status": "REJECTED",
-    "trigger_conditions": [],
+    "trigger_conditions": [
+      "human asked to dump-install this refused resource"
+    ],
     "avoid_conditions": [
       "all installations"
     ],
     "policy_verdict": "REJECTED",
-    "rationale": "Writes AGENTS.md / Cursor rules. Second context layer. Orchestra already routes a capability graph. Do not graft init onto this method."
+    "rationale": "Writes AGENTS.md / Cursor rules. Second context layer. Orchestra already routes a capability graph. Do not graft init onto this method.",
+    "skip_conditions": [
+      "never load into runtime; quarantined or refused"
+    ]
   },
   {
     "id": "agentic-seek",
@@ -3471,12 +3862,17 @@
     "acquisition_method": "none",
     "runtime_method": "reference_only",
     "status": "REJECTED",
-    "trigger_conditions": [],
+    "trigger_conditions": [
+      "human asked to dump-install this refused resource"
+    ],
     "avoid_conditions": [
       "all installations"
     ],
     "policy_verdict": "REJECTED",
-    "rationale": "Autonomous agent OS. Competes with the chat conductor. Do not install."
+    "rationale": "Autonomous agent OS. Competes with the chat conductor. Do not install.",
+    "skip_conditions": [
+      "never load into runtime; quarantined or refused"
+    ]
   },
   {
     "id": "getlayers",
@@ -3518,7 +3914,10 @@
       "Purchase is pending — do not connect https://mcp.getlayers.ai/mcp",
       "Do not invent tools or scrape the paid library",
       "Operator has not said update after buying Full Stack"
-    ]
+    ],
+    "auth": "PURCHASE_PENDING",
+    "free_capability": "none until purchase",
+    "paid_capability": "Full Stack lifetime MCP and library"
   },
   {
     "id": "ibelick-ui-skills",
@@ -3539,12 +3938,17 @@
     "acquisition_method": "none",
     "runtime_method": "reference_only",
     "status": "REJECTED",
-    "trigger_conditions": [],
+    "trigger_conditions": [
+      "human asked to dump-install this refused resource"
+    ],
     "avoid_conditions": [
       "all installations"
     ],
     "policy_verdict": "REJECTED",
-    "rationale": "Design-engineer skill pack. taste-design + impeccable + emil already cover the hole. Do not dump the pack into runtime."
+    "rationale": "Design-engineer skill pack. taste-design + impeccable + emil already cover the hole. Do not dump the pack into runtime.",
+    "skip_conditions": [
+      "never load into runtime; quarantined or refused"
+    ]
   },
   {
     "id": "soup-llm",
@@ -3578,7 +3982,13 @@
       "always-on in the classify loop"
     ],
     "policy_verdict": "CURATED OPTIONAL",
-    "rationale": "Clone into an ML product repo when the job is fine-tuning. Not an MCP, not a 31st skill, not the Orchestra control plane."
+    "rationale": "Clone into an ML product repo when the job is fine-tuning. Not an MCP, not a 31st skill, not the Orchestra control plane.",
+    "skip_conditions": [
+      "31st global skill",
+      "npx skills add",
+      "control-plane install",
+      "always-on in the classify loop"
+    ]
   },
   {
     "id": "vane",
@@ -3599,12 +4009,17 @@
     "acquisition_method": "none",
     "runtime_method": "reference_only",
     "status": "REJECTED",
-    "trigger_conditions": [],
+    "trigger_conditions": [
+      "human asked to dump-install this refused resource"
+    ],
     "avoid_conditions": [
       "all installations"
     ],
     "policy_verdict": "REJECTED",
-    "rationale": "Self-hosted answering engine. Human browser, not the conductor. Do not run inside the Orchestra loop."
+    "rationale": "Self-hosted answering engine. Human browser, not the conductor. Do not run inside the Orchestra loop.",
+    "skip_conditions": [
+      "never load into runtime; quarantined or refused"
+    ]
   },
   {
     "id": "google-opal",
@@ -3623,12 +4038,17 @@
     "acquisition_method": "web_fetch",
     "runtime_method": "reference_only",
     "status": "BOOKMARK",
-    "trigger_conditions": [],
+    "trigger_conditions": [
+      "the chosen route or the human named google-opal"
+    ],
     "avoid_conditions": [
       "always-on in the classify loop"
     ],
     "policy_verdict": "BOOKMARK",
-    "rationale": "Human automation product. Not a classifier route. Use outside the Orchestra loop if you want it."
+    "rationale": "Human automation product. Not a classifier route. Use outside the Orchestra loop if you want it.",
+    "skip_conditions": [
+      "always-on in the classify loop"
+    ]
   },
   {
     "id": "uptimerobot",
@@ -3647,12 +4067,17 @@
     "acquisition_method": "web_fetch",
     "runtime_method": "reference_only",
     "status": "BOOKMARK",
-    "trigger_conditions": [],
+    "trigger_conditions": [
+      "the chosen route or the human named uptimerobot"
+    ],
     "avoid_conditions": [
       "always-on in the classify loop"
     ],
     "policy_verdict": "BOOKMARK",
-    "rationale": "Keep-alive for free-tier hosts. Not visual research. Prefer GitHub Actions cron when the app repo can run a scheduled ping."
+    "rationale": "Keep-alive for free-tier hosts. Not visual research. Prefer GitHub Actions cron when the app repo can run a scheduled ping.",
+    "skip_conditions": [
+      "always-on in the classify loop"
+    ]
   },
   {
     "id": "presenton",
@@ -3685,7 +4110,12 @@
       "always-on MCP"
     ],
     "policy_verdict": "CURATED OPTIONAL",
-    "rationale": "Self-hosted / API slide generator for deck jobs. Does not replace orchestra-docs for papers. Not a 31st Cursor skill."
+    "rationale": "Self-hosted / API slide generator for deck jobs. Does not replace orchestra-docs for papers. Not a 31st Cursor skill.",
+    "skip_conditions": [
+      "methods paper",
+      "thesis citations",
+      "always-on MCP"
+    ]
   },
   {
     "id": "codebase-memory-mcp",
@@ -3716,7 +4146,11 @@
       "replacing the Brain overlay"
     ],
     "policy_verdict": "CURATED OPTIONAL",
-    "rationale": "Optional host MCP for large app repos. Never auto-install. Not a second Brain. Vault memory stays the filesystem MCP."
+    "rationale": "Optional host MCP for large app repos. Never auto-install. Not a second Brain. Vault memory stays the filesystem MCP.",
+    "skip_conditions": [
+      "auto-install on every host",
+      "replacing the Brain overlay"
+    ]
   },
   {
     "id": "playwright-cli",
@@ -3755,7 +4189,12 @@
       "LinkedIn ATS scrape"
     ],
     "policy_verdict": "CURATED OPTIONAL",
-    "rationale": "MCP stays CORE. Do not install --skills -g into the 30."
+    "rationale": "MCP stays CORE. Do not install --skills -g into the 30.",
+    "skip_conditions": [
+      "playwright-cli install --skills -g",
+      "replacing Playwright MCP as CORE",
+      "LinkedIn ATS scrape"
+    ]
   },
   {
     "id": "crawl4ai",
@@ -3793,7 +4232,12 @@
       "always-on crawler"
     ],
     "policy_verdict": "CURATED OPTIONAL",
-    "rationale": "Catalog fallback only. Do not install Global this pass."
+    "rationale": "Catalog fallback only. Do not install Global this pass.",
+    "skip_conditions": [
+      "global pip install",
+      "LinkedIn Instagram LeetCode scrapers",
+      "always-on crawler"
+    ]
   },
   {
     "id": "serena",
@@ -3833,7 +4277,12 @@
       "replacing Brain markdown memory"
     ],
     "policy_verdict": "CURATED OPTIONAL",
-    "rationale": "Optional MCP for repo intelligence. Not always-on. Not a 31st skill."
+    "rationale": "Optional MCP for repo intelligence. Not always-on. Not a 31st skill.",
+    "skip_conditions": [
+      "always-on MCP",
+      "31st global skill",
+      "replacing Brain markdown memory"
+    ]
   },
   {
     "id": "jcode",
@@ -3847,7 +4296,7 @@
       "harness",
       "executor"
     ],
-    "representation": "cli",
+    "representation": "executor",
     "routing_tags": [
       "jcode",
       "omniroute",
@@ -3873,7 +4322,11 @@
       "merge extra Claude disk skills into the 30"
     ],
     "policy_verdict": "CURATED OPTIONAL",
-    "rationale": "Optional terminal harness under the control plane. After default_provider=omniroute, bare `jcode` is enough. Point at Orchestra AGENTS.md. Evidence required. Not the brain."
+    "rationale": "Optional terminal harness under the control plane. After default_provider=omniroute, bare `jcode` is enough. Point at Orchestra AGENTS.md. Evidence required. Not the brain.",
+    "skip_conditions": [
+      "Cursor, Antigravity, or Claude Code is already conducting",
+      "no stdout evidence that jcode ran"
+    ]
   },
   {
     "id": "anti-slop-ajonai",
@@ -3906,7 +4359,11 @@
       "npx skills add"
     ],
     "policy_verdict": "ADOPT-THIN",
-    "rationale": "Process overlap with Design Lab + taste-design. Adopted: missing interaction states before restyle; ban-lists go stale. Do not copy the skill folder into the 30. Optional check.mjs stays project-scoped if a product repo wants CI."
+    "rationale": "Process overlap with Design Lab + taste-design. Adopted: missing interaction states before restyle; ban-lists go stale. Do not copy the skill folder into the 30. Optional check.mjs stays project-scoped if a product repo wants CI.",
+    "skip_conditions": [
+      "31st global skill",
+      "npx skills add"
+    ]
   },
   {
     "id": "blader-humanizer",
@@ -3940,7 +4397,12 @@
       "detector-evasion for academic fraud"
     ],
     "policy_verdict": "CURATED OPTIONAL",
-    "rationale": "Wikipedia Signs of AI writing as a method. orchestra-docs + Preferences already carry the Evocentric voice. Load the pattern list on a named humanize job. Do not install globally."
+    "rationale": "Wikipedia Signs of AI writing as a method. orchestra-docs + Preferences already carry the Evocentric voice. Load the pattern list on a named humanize job. Do not install globally.",
+    "skip_conditions": [
+      "31st global skill",
+      "npx skills add --global",
+      "detector-evasion for academic fraud"
+    ]
   },
   {
     "id": "graphify",
@@ -3973,7 +4435,12 @@
       "31st global skill"
     ],
     "policy_verdict": "CURATED OPTIONAL",
-    "rationale": "Local AST code map for a named app repo. Complements the markdown Brain; does not replace it. Do not switch Orchestra memory to Graphify or Vault Operator."
+    "rationale": "Local AST code map for a named app repo. Complements the markdown Brain; does not replace it. Do not switch Orchestra memory to Graphify or Vault Operator.",
+    "skip_conditions": [
+      "replace the private markdown Brain",
+      "Graphiti Neo4j always-on",
+      "31st global skill"
+    ]
   },
   {
     "id": "hallmark",
@@ -4407,35 +4874,45 @@
   {
     "id": "magic-ui-oss",
     "name": "Magic UI OSS",
-    "canonical_url": "https://magicui.design",
-    "source_type": "component_gallery",
-    "documentation_url": "https://magicui.design",
+    "canonical_url": "https://github.com/magicuidesign/magicui",
+    "source_type": "github_repository",
+    "documentation_url": "https://magicui.design/docs/mcp",
     "license": "MIT",
     "category": [
       "components",
-      "oss"
+      "oss",
+      "motion"
     ],
     "representation": "reference",
     "routing_tags": [
       "magic-ui",
-      "interaction-components"
+      "interaction-components",
+      "free-registry"
     ],
     "acquisition_method": "npm",
     "runtime_method": "project_scoped_install",
     "status": "CURATED_OPTIONAL",
     "trigger_conditions": [
-      "named Magic UI OSS component"
+      "named Magic UI OSS component",
+      "interaction-components route named Magic UI"
     ],
     "avoid_conditions": [
       "buying Magic UI Pro this pass",
-      "always-on Magic MCP"
+      "always-on Magic MCP",
+      "claiming Pro registry access"
     ],
     "skip_conditions": [
-      "another motion kit already chosen"
+      "another motion kit already chosen",
+      "the job is a full page — route the page first"
     ],
-    "policy_verdict": "OSS ONLY THIS PASS",
-    "rationale": "Do not buy Pro. MCP OPTIONAL until Connect.",
-    "last_verified": "2026-09-06"
+    "policy_verdict": "FREE OSS + FREE MCP; PRO NOT CLAIMED",
+    "rationale": "Official free MCP is npx @magicuidesign/mcp@latest (or npx @magicuidesign/cli@latest install cursor). Do not buy Pro. Do not claim Pro blocks.",
+    "last_verified": "2026-09-06",
+    "source_repository": "https://github.com/magicuidesign/magicui.git",
+    "auth": "NONE",
+    "free_capability": "OSS components + free MCP catalog",
+    "paid_capability": "Magic UI Pro blocks/templates",
+    "fallback": "shadcn-ui"
   },
   {
     "id": "motion-primitives",
@@ -4474,68 +4951,86 @@
     "name": "21st.dev",
     "canonical_url": "https://21st.dev",
     "source_type": "component_gallery",
-    "documentation_url": "https://21st.dev",
+    "documentation_url": "https://docs.21st.dev/mcp",
     "license": "site-terms",
     "category": [
       "components",
-      "paid-board"
+      "mcp",
+      "optional-free"
     ],
     "representation": "mcp",
     "routing_tags": [
       "21st",
-      "component-search"
+      "component-search",
+      "optional-free-mcp"
     ],
     "acquisition_method": "host_mcp_connect",
     "runtime_method": "mcp_connection",
     "status": "CURATED_OPTIONAL",
     "trigger_conditions": [
       "human named 21st.dev",
-      "one named echo"
+      "component discovery / React UI catalog search",
+      "one named echo from the free catalog"
     ],
     "avoid_conditions": [
       "always-on 21st MCP",
-      "collage"
+      "buying Builder or Builder + AI this pass",
+      "repeatedly exceeding two free installs per day"
     ],
     "skip_conditions": [
-      "MCP not Connected",
-      "operator HUD"
+      "MCP not Connected — use public catalog URLs instead",
+      "operator HUD",
+      "free daily install quota would be burned on a throwaway"
     ],
-    "policy_verdict": "OPTIONAL MCP",
-    "rationale": "Free browse / limited copies. Login in host. Orchestra fit score 8.7. No lifetime — do not buy Builder+AI this pass.",
-    "last_verified": "2026-09-06"
+    "policy_verdict": "OPTIONAL_FREE_MCP",
+    "rationale": "Search and publishing are free. Installs capped at two a day. 21st AI uses credits. Login in host. Never always-on. Do not buy Builder this pass.",
+    "last_verified": "2026-09-06",
+    "auth": "AUTH_REQUIRED",
+    "free_capability": "catalog search; up to 2 component installs per day",
+    "paid_capability": "Builder, Builder + AI, extra installs, AI generate credits",
+    "fallback": "shadcn-ui"
   },
   {
     "id": "tailkit",
-    "name": "Tailkit",
+    "name": "Tailkit public/free resources",
     "canonical_url": "https://tailkit.com",
     "source_type": "component_gallery",
     "documentation_url": "https://tailkit.com",
     "license": "site-terms",
     "category": [
       "components",
-      "paid-board"
+      "reference"
     ],
     "representation": "reference",
     "routing_tags": [
       "tailkit",
-      "tailwind-kit"
+      "tailwind-kit",
+      "interaction-components",
+      "free-public"
     ],
     "acquisition_method": "web_fetch",
     "runtime_method": "on_demand_research",
-    "status": "CURATED_OPTIONAL",
+    "status": "REFERENCE",
     "trigger_conditions": [
-      "human named Tailkit"
+      "human named Tailkit",
+      "interaction-components search for a public Tailkit pattern"
     ],
     "avoid_conditions": [
       "buying Tailkit Unlimited this pass",
-      "always-on MCP"
+      "treating the Tailkit MCP as free",
+      "mirroring the paid library"
     ],
     "skip_conditions": [
-      "free/public patterns already cover the card"
+      "another free kit already covers the control",
+      "the job needs the paid MCP — that row is AUTH_REQUIRED"
     ],
-    "policy_verdict": "DO NOT BUY THIS PASS",
-    "rationale": "Orchestra fit 9.1. Register OPTIONAL. Load when named.",
-    "last_verified": "2026-09-06"
+    "policy_verdict": "FREE PUBLIC REFERENCE; MCP IS PAID",
+    "rationale": "Public/free Tailkit pages are searchable references. The MCP is not free. Do not invent credentials.",
+    "last_verified": "2026-09-06",
+    "auth": "NONE",
+    "free_capability": "public/free component pages as URL references",
+    "paid_capability": "Tailkit MCP and paid kit",
+    "fallback": "hyperui"
   },
   {
     "id": "agent-browser",
@@ -4572,37 +5067,54 @@
   },
   {
     "id": "aceternity-ui",
-    "name": "Aceternity UI",
-    "canonical_url": "https://ui.aceternity.com",
+    "name": "Aceternity UI free components",
+    "canonical_url": "https://ui.aceternity.com/",
     "source_type": "component_gallery",
-    "documentation_url": "https://ui.aceternity.com",
+    "documentation_url": "https://ui.aceternity.com/",
     "license": "site-terms",
     "category": [
       "components",
-      "paid-board"
+      "reference"
     ],
     "representation": "reference",
     "routing_tags": [
       "aceternity",
-      "named-echo"
+      "interaction-components",
+      "buttons",
+      "backgrounds",
+      "text",
+      "cards",
+      "forms",
+      "navigation",
+      "effects",
+      "3d-components",
+      "hero"
     ],
     "acquisition_method": "web_fetch",
     "runtime_method": "on_demand_research",
     "status": "CURATED_OPTIONAL",
     "trigger_conditions": [
-      "one named Aceternity echo on the card"
+      "one named Aceternity echo on the card",
+      "free category search: buttons, backgrounds, text, cards, forms, navigation, effects, 3D, hero",
+      "official shadcn install command on a public component page"
     ],
     "avoid_conditions": [
       "always-on Aceternity MCP",
-      "buying Pro this pass"
+      "buying All-Access this pass",
+      "claiming Pro blocks/templates"
     ],
     "skip_conditions": [
       "operator HUD",
-      "college due-now GUI"
+      "college due-now GUI",
+      "the card already named another kit"
     ],
-    "policy_verdict": "ONE NAMED ECHO",
-    "rationale": "Orchestra fit 8.8. Do not buy this pass.",
-    "last_verified": "2026-09-06"
+    "policy_verdict": "FREE COMPONENTS ONLY",
+    "rationale": "Use public components and official shadcn install commands. Do not claim All-Access.",
+    "last_verified": "2026-09-06",
+    "auth": "NONE",
+    "free_capability": "public component catalog (buttons, backgrounds, text, cards, forms, navigation, effects, 3D, hero)",
+    "paid_capability": "All-Access blocks/templates",
+    "fallback": "magic-ui-oss"
   },
   {
     "id": "frontend-design-claude-optional",
@@ -4636,5 +5148,534 @@
     "policy_verdict": "POINTER ONLY",
     "rationale": "Do not dump anthropics/skills. Keep as named Claude-host optional if already present.",
     "last_verified": "2026-09-06"
+  },
+  {
+    "last_verified": "2026-09-06",
+    "id": "magic-ui-mcp",
+    "name": "Magic UI free MCP",
+    "canonical_url": "https://magicui.design/docs/mcp",
+    "source_type": "mcp_server",
+    "source_repository": "https://github.com/magicuidesign/mcp.git",
+    "documentation_url": "https://magicui.design/docs/mcp",
+    "license": "MIT",
+    "category": [
+      "mcp",
+      "components",
+      "oss"
+    ],
+    "representation": "mcp",
+    "routing_tags": [
+      "magic-ui-mcp",
+      "free-mcp",
+      "interaction-components"
+    ],
+    "acquisition_method": "host_mcp_connect",
+    "runtime_method": "mcp_connection",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "named Magic UI component install via MCP",
+      "host already has magicuidesign-mcp connected"
+    ],
+    "avoid_conditions": [
+      "always-on Magic MCP",
+      "Pro registry"
+    ],
+    "skip_conditions": [
+      "MCP not Connected — use magic-ui-oss URLs",
+      "another motion kit already chosen"
+    ],
+    "policy_verdict": "FREE_MCP",
+    "rationale": "Official install: npx @magicuidesign/cli@latest install cursor, or mcpServers.magicuidesign-mcp = npx -y @magicuidesign/mcp@latest. Pro is separate and unpaid.",
+    "auth": "HOST_CONNECT",
+    "free_capability": "free Magic UI MCP component catalog",
+    "paid_capability": "Magic UI Pro",
+    "fallback": "magic-ui-oss"
+  },
+  {
+    "last_verified": "2026-09-06",
+    "id": "refero-mcp",
+    "name": "Refero MCP",
+    "canonical_url": "https://api.refero.design/mcp",
+    "source_type": "mcp_server",
+    "documentation_url": "https://refero.design/",
+    "license": "site-terms",
+    "category": [
+      "mcp",
+      "visual_research"
+    ],
+    "representation": "mcp",
+    "routing_tags": [
+      "refero-mcp",
+      "pro"
+    ],
+    "acquisition_method": "host_mcp_connect",
+    "runtime_method": "mcp_connection",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "human has Refero Pro and named Refero MCP",
+      "operator said Connect Refero after Pro"
+    ],
+    "avoid_conditions": [
+      "pretending the MCP is free",
+      "always-on Refero MCP"
+    ],
+    "skip_conditions": [
+      "no Pro token — use refero-public instead",
+      "backend-only or papers"
+    ],
+    "policy_verdict": "AUTH_REQUIRED / PRO",
+    "rationale": "Refero MCP requires Pro. Bearer token stays in the host. Do not invent credentials.",
+    "auth": "AUTH_REQUIRED",
+    "free_capability": "none on the MCP itself",
+    "paid_capability": "Pro MCP screen search",
+    "fallback": "refero-public"
+  },
+  {
+    "last_verified": "2026-09-06",
+    "id": "refero-public",
+    "name": "Refero public resources",
+    "canonical_url": "https://refero.design/",
+    "source_type": "web_reference",
+    "documentation_url": "https://refero.design/",
+    "license": "site-terms",
+    "category": [
+      "visual_research",
+      "reference"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "refero-public",
+      "design-md",
+      "public-styles"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "REFERENCE",
+    "trigger_conditions": [
+      "SaaS or product UI research without Pro",
+      "public Refero styles or DESIGN.md references"
+    ],
+    "avoid_conditions": [
+      "cloning a screenshot as the product",
+      "bulk scraping refero.design"
+    ],
+    "skip_conditions": [
+      "backend-only",
+      "operator HUD"
+    ],
+    "policy_verdict": "RESOURCE / FREE",
+    "rationale": "Public pages, styles, and design prompts. Not the Pro MCP.",
+    "auth": "NONE",
+    "free_capability": "public styles, DESIGN.md references, public resource pages",
+    "paid_capability": "Pro MCP (see refero-mcp)",
+    "fallback": "godly-design"
+  },
+  {
+    "last_verified": "2026-09-06",
+    "id": "tailkit-mcp",
+    "name": "Tailkit MCP",
+    "canonical_url": "https://tailkit.com",
+    "source_type": "mcp_server",
+    "documentation_url": "https://tailkit.com",
+    "license": "site-terms",
+    "category": [
+      "mcp",
+      "paid"
+    ],
+    "representation": "mcp",
+    "routing_tags": [
+      "tailkit-mcp",
+      "paid-mcp"
+    ],
+    "acquisition_method": "host_mcp_connect",
+    "runtime_method": "mcp_connection",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "human has a paid Tailkit license and named the MCP"
+    ],
+    "avoid_conditions": [
+      "labelling Tailkit MCP as free because public pages exist",
+      "inventing credentials"
+    ],
+    "skip_conditions": [
+      "no paid Tailkit license — use the tailkit public reference row",
+      "purchase not authorized this pass"
+    ],
+    "policy_verdict": "AUTH_REQUIRED / PAID_ACCESS",
+    "rationale": "MCP is paid. Free/public components live on the tailkit resource row.",
+    "auth": "AUTH_REQUIRED",
+    "free_capability": "none on the MCP",
+    "paid_capability": "licensed Tailkit MCP",
+    "fallback": "tailkit"
+  },
+  {
+    "last_verified": "2026-09-06",
+    "id": "lapa",
+    "name": "Lapa Ninja",
+    "canonical_url": "https://www.lapa.ninja/",
+    "source_type": "web_reference",
+    "documentation_url": "https://www.lapa.ninja/",
+    "license": "site-terms",
+    "category": [
+      "visual_research"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "lapa",
+      "landing-gallery",
+      "design-research"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "REFERENCE",
+    "trigger_conditions": [
+      "landing-page visual research",
+      "named Lapa Ninja"
+    ],
+    "avoid_conditions": [
+      "bulk scrape",
+      "fake MCP"
+    ],
+    "skip_conditions": [
+      "backend-only",
+      "the job already has an approved DESIGN.md"
+    ],
+    "policy_verdict": "RESEARCH / NO MCP",
+    "rationale": "Public gallery. Tell the conductor to find a relevant reference. Do not bulk scrape.",
+    "auth": "NONE",
+    "free_capability": "public landing-page gallery",
+    "paid_capability": "none claimed",
+    "fallback": "land-book"
+  },
+  {
+    "last_verified": "2026-09-06",
+    "id": "saasframe",
+    "name": "SaaSFrame",
+    "canonical_url": "https://www.saasframe.io/",
+    "source_type": "web_reference",
+    "documentation_url": "https://www.saasframe.io/",
+    "license": "site-terms",
+    "category": [
+      "visual_research",
+      "saas"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "saasframe",
+      "saas-gallery",
+      "design-research"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "REFERENCE",
+    "trigger_conditions": [
+      "SaaS product UI research",
+      "named SaaSFrame"
+    ],
+    "avoid_conditions": [
+      "bulk scrape",
+      "fake MCP"
+    ],
+    "skip_conditions": [
+      "the surface is not a SaaS product",
+      "backend-only"
+    ],
+    "policy_verdict": "RESEARCH / NO MCP",
+    "rationale": "Public SaaS screens for research. Do not claim MCP access.",
+    "auth": "NONE",
+    "free_capability": "public SaaS UI references",
+    "paid_capability": "paid SaaSFrame plans if any — do not buy this pass",
+    "fallback": "refero-public"
+  },
+  {
+    "last_verified": "2026-09-06",
+    "id": "three-js",
+    "name": "Three.js",
+    "canonical_url": "https://github.com/mrdoob/three.js",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/mrdoob/three.js.git",
+    "documentation_url": "https://threejs.org/docs/",
+    "license": "MIT",
+    "category": [
+      "3d",
+      "webgl"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "threejs",
+      "webgl",
+      "3d",
+      "canvas",
+      "shader"
+    ],
+    "acquisition_method": "npm",
+    "runtime_method": "project_scoped_install",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "3D website, WebGL, interactive 3D, spatial experience, shader, canvas, 3D interaction",
+      "portfolio with a 3D scene"
+    ],
+    "avoid_conditions": [
+      "global npm install",
+      "decorative 3D that a flat hero would replace"
+    ],
+    "skip_conditions": [
+      "pure 2D layout",
+      "the human refused a low-end fallback on EXPERIMENTAL"
+    ],
+    "policy_verdict": "PROJECT-SCOPED 3D CORE",
+    "rationale": "OSS. Install in the app repo, never globally. Pair with R3F/drei when the stack is React.",
+    "npm_package": "three",
+    "auth": "NONE",
+    "free_capability": "full OSS renderer",
+    "paid_capability": "none",
+    "fallback": "r3f"
+  },
+  {
+    "last_verified": "2026-09-06",
+    "id": "react-postprocessing",
+    "name": "react-postprocessing",
+    "canonical_url": "https://github.com/pmndrs/react-postprocessing",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/pmndrs/react-postprocessing.git",
+    "documentation_url": "https://github.com/pmndrs/react-postprocessing",
+    "license": "MIT",
+    "category": [
+      "3d",
+      "webgl",
+      "cinematic"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "postprocessing",
+      "3d",
+      "cinematic"
+    ],
+    "acquisition_method": "npm",
+    "runtime_method": "project_scoped_install",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "cinematic 3D look named on the card",
+      "bloom, SSAO, or similar post stacks"
+    ],
+    "avoid_conditions": [
+      "every 3D scene",
+      "global npm"
+    ],
+    "skip_conditions": [
+      "simple R3F scene without cinematic grade",
+      "performance budget forbids the extra pass"
+    ],
+    "policy_verdict": "3D + CINEMATIC ONLY",
+    "rationale": "Smallest sufficient stack: skip unless the card asks for cinematic grade.",
+    "npm_package": "@react-three/postprocessing",
+    "auth": "NONE",
+    "free_capability": "OSS postprocessing for R3F",
+    "paid_capability": "none",
+    "fallback": "drei"
+  },
+  {
+    "last_verified": "2026-09-06",
+    "id": "r3f-scroll-rig",
+    "name": "r3f-scroll-rig",
+    "canonical_url": "https://github.com/14islands/r3f-scroll-rig",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/14islands/r3f-scroll-rig.git",
+    "documentation_url": "https://github.com/14islands/r3f-scroll-rig",
+    "license": "MIT",
+    "category": [
+      "3d",
+      "scroll"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "scroll-rig",
+      "scroll-driven-3d",
+      "r3f"
+    ],
+    "acquisition_method": "npm",
+    "runtime_method": "project_scoped_install",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "scroll-driven 3D named on the card"
+    ],
+    "avoid_conditions": [
+      "every 3D portfolio",
+      "global npm"
+    ],
+    "skip_conditions": [
+      "no scroll-linked scene",
+      "Lenis + CSS already covers the motion"
+    ],
+    "policy_verdict": "SCROLL-DRIVEN 3D ONLY",
+    "rationale": "Do not install on a static 3D hero.",
+    "npm_package": "@14islands/r3f-scroll-rig",
+    "auth": "NONE",
+    "free_capability": "OSS scroll-synced R3F",
+    "paid_capability": "none",
+    "fallback": "r3f"
+  },
+  {
+    "last_verified": "2026-09-06",
+    "id": "awesome-chatgpt-prompts",
+    "name": "awesome-chatgpt-prompts",
+    "canonical_url": "https://github.com/f/awesome-chatgpt-prompts",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/f/awesome-chatgpt-prompts.git",
+    "documentation_url": "https://github.com/f/awesome-chatgpt-prompts",
+    "license": "CC0-1.0",
+    "category": [
+      "prompts",
+      "reference"
+    ],
+    "representation": "prompt_library",
+    "routing_tags": [
+      "prompts",
+      "ui-prompts",
+      "coding-prompts",
+      "agent-prompts"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "REFERENCE",
+    "trigger_conditions": [
+      "need a targeted public prompt from the UI, frontend, architecture, coding, agents, or design categories"
+    ],
+    "avoid_conditions": [
+      "dumping the whole list into context",
+      "always-on prompt pack"
+    ],
+    "skip_conditions": [
+      "the job already has an Orchestra protocol for this step",
+      "unrelated to those categories"
+    ],
+    "policy_verdict": "SEARCHABLE REFERENCE",
+    "rationale": "Do not dump every prompt into active context. Search one category, use one prompt.",
+    "auth": "NONE",
+    "free_capability": "public prompt catalog",
+    "paid_capability": "none",
+    "fallback": "awesome-prompts"
+  },
+  {
+    "last_verified": "2026-09-06",
+    "id": "awesome-prompts",
+    "name": "awesome-prompts",
+    "canonical_url": "https://github.com/ai-boost/awesome-prompts",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/ai-boost/awesome-prompts.git",
+    "documentation_url": "https://github.com/ai-boost/awesome-prompts",
+    "license": "see-upstream",
+    "category": [
+      "prompts",
+      "reference"
+    ],
+    "representation": "prompt_library",
+    "routing_tags": [
+      "prompts",
+      "design-prompts",
+      "architecture-prompts"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "REFERENCE",
+    "trigger_conditions": [
+      "second public prompt catalog when awesome-chatgpt-prompts has no fit"
+    ],
+    "avoid_conditions": [
+      "dumping the whole list into context"
+    ],
+    "skip_conditions": [
+      "already used one targeted prompt this turn",
+      "Orchestra protocol already covers the step"
+    ],
+    "policy_verdict": "SEARCHABLE REFERENCE",
+    "rationale": "Companion catalog. Targeted search only.",
+    "auth": "NONE",
+    "free_capability": "public prompt catalog",
+    "paid_capability": "none",
+    "fallback": "awesome-chatgpt-prompts"
+  },
+  {
+    "last_verified": "2026-09-06",
+    "id": "mermaid",
+    "name": "Mermaid",
+    "canonical_url": "https://github.com/mermaid-js/mermaid",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/mermaid-js/mermaid.git",
+    "documentation_url": "https://mermaid.js.org/",
+    "license": "MIT",
+    "category": [
+      "diagrams",
+      "docs"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "mermaid",
+      "architecture-diagram",
+      "flowchart"
+    ],
+    "acquisition_method": "npm",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "architecture diagram in README or docs",
+      "diagram-generator produced Mermaid source"
+    ],
+    "avoid_conditions": [
+      "invented architecture",
+      "diagrams as decoration with no repo grounding"
+    ],
+    "skip_conditions": [
+      "no structure in the repo to ground",
+      "the human asked for a raster screenshot only"
+    ],
+    "policy_verdict": "GROUNDED DIAGRAM SOURCE",
+    "rationale": "diagram-generator writes Mermaid; pretty-mermaid may render. Source of truth is the repo.",
+    "auth": "NONE",
+    "free_capability": "OSS diagram language",
+    "paid_capability": "none",
+    "fallback": "pretty-mermaid"
+  },
+  {
+    "last_verified": "2026-09-06",
+    "id": "devops-skills",
+    "name": "devops-skills (reference only)",
+    "canonical_url": "https://github.com/arjunprabhulal/devops-skills",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/arjunprabhulal/devops-skills.git",
+    "documentation_url": "https://github.com/arjunprabhulal/devops-skills",
+    "license": "see-upstream",
+    "category": [
+      "devops",
+      "quarantined"
+    ],
+    "representation": "quarantined_reference",
+    "routing_tags": [
+      "devops-reference",
+      "ci-cd",
+      "docker",
+      "observability"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REFERENCE",
+    "trigger_conditions": [
+      "human named a specific DevOps theme (CI/CD, Docker, deploy, observability, reliability) and existing Orchestra skills do not cover it"
+    ],
+    "avoid_conditions": [
+      "installing all 88 skills",
+      "npx skills add --all",
+      "second conductor"
+    ],
+    "skip_conditions": [
+      "ordinary coding turn",
+      "an Orchestra skill already covers the job (ship-safe, strix, semgrep-adapter)"
+    ],
+    "policy_verdict": "QUARANTINED REFERENCE — EXTRACT THEMES ONLY",
+    "rationale": "Do not vendor the dump. Use as a map: CI/CD, Docker, deployment, observability, security, reliability, infrastructure, performance.",
+    "auth": "NONE",
+    "free_capability": "public skill markdown as reference",
+    "paid_capability": "none",
+    "fallback": "ship-safe"
   }
 ]

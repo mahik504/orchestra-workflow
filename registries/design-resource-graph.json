@@ -14,7 +14,10 @@
       "siteinspire",
       "ux-planet",
       "archives-design",
-      "letterform-archive"
+      "letterform-archive",
+      "lapa",
+      "saasframe",
+      "refero-public"
     ],
     "art_reference": [
       "curationist",
@@ -56,7 +59,9 @@
     ],
     "saas_research": [
       "refero-design",
-      "awesome-design-md"
+      "awesome-design-md",
+      "saasframe",
+      "refero-public"
     ],
     "webgl_research": [
       "shaders-com",
@@ -91,11 +96,16 @@
       "cult-ui",
       "hyperui",
       "magic-ui-oss",
-      "motion-primitives"
+      "motion-primitives",
+      "aceternity-ui",
+      "tailkit",
+      "twenty-first-dev",
+      "magic-ui-mcp"
     ],
     "diagrams": [
       "diagram-generator",
-      "pretty-mermaid"
+      "pretty-mermaid",
+      "mermaid"
     ],
     "backend_optional": [
       "supabase",
@@ -138,7 +148,10 @@
       "drei",
       "shadergradient",
       "threeui",
-      "shaders-com"
+      "shaders-com",
+      "three-js",
+      "react-postprocessing",
+      "r3f-scroll-rig"
     ],
     "physics_engine": [
       "trig-js",
@@ -191,6 +204,13 @@
     ],
     "optional_harness": [
       "jcode"
+    ],
+    "prompt_references": [
+      "awesome-chatgpt-prompts",
+      "awesome-prompts"
+    ],
+    "devops_reference": [
+      "devops-skills"
     ]
   },
   "capabilities": {
@@ -311,7 +331,8 @@
         "3D is decorative and a flat hero would carry the same message",
         "The target is a low-power device or an audience on poor connections",
         "The brief is a portfolio but never mentions depth, scene, or motion — route to premium-website",
-        "Physics simulation is the point rather than presentation — route to physics-canvas"
+        "Physics simulation is the point rather than presentation — route to physics-canvas",
+        "Checkout or an orders console is the job rather than a spatial scene"
       ]
     },
     "operator-hud": {
@@ -417,6 +438,7 @@
       "trigger_conditions": [
         "Authenticated users perform recurring transactional work",
         "The brief names admin, tenants, roles, billing, or approvals",
+        "The brief names an orders console or admin area next to a shop",
         "Tables, forms, and workflow states are the core surface",
         "Accessibility and predictability outrank visual novelty"
       ],
@@ -774,7 +796,11 @@
         "screenshot-to-reference",
         "link-to-reference",
         "getlayers",
-        "firecrawl"
+        "firecrawl",
+        "tint",
+        "recolor",
+        "keep-the-structure",
+        "design-adaptation"
       ],
       "discovery": [
         "visual_research"
@@ -811,13 +837,74 @@
         "The human attached a screenshot or mock to recreate layout",
         "The human named GetLayers, Firecrawl, or SkillUI",
         "The goal is to extract tokens, type scale, or layout rules into a design note",
-        "A reference needs to become a documented system before any build"
+        "A reference needs to become a documented system before any build",
+        "A named reference, screenshot, or URL should keep structure while tokens change (tint)"
       ],
       "skip_conditions": [
         "No concrete URL was named — this is not a browsing route",
         "The intent is to copy branding, assets, copy, or source rather than principles",
-        "A direction already exists and only needs implementing",
-        "GetLayers is PURCHASE_PENDING — do not connect MCP until the operator buys and says update"
+        "A direction already exists and only needs implementing"
+      ]
+    },
+    "interaction-components": {
+      "name": "Interaction component search",
+      "description": "Search registered free component kits for one control. Inspect existing project components before generating another. Synthesize into the approved design system — not a collage.",
+      "primary_archetype": "interaction_design",
+      "trigger_tags": [
+        "interaction-components",
+        "magnetic",
+        "shimmer",
+        "gradient-button",
+        "ripple",
+        "particle-button",
+        "liquid-button",
+        "glass-button",
+        "command-button",
+        "hold-button",
+        "react-bits",
+        "kokonut",
+        "cult-ui",
+        "hyperui",
+        "magic-ui",
+        "aceternity",
+        "motion-primitives"
+      ],
+      "discovery": [
+        "interaction_research",
+        "interaction_components"
+      ],
+      "synthesis": [
+        "design_synthesis"
+      ],
+      "implementation": [
+        "interaction_components"
+      ],
+      "optional_extensions": [
+        "motion_optional"
+      ],
+      "qa": [
+        "playwright",
+        "impeccable"
+      ],
+      "anti_patterns": [
+        "Generating a new button without inspecting existing project components",
+        "Collage of every kit on one surface",
+        "One permanent skill per button library"
+      ],
+      "quality_bar": "PREMIUM",
+      "risk_rank": 5,
+      "platform": "web",
+      "trigger_conditions": [
+        "The unit of work is a control (button, card, drawer, input), not a whole product",
+        "The brief names a kit (shadcn, React Bits, Magic UI, Aceternity, Kokonut, Cult, HyperUI, Tailkit free, 21st free, Motion Primitives)",
+        "The brief names a control kind: primary, secondary, destructive, loading, success, disabled, icon, magnetic, shimmer, gradient, ripple, particle, liquid, glass, command, hold, stateful",
+        "Existing project components must be inspected before generating another"
+      ],
+      "skip_conditions": [
+        "The job is a full page, product, or app — route to premium-website, saas-dashboard, mobile-app, or 3d-portfolio first",
+        "No product surface exists yet to attach the control to",
+        "3D/WebGL is the point — route to 3d-portfolio",
+        "The platform is native mobile — route to mobile-app"
       ]
     }
   }

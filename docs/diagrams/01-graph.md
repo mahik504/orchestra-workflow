@@ -1,6 +1,6 @@
 # Graph
 
-Capability routes live in `registries/design-resource-graph.json`. Twelve capabilities. Every row has a trigger **and** a skip.
+Capability routes live in `registries/design-resource-graph.json`. Thirteen capabilities. Every row has a trigger **and** a skip.
 
 ```mermaid
 flowchart LR

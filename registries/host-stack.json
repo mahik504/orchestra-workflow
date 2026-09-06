@@ -80,10 +80,10 @@
         { "id": "getlayers", "state": "PURCHASE_PENDING", "note": "Full Stack lifetime purchase pending. Do not connect MCP until the operator buys and says update." },
         { "id": "firecrawl", "state": "OPTIONAL", "note": "Public URL to markdown. Not LinkedIn/IG scrape. Key in host." },
         { "id": "serena", "state": "OPTIONAL", "note": "Repo intelligence on a named large codebase. Never always-on." },
-        { "id": "refero", "state": "AUTH_REQUIRED", "note": "https://api.refero.design/mcp Bearer token in host. Not always-on." },
-        { "id": "21st-dev", "state": "OPTIONAL", "note": "Free browse/limited copies. Login in host. Never always-on MCP." },
-        { "id": "magic-ui", "state": "OPTIONAL", "note": "OSS CLI/MCP when named. Do not buy Pro this pass." },
-        { "id": "tailkit", "state": "OPTIONAL", "note": "Free/public only until the operator Connects a paid MCP." },
+        { "id": "refero", "state": "AUTH_REQUIRED", "note": "MCP is Pro. Public Refero pages are free RESOURCE. Bearer token in host. Not always-on." },
+        { "id": "21st-dev", "state": "OPTIONAL", "note": "OPTIONAL_FREE_MCP. Catalog search free. Installs capped at 2/day. Login in host. Never always-on. Do not buy Builder." },
+        { "id": "magic-ui", "state": "OPTIONAL", "note": "FREE_MCP: npx @magicuidesign/mcp@latest or npx @magicuidesign/cli@latest install cursor. Do not claim Pro." },
+        { "id": "tailkit", "state": "AUTH_REQUIRED", "note": "MCP is PAID/AUTH_REQUIRED. Public/free Tailkit pages stay RESOURCE/REFERENCE." },
         { "id": "agent-browser", "state": "OPTIONAL", "note": "Foreign-site browser ops. Playwright stays CORE for our app. Never --tools all." }
       ],
       "antigravity": [
@@ -97,8 +97,10 @@
         { "id": "getlayers", "state": "PURCHASE_PENDING", "note": "Do not Connect until purchase." },
         { "id": "firecrawl", "state": "OPTIONAL", "note": "Public scrape to markdown. Auth in MCP Store." },
         { "id": "serena", "state": "OPTIONAL", "note": "Repo intelligence if Connect. Never Global always-on." },
-        { "id": "refero", "state": "AUTH_REQUIRED", "note": "Connect in MCP Store with Bearer token. Not Global always-on." },
-        { "id": "21st-dev", "state": "OPTIONAL", "note": "If Antigravity MCP Store lists it. Do not invent support." },
+        { "id": "refero", "state": "AUTH_REQUIRED", "note": "MCP is Pro. Public pages are free. Connect in MCP Store with Bearer token. Not Global always-on." },
+        { "id": "21st-dev", "state": "OPTIONAL", "note": "OPTIONAL_FREE_MCP if the MCP Store lists it. Do not invent support. 2 free installs/day." },
+        { "id": "magic-ui", "state": "OPTIONAL", "note": "FREE_MCP stdio npx -y @magicuidesign/mcp@latest when named. Do not claim Pro." },
+        { "id": "tailkit", "state": "AUTH_REQUIRED", "note": "MCP paid. Public Tailkit pages are RESOURCE only." },
         { "id": "agent-browser", "state": "OPTIONAL", "note": "Foreign sites only. Playwright for our app." }
       ],
       "claude": [
@@ -106,12 +108,15 @@
         { "id": "shadcn", "state": "OPTIONAL", "note": "Same rule as Cursor: never on an operator HUD." },
         { "id": "codebase-memory-mcp", "state": "OPTIONAL", "note": "Large app repos. Never auto-install. Not a second Brain." },
         { "id": "serena", "state": "OPTIONAL", "note": "Repo intelligence. Never auto-install." },
-        { "id": "refero", "state": "AUTH_REQUIRED", "note": "claude mcp add --transport http refero https://api.refero.design/mcp — token in host env." },
+        { "id": "refero", "state": "AUTH_REQUIRED", "note": "MCP is Pro. claude mcp add --transport http refero https://api.refero.design/mcp — token in host env." },
+        { "id": "21st-dev", "state": "OPTIONAL", "note": "OPTIONAL_FREE_MCP if you add the official CLI/MCP locally. 2 free installs/day. Do not invent." },
+        { "id": "magic-ui", "state": "OPTIONAL", "note": "FREE_MCP: npx @magicuidesign/cli@latest install claude, or stdio @magicuidesign/mcp. Do not claim Pro." },
+        { "id": "tailkit", "state": "AUTH_REQUIRED", "note": "MCP paid. Public Tailkit pages are RESOURCE only." },
         { "id": "getlayers", "state": "PURCHASE_PENDING", "note": "Do not add until purchase." },
         { "id": "agent-browser", "state": "OPTIONAL", "note": "Foreign-site browser. Not --tools all." }
       ],
       "jcode": [
-        { "id": "omniroute", "state": "HEALTHY", "note": "OpenAI-compatible default_provider. Not an MCP. Skills copy is ~/.jcode/skills." }
+        { "id": "omniroute", "state": "OPTIONAL", "note": "OpenAI-compatible default_provider. Not an MCP. Skills copy is ~/.jcode/skills. Host-local; clones use their own endpoint. Not claimed HEALTHY for every machine." }
       ]
     }
   },

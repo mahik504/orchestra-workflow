@@ -5,21 +5,27 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Release](https://img.shields.io/github/v/release/mahik504/orchestra-workflow?include_prereleases&sort=semver)](https://github.com/mahik504/orchestra-workflow/releases)
 
-A control plane for agentic development. **3.3 evolves 3.2 on the same OS.** Richer catalog, four-host sync, two-stage Design Lab. Not a second conductor. Not ECC. Not “load every library every job.”
+A control plane for agentic development. **3.3 evolves 3.2 on the same OS.** Richer catalog, four-host sync, two-stage Design Lab, free resource graph. Not a second conductor. Not ECC. Not “load every library every job.”
 
-The contract stays **open**: ingest-on-update, named override, `skip orchestra`. Available ≠ loaded.
+The contract stays **open**: ingest-on-update, named override, `skip orchestra`. Available ≠ loaded. Registered ≠ active. Discovered ≠ verified.
 
 Orchestra is a **contract** (markdown your agent reads) plus an **engine** (a Go binary that enforces the parts a contract cannot). The contract works in any agent that can read markdown. The engine is optional.
 
 ```
 ORCHESTRA = CONTROL PLANE
-SKILLS / MCPs / PLUGINS = CAPABILITIES
+SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES
 AGENTS  = EXECUTORS
 BRAIN   = MEMORY
 REGISTRY = RESOURCE KNOWLEDGE
 ```
 
-This repo is the **method**. It is not anyone's second brain. You clone it and fill *your* workspace with *your* projects. Inventory: [`docs/RESOURCE_INVENTORY.md`](docs/RESOURCE_INVENTORY.md). Extra diagrams: [`docs/diagrams/`](docs/diagrams/).
+This repo is the **method**. It is not anyone's second brain. You clone it and fill *your* workspace with *your* projects.
+
+- Inventory: [`docs/RESOURCE_INVENTORY.md`](docs/RESOURCE_INVENTORY.md)
+- Health (no fake HEALTHY): [`docs/RESOURCE_HEALTH.md`](docs/RESOURCE_HEALTH.md)
+- How sources combine: [`docs/DESIGN_RESOURCE_ROUTING.md`](docs/DESIGN_RESOURCE_ROUTING.md)
+- Human auth only: [`docs/manual-setup/`](docs/manual-setup/)
+- Diagrams: [`docs/diagrams/`](docs/diagrams/) (`01-control-plane.md` … `08-resource-combination.md`)
 
 ---
 
@@ -220,7 +226,7 @@ Verification is ledger + Playwright + SOS.
 
 ## Routing
 
-`registries/design-resource-graph.json` holds 12 capability rows. Every row carries **both** a trigger and a skip.
+`registries/design-resource-graph.json` holds **13** capability rows. Every row carries **both** a trigger and a skip.
 
 | Capability | Archetype | Bar | Risk |
 | --- | --- | --- | --- |
@@ -236,8 +242,38 @@ Verification is ledger + Playwright + SOS.
 | `mobile-app` | mobile_experience | PREMIUM | 5 |
 | `security-audit` | security_hardening | STANDARD | 1 |
 | `reverse-engineering` | token_extraction | STANDARD | 2 |
+| `interaction-components` | interaction_design | PREMIUM | 5 |
+
+`interaction-components` searches registered free kits for **one** control. Inspect existing project components first. Not a skill per button library.
 
 If the graph has no skill for the job: research with Scrapling or the web, propose **one** named capability, **wait for update**.
+
+### Free resource ecosystem
+
+Use the free portion now. Do not claim Pro MCP as free.
+
+- **Components:** shadcn (foundation, not identity), React Bits OSS, Magic UI OSS + free MCP, Aceternity public categories, Kokonut, Motion Primitives, Cult UI, HyperUI, Tailkit public pages, 21st catalog (2 installs/day after login)
+- **Research:** Godly, Land-book, Lapa Ninja, SaaSFrame, Refero public pages — no fake MCP, no bulk scrape
+- **Prompts:** awesome-chatgpt-prompts / awesome-prompts as searchable references, not dumped into context
+- **3D:** Three.js, R3F, drei, react-postprocessing, r3f-scroll-rig — project-scoped
+- **Motion:** one engine. GSAP for timelines. Do not stack every library
+- **Backend:** Supabase + Postgres skills when the project uses them
+- **DevOps:** `devops-skills` is a quarantined map of themes. Do not install 88
+- **Security admission:** `skill-security-check` on new external skills, not every turn
+- **Diagrams:** diagram-generator → Mermaid → Pretty-Mermaid. Grounded in the repo
+- **GetLayers:** `PURCHASE_PENDING`. No MCP, no scrape, no fake tools
+
+Refero MCP and Tailkit MCP stay **AUTH_REQUIRED**. Magic UI Pro, 21st Builder, Aceternity All-Access are unpaid this pass.
+
+### MCP honesty
+
+States: `HEALTHY` / `OPTIONAL` / `AUTH_REQUIRED` / `BROKEN` / `DISABLED` / `PURCHASE_PENDING`.
+
+Configured is not HEALTHY. See [`docs/RESOURCE_HEALTH.md`](docs/RESOURCE_HEALTH.md). Example JSON: `mcp_config.example.json`. Live keys stay in the host.
+
+### Brain separation
+
+This repo never ships product briefs, career notes, Preferences, or live MCP secrets. `ORCHESTRA_HOME` is your private workspace.
 
 ---
 
@@ -271,7 +307,7 @@ chmod +x kit/bootstrap.sh kit/init-workspace.sh
 
 Bootstrap asks which hosts to wire (Cursor, Antigravity, Claude Code, Codex/Hermes/OpenCode, jcode), creates an empty private workspace, copies the allowlisted skills, writes adapter files, and prints the plugin checklist. Paste your own keys in the host MCP UI. Restart. Talk.
 
-The Go binary is optional. Details: [docs/getting-started.md](docs/getting-started.md).
+The Go binary is optional. Details: [docs/getting-started.md](docs/getting-started.md). Host auth clicks: [docs/manual-setup/](docs/manual-setup/). Rollback: pin `ORCHESTRA_CONTRACT` or check out `v3.2.0`.
 
 | Variable | Effect |
 | --- | --- |
@@ -289,6 +325,8 @@ There is **no A/B study** here. Anyone publishing “30% faster” or “zero er
 - **Visual QA needs a running app.**
 - **Resource memory starts empty.**
 - **jcode is an optional executor.** Evidence (stdout) required.
+- **MCP servers you have not signed in to are AUTH_REQUIRED, not HEALTHY.**
+- **GetLayers is purchase-pending.** It is not connected.
 
 ---
 
@@ -313,7 +351,7 @@ registries/          resources.json, graph, host-stack
 runtime/             Go engine
 skills/              curated global skills
 kit/                 host setup, sync, rollback
-docs/                getting started, inventory, diagrams, manual-setup
+docs/                getting started, inventory, health, routing, diagrams, manual-setup
 templates/           packets and job packs
 workspace-template/  empty workspace shape
 ```
