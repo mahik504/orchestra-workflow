@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/user/orchestra-v3/internal/resources"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/resources"
 )
 
 func writeProofJSON(dir, name string, v any) error {

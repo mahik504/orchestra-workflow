@@ -12,8 +12,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/user/orchestra-v3/internal/resources"
-	"github.com/user/orchestra-v3/internal/runner"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/resources"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/runner"
 )
 
 // Helper to create a temporary test project workspace

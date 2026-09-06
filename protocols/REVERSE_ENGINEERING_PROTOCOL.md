@@ -14,7 +14,7 @@ Never `reference → paste their CSS/assets → ship a clone`.
 2. **Public page → markdown:** Firecrawl MCP ([firecrawl/firecrawl](https://github.com/firecrawl/firecrawl)) when the human named scrape / link-to-reference. Key stays in the host. Not LinkedIn, Instagram, or LeetCode.
 3. **DOM snippets:** Scrapling CLI when Firecrawl is not connected.
 4. **Screenshot → reference:** [abi/screenshot-to-code](https://github.com/abi/screenshot-to-code) when a screenshot or mock is attached. Use it to recover layout/type, then write DESIGN.md. Do not ship their pixels as the product.
-5. **GetLayers Ultimate:** Connect `https://mcp.getlayers.ai/mcp`. Pull **one** section or 3D/video background the human named. Tint to the approved stack. Not always-on. Not an operator HUD.
+5. **GetLayers:** `PURCHASE_PENDING` until the operator buys Full Stack lifetime and says **update**. Then Connect `https://mcp.getlayers.ai/mcp`. Pull **one** section or 3D/video background the human named. Tint to the approved stack. Not always-on. Not an operator HUD. Do not scrape the paid library.
 6. Stitch extract skills if the source is **our** code.
 7. Playwright screenshots of **our** implementation vs reference (layout/type, not pixel-perfect theft).
 

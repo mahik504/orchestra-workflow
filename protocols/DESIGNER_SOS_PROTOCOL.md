@@ -30,6 +30,8 @@ On showable UI, after Playwright stills exist, run these passes in order. One fi
 5. **Space** — density vs the scale in `DESIGN.md`; rasterize heavy blurs if they cost frames.
 6. **Cut** — what can leave without losing the story.
 
+Before Cut, check **interaction states**. An inert page (`:hover` with no `:active`, no `:focus-visible`, no empty/error/disabled) is a tell even when the hero screenshot looks designed. Adopt-thin from Anti-Slop AJ; do not install that repo as a 31st skill.
+
 A 20-minute rescue sprint is allowed when a ship is blocked. Same six passes, tighter timer.
 
 ## Vault / Live / Anatomy

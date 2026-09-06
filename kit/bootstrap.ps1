@@ -1,4 +1,4 @@
-# Wire Orchestra 3.2.0 onto chosen hosts. No secrets. No skills add --all.
+# Wire Orchestra 3.3.0 onto chosen hosts. No secrets. No skills add --all.
 #
 #   powershell -NoProfile -ExecutionPolicy Bypass -File kit/bootstrap.ps1
 #   powershell -NoProfile -ExecutionPolicy Bypass -File kit/bootstrap.ps1 -Hosts cursor,antigravity -Target D:\work\my-orchestra
@@ -18,13 +18,14 @@ function Resolve-Hosts([string]$raw) {
     if ($raw) {
         return @($raw.Split(",") | ForEach-Object { $_.Trim().ToLower() } | Where-Object { $_ -ne "" })
     }
-    Write-Host "Which hosts should use Orchestra 3.2.0?"
+    Write-Host "Which hosts should use Orchestra 3.3.0?"
     Write-Host "  [1] Cursor"
     Write-Host "  [2] Antigravity"
     Write-Host "  [3] Claude Code"
     Write-Host "  [4] Codex / Hermes / OpenCode (AGENTS.md only)"
+    Write-Host "  [5] jcode"
     $ans = Read-Host "Enter numbers (e.g. 1 2)"
-    $map = @{ "1" = "cursor"; "2" = "antigravity"; "3" = "claude"; "4" = "agents" }
+    $map = @{ "1" = "cursor"; "2" = "antigravity"; "3" = "claude"; "4" = "agents"; "5" = "jcode" }
     $out = @()
     foreach ($tok in ($ans -split "[\s,]+")) {
         if ($map.ContainsKey($tok)) { $out += $map[$tok] }
@@ -57,6 +58,7 @@ $skillDest = @{
     antigravity = Join-Path $User ".gemini\config\skills"
     claude      = Join-Path $User ".claude\skills"
     agents      = Join-Path $User ".agents\skills"
+    jcode       = Join-Path $User ".jcode\skills"
 }
 
 foreach ($h in $chosen) {
@@ -120,7 +122,7 @@ if ($chosen -contains "antigravity") {
 }
 
 Write-Host ""
-Write-Host "Restart the IDE. Next chat in this workspace uses Orchestra 3.2.0 (AGENTS.md)."
+Write-Host "Restart the IDE. Next chat in this workspace uses Orchestra 3.3.0 (AGENTS.md)."
 Write-Host "Optional Cursor User Rule for chats outside this folder: GLOBAL until I say skip orchestra."
 Write-Host "We cannot log into Google, Stripe, or Stitch for you."
 Write-Host "Private workspace: $Target"

@@ -143,7 +143,8 @@
           "CORE",
           "REFERENCE",
           "ARCHIVED",
-          "LEFTOVER"
+          "LEFTOVER",
+          "PURCHASE_PENDING"
         ],
         "description": "Curation status per Orchestra policy"
       },
@@ -160,6 +161,13 @@
           "type": "string"
         },
         "description": "Scenarios where resource invocation is forbidden"
+      },
+      "skip_conditions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Plain-language reasons to decline this resource on a job"
       },
       "policy_verdict": {
         "type": "string",

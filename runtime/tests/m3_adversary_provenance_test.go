@@ -17,10 +17,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/user/orchestra-v3/internal/acquisition"
-	adapters "github.com/user/orchestra-v3/internal/adapters/acquisition"
-	"github.com/user/orchestra-v3/internal/resources"
-	"github.com/user/orchestra-v3/internal/runner"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/acquisition"
+	adapters "github.com/mahik504/orchestra-workflow/runtime/internal/adapters/acquisition"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/resources"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/runner"
 )
 
 // =========================================================================

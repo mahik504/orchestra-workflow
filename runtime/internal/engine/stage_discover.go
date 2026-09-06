@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/user/orchestra-v3/internal/resources"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/resources"
 )
 
 type DiscoverStage struct{}

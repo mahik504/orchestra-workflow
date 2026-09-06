@@ -10,12 +10,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/user/orchestra-v3/internal/acquisition"
-	acqAdapters "github.com/user/orchestra-v3/internal/adapters/acquisition"
-	"github.com/user/orchestra-v3/internal/handoff"
-	"github.com/user/orchestra-v3/internal/resources"
-	"github.com/user/orchestra-v3/internal/runner"
-	"github.com/user/orchestra-v3/internal/verify"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/acquisition"
+	acqAdapters "github.com/mahik504/orchestra-workflow/runtime/internal/adapters/acquisition"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/handoff"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/resources"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/runner"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/verify"
 )
 
 // ImplementStage executes Stage 6 of the design engine: acquiring resources and recording provenance.

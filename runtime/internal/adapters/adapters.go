@@ -5,7 +5,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/user/orchestra-v3/internal/handoff"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/handoff"
 )
 
 // AgentAdapter defines the legacy interface for portable agent execution
@@ -85,6 +85,26 @@ func (a *AntigravityAdapter) GetActiveSkillsPath(userHome string) string {
 func (a *AntigravityAdapter) GenerateConfig(destDir string) error {
 	mpPath := filepath.Join(destDir, "kit", "antigravity", "MASTER-PROMPT.md")
 	if _, err := os.Stat(mpPath); err == nil {
+		return nil
+	}
+	return nil
+}
+
+// JcodeAdapter copies skills into ~/.jcode/skills. Same contract as other hosts.
+type JcodeAdapter struct{}
+
+func (a *JcodeAdapter) Name() string                    { return "jcode" }
+func (a *JcodeAdapter) SupportedEnvironments() []string { return []string{"cli", "terminal"} }
+func (a *JcodeAdapter) ExecutePlan(state *handoff.HandoffState) error {
+	fmt.Println("[Adapter: jcode] Using AGENTS.md against an OpenAI-compatible provider...")
+	return nil
+}
+func (a *JcodeAdapter) GetActiveSkillsPath(userHome string) string {
+	return filepath.Join(userHome, ".jcode", "skills")
+}
+func (a *JcodeAdapter) GenerateConfig(destDir string) error {
+	agentsPath := filepath.Join(destDir, "AGENTS.md")
+	if _, err := os.Stat(agentsPath); err == nil {
 		return nil
 	}
 	return nil

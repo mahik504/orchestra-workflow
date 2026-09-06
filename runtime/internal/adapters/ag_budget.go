@@ -124,9 +124,8 @@ func CheckAntigravityBudget(userHome string) (*AGBudgetReport, error) {
 
 	rep.CustomizationWarn = len(rep.BannedEnabled) > 0
 	// Headroom is gone if banned plugins are Global AND the skill dir is
-	// already at-or-over the canonical 30. That combination is what left
-	// 18% budget last time.
-	rep.HeadroomGone = len(rep.BannedEnabled) > 0 && rep.GlobalSkillCount >= 30
+	// already at-or-over the canonical allowlist.
+	rep.HeadroomGone = len(rep.BannedEnabled) > 0 && rep.GlobalSkillCount >= len(CanonicalActiveSkills)
 
 	mcpPath := filepath.Join(cfgDir, "mcp_config.json")
 	if raw, err := os.ReadFile(mcpPath); err == nil {

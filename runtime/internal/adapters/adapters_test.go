@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/user/orchestra-v3/internal/handoff"
-	"github.com/user/orchestra-v3/internal/resources"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/handoff"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/resources"
 )
 
 func TestHostAdapters_Contract(t *testing.T) {
@@ -15,12 +15,14 @@ func TestHostAdapters_Contract(t *testing.T) {
 		&CursorAdapter{},
 		&ClaudeAdapter{},
 		&AntigravityAdapter{},
+		&JcodeAdapter{},
 	}
 
 	expectedNames := map[string]bool{
 		"cursor":      true,
 		"claude":      true,
 		"antigravity": true,
+		"jcode":       true,
 	}
 
 	tmpDir := t.TempDir()
@@ -80,11 +82,10 @@ func TestHostSyncEngine_VerifyParity_IsolatedTemp(t *testing.T) {
 		t.Fatalf("VerifyParity failed: %v", err)
 	}
 
-	if report.CanonicalSkillCount != 30 {
-		t.Errorf("Expected 30 canonical skills, got %d", report.CanonicalSkillCount)
+	if report.CanonicalSkillCount != len(CanonicalActiveSkills) {
+		t.Errorf("Expected %d canonical skills, got %d", len(CanonicalActiveSkills), report.CanonicalSkillCount)
 	}
 
-	// 27 missing from the 30
 	if report.IsParityComplete {
 		t.Errorf("Expected parity to be false because only 3 skills are installed")
 	}
@@ -165,8 +166,8 @@ func TestLiveMachineHostParity(t *testing.T) {
 		t.Fatalf("Live VerifyParity failed: %v", err)
 	}
 
-	// If Cursor, Claude, and Gemini skills exist on this machine, verify 30-skill parity
-	if report.HostSkillCounts[HostCursor] == 30 && report.HostSkillCounts[HostClaudeCode] == 30 && report.HostSkillCounts[HostAntigravity] == 30 {
+	want := len(CanonicalActiveSkills)
+	if report.HostSkillCounts[HostCursor] == want && report.HostSkillCounts[HostClaudeCode] == want && report.HostSkillCounts[HostAntigravity] == want {
 		if !report.ByteIdentical {
 			t.Errorf("Expected 100%% byte-identical skills across live hosts, mismatches: %v", report.MismatchDetails)
 		}

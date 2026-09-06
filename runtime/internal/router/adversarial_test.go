@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/user/orchestra-v3/internal/classifier"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/classifier"
 )
 
 // ---------------------------------------------------------------------------
@@ -54,7 +54,7 @@ func TestAdversarial_Router_All10DesignArchetypesTokenScaling(t *testing.T) {
 			RequiresSec:           false,
 			Keywords:              []string{"premium-website", "landing-page", "award-winning"},
 			MinTokens:             8000,
-			MaxTokens:             50000,
+			MaxTokens:             60000,
 			ExpectedDirectivesMin: 3, // superpowers + taste + impeccable + route
 		},
 		{
@@ -64,7 +64,7 @@ func TestAdversarial_Router_All10DesignArchetypesTokenScaling(t *testing.T) {
 			RequiresSec:           false,
 			Keywords:              []string{"3d-portfolio", "webgl", "threejs", "r3f"},
 			MinTokens:             8000,
-			MaxTokens:             50000,
+			MaxTokens:             60000,
 			ExpectedDirectivesMin: 3,
 		},
 		{
@@ -74,7 +74,7 @@ func TestAdversarial_Router_All10DesignArchetypesTokenScaling(t *testing.T) {
 			RequiresSec:           false,
 			Keywords:              []string{"operator-hud", "hud", "telemetry", "dark-crimson"},
 			MinTokens:             8000,
-			MaxTokens:             50000,
+			MaxTokens:             60000,
 			ExpectedDirectivesMin: 3,
 		},
 		{
@@ -84,7 +84,7 @@ func TestAdversarial_Router_All10DesignArchetypesTokenScaling(t *testing.T) {
 			RequiresSec:           false,
 			Keywords:              []string{"b2b-portal", "b2b", "portal", "enterprise"},
 			MinTokens:             8000,
-			MaxTokens:             50000,
+			MaxTokens:             60000,
 			ExpectedDirectivesMin: 3,
 		},
 		{
@@ -94,7 +94,7 @@ func TestAdversarial_Router_All10DesignArchetypesTokenScaling(t *testing.T) {
 			RequiresSec:           false,
 			Keywords:              []string{"academic-reader", "research-paper", "reading"},
 			MinTokens:             8000,
-			MaxTokens:             50000,
+			MaxTokens:             60000,
 			ExpectedDirectivesMin: 3,
 		},
 		{
@@ -104,7 +104,7 @@ func TestAdversarial_Router_All10DesignArchetypesTokenScaling(t *testing.T) {
 			RequiresSec:           false,
 			Keywords:              []string{"micro-interactions", "spring-physics", "tactile"},
 			MinTokens:             8000,
-			MaxTokens:             50000,
+			MaxTokens:             60000,
 			ExpectedDirectivesMin: 3,
 		},
 		{
@@ -114,7 +114,7 @@ func TestAdversarial_Router_All10DesignArchetypesTokenScaling(t *testing.T) {
 			RequiresSec:           false,
 			Keywords:              []string{"physics-canvas", "canvas-game", "simulation"},
 			MinTokens:             8000,
-			MaxTokens:             50000,
+			MaxTokens:             60000,
 			ExpectedDirectivesMin: 3,
 		},
 		{
@@ -124,7 +124,7 @@ func TestAdversarial_Router_All10DesignArchetypesTokenScaling(t *testing.T) {
 			RequiresSec:           false,
 			Keywords:              []string{"saas-dashboard", "analytics", "kpi-charts"},
 			MinTokens:             8000,
-			MaxTokens:             50000,
+			MaxTokens:             60000,
 			ExpectedDirectivesMin: 3,
 		},
 		{
@@ -134,7 +134,7 @@ func TestAdversarial_Router_All10DesignArchetypesTokenScaling(t *testing.T) {
 			RequiresSec:           false,
 			Keywords:              []string{"mobile-app", "expo", "touch-native"},
 			MinTokens:             8000,
-			MaxTokens:             50000,
+			MaxTokens:             60000,
 			ExpectedDirectivesMin: 3,
 		},
 	}

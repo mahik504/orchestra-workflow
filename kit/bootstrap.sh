@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Wire Orchestra 3.2.0 onto chosen hosts. No secrets. No skills add --all.
+# Wire Orchestra 3.3.0 onto chosen hosts. No secrets. No skills add --all.
 #
 #   ./kit/bootstrap.sh
 #   ./kit/bootstrap.sh --hosts cursor,antigravity --target /path/to/workspace
@@ -26,11 +26,12 @@ pick_hosts() {
     echo "$HOSTS" | tr ',' ' '
     return
   fi
-  echo "Which hosts should use Orchestra 3.2.0?" >&2
+  echo "Which hosts should use Orchestra 3.3.0?" >&2
   echo "  [1] Cursor" >&2
   echo "  [2] Antigravity" >&2
   echo "  [3] Claude Code" >&2
   echo "  [4] Codex / Hermes / OpenCode (AGENTS.md only)" >&2
+  echo "  [5] jcode" >&2
   read -r -p "Enter numbers (e.g. 1 2) " ans
   out=()
   for tok in $ans; do
@@ -39,6 +40,7 @@ pick_hosts() {
       2) out+=(antigravity) ;;
       3) out+=(claude) ;;
       4) out+=(agents) ;;
+      5) out+=(jcode) ;;
     esac
   done
   if [[ ${#out[@]} -eq 0 ]]; then
@@ -66,6 +68,7 @@ skill_dest_for() {
     antigravity) echo "$HOME/.gemini/config/skills" ;;
     claude) echo "$HOME/.claude/skills" ;;
     agents) echo "$HOME/.agents/skills" ;;
+    jcode) echo "$HOME/.jcode/skills" ;;
   esac
 }
 
@@ -137,7 +140,7 @@ node -e "
 " "$STACK" "${CHOSEN[@]}"
 
 echo
-echo "Restart the IDE. Next chat in this workspace uses Orchestra 3.2.0 (AGENTS.md)."
+echo "Restart the IDE. Next chat in this workspace uses Orchestra 3.3.0 (AGENTS.md)."
 echo "Optional Cursor User Rule for chats outside this folder: GLOBAL until I say skip orchestra."
 echo "We cannot log into Google, Stripe, or Stitch for you."
 echo "Private workspace: $TARGET"

@@ -16,8 +16,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/user/orchestra-v3/internal/research"
-	"github.com/user/orchestra-v3/internal/resources"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/research"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/resources"
 )
 
 // WebAdapter implements AcquisitionAdapter for web references and HTTP documentation

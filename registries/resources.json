@@ -1319,34 +1319,43 @@
   {
     "id": "refero-design",
     "name": "Refero Design Search",
-    "canonical_url": "https://styles.refero.design/",
-    "source_type": "web_reference",
-    "documentation_url": "https://styles.refero.design/",
+    "canonical_url": "https://github.com/referodesign/refero_skill",
+    "source_type": "agent_skill",
+    "documentation_url": "https://github.com/referodesign/refero_skill",
     "category": [
       "visual_research",
       "product_screens",
       "saas_flows"
     ],
-    "representation": "research_source",
+    "representation": "skill",
     "routing_tags": [
       "product-ui",
       "saas-flows",
       "screen-patterns",
       "visual-research"
     ],
-    "acquisition_method": "web_fetch",
-    "runtime_method": "on_demand_research",
-    "status": "ACTIVE",
+    "acquisition_method": "manual",
+    "runtime_method": "global_active_skill",
+    "status": "CURATED_OPTIONAL",
     "trigger_conditions": [
-      "SaaS dashboard design research",
-      "real-world flow analysis"
+      "SaaS dashboard or product UX research",
+      "onboarding billing account flows",
+      "human named Refero",
+      "mobile or iOS pattern research"
     ],
     "avoid_conditions": [
-      "pure backend tasks"
+      "pure backend tasks",
+      "cloning a Refero screenshot as the product",
+      "always-on MCP"
     ],
-    "policy_verdict": "VISUAL RESEARCH",
-    "rationale": "Refero design search engine for real-world product screens and flows.",
-    "license": "site-terms"
+    "policy_verdict": "AUTH REQUIRED MCP; skill is global wrapper",
+    "rationale": "Global research skill. MCP at https://api.refero.design/mcp stays AUTH_REQUIRED until Connect. Extract principles; never copy branding.",
+    "license": "site-terms",
+    "skip_conditions": [
+      "MCP is AUTH_REQUIRED and the job can use named public references instead",
+      "backend-only, papers, operator HUD"
+    ],
+    "last_verified": "2026-09-06"
   },
   {
     "id": "openhuman-portal",
@@ -3488,24 +3497,28 @@
     ],
     "acquisition_method": "host_mcp_connect",
     "runtime_method": "mcp_connection",
-    "status": "CURATED_OPTIONAL",
+    "status": "PURCHASE_PENDING",
     "trigger_conditions": [
-      "human named GetLayers",
-      "GetLayers Ultimate",
-      "cinematic video background or GetLayers section",
-      "premium visual section",
-      "3d shader background"
+      "human named GetLayers after purchase",
+      "operator said update after buying Full Stack lifetime",
+      "premium visual section needing a GetLayers layer"
     ],
     "avoid_conditions": [
       "always-on MCP on every chat",
       "shipping an unmodified GetLayers demo as the product",
       "operator HUD",
-      "mirror the GetLayers library"
+      "mirror the GetLayers library",
+      "scraping or connecting MCP before purchase"
     ],
-    "policy_verdict": "CURATED OPTIONAL",
+    "policy_verdict": "BLOCKED UNTIL PURCHASE",
     "problem_solved": "One generative section or 3D/shader scene, then tint",
     "last_verified": "2026-09-06",
-    "rationale": "Connect MCP on PREMIUM/EXPERIMENTAL 3D/shader/section jobs. One section or scene, then tint. Never mirror the library. Live checkout 2026-09-06: Unlimited $139 lifetime, Full Stack $199 lifetime (getlayers.ai/pricing)."
+    "rationale": "MCP requires Full Stack Lifetime. Do not connect until the operator buys and says update. Live checkout 2026-09-06: Unlimited $139 lifetime, Full Stack $199 lifetime (getlayers.ai/pricing — re-check, do not freeze). One section then tint. Never mirror.",
+    "skip_conditions": [
+      "Purchase is pending — do not connect https://mcp.getlayers.ai/mcp",
+      "Do not invent tools or scrape the paid library",
+      "Operator has not said update after buying Full Stack"
+    ]
   },
   {
     "id": "ibelick-ui-skills",
@@ -3542,22 +3555,30 @@
     "documentation_url": "https://github.com/MakazhanAlpamys/Soup",
     "license": "see-upstream",
     "category": [
-      "refused"
+      "ml",
+      "fine_tune"
     ],
-    "representation": "reference",
+    "representation": "project_tool",
     "routing_tags": [
-      "refuse-map",
-      "do-not-install"
+      "llm-finetune",
+      "ml-project",
+      "not-a-skill"
     ],
-    "acquisition_method": "none",
-    "runtime_method": "reference_only",
-    "status": "REJECTED",
-    "trigger_conditions": [],
+    "acquisition_method": "git",
+    "runtime_method": "project_scoped_install",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "fine-tune an LLM",
+      "Soup named for an ML project"
+    ],
     "avoid_conditions": [
-      "all installations"
+      "31st global skill",
+      "npx skills add",
+      "control-plane install",
+      "always-on in the classify loop"
     ],
-    "policy_verdict": "REJECTED",
-    "rationale": "Fine-tunes LLMs. Not the Orchestra control plane. Do not install as an MCP or skill."
+    "policy_verdict": "CURATED OPTIONAL",
+    "rationale": "Clone into an ML product repo when the job is fine-tuning. Not an MCP, not a 31st skill, not the Orchestra control plane."
   },
   {
     "id": "vane",
@@ -3852,6 +3873,768 @@
       "merge extra Claude disk skills into the 30"
     ],
     "policy_verdict": "CURATED OPTIONAL",
-    "rationale": "Optional terminal harness under the control plane. Point at Orchestra AGENTS.md. Test against OmniRoute http://localhost:20128. Evidence required. Not the brain."
+    "rationale": "Optional terminal harness under the control plane. After default_provider=omniroute, bare `jcode` is enough. Point at Orchestra AGENTS.md. Evidence required. Not the brain."
+  },
+  {
+    "id": "anti-slop-ajonai",
+    "name": "Anti-Slop Frontend Skill (AJ.on.AI)",
+    "canonical_url": "https://github.com/ItsRealAJ/Anti-Slop-Frontend-Skill",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/ItsRealAJ/Anti-Slop-Frontend-Skill.git",
+    "documentation_url": "https://github.com/ItsRealAJ/Anti-Slop-Frontend-Skill",
+    "license": "MIT",
+    "category": [
+      "ui_guidelines",
+      "taste"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "anti-generic-ui",
+      "interaction-states",
+      "decision-sheet"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "design system synthesis",
+      "visual audit",
+      "this looks AI-generated"
+    ],
+    "avoid_conditions": [
+      "31st global skill",
+      "npx skills add"
+    ],
+    "policy_verdict": "ADOPT-THIN",
+    "rationale": "Process overlap with Design Lab + taste-design. Adopted: missing interaction states before restyle; ban-lists go stale. Do not copy the skill folder into the 30. Optional check.mjs stays project-scoped if a product repo wants CI."
+  },
+  {
+    "id": "blader-humanizer",
+    "name": "blader/humanizer",
+    "canonical_url": "https://github.com/blader/humanizer",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/blader/humanizer.git",
+    "documentation_url": "https://github.com/blader/humanizer",
+    "license": "MIT",
+    "category": [
+      "writing",
+      "anti_slop"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "humanize-prose",
+      "ship-post-voice",
+      "wikipedia-ai-tells"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "humanize this",
+      "this sounds like ChatGPT",
+      "de-AI this README or ship-post"
+    ],
+    "avoid_conditions": [
+      "31st global skill",
+      "npx skills add --global",
+      "detector-evasion for academic fraud"
+    ],
+    "policy_verdict": "CURATED OPTIONAL",
+    "rationale": "Wikipedia Signs of AI writing as a method. orchestra-docs + Preferences already carry the Evocentric voice. Load the pattern list on a named humanize job. Do not install globally."
+  },
+  {
+    "id": "graphify",
+    "name": "Graphify",
+    "canonical_url": "https://github.com/Graphify-Labs/graphify",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/Graphify-Labs/graphify.git",
+    "documentation_url": "https://github.com/Graphify-Labs/graphify",
+    "license": "see-upstream",
+    "category": [
+      "repo_intelligence",
+      "knowledge_graph"
+    ],
+    "representation": "cli",
+    "routing_tags": [
+      "code-map",
+      "tree-sitter",
+      "not-a-second-brain"
+    ],
+    "acquisition_method": "git",
+    "runtime_method": "project_scoped_install",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "map a large foreign codebase",
+      "query call graph instead of grepping"
+    ],
+    "avoid_conditions": [
+      "replace the private markdown Brain",
+      "Graphiti Neo4j always-on",
+      "31st global skill"
+    ],
+    "policy_verdict": "CURATED OPTIONAL",
+    "rationale": "Local AST code map for a named app repo. Complements the markdown Brain; does not replace it. Do not switch Orchestra memory to Graphify or Vault Operator."
+  },
+  {
+    "id": "hallmark",
+    "name": "Hallmark",
+    "canonical_url": "https://github.com/Nutlope/hallmark",
+    "source_type": "agent_skill",
+    "source_repository": "https://github.com/Nutlope/hallmark.git",
+    "documentation_url": "https://github.com/Nutlope/hallmark/tree/main/skills/hallmark",
+    "license": "see-upstream",
+    "category": [
+      "design_audit",
+      "qa"
+    ],
+    "representation": "skill",
+    "routing_tags": [
+      "hallmark",
+      "anti-slop-audit",
+      "post-implement"
+    ],
+    "acquisition_method": "manual",
+    "runtime_method": "global_active_skill",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "after Playwright stills exist",
+      "PREMIUM visual QA",
+      "human named Hallmark"
+    ],
+    "avoid_conditions": [
+      "before Design Lab approval",
+      "using Hallmark as a generator",
+      "backend-only"
+    ],
+    "skip_conditions": [
+      "gate is still PENDING",
+      "Impeccable has not run yet"
+    ],
+    "policy_verdict": "AUDIT AFTER IMPLEMENT",
+    "rationale": "Not a generator. Taste + Impeccable generate; Hallmark audits. Pin upstream in this row.",
+    "last_verified": "2026-09-06"
+  },
+  {
+    "id": "unlazy",
+    "name": "Unlazy",
+    "canonical_url": "https://github.com/Leonxlnx/unlazy",
+    "source_type": "agent_skill",
+    "source_repository": "https://github.com/Leonxlnx/unlazy.git",
+    "documentation_url": "https://github.com/Leonxlnx/unlazy",
+    "license": "see-upstream",
+    "category": [
+      "verification",
+      "quality"
+    ],
+    "representation": "skill",
+    "routing_tags": [
+      "unlazy",
+      "evidence",
+      "ledger"
+    ],
+    "acquisition_method": "manual",
+    "runtime_method": "global_active_skill",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "claiming DONE FIXED VERIFIED PASSED SHIPPED",
+      "visual or backend work that could be faked from source"
+    ],
+    "avoid_conditions": [
+      "installing Unlazy Claude stop hooks",
+      "using another agent summary as evidence"
+    ],
+    "skip_conditions": [
+      "the job is a planning packet with no completion claim"
+    ],
+    "policy_verdict": "EVIDENCE DISCIPLINE",
+    "rationale": "Points at protocols/VERIFICATION_LEDGER_PROTOCOL.md. Orchestra owns completion. No stop-hook takeover.",
+    "last_verified": "2026-09-06"
+  },
+  {
+    "id": "react-best-practices",
+    "name": "React Best Practices",
+    "canonical_url": "https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices",
+    "source_type": "agent_skill",
+    "source_repository": "https://github.com/vercel-labs/agent-skills.git",
+    "documentation_url": "https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices",
+    "license": "Apache-2.0",
+    "category": [
+      "react",
+      "performance"
+    ],
+    "representation": "skill",
+    "routing_tags": [
+      "react",
+      "nextjs",
+      "waterfalls",
+      "bundle"
+    ],
+    "acquisition_method": "manual",
+    "runtime_method": "global_active_skill",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "React or Next.js implementation or review"
+    ],
+    "avoid_conditions": [
+      "npx skills add the whole vercel-labs pack",
+      "Expo-only native with no React web"
+    ],
+    "skip_conditions": [
+      "PySimpleGUI, papers, or non-React jobs"
+    ],
+    "policy_verdict": "ONE SKILL FROM VERCEL-LABS",
+    "rationale": "web-design-guidelines already covers a11y/forms. Do not dump the pack.",
+    "last_verified": "2026-09-06"
+  },
+  {
+    "id": "gsap-core",
+    "name": "GSAP Core skill",
+    "canonical_url": "https://gsap.com",
+    "source_type": "agent_skill",
+    "documentation_url": "https://gsap.com/docs/v3/",
+    "license": "MIT",
+    "category": [
+      "motion",
+      "skill"
+    ],
+    "representation": "skill",
+    "routing_tags": [
+      "gsap",
+      "timeline",
+      "scrolltrigger"
+    ],
+    "acquisition_method": "manual",
+    "runtime_method": "global_active_skill",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "Design Lab motion engine is GSAP",
+      "human named GSAP"
+    ],
+    "avoid_conditions": [
+      "stacking GSAP with React Bits and Motion.dev on the same surface",
+      "installing the whole GSAP skill family globally"
+    ],
+    "skip_conditions": [
+      "the approved card named CSS, Motion, or React Bits as the one engine"
+    ],
+    "policy_verdict": "ONE MOTION ENGINE",
+    "rationale": "Official GSAP core skill as Orchestra wrapper. npm gsap stays project-scoped via the gsap row.",
+    "last_verified": "2026-09-06"
+  },
+  {
+    "id": "supabase",
+    "name": "Supabase",
+    "canonical_url": "https://supabase.com",
+    "source_type": "agent_skill",
+    "source_repository": "https://github.com/supabase/agent-skills.git",
+    "documentation_url": "https://supabase.com/docs",
+    "license": "Apache-2.0",
+    "category": [
+      "backend",
+      "database",
+      "auth"
+    ],
+    "representation": "skill",
+    "routing_tags": [
+      "supabase",
+      "postgres",
+      "rls",
+      "auth"
+    ],
+    "acquisition_method": "manual",
+    "runtime_method": "global_active_skill",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "idea.md or repo names Supabase",
+      "hosted Postgres plus auth"
+    ],
+    "avoid_conditions": [
+      "SQLite-only college GUI",
+      "inventing a second database next to an existing one",
+      "secrets in git"
+    ],
+    "skip_conditions": [
+      "frontend-only with no cloud data",
+      "papers",
+      "operator HUD without cloud"
+    ],
+    "policy_verdict": "BACKEND PACK TRIGGER",
+    "rationale": "Umbrella skill. MCP AUTH_REQUIRED until Connect. Keys stay in the host.",
+    "last_verified": "2026-09-06"
+  },
+  {
+    "id": "postgres-best-practices",
+    "name": "Postgres Best Practices",
+    "canonical_url": "https://github.com/neondatabase/postgres-skills",
+    "source_type": "agent_skill",
+    "source_repository": "https://github.com/neondatabase/postgres-skills.git",
+    "documentation_url": "https://github.com/neondatabase/postgres-skills",
+    "license": "see-upstream",
+    "category": [
+      "database",
+      "schema"
+    ],
+    "representation": "skill",
+    "routing_tags": [
+      "postgres",
+      "indexes",
+      "schema"
+    ],
+    "acquisition_method": "manual",
+    "runtime_method": "global_active_skill",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "schema design",
+      "slow queries",
+      "missing indexes"
+    ],
+    "avoid_conditions": [
+      "frontend-only",
+      "dumping an ORM pack"
+    ],
+    "skip_conditions": [
+      "Expo-without-db jobs"
+    ],
+    "policy_verdict": "SCHEMA JOBS",
+    "rationale": "Complements the supabase skill. Do not invent a second database.",
+    "last_verified": "2026-09-06"
+  },
+  {
+    "id": "diagram-generator",
+    "name": "Diagram Generator",
+    "canonical_url": "https://github.com/jovd83/diagram-generator",
+    "source_type": "agent_skill",
+    "source_repository": "https://github.com/jovd83/diagram-generator.git",
+    "documentation_url": "https://github.com/jovd83/diagram-generator",
+    "license": "see-upstream",
+    "category": [
+      "docs",
+      "architecture"
+    ],
+    "representation": "skill",
+    "routing_tags": [
+      "mermaid",
+      "architecture-diagram",
+      "readme"
+    ],
+    "acquisition_method": "manual",
+    "runtime_method": "global_active_skill",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "README architecture",
+      "capability graph diagram",
+      "onboarding a clone"
+    ],
+    "avoid_conditions": [
+      "inventing boxes not in the repo",
+      "23 mermaid blocks in README"
+    ],
+    "skip_conditions": [
+      "pixel UI work",
+      "DSA homework"
+    ],
+    "policy_verdict": "GROUNDED MERMAID",
+    "rationale": "Author from this repository. README embeds a few; docs/diagrams holds the rest.",
+    "last_verified": "2026-09-06"
+  },
+  {
+    "id": "pretty-mermaid",
+    "name": "Pretty Mermaid",
+    "canonical_url": "https://github.com/imxv/Pretty-mermaid-skills",
+    "source_type": "agent_skill",
+    "source_repository": "https://github.com/imxv/Pretty-mermaid-skills.git",
+    "documentation_url": "https://github.com/imxv/Pretty-mermaid-skills",
+    "license": "see-upstream",
+    "category": [
+      "docs",
+      "render"
+    ],
+    "representation": "skill",
+    "routing_tags": [
+      "mermaid-render",
+      "svg"
+    ],
+    "acquisition_method": "manual",
+    "runtime_method": "global_active_skill",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "render Mermaid to SVG after diagram-generator"
+    ],
+    "avoid_conditions": [
+      "inventing architecture here"
+    ],
+    "skip_conditions": [
+      "no diagram to render"
+    ],
+    "policy_verdict": "RENDER ONLY",
+    "rationale": "Committed Mermaid source stays the clone-safe original.",
+    "last_verified": "2026-09-06"
+  },
+  {
+    "id": "skill-security-check",
+    "name": "Skill Security Check",
+    "canonical_url": "https://github.com/aliksir/claude-code-skill-security-check",
+    "source_type": "agent_skill",
+    "source_repository": "https://github.com/aliksir/claude-code-skill-security-check.git",
+    "documentation_url": "https://github.com/aliksir/claude-code-skill-security-check",
+    "license": "see-upstream",
+    "category": [
+      "security",
+      "admission"
+    ],
+    "representation": "skill",
+    "routing_tags": [
+      "skill-admission",
+      "prompt-injection"
+    ],
+    "acquisition_method": "manual",
+    "runtime_method": "global_active_skill",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "before vendoring a new third-party skill",
+      "operator said update after ingest"
+    ],
+    "avoid_conditions": [
+      "running on every file edit"
+    ],
+    "skip_conditions": [
+      "ordinary coding turn with no new skill"
+    ],
+    "policy_verdict": "ADMISSION GATE",
+    "rationale": "Install success is not ACTIVE. Failures stay REJECTED.",
+    "last_verified": "2026-09-06"
+  },
+  {
+    "id": "kokonut-ui",
+    "name": "Kokonut UI",
+    "canonical_url": "https://kokonutui.com",
+    "source_type": "component_gallery",
+    "documentation_url": "https://kokonutui.com",
+    "license": "see-upstream",
+    "category": [
+      "components",
+      "oss"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "kokonut",
+      "interaction-components"
+    ],
+    "acquisition_method": "npm",
+    "runtime_method": "project_scoped_install",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "Design Lab named Kokonut",
+      "interaction-components route needs a named kit"
+    ],
+    "avoid_conditions": [
+      "always-on",
+      "collage of every button library"
+    ],
+    "skip_conditions": [
+      "another kit already approved on the card"
+    ],
+    "policy_verdict": "NAMED KIT",
+    "rationale": "One of the interaction-components destinations. Not a global skill.",
+    "last_verified": "2026-09-06"
+  },
+  {
+    "id": "cult-ui",
+    "name": "Cult UI",
+    "canonical_url": "https://www.cult-ui.com",
+    "source_type": "component_gallery",
+    "documentation_url": "https://www.cult-ui.com",
+    "license": "see-upstream",
+    "category": [
+      "components",
+      "oss"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "cult-ui",
+      "interaction-components"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "one named Cult echo on the stack card"
+    ],
+    "avoid_conditions": [
+      "always-on MCP",
+      "mirroring Cult as the product"
+    ],
+    "skip_conditions": [
+      "operator HUD",
+      "backend-only"
+    ],
+    "policy_verdict": "ONE NAMED ECHO",
+    "rationale": "Not a global skill. Tint after one echo.",
+    "last_verified": "2026-09-06"
+  },
+  {
+    "id": "hyperui",
+    "name": "HyperUI",
+    "canonical_url": "https://hyperui.dev",
+    "source_type": "component_gallery",
+    "documentation_url": "https://hyperui.dev",
+    "license": "MIT",
+    "category": [
+      "components",
+      "oss"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "hyperui",
+      "tailwind-blocks"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "named HyperUI block as a starting pattern"
+    ],
+    "avoid_conditions": [
+      "shipping unmodified gallery blocks as the brand"
+    ],
+    "skip_conditions": [
+      "PREMIUM 3D jobs that need R3F not Tailwind blocks"
+    ],
+    "policy_verdict": "NAMED BLOCK",
+    "rationale": "Free Tailwind components. Route via interaction-components.",
+    "last_verified": "2026-09-06"
+  },
+  {
+    "id": "magic-ui-oss",
+    "name": "Magic UI OSS",
+    "canonical_url": "https://magicui.design",
+    "source_type": "component_gallery",
+    "documentation_url": "https://magicui.design",
+    "license": "MIT",
+    "category": [
+      "components",
+      "oss"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "magic-ui",
+      "interaction-components"
+    ],
+    "acquisition_method": "npm",
+    "runtime_method": "project_scoped_install",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "named Magic UI OSS component"
+    ],
+    "avoid_conditions": [
+      "buying Magic UI Pro this pass",
+      "always-on Magic MCP"
+    ],
+    "skip_conditions": [
+      "another motion kit already chosen"
+    ],
+    "policy_verdict": "OSS ONLY THIS PASS",
+    "rationale": "Do not buy Pro. MCP OPTIONAL until Connect.",
+    "last_verified": "2026-09-06"
+  },
+  {
+    "id": "motion-primitives",
+    "name": "Motion Primitives",
+    "canonical_url": "https://motion-primitives.com",
+    "source_type": "component_gallery",
+    "documentation_url": "https://motion-primitives.com",
+    "license": "see-upstream",
+    "category": [
+      "motion",
+      "oss"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "motion-primitives",
+      "interaction-components"
+    ],
+    "acquisition_method": "npm",
+    "runtime_method": "project_scoped_install",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "named Motion Primitives on the card"
+    ],
+    "avoid_conditions": [
+      "stacking with GSAP on the same surface"
+    ],
+    "skip_conditions": [
+      "the one motion engine is already GSAP or React Bits"
+    ],
+    "policy_verdict": "NAMED MOTION KIT",
+    "rationale": "One engine per product.",
+    "last_verified": "2026-09-06"
+  },
+  {
+    "id": "twenty-first-dev",
+    "name": "21st.dev",
+    "canonical_url": "https://21st.dev",
+    "source_type": "component_gallery",
+    "documentation_url": "https://21st.dev",
+    "license": "site-terms",
+    "category": [
+      "components",
+      "paid-board"
+    ],
+    "representation": "mcp",
+    "routing_tags": [
+      "21st",
+      "component-search"
+    ],
+    "acquisition_method": "host_mcp_connect",
+    "runtime_method": "mcp_connection",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "human named 21st.dev",
+      "one named echo"
+    ],
+    "avoid_conditions": [
+      "always-on 21st MCP",
+      "collage"
+    ],
+    "skip_conditions": [
+      "MCP not Connected",
+      "operator HUD"
+    ],
+    "policy_verdict": "OPTIONAL MCP",
+    "rationale": "Free browse / limited copies. Login in host. Orchestra fit score 8.7. No lifetime — do not buy Builder+AI this pass.",
+    "last_verified": "2026-09-06"
+  },
+  {
+    "id": "tailkit",
+    "name": "Tailkit",
+    "canonical_url": "https://tailkit.com",
+    "source_type": "component_gallery",
+    "documentation_url": "https://tailkit.com",
+    "license": "site-terms",
+    "category": [
+      "components",
+      "paid-board"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "tailkit",
+      "tailwind-kit"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "human named Tailkit"
+    ],
+    "avoid_conditions": [
+      "buying Tailkit Unlimited this pass",
+      "always-on MCP"
+    ],
+    "skip_conditions": [
+      "free/public patterns already cover the card"
+    ],
+    "policy_verdict": "DO NOT BUY THIS PASS",
+    "rationale": "Orchestra fit 9.1. Register OPTIONAL. Load when named.",
+    "last_verified": "2026-09-06"
+  },
+  {
+    "id": "agent-browser",
+    "name": "agent-browser",
+    "canonical_url": "https://github.com/vercel-labs/agent-browser",
+    "source_type": "cli_tool",
+    "documentation_url": "https://github.com/vercel-labs/agent-browser",
+    "license": "see-upstream",
+    "category": [
+      "browser",
+      "foreign-sites"
+    ],
+    "representation": "cli",
+    "routing_tags": [
+      "agent-browser",
+      "foreign-browser"
+    ],
+    "acquisition_method": "npx",
+    "runtime_method": "on_demand_cli",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "foreign-site browser ops the human named"
+    ],
+    "avoid_conditions": [
+      "agent-browser --tools all globally",
+      "replacing Playwright on our app"
+    ],
+    "skip_conditions": [
+      "the target is our own running app — use Playwright"
+    ],
+    "policy_verdict": "FOREIGN SITES ONLY",
+    "rationale": "Playwright stays CORE for our app.",
+    "last_verified": "2026-09-06"
+  },
+  {
+    "id": "aceternity-ui",
+    "name": "Aceternity UI",
+    "canonical_url": "https://ui.aceternity.com",
+    "source_type": "component_gallery",
+    "documentation_url": "https://ui.aceternity.com",
+    "license": "site-terms",
+    "category": [
+      "components",
+      "paid-board"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "aceternity",
+      "named-echo"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "CURATED_OPTIONAL",
+    "trigger_conditions": [
+      "one named Aceternity echo on the card"
+    ],
+    "avoid_conditions": [
+      "always-on Aceternity MCP",
+      "buying Pro this pass"
+    ],
+    "skip_conditions": [
+      "operator HUD",
+      "college due-now GUI"
+    ],
+    "policy_verdict": "ONE NAMED ECHO",
+    "rationale": "Orchestra fit 8.8. Do not buy this pass.",
+    "last_verified": "2026-09-06"
+  },
+  {
+    "id": "frontend-design-claude-optional",
+    "name": "Anthropic frontend-design (host optional)",
+    "canonical_url": "https://github.com/anthropics/skills",
+    "source_type": "agent_skill",
+    "documentation_url": "https://github.com/anthropics/skills",
+    "license": "see-upstream",
+    "category": [
+      "refused-dump",
+      "optional-pointer"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "frontend-design",
+      "claude-host-optional"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REFERENCE",
+    "trigger_conditions": [
+      "Claude host already has frontend-design installed locally"
+    ],
+    "avoid_conditions": [
+      "vendoring anthropics/skills into public git",
+      "npx skills add the dump"
+    ],
+    "skip_conditions": [
+      "any job that would copy the proprietary tree into orchestra-workflow"
+    ],
+    "policy_verdict": "POINTER ONLY",
+    "rationale": "Do not dump anthropics/skills. Keep as named Claude-host optional if already present.",
+    "last_verified": "2026-09-06"
   }
 ]

@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/user/orchestra-v3/internal/handoff"
-	"github.com/user/orchestra-v3/internal/resources"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/handoff"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/resources"
 )
 
 func TestMain(m *testing.M) {

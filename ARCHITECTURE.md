@@ -1,4 +1,4 @@
-﻿# Architecture — Orchestra 3.2.0
+﻿# Architecture — Orchestra 3.3.0
 
 Orchestra is a **control plane**. Your agent is the executor.
 

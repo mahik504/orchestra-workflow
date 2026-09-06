@@ -6,10 +6,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/user/orchestra-v3/internal/memory"
-	"github.com/user/orchestra-v3/internal/research"
-	"github.com/user/orchestra-v3/internal/resources"
-	"github.com/user/orchestra-v3/internal/router"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/memory"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/research"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/resources"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/router"
 )
 
 type PipelineStatus string

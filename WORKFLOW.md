@@ -1,6 +1,6 @@
-﻿# Workflow — Orchestra 3.2.0
+﻿# Workflow — Orchestra 3.3.0
 
-The contract is `AGENTS.md`. This is the operator's walkthrough. 3.2 evolves 3.1. Same OS.
+The contract is `AGENTS.md`. This is the operator's walkthrough. 3.3 evolves 3.2. Same OS.
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
 
@@ -45,7 +45,7 @@ If the graph has no strong match, Orchestra researches with Scrapling/web, propo
 
 ## 4. Design Lab (visual work)
 
-`PREMIUM` and `EXPERIMENTAL` stop here. You get 2–3 directions and a stack card: typography, color world, layout language, component kit, one motion engine, 3D and shader decisions, logo method, icon system, implementation stack — each with a named source.
+`PREMIUM` and `EXPERIMENTAL` stop here. You get **23 short direction cards**, then **one** full `DESIGN.md` after you pick. If you name a site, skill, MCP, pack, or paste a `DESIGN.md`, skip the survey — do not argue. Tint: keep structure, swap one token, extend the same system.
 
 **Source tiers** (name them on the card, do not load all):
 
@@ -53,7 +53,7 @@ If the graph has no strong match, Orchestra researches with Scrapling/web, propo
 | --- | --- |
 | shadcn | Foundation only if the plan names it. Never on an operator HUD. |
 | React Bits | Motion primitives when the route needs them |
-| GetLayers MCP | Premium / 3D / shader only. One section or scene, then tint. Never mirror the library. |
+| GetLayers MCP | `PURCHASE_PENDING` until you buy Full Stack lifetime and say **update**. Then one section or scene, then tint. Never mirror. |
 | Aceternity / Cult / 21st | **One** named echo. Always-on MCP stays refused. |
 
 Approve, edit, reject, or combine. Rejected directions are logged with your reason so the next pass does not re-offer them.

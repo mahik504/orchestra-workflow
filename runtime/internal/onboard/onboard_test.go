@@ -9,8 +9,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/user/orchestra-v3/internal/memory"
-	"github.com/user/orchestra-v3/internal/resources"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/memory"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/resources"
 )
 
 func TestExtractURLFromIntent(t *testing.T) {

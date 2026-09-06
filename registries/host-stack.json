@@ -1,8 +1,9 @@
 {
-  "version": "3.2.0",
+  "version": "3.3.0",
   "skills": [
     "animate",
     "ci-security-scanning-with-strix",
+    "diagram-generator",
     "eas-app-stores",
     "emil-design-eng",
     "expo-data-fetching",
@@ -12,15 +13,22 @@
     "expo-router",
     "expo-upgrade",
     "fix-security-vulnerabilities-with-strix",
+    "gsap-core",
+    "hallmark",
     "impeccable",
     "orchestra-conductor",
     "orchestra-docs",
     "orchestra-ship",
     "orchestra-vault",
     "penetration-testing-with-strix",
+    "postgres-best-practices",
+    "pretty-mermaid",
+    "react-best-practices",
+    "refero-design",
     "review-animations",
     "semgrep-adapter",
     "ship-safe",
+    "skill-security-check",
     "stitch-code-to-design",
     "stitch-extract-design-md",
     "stitch-extract-static-html",
@@ -28,8 +36,10 @@
     "stitch-manage-design-system",
     "stitch-react-components",
     "stitch-upload-to-stitch",
+    "supabase",
     "superpowers-planning",
     "taste-design",
+    "unlazy",
     "web-design-guidelines"
   ],
   "mcp": {
@@ -67,9 +77,14 @@
         { "id": "github", "state": "CURSOR_PLUGIN", "note": "GitHub marketplace plugin on Cursor." },
         { "id": "codebase-memory-mcp", "state": "OPTIONAL", "note": "Large app repos. Never auto-install. Not a second Brain." },
         { "id": "presenton", "state": "OPTIONAL", "note": "Slide decks only. Does not replace orchestra-docs for papers." },
-        { "id": "getlayers", "state": "OPTIONAL", "note": "GetLayers Ultimate when Connect. One section/scene then tint. Not always-on." },
+        { "id": "getlayers", "state": "PURCHASE_PENDING", "note": "Full Stack lifetime purchase pending. Do not connect MCP until the operator buys and says update." },
         { "id": "firecrawl", "state": "OPTIONAL", "note": "Public URL to markdown. Not LinkedIn/IG scrape. Key in host." },
-        { "id": "serena", "state": "OPTIONAL", "note": "Repo intelligence on a named large codebase. Never always-on. Not a 31st skill." }
+        { "id": "serena", "state": "OPTIONAL", "note": "Repo intelligence on a named large codebase. Never always-on." },
+        { "id": "refero", "state": "AUTH_REQUIRED", "note": "https://api.refero.design/mcp Bearer token in host. Not always-on." },
+        { "id": "21st-dev", "state": "OPTIONAL", "note": "Free browse/limited copies. Login in host. Never always-on MCP." },
+        { "id": "magic-ui", "state": "OPTIONAL", "note": "OSS CLI/MCP when named. Do not buy Pro this pass." },
+        { "id": "tailkit", "state": "OPTIONAL", "note": "Free/public only until the operator Connects a paid MCP." },
+        { "id": "agent-browser", "state": "OPTIONAL", "note": "Foreign-site browser ops. Playwright stays CORE for our app. Never --tools all." }
       ],
       "antigravity": [
         { "id": "mobbin", "state": "OPTIONAL", "note": "Connect in the MCP Store if the job needs screens." },
@@ -78,16 +93,25 @@
         { "id": "github", "state": "OPTIONAL", "note": "Local GitHub MCP if configured; token stays in the host, never in git." },
         { "id": "science", "state": "DISABLED_GLOBAL", "note": "Keep off as Global. Re-enable only for a job that needs it." },
         { "id": "data-agent-kit-plugin", "state": "DISABLED_GLOBAL", "note": "Keep off as Global." },
-        { "id": "presenton", "state": "OPTIONAL", "note": "Slide decks only. Desktop/API. Not a 31st skill." },
-        { "id": "getlayers", "state": "OPTIONAL", "note": "GetLayers Ultimate when Connect. Not Global always-on." },
+        { "id": "presenton", "state": "OPTIONAL", "note": "Slide decks only. Desktop/API." },
+        { "id": "getlayers", "state": "PURCHASE_PENDING", "note": "Do not Connect until purchase." },
         { "id": "firecrawl", "state": "OPTIONAL", "note": "Public scrape to markdown. Auth in MCP Store." },
-        { "id": "serena", "state": "OPTIONAL", "note": "Repo intelligence if Connect. Never Global always-on." }
+        { "id": "serena", "state": "OPTIONAL", "note": "Repo intelligence if Connect. Never Global always-on." },
+        { "id": "refero", "state": "AUTH_REQUIRED", "note": "Connect in MCP Store with Bearer token. Not Global always-on." },
+        { "id": "21st-dev", "state": "OPTIONAL", "note": "If Antigravity MCP Store lists it. Do not invent support." },
+        { "id": "agent-browser", "state": "OPTIONAL", "note": "Foreign sites only. Playwright for our app." }
       ],
       "claude": [
         { "id": "github", "state": "OPTIONAL", "note": "Claude Code MCP if you add it locally." },
         { "id": "shadcn", "state": "OPTIONAL", "note": "Same rule as Cursor: never on an operator HUD." },
         { "id": "codebase-memory-mcp", "state": "OPTIONAL", "note": "Large app repos. Never auto-install. Not a second Brain." },
-        { "id": "serena", "state": "OPTIONAL", "note": "Repo intelligence. Never auto-install. Not a 31st skill." }
+        { "id": "serena", "state": "OPTIONAL", "note": "Repo intelligence. Never auto-install." },
+        { "id": "refero", "state": "AUTH_REQUIRED", "note": "claude mcp add --transport http refero https://api.refero.design/mcp — token in host env." },
+        { "id": "getlayers", "state": "PURCHASE_PENDING", "note": "Do not add until purchase." },
+        { "id": "agent-browser", "state": "OPTIONAL", "note": "Foreign-site browser. Not --tools all." }
+      ],
+      "jcode": [
+        { "id": "omniroute", "state": "HEALTHY", "note": "OpenAI-compatible default_provider. Not an MCP. Skills copy is ~/.jcode/skills." }
       ]
     }
   },
@@ -123,7 +147,9 @@
     "LinkedIn Instagram LeetCode scrapers",
     "playwright-cli install --skills -g",
     "Chen 202-agent / 273-agent dumps",
-    "Workday Lever Easy Apply robots"
+    "Workday Lever Easy Apply robots",
+    "GetLayers MCP before purchase",
+    "agent-browser --tools all globally"
   ],
   "resources": {
     "see": "registries/resources.json"

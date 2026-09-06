@@ -12,32 +12,59 @@ The gate is a lock, not a warning. While it is `PENDING`, the engine refuses to 
 | `PREMIUM` | **On**. Opt out only if the human says "skip the lab". |
 | `EXPERIMENTAL` | **On**. Always ship a low-end fallback. |
 
-The bar comes from the capability row in `registries/design-resource-graph.json` (`quality_bar`), then from the brief: internal or throwaway work drops to `STANDARD`, and work a stranger will see rises to `PREMIUM`.
+The bar comes from the capability row in `registries/design-resource-graph.json` (`quality_bar`), then from the brief.
 
 Run `orchestra classify "<your brief>"` to see the bar, the chosen route, and every route that was declined.
+
+## Two stages (3.3)
+
+1. **Survey (cheap).** Exactly **23** short cards. Each card is: id, name, one-liner, typography pairing, color world, 3D yes/no, one motion engine. Not 23 full `DESIGN.md` files.
+2. **Contract.** After the human picks, write **one** full sourced `DESIGN.md`. The engine's `OfferContract` accepts a single `Direction`. Unsourced typography, colour, or motion is refused.
+
+```mermaid
+flowchart TD
+  prompt[PRD or prompt]
+  brief[Rebrief and classify]
+  named{Named site skill MCP pack or DESIGN.md}
+  survey[23 short direction cards]
+  oneD[One full DESIGN.md]
+  gate[Human gate]
+  impl[Implement chosen route]
+  verify[Ledger Playwright SOS Hallmark]
+  prompt --> brief --> named
+  named -->|yes do not argue| oneD
+  named -->|no| survey --> oneD
+  oneD --> gate --> impl --> verify
+```
+
+## Named override
+
+If the prompt names a website, skill, MCP, pack, or `DESIGN.md`, **skip the survey**. Extract the language. One contract. Do not argue.
+
+Tint: preserve structure, swap one token, extend the same system to new sections. Not a clone. Not their logo or source.
+
+## Custom DESIGN.md
+
+If the human pastes a `DESIGN.md`, call `ApproveCustom` with who approved and a note. Gate becomes `APPROVED`. Implement that file.
 
 ## Gate states
 
 | State | Meaning | Frontend writes |
 | --- | --- | --- |
 | `NOT_REQUIRED` | Bar or task does not call for a lab | allowed |
-| `PENDING` | Directions owed, none approved | **blocked** |
-| `APPROVED` | A named direction was approved by a named person | allowed |
+| `PENDING` | Survey/contract owed, none approved | **blocked** |
+| `APPROVED` | A named direction or custom DESIGN.md was approved | allowed |
 | `BYPASSED` | The human waived the lab, with a recorded note | allowed |
 
-A bypass is legitimate. A *silent* bypass is not — `Bypass` refuses an empty note.
+A bypass is legitimate. A *silent* bypass is not — `Bypass` refuses an empty note. `SkipSurvey` also refuses an empty reason.
 
 ## What is blocked
 
 Anything the browser renders: `.css`, `.scss`, `.sass`, `.less`, `.html`, `.jsx`, `.tsx`, `.vue`, `.svelte`, `.astro`, `.glsl`, `.frag`, `.vert`, plus token and theme files (`tailwind.config.*`, `theme.*`, `tokens.*`, `globals.*`, `design-system.*`).
 
-Backend code, migrations, notes, and `DESIGN.md` itself stay writable. The human needs something to read before they can approve anything.
+Backend code, migrations, notes, and `DESIGN.md` itself stay writable.
 
-## What a direction must contain
-
-Produce **2 or 3** directions. One is a decree; four is a survey.
-
-Every direction needs:
+## What a full contract must contain
 
 - Visual concept and product type
 - Typography — a named pairing **and where it came from**
@@ -51,22 +78,21 @@ Every direction needs:
 - Icon system
 - Implementation stack
 
-Typography, colour, and motion are refused without a named source. A claim with no source is a vibe, and vibes are what produce the same purple-gradient page every time.
+Source tiers (name them, do not load all): shadcn only if the plan names it; React Bits for motion primitives; GetLayers MCP only after purchase; Aceternity / Cult / 21st as **one named echo**.
 
 ## Rejection is the useful half
 
-When the human turns a direction down, record **their stated reason**. `Reject` refuses an empty reason.
+When the human turns a **contract** down, record **their stated reason**. `Reject` refuses an empty reason.
 
-Rejections are fingerprinted by their actual stack — typography, colour world, layout, component kit, motion engine, 3D, shader, and the sorted implementation stack — not by their name. Renaming "Warm editorial" to "Warm editorial, take two" and re-offering it is refused. Changing the stack is not.
+Rejections are fingerprinted by their actual stack, not by their name. The log lives at `.orchestra/design-lab/rejected-directions.json`.
 
-The log lives at `.orchestra/design-lab/rejected-directions.json` and persists across tasks in the same workspace, so the second pass genuinely starts from where the first one ended.
-
-Approvals are recorded at `.orchestra/design-lab/approved-<task-id>.json` with the direction and the approver's name.
+Approvals are recorded at `.orchestra/design-lab/approved-<task-id>.json`.
 
 ## Overrides
 
 - **"skip the lab"** in the brief, or `--skip-visual-gate`, waives the lab for one task.
 - **"skip orchestra"** stands the whole contract down for the session.
+- Plain text. Not a slash command.
 
 The gate is a checkpoint, not a cage. The human can override the stack at any point after approval.
 

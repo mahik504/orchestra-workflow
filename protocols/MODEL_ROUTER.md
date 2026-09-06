@@ -2,7 +2,7 @@
 
 Do **not** bake vendor IDs as the only source of truth. Cursor’s dropdown still belongs to the operator. Conductor **names a class** and a current slug from WORKFLOW if one exists.
 
-Default: **one primary** model in the conducting chat, **one consultant** packet when the bar needs it, **one verifier** (Playwright / ledger). Not a 23-option swarm. Combinations happen at the Design Lab (2–3 directions), not by spawning every specialist.
+Default: **one primary** model in the conducting chat, **one consultant** packet when the bar needs it, **one verifier** (Playwright / ledger). Not a 23-option swarm of full DESIGN.md files. Combinations happen at the Design Lab (23 short cards, then one contract), not by spawning every specialist.
 
 | Class | Use | Current mapping (2026-09, may change) |
 | --- | --- | --- |

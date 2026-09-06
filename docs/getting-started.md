@@ -44,7 +44,7 @@ chmod +x kit/bootstrap.sh kit/init-workspace.sh kit/install-local-engine.sh
 Bootstrap will:
 
 1. Create an empty private workspace if it is missing (`projects/`, `memory/`, `Preferences.md`, `routes.md`).
-2. Copy the 30 canonical skills onto the hosts you picked.
+2. Copy the canonical skills onto the hosts you picked.
 3. Copy `AGENTS.md` and the matching adapter (`.cursorrules`, `CLAUDE.md`, Antigravity MASTER-PROMPT).
 4. Write MCP **templates** with `REPLACE_WITH_*` placeholders. It will not overwrite a live `mcp_config.json`.
 5. Print the marketplace plugin checklist. You click Connect. Orchestra cannot log into Google, Stripe, or Stitch for you.

@@ -5,8 +5,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/user/orchestra-v3/internal/handoff"
-	"github.com/user/orchestra-v3/internal/memory"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/handoff"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/memory"
 )
 
 type IterateStage struct{}

@@ -7,11 +7,11 @@
   "required": ["version", "skills", "mcp", "plugins", "refused", "resources"],
   "additionalProperties": false,
   "properties": {
-    "version": { "type": "string", "const": "3.2.0" },
+    "version": { "type": "string", "const": "3.3.0" },
     "skills": {
       "type": "array",
-      "minItems": 30,
-      "maxItems": 30,
+      "minItems": 40,
+      "maxItems": 50,
       "items": { "type": "string", "pattern": "^[a-z0-9-]+$" }
     },
     "mcp": {
@@ -42,7 +42,7 @@
               "additionalProperties": false,
               "properties": {
                 "id": { "type": "string" },
-                "state": { "type": "string", "enum": ["OPTIONAL", "AUTH_REQUIRED", "CURSOR_PLUGIN", "DISABLED_GLOBAL"] },
+                "state": { "type": "string", "enum": ["OPTIONAL", "AUTH_REQUIRED", "CURSOR_PLUGIN", "DISABLED_GLOBAL", "PURCHASE_PENDING", "HEALTHY", "BROKEN", "DISABLED"] },
                 "note": { "type": "string" }
               }
             }

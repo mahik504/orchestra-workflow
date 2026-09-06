@@ -24,7 +24,7 @@ flowchart LR
   end
 ```
 
-Front door for a new clone: `kit/bootstrap.ps1` / `kit/bootstrap.sh` (pick hosts). That copies the 30 skills, writes adapters, and prints the plugin checklist. `kit/install-skills.*` remains for a skills-only refresh.
+Front door for a new clone: `kit/bootstrap.ps1` / `kit/bootstrap.sh` (pick hosts). That copies the allowlisted skills, writes adapters, and prints the plugin checklist. `kit/install-skills.*` remains for a skills-only refresh.
 
 ## Cursor
 
@@ -62,13 +62,14 @@ Front door for a new clone: `kit/bootstrap.ps1` / `kit/bootstrap.sh` (pick hosts
 
 ## jcode (optional harness)
 
-- Fifth executor. Point it at this repo's `AGENTS.md`. Packet: `templates/jcode-omniroute-packet.md`.
-- Does not replace Cursor, Antigravity, or Claude Code. Evidence (stdout) before anyone claims it works.
+- Fifth executor. Same `AGENTS.md` contract. Packet: `templates/jcode-omniroute-packet.md`.
+- After the OpenAI-compatible provider is the default, type `jcode` in the app folder. Do not require `--provider-profile` every time.
+- Does not replace Cursor, Antigravity, or Claude Code. Evidence (stdout) before anyone claims it works on a fresh machine.
 
 ## Hermes (and other AGENTS-compatible CLIs)
 
 - Point the agent at `AGENTS.md` + `protocols/`.
-- Same 3.2 contract and available ≠ loaded rules. Design Lab is a write lock on PREMIUM / EXPERIMENTAL visual work.
+- Same 3.3 contract and available ≠ loaded rules. Design Lab is a write lock on PREMIUM / EXPERIMENTAL visual work (23 cards → one DESIGN.md).
 
 ## ChatGPT / Perplexity / cloud chats
 

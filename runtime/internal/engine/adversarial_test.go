@@ -11,7 +11,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/user/orchestra-v3/internal/handoff"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/handoff"
 )
 
 // OscillatingVerifier alternates failure classes between LAYOUT_CODE and TOKEN_STYLE

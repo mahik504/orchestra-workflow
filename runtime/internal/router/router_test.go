@@ -5,8 +5,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/user/orchestra-v3/internal/classifier"
-	"github.com/user/orchestra-v3/internal/resources"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/classifier"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/resources"
 )
 
 func setupTestRegistry() *resources.Registry {

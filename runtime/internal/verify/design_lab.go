@@ -17,7 +17,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/user/orchestra-v3/internal/classifier"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/classifier"
 )
 
 // GateState is the lifecycle of one Design Lab gate.
@@ -44,8 +44,51 @@ func (e *ErrGateNotCleared) Error() string {
 	return fmt.Sprintf("design lab gate is not cleared: refusing to write %s (%s)", e.Path, e.Reason)
 }
 
-// Direction is one option offered at the gate. Every claim needs a named source;
-// a direction with unattributed choices is not a direction, it is a vibe.
+// SurveyCardCount is the cheap survey size. Twenty-three short cards, then one
+// full DESIGN.md. Not twenty-three full contracts.
+const SurveyCardCount = 23
+
+// DirectionCard is one cheap survey option. It is not a DESIGN.md.
+type DirectionCard struct {
+	ID           string `json:"id"`
+	Name         string `json:"name"`
+	OneLiner     string `json:"one_liner"`
+	Typography   string `json:"typography"`
+	ColorWorld   string `json:"color_world"`
+	ThreeD       string `json:"three_d"`
+	MotionEngine string `json:"motion_engine"`
+}
+
+// Incomplete reports missing survey fields.
+func (c DirectionCard) Incomplete() []string {
+	var missing []string
+	if strings.TrimSpace(c.ID) == "" {
+		missing = append(missing, "id")
+	}
+	if strings.TrimSpace(c.Name) == "" {
+		missing = append(missing, "name")
+	}
+	if strings.TrimSpace(c.OneLiner) == "" {
+		missing = append(missing, "one_liner")
+	}
+	if strings.TrimSpace(c.Typography) == "" {
+		missing = append(missing, "typography")
+	}
+	if strings.TrimSpace(c.ColorWorld) == "" {
+		missing = append(missing, "color_world")
+	}
+	if strings.TrimSpace(c.ThreeD) == "" {
+		missing = append(missing, "three_d")
+	}
+	if strings.TrimSpace(c.MotionEngine) == "" {
+		missing = append(missing, "motion_engine")
+	}
+	return missing
+}
+
+// Direction is the one full contract after a survey pick, a named override, or
+// a pasted DESIGN.md. Every claim needs a named source; a direction with
+// unattributed choices is not a direction, it is a vibe.
 type Direction struct {
 	ID             string   `json:"id"`
 	Concept        string   `json:"concept"`
@@ -107,6 +150,9 @@ type DesignLab struct {
 	WorkspaceRoot string
 	State         GateState
 	Reason        string
+	Cards         []DirectionCard
+	SurveySkipped bool
+	SkipReason    string
 	Directions    []Direction
 	Approved      *Approval
 	rejections    []Rejection
@@ -174,36 +220,96 @@ func (d *DesignLab) Cleared() bool {
 	return d == nil || d.State == GateNotRequired || d.State == GateApproved || d.State == GateBypassed
 }
 
-// Offer records the directions shown to the human. The contract asks for two or
-// three: one is a decree, four is a survey.
-func (d *DesignLab) Offer(dirs []Direction) error {
+// OfferSurvey records 23 cheap direction cards. Not 23 full DESIGN.md files.
+func (d *DesignLab) OfferSurvey(cards []DirectionCard) error {
 	if d.State != GatePending {
-		return fmt.Errorf("cannot offer directions: gate is %s", d.State)
+		return fmt.Errorf("cannot offer a survey: gate is %s", d.State)
 	}
-	if len(dirs) < 2 || len(dirs) > 3 {
-		return fmt.Errorf("design lab requires 2 or 3 directions, got %d", len(dirs))
+	if d.SurveySkipped {
+		return fmt.Errorf("cannot offer a survey: it was already skipped (%s)", d.SkipReason)
 	}
-	for _, dir := range dirs {
-		if missing := dir.Unsourced(); len(missing) > 0 {
-			return fmt.Errorf("direction %q has unattributed claims: %s", dir.ID, strings.Join(missing, ", "))
+	if len(cards) != SurveyCardCount {
+		return fmt.Errorf("design lab survey requires exactly %d cards, got %d", SurveyCardCount, len(cards))
+	}
+	seen := map[string]bool{}
+	for _, c := range cards {
+		if missing := c.Incomplete(); len(missing) > 0 {
+			return fmt.Errorf("survey card %q is incomplete: %s", firstNonEmpty(c.ID, c.Name), strings.Join(missing, ", "))
 		}
+		if seen[c.ID] {
+			return fmt.Errorf("survey card id %q is duplicated", c.ID)
+		}
+		seen[c.ID] = true
 	}
-	// Do not re-offer a combination the human already rejected at this gate.
+	d.Cards = cards
+	return nil
+}
+
+// SkipSurvey bypasses the 23-card survey when the prompt already names a site,
+// skill, MCP, pack, or DESIGN.md. The reason is required. Do not argue.
+func (d *DesignLab) SkipSurvey(reason string) error {
+	if d.State != GatePending {
+		return fmt.Errorf("cannot skip survey: gate is %s", d.State)
+	}
+	if strings.TrimSpace(reason) == "" {
+		return fmt.Errorf("skipping the survey needs a reason (named site, skill, MCP, pack, or DESIGN.md)")
+	}
+	d.SurveySkipped = true
+	d.SkipReason = reason
+	d.Cards = nil
+	return nil
+}
+
+// OfferContract records the one full sourced direction after a survey pick or a skip.
+func (d *DesignLab) OfferContract(dir Direction) error {
+	if d.State != GatePending {
+		return fmt.Errorf("cannot offer a contract: gate is %s", d.State)
+	}
+	if !d.SurveySkipped && len(d.Cards) != SurveyCardCount {
+		return fmt.Errorf("offer a %d-card survey or skip it before the contract", SurveyCardCount)
+	}
+	if missing := dir.Unsourced(); len(missing) > 0 {
+		return fmt.Errorf("direction %q has unattributed claims: %s", dir.ID, strings.Join(missing, ", "))
+	}
 	prior, err := d.LoadRejections()
 	if err != nil {
 		return err
 	}
-	seen := map[string]string{}
 	for _, r := range prior {
-		seen[r.Fingerprint] = r.Reason
-	}
-	for _, dir := range dirs {
-		if reason, hit := seen[Fingerprint(dir)]; hit {
-			return fmt.Errorf("direction %q repeats a combination rejected earlier (%s)", dir.ID, reason)
+		if r.Fingerprint == Fingerprint(dir) {
+			return fmt.Errorf("direction %q repeats a combination rejected earlier (%s)", dir.ID, r.Reason)
 		}
 	}
-	d.Directions = dirs
+	d.Directions = []Direction{dir}
 	return nil
+}
+
+// ApproveCustom clears the gate for an operator-provided DESIGN.md. No survey.
+func (d *DesignLab) ApproveCustom(approvedBy, note string) error {
+	if d.State == GateNotRequired {
+		return nil
+	}
+	if d.State != GatePending {
+		return fmt.Errorf("cannot approve custom DESIGN.md: gate is %s", d.State)
+	}
+	if strings.TrimSpace(approvedBy) == "" {
+		return fmt.Errorf("approval requires a named approver")
+	}
+	if strings.TrimSpace(note) == "" {
+		return fmt.Errorf("custom DESIGN.md approval needs a note (what was provided)")
+	}
+	d.SurveySkipped = true
+	d.SkipReason = "operator-provided DESIGN.md"
+	d.Approved = &Approval{
+		TaskID:      d.TaskID,
+		DirectionID: "custom",
+		Concept:     note,
+		ApprovedBy:  approvedBy,
+		ApprovedAt:  time.Now().UTC(),
+	}
+	d.State = GateApproved
+	d.Reason = "approved custom DESIGN.md: " + note
+	return d.persistApproval()
 }
 
 // Approve clears the gate for a named direction.

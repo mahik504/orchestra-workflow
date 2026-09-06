@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/user/orchestra-v3/internal/memory"
-	"github.com/user/orchestra-v3/internal/resources"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/memory"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/resources"
 )
 
 // OverlayDocument is the Brain-side catalog of user-added resources.

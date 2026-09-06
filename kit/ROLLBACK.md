@@ -1,10 +1,10 @@
-# Rollback — Orchestra 3.2.0
+# Rollback — Orchestra 3.3.0
 
 Three levels, smallest first. Use the smallest one that fixes the problem.
 
 ## 1. One session — `skip orchestra`
 
-Say **skip orchestra** in the chat. The contract stands down for that session only. Nothing on disk changes.
+Say **skip orchestra** in the chat. The contract stands down for that session only. Nothing on disk changes. Plain text. Not a slash command.
 
 Use when: a single task fights the routing and you just want the raw model.
 
@@ -19,22 +19,20 @@ Use when: you already know the visual direction and want implementation now.
 Set the environment variable:
 
 ```powershell
-$env:ORCHESTRA_CONTRACT = "3.1.0"    # PowerShell
+$env:ORCHESTRA_CONTRACT = "3.2.0"    # PowerShell
 ```
 
 ```bash
-export ORCHESTRA_CONTRACT=3.1.0      # bash
+export ORCHESTRA_CONTRACT=3.2.0      # bash
 ```
 
-Hosts and the CLI read `ORCHESTRA_CONTRACT` first and fall back to `VERSION` when it is unset. Pinning an older version makes the contract files for that version authoritative without reverting the repository.
+Hosts and the CLI read `ORCHESTRA_CONTRACT` first and fall back to `VERSION` when it is unset. Pin **3.2.0** or **3.1.0**. Public tag `v3.2.0` is `9d6900d`. 3.1 zip: `orchestra-workflow-3.1.0-a4405e0-*.zip` if you archived before the 3.2 bump.
 
 Unset it to return to the current contract:
 
 ```powershell
 Remove-Item Env:\ORCHESTRA_CONTRACT
 ```
-
-Use when: a contract rewrite shipped and hosts started behaving worse. This is faster and safer than a git revert of a whole workspace, and it does not touch your private notes. 3.1 zip: `orchestra-workflow-3.1.0-a4405e0-*.zip` if you archived before this bump.
 
 ## 4. Last resort — the backup branch
 

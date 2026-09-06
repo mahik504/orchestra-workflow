@@ -10,7 +10,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/user/orchestra-v3/internal/resources"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/resources"
 )
 
 // HostType represents an AI agent host IDE/environment
@@ -21,12 +21,14 @@ const (
 	HostClaudeCode  HostType = "claude"
 	HostAntigravity HostType = "antigravity"
 	HostAgents      HostType = "agents"
+	HostJcode       HostType = "jcode"
 )
 
-// CanonicalActiveSkills defines the authoritative 30-skill active working set
+// CanonicalActiveSkills is the allowlist in registries/host-stack.json.
 var CanonicalActiveSkills = []string{
 	"animate",
 	"ci-security-scanning-with-strix",
+	"diagram-generator",
 	"eas-app-stores",
 	"emil-design-eng",
 	"expo-data-fetching",
@@ -36,15 +38,22 @@ var CanonicalActiveSkills = []string{
 	"expo-router",
 	"expo-upgrade",
 	"fix-security-vulnerabilities-with-strix",
+	"gsap-core",
+	"hallmark",
 	"impeccable",
 	"orchestra-conductor",
 	"orchestra-docs",
 	"orchestra-ship",
 	"orchestra-vault",
 	"penetration-testing-with-strix",
+	"postgres-best-practices",
+	"pretty-mermaid",
+	"react-best-practices",
+	"refero-design",
 	"review-animations",
 	"semgrep-adapter",
 	"ship-safe",
+	"skill-security-check",
 	"stitch-code-to-design",
 	"stitch-extract-design-md",
 	"stitch-extract-static-html",
@@ -52,8 +61,10 @@ var CanonicalActiveSkills = []string{
 	"stitch-manage-design-system",
 	"stitch-react-components",
 	"stitch-upload-to-stitch",
+	"supabase",
 	"superpowers-planning",
 	"taste-design",
+	"unlazy",
 	"web-design-guidelines",
 }
 
@@ -89,6 +100,7 @@ func (e *HostSyncEngine) ResolveHostDirs(userHome string) map[HostType]string {
 		HostClaudeCode:  filepath.Join(userHome, ".claude", "skills"),
 		HostAntigravity: filepath.Join(userHome, ".gemini", "config", "skills"),
 		HostAgents:      filepath.Join(userHome, ".agents", "skills"),
+		HostJcode:       filepath.Join(userHome, ".jcode", "skills"),
 	}
 }
 
@@ -256,8 +268,10 @@ func (e *HostSyncEngine) SyncAll(userHome string, targetHost string) error {
 		targets = []HostType{HostAntigravity}
 	case "agents":
 		targets = []HostType{HostAgents}
+	case "jcode":
+		targets = []HostType{HostJcode}
 	case "all", "":
-		targets = []HostType{HostCursor, HostClaudeCode, HostAntigravity, HostAgents}
+		targets = []HostType{HostCursor, HostClaudeCode, HostAntigravity, HostAgents, HostJcode}
 	default:
 		return fmt.Errorf("unknown target host: %s", targetHost)
 	}

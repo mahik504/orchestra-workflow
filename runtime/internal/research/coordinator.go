@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/user/orchestra-v3/internal/classifier"
-	"github.com/user/orchestra-v3/internal/resources"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/classifier"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/resources"
 )
 
 // Coordinator defines the interface for multi-source design research coordination

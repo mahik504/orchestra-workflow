@@ -10,13 +10,13 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/user/orchestra-v3/internal/adapters"
-	"github.com/user/orchestra-v3/internal/classifier"
-	"github.com/user/orchestra-v3/internal/engine"
-	"github.com/user/orchestra-v3/internal/handoff"
-	"github.com/user/orchestra-v3/internal/memory"
-	"github.com/user/orchestra-v3/internal/onboard"
-	"github.com/user/orchestra-v3/internal/resources"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/adapters"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/classifier"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/engine"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/handoff"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/memory"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/onboard"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/resources"
 )
 
 func main() {
@@ -59,7 +59,7 @@ func main() {
 }
 
 func printUsage() {
-	fmt.Println("Orchestra 3.2.0 — control plane for agentic IDEs")
+	fmt.Println("Orchestra 3.3.0 — control plane for agentic IDEs")
 	fmt.Println("ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.")
 	if pin := os.Getenv("ORCHESTRA_CONTRACT"); pin != "" {
 		fmt.Printf("ORCHESTRA_CONTRACT pin: %s (see kit/ROLLBACK.md)\n", pin)
@@ -74,7 +74,7 @@ func printUsage() {
 	fmt.Println("  run       Execute full 8-stage pipeline (Discover -> Classify -> Research -> Synthesize -> Design System -> Implement -> Visual QA -> Iterate)")
 	fmt.Println("  verify    Run standalone multi-viewport Visual QA and project verification")
 	fmt.Println("  handoff   Inspect or initialize state handoff between agents")
-	fmt.Println("  sync      Synchronize and verify active skill parity across Cursor, Claude, Antigravity")
+	fmt.Println("  sync      Synchronize and verify active skill parity across Cursor, Claude, Antigravity, jcode")
 	fmt.Println("  memory     Query or record private brain resource outcome memory (list, stats, record)")
 	fmt.Println("  add        Add a resource URL from user intent (Brain overlay, not the public router)")
 	fmt.Println("  lifecycle  Prove submit → inspect → infer → route → memory for one resource")
@@ -130,7 +130,7 @@ func runInit(args []string) {
 	configPath := filepath.Join(workdir, ".orchestra", "config.json")
 	if _, err := os.Stat(configPath); os.IsNotExist(err) {
 		cfg := map[string]interface{}{
-			"version":          "3.2.0",
+			"version":          "3.3.0",
 			"default_agent":    "antigravity",
 			"ponytail_mode":    "full",
 			"isolation_mode":   "strict_clean",
@@ -146,11 +146,11 @@ func runInit(args []string) {
 }
 
 func runDoctor(args []string) {
-	fmt.Println("=== Orchestra 3.2.0 Environment & System Doctor ===")
+	fmt.Println("=== Orchestra 3.3.0 Environment & System Doctor ===")
 	if pin := os.Getenv("ORCHESTRA_CONTRACT"); pin != "" {
 		fmt.Printf("Contract pin:    ORCHESTRA_CONTRACT=%s (see kit/ROLLBACK.md)\n", pin)
 	} else {
-		fmt.Println("Contract pin:    unset (using VERSION 3.2.0)")
+		fmt.Println("Contract pin:    unset (using VERSION 3.3.0)")
 	}
 
 	checkCmd := func(name string, args ...string) (string, bool) {
@@ -274,7 +274,7 @@ func printAGBudget(budget *adapters.AGBudgetReport) {
 	}
 
 	if budget.HeadroomGone {
-		fmt.Println("AG headroom:     [WARN] customization budget is gone — banned plugins are Global on top of the 30-skill core")
+		fmt.Println("AG headroom:     [WARN] customization budget is gone — banned plugins are Global on top of the canonical skill core")
 	}
 
 	if len(budget.MCPServers) == 0 {
@@ -627,7 +627,7 @@ func runSync(args []string) {
 	engine := adapters.NewHostSyncEngine(workdir)
 
 	if !*checkOnly {
-		fmt.Printf("Synchronizing 30 canonical active skills to host(s): %s...\n", *host)
+		fmt.Printf("Synchronizing %d canonical active skills to host(s): %s...\n", len(adapters.CanonicalActiveSkills), *host)
 		if err := engine.SyncAll(userHome, *host); err != nil {
 			fmt.Printf("[FAIL] Synchronization failed: %v\n", err)
 			os.Exit(1)

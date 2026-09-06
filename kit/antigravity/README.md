@@ -36,7 +36,7 @@ Vault backup for the author is **private git** (12h). The public template is `or
 
 Antigravity has a **token budget for Global customizations**. Science and data-engineering plugin packs as Global will consume it before Orchestra can speak.
 
-**Keep Global:** the Orchestra 30 skills, Stitch, Expo, design (taste / impeccable / emil), ship-safe / Strix / semgrep, and tiny Antigravity builtins.
+**Keep Global:** the Orchestra allowlisted skills, Stitch, Expo, design (taste / impeccable / emil), ship-safe / Strix / semgrep, and tiny Antigravity builtins.
 
 **Disable as Global:**
 

@@ -6,10 +6,10 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/user/orchestra-v3/internal/acquisition"
-	acqAdapters "github.com/user/orchestra-v3/internal/adapters/acquisition"
-	"github.com/user/orchestra-v3/internal/resources"
-	"github.com/user/orchestra-v3/internal/runner"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/acquisition"
+	acqAdapters "github.com/mahik504/orchestra-workflow/runtime/internal/adapters/acquisition"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/resources"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/runner"
 )
 
 func TestImplementStage_Execute_WithAcquisitionAndProvenance(t *testing.T) {

@@ -1,3 +1,3 @@
-module github.com/user/orchestra-v3
+module github.com/mahik504/orchestra-workflow/runtime
 
 go 1.22.0

@@ -1,6 +1,6 @@
 {
   "$schema": "./schemas/design-resource-graph.schema.json",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "description": "Canonical Orchestra V3 Capability-to-Resource Execution Graph mapping task archetypes across Discovery, Synthesis, Implementation, and QA phases.",
   "domains": {
     "visual_research": [
@@ -83,6 +83,29 @@
     ],
     "paid_kits": [
       "getlayers"
+    ],
+    "interaction_components": [
+      "shadcn-ui",
+      "react-bits",
+      "kokonut-ui",
+      "cult-ui",
+      "hyperui",
+      "magic-ui-oss",
+      "motion-primitives"
+    ],
+    "diagrams": [
+      "diagram-generator",
+      "pretty-mermaid"
+    ],
+    "backend_optional": [
+      "supabase",
+      "postgres-best-practices"
+    ],
+    "design_audit": [
+      "hallmark",
+      "unlazy",
+      "react-best-practices",
+      "skill-security-check"
     ],
     "design_synthesis": [
       "taste-design",
@@ -793,7 +816,8 @@
       "skip_conditions": [
         "No concrete URL was named — this is not a browsing route",
         "The intent is to copy branding, assets, copy, or source rather than principles",
-        "A direction already exists and only needs implementing"
+        "A direction already exists and only needs implementing",
+        "GetLayers is PURCHASE_PENDING — do not connect MCP until the operator buys and says update"
       ]
     }
   }

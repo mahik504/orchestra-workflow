@@ -1,6 +1,6 @@
 # Verification ledger (Unlazy-style)
 
-Prove the job with a file/evidence ledger. Do not install a second Superpowers pack. `superpowers-planning` in the 30 already covers planning.
+Prove the job with a file/evidence ledger. Do not install a second Superpowers pack. `superpowers-planning` in the allowlist already covers planning.
 
 ## When
 

@@ -5,10 +5,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/user/orchestra-v3/internal/classifier"
-	"github.com/user/orchestra-v3/internal/onboard"
-	"github.com/user/orchestra-v3/internal/resources"
-	"github.com/user/orchestra-v3/internal/verify"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/classifier"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/onboard"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/resources"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/verify"
 )
 
 // ClassifyStage runs the real classifier: it weighs every capability row in the

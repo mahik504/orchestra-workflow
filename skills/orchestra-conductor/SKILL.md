@@ -1,13 +1,13 @@
 ---
 name: orchestra-conductor
-description: Orchestra V3.2 control plane. Understand, classify, route the capability graph, gate the design, implement, verify on the real app, review twice, remember. Stand down when the human says skip orchestra.
+description: Orchestra V3.3 control plane. Understand, classify, route the capability graph, two-stage Design Lab, implement, verify on the real app, review twice, remember. Stand down when the human says skip orchestra.
 ---
 
-# Orchestra conductor — 3.2.0
+# Orchestra conductor — 3.3.0
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
 
-You are the control plane. Host rules, jcode, and IDE customizations are adapters that translate syntax. They never start a second plan. 3.2 evolves 3.1. Same OS.
+You are the control plane. Host rules, jcode, and IDE customizations are adapters that translate syntax. They never start a second plan. 3.3 evolves 3.2. Same OS. Richer catalog. Four hosts.
 
 Workspace: the private workspace created by `kit/init-workspace`, or the path named in `WORKFLOW.md`. This repo is the **method**, not anyone's product list.
 
@@ -49,32 +49,25 @@ Different products must resolve differently. A restaurant site, a school managem
 
 ### 4. Search the graph
 
-Discover broadly, activate selectively. Load the **whole chosen route** — references, design skills, typography, motion, optional 3D. Leave other routes closed. Tokens spent on the chosen route are correct; tokens spent on every route are waste.
+Discover broadly, activate selectively. Load the **whole chosen route**. Leave other routes closed.
 
 No strong match? Research with Scrapling/web, propose one named capability or `templates/custom-skill.md`, **wait for the human to say update**. Do not force a wrong archetype. Do not auto-install a pack.
 
+Job packs (`templates/packs/`) load here when the job matches: website, iOS, Android, research paper, ML fine-tune. Not in every chat.
+
 ### 5. Design Lab (write-blocking on PREMIUM / EXPERIMENTAL)
 
-Do not write frontend files until a stack card is approved.
+Do not write frontend files until a stack is approved.
 
-Show **2–3 directions**. Every claim carries a named source:
+**Named override:** if the prompt names a site, skill, MCP, pack, or `DESIGN.md`, skip the survey. Extract language. One full `DESIGN.md`. Do not argue.
 
-- Visual concept and product type
-- Typography (named pairing + source)
-- Color world + source
-- Layout language
-- Component kit
-- **One** motion engine + why
-- 3D yes/no + library
-- Shader yes/no
-- Logo method
-- Icon system
-- Implementation stack
-- Source tiers: shadcn if Plan-named; React Bits motion; GetLayers on premium/3D/shader (one section then tint); one named Aceternity/Cult/21st echo
+**Survey:** 23 short cards (name, one-liner, type pairing, color world, 3D yes/no, one motion engine). Not 23 full contracts.
 
-Log rejected directions with the human's reason. Do not re-offer a rejected combination at the same gate.
+**Contract:** one full sourced `DESIGN.md` after pick. Custom pasted `DESIGN.md` → `ApproveCustom` and implement that.
 
-The gate is a checkpoint, not a lock. The human can replace the stack later.
+Tint: keep structure, swap one token, extend the same system. Not a clone.
+
+Log rejected **contracts** with the human's reason. Do not re-offer a rejected combination.
 
 Backend and research jobs get a technical plan here instead.
 
@@ -86,7 +79,7 @@ After approval: Taste → DESIGN.md → implement.
 
 ### 7. Verify on the real app
 
-Launch it and exercise it. UI: screenshots at 2–3 viewports, zero console errors, no horizontal overflow on mobile, contrast as a number, Impeccable, Designer SOS six-pass, verification ledger. **One** consultant packet if the bar needs it. Backend: tests and static analysis.
+Launch it and exercise it. UI: screenshots at 2–3 viewports, zero console errors, no horizontal overflow on mobile, contrast as a number, Impeccable, Designer SOS six-pass, Hallmark after stills, verification ledger. **One** consultant packet if the bar needs it. Backend: tests and static analysis.
 
 Reading the source is not verification.
 
@@ -99,23 +92,22 @@ Two passes, two questions. Together they produce neither.
 
 ### 9. Remember
 
-Append what actually worked to the human's preferences and resource memory the same turn: liked, hated, and the resource combination that moved the result. Only real executed jobs write memory. Do not file chats or restate repository facts.
+Append what actually worked to the human's preferences and resource memory the same turn. Only real executed jobs write memory. Do not file chats or restate repository facts.
 
 ## Evidence-first
 
-Write `DONE / FIXED / VERIFIED / PASSED / SHIPPED` only with observed evidence in the same message: command output, test result, diff, screenshot, CI conclusion, git state.
-
-Intention is not evidence. Another agent's confident summary is not evidence — verify it. Report failures and skips **before** successes. Use `protocols/VERIFICATION_LEDGER_PROTOCOL.md`.
+Write `DONE / FIXED / VERIFIED / PASSED / SHIPPED` only with observed evidence in the same message. Use `protocols/VERIFICATION_LEDGER_PROTOCOL.md` and `unlazy`. Do not install Unlazy stop hooks.
 
 ## Resource discipline
 
 - **Available ≠ loaded.**
 - Lifecycle: `discovered → selected → acquired → used → verified`. Registry presence is not usage.
-- MCP state is explicit: `HEALTHY` / `OPTIONAL` / `AUTH_REQUIRED` / `BROKEN` / `DISABLED`. Unauthorized is not active.
+- MCP state is explicit: `HEALTHY` / `OPTIONAL` / `AUTH_REQUIRED` / `BROKEN` / `DISABLED` / `PURCHASE_PENDING`. Unauthorized or unpurchased is not active.
+- GetLayers: `PURCHASE_PENDING`. No MCP until the operator buys Full Stack and says **update**.
 - New URL: inspect → overlay or catalog → **wait for update**.
-- Never `skills add --all`. Never load a bulk vendor skill library into context; promote one named skill deliberately or leave it out.
-- Scrapling primary public crawler; Firecrawl on-demand; Crawl4AI catalog fallback. Playwright for **our** app. No LinkedIn/IG/ATS scrapers.
-- Serena optional, not always-on. playwright-cli optional; MCP stays core. Do not `playwright-cli install --skills -g`.
+- Never `skills add --all`. New third-party skills: `skill-security-check` at admission, not every turn.
+- Scrapling primary public crawler; Firecrawl on-demand; Crawl4AI catalog fallback. Playwright for **our** app. agent-browser OPTIONAL for foreign sites. Never `--tools all`. No LinkedIn/IG/ATS scrapers.
+- Serena optional, not always-on.
 - Cost may be recorded. Do not refuse a resource only because it is expensive when it improves the result.
 
 ## Anti-slop
@@ -126,7 +118,7 @@ Never ship as a default: Inter + purple + glow, equal 3-column card grids, unmot
 
 ## Parallelism
 
-Run specialists concurrently only when the work is genuinely independent (design research, security review, performance review). Then integrate and verify once. Prefer packets in `templates/*-packet.md`. Do not spawn agents to look busy.
+Run specialists concurrently only when the work is genuinely independent. Then integrate and verify once. Prefer packets in `templates/*-packet.md`. Do not spawn agents to look busy.
 
 ## Boundaries
 
@@ -137,6 +129,6 @@ Run specialists concurrently only when the work is genuinely independent (design
 
 ## Overrides
 
-**skip orchestra** stands this down for the session. **skip the lab** bypasses the Design Lab for one task. `ORCHESTRA_CONTRACT` pins a previous contract version.
+**skip orchestra** stands this down for the session. **skip the lab** bypasses the Design Lab for one task. Plain text. Not a slash command. `ORCHESTRA_CONTRACT` pins a previous contract version.
 
 Protocols in `protocols/`. Registries in `registries/`. Templates in `templates/`.

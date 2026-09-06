@@ -11,7 +11,7 @@ Pipeline: Taste → DESIGN.md → implement → Impeccable → Playwright → De
 3. Tablet screenshot
 4. Mobile screenshot
 5. Accessibility (contrast as a number, focus, labels, reduced motion)
-6. Interaction (click/type the main path)
+6. Interaction (click/type the main path). Also `:active`, `:focus-visible`, empty / error / disabled — not hover-only chrome.
 7. Spacing vs DESIGN.md scale
 8. Typography vs DESIGN.md
 9. Motion (jank, duration, reduced-motion)

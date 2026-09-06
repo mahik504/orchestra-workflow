@@ -5,12 +5,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/user/orchestra-v3/internal/classifier"
-	"github.com/user/orchestra-v3/internal/handoff"
-	"github.com/user/orchestra-v3/internal/research"
-	"github.com/user/orchestra-v3/internal/resources"
-	"github.com/user/orchestra-v3/internal/router"
-	"github.com/user/orchestra-v3/internal/verify"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/classifier"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/handoff"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/research"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/resources"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/router"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/verify"
 )
 
 // Failure classification constants for closed-loop self-healing

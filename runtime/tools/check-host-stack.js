@@ -15,8 +15,8 @@ if (!fs.existsSync(stackPath)) {
 
 const stack = JSON.parse(fs.readFileSync(stackPath, 'utf8'));
 
-if (stack.version !== '3.2.0') {
-  problems.push(`host-stack version is "${stack.version}", expected 3.2.0`);
+if (stack.version !== '3.3.0') {
+  problems.push(`host-stack version is "${stack.version}", expected 3.3.0`);
 }
 
 const listed = Array.isArray(stack.skills) ? stack.skills : [];

@@ -2,10 +2,11 @@ package verify
 
 import (
 	"errors"
+	"fmt"
 	"path/filepath"
 	"testing"
 
-	"github.com/user/orchestra-v3/internal/classifier"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/classifier"
 )
 
 func pendingLab(t *testing.T) *DesignLab {
@@ -18,25 +19,63 @@ func pendingLab(t *testing.T) *DesignLab {
 	}, t.TempDir())
 }
 
-func twoDirections() []Direction {
-	return []Direction{
-		{
-			ID: "a", Concept: "Warm editorial",
-			Typography: "Freight Display + Söhne", TypographySrc: "Klim type specimen",
-			ColorWorld: "Roasted umber on bone", ColorSrc: "1970s coffee packaging archive",
-			LayoutLanguage: "Asymmetric editorial grid", ComponentKit: "custom",
-			MotionEngine: "CSS transitions", MotionWhy: "page is mostly static, no timeline needed",
-			LogoMethod: "wordmark", IconSystem: "Phosphor", Stack: []string{"astro", "tailwind"},
-		},
-		{
-			ID: "b", Concept: "Stark industrial",
-			Typography: "Diatype + Diatype Mono", TypographySrc: "Dinamo specimen",
-			ColorWorld: "Cold steel with ember accent", ColorSrc: "Braun product photography",
-			LayoutLanguage: "Strict 12-column", ComponentKit: "custom",
-			MotionEngine: "GSAP", MotionWhy: "scroll-linked reveals need a timeline",
-			LogoMethod: "monogram", IconSystem: "Lucide", Stack: []string{"next", "tailwind"},
-		},
+func oneDirection() Direction {
+	return Direction{
+		ID: "a", Concept: "Warm editorial",
+		Typography: "Freight Display + Söhne", TypographySrc: "Klim type specimen",
+		ColorWorld: "Roasted umber on bone", ColorSrc: "1970s coffee packaging archive",
+		LayoutLanguage: "Asymmetric editorial grid", ComponentKit: "custom",
+		MotionEngine: "CSS transitions", MotionWhy: "page is mostly static, no timeline needed",
+		LogoMethod: "wordmark", IconSystem: "Phosphor", Stack: []string{"astro", "tailwind"},
+		ThreeD: "no", Shader: "no",
 	}
+}
+
+func altDirection() Direction {
+	d := oneDirection()
+	d.ID = "b"
+	d.Concept = "Stark industrial"
+	d.Typography = "Diatype + Diatype Mono"
+	d.TypographySrc = "Dinamo specimen"
+	d.ColorWorld = "Cold steel with ember accent"
+	d.ColorSrc = "Braun product photography"
+	d.LayoutLanguage = "Strict 12-column"
+	d.MotionEngine = "GSAP"
+	d.MotionWhy = "scroll-linked reveals need a timeline"
+	d.LogoMethod = "monogram"
+	d.IconSystem = "Lucide"
+	d.Stack = []string{"next", "tailwind"}
+	return d
+}
+
+func twentyThreeCards() []DirectionCard {
+	cards := make([]DirectionCard, SurveyCardCount)
+	for i := 0; i < SurveyCardCount; i++ {
+		cards[i] = DirectionCard{
+			ID:           fmt.Sprintf("c%d", i+1),
+			Name:         fmt.Sprintf("Direction %d", i+1),
+			OneLiner:     "Short survey card, not a full DESIGN.md",
+			Typography:   "Named pairing",
+			ColorWorld:   "Named palette",
+			ThreeD:       "no",
+			MotionEngine: "CSS",
+		}
+	}
+	cards[0].MotionEngine = "GSAP"
+	cards[1].ThreeD = "yes — R3F"
+	return cards
+}
+
+func readyContract(t *testing.T, dir Direction) *DesignLab {
+	t.Helper()
+	lab := pendingLab(t)
+	if err := lab.SkipSurvey("test fixture: skip survey to isolate the contract"); err != nil {
+		t.Fatalf("SkipSurvey: %v", err)
+	}
+	if err := lab.OfferContract(dir); err != nil {
+		t.Fatalf("OfferContract: %v", err)
+	}
+	return lab
 }
 
 // The gate is a lock. While it is pending, nothing the browser renders gets written.
@@ -84,12 +123,9 @@ func TestGate_NotRequiredNeverBlocks(t *testing.T) {
 }
 
 func TestGate_ApprovalUnlocksWrites(t *testing.T) {
-	lab := pendingLab(t)
-	if err := lab.Offer(twoDirections()); err != nil {
-		t.Fatalf("Offer: %v", err)
-	}
+	lab := readyContract(t, altDirection())
 	if err := lab.GuardWrite("src/App.tsx"); err == nil {
-		t.Fatal("offering directions must not by itself unlock writes")
+		t.Fatal("offering a contract must not by itself unlock writes")
 	}
 	if err := lab.Approve("b", "operator"); err != nil {
 		t.Fatalf("Approve: %v", err)
@@ -109,8 +145,7 @@ func TestGate_ApprovalUnlocksWrites(t *testing.T) {
 }
 
 func TestGate_ApprovalRequiresAnOfferedDirectionAndANamedApprover(t *testing.T) {
-	lab := pendingLab(t)
-	_ = lab.Offer(twoDirections())
+	lab := readyContract(t, oneDirection())
 
 	if err := lab.Approve("does-not-exist", "operator"); err == nil {
 		t.Error("approved a direction that was never offered")
@@ -123,38 +158,115 @@ func TestGate_ApprovalRequiresAnOfferedDirectionAndANamedApprover(t *testing.T) 
 	}
 }
 
-// Two or three directions. One is a decree, four is a survey.
-func TestGate_OfferRequiresTwoOrThreeSourcedDirections(t *testing.T) {
-	dirs := twoDirections()
-
-	if err := pendingLab(t).Offer(dirs[:1]); err == nil {
-		t.Error("accepted a single direction")
+func TestGate_SurveyRequiresExactlyTwentyThreeCards(t *testing.T) {
+	short := twentyThreeCards()[:10]
+	if err := pendingLab(t).OfferSurvey(short); err == nil {
+		t.Error("accepted a short survey")
 	}
-	if err := pendingLab(t).Offer(append(append([]Direction{}, dirs...), dirs[0], dirs[1])); err == nil {
-		t.Error("accepted four directions")
+	long := append(twentyThreeCards(), twentyThreeCards()[0])
+	if err := pendingLab(t).OfferSurvey(long); err == nil {
+		t.Error("accepted more than 23 cards")
 	}
-
-	unsourced := twoDirections()
-	unsourced[0].TypographySrc = ""
-	if err := pendingLab(t).Offer(unsourced); err == nil {
-		t.Error("accepted a direction whose typography has no named source")
+	incomplete := twentyThreeCards()
+	incomplete[3].OneLiner = ""
+	if err := pendingLab(t).OfferSurvey(incomplete); err == nil {
+		t.Error("accepted an incomplete survey card")
 	}
-
-	noMotionWhy := twoDirections()
-	noMotionWhy[1].MotionWhy = ""
-	if err := pendingLab(t).Offer(noMotionWhy); err == nil {
-		t.Error("accepted a motion engine with no stated reason")
+	ok := pendingLab(t)
+	if err := ok.OfferSurvey(twentyThreeCards()); err != nil {
+		t.Fatalf("valid survey refused: %v", err)
+	}
+	if err := ok.GuardWrite("src/App.tsx"); err == nil {
+		t.Fatal("a survey must not unlock frontend writes")
 	}
 }
 
-// A rejection is only useful if it is remembered and it has a reason.
+func TestGate_ContractRequiresSurveyOrSkipAndSources(t *testing.T) {
+	lab := pendingLab(t)
+	if err := lab.OfferContract(oneDirection()); err == nil {
+		t.Error("accepted a contract with no survey and no skip")
+	}
+
+	lab = pendingLab(t)
+	if err := lab.SkipSurvey(""); err == nil {
+		t.Error("accepted an empty skip reason")
+	}
+	if err := lab.SkipSurvey("prompt named DESIGN.md"); err != nil {
+		t.Fatalf("SkipSurvey: %v", err)
+	}
+
+	unsourced := oneDirection()
+	unsourced.TypographySrc = ""
+	if err := lab.OfferContract(unsourced); err == nil {
+		t.Error("accepted a contract whose typography has no named source")
+	}
+
+	noMotionWhy := oneDirection()
+	noMotionWhy.MotionWhy = ""
+	if err := lab.OfferContract(noMotionWhy); err == nil {
+		t.Error("accepted a motion engine with no stated reason")
+	}
+
+	if err := lab.OfferContract(oneDirection()); err != nil {
+		t.Fatalf("valid contract after skip refused: %v", err)
+	}
+}
+
+func TestGate_SurveyThenOneContract(t *testing.T) {
+	lab := pendingLab(t)
+	if err := lab.OfferSurvey(twentyThreeCards()); err != nil {
+		t.Fatalf("OfferSurvey: %v", err)
+	}
+	if err := lab.OfferContract(oneDirection()); err != nil {
+		t.Fatalf("OfferContract after survey: %v", err)
+	}
+	if err := lab.Approve("a", "operator"); err != nil {
+		t.Fatalf("Approve: %v", err)
+	}
+}
+
+func TestGate_ApproveCustomSkipsSurvey(t *testing.T) {
+	lab := pendingLab(t)
+	if err := lab.ApproveCustom("operator", ""); err == nil {
+		t.Error("accepted custom approval with no note")
+	}
+	if err := lab.ApproveCustom("operator", "pasted DESIGN.md for the tinted editorial system"); err != nil {
+		t.Fatalf("ApproveCustom: %v", err)
+	}
+	if lab.State != GateApproved {
+		t.Fatalf("state = %s, want APPROVED", lab.State)
+	}
+	if err := lab.GuardWrite("src/App.tsx"); err != nil {
+		t.Errorf("custom DESIGN.md still blocking: %v", err)
+	}
+	if lab.Approved == nil || lab.Approved.DirectionID != "custom" {
+		t.Errorf("custom approval not recorded: %+v", lab.Approved)
+	}
+}
+
+func TestGate_NamedOverrideSkipsSurvey(t *testing.T) {
+	lab := pendingLab(t)
+	if err := lab.SkipSurvey("prompt named refero-design and a pasted DESIGN.md"); err != nil {
+		t.Fatalf("SkipSurvey: %v", err)
+	}
+	if err := lab.OfferSurvey(twentyThreeCards()); err == nil {
+		t.Error("offered a survey after a named override")
+	}
+	if err := lab.OfferContract(oneDirection()); err != nil {
+		t.Fatalf("OfferContract after named override: %v", err)
+	}
+}
+
 func TestGate_RejectionsArePersistedAndNotReOffered(t *testing.T) {
 	workspace := t.TempDir()
 	brief := &classifier.Brief{TaskID: "t3", DesignLabRequired: true, DesignLabReason: "PREMIUM"}
 
 	first := NewDesignLab(brief, workspace)
-	if err := first.Offer(twoDirections()); err != nil {
-		t.Fatalf("Offer: %v", err)
+	if err := first.SkipSurvey("test fixture"); err != nil {
+		t.Fatalf("SkipSurvey: %v", err)
+	}
+	if err := first.OfferContract(oneDirection()); err != nil {
+		t.Fatalf("OfferContract: %v", err)
 	}
 	if err := first.Reject("a", ""); err == nil {
 		t.Error("accepted a rejection with no stated reason")
@@ -174,22 +286,22 @@ func TestGate_RejectionsArePersistedAndNotReOffered(t *testing.T) {
 		t.Errorf("rejection is missing reason or fingerprint: %+v", logged[0])
 	}
 
-	// A later pass at the same gate must not re-offer the rejected combination,
-	// even under a different name.
 	second := NewDesignLab(&classifier.Brief{TaskID: "t4", DesignLabRequired: true}, workspace)
-	renamed := twoDirections()
-	renamed[0].ID = "a-again"
-	renamed[0].Concept = "Warm editorial, take two"
-	if err := second.Offer(renamed); err == nil {
+	if err := second.SkipSurvey("second pass"); err != nil {
+		t.Fatalf("SkipSurvey: %v", err)
+	}
+	renamed := oneDirection()
+	renamed.ID = "a-again"
+	renamed.Concept = "Warm editorial, take two"
+	if err := second.OfferContract(renamed); err == nil {
 		t.Error("re-offered a rejected stack combination under a new name")
 	}
 
-	// Changing the actual stack is allowed.
-	changed := twoDirections()
-	changed[0].ID = "c"
-	changed[0].ColorWorld = "Bleached linen with ink"
-	changed[0].ColorSrc = "Japanese stationery catalogues"
-	if err := second.Offer(changed); err != nil {
+	changed := oneDirection()
+	changed.ID = "c"
+	changed.ColorWorld = "Bleached linen with ink"
+	changed.ColorSrc = "Japanese stationery catalogues"
+	if err := second.OfferContract(changed); err != nil {
 		t.Errorf("blocked a genuinely different direction: %v", err)
 	}
 }
@@ -218,7 +330,7 @@ func TestGate_BypassIsRecorded(t *testing.T) {
 }
 
 func TestFingerprint_IgnoresNamesAndStackOrder(t *testing.T) {
-	a := twoDirections()[0]
+	a := oneDirection()
 	b := a
 	b.ID = "different"
 	b.Concept = "Different name entirely"

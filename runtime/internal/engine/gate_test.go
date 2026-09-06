@@ -6,7 +6,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/user/orchestra-v3/internal/verify"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/verify"
 )
 
 // The gate has to stop the pipeline before implementation, not merely warn.
