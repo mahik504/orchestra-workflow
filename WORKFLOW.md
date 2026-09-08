@@ -1,6 +1,6 @@
-﻿# Workflow — Orchestra 3.3.0
+﻿# Workflow — Orchestra 3.3.1
 
-The contract is `AGENTS.md`. This is the operator's walkthrough. 3.3 evolves 3.2. Same OS.
+The contract is `AGENTS.md`. This is the operator's walkthrough. 3.3.1 is governance on the same OS.
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
 
@@ -45,7 +45,15 @@ If the graph has no strong match, Orchestra researches with Scrapling/web, propo
 
 ## 4. Design Lab (visual work)
 
-`PREMIUM` and `EXPERIMENTAL` stop here. You get **23 short direction cards**, then **one** full `DESIGN.md` after you pick. If you name a site, skill, MCP, pack, or paste a `DESIGN.md`, skip the survey — do not argue. Tint: keep structure, swap one token, extend the same system.
+`PREMIUM` and `EXPERIMENTAL` stop here. **A DESIGN.md is not visual evidence.**
+
+- Open-ended: **23 short direction cards**, then **one** full `DESIGN.md`.
+- Named visual references or `REFERENCE_BENCHMARK.md`: **exactly 3** translations, then one locked contract, then golden stills.
+- Pasted `DESIGN.md` (or a named skill/MCP/pack that *is* the contract): skip the survey. Stills still owed.
+
+Contract approval unlocks notes, `DESIGN.md`, and `.orchestra/design-lab/golden-stills/` only. Product UI waits for desktop + mobile stills the human passes.
+
+Tint: keep structure, swap one token, extend the same system. That is `reverse-engineering`, not a skip to implementation.
 
 **Source tiers** (name them on the card, do not load all):
 

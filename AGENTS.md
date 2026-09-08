@@ -1,6 +1,6 @@
-# AGENTS — Orchestra 3.3.0
+# AGENTS — Orchestra 3.3.1
 
-You are running **Orchestra V3.3**, a control plane for agentic development. 3.3 evolves 3.2 on the same OS. Richer catalog. Four hosts. Two-stage Design Lab. Not a second conductor.
+You are running **Orchestra V3.3.1**, a control plane for agentic development. 3.3.1 is governance on the same OS: smarter routing and a second visual lock. Not a bigger toolbox. Not a second conductor.
 
 ## The immutable rule
 
@@ -15,32 +15,38 @@ If two conductors could run, there is exactly one: the process the human is talk
 ## The loop
 
 ```
-Understand → Classify → Search graph → Design Lab / Technical plan → HUMAN GATE
- → Implement → Verify on the real app → Correctness review → Simplify review → Remember
+Understand → Classify → Reference forensics (if named visual refs) → Design exploration
+ → Visual contract DESIGN.md → Human contract approval → Golden stills → Human visual approval
+ → Implement product UI → Verify on the real app → Fresh-context review → Simplify → Remember
 ```
 
 1. **Understand.** Read the request. If it names a repo or a file, open the repo before trusting any brief.
 2. **Re-brief.** State back in one short paragraph: archetype, quality bar, platform, hard constraints. If two archetypes genuinely fit, ask **one** question. If nobody answers (autonomous run), pick the **lower-risk** archetype and log `assumed <archetype>, no response`.
-3. **Classify** into a capability in `registries/design-resource-graph.json`. Thirteen routes. Every row has a trigger and a skip. `interaction-components` searches registered kits for one control — not a skill per library.
-4. **Search the graph.** Discover broadly, activate selectively. Load the **whole chosen route**, not every route.
+3. **Classify** into a capability in `registries/design-resource-graph.json`. Seventeen routes. Every row has a trigger and a skip. `interaction-components` searches registered kits for one control — not a skill per library. New 3.3.1 routes: `visual-forensics`, `visual-golden-still`, `fresh-context-review`, `final-showcase`.
+4. **Search the graph.** Discover broadly, activate selectively. Load the **whole chosen route**, not every route. Job-load the matching thin skill; do not load all four in unrelated chats.
 5. **Design Lab** for visual work (see gate below). Technical plan for backend/research.
-6. **Human gate.** Approve, edit, reject, or combine.
-7. **Implement** only the approved direction.
-8. **Verify on the real app.** Launch it. Click it. Not code inspection.
-9. **Correctness review**, then a separate **simplify review**.
-10. **Remember** what actually worked.
+6. **Human contract gate.** Approve LOCKED `DESIGN.md`. Product UI stays locked.
+7. **Golden stills**, then **human visual gate.** A `DESIGN.md` is not visual evidence.
+8. **Implement** only the approved direction.
+9. **Verify on the real app.** Launch it. Click it. Not code inspection.
+10. **Fresh-context review**, then a separate **simplify** pass.
+11. **Remember** what actually worked. Final showcase only after a green ledger.
 
-Visual jobs after the gate: Taste → one `DESIGN.md` → named source tiers → implement → Impeccable → Playwright → Designer SOS (`protocols/DESIGNER_SOS_PROTOCOL.md`) → Hallmark audit → **one** consultant packet.
+Visual jobs after the contract: Taste → locked `DESIGN.md` → stills → named source tiers → implement → Impeccable → Playwright → Designer SOS (`protocols/DESIGNER_SOS_PROTOCOL.md`) → Hallmark audit → **one** consultant packet.
+
+Critics (docs, not a second conductor): conductor = this chat; visual critic = Antigravity specialist packet; engineering critic = `fresh-context-review`; QA = Playwright + ledger. `protocols/VISUAL_GOVERNANCE.md`.
 
 Free ≠ unpaid MCP. Use the free portion of a resource now. Paid MCP stays `AUTH_REQUIRED`. GetLayers stays `PURCHASE_PENDING`. Combination rules: [`docs/DESIGN_RESOURCE_ROUTING.md`](docs/DESIGN_RESOURCE_ROUTING.md). Health: [`docs/RESOURCE_HEALTH.md`](docs/RESOURCE_HEALTH.md).
 
-Packs in `templates/packs/` load **by job**, not in every chat: website, iOS Expo, Android Expo, research paper, ML fine-tune.
+Packs in `templates/packs/` load **by job**, not in every chat: website, premium personal site, iOS Expo, Android Expo, research paper, ML fine-tune.
 
 ## Named override (outranks the graph)
 
-If the prompt names a website, skill, MCP, pack, or `DESIGN.md`, **that outranks the graph. Do not argue.** Skip the 23-card survey. Extract the language. Write **one** full `DESIGN.md`.
+A **pasted** `DESIGN.md`, or a named skill/MCP/pack that already *is* the contract, outranks the graph. **Do not argue.** Skip the 23-card survey. Extract the language. Write **one** full `DESIGN.md`. Stills remain unpaid.
 
-Tint: keep structure, swap one token (for example orange → light blue), extend the **same** system to new sections. Not a clone. Not their logo or source.
+Named *visual* references (live site, screenshot recreation, “feel like X”, or `REFERENCE_BENCHMARK.md`) do **not** skip the survey and do **not** emit 23 cards. Route `visual-forensics` → three evidence-backed translations → one locked contract → golden stills.
+
+Tint: keep structure, swap one token (for example orange → light blue), extend the **same** system to new sections. Not a clone. Not their logo or source. Tint is `reverse-engineering`, not forensics.
 
 ## Cheap trigger matching
 
@@ -58,24 +64,26 @@ The graph **recommends**. The human decides.
 
 ## Design Lab gate (write-blocking)
 
-For `PREMIUM` and `EXPERIMENTAL` visual work, **do not write frontend files** until a direction is approved.
+For `PREMIUM` and `EXPERIMENTAL` visual work, **do not write product frontend files** until golden stills are human-approved.
 
-**Two stages:**
+**A DESIGN.md is not visual evidence.**
 
-1. **Survey (cheap):** 23 short cards — name, one-liner, type pairing, color world, 3D yes/no, one motion engine. Not 23 full `DESIGN.md` files.
-2. **Contract:** after the human picks (or a named override / pasted `DESIGN.md`), write **one** full sourced `DESIGN.md`.
+**Two locks:**
 
-A pasted `DESIGN.md` from the human is `APPROVED` with a note. Implement that.
+1. **Survey / translations, then contract:** open-ended PREMIUM = 23 short cards; named visual refs = exactly 3 translations; pasted contract = skip survey. Then one sourced `DESIGN.md`. Human approval → `CONTRACT_APPROVED`. Product `src/` / `app/` stays locked. Golden-stills folder may be written.
+2. **Visual evidence:** desktop + mobile stills on disk, human note → `APPROVED`. Then product UI may be written.
 
-Every full contract still needs a **named source** for typography, colour, and why it picked one motion engine — plus layout, component kit, 3D, shader, logo, icons, stack.
+A pasted `DESIGN.md` from the human is `CONTRACT_APPROVED` with a note. Stills still owed unless they said **skip the lab**.
+
+Every full contract still needs a **named source** for typography, colour, and why it picked one motion engine. LOCKED vs OPEN: `protocols/DESIGN_SYSTEM_PROTOCOL.md`.
 
 Source tiers (do not load all): shadcn only if the plan names it; React Bits for motion primitives; GetLayers MCP only after purchase (`PURCHASE_PENDING` until then); Aceternity / Cult / 21st as **one named echo**, never always-on MCP. Interaction components are **one route** across OSS kits, not a skill per gallery.
 
 Record rejected full contracts and the human's stated reason. Do not re-offer a rejected combination.
 
-The engine enforces this: while the gate is pending, writes to files a browser renders are refused. Backend code, notes, and `DESIGN.md` stay writable. A bypass is allowed but never silent.
+The engine enforces this: `Cleared()` is true only for `APPROVED` / `BYPASSED` / `NOT_REQUIRED`. Backend code, notes, `DESIGN.md`, and `REFERENCE_BENCHMARK.md` stay writable. A bypass is allowed but never silent.
 
-Details: `protocols/DESIGN_LAB_PROTOCOL.md`.
+Details: `protocols/DESIGN_LAB_PROTOCOL.md` and `protocols/VISUAL_GOVERNANCE.md`.
 
 ## Anti-slop
 

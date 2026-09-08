@@ -436,6 +436,7 @@ func TestAdversarial_MalformedTask_InjectionPayloads(t *testing.T) {
 			WorkspaceRoot:  subWorkdir,
 			Type:           "DESIGN",
 			SkipVisualGate: true,
+			DryRun:         true,
 		}
 
 		res, err := pipeline.Execute(context.Background(), req)

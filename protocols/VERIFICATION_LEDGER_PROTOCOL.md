@@ -18,9 +18,14 @@ For this story, list:
 | Console | zero errors, or the errors | |
 | Contrast | ratio vs `DESIGN.md` | |
 | Tests | command + exit code | |
-| SOS teardown | `DESIGNER_SOS_PROTOCOL.md` Keep/Kill/Park | |
+| SOS teardown | `DESIGNER_SOS_PROTOCOL.md` Keep/Rework/Kill/Park | |
+| Golden stills | desktop + mobile paths under `.orchestra/design-lab/golden-stills/` | PASS / FAIL |
+| Fresh-context review | independent critic, completed phase | pass / fail / skip |
+| Final showcase | walkthrough / ship assets | skip unless human-approved + production-ready + ledger green |
 
 Empty cells are skips. Say skip **before** success.
+
+Golden stills are PASS/FAIL only. A `DESIGN.md` is not a still. Showcase never runs while implementation is open and **never** influences design.
 
 ## Rules
 

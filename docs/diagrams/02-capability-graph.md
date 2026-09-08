@@ -1,6 +1,6 @@
 # Capability graph
 
-Thirteen routes in `registries/design-resource-graph.json`. Every row has a trigger **and** a skip.
+Seventeen routes in `registries/design-resource-graph.json`. Every row has a trigger **and** a skip.
 
 ```mermaid
 flowchart LR

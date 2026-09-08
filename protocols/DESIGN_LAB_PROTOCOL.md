@@ -2,7 +2,7 @@
 
 The Design Lab is the checkpoint between "I understood the brief" and "I started writing frontend files". Its job is to make *design-as-you-code* impossible for work a stranger will see.
 
-The gate is a lock, not a warning. While it is `PENDING`, the engine refuses to write anything a browser renders.
+The gate is a lock, not a warning. Visual governance (two locks, critics, kill switch): `VISUAL_GOVERNANCE.md`.
 
 ## When the lab runs
 
@@ -16,67 +16,100 @@ The bar comes from the capability row in `registries/design-resource-graph.json`
 
 Run `orchestra classify "<your brief>"` to see the bar, the chosen route, and every route that was declined.
 
-## Two stages (3.3)
+## Two locks (3.3.1)
 
-1. **Survey (cheap).** Exactly **23** short cards. Each card is: id, name, one-liner, typography pairing, color world, 3D yes/no, one motion engine. Not 23 full `DESIGN.md` files.
-2. **Contract.** After the human picks, write **one** full sourced `DESIGN.md`. The engine's `OfferContract` accepts a single `Direction`. Unsourced typography, colour, or motion is refused.
+1. **Contract.** Survey or translations, then one sourced `DESIGN.md`. Human accepts LOCKED sections. State: `CONTRACT_APPROVED`. Product UI stays refused.
+2. **Visual evidence.** Representative desktop still + mobile still, files on disk, human note. State: `APPROVED`. Then product UI may be written.
+
+**A DESIGN.md is not visual evidence.**
 
 ```mermaid
 flowchart TD
   prompt[PRD or prompt]
   brief[Rebrief and classify]
-  named{Named site skill MCP pack or DESIGN.md}
+  visual{Named visual refs or REFERENCE_BENCHMARK.md}
+  pasted{Pasted DESIGN.md or named skill MCP pack}
+  three[3 evidence-backed translations]
   survey[23 short direction cards]
   oneD[One full DESIGN.md]
-  gate[Human gate]
-  impl[Implement chosen route]
+  contract[Human contract gate]
+  stills[Golden stills desktop plus mobile]
+  visualGate[Human visual gate]
+  impl[Implement product UI]
   verify[Ledger Playwright SOS Hallmark]
-  prompt --> brief --> named
-  named -->|yes do not argue| oneD
-  named -->|no| survey --> oneD
-  oneD --> gate --> impl --> verify
+  prompt --> brief --> visual
+  visual -->|yes| three --> oneD
+  visual -->|no| pasted
+  pasted -->|yes do not argue| oneD
+  pasted -->|no open-ended| survey --> oneD
+  oneD --> contract --> stills --> visualGate --> impl --> verify
 ```
 
-## Named override
+## Survey sizes
 
-If the prompt names a website, skill, MCP, pack, or `DESIGN.md`, **skip the survey**. Extract the language. One contract. Do not argue.
+| Mode | Cards | When |
+| --- | --- | --- |
+| Open-ended PREMIUM | Exactly **23** short cards | “Surprise me.” No substantial named visual reference. |
+| Named-reference | Exactly **3** evidence-backed translations | Brief names a live site / screenshot recreation / “feel like X”, or `REFERENCE_BENCHMARK.md` exists. |
+| Skip survey | None | **Pasted** `DESIGN.md`, or a named skill/MCP/pack that already *is* the contract. |
 
-Tint: preserve structure, swap one token, extend the same system to new sections. Not a clone. Not their logo or source.
+Each card is: id, name, one-liner, typography pairing, color world, 3D yes/no, one motion engine. Not full contracts.
+
+`OfferSurvey` accepts 23 or 3. Anything else is refused. `OfferContract` requires the survey, the 3-card path, or a recorded skip.
+
+Named *visual* references do **not** skip to one `DESIGN.md` and do **not** emit 23 cards. They go forensics → 3 translations → one locked contract → stills.
+
+Tint (keep structure, swap one token): `reverse-engineering`. Not forensics. Not a clone. Not their logo or source.
 
 ## Custom DESIGN.md
 
-If the human pastes a `DESIGN.md`, call `ApproveCustom` with who approved and a note. Gate becomes `APPROVED`. Implement that file.
+If the human pastes a `DESIGN.md`, call `ApproveCustom` with who approved and a note. Gate becomes `CONTRACT_APPROVED`. Golden stills remain unpaid.
 
 ## Gate states
 
-| State | Meaning | Frontend writes |
+| State | Meaning | Product frontend writes |
 | --- | --- | --- |
 | `NOT_REQUIRED` | Bar or task does not call for a lab | allowed |
-| `PENDING` | Survey/contract owed, none approved | **blocked** |
-| `APPROVED` | A named direction or custom DESIGN.md was approved | allowed |
+| `PENDING` | Survey/translations + contract owed | **blocked** |
+| `CONTRACT_APPROVED` | Locked `DESIGN.md` accepted; stills unpaid | **blocked** except `.orchestra/design-lab/golden-stills/` |
+| `APPROVED` | Golden stills human-approved | allowed |
 | `BYPASSED` | The human waived the lab, with a recorded note | allowed |
 
-A bypass is legitimate. A *silent* bypass is not — `Bypass` refuses an empty note. `SkipSurvey` also refuses an empty reason.
+`Cleared()` is true only for `APPROVED`, `BYPASSED`, `NOT_REQUIRED`.
+
+A bypass is legitimate. A *silent* bypass is not — `Bypass` refuses an empty note. `SkipSurvey` also refuses an empty reason. `ApproveStills` refuses missing files or an empty note.
 
 ## What is blocked
 
 Anything the browser renders: `.css`, `.scss`, `.sass`, `.less`, `.html`, `.jsx`, `.tsx`, `.vue`, `.svelte`, `.astro`, `.glsl`, `.frag`, `.vert`, plus token and theme files (`tailwind.config.*`, `theme.*`, `tokens.*`, `globals.*`, `design-system.*`).
 
-Backend code, migrations, notes, and `DESIGN.md` itself stay writable.
+Backend code, migrations, notes, `DESIGN.md`, and `REFERENCE_BENCHMARK.md` stay writable.
+
+During `CONTRACT_APPROVED` only, files under `.orchestra/design-lab/golden-stills/` (png/webp plus a throwaway still renderer) may be written. Product `src/` / `app/` stays locked.
 
 ## What a full contract must contain
 
-- Visual concept and product type
-- Typography — a named pairing **and where it came from**
-- Colour world — **and its source**
-- Layout language
-- Component kit (named, or `custom`)
-- **One** motion engine, **and why that one**
-- 3D: yes/no, and the library if yes
-- Shader: yes/no
-- Logo method
-- Icon system
-- Implementation stack
+See `DESIGN_SYSTEM_PROTOCOL.md` for **LOCKED** vs **OPEN**.
+
+LOCKED (human-approved only):
+
+- Visual concept / world
+- Type roles
+- Color roles
+- Motion principle
+- Layout / architecture principles
+- Character direction if any
+
+OPEN until later gates (stills, implementation):
+
+- Exact px
+- Kit
+- Nav mechanism
+- Scene composition
+- 3D yes/no implementation
+- Motion implementation
+
+Every contract still needs a **named source** for typography, colour, and why it picked one motion engine — plus the OPEN fields as intent, not as unpaid evidence.
 
 Source tiers (name them, do not load all): shadcn only if the plan names it; React Bits for motion primitives; GetLayers MCP only after purchase; Aceternity / Cult / 21st as **one named echo**.
 
@@ -86,7 +119,8 @@ When the human turns a **contract** down, record **their stated reason**. `Rejec
 
 Rejections are fingerprinted by their actual stack, not by their name. The log lives at `.orchestra/design-lab/rejected-directions.json`.
 
-Approvals are recorded at `.orchestra/design-lab/approved-<task-id>.json`.
+Contract approvals: `.orchestra/design-lab/approved-<task-id>.json`.
+Stills: `.orchestra/design-lab/stills-<task-id>.json`.
 
 ## Overrides
 

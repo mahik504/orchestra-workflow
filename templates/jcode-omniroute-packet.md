@@ -7,7 +7,7 @@ Upstream: https://github.com/1jehuang/jcode
 ```
 MODE: specialist
 KIND: jcode-omniroute
-ORCHESTRA: 3.3.0  (point jcode at orchestra-workflow/AGENTS.md)
+ORCHESTRA: 3.3.1  (point jcode at orchestra-workflow/AGENTS.md)
 VAULT: <ORCHESTRA_HOME>
 OMNIROUTE: http://localhost:20128
 

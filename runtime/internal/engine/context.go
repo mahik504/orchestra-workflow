@@ -157,8 +157,9 @@ type TaskContext struct {
 	ResearchCoord *research.ResearchCoordinator
 	Verifier      VisualVerifier
 
-	// DesignLab is the write-blocking gate. While it is PENDING, the implement
-	// stage refuses to write any file a browser would render.
+	// DesignLab is the write-blocking gate. While it is PENDING or
+	// CONTRACT_APPROVED, product frontend writes are refused. Golden stills
+	// may be written after the contract. Cleared() is APPROVED / BYPASSED / NOT_REQUIRED.
 	DesignLab *verify.DesignLab
 
 	// Stage-Specific Data Payloads

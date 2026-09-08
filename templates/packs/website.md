@@ -2,7 +2,7 @@
 
 Load when the job is a public website, marketing site, or SaaS web app. Not in every chat.
 
-Loop: brief → classify → **Design Lab** (23 cards or named override) → one `DESIGN.md` → architecture / db / DevOps **after** the visual contract.
+Loop: brief → classify → **Design Lab** (23 cards, or 3 named-reference translations, or pasted contract) → locked `DESIGN.md` → golden stills → architecture / db / DevOps **after** the visual gate.
 
 - Graph: usually `premium-website`, `saas-dashboard`, or `b2b-portal`.
 - Motion: **one** engine from the card (GSAP *or* React Bits *or* CSS).

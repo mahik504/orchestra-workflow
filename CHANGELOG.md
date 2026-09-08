@@ -1,5 +1,14 @@
 ﻿# Changelog
 
+## [3.3.1] - Governance: visual evidence gate, named-reference mode, four routes
+*Same OS. One conductor. Not a bigger toolbox. Version is 3.3.1.*
+
+- Design Lab has two locks: `CONTRACT_APPROVED` (locked `DESIGN.md`) then `APPROVED` (golden stills). Product UI stays refused until stills. A `DESIGN.md` is not visual evidence.
+- Named visual references take **exactly 3** evidence-backed translations. Open-ended PREMIUM still uses 23 cards. Pasted contracts may skip the survey; named sites may not.
+- Four capability routes + four job-loaded skills: `visual-forensics`, `visual-golden-still`, `fresh-context-review`, `final-showcase`. Pack: `templates/packs/premium-portfolio.md`.
+- Resource status enum extended (`PROJECT_ONLY`, `CATALOG`, `EXPERIMENTAL`, `PRIVILEGED`, `AUTH_REQUIRED`, `OBSOLETE`). Named candidates reclassified only. No GSD/ECC/MCP bulk install.
+- Docs: `protocols/VISUAL_GOVERNANCE.md`, `docs/3.3.1/`. Keep / Rework / Kill / Park.
+
 ## [3.3.0] - Richer graph, four hosts, two-stage Design Lab, free-resource honesty
 *Evolve 3.2. Same OS. Curated 40 skills. Contract stays open. Version stays 3.3.0.*
 

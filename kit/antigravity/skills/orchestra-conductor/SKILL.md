@@ -1,13 +1,13 @@
 ---
 name: orchestra-conductor
-description: Orchestra V3.3 control plane. Understand, classify, route the capability graph, two-stage Design Lab, implement, verify on the real app, review twice, remember. Stand down when the human says skip orchestra.
+description: Orchestra V3.3.1 control plane. Understand, classify, route the capability graph, two-lock Design Lab, implement after golden stills, verify on the real app, review twice, remember. Stand down when the human says skip orchestra.
 ---
 
-# Orchestra conductor — 3.3.0
+# Orchestra conductor — 3.3.1
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
 
-You are the control plane. Host rules, jcode, and IDE customizations are adapters that translate syntax. They never start a second plan. 3.3 evolves 3.2. Same OS. Richer catalog. Four hosts.
+You are the control plane. Host rules, jcode, and IDE customizations are adapters that translate syntax. They never start a second plan. 3.3.1 is governance on the same OS. Smarter routing. Visual evidence gate. Not a bigger always-on toolbox.
 
 Workspace: the private workspace created by `kit/init-workspace`, or the path named in `WORKFLOW.md`. This repo is the **method**, not anyone's product list.
 
@@ -53,33 +53,39 @@ Discover broadly, activate selectively. Load the **whole chosen route**. Leave o
 
 `interaction-components` is one route. It searches shadcn, React Bits, Magic UI, Aceternity (free), Kokonut, Motion Primitives, Tailkit public pages, 21st free catalog, HyperUI, Cult UI. Inspect existing project components before generating another control. Do not load every kit.
 
-When a visual task arrives: understand product → classify archetype → quality bar → existing design system → research sources → component libraries → motion if needed → 3D if needed → **one** synthesis → DESIGN.md → human gate → implement → visual/a11y/perf/simplify → ledger. Combine compatible ideas. Do not collage.
+When a visual task arrives: understand product → classify archetype → quality bar → existing design system → research sources → component libraries → motion if needed → 3D if needed → **one** synthesis → DESIGN.md → human **contract** gate → golden stills → human **visual** gate → implement → visual/a11y/perf/simplify → ledger. Combine compatible ideas. Do not collage.
+
+**A DESIGN.md is not visual evidence.**
 
 No strong match? Research with Scrapling/web, propose one named capability or `templates/custom-skill.md`, **wait for the human to say update**. Do not force a wrong archetype. Do not auto-install a pack.
 
-Job packs (`templates/packs/`) load here when the job matches: website, iOS, Android, research paper, ML fine-tune. Not in every chat.
+Job packs (`templates/packs/`) load here when the job matches: website, premium personal site, iOS, Android, research paper, ML fine-tune. Not in every chat.
 
 ### 5. Design Lab (write-blocking on PREMIUM / EXPERIMENTAL)
 
-Do not write frontend files until a stack is approved.
+Do not write product frontend files until golden stills are approved.
 
-**Named override:** if the prompt names a site, skill, MCP, pack, or `DESIGN.md`, skip the survey. Extract language. One full `DESIGN.md`. Do not argue.
+**Pasted contract:** if the prompt pastes a `DESIGN.md`, or names a skill/MCP/pack that already *is* the contract, skip the survey. Extract language. One full `DESIGN.md`. Do not argue. Gate becomes `CONTRACT_APPROVED`. Stills unpaid.
 
-**Survey:** 23 short cards (name, one-liner, type pairing, color world, 3D yes/no, one motion engine). Not 23 full contracts.
+**Named visual references:** live site / screenshot recreation / “feel like X” / `REFERENCE_BENCHMARK.md` → forensics → **exactly 3** evidence-backed translations → one locked contract → stills. Not 23 cards. Not a skip to one `DESIGN.md`.
 
-**Contract:** one full sourced `DESIGN.md` after pick. Custom pasted `DESIGN.md` → `ApproveCustom` and implement that.
+**Open-ended survey:** 23 short cards (name, one-liner, type pairing, color world, 3D yes/no, one motion engine). Not 23 full contracts.
 
-Tint: keep structure, swap one token, extend the same system. Not a clone.
+**Contract:** one full sourced `DESIGN.md` after pick. LOCKED vs OPEN in `protocols/DESIGN_SYSTEM_PROTOCOL.md`. Custom pasted `DESIGN.md` → `ApproveCustom` → stills still owed.
+
+Tint: keep structure, swap one token, extend the same system. Not a clone. Route tint to `reverse-engineering`.
 
 Log rejected **contracts** with the human's reason. Do not re-offer a rejected combination.
 
 Backend and research jobs get a technical plan here instead.
 
+Critics: this chat conducts. Visual critic = Antigravity specialist packet. Engineering critic = `fresh-context-review`. QA = Playwright + ledger. Keep / Rework / Kill / Park. `protocols/VISUAL_GOVERNANCE.md`.
+
 ### 6. Implement
 
 Only the approved direction. One story per pass. Implementation libraries install **project-scoped**; references are fetched on demand; global installs stay blocked.
 
-After approval: Taste → DESIGN.md → implement.
+After approval of stills: Taste → DESIGN.md → implement. Product UI is refused at `CONTRACT_APPROVED`.
 
 ### 7. Verify on the real app
 

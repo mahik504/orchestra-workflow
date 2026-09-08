@@ -69,11 +69,11 @@ if (fs.existsSync(mcpPath)) {
   } catch (_) {}
 }
 
-const pin = process.env.ORCHESTRA_CONTRACT || '(unset, using VERSION 3.3.0)';
+const pin = process.env.ORCHESTRA_CONTRACT || '(unset, using VERSION 3.3.1)';
 const warn = enabled.length > 0;
 const headroomGone = warn && skills.length >= 40;
 
-console.log('=== Orchestra 3.3.0 Antigravity doctor ===');
+console.log('=== Orchestra 3.3.1 Antigravity doctor ===');
 console.log(`Contract pin:     ${pin}`);
 console.log(`AG Global skills: ${skills.length}  ${skills.join(', ') || '(none)'}`);
 if (enabled.length) {

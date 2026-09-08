@@ -2,7 +2,9 @@
 
 Do **not** bake vendor IDs as the only source of truth. Cursor’s dropdown still belongs to the operator. Conductor **names a class** and a current slug from WORKFLOW if one exists.
 
-Default: **one primary** model in the conducting chat, **one consultant** packet when the bar needs it, **one verifier** (Playwright / ledger). Not a 23-option swarm of full DESIGN.md files. Combinations happen at the Design Lab (23 short cards, then one contract), not by spawning every specialist.
+Default: **one primary** model in the conducting chat, **one consultant** packet when the bar needs it, **one verifier** (Playwright / ledger). Not a 23-option swarm of full DESIGN.md files. Combinations happen at the Design Lab (23 short cards *or* 3 named-reference translations, then one contract), not by spawning every specialist.
+
+Critics are not a second conductor. Conductor = the chat the human is in. Visual critic = one Antigravity specialist packet. Engineering critic = `fresh-context-review`. QA = Playwright + ledger.
 
 | Class | Use | Current mapping (2026-09, may change) |
 | --- | --- | --- |
@@ -11,7 +13,7 @@ Default: **one primary** model in the conducting chat, **one consultant** packet
 | coding-fast | glue, mechanical, tests | Grok / Gemini 3.7 Flash High / Kimi |
 | coding-precise | tricky backend, migrations | Opus after spec |
 | research-web | current docs, named papers, public pages | Scrapling / WebFetch; ChatGPT Go / Perplexity **packet**; Context7 for libraries |
-| design-critic | SOS teardown after stills | One Antigravity or Opus packet (`templates/design-critic-packet.md`) |
+| design-critic | SOS teardown after stills | One Antigravity specialist packet (`templates/design-critic-packet.md`) — not a second plan |
 | security-high | threat model, authz, Strix triage | Opus Task |
 | creative | visual directions, copy tone | Fable or ChatGPT packet; Higgsfield not core |
 | debugging | runtime | Cursor **Debug** + evidence |

@@ -1,6 +1,6 @@
 {
   "$schema": "./schemas/design-resource-graph.schema.json",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "description": "Canonical Orchestra V3 Capability-to-Resource Execution Graph mapping task archetypes across Discovery, Synthesis, Implementation, and QA phases.",
   "domains": {
     "visual_research": [
@@ -205,6 +205,40 @@
     "optional_harness": [
       "jcode"
     ],
+    "visual_forensics": [
+      "skillui",
+      "screenshot-to-code",
+      "scrapling",
+      "firecrawl",
+      "awesome-design-md",
+      "playwright"
+    ],
+    "golden_stills": [
+      "playwright",
+      "impeccable",
+      "hallmark"
+    ],
+    "fresh_review": [
+      "unlazy",
+      "hallmark",
+      "react-best-practices",
+      "no-ai-slop"
+    ],
+    "final_showcase": [
+      "playwright",
+      "brag"
+    ],
+    "experimental_3d_engines": [
+      "playcanvas",
+      "r3f",
+      "three-js"
+    ],
+    "privileged_desktop": [
+      "desktop-commander-mcp"
+    ],
+    "mcp_catalog": [
+      "mcp-servers-catalog"
+    ],
     "prompt_references": [
       "awesome-chatgpt-prompts",
       "awesome-prompts"
@@ -332,7 +366,8 @@
         "The target is a low-power device or an audience on poor connections",
         "The brief is a portfolio but never mentions depth, scene, or motion — route to premium-website",
         "Physics simulation is the point rather than presentation — route to physics-canvas",
-        "Checkout or an orders console is the job rather than a spatial scene"
+        "Checkout or an orders console is the job rather than a spatial scene",
+        "PlayCanvas or any WebGPU engine is named without showing why CSS, DOM, Canvas 2D, or R3F cannot produce the result — keep PROJECT_ONLY / EXPERIMENTAL"
       ]
     },
     "operator-hud": {
@@ -905,6 +940,196 @@
         "No product surface exists yet to attach the control to",
         "3D/WebGL is the point — route to 3d-portfolio",
         "The platform is native mobile — route to mobile-app"
+      ]
+    },
+    "visual-forensics": {
+      "name": "Visual forensics and reference benchmark",
+      "description": "Inspect a named live site or public source, measure composition, separate mechanism from identity, and write REFERENCE_BENCHMARK.md. Hands off to Design Lab. Not a clone factory and not a tint/token pass.",
+      "primary_archetype": "visual_forensics",
+      "trigger_tags": [
+        "visual-forensics",
+        "reference-benchmark",
+        "composition-forensics",
+        "mechanism-vs-identity",
+        "named-live-site"
+      ],
+      "discovery": [
+        "visual_forensics",
+        "visual_research"
+      ],
+      "reverse_engineering": [
+        "skillui",
+        "screenshot-to-code",
+        "scrapling",
+        "firecrawl"
+      ],
+      "synthesis": [
+        "design_synthesis"
+      ],
+      "implementation": [
+        "motion"
+      ],
+      "optional_extensions": [
+        "paid_kits"
+      ],
+      "qa": [
+        "playwright"
+      ],
+      "anti_patterns": [
+        "Copying branding, assets, copy, trademarks, or source",
+        "Skipping the benchmark and jumping to implementation",
+        "Treating a tint/recolor as forensics"
+      ],
+      "quality_bar": "PREMIUM",
+      "risk_rank": 4,
+      "platform": "web",
+      "trigger_conditions": [
+        "The brief names visual-forensics or a reference-benchmark file",
+        "The job is to measure composition, interaction, and typography of a named live website",
+        "The output is REFERENCE_BENCHMARK.md with mechanism vs identity and forbidden identity",
+        "A visual recreation of a live product needs a translation matrix before Design Lab"
+      ],
+      "skip_conditions": [
+        "The goal is only tint, recolor, or keep-the-structure token swap — route to reverse-engineering",
+        "No named site, screenshot, or public source was supplied",
+        "The intent is to copy branding, assets, copy, or source",
+        "A locked DESIGN.md and golden stills already exist and the job is implementation"
+      ]
+    },
+    "visual-golden-still": {
+      "name": "Golden still visual evidence",
+      "description": "Render and evaluate a representative desktop still and a representative mobile still. PASS/FAIL only. No application-wide implementation.",
+      "primary_archetype": "visual_evidence",
+      "trigger_tags": [
+        "visual-golden-still",
+        "golden-still",
+        "opening-scene-still",
+        "desktop-still",
+        "mobile-still"
+      ],
+      "discovery": [
+        "golden_stills"
+      ],
+      "synthesis": [
+        "design_synthesis"
+      ],
+      "implementation": [
+        "golden_stills"
+      ],
+      "qa": [
+        "playwright",
+        "impeccable",
+        "hallmark"
+      ],
+      "anti_patterns": [
+        "Calling Phase 1 done because Tailwind tokens exist",
+        "Writing product src before stills PASS",
+        "One chat screenshot standing in for desktop and mobile"
+      ],
+      "quality_bar": "PREMIUM",
+      "risk_rank": 5,
+      "platform": "web",
+      "trigger_conditions": [
+        "The brief names golden-still or visual-golden-still",
+        "The job is a representative desktop opening scene and mobile opening scene",
+        "Visual evidence PASS/FAIL is owed before product implementation",
+        "A DESIGN.md exists and stills are the next gate"
+      ],
+      "skip_conditions": [
+        "The lab was waived with skip the lab",
+        "The work is STANDARD backend, paper, or security with no UI",
+        "Stills already human-approved and the job is implementation",
+        "The request is a full product build with no stills gate named — classify the product route first"
+      ]
+    },
+    "fresh-context-review": {
+      "name": "Fresh-context independent review",
+      "description": "Evaluate a completed phase from a clean context without the builder's assumptions. Ask what is wrong that the builder can no longer see. Not a second conductor.",
+      "primary_archetype": "independent_review",
+      "trigger_tags": [
+        "fresh-context-review",
+        "independent-review",
+        "builder-blind-spot",
+        "pre-release-review"
+      ],
+      "discovery": [
+        "fresh_review"
+      ],
+      "synthesis": [
+        "design_synthesis"
+      ],
+      "implementation": [
+        "fresh_review"
+      ],
+      "qa": [
+        "playwright",
+        "unlazy",
+        "hallmark"
+      ],
+      "anti_patterns": [
+        "The builder reviewing their own milestone in the same thread and calling it independent",
+        "A second conductor inventing a new plan",
+        "Review without a running app or stills for visual work"
+      ],
+      "quality_bar": "STANDARD",
+      "risk_rank": 3,
+      "platform": "web",
+      "trigger_conditions": [
+        "The brief names fresh-context-review or independent review of a completed phase",
+        "The human said the work is ready for review or pre-release",
+        "The question is what is wrong that the builder cannot see",
+        "A major frontend milestone needs a clean-context critic"
+      ],
+      "skip_conditions": [
+        "The phase is not complete — this is not a planning or implementation route",
+        "The request is to build or redesign from scratch",
+        "The human asked the same chat that built the work to rubber-stamp it without a fresh context"
+      ]
+    },
+    "final-showcase": {
+      "name": "Final showcase recording",
+      "description": "After human approval, production readiness, and a green verification ledger, record a walkthrough and capture showcase assets. Must never influence implementation or design.",
+      "primary_archetype": "final_delivery",
+      "trigger_tags": [
+        "final-showcase",
+        "brag",
+        "showcase-recording",
+        "walkthrough-video",
+        "ship-assets"
+      ],
+      "discovery": [
+        "final_showcase"
+      ],
+      "synthesis": [
+        "design_synthesis"
+      ],
+      "implementation": [
+        "final_showcase"
+      ],
+      "qa": [
+        "playwright",
+        "unlazy"
+      ],
+      "anti_patterns": [
+        "Recording a demo to decide how the product should look",
+        "Activating during design or implementation",
+        "Claiming SHIPPED without a green ledger"
+      ],
+      "quality_bar": "STANDARD",
+      "risk_rank": 1,
+      "platform": "web",
+      "trigger_conditions": [
+        "The brief names final-showcase or brag as a delivery step",
+        "The product is production-ready and the verification ledger is green",
+        "The human approved recording a walkthrough and showcase stills",
+        "README or social showcase assets are owed after ship, not before"
+      ],
+      "skip_conditions": [
+        "Design Lab or golden stills are still unpaid",
+        "Implementation is in progress",
+        "The verification ledger is not green",
+        "The human has not approved production readiness",
+        "The request is to change product behaviour or visuals — that is not showcase"
       ]
     }
   }

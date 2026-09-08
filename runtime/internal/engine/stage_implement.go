@@ -225,8 +225,13 @@ func (s *ImplementStage) Execute(ctx *TaskContext) (*StageResult, error) {
 			continue
 		}
 
-		// Execute acquisition through adapter
-		acqResult, err := adapter.Acquire(ctx.Ctx, res, ctx.Task.WorkspaceRoot)
+		// Execute acquisition through adapter. Git clones go under .orchestra/vendor
+		// so the product workspace root is never the clone destination.
+		acqDest := ctx.Task.WorkspaceRoot
+		if strings.EqualFold(res.AcquisitionMethod, "git") {
+			acqDest = filepath.Join(ctx.Task.WorkspaceRoot, ".orchestra", "vendor", res.ID)
+		}
+		acqResult, err := adapter.Acquire(ctx.Ctx, res, acqDest)
 		if err != nil {
 			// If project workspace lacks package.json, record pending dependency in provenance ledger for downstream agent handoff
 			if errors.Is(err, acqAdapters.ErrPackageJSONNotFound) {

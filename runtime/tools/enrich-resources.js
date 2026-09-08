@@ -705,7 +705,7 @@ req.add('skip_conditions');
 item.required = [...req];
 
 const graph = load('design-resource-graph.json');
-graph.version = '3.3.0';
+graph.version = '3.3.1';
 const d = graph.domains;
 d.visual_research = Array.from(new Set([...(d.visual_research || []), 'lapa', 'saasframe', 'refero-public']));
 d.interaction_components = Array.from(new Set([
@@ -788,7 +788,7 @@ if (re) {
 }
 
 const oss = {
-  version: '3.3.0',
+  version: '3.3.1',
   description: 'Searchable metadata for redistributable OSS. Not the Brain. Proprietary sites stay URL-only. No giant clones.',
   generated: TODAY,
   entries: [

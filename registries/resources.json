@@ -104,7 +104,7 @@
       "direct installation of 68 agents / 286 skills into runtime"
     ],
     "policy_verdict": "REJECTED (STEAL-THIN)",
-    "rationale": "Load-by-job + isolate plan/implement/review. Do not install 68 agents / 286 skills into Cursor or Antigravity. Steal the methodology only.",
+    "rationale": "3.3.1: steal-thin only — fresh-context review, focused skills, explicit verify loop. Do not install ECC wholesale.",
     "skip_conditions": [
       "never load into runtime; quarantined or refused"
     ]
@@ -555,8 +555,8 @@
       "webgl-ui"
     ],
     "acquisition_method": "npm",
-    "runtime_method": "project_scoped_install",
-    "status": "CURATED_OPTIONAL",
+    "runtime_method": "reference_only",
+    "status": "REFERENCE",
     "trigger_conditions": [
       "3D spatial buttons",
       "Three.js interactive UI components"
@@ -565,8 +565,8 @@
       "operator HUD surfaces",
       "flat 2D dashboards"
     ],
-    "policy_verdict": "OPTIONAL (NPM)",
-    "rationale": "@designcodeio/threeui one component when Plan names it. Not an operator HUD.",
+    "policy_verdict": "REFERENCE (ONE COMPONENT)",
+    "rationale": "One named WebGL control if a visual requirement is approved. Not default 3D.",
     "skip_conditions": [
       "operator HUD surfaces",
       "flat 2D dashboards"
@@ -627,8 +627,8 @@
       "component-clone"
     ],
     "acquisition_method": "web_fetch",
-    "runtime_method": "on_demand_research",
-    "status": "CURATED_OPTIONAL",
+    "runtime_method": "reference_only",
+    "status": "REFERENCE",
     "trigger_conditions": [
       "college kit assembly",
       "named shadcn-style marketing kit"
@@ -638,8 +638,8 @@
       "hiring flagship",
       "always-on global skill"
     ],
-    "policy_verdict": "CURATED OPTIONAL",
-    "rationale": "College or marketing kit when the plan names it. Never on an operator HUD. Never a hiring visual world. Not a 31st global skill.",
+    "policy_verdict": "REFERENCE (ONE COMPONENT)",
+    "rationale": "One named interaction when the plan names it. Not UI-kit soup. Not a global skill.",
     "skip_conditions": [
       "operator HUD",
       "hiring flagship",
@@ -1092,7 +1092,7 @@
       "installing as global active skill"
     ],
     "policy_verdict": "ADOPT-THIN",
-    "rationale": "Design token references. Hackathon Plan may copy one DESIGN.md into projects/<slug>/ref/.",
+    "rationale": "Strengthen DESIGN.md LOCKED vs OPEN. Copy one reference contract into a project ref/ when named. Not a global skill.",
     "skip_conditions": [
       "installing as global active skill"
     ]
@@ -1184,7 +1184,7 @@
     ],
     "acquisition_method": "npm",
     "runtime_method": "project_scoped_install",
-    "status": "ACTIVE",
+    "status": "PROJECT_ONLY",
     "trigger_conditions": [
       "React component animations",
       "layout transitions"
@@ -1192,8 +1192,8 @@
     "avoid_conditions": [
       "conflicting with GSAP in same project"
     ],
-    "policy_verdict": "SPECIALIST ENGINE",
-    "rationale": "Core motion engine option (formerly Framer Motion). One motion engine rule strictly applies.",
+    "policy_verdict": "PROJECT-SCOPED MOTION ENGINE",
+    "rationale": "Candidate for the one motion engine rule. Never stack with GSAP plus React Bits in the same app.",
     "license": "MIT",
     "skip_conditions": [
       "conflicting with GSAP in same project"
@@ -5677,5 +5677,402 @@
     "free_capability": "public skill markdown as reference",
     "paid_capability": "none",
     "fallback": "ship-safe"
+  },
+  {
+    "id": "gsd-archived",
+    "name": "GSD (archived get-shit-done)",
+    "canonical_url": "https://github.com/gsd-build/get-shit-done",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/gsd-build/get-shit-done.git",
+    "documentation_url": "https://github.com/gsd-build/get-shit-done",
+    "license": "unknown",
+    "category": [
+      "workflow",
+      "archived"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "gsd",
+      "second-conductor",
+      "archived"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REJECTED",
+    "trigger_conditions": [
+      "human asked to install GSD or get-shit-done"
+    ],
+    "avoid_conditions": [
+      "any install",
+      "second planning conductor"
+    ],
+    "policy_verdict": "REJECTED (ARCHIVED)",
+    "rationale": "Archived. Redirects to open-gsd/gsd-core. Orchestra already owns the loop. Do not install. See gsd-core BOOKMARK.",
+    "skip_conditions": [
+      "never load into runtime; archived second conductor"
+    ]
+  },
+  {
+    "id": "gsd-core",
+    "name": "GSD Core",
+    "canonical_url": "https://github.com/open-gsd/gsd-core",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/open-gsd/gsd-core.git",
+    "documentation_url": "https://github.com/open-gsd/gsd-core",
+    "license": "unknown",
+    "category": [
+      "workflow"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "gsd-core",
+      "bookmark"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "BOOKMARK",
+    "trigger_conditions": [
+      "human asked to compare Orchestra with GSD Core patterns"
+    ],
+    "avoid_conditions": [
+      "install as a second conductor"
+    ],
+    "policy_verdict": "BOOKMARK",
+    "rationale": "Active GSD project after the archived repo. Pattern overlap with Orchestra. Do not install.",
+    "skip_conditions": [
+      "do not install; Orchestra remains the control plane"
+    ]
+  },
+  {
+    "id": "karpathy-skills",
+    "name": "Andrej Karpathy skills collection",
+    "canonical_url": "https://github.com/multica-ai/andrej-karpathy-skills",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/multica-ai/andrej-karpathy-skills.git",
+    "documentation_url": "https://github.com/multica-ai/andrej-karpathy-skills",
+    "license": "unknown",
+    "category": [
+      "agent_skills",
+      "catalog"
+    ],
+    "representation": "skill",
+    "routing_tags": [
+      "karpathy",
+      "learning-skills",
+      "catalog"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "curated_catalog_lazy_load",
+    "status": "CATALOG",
+    "trigger_conditions": [
+      "audit a focused engineering or learning skill from this collection"
+    ],
+    "avoid_conditions": [
+      "dump the collection into Orchestra",
+      "npx skills add --all"
+    ],
+    "policy_verdict": "CATALOG (INSTALL NONE BY DEFAULT)",
+    "rationale": "3.3.1 audit: no skill from this collection is installed. Recommend later only if a single focused gap is proven.",
+    "skip_conditions": [
+      "never dump-install; catalog only"
+    ]
+  },
+  {
+    "id": "brag",
+    "name": "Brag (Latent Spaces)",
+    "canonical_url": "https://github.com/latent-spaces/brag",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/latent-spaces/brag.git",
+    "documentation_url": "https://github.com/latent-spaces/brag",
+    "license": "unknown",
+    "category": [
+      "delivery",
+      "showcase"
+    ],
+    "representation": "cli",
+    "routing_tags": [
+      "final-showcase",
+      "walkthrough",
+      "brag"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "on_demand_cli",
+    "status": "PROJECT_ONLY",
+    "trigger_conditions": [
+      "final-showcase after production-ready green ledger"
+    ],
+    "avoid_conditions": [
+      "design phase",
+      "implementation phase",
+      "using demo video to decide visuals"
+    ],
+    "policy_verdict": "PROJECT-ONLY FINAL SHOWCASE",
+    "rationale": "Activate only on the final-showcase route after human approval and a green verification ledger. Never influences implementation.",
+    "skip_conditions": [
+      "design or implementation in progress",
+      "ledger not green"
+    ]
+  },
+  {
+    "id": "playcanvas",
+    "name": "PlayCanvas Engine",
+    "canonical_url": "https://github.com/playcanvas/engine",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/playcanvas/engine.git",
+    "documentation_url": "https://github.com/playcanvas/engine",
+    "license": "MIT",
+    "category": [
+      "3d",
+      "webgl",
+      "webgpu"
+    ],
+    "representation": "dependency",
+    "routing_tags": [
+      "playcanvas",
+      "webgpu",
+      "webxr"
+    ],
+    "acquisition_method": "npm",
+    "runtime_method": "project_scoped_install",
+    "status": "EXPERIMENTAL",
+    "trigger_conditions": [
+      "human named PlayCanvas and showed why CSS DOM Canvas2D and R3F cannot produce the scene"
+    ],
+    "avoid_conditions": [
+      "default 3D",
+      "decorative hero",
+      "global install"
+    ],
+    "policy_verdict": "EXPERIMENTAL PROJECT-SCOPED",
+    "rationale": "Powerful WebGL2/WebGPU engine. Never global. 3D must be justified. Prefer CSS/DOM/Canvas/R3F first.",
+    "skip_conditions": [
+      "no justification vs CSS DOM Canvas2D R3F",
+      "flat marketing page"
+    ]
+  },
+  {
+    "id": "desktop-commander-mcp",
+    "name": "Desktop Commander MCP",
+    "canonical_url": "https://github.com/wonderwhy-er/DesktopCommanderMCP",
+    "source_type": "mcp_server",
+    "source_repository": "https://github.com/wonderwhy-er/DesktopCommanderMCP.git",
+    "documentation_url": "https://github.com/wonderwhy-er/DesktopCommanderMCP",
+    "license": "unknown",
+    "category": [
+      "mcp",
+      "desktop"
+    ],
+    "representation": "mcp",
+    "routing_tags": [
+      "desktop-automation",
+      "privileged",
+      "desktop-commander"
+    ],
+    "acquisition_method": "mcp_install",
+    "runtime_method": "mcp_connection",
+    "status": "PRIVILEGED",
+    "trigger_conditions": [
+      "human explicitly named Desktop Commander or desktop-automation for this session"
+    ],
+    "avoid_conditions": [
+      "core conductor",
+      "default activation"
+    ],
+    "policy_verdict": "PRIVILEGED EXPLICIT ONLY",
+    "rationale": "Local desktop control. Not core infrastructure. Require explicit activation. Do not make HEALTHY by default.",
+    "skip_conditions": [
+      "not explicitly named",
+      "treat as core MCP"
+    ]
+  },
+  {
+    "id": "mcp-servers-catalog",
+    "name": "Model Context Protocol servers collection",
+    "canonical_url": "https://github.com/modelcontextprotocol/servers",
+    "source_type": "github_repository",
+    "source_repository": "https://github.com/modelcontextprotocol/servers.git",
+    "documentation_url": "https://github.com/modelcontextprotocol/servers",
+    "license": "MIT",
+    "category": [
+      "mcp",
+      "catalog"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "mcp-catalog",
+      "official-servers"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "CATALOG",
+    "trigger_conditions": [
+      "look up an official MCP server by name"
+    ],
+    "avoid_conditions": [
+      "install the repository",
+      "bulk-enable every server"
+    ],
+    "policy_verdict": "CATALOG ONLY",
+    "rationale": "Ecosystem source. Never bulk-install. Same rule as skills add --all.",
+    "skip_conditions": [
+      "bulk install",
+      "treat catalog as core"
+    ]
+  },
+  {
+    "id": "overleaf",
+    "name": "Overleaf",
+    "canonical_url": "https://www.overleaf.com/",
+    "source_type": "web_reference",
+    "documentation_url": "https://www.overleaf.com/learn",
+    "license": "proprietary",
+    "category": [
+      "academic",
+      "documentation"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "latex",
+      "research-paper",
+      "overleaf"
+    ],
+    "acquisition_method": "none",
+    "runtime_method": "reference_only",
+    "status": "REFERENCE",
+    "trigger_conditions": [
+      "research-paper or methods writeup needs LaTeX collaboration"
+    ],
+    "avoid_conditions": [
+      "frontend implementation",
+      "design lab"
+    ],
+    "policy_verdict": "REFERENCE (PAPERS)",
+    "rationale": "Documentation route only. Not a website dependency.",
+    "skip_conditions": [
+      "visual product work",
+      "Design Lab"
+    ]
+  },
+  {
+    "id": "motionsites-ai",
+    "name": "Motion Sites",
+    "canonical_url": "https://motionsites.ai/",
+    "source_type": "web_reference",
+    "documentation_url": "https://motionsites.ai/",
+    "license": "proprietary",
+    "category": [
+      "motion",
+      "inspiration"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "motion-reference",
+      "visual-research"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "REFERENCE",
+    "trigger_conditions": [
+      "named motion reference for visual research"
+    ],
+    "avoid_conditions": [
+      "install as a motion engine",
+      "clone the site"
+    ],
+    "policy_verdict": "REFERENCE ONLY",
+    "rationale": "Visual reference. Extract principles. Do not make it a workflow dependency.",
+    "skip_conditions": [
+      "use as the app motion engine"
+    ]
+  },
+  {
+    "id": "kexsio-animations",
+    "name": "Kexsio animation references",
+    "canonical_url": "https://www.kexsio.com/",
+    "source_type": "web_reference",
+    "documentation_url": "https://www.kexsio.com/",
+    "license": "proprietary",
+    "category": [
+      "motion",
+      "inspiration"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "animation-reference"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "REFERENCE",
+    "trigger_conditions": [
+      "named animation craft reference"
+    ],
+    "avoid_conditions": [
+      "workflow dependency"
+    ],
+    "policy_verdict": "REFERENCE ONLY",
+    "rationale": "Inspiration. No install.",
+    "skip_conditions": [
+      "make it a runtime dependency"
+    ]
+  },
+  {
+    "id": "horizonx-reference",
+    "name": "HorizonX library (research)",
+    "canonical_url": "https://horizonx.ai/",
+    "source_type": "web_reference",
+    "documentation_url": "https://horizonx.ai/",
+    "license": "proprietary",
+    "category": [
+      "inspiration"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "horizonx",
+      "prompt-research"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "REFERENCE",
+    "trigger_conditions": [
+      "human named HorizonX as a research reference"
+    ],
+    "avoid_conditions": [
+      "core workflow"
+    ],
+    "policy_verdict": "REFERENCE ONLY",
+    "rationale": "Inspiration/prompt research. Not core machinery.",
+    "skip_conditions": [
+      "install as core"
+    ]
+  },
+  {
+    "id": "trickle-library",
+    "name": "Trickle library (research)",
+    "canonical_url": "https://www.trickle.so/",
+    "source_type": "web_reference",
+    "documentation_url": "https://www.trickle.so/",
+    "license": "proprietary",
+    "category": [
+      "inspiration"
+    ],
+    "representation": "research_source",
+    "routing_tags": [
+      "trickle",
+      "prompt-research"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "on_demand_research",
+    "status": "REFERENCE",
+    "trigger_conditions": [
+      "human named Trickle as a research reference"
+    ],
+    "avoid_conditions": [
+      "core workflow"
+    ],
+    "policy_verdict": "REFERENCE ONLY",
+    "rationale": "Inspiration/prompt research. Not core machinery.",
+    "skip_conditions": [
+      "install as core"
+    ]
   }
 ]

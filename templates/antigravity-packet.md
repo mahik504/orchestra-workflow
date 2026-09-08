@@ -6,7 +6,7 @@ Cursor fills this. You paste it in the **Antigravity** chat that already has the
 MODE: specialist
 VAULT: <ORCHESTRA_HOME>
 APP ROOT: (path)
-CAPABILITIES ON: (from the Orchestra 3.3.0 stack card)
+CAPABILITIES ON: (from the Orchestra 3.3.1 stack card)
 KIND: college | personal | hiring-cv
 
 SCOPE (files you may touch):

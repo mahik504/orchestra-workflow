@@ -1,5 +1,5 @@
 {
-  "version": "3.3.0",
+  "version": "3.3.1",
   "skills": [
     "animate",
     "ci-security-scanning-with-strix",
@@ -12,7 +12,9 @@
     "expo-project-structure",
     "expo-router",
     "expo-upgrade",
+    "final-showcase",
     "fix-security-vulnerabilities-with-strix",
+    "fresh-context-review",
     "gsap-core",
     "hallmark",
     "impeccable",
@@ -40,6 +42,8 @@
     "superpowers-planning",
     "taste-design",
     "unlazy",
+    "visual-forensics",
+    "visual-golden-still",
     "web-design-guidelines"
   ],
   "mcp": {

@@ -3,6 +3,7 @@ package verify
 import (
 	"errors"
 	"fmt"
+	"os"
 	"path/filepath"
 	"testing"
 
@@ -130,17 +131,24 @@ func TestGate_ApprovalUnlocksWrites(t *testing.T) {
 	if err := lab.Approve("b", "operator"); err != nil {
 		t.Fatalf("Approve: %v", err)
 	}
-	if lab.State != GateApproved {
-		t.Fatalf("state = %s, want APPROVED", lab.State)
+	if lab.State != GateContractApproved {
+		t.Fatalf("state = %s, want CONTRACT_APPROVED", lab.State)
 	}
-	if err := lab.GuardWrite("src/App.tsx"); err != nil {
-		t.Errorf("approved gate still blocking: %v", err)
+	if lab.Cleared() {
+		t.Fatal("contract approval must not clear product frontend writes")
+	}
+	if err := lab.GuardWrite("src/App.tsx"); err == nil {
+		t.Fatal("contract approval unlocked product App.tsx; DESIGN.md is not visual evidence")
+	}
+	still := filepath.Join(lab.GoldenStillsDir(), "opening.tsx")
+	if err := os.MkdirAll(filepath.Dir(still), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := lab.GuardWrite(still); err != nil {
+		t.Errorf("golden-stills renderer blocked after contract: %v", err)
 	}
 	if lab.Approved == nil || lab.Approved.DirectionID != "b" || lab.Approved.ApprovedBy != "operator" {
 		t.Errorf("approval not recorded: %+v", lab.Approved)
-	}
-	if _, err := filepath.Abs(lab.ApprovalPath()); err != nil {
-		t.Errorf("approval path: %v", err)
 	}
 }
 
@@ -223,6 +231,9 @@ func TestGate_SurveyThenOneContract(t *testing.T) {
 	if err := lab.Approve("a", "operator"); err != nil {
 		t.Fatalf("Approve: %v", err)
 	}
+	if lab.State != GateContractApproved {
+		t.Fatalf("state = %s, want CONTRACT_APPROVED", lab.State)
+	}
 }
 
 func TestGate_ApproveCustomSkipsSurvey(t *testing.T) {
@@ -233,11 +244,14 @@ func TestGate_ApproveCustomSkipsSurvey(t *testing.T) {
 	if err := lab.ApproveCustom("operator", "pasted DESIGN.md for the tinted editorial system"); err != nil {
 		t.Fatalf("ApproveCustom: %v", err)
 	}
-	if lab.State != GateApproved {
-		t.Fatalf("state = %s, want APPROVED", lab.State)
+	if lab.State != GateContractApproved {
+		t.Fatalf("state = %s, want CONTRACT_APPROVED", lab.State)
 	}
-	if err := lab.GuardWrite("src/App.tsx"); err != nil {
-		t.Errorf("custom DESIGN.md still blocking: %v", err)
+	if lab.Cleared() {
+		t.Fatal("custom DESIGN.md must not unlock product UI")
+	}
+	if err := lab.GuardWrite("src/App.tsx"); err == nil {
+		t.Fatal("custom DESIGN.md unlocked product App.tsx")
 	}
 	if lab.Approved == nil || lab.Approved.DirectionID != "custom" {
 		t.Errorf("custom approval not recorded: %+v", lab.Approved)
@@ -345,3 +359,84 @@ func TestFingerprint_IgnoresNamesAndStackOrder(t *testing.T) {
 		t.Error("swapping the motion engine did not change the fingerprint")
 	}
 }
+
+func threeTranslations() []DirectionCard {
+	out := make([]DirectionCard, NamedReferenceCardCount)
+	names := []string{"Paper field", "Dark teal lab", "Hybrid observatory"}
+	for i := 0; i < NamedReferenceCardCount; i++ {
+		out[i] = DirectionCard{
+			ID:           fmt.Sprintf("t%d", i+1),
+			Name:         names[i],
+			OneLiner:     "Evidence-backed translation of named references",
+			Typography:   "Named pairing from benchmark",
+			ColorWorld:   "Named palette from benchmark",
+			ThreeD:       "no",
+			MotionEngine: "CSS",
+		}
+	}
+	return out
+}
+
+func TestGate_NamedReferenceSurveyIsExactlyThree(t *testing.T) {
+	two := threeTranslations()[:2]
+	if err := pendingLab(t).OfferSurvey(two); err == nil {
+		t.Fatal("accepted 2 translations")
+	}
+	four := append(threeTranslations(), threeTranslations()[0])
+	if err := pendingLab(t).OfferSurvey(four); err == nil {
+		t.Fatal("accepted 4 translations")
+	}
+	lab := pendingLab(t)
+	if err := lab.OfferSurvey(threeTranslations()); err != nil {
+		t.Fatalf("valid 3-card named-reference survey refused: %v", err)
+	}
+	if !lab.NamedReferenceMode {
+		t.Fatal("named-reference flag unset")
+	}
+	if err := lab.OfferContract(oneDirection()); err != nil {
+		t.Fatalf("contract after 3 translations: %v", err)
+	}
+	if err := lab.GuardWrite("src/App.tsx"); err == nil {
+		t.Fatal("translations must not unlock product UI")
+	}
+}
+
+func writeStill(t *testing.T, dir, name string) string {
+	t.Helper()
+	if err := os.MkdirAll(dir, 0o755); err != nil {
+		t.Fatal(err)
+	}
+	p := filepath.Join(dir, name)
+	if err := os.WriteFile(p, []byte("still"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	return p
+}
+
+func TestGate_StillsRequiredBeforeProductUI(t *testing.T) {
+	lab := readyContract(t, oneDirection())
+	if err := lab.ApproveContract("a", "operator"); err != nil {
+		t.Fatalf("ApproveContract: %v", err)
+	}
+	if err := lab.ApproveStills("operator", "missing-desktop.png", "missing-mobile.png", "opening scenes"); err == nil {
+		t.Fatal("accepted stills with missing files")
+	}
+	if err := lab.ApproveStills("operator", "x.png", "y.png", ""); err == nil {
+		t.Fatal("accepted stills with empty note")
+	}
+	desk := writeStill(t, lab.GoldenStillsDir(), "desktop.png")
+	mob := writeStill(t, lab.GoldenStillsDir(), "mobile.png")
+	if err := lab.ApproveStills("operator", desk, mob, "desktop and mobile opening scenes pass"); err != nil {
+		t.Fatalf("ApproveStills: %v", err)
+	}
+	if lab.State != GateApproved {
+		t.Fatalf("state = %s, want APPROVED", lab.State)
+	}
+	if !lab.Cleared() {
+		t.Fatal("stills approval did not clear the gate")
+	}
+	if err := lab.GuardWrite("src/App.tsx"); err != nil {
+		t.Errorf("product UI still blocked after stills: %v", err)
+	}
+}
+

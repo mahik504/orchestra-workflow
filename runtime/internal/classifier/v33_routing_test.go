@@ -5,13 +5,25 @@ import (
 	"testing"
 )
 
-func TestV33_ThirteenCapabilitiesHaveTriggerAndSkip(t *testing.T) {
+func TestV33_SeventeenCapabilitiesHaveTriggerAndSkip(t *testing.T) {
 	g := loadRealGraph(t)
-	if len(g.Capabilities) != 13 {
-		t.Fatalf("capabilities = %d, want 13", len(g.Capabilities))
+	if len(g.Capabilities) != 17 {
+		t.Fatalf("capabilities = %d, want 17", len(g.Capabilities))
 	}
-	if _, ok := g.Capabilities["interaction-components"]; !ok {
-		t.Fatal("missing interaction-components")
+	for _, id := range []string{
+		"interaction-components",
+		"visual-forensics",
+		"visual-golden-still",
+		"fresh-context-review",
+		"final-showcase",
+	} {
+		cap, ok := g.Capabilities[id]
+		if !ok {
+			t.Fatalf("missing %s", id)
+		}
+		if len(cap.TriggerConditions) == 0 || len(cap.SkipConditions) == 0 {
+			t.Errorf("%s missing trigger or skip", id)
+		}
 	}
 }
 
@@ -34,6 +46,10 @@ func TestV33_ClassifySmoke(t *testing.T) {
 		{"interaction control", "Add a magnetic gradient button using Kokonut after inspecting existing components", "interaction-components", true},
 		{"tint reference", "Use this screenshot as a reference, keep the structure, change orange to light blue", "reverse-engineering", false},
 		{"game-like 3d", "Build an interactive 3D WebGL product UI with R3F, Three.js, and Drei — cinematic presentation", "3d-portfolio", true},
+		{"visual forensics", "Run visual-forensics on a named-live-site: composition-forensics, mechanism-vs-identity, write REFERENCE_BENCHMARK.md", "visual-forensics", true},
+		{"golden still", "Run visual-golden-still for a desktop-still and mobile-still opening-scene-still PASS/FAIL only", "visual-golden-still", true},
+		{"fresh review", "Run fresh-context-review independent-review builder-blind-spot on a completed phase for pre-release-review", "fresh-context-review", false},
+		{"final showcase", "Record final-showcase brag walkthrough-video ship-assets after production-ready green ledger", "final-showcase", false},
 	}
 
 	for _, tc := range cases {

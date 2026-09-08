@@ -12,12 +12,34 @@ Start implementing chrome from a blank file. Mix five kits. Default Inter + purp
 2. Collect **3–5** references (URLs or stills). Log them in `reference-log.md`.
 3. Reverse engineer if the brief is “like this” (`REVERSE_ENGINEERING_PROTOCOL.md`).
 4. **Originality gate (mandatory if any reference exists):** extract principles only — composition, typography, motion language, interaction, color *relationships*, spacing/grid, component *ideas*. Then write **our** direction. Never copy proprietary branding, logos, assets, copy, trademarks, or source CSS/JS. College one-block echo still tints; it is not a clone.
-5. Propose **3** directions in plain words. the operator picks one.
+5. Propose directions in plain words. Open-ended PREMIUM: 23 short cards. Named visual references: **exactly 3** evidence-backed translations. The operator picks one.
 6. Write artifacts (tiny projects may skip some):
+
+**A DESIGN.md is not visual evidence.** Locked text does not unlock product UI. Golden stills do.
+
+### LOCKED vs OPEN
+
+Human-approved **LOCKED** sections may not change without a new contract gate:
+
+- Concept / world
+- Type roles
+- Color roles
+- Motion principle
+- Layout / architecture principles
+- Character direction if any
+
+**OPEN** until later gates (stills, implementation, SOS):
+
+- Exact px
+- Kit
+- Nav mechanism
+- Scene composition
+- 3D yes/no implementation
+- Motion implementation
 
 | File | What |
 | --- | --- |
-| `DESIGN.md` | Point of view, anti-refs, type, color, space, motion, 3D yes/no |
+| `DESIGN.md` | LOCKED point of view plus OPEN implementation intent; anti-refs; type roles; color roles; space; motion principle; 3D intent |
 | `design-tokens.json` | Color, type scale, space, radii, shadows |
 | `motion-spec.md` | Personality, one engine, reduced-motion |
 | `component-map.md` | Primitives vs custom vs one kit |

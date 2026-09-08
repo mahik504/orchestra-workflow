@@ -31,7 +31,7 @@ Current Orchestra claim: **MCP support is not invented.** If your jcode build gr
 ## 3. Skills (FREE NOW)
 
 1. **Service:** Orchestra allowlist
-2. **Purpose:** same 40 skills as other hosts
+2. **Purpose:** same curated skills as other hosts (host-stack allowlist)
 3. **Free/paid:** free
 4. **Authentication:** none
 5. **Setup:** `kit/sync-ides.ps1` copies to `~/.jcode/skills`

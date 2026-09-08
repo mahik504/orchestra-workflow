@@ -151,7 +151,13 @@
           "REFERENCE",
           "ARCHIVED",
           "LEFTOVER",
-          "PURCHASE_PENDING"
+          "PURCHASE_PENDING",
+          "PROJECT_ONLY",
+          "CATALOG",
+          "EXPERIMENTAL",
+          "PRIVILEGED",
+          "AUTH_REQUIRED",
+          "OBSOLETE"
         ],
         "description": "Curation status per Orchestra policy"
       },

@@ -4,8 +4,10 @@ import (
 	"context"
 	"errors"
 	"os"
+	"path/filepath"
 	"testing"
 
+	"github.com/mahik504/orchestra-workflow/runtime/internal/classifier"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/verify"
 )
 
@@ -108,6 +110,93 @@ func TestClassify_RecordsBriefAndDeclinedRoutes(t *testing.T) {
 	}
 	if c.ResearchDepth == "" || c.VerifyDepth == "" {
 		t.Errorf("brief did not set research/verify depth: %q / %q", c.ResearchDepth, c.VerifyDepth)
+	}
+}
+
+func TestGate_ContractApprovalDoesNotUnlockProductPage(t *testing.T) {
+	workdir := t.TempDir()
+	lab := verify.NewDesignLab(&classifier.Brief{
+		TaskID:            "engine-contract",
+		DesignLabRequired: true,
+		DesignLabReason:   "PREMIUM",
+	}, workdir)
+	if err := lab.SkipSurvey("pasted DESIGN.md fixture"); err != nil {
+		t.Fatal(err)
+	}
+	dir := verify.Direction{
+		ID: "a", Concept: "Paper field",
+		Typography: "Newsreader + IBM Plex Sans", TypographySrc: "editorial newspapers",
+		ColorWorld: "Warm paper", ColorSrc: "Japanese stationery",
+		LayoutLanguage: "asymmetric columns", ComponentKit: "custom",
+		MotionEngine: "CSS", MotionWhy: "one engine, reduced-motion first",
+		ThreeD: "no", Shader: "no", LogoMethod: "wordmark", IconSystem: "line",
+		Stack: []string{"astro", "tailwind"},
+	}
+	if err := lab.OfferContract(dir); err != nil {
+		t.Fatal(err)
+	}
+	if err := lab.ApproveContract("a", "operator"); err != nil {
+		t.Fatal(err)
+	}
+	if lab.Cleared() {
+		t.Fatal("contract approval cleared the product write lock")
+	}
+	if err := lab.GuardWrite(filepath.Join(workdir, "app", "page.tsx")); err == nil {
+		t.Fatal("CONTRACT_APPROVED allowed product page.tsx")
+	}
+	still := filepath.Join(lab.GoldenStillsDir(), "opening.tsx")
+	if err := os.MkdirAll(filepath.Dir(still), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := lab.GuardWrite(still); err != nil {
+		t.Fatalf("golden-stills renderer blocked: %v", err)
+	}
+}
+
+func TestGate_StillsApprovalUnlocksProductPage(t *testing.T) {
+	workdir := t.TempDir()
+	lab := verify.NewDesignLab(&classifier.Brief{
+		TaskID:            "engine-stills",
+		DesignLabRequired: true,
+		DesignLabReason:   "PREMIUM",
+	}, workdir)
+	if err := lab.SkipSurvey("pasted DESIGN.md fixture"); err != nil {
+		t.Fatal(err)
+	}
+	dir := verify.Direction{
+		ID: "a", Concept: "Paper field",
+		Typography: "Newsreader + IBM Plex Sans", TypographySrc: "editorial newspapers",
+		ColorWorld: "Warm paper", ColorSrc: "Japanese stationery",
+		LayoutLanguage: "asymmetric columns", ComponentKit: "custom",
+		MotionEngine: "CSS", MotionWhy: "one engine, reduced-motion first",
+		ThreeD: "no", Shader: "no", LogoMethod: "wordmark", IconSystem: "line",
+		Stack: []string{"astro", "tailwind"},
+	}
+	if err := lab.OfferContract(dir); err != nil {
+		t.Fatal(err)
+	}
+	if err := lab.ApproveContract("a", "operator"); err != nil {
+		t.Fatal(err)
+	}
+	desk := filepath.Join(lab.GoldenStillsDir(), "desktop.png")
+	mob := filepath.Join(lab.GoldenStillsDir(), "mobile.png")
+	if err := os.MkdirAll(lab.GoldenStillsDir(), 0o755); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(desk, []byte("desk"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(mob, []byte("mob"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	if err := lab.ApproveStills("operator", desk, mob, "desktop and mobile opening scenes pass"); err != nil {
+		t.Fatalf("ApproveStills: %v", err)
+	}
+	if !lab.Cleared() {
+		t.Fatal("stills approval did not clear the gate")
+	}
+	if err := lab.GuardWrite(filepath.Join(workdir, "app", "page.tsx")); err != nil {
+		t.Fatalf("product page.tsx still blocked after stills: %v", err)
 	}
 }
 

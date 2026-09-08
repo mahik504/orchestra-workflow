@@ -1,4 +1,4 @@
-# Claude Code adapter — Orchestra 3.3.0
+# Claude Code adapter — Orchestra 3.3.1
 
 `AGENTS.md` is the contract. This file only maps it onto Claude Code. It does not define a second orchestration policy.
 

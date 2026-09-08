@@ -1,10 +1,10 @@
-﻿# Architecture — Orchestra 3.3.0
+﻿# Architecture — Orchestra 3.3.1
 
 Orchestra is a **control plane**. Your agent is the executor.
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
 
-The **registry** is the resource catalog. The **graph** is capability routes (13 rows, each with trigger and skip). Host rules and IDE customizations are adapters. They never implement a competing orchestration policy.
+The **registry** is the resource catalog. The **graph** is capability routes (17 rows, each with trigger and skip). Host rules and IDE customizations are adapters. They never implement a competing orchestration policy.
 
 ## The eight stages
 

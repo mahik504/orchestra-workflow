@@ -25,7 +25,7 @@ type Resource struct {
 	RoutingTags        []string `json:"routing_tags"`       // e.g. ["motion", "microinteraction", "timeline"]
 	AcquisitionMethod  string   `json:"acquisition_method"` // "npm", "git", "web_fetch", "pip"
 	RuntimeMethod      string   `json:"runtime_method"`     // "project_scoped_install", "on_demand_research", "global_active_skill", "on_demand_cli"
-	Status             string   `json:"status"`             // "ACTIVE", "CURATED_OPTIONAL", "REJECTED", "BOOKMARK", "DEFERRED", "CORE", "REFERENCE", "ARCHIVED", "LEFTOVER"
+	Status             string   `json:"status"`             // ACTIVE, CURATED_OPTIONAL, REJECTED, BOOKMARK, DEFERRED, CORE, REFERENCE, ARCHIVED, LEFTOVER, PURCHASE_PENDING, plus 3.3.1: PROJECT_ONLY, CATALOG, EXPERIMENTAL, PRIVILEGED, AUTH_REQUIRED, OBSOLETE (old values remain aliases)
 	TriggerConditions  []string `json:"trigger_conditions,omitempty"`
 	AvoidConditions    []string `json:"avoid_conditions,omitempty"`
 	PolicyVerdict      string   `json:"policy_verdict,omitempty"`

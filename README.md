@@ -1,4 +1,4 @@
-# Orchestra 3.3.0
+# Orchestra 3.3.1
 
 [![CI](https://github.com/mahik504/orchestra-workflow/actions/workflows/ci.yml/badge.svg)](https://github.com/mahik504/orchestra-workflow/actions/workflows/ci.yml)
 [![Hygiene](https://github.com/mahik504/orchestra-workflow/actions/workflows/hygiene.yml/badge.svg)](https://github.com/mahik504/orchestra-workflow/actions/workflows/hygiene.yml)
@@ -69,7 +69,20 @@ GetLayers MCP is **`PURCHASE_PENDING`**. Do not connect it, fake it, or scrape t
 
 ---
 
-## What 3.3.0 actually ships
+## What 3.3.1 actually ships
+
+| Piece | Fact |
+| --- | --- |
+| Contract | `AGENTS.md` plus host adapters. Visual evidence gate. Named-reference mode is 3 translations, not 23 cards. |
+| Engine | Optional Go binary: classify, plan, `CONTRACT_APPROVED` then stills lock, `orchestra doctor` |
+| Graph | 17 capability routes — every row has a trigger **and** a skip |
+| Skills | 40 curated globals plus **four job-loaded** skills (`visual-forensics`, `visual-golden-still`, `fresh-context-review`, `final-showcase`). Packs load by job |
+| Hosts | Cursor, Antigravity, Claude Code, jcode |
+| Honesty | MCP states unchanged. GetLayers stays `PURCHASE_PENDING`. A `DESIGN.md` is not visual evidence |
+
+Governance notes: [`docs/3.3.1/MIGRATION.md`](docs/3.3.1/MIGRATION.md) · [`protocols/VISUAL_GOVERNANCE.md`](protocols/VISUAL_GOVERNANCE.md)
+
+## What 3.3.0 shipped
 
 | Piece | Fact |
 | --- | --- |
@@ -86,7 +99,7 @@ GetLayers MCP is **`PURCHASE_PENDING`**. Do not connect it, fake it, or scrape t
 | `PREMIUM` | Anything a stranger will see | On. Opt out with “skip the lab” |
 | `EXPERIMENTAL` | 3D, shaders, WebGL, novel interaction | On. Ship a low-end fallback |
 
-Capabilities: `premium-website`, `3d-portfolio`, `operator-hud`, `b2b-portal`, `academic-reader`, `research-paper`, `micro-interactions`, `physics-canvas`, `saas-dashboard`, `mobile-app`, `security-audit`, `reverse-engineering`, `interaction-components`.
+Capabilities: `premium-website`, `3d-portfolio`, `operator-hud`, `b2b-portal`, `academic-reader`, `research-paper`, `micro-interactions`, `physics-canvas`, `saas-dashboard`, `mobile-app`, `security-audit`, `reverse-engineering`, `interaction-components`, plus 3.3.1 `visual-forensics`, `visual-golden-still`, `fresh-context-review`, `final-showcase`.
 
 `interaction-components` searches registered free kits for **one** control. Inspect existing project components first. It is not a skill per button library.
 

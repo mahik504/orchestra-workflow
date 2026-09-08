@@ -3,10 +3,13 @@ package verify
 // The Design Lab gate. Its whole job is to make "I'll design it as I code"
 // impossible for work a stranger will see.
 //
-// The gate is a lock on frontend writes, not a printed warning. Until a named
-// direction is approved, GuardWrite refuses any file the browser would render.
-// Backend files, notes, and the design brief itself stay writable, because the
-// human needs something to look at before they can approve anything.
+// Two locks for PREMIUM/EXPERIMENTAL visual work (3.3.1):
+//  1. Contract — a sourced DESIGN.md (LOCKED vs OPEN). A DESIGN.md is not visual evidence.
+//  2. Visual evidence — golden stills the human approved. Product UI stays refused until then.
+//
+// Backend files, notes, DESIGN.md, REFERENCE_BENCHMARK.md, and files under
+// .orchestra/design-lab/golden-stills/ stay writable after the contract is
+// approved so a throwaway still can be rendered. Product src/app stays locked.
 
 import (
 	"encoding/json"
@@ -26,9 +29,12 @@ type GateState string
 const (
 	// GateNotRequired means the bar or the work does not call for a lab.
 	GateNotRequired GateState = "NOT_REQUIRED"
-	// GatePending means directions must be shown and approved before frontend writes.
+	// GatePending means translations/survey plus a contract are owed.
 	GatePending GateState = "PENDING"
-	// GateApproved means a named direction was approved by the human.
+	// GateContractApproved means DESIGN.md LOCKED sections were accepted.
+	// Product frontend writes stay refused until golden stills pass.
+	GateContractApproved GateState = "CONTRACT_APPROVED"
+	// GateApproved means golden stills were human-approved. Product UI may be written.
 	GateApproved GateState = "APPROVED"
 	// GateBypassed means the human explicitly waived the lab. Recorded, never silent.
 	GateBypassed GateState = "BYPASSED"
@@ -44,9 +50,14 @@ func (e *ErrGateNotCleared) Error() string {
 	return fmt.Sprintf("design lab gate is not cleared: refusing to write %s (%s)", e.Path, e.Reason)
 }
 
-// SurveyCardCount is the cheap survey size. Twenty-three short cards, then one
-// full DESIGN.md. Not twenty-three full contracts.
+// SurveyCardCount is the open-ended cheap survey size. Twenty-three short cards,
+// then one full DESIGN.md. Not twenty-three full contracts.
 const SurveyCardCount = 23
+
+// NamedReferenceCardCount is the named-reference survey size. Substantial
+// references produce three evidence-backed translations, not 23 random cards
+// and not a skip straight to one DESIGN.md.
+const NamedReferenceCardCount = 3
 
 // DirectionCard is one cheap survey option. It is not a DESIGN.md.
 type DirectionCard struct {
@@ -133,7 +144,7 @@ type Rejection struct {
 	RejectedAt  time.Time `json:"rejected_at"`
 }
 
-// Approval records who cleared the gate and for which direction.
+// Approval records who cleared a gate stage and for which direction.
 type Approval struct {
 	TaskID      string    `json:"task_id"`
 	DirectionID string    `json:"direction_id"`
@@ -142,20 +153,33 @@ type Approval struct {
 	ApprovedAt  time.Time `json:"approved_at"`
 	Bypass      bool      `json:"bypass"`
 	BypassNote  string    `json:"bypass_note,omitempty"`
+	Stage       string    `json:"stage,omitempty"` // "contract" or "stills"
+}
+
+// StillsApproval is the visual-evidence pass. Missing files refuse.
+type StillsApproval struct {
+	TaskID      string    `json:"task_id"`
+	ApprovedBy  string    `json:"approved_by"`
+	DesktopPath string    `json:"desktop_path"`
+	MobilePath  string    `json:"mobile_path"`
+	Note        string    `json:"note"`
+	ApprovedAt  time.Time `json:"approved_at"`
 }
 
 // DesignLab holds the gate state for one task.
 type DesignLab struct {
-	TaskID        string
-	WorkspaceRoot string
-	State         GateState
-	Reason        string
-	Cards         []DirectionCard
-	SurveySkipped bool
-	SkipReason    string
-	Directions    []Direction
-	Approved      *Approval
-	rejections    []Rejection
+	TaskID              string
+	WorkspaceRoot       string
+	State               GateState
+	Reason              string
+	Cards               []DirectionCard
+	SurveySkipped       bool
+	SkipReason          string
+	NamedReferenceMode  bool
+	Directions          []Direction
+	Approved            *Approval
+	Stills              *StillsApproval
+	rejections          []Rejection
 }
 
 // NewDesignLab derives the gate from the brief. This is the only place that
@@ -197,6 +221,38 @@ func IsFrontendPath(p string) bool {
 	return false
 }
 
+// GoldenStillsDir is the only product-adjacent path writable after the contract
+// and before visual evidence. Throwaway still renderers live here, not in src/.
+func (d *DesignLab) GoldenStillsDir() string {
+	if d == nil || d.WorkspaceRoot == "" {
+		return ""
+	}
+	return filepath.Join(d.labDir(), "golden-stills")
+}
+
+func (d *DesignLab) isGoldenStillPath(p string) bool {
+	root := d.GoldenStillsDir()
+	if root == "" {
+		return false
+	}
+	if !filepath.IsAbs(p) && d.WorkspaceRoot != "" {
+		p = filepath.Join(d.WorkspaceRoot, p)
+	}
+	abs, err := filepath.Abs(p)
+	if err != nil {
+		return false
+	}
+	base, err := filepath.Abs(root)
+	if err != nil {
+		return false
+	}
+	rel, err := filepath.Rel(base, abs)
+	if err != nil {
+		return false
+	}
+	return rel != ".." && !strings.HasPrefix(rel, ".."+string(filepath.Separator))
+}
+
 // GuardWrite is the lock. Call it before writing any file during implementation.
 func (d *DesignLab) GuardWrite(path string) error {
 	if d == nil {
@@ -209,28 +265,25 @@ func (d *DesignLab) GuardWrite(path string) error {
 	if !IsFrontendPath(path) {
 		return nil
 	}
+	if d.State == GateContractApproved && d.isGoldenStillPath(path) {
+		return nil
+	}
+	reason := firstNonEmpty(d.Reason, "no direction approved yet")
+	if d.State == GateContractApproved {
+		reason = firstNonEmpty(d.Reason, "DESIGN.md is not visual evidence; golden stills are unpaid")
+	}
 	return &ErrGateNotCleared{
 		Path:   path,
-		Reason: firstNonEmpty(d.Reason, "no direction approved yet"),
+		Reason: reason,
 	}
 }
 
-// Cleared reports whether frontend writes are permitted.
+// Cleared reports whether product frontend writes are permitted.
 func (d *DesignLab) Cleared() bool {
 	return d == nil || d.State == GateNotRequired || d.State == GateApproved || d.State == GateBypassed
 }
 
-// OfferSurvey records 23 cheap direction cards. Not 23 full DESIGN.md files.
-func (d *DesignLab) OfferSurvey(cards []DirectionCard) error {
-	if d.State != GatePending {
-		return fmt.Errorf("cannot offer a survey: gate is %s", d.State)
-	}
-	if d.SurveySkipped {
-		return fmt.Errorf("cannot offer a survey: it was already skipped (%s)", d.SkipReason)
-	}
-	if len(cards) != SurveyCardCount {
-		return fmt.Errorf("design lab survey requires exactly %d cards, got %d", SurveyCardCount, len(cards))
-	}
+func validateSurveyCards(cards []DirectionCard) error {
 	seen := map[string]bool{}
 	for _, c := range cards {
 		if missing := c.Incomplete(); len(missing) > 0 {
@@ -241,18 +294,42 @@ func (d *DesignLab) OfferSurvey(cards []DirectionCard) error {
 		}
 		seen[c.ID] = true
 	}
+	return nil
+}
+
+// OfferSurvey records either 23 open-ended cards or 3 named-reference translations.
+func (d *DesignLab) OfferSurvey(cards []DirectionCard) error {
+	if d.State != GatePending {
+		return fmt.Errorf("cannot offer a survey: gate is %s", d.State)
+	}
+	if d.SurveySkipped {
+		return fmt.Errorf("cannot offer a survey: it was already skipped (%s)", d.SkipReason)
+	}
+	n := len(cards)
+	switch n {
+	case SurveyCardCount:
+		d.NamedReferenceMode = false
+	case NamedReferenceCardCount:
+		d.NamedReferenceMode = true
+	default:
+		return fmt.Errorf("design lab survey requires exactly %d cards (open) or %d translations (named reference), got %d", SurveyCardCount, NamedReferenceCardCount, n)
+	}
+	if err := validateSurveyCards(cards); err != nil {
+		return err
+	}
 	d.Cards = cards
 	return nil
 }
 
-// SkipSurvey bypasses the 23-card survey when the prompt already names a site,
-// skill, MCP, pack, or DESIGN.md. The reason is required. Do not argue.
+// SkipSurvey is for a pasted DESIGN.md or a named skill/MCP/pack that already
+// is the contract. Named visual sites go through visual-forensics and three
+// evidence-backed translations, not this skip. The reason is required.
 func (d *DesignLab) SkipSurvey(reason string) error {
 	if d.State != GatePending {
 		return fmt.Errorf("cannot skip survey: gate is %s", d.State)
 	}
 	if strings.TrimSpace(reason) == "" {
-		return fmt.Errorf("skipping the survey needs a reason (named site, skill, MCP, pack, or DESIGN.md)")
+		return fmt.Errorf("skipping the survey needs a reason (pasted DESIGN.md, or a named skill/MCP/pack that is the contract)")
 	}
 	d.SurveySkipped = true
 	d.SkipReason = reason
@@ -260,13 +337,23 @@ func (d *DesignLab) SkipSurvey(reason string) error {
 	return nil
 }
 
+func (d *DesignLab) surveySatisfied() bool {
+	if d.SurveySkipped {
+		return true
+	}
+	if d.NamedReferenceMode && len(d.Cards) == NamedReferenceCardCount {
+		return true
+	}
+	return len(d.Cards) == SurveyCardCount
+}
+
 // OfferContract records the one full sourced direction after a survey pick or a skip.
 func (d *DesignLab) OfferContract(dir Direction) error {
 	if d.State != GatePending {
 		return fmt.Errorf("cannot offer a contract: gate is %s", d.State)
 	}
-	if !d.SurveySkipped && len(d.Cards) != SurveyCardCount {
-		return fmt.Errorf("offer a %d-card survey or skip it before the contract", SurveyCardCount)
+	if !d.surveySatisfied() {
+		return fmt.Errorf("offer a %d-card survey, %d named-reference translations, or skip the survey before the contract", SurveyCardCount, NamedReferenceCardCount)
 	}
 	if missing := dir.Unsourced(); len(missing) > 0 {
 		return fmt.Errorf("direction %q has unattributed claims: %s", dir.ID, strings.Join(missing, ", "))
@@ -306,19 +393,20 @@ func (d *DesignLab) ApproveCustom(approvedBy, note string) error {
 		Concept:     note,
 		ApprovedBy:  approvedBy,
 		ApprovedAt:  time.Now().UTC(),
+		Stage:       "contract",
 	}
-	d.State = GateApproved
-	d.Reason = "approved custom DESIGN.md: " + note
+	d.State = GateContractApproved
+	d.Reason = "contract approved (custom DESIGN.md); golden stills unpaid: " + note
 	return d.persistApproval()
 }
 
-// Approve clears the gate for a named direction.
-func (d *DesignLab) Approve(directionID, approvedBy string) error {
+// ApproveContract accepts LOCKED DESIGN.md. Product UI stays locked.
+func (d *DesignLab) ApproveContract(directionID, approvedBy string) error {
 	if d.State == GateNotRequired {
 		return nil
 	}
 	if d.State != GatePending {
-		return fmt.Errorf("cannot approve: gate is %s", d.State)
+		return fmt.Errorf("cannot approve contract: gate is %s", d.State)
 	}
 	var chosen *Direction
 	for i := range d.Directions {
@@ -339,10 +427,83 @@ func (d *DesignLab) Approve(directionID, approvedBy string) error {
 		Concept:     chosen.Concept,
 		ApprovedBy:  approvedBy,
 		ApprovedAt:  time.Now().UTC(),
+		Stage:       "contract",
+	}
+	d.State = GateContractApproved
+	d.Reason = "contract approved: " + chosen.Concept + "; DESIGN.md is not visual evidence"
+	return d.persistApproval()
+}
+
+// Approve is the contract stage. Golden stills remain unpaid. Prefer ApproveContract.
+func (d *DesignLab) Approve(directionID, approvedBy string) error {
+	return d.ApproveContract(directionID, approvedBy)
+}
+
+func (d *DesignLab) resolveExisting(p string) (string, error) {
+	p = strings.TrimSpace(p)
+	if p == "" {
+		return "", fmt.Errorf("still path is empty")
+	}
+	cands := []string{p}
+	if d.WorkspaceRoot != "" && !filepath.IsAbs(p) {
+		cands = append(cands, filepath.Join(d.WorkspaceRoot, p), filepath.Join(d.GoldenStillsDir(), p))
+	}
+	var last error
+	for _, c := range cands {
+		st, err := os.Stat(c)
+		if err != nil {
+			last = err
+			continue
+		}
+		if st.IsDir() {
+			last = fmt.Errorf("%s is a directory", c)
+			continue
+		}
+		abs, err := filepath.Abs(c)
+		if err != nil {
+			return "", err
+		}
+		return abs, nil
+	}
+	if last != nil {
+		return "", last
+	}
+	return "", fmt.Errorf("still file not found: %s", p)
+}
+
+// ApproveStills is the visual-evidence gate. Missing files or an empty note refuse.
+func (d *DesignLab) ApproveStills(approvedBy, desktopPath, mobilePath, note string) error {
+	if d.State == GateNotRequired {
+		return nil
+	}
+	if d.State != GateContractApproved {
+		return fmt.Errorf("cannot approve stills: gate is %s (contract first)", d.State)
+	}
+	if strings.TrimSpace(approvedBy) == "" {
+		return fmt.Errorf("stills approval requires a named approver")
+	}
+	if strings.TrimSpace(note) == "" {
+		return fmt.Errorf("stills approval needs a note (what passed)")
+	}
+	desk, err := d.resolveExisting(desktopPath)
+	if err != nil {
+		return fmt.Errorf("desktop still: %w", err)
+	}
+	mob, err := d.resolveExisting(mobilePath)
+	if err != nil {
+		return fmt.Errorf("mobile still: %w", err)
+	}
+	d.Stills = &StillsApproval{
+		TaskID:      d.TaskID,
+		ApprovedBy:  approvedBy,
+		DesktopPath: desk,
+		MobilePath:  mob,
+		Note:        note,
+		ApprovedAt:  time.Now().UTC(),
 	}
 	d.State = GateApproved
-	d.Reason = "approved: " + chosen.Concept
-	return d.persistApproval()
+	d.Reason = "golden stills approved: " + note
+	return d.persistStills()
 }
 
 // Reject records a turned-down direction and its stated reason.
@@ -450,6 +611,13 @@ func (d *DesignLab) appendRejection(r Rejection) error {
 
 func (d *DesignLab) persistApproval() error {
 	return writeJSON(d.ApprovalPath(), d.Approved)
+}
+
+func (d *DesignLab) persistStills() error {
+	if err := d.persistApproval(); err != nil {
+		return err
+	}
+	return writeJSON(filepath.Join(d.labDir(), "stills-"+d.TaskID+".json"), d.Stills)
 }
 
 func writeJSON(path string, v any) error {

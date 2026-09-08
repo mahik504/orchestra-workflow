@@ -11,11 +11,12 @@ This is evaluation language. It is not a 31st skill and not a dump of the gated 
 3. **Validate** in the **real project**, not inside the generator.
 4. **Exit** when the stall is resolved or parked. Do not open a second tool “just in case.”
 
-## Keep / Kill / Park
+## Keep / Rework / Kill / Park
 
-Finish the stall with one of:
+Every phase (forensics, exploration, contract, stills, implementation, review, showcase) may issue one of:
 
 - **Keep** — it serves the approved stack; leave it.
+- **Rework** — the direction stands; this surface must change before the next gate.
 - **Kill** — it fights the stack or is generic slop; remove it.
 - **Park** — useful later, not this story; note it and stop touching it.
 
@@ -48,4 +49,4 @@ Reference extraction instead of visual copying. Never copy branding, assets, cop
 
 ## Where it sits
 
-After Taste → `DESIGN.md` → implement → Impeccable → Playwright. SOS is the teardown. Then **one** consultant packet if the bar is PREMIUM/EXPERIMENTAL. Details: `VISUAL_QA_PROTOCOL.md`.
+After Taste → locked `DESIGN.md` → golden stills → implement → Impeccable → Playwright. SOS is the teardown (Keep / Rework / Kill / Park). Then **one** consultant packet if the bar is PREMIUM/EXPERIMENTAL. Details: `VISUAL_QA_PROTOCOL.md` and `VISUAL_GOVERNANCE.md`.

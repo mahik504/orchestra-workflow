@@ -12,7 +12,7 @@ const fs = require('fs');
 const path = require('path');
 
 const REPO = path.join(__dirname, '..', '..');
-const EXPECTED_VERSION = '3.3.0';
+const EXPECTED_VERSION = '3.3.1';
 
 // These files define or document the rules, so they contain the patterns by design.
 const SELF = new Set([
