@@ -1,0 +1,1 @@
+Add a small API sum that validates two integers and returns an error for invalid input. Include a test.

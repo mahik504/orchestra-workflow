@@ -6,8 +6,8 @@
 
 ## The loop in Cursor
 
-1. **Plan mode** for understand → re-brief → classify → graph search → Design Lab. 23 short cards or a named override, then one `DESIGN.md`.
-2. **Human gate.** For `PREMIUM` / `EXPERIMENTAL` visual work, do not write frontend files until approved. If the prompt names a site, skill, MCP, pack, or `DESIGN.md`, that outranks the graph. Do not argue. `STANDARD` skips the lab unless asked.
+1. **Plan mode** for understand → re-brief → classify → graph search → Design Lab. Open-ended PREMIUM = 23 short cards. Named visual refs = exactly **3 translations** (not a skip). Pasted `DESIGN.md` (or a named skill/MCP/pack that already *is* the contract) skips the survey. Then one `DESIGN.md`, then golden stills.
+2. **Human gates.** For `PREMIUM` / `EXPERIMENTAL` visual work, do not write product frontend files until stills are approved (`CONTRACT_APPROVED` then `ApproveStills`). A pasted `DESIGN.md` outranks the graph for the survey only. Named *sites* do not skip to one contract. `STANDARD` skips the lab unless asked.
 3. **Agent mode** implements the approved direction, one story per pass.
 4. **Verify on the real app** with the browser tools or `orchestra verify`. Multi-viewport, zero console errors, no horizontal overflow on mobile.
 5. **Correctness review**, then a separate **simplify review**.

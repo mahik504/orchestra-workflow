@@ -89,7 +89,7 @@ Say what you are building. The conductor should:
 2. Classify into one capability. Load that route. Leave other routes closed.
 3. Open the **app repo** before trusting a brief.
 
-PREMIUM / EXPERIMENTAL visual work: **Design Lab is a write lock**. Do not write frontend files until a stack card is approved. Say `skip the lab` to bypass one task.
+PREMIUM / EXPERIMENTAL visual work: **Design Lab is a write lock**. Do not write product frontend files until golden stills are approved (`CONTRACT_APPROVED` then `ApproveStills`). Named visual refs = 3 translations, not a skip. Say `skip the lab` to bypass one task.
 
 Installing Stitch, Fiber, or Stripe does not load them on every prompt.
 

@@ -1,4 +1,4 @@
-﻿# Prompting Orchestra 3.3
+# Prompting Orchestra 3.3
 
 A brief still needs intent, context, constraints, and what done looks like. Orchestra 3.3 classifies that brief against `registries/design-resource-graph.json`. It does not invent a second prompting language.
 

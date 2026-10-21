@@ -25,6 +25,17 @@ func (s *SynthesizeStage) ShouldSkip(ctx *TaskContext) (bool, string) {
 func (s *SynthesizeStage) Execute(ctx *TaskContext) (*StageResult, error) {
 	start := time.Now()
 
+	if err := bindFlagshipExploration(ctx); err != nil {
+		return &StageResult{
+			StageName: StageSynthesize,
+			Status:    StatusFailed,
+			StartTime: start,
+			EndTime:   time.Now(),
+			Duration:  time.Since(start),
+			Error:     err,
+		}, err
+	}
+
 	var actionableRules []string
 	var antiPatterns []string
 	var verificationChecks []string

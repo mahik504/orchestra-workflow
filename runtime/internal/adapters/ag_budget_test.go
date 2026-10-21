@@ -61,17 +61,31 @@ func TestCheckAntigravityBudget_RespectsDisabled(t *testing.T) {
 	}
 }
 
-func TestClassifyMCP_SupabaseIsAuthRequired(t *testing.T) {
-	h := classifyMCP("supabase")
-	if h.Health != "AUTH_REQUIRED" {
-		t.Fatalf("supabase health = %s, want AUTH_REQUIRED", h.Health)
+func TestClassifyMCP_UnprobedIsOptional(t *testing.T) {
+	for _, name := range []string{"supabase", "StitchMCP", "playwright", "github", "orchestra" + "-brain"} {
+		h := classifyMCP(name, nil)
+		if h.Health != "OPTIONAL" {
+			t.Fatalf("%s unprobed health = %s, want OPTIONAL", name, h.Health)
+		}
 	}
-	h = classifyMCP("StitchMCP")
-	if h.Health != "HEALTHY" {
-		t.Fatalf("StitchMCP health = %s, want HEALTHY", h.Health)
+}
+
+func TestClassifyMCP_ProbeStates(t *testing.T) {
+	cases := []struct {
+		name  string
+		probe MCPProbe
+		want  string
+	}{
+		{"playwright", MCPProbe{Observed: true, Reachable: true}, "HEALTHY"},
+		{"extra", MCPProbe{Observed: true}, "OPTIONAL"},
+		{"supabase", MCPProbe{Observed: true, AuthRequired: true}, "AUTH_REQUIRED"},
+		{"dead", MCPProbe{Observed: true, Broken: true}, "BROKEN"},
+		{"off", MCPProbe{Observed: true, Disabled: true}, "DISABLED"},
 	}
-	h = classifyMCP("orchestra" + "-brain")
-	if h.Health != "HEALTHY" {
-		t.Fatalf("vault filesystem MCP alias health = %s, want HEALTHY", h.Health)
+	for _, tc := range cases {
+		h := classifyMCP(tc.name, &tc.probe)
+		if h.Health != tc.want {
+			t.Fatalf("%s health = %s, want %s", tc.name, h.Health, tc.want)
+		}
 	}
 }

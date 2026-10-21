@@ -93,7 +93,7 @@ func TestAdversarial_StateTransition_SequentialExecution(t *testing.T) {
 	cat, graph, workdir := setupEngineFixtures(t)
 	defer os.RemoveAll(workdir)
 
-	pipeline := NewDesignPipeline(cat, graph, nil, nil)
+	pipeline := NewDesignPipeline(cat, graph, nil, NewMockVisualVerifier())
 
 	req := &TaskRequest{
 		ID:             "task-state-invariants",
@@ -134,7 +134,7 @@ func TestAdversarial_StateTransition_EarlyHaltOnFailure(t *testing.T) {
 	cat, graph, workdir := setupEngineFixtures(t)
 	defer os.RemoveAll(workdir)
 
-	pipeline := NewDesignPipeline(cat, graph, nil, nil)
+	pipeline := NewDesignPipeline(cat, graph, nil, NewMockVisualVerifier())
 
 	// High-visual task without SkipVisualGate must halt at StageSynthesize
 	req := &TaskRequest{
@@ -356,7 +356,7 @@ func TestAdversarial_MalformedTask_EmptyFields(t *testing.T) {
 	cat, graph, workdir := setupEngineFixtures(t)
 	defer os.RemoveAll(workdir)
 
-	pipeline := NewDesignPipeline(cat, graph, nil, nil)
+	pipeline := NewDesignPipeline(cat, graph, nil, NewMockVisualVerifier())
 
 	// Completely empty task request
 	req := &TaskRequest{
@@ -381,7 +381,7 @@ func TestAdversarial_MalformedTask_UnicodeAttacks(t *testing.T) {
 	cat, graph, workdir := setupEngineFixtures(t)
 	defer os.RemoveAll(workdir)
 
-	pipeline := NewDesignPipeline(cat, graph, nil, nil)
+	pipeline := NewDesignPipeline(cat, graph, nil, NewMockVisualVerifier())
 
 	// Zalgo, null bytes, RTL override, multi-byte UTF-8, emoji spam
 	zalgo := "T̷͓̈h̶̯̄e̶̯͛ ̷͇̌q̸̳̽u̷̮͌i̶̙̒c̶̫̏k̷̙͘ ̸͙̓b̷̬͐r̴͎̍o̷̟͝w̷̱̔ñ̷͕ ̴̜̅f̷̺̈́ó̵̧x̷͔͝"
@@ -417,7 +417,7 @@ func TestAdversarial_MalformedTask_InjectionPayloads(t *testing.T) {
 	cat, graph, workdir := setupEngineFixtures(t)
 	defer os.RemoveAll(workdir)
 
-	pipeline := NewDesignPipeline(cat, graph, nil, nil)
+	pipeline := NewDesignPipeline(cat, graph, nil, NewMockVisualVerifier())
 
 	injections := []string{
 		"'; DROP TABLE users; --",
@@ -452,7 +452,7 @@ func TestAdversarial_MalformedTask_InjectionPayloads(t *testing.T) {
 func TestAdversarial_MalformedTask_NilSafety(t *testing.T) {
 	cat, graph, _ := setupEngineFixtures(t)
 
-	pipeline := NewDesignPipeline(cat, graph, nil, nil)
+	pipeline := NewDesignPipeline(cat, graph, nil, NewMockVisualVerifier())
 
 	// Subtest 1: pipeline.Execute with nil request
 	t.Run("Nil_TaskRequest_Execute", func(t *testing.T) {
@@ -494,7 +494,7 @@ func TestAdversarial_MalformedTask_NilSafety(t *testing.T) {
 func TestAdversarial_MalformedTask_QuarantineBreachAttempt(t *testing.T) {
 	cat, graph, _ := setupEngineFixtures(t)
 
-	pipeline := NewDesignPipeline(cat, graph, nil, nil)
+	pipeline := NewDesignPipeline(cat, graph, nil, NewMockVisualVerifier())
 
 	bannedPaths := []string{
 		`C:\Users\mockuser\.gemini\config\skills_library`,
@@ -647,7 +647,7 @@ func TestAdversarial_Determinism_50Runs(t *testing.T) {
 	cat, graph, workdir := setupEngineFixtures(t)
 	defer os.RemoveAll(workdir)
 
-	pipeline := NewDesignPipeline(cat, graph, nil, nil)
+	pipeline := NewDesignPipeline(cat, graph, nil, NewMockVisualVerifier())
 
 	var baselineArchetype string
 	var baselineTokens float64
@@ -698,7 +698,7 @@ func TestAdversarial_Concurrency_20Pipelines(t *testing.T) {
 	cat, graph, workdir := setupEngineFixtures(t)
 	defer os.RemoveAll(workdir)
 
-	pipeline := NewDesignPipeline(cat, graph, nil, nil)
+	pipeline := NewDesignPipeline(cat, graph, nil, NewMockVisualVerifier())
 
 	concurrency := 20
 	var wg sync.WaitGroup
@@ -741,7 +741,7 @@ func TestAdversarial_MemoryLeak_100Cycles(t *testing.T) {
 	cat, graph, workdir := setupEngineFixtures(t)
 	defer os.RemoveAll(workdir)
 
-	pipeline := NewDesignPipeline(cat, graph, nil, nil)
+	pipeline := NewDesignPipeline(cat, graph, nil, NewMockVisualVerifier())
 
 	// Warmup
 	for i := 0; i < 5; i++ {
@@ -797,7 +797,7 @@ func TestAdversarial_HandoffState_JSONIntegrity(t *testing.T) {
 	cat, graph, workdir := setupEngineFixtures(t)
 	defer os.RemoveAll(workdir)
 
-	pipeline := NewDesignPipeline(cat, graph, nil, nil)
+	pipeline := NewDesignPipeline(cat, graph, nil, NewMockVisualVerifier())
 
 	req := &TaskRequest{
 		ID:             "task-json-integrity",

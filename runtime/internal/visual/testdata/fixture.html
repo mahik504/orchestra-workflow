@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Orchestra 3D fixture</title>
+  <style>
+    :root { --gap: 24px; }
+    body { margin: 0; font-family: Georgia, serif; }
+    header { padding: 32px; }
+    .wide { min-width: 480px; background: #eee; padding: 8px; }
+    @media (min-width: 800px) {
+      .wide { min-width: 0; width: auto; }
+    }
+    main { max-width: 720px; padding: 24px; }
+    button { font: inherit; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 data-qa="hero">Fixture product</h1>
+    <p>A running application for Layer A.</p>
+    <button id="go">Continue</button>
+  </header>
+  <main>
+    <form>
+      <label for="name">Name</label>
+      <input id="name" name="name"/>
+    </form>
+    <div class="wide">This row is wider than a 390px phone.</div>
+  </main>
+</body>
+</html>

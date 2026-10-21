@@ -1,0 +1,8 @@
+{
+  "name": "orchestra-runtime-visual",
+  "private": true,
+  "description": "Project-local Playwright Node library for Orchestra Layer A. Not a test framework, not Playwright MCP.",
+  "dependencies": {
+    "playwright": "1.63.0"
+  }
+}

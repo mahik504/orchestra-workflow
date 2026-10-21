@@ -21,6 +21,42 @@ A glue model cannot become a frontier model by itself. Name the dropdown, or spa
 
 Default: one primary, one consultant packet if needed, one verifier. Not a swarm.
 
+## Mission execution (3C)
+
+Same conductor. Same eight stages. Extra control-plane objects, not a second OS.
+
+```
+MISSION → CONTEXT SELECTION → WORKER CAPSULE → BUDGET → EXECUTION → EVIDENCE → FAILURE CLASS → RECOVERY OR HUMAN GATE
+```
+
+Keep the mission compact: objective, bar, LIGHT/FULL intensity, constraints, acceptance (immutable unless the human revises), surfaces, capability ids, required evidence, derived budget. No Brain dump.
+
+Hand a **worker capsule**, not the chat. Paths and ids, not AGENTS.md, not the MCP catalog, not unrelated skills. If you can measure capsule bytes vs whole-project context, do.
+
+Derive budget. Ordinary implementation stays cheap. Do not maximize reasoning on glue.
+
+**3D — design intelligence / two-layer visual QA.** Same eight stages. Classify ordinary vs product UI vs flagship from the task, not from the quality bar.
+
+- Ordinary (API, debug, CRUD logic): no 3–5 directions, no visual review unless relevant.
+- Normal UI: no extra directions; harness Layer A on the running app when UI changed; judge off unless a trigger fires.
+- Flagship (portfolio, brand, art-directed, unusual interaction): 3–5 structurally different lightweight directions → human pick → **one** locked contract. Then Layer A + Layer B.
+
+Canonical Layer A owner is the Orchestra harness (`PlaywrightVerifier` / `runtime/tools/layer-a.mjs` / `runtime/package.json` Playwright library + Chromium). Playwright MCP and Cursor browser are adapters — they do not green-wash. Mock screenshots cannot pass. Layer B is a structural critic on Layer A PNG paths by default; an optional screenshot evaluator runs only when `visual_review` is `browser|deep` on product UI/flagship and an adapter is registered. Independent judge is a scoped no-write capsule when policy activates.
+
+Visual failures become structured findings and reuse Stage 8. Trivial overflow/console fixes do not page a human. Direction, brand, and uninterpretable acceptance still do.
+
+Classify failures. Retry only with remaining `retry_budget` **and a change**. Identical replay stops. Spec/contract and human-needed never auto-retry.
+
+State: `.orchestra/runs/<id>/mission.json` + `state.json` + `capability.json`. Continue from that, not from conversation replay.
+
+**3E — capability gateway.** After classify refines the mission, `Select` picks the minimum sufficient set for this budget. Those ids are consumed by the builder capsule, research skip, flagship direction bind, harness Layer A, Layer B, and the judge capsule. The gateway does not execute a host, rank a vendor model, or dump the skill/resource/MCP catalogs into the worker. Missing required `browser.playwright` stops on the existing human gate.
+
+**3F — Brain.** Brain remembers. Runtime executes. Registry verifies. Human decides ambiguous or high-impact conflicts. Durable notes are preferences, decisions, facts, validated workflows, failure lessons, and verified resources. They do not replace `mission.json`, `state.json`, or `capability.json`. A catalog name is not a health probe. Unprobed MCP is optional.
+
+### Human-needed — stop
+
+Do not guess through: ambiguous product behavior; missing credential; destructive action; spec/contract conflict; uninterpretable acceptance; identity/brand; unpaid stills or direction pick; security-sensitive change; irreversible deploy; material tool/host gap; retries exhausted. Use the existing `ErrHumanGateRequired` sentinel.
+
 ## The loop
 
 ### 1. Understand

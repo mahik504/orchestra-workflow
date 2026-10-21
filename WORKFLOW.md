@@ -1,4 +1,4 @@
-﻿# Workflow — Orchestra 3.3.1
+# Workflow — Orchestra 3.3.1
 
 The contract is `AGENTS.md`. This is the operator's walkthrough. 3.3.1 is governance on the same OS.
 

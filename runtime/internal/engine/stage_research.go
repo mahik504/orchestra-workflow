@@ -4,6 +4,7 @@ import (
 	"path/filepath"
 	"time"
 
+	"github.com/mahik504/orchestra-workflow/runtime/internal/capability"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/classifier"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/research"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/resources"
@@ -20,6 +21,12 @@ func (s *ResearchStage) Name() StageName {
 }
 
 func (s *ResearchStage) ShouldSkip(ctx *TaskContext) (bool, string) {
+	if ctx != nil && ctx.Capability != nil {
+		if !ctx.Capability.Has(capability.IDResearchWorker) {
+			return true, "research.worker not selected"
+		}
+		return false, ""
+	}
 	if ctx.Classification != nil && !ctx.Classification.RequiresVisual && len(ctx.Classification.GapTechnologies) == 0 {
 		return true, "Non-visual task with zero unindexed dependencies skips visual research"
 	}

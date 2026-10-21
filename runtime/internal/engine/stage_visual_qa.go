@@ -6,7 +6,10 @@ import (
 	"strings"
 	"time"
 
+	"github.com/mahik504/orchestra-workflow/runtime/internal/capability"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/memory"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/mission"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/visual"
 )
 
 type VisualQAStage struct{}
@@ -26,19 +29,67 @@ func (s *VisualQAStage) ShouldSkip(ctx *TaskContext) (bool, string) {
 func (s *VisualQAStage) Execute(ctx *TaskContext) (*StageResult, error) {
 	start := time.Now()
 
+	// 1. Ordinary / non-visual: no browser. Do not invent screenshots.
+	class := designClassOf(ctx)
+	review := mission.VisualReviewNone
+	if ctx.Mission != nil {
+		review = ctx.Mission.Budget.VisualReview
+	}
 	requiresVisual := false
 	if ctx.Classification != nil {
 		requiresVisual = ctx.Classification.RequiresVisual
 	}
+	if ctx.Capability != nil {
+		wantsBrowser := review == mission.VisualReviewBrowser || review == mission.VisualReviewDeep
+		if wantsBrowser && !ctx.Capability.Has(capability.IDBrowserPlaywright) {
+			ctx.VisualQA = &VisualQAData{
+				AllPassed:          false,
+				ViewportResults:    []ViewportCheckResult{},
+				Metrics:            map[string]float64{},
+				DetectedViolations: []string{"required browser.playwright was not selected; visual QA must not pass"},
+				FailureClass:       FailureClassFatal,
+				DesignClass:        string(class),
+				FinalResult:        "fail",
+			}
+			return &StageResult{
+				StageName: StageVisualQA,
+				Status:    StatusCompleted,
+				StartTime: start,
+				EndTime:   time.Now(),
+				Duration:  time.Since(start),
+				Output:    ctx.VisualQA,
+			}, nil
+		}
+		if !ctx.Capability.Has(capability.IDBrowserPlaywright) {
+			ctx.VisualQA = &VisualQAData{
+				AllPassed:          true,
+				ViewportResults:    []ViewportCheckResult{},
+				Metrics:            map[string]float64{"syntax_check": 1.0, "lint_errors": 0.0},
+				DetectedViolations: []string{},
+				FailureClass:       FailureClassNone,
+				DesignClass:        string(class),
+				FinalResult:        "skipped_ordinary",
+			}
+			return &StageResult{
+				StageName: StageVisualQA,
+				Status:    StatusCompleted,
+				StartTime: start,
+				EndTime:   time.Now(),
+				Duration:  time.Since(start),
+				Output:    ctx.VisualQA,
+			}, nil
+		}
+	}
 
-	// 1. Non-visual task handling: bypass browser screenshot capture, perform lightweight static check
-	if !requiresVisual {
+	if !requiresVisual && (class == visual.ClassOrdinary || review == mission.VisualReviewNone) {
 		ctx.VisualQA = &VisualQAData{
 			AllPassed:          true,
 			ViewportResults:    []ViewportCheckResult{},
 			Metrics:            map[string]float64{"syntax_check": 1.0, "lint_errors": 0.0},
 			DetectedViolations: []string{},
 			FailureClass:       FailureClassNone,
+			DesignClass:        string(class),
+			FinalResult:        "skipped_ordinary",
 		}
 		return &StageResult{
 			StageName: StageVisualQA,
@@ -72,6 +123,7 @@ func (s *VisualQAStage) Execute(ctx *TaskContext) (*StageResult, error) {
 	if ctx.VisualQA != nil {
 		ctx.VisualQA.VerifierRan = true
 	}
+	persistVisualEvidence(ctx)
 
 	// Record verifier telemetry (Playwright) into Private Brain Memory
 	memPath := memory.ResolveDefaultMemoryPath(ctx.Task.WorkspaceRoot)

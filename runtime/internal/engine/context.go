@@ -5,12 +5,15 @@ import (
 	"sync"
 	"time"
 
+	"github.com/mahik504/orchestra-workflow/runtime/internal/capability"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/classifier"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/handoff"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/mission"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/research"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/resources"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/router"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/verify"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/visual"
 )
 
 // Failure classification constants for closed-loop self-healing
@@ -135,6 +138,17 @@ type VisualQAData struct {
 	DetectedViolations []string              `json:"detected_violations"`
 	FailureClass       string                `json:"failure_class"` // "NONE", "TOKEN_STYLE", "LAYOUT_CODE", "FATAL"
 	VerifierRan        bool                  `json:"verifier_ran,omitempty"`
+	DesignClass        string                `json:"design_class,omitempty"`
+	CanonicalOwner     string                `json:"canonical_owner,omitempty"`
+	LayerA             *visual.LayerAReport  `json:"layer_a,omitempty"`
+	LayerB             *visual.LayerBReport  `json:"layer_b,omitempty"`
+	Findings           []visual.Finding      `json:"findings,omitempty"`
+	Evidence           []visual.Evidence     `json:"evidence,omitempty"`
+	JudgeMode          string                `json:"judge_mode,omitempty"`
+	JudgeActivated     bool                  `json:"judge_activated,omitempty"`
+	RetryCount         int                   `json:"retry_count,omitempty"`
+	ChangesMade        []string              `json:"changes_made,omitempty"`
+	FinalResult        string                `json:"final_result,omitempty"`
 }
 
 // IterationData tracks self-healing loop cycles and feedback in Stage 8
@@ -161,6 +175,14 @@ type TaskContext struct {
 	// CONTRACT_APPROVED, product frontend writes are refused. Golden stills
 	// may be written after the contract. Cleared() is APPROVED / BYPASSED / NOT_REQUIRED.
 	DesignLab *verify.DesignLab
+
+	Mission      *mission.Mission
+	RunState     *mission.RunState
+	Capability   *capability.Decision
+	Capsule      *mission.Capsule
+	Exploration  *visual.Exploration
+	JudgeCapsule *mission.Capsule
+	JudgeScope   *mission.ScopeReport
 
 	// Stage-Specific Data Payloads
 	Discovery      *DiscoveryData
@@ -197,7 +219,7 @@ func NewTaskContext(
 		task.WorkspaceRoot = "."
 	}
 
-	return &TaskContext{
+	tc := &TaskContext{
 		Ctx:           ctx,
 		Task:          task,
 		Catalog:       cat,
@@ -215,6 +237,8 @@ func NewTaskContext(
 			FinalVerdict:       "PENDING",
 		},
 	}
+	attachMission(tc)
+	return tc
 }
 
 // SetStageResult safely records a stage result and appends to execution order

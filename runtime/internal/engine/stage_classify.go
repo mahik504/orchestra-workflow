@@ -182,6 +182,20 @@ func (s *ClassifyStage) Execute(ctx *TaskContext) (*StageResult, error) {
 	// 7. Lock frontend writes until a direction is approved.
 	ctx.DesignLab = verify.NewDesignLab(brief, ctx.Task.WorkspaceRoot)
 
+	refineMissionFromClassification(ctx)
+	if err := selectCapabilities(ctx); err != nil {
+		persistMission(ctx, "capability_select")
+		return &StageResult{
+			StageName: StageClassify,
+			Status:    StatusFailed,
+			StartTime: start,
+			EndTime:   time.Now(),
+			Duration:  time.Since(start),
+			Output:    ctx.Classification,
+			Error:     err,
+		}, err
+	}
+
 	return &StageResult{
 		StageName: StageClassify,
 		Status:    StatusCompleted,

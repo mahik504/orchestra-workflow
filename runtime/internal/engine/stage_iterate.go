@@ -7,6 +7,7 @@ import (
 
 	"github.com/mahik504/orchestra-workflow/runtime/internal/handoff"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/memory"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/visual"
 )
 
 type IterateStage struct{}
@@ -27,6 +28,9 @@ func (s *IterateStage) Execute(ctx *TaskContext) (*StageResult, error) {
 	start := time.Now()
 
 	if ctx.VisualQA == nil || ctx.VisualQA.AllPassed {
+		if ctx.RunState != nil {
+			ctx.RunState.PendingHuman = nil
+		}
 		ctx.Iteration.FinalVerdict = "PASSED"
 		recordIterateMemory(ctx, "PASSED", time.Since(start).Milliseconds())
 		return &StageResult{
@@ -39,9 +43,24 @@ func (s *IterateStage) Execute(ctx *TaskContext) (*StageResult, error) {
 		}, nil
 	}
 
-	// Visual QA has violations: evaluate iteration budget
+	findings := ctx.VisualQA.Findings
 	violations := ctx.VisualQA.DetectedViolations
 	failureClass := ctx.VisualQA.FailureClass
+	if failureClass == FailureClassNone && len(findings) > 0 {
+		failureClass = visual.MapFailureClass(findings)
+	}
+	msg := fmt.Sprintf("Visual QA violations: %s", strings.Join(violations, "; "))
+	if len(findings) > 0 {
+		var sigs []string
+		for _, f := range findings {
+			sigs = append(sigs, f.Signature())
+		}
+		msg = fmt.Sprintf("Visual QA findings: %s", strings.Join(sigs, " || "))
+	}
+	recordIterateFailure(ctx, msg, failureClass)
+	if ctx.VisualQA != nil {
+		ctx.VisualQA.RetryCount = ctx.Iteration.CurrentIteration
+	}
 
 	// Check if max iterations reached
 	if ctx.Iteration.CurrentIteration >= ctx.Iteration.MaxIterations {
@@ -81,25 +100,42 @@ func (s *IterateStage) Execute(ctx *TaskContext) (*StageResult, error) {
 	}
 
 	// Budget remaining: increment iteration and plan loopback
+	directive, canChange := visual.HealDirective(findings, ctx.Iteration.CurrentIteration+1)
+	if !canChange && len(violations) > 0 {
+		directive = fmt.Sprintf("Iteration %d: Address detected defects: %s", ctx.Iteration.CurrentIteration+1, strings.Join(violations, "; "))
+		canChange = true
+	}
+	if !canChange {
+		ctx.Iteration.FinalVerdict = "EXHAUSTED"
+		recordIterateMemory(ctx, "EXHAUSTED", time.Since(start).Milliseconds())
+		return &StageResult{
+			StageName: StageIterate,
+			Status:    StatusFailed,
+			StartTime: start,
+			EndTime:   time.Now(),
+			Duration:  time.Since(start),
+			Error:     ErrMaxIterationsExceeded,
+			Output:    ctx.Iteration,
+		}, ErrMaxIterationsExceeded
+	}
+
 	ctx.Iteration.CurrentIteration++
 
 	var loopTarget StageName
-	var correctiveDirective string
-
 	switch failureClass {
 	case FailureClassTokenStyle:
 		loopTarget = StageDesignSystem
-		correctiveDirective = fmt.Sprintf("Iteration %d: Remediate token/style violations: %s", ctx.Iteration.CurrentIteration, strings.Join(violations, "; "))
 	case FailureClassLayoutCode:
 		loopTarget = StageImplement
-		correctiveDirective = fmt.Sprintf("Iteration %d: Remediate layout/code violations: %s", ctx.Iteration.CurrentIteration, strings.Join(violations, "; "))
 	default:
 		loopTarget = StageImplement
-		correctiveDirective = fmt.Sprintf("Iteration %d: Address detected defects: %s", ctx.Iteration.CurrentIteration, strings.Join(violations, "; "))
+	}
+	if ctx.VisualQA != nil {
+		ctx.VisualQA.ChangesMade = append(ctx.VisualQA.ChangesMade, directive)
 	}
 
 	ctx.Iteration.LoopTargetStage = loopTarget
-	ctx.Iteration.CorrectiveFeedback = append(ctx.Iteration.CorrectiveFeedback, correctiveDirective)
+	ctx.Iteration.CorrectiveFeedback = append(ctx.Iteration.CorrectiveFeedback, directive)
 	ctx.Iteration.History = append(ctx.Iteration.History, fmt.Sprintf("Iteration %d: Looping to %s due to %s", ctx.Iteration.CurrentIteration, loopTarget, failureClass))
 
 	return &StageResult{

@@ -1,4 +1,4 @@
-﻿# Agent portability
+# Agent portability
 
 Orchestra 3.3 is one contract. Hosts are adapters. They do not invent a second plan.
 

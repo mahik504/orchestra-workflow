@@ -3,10 +3,12 @@ package engine
 import (
 	"context"
 	"fmt"
+	"path/filepath"
 	"strings"
 	"time"
 
 	"github.com/mahik504/orchestra-workflow/runtime/internal/memory"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/mission"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/research"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/resources"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/router"
@@ -43,6 +45,8 @@ type DesignExecutionResult struct {
 	Violations         []string                    `json:"violations,omitempty"`
 	StagesExecuted     []StageName                 `json:"stages_executed"`
 	Error              error                       `json:"error,omitempty"`
+	MissionPath        string                      `json:"mission_path,omitempty"`
+	RunStatePath       string                      `json:"run_state_path,omitempty"`
 }
 
 // DesignPipeline manages and orchestrates the 8-stage design-first execution lifecycle
@@ -154,6 +158,7 @@ func (p *DesignPipeline) Execute(ctx context.Context, req *TaskRequest) (*Design
 	}
 
 	taskCtx := NewTaskContext(ctx, req, p.Catalog, p.Graph, p.Router, p.ResearchCoord, p.Verifier)
+	persistMission(taskCtx, "start")
 
 	var stageResultsList []*StageResult
 
@@ -165,8 +170,14 @@ func (p *DesignPipeline) Execute(ctx context.Context, req *TaskRequest) (*Design
 
 	// Execution loop
 	currentStageIdx := 0
+	stageRetries := 0
 	for currentStageIdx < len(p.Stages) {
 		stage := p.Stages[currentStageIdx]
+
+		if err := ensureCapabilityAuthoritative(taskCtx); err != nil {
+			failRes := p.buildResult(taskCtx, PipelineStatusFailed, stageResultsList, startTime, err)
+			return failRes, err
+		}
 
 		// Check skip condition
 		skip, reason := stage.ShouldSkip(taskCtx)
@@ -192,11 +203,29 @@ func (p *DesignPipeline) Execute(ctx context.Context, req *TaskRequest) (*Design
 		}
 
 		if err != nil {
-			if err == ErrHumanGateRequired {
-				return p.buildResult(taskCtx, PipelineStatusGated, stageResultsList, startTime, err), err
+			retry, recErr := recoverStageError(taskCtx, stage.Name(), err)
+			if retry && stageRetries < mission.MaxRetryBudget {
+				stageRetries++
+				persistMission(taskCtx, "retry "+string(stage.Name()))
+				continue
 			}
-			failRes := p.buildResult(taskCtx, PipelineStatusFailed, stageResultsList, startTime, err)
+			if recErr == ErrHumanGateRequired || err == ErrHumanGateRequired {
+				if recErr == nil {
+					recErr = err
+				}
+				persistMission(taskCtx, "human_gate")
+				return p.buildResult(taskCtx, PipelineStatusGated, stageResultsList, startTime, recErr), recErr
+			}
+			if recErr == nil {
+				recErr = err
+			}
+			failRes := p.buildResult(taskCtx, PipelineStatusFailed, stageResultsList, startTime, recErr)
 			_ = p.RecordPipelineMemory(taskCtx, failRes)
+			return failRes, recErr
+		}
+		stageRetries = 0
+		if err := persistMission(taskCtx, string(stage.Name())); err != nil {
+			failRes := p.buildResult(taskCtx, PipelineStatusFailed, stageResultsList, startTime, err)
 			return failRes, err
 		}
 
@@ -206,7 +235,8 @@ func (p *DesignPipeline) Execute(ctx context.Context, req *TaskRequest) (*Design
 				targetStage := taskCtx.Iteration.LoopTargetStage
 				taskCtx.Iteration.LoopTargetStage = "" // reset
 				if targetIdx, ok := stageIndexMap[targetStage]; ok {
-					currentStageIdx = targetIdx // Jump to target stage (e.g. Stage 5 or Stage 6)
+					currentStageIdx = targetIdx
+					stageRetries = 0
 					continue
 				}
 			}
@@ -215,6 +245,16 @@ func (p *DesignPipeline) Execute(ctx context.Context, req *TaskRequest) (*Design
 		currentStageIdx++
 	}
 
+	if taskCtx.RunState != nil {
+		taskCtx.RunState.Status = mission.StatusSucceeded
+		taskCtx.RunState.PendingHuman = nil
+		if taskCtx.Mission != nil {
+			taskCtx.Mission.Status = mission.StatusSucceeded
+		}
+		if err := persistMission(taskCtx, "succeeded"); err != nil {
+			return p.buildResult(taskCtx, PipelineStatusFailed, stageResultsList, startTime, err), err
+		}
+	}
 	result := p.buildResult(taskCtx, PipelineStatusSuccess, stageResultsList, startTime, nil)
 	_ = p.RecordPipelineMemory(taskCtx, result)
 	return result, nil
@@ -274,6 +314,11 @@ func (p *DesignPipeline) buildResult(
 				res.Screenshots = append(res.Screenshots, vp.ScreenshotPath)
 			}
 		}
+	}
+
+	if taskCtx.Task != nil && taskCtx.Mission != nil {
+		res.MissionPath = filepath.Join(mission.RunDir(taskCtx.Task.WorkspaceRoot, taskCtx.Mission.ID), "mission.json")
+		res.RunStatePath = filepath.Join(mission.RunDir(taskCtx.Task.WorkspaceRoot, taskCtx.Mission.ID), "state.json")
 	}
 
 	return res

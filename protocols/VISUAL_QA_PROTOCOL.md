@@ -6,7 +6,7 @@ Pipeline: Taste → DESIGN.md → implement → Impeccable → Playwright → De
 
 ## Required
 
-1. Launch **our** app (Playwright MCP or Cursor browser). `playwright-cli` is optional; do not `install --skills -g`.
+1. Launch **our** app. Canonical Layer A owner is the Orchestra harness (`orchestra` / `PlaywrightVerifier` / `runtime/tools/layer-a.mjs`) against that running origin, using the project-local Playwright **library** in `runtime/package.json` plus Chromium (`npx playwright install chromium` from `runtime/`). `npx playwright --version` is the Test CLI and does not prove Layer A. Playwright MCP and Cursor browser may be used to *drive* the app; they do not green-wash the run. `playwright-cli` is optional; do not `install --skills -g`. Mock `MOCK_SCREENSHOT_*` files are not evidence.
 2. Desktop screenshot
 3. Tablet screenshot
 4. Mobile screenshot

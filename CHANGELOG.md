@@ -1,4 +1,14 @@
-﻿# Changelog
+# Changelog
+
+## [3.3.2-3g] - Mechanisms through the measurement pilot
+*Prerelease. The contract pin stays 3.3.1. This is not the stable 3.3.2 release.*
+
+- Mission, worker capsule, derived budget, failure classes, and recovery around the existing eight-stage engine.
+- Layer A Playwright on a running app. Layer B only on those captures. Flagship work gets a few lightweight directions, then one contract.
+- Capability selection is the minimum set the stages consume. Brain notes do not become the run source of truth.
+- T1 and T3 host pairs. `claim: none`. The clean T3 pair made the same 183-byte `sum.go` change and Orchestra was slower. That fixture does not score a website.
+- Phase 3H (product-class comparison) and phase 3I (`VERSION` bump and stable tag) are not done.
+- Rollback to the governance release remains `v3.3.1`.
 
 ## [3.3.1] - Governance: visual evidence gate, named-reference mode, four routes
 *Same OS. One conductor. Not a bigger toolbox. Version is 3.3.1.*

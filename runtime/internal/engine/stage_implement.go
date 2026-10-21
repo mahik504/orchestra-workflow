@@ -74,6 +74,17 @@ func (s *ImplementStage) Execute(ctx *TaskContext) (*StageResult, error) {
 		}, err
 	}
 	_ = os.MkdirAll(handoffDir, 0755)
+	compileBuilderCapsule(ctx)
+	if err := assertCodingWorkerConsumed(ctx); err != nil {
+		return &StageResult{
+			StageName: StageImplement,
+			Status:    StatusFailed,
+			StartTime: start,
+			EndTime:   time.Now(),
+			Duration:  time.Since(start),
+			Error:     err,
+		}, err
+	}
 
 	// 1. Initialize Provenance Store
 	provStore, err := acquisition.NewProvenanceStore(ctx.Task.WorkspaceRoot)

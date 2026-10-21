@@ -22,7 +22,7 @@ A random college folder still reads `~/.claude/CLAUDE.md` unless that folder shi
 
 ## The gates
 
-- **Design Lab** blocks frontend writes on `PREMIUM` / `EXPERIMENTAL` work until a direction is approved. Survey is 23 short cards, then one `DESIGN.md`. Named site/skill/`DESIGN.md` skips the survey. `STANDARD` is exempt unless asked.
+- **Design Lab** blocks product frontend writes on `PREMIUM` / `EXPERIMENTAL` work until golden stills are approved. Open-ended survey is 23 short cards. Named visual refs = exactly 3 translations (not a skip). Pasted `DESIGN.md` (or a named skill/MCP/pack that *is* the contract) skips the survey; stills still owed. `STANDARD` is exempt unless asked.
 - **Real-app verification** means launching the app and exercising it, not reading the source.
 - **Correctness review** and **simplify review** are two separate passes.
 

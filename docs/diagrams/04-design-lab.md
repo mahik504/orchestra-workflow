@@ -1,22 +1,24 @@
 # Design Lab
 
-Write lock on `PREMIUM` / `EXPERIMENTAL` visual work.
+Write lock on `PREMIUM` / `EXPERIMENTAL` visual work. Two locks: `CONTRACT_APPROVED` then `ApproveStills`. Golden stills are pre-implementation evidence. A `DESIGN.md` is not visual evidence.
 
 ```mermaid
 flowchart TD
-  named{Named site skill MCP pack or DESIGN.md?}
+  kind{What did the prompt name?}
   survey[23 short cards]
+  trans[Exactly 3 translations]
   pick[One direction]
   contract[One sourced DESIGN.md]
-  custom[Pasted DESIGN.md wins]
-  gate[Human gate]
-  impl[Implement]
-  named -->|yes| contract
-  named -->|no| survey --> pick --> contract
-  contract --> gate
-  custom --> gate
+  custom[Pasted DESIGN.md skips survey]
+  stills[Golden stills desktop plus mobile]
+  gate[Human ApproveStills]
+  impl[Implement product UI]
+  kind -->|open-ended PREMIUM| survey --> pick --> contract
+  kind -->|named visual ref| trans --> contract
+  kind -->|pasted DESIGN.md or named contract pack| custom --> contract
+  contract --> stills --> gate
   gate -->|approved| impl
-  gate -->|edit| survey
+  gate -->|edit| contract
 ```
 
-Tint: keep hierarchy, component grammar, spacing, interaction, shape. Replace color roles. Extend the new tokens. Do not clone trademarks or source.
+Named visual references do **not** skip to one `DESIGN.md`. Tint: keep hierarchy, component grammar, spacing, interaction, shape. Replace color roles. Extend the new tokens. Do not clone trademarks or source.

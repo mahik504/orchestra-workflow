@@ -37,6 +37,12 @@ Desktop.ini
 runtime/go-portable/
 runtime/go-portable.zip
 
+runtime/node_modules/
+runtime/test-results/
+runtime/playwright-report/
+runtime/blob-report/
+runtime/playwright/.cache/
+
 runtime/testdata/lifecycle-drei/node_modules/
 runtime/testdata/lifecycle-drei/package-lock.json
 runtime/testdata/lifecycle-drei/pnpm-lock.yaml
@@ -49,3 +55,5 @@ __pycache__/
 
 # Agent metadata and runs
 .agents/
+
+runtime/benchmarks/results/

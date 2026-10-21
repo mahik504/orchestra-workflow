@@ -1,4 +1,4 @@
-﻿# Using Orchestra 3.3
+# Using Orchestra 3.3
 
 This page is a pointer, not a second kernel.
 

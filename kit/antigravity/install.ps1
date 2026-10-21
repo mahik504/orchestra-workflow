@@ -21,9 +21,10 @@ New-Item -ItemType Directory -Force -Path $SkillsGlobal | Out-Null
 New-Item -ItemType Directory -Force -Path (Split-Path $McpPath) | Out-Null
 
 function Copy-Skill([string]$Name) {
-  $src = Join-Path $CursorSkills $Name
+  # Canonical source is the repo skills/ directory (same allowlist as kit/sync-ides.ps1).
+  $src = Join-Path $RepoRoot "skills\$Name"
   if (-not (Test-Path $src)) { $src = Join-Path $KitRoot "skills\$Name" }
-  if (-not (Test-Path $src)) { $src = Join-Path $RepoRoot "skills\$Name" }
+  if (-not (Test-Path $src)) { $src = Join-Path $CursorSkills $Name }
   if (-not (Test-Path $src)) { Write-Host "skip missing $Name"; return }
   $dest = Join-Path $SkillsGlobal $Name
   if (Test-Path $dest) { Remove-Item -LiteralPath $dest -Recurse -Force }
@@ -36,42 +37,16 @@ function Copy-Skill([string]$Name) {
   Write-Host "copied $Name"
 }
 
-$canonicalSkills = @(
-  "animate",
-  "ci-security-scanning-with-strix",
-  "eas-app-stores",
-  "emil-design-eng",
-  "expo-data-fetching",
-  "expo-dev-client",
-  "expo-native-ui",
-  "expo-project-structure",
-  "expo-router",
-  "expo-upgrade",
-  "fix-security-vulnerabilities-with-strix",
-  "impeccable",
-  "orchestra-conductor",
-  "orchestra-docs",
-  "orchestra-ship",
-  "orchestra-vault",
-  "penetration-testing-with-strix",
-  "review-animations",
-  "semgrep-adapter",
-  "ship-safe",
-  "stitch-code-to-design",
-  "stitch-extract-design-md",
-  "stitch-extract-static-html",
-  "stitch-generate-design",
-  "stitch-manage-design-system",
-  "stitch-react-components",
-  "stitch-upload-to-stitch",
-  "superpowers-planning",
-  "taste-design",
-  "web-design-guidelines"
-)
+$stackPath = Join-Path $RepoRoot "registries\host-stack.json"
+if (-not (Test-Path -LiteralPath $stackPath)) { throw "missing registries/host-stack.json" }
+$stack = Get-Content -LiteralPath $stackPath -Raw | ConvertFrom-Json
+$canonicalSkills = @($stack.skills)
+if ($canonicalSkills.Count -lt 1) { throw "host-stack.json skills allowlist is empty" }
 
 foreach ($n in $canonicalSkills) {
   Copy-Skill $n
 }
+Write-Host ("installed {0} skills from registries/host-stack.json (Orchestra {1})" -f $canonicalSkills.Count, $stack.version)
 
 Write-Host "Curated extras are optional. This script does not run skills add --all."
 Write-Host "Workspace default: $WorkspacePath"

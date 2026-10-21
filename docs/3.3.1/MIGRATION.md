@@ -36,3 +36,5 @@ New enum members: `PROJECT_ONLY`, `CATALOG`, `EXPERIMENTAL`, `PRIVILEGED`, `AUTH
 Bump `VERSION`, hygiene `EXPECTED_VERSION`, `registries/host-stack.json`, Antigravity `BEGIN ORCHESTRA 3.3.1` markers, conductor/vault skill headers. Overlay copies must match.
 
 Do not tag until the operator says so.
+
+Phase 3A research (not live): [`docs/3.3.2/`](../3.3.2/).

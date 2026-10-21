@@ -17,6 +17,7 @@ import (
 	"github.com/mahik504/orchestra-workflow/runtime/internal/memory"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/onboard"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/resources"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/visual"
 )
 
 func main() {
@@ -208,13 +209,16 @@ func runDoctor(args []string) {
 		fmt.Printf("Quarantine:      [FAIL] Quarantine boundary check failed to reject isolated library\n")
 	}
 
-	// 4. Visual QA Tooling (project-scoped; global npm is blocked)
-	pwOut, pwOk := checkCmd("npx", "playwright", "--version")
-	if pwOk {
-		fmt.Printf("Playwright CLI:  %s\n", pwOut)
+	// 4. Visual QA Tooling (project-local Playwright library + Chromium).
+	// Playwright MCP / Cursor browser are host adapters, not Layer A owners.
+	pw := visual.ProbePlaywright()
+	if pw.Available {
+		fmt.Printf("Playwright lib:  [OK] %s\n", pw.Library)
+		fmt.Printf("Chromium:        [OK] %s\n", pw.Chromium)
 	} else {
-		fmt.Println("Playwright CLI:  [OPTIONAL] not on PATH — visual jobs use project Playwright or the agent browser")
+		fmt.Printf("Playwright lib:  [OPTIONAL] %s — Layer A needs runtime/ npm install + npx playwright install chromium\n", pw.Error)
 	}
+	fmt.Println("Playwright MCP:  adapter only (not Layer A pass/fail)")
 
 	// 5. Resource memory diagnostics
 	workdir, _ := os.Getwd()

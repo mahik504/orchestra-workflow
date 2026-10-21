@@ -7,17 +7,9 @@ const path = require('path');
 const os = require('os');
 
 const BANNED = ['science', 'data-agent-kit-plugin'];
-const ALIAS = {
-  stitchmcp: 'stitch',
-  ['orchestra' + '-brain']: 'vault-memory',
-  'vault-memory': 'vault-memory',
-  supabase: 'supabase',
-};
 
+// A config name is not a probe. Unprobed servers stay OPTIONAL.
 function classifyMCP(name) {
-  const key = ALIAS[String(name).toLowerCase()] || String(name).toLowerCase();
-  if (['playwright', 'context7', 'stitch', 'vault-memory', 'browser'].includes(key)) return 'HEALTHY';
-  if (key === 'supabase') return 'AUTH_REQUIRED';
   return 'OPTIONAL';
 }
 

@@ -67,12 +67,15 @@ type ResourceAggregate struct {
 
 // ResourceMemoryDocument represents the root JSON schema structure
 type ResourceMemoryDocument struct {
-	Schema           string                        `json:"$schema,omitempty"`
-	SchemaVersion    string                        `json:"schema_version"`
-	LastUpdated      string                        `json:"last_updated"`
-	TotalEvaluations int                           `json:"total_evaluations"`
-	Resources        map[string]*ResourceAggregate `json:"resources"`
-	Evaluations      []ResourceEvaluation          `json:"evaluations"`
+	Schema            string                        `json:"$schema,omitempty"`
+	SchemaVersion     string                        `json:"schema_version"`
+	LastUpdated       string                        `json:"last_updated"`
+	TotalEvaluations  int                           `json:"total_evaluations"`
+	EvaluationPayload string                        `json:"evaluation_payload,omitempty"`
+	AggregateSum      int                           `json:"aggregate_sum,omitempty"`
+	LedgerStatus      string                        `json:"status,omitempty"`
+	Resources         map[string]*ResourceAggregate `json:"resources"`
+	Evaluations       []ResourceEvaluation          `json:"evaluations"`
 }
 
 // ResourceMemoryStore provides thread-safe, durable, atomic persistence for resource memory
@@ -203,6 +206,16 @@ func (s *ResourceMemoryStore) Record(eval *ResourceEvaluation) error {
 		agg.Capability = eval.Capability
 	}
 
+	// Freeze a payload-less aggregate before this row changes the counters.
+	// The historical sum stays; the new payload length is current evidence.
+	if s.doc.AggregateSum == 0 && len(s.doc.Evaluations) == 0 {
+		if sum := aggregateSum(s.doc.Resources); sum > 0 {
+			s.doc.AggregateSum = sum
+			s.doc.LedgerStatus = StatusLegacyAggregate
+			s.doc.EvaluationPayload = "absent"
+		}
+	}
+
 	agg.TotalEvaluations++
 	if eval.Outcome == OutcomeSuccess {
 		agg.SuccessCount++
@@ -219,7 +232,6 @@ func (s *ResourceMemoryStore) Record(eval *ResourceEvaluation) error {
 	agg.LastUsedTimestamp = eval.EvaluationTimestamp
 	agg.LastOutcome = eval.Outcome
 
-	// Append evaluation
 	s.doc.Evaluations = append(s.doc.Evaluations, *eval)
 	s.doc.TotalEvaluations = len(s.doc.Evaluations)
 	s.doc.LastUpdated = time.Now().UTC().Format(time.RFC3339)
@@ -317,18 +329,63 @@ func (s *ResourceMemoryStore) ListEvaluations(limit int, resourceIDFilter string
 	return result
 }
 
-// GetSummary returns macro-level totals and overall success rate
+// CurrentEvidenceCount is the number of stored evaluation objects.
+// A legacy aggregate with an empty payload contributes 0.
+func (s *ResourceMemoryStore) CurrentEvidenceCount() int {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	return len(s.doc.Evaluations)
+}
+
+// LegacyAggregate reports a historical counter that has no evaluation payload.
+// It is not current evidence.
+func (s *ResourceMemoryStore) LegacyAggregate() (sum int, status string) {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	return legacyAggregate(s.doc)
+}
+
+// GetSummary returns current evaluation evidence only.
+// Legacy aggregate sums are excluded.
 func (s *ResourceMemoryStore) GetSummary() (total int, successes int, failures int, avgSuccessRate float64) {
 	s.mu.RLock()
 	defer s.mu.RUnlock()
 
-	total = s.doc.TotalEvaluations
-	for _, agg := range s.doc.Resources {
-		successes += agg.SuccessCount
-		failures += agg.FailureCount
+	total = len(s.doc.Evaluations)
+	for _, e := range s.doc.Evaluations {
+		if e.Outcome == OutcomeSuccess {
+			successes++
+		} else if e.Outcome == OutcomeFailure {
+			failures++
+		}
 	}
 	if total > 0 {
 		avgSuccessRate = float64(successes) / float64(total)
 	}
 	return
+}
+
+func aggregateSum(resources map[string]*ResourceAggregate) int {
+	sum := 0
+	for _, agg := range resources {
+		if agg == nil {
+			continue
+		}
+		sum += agg.TotalEvaluations
+	}
+	return sum
+}
+
+func legacyAggregate(doc ResourceMemoryDocument) (int, string) {
+	if doc.LedgerStatus == StatusLegacyAggregate && doc.AggregateSum > 0 {
+		return doc.AggregateSum, StatusLegacyAggregate
+	}
+	sum := aggregateSum(doc.Resources)
+	if len(doc.Evaluations) == 0 && sum > 0 && (doc.TotalEvaluations == sum || doc.AggregateSum == sum) {
+		return sum, StatusLegacyAggregate
+	}
+	if doc.AggregateSum > 0 && len(doc.Evaluations) == 0 {
+		return doc.AggregateSum, StatusLegacyAggregate
+	}
+	return 0, ""
 }

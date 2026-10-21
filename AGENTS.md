@@ -32,6 +32,31 @@ Understand → Classify → Reference forensics (if named visual refs) → Desig
 10. **Fresh-context review**, then a separate **simplify** pass.
 11. **Remember** what actually worked. Final showcase only after a green ledger.
 
+### Mission, capsule, budget, failure (3C runtime)
+
+Do not dump the repo, skill folder, or MCP catalog into a worker. Compile a **worker capsule**: mission id, role, objective, named files/surfaces, relevant constraints, skill/resource **ids**, expected output, acceptance, evidence, budget slice, prior failure class. Measure capsule size against whole-project context when you can.
+
+Derive an **execution budget** from the task (type, bar, intensity LIGHT/FULL, risk). Do not set every job to `xhigh`. `retry_budget` is 0–4 and derived. **3D:** `visual_review` and `independent_judge` are consumed. Ordinary API/debug stays `visual_review: none`. Product UI runs harness Layer A when the UI changed. Flagship runs Layer A + Layer B. Independent judge stays conditional — never “FULL means judge.”
+
+When something fails, classify it (environment / dependency / provider-tool / implementation / test / specification / human-needed / timeout-resource). Retry only with remaining budget **and a change**. Identical failures stop. Specification and human-needed never auto-retry.
+
+Durable run state: `.orchestra/runs/<id>/`. Resume from that file, not from chat replay.
+
+### Human-needed gate
+
+Stop and ask — do not guess — when:
+
+- a requirement that changes product behavior is ambiguous
+- a critical credential or authorization is missing
+- a destructive git or data action needs approval
+- specification / contract / acceptance cannot be interpreted safely
+- identity, brand, or creative direction (stills, named-ref pick) is unpaid
+- a security-sensitive or irreversible deploy decision is required
+- a material model / tool / host choice is missing or unauthorized
+- bounded retries are exhausted and the next move needs a human
+
+This is `ErrHumanGateRequired`. Do not invent a second gate.
+
 Visual jobs after the contract: Taste → locked `DESIGN.md` → stills → named source tiers → implement → Impeccable → Playwright → Designer SOS (`protocols/DESIGNER_SOS_PROTOCOL.md`) → Hallmark audit → **one** consultant packet.
 
 Critics (docs, not a second conductor): conductor = this chat; visual critic = Antigravity specialist packet; engineering critic = `fresh-context-review`; QA = Playwright + ledger. `protocols/VISUAL_GOVERNANCE.md`.

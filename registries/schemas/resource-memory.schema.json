@@ -30,7 +30,20 @@
     "total_evaluations": {
       "type": "integer",
       "minimum": 0,
-      "description": "Total number of evaluations recorded across all resources"
+      "description": "Current evidence count when evaluations are stored. A legacy file may still hold the historical aggregate here; status then says legacy_aggregate_without_payload and current APIs use the evaluations array length."
+    },
+    "evaluation_payload": {
+      "type": "string",
+      "description": "absent when the evaluations array was never persisted"
+    },
+    "aggregate_sum": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Frozen historical sum of per-resource totals. Not current evidence."
+    },
+    "status": {
+      "type": "string",
+      "description": "legacy_aggregate_without_payload when the historical sum has no payload"
     },
     "resources": {
       "type": "object",

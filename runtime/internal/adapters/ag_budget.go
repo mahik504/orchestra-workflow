@@ -15,8 +15,8 @@ var BannedGlobalPlugins = []string{
 	"data-agent-kit-plugin",
 }
 
-// MCP servers a healthy Antigravity install is expected to have.
-// Names are matched case-insensitively and accept a few aliases.
+// MCP servers a complete Antigravity install is expected to list.
+// A listed name is not a health probe. Unprobed servers are OPTIONAL.
 var ExpectedHealthyMCP = []string{
 	"playwright",
 	"context7",
@@ -52,7 +52,7 @@ type AGBudgetReport struct {
 // MCPHealth is one MCP server as seen from the host config, without secrets.
 type MCPHealth struct {
 	Name   string
-	Health string // HEALTHY, OPTIONAL, AUTH_REQUIRED, BROKEN, DISABLED
+	Health string // HEALTHY, OPTIONAL, AUTH_REQUIRED, BROKEN, DISABLED. Unprobed is OPTIONAL.
 }
 
 type pluginPref struct {
@@ -141,7 +141,7 @@ func CheckAntigravityBudget(userHome string) (*AGBudgetReport, error) {
 		}
 		sort.Strings(names)
 		for _, n := range names {
-			rep.MCPServers = append(rep.MCPServers, classifyMCP(n))
+			rep.MCPServers = append(rep.MCPServers, classifyMCP(n, nil))
 		}
 	}
 
@@ -164,18 +164,29 @@ func pluginEnabled(name string, prefs map[string]pluginPref, pluginDir string) b
 	return !m.Disabled
 }
 
-func classifyMCP(name string) MCPHealth {
-	key := strings.ToLower(strings.TrimSpace(name))
-	if alias, ok := mcpAliases[key]; ok {
-		key = alias
-	}
-	switch key {
-	case "playwright", "context7", "stitch", "vault-memory", "browser":
-		return MCPHealth{Name: name, Health: "HEALTHY"}
-	case "supabase":
-		return MCPHealth{Name: name, Health: "AUTH_REQUIRED"}
-	case "github":
+// MCPProbe is an injected observation. A nil probe, or one with Observed
+// false, is unprobed and must not be reported HEALTHY.
+type MCPProbe struct {
+	Observed     bool
+	Reachable    bool
+	AuthRequired bool
+	Disabled     bool
+	Broken       bool
+}
+
+func classifyMCP(name string, probe *MCPProbe) MCPHealth {
+	if probe == nil || !probe.Observed {
 		return MCPHealth{Name: name, Health: "OPTIONAL"}
+	}
+	switch {
+	case probe.Disabled:
+		return MCPHealth{Name: name, Health: "DISABLED"}
+	case probe.AuthRequired:
+		return MCPHealth{Name: name, Health: "AUTH_REQUIRED"}
+	case probe.Broken:
+		return MCPHealth{Name: name, Health: "BROKEN"}
+	case probe.Reachable:
+		return MCPHealth{Name: name, Health: "HEALTHY"}
 	default:
 		return MCPHealth{Name: name, Health: "OPTIONAL"}
 	}

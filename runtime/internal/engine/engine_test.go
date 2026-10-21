@@ -76,7 +76,7 @@ func TestPipeline_SequentialStageExecution(t *testing.T) {
 	cat, graph, workdir := setupEngineFixtures(t)
 	defer os.RemoveAll(workdir)
 
-	pipeline := NewDesignPipeline(cat, graph, nil, nil)
+	pipeline := NewDesignPipeline(cat, graph, nil, NewMockVisualVerifier())
 
 	req := &TaskRequest{
 		ID:             "task-seq-01",
@@ -121,7 +121,7 @@ func TestPipeline_StandardTask_BypassesVisualQA(t *testing.T) {
 	cat, graph, workdir := setupEngineFixtures(t)
 	defer os.RemoveAll(workdir)
 
-	pipeline := NewDesignPipeline(cat, graph, nil, nil)
+	pipeline := NewDesignPipeline(cat, graph, nil, NewMockVisualVerifier())
 
 	req := &TaskRequest{
 		ID:            "task-backend-bug",
@@ -164,7 +164,7 @@ func TestPipeline_PremiumVisualTask_FullExecution(t *testing.T) {
 	cat, graph, workdir := setupEngineFixtures(t)
 	defer os.RemoveAll(workdir)
 
-	pipeline := NewDesignPipeline(cat, graph, nil, nil)
+	pipeline := NewDesignPipeline(cat, graph, nil, NewMockVisualVerifier())
 
 	req := &TaskRequest{
 		ID:             "task-premium-visual",
@@ -212,9 +212,9 @@ func TestPipeline_PremiumVisualTask_FullExecution(t *testing.T) {
 		}
 	}
 
-	// Verify screenshots generated
-	if len(res.Screenshots) < 3 {
-		t.Errorf("Expected at least 3 viewport screenshots, got %d", len(res.Screenshots))
+	// Desktop + mobile are the default Layer A viewports. Tablet is policy-opt-in.
+	if len(res.Screenshots) < 2 {
+		t.Errorf("Expected desktop and mobile screenshot evidence, got %d", len(res.Screenshots))
 	}
 
 	// Verify handoff state exists
@@ -235,7 +235,7 @@ func TestPipeline_HumanApprovalGate(t *testing.T) {
 	cat, graph, workdir := setupEngineFixtures(t)
 	defer os.RemoveAll(workdir)
 
-	pipeline := NewDesignPipeline(cat, graph, nil, nil)
+	pipeline := NewDesignPipeline(cat, graph, nil, NewMockVisualVerifier())
 
 	// 1. Without SkipVisualGate -> must halt with ErrHumanGateRequired
 	reqGated := &TaskRequest{
@@ -388,7 +388,7 @@ func TestPipeline_PlanDryRun(t *testing.T) {
 	cat, graph, workdir := setupEngineFixtures(t)
 	defer os.RemoveAll(workdir)
 
-	pipeline := NewDesignPipeline(cat, graph, nil, nil)
+	pipeline := NewDesignPipeline(cat, graph, nil, NewMockVisualVerifier())
 
 	req := &TaskRequest{
 		ID:            "task-plan-test",
