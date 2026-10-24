@@ -1,6 +1,6 @@
 {
   "$schema": "./schemas/design-resource-graph.schema.json",
-  "version": "3.3.1",
+  "version": "3.3.5",
   "description": "Canonical Orchestra V3 Capability-to-Resource Execution Graph mapping task archetypes across Discovery, Synthesis, Implementation, and QA phases.",
   "domains": {
     "visual_research": [

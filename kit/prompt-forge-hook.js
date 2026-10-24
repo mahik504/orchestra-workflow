@@ -1,0 +1,8 @@
+// Reminds Claude Code to run prompt-forge. Does not rewrite the prompt.
+const out = {
+  hookSpecificOutput: {
+    hookEventName: "UserPromptSubmit",
+    additionalContext: "Orchestra step 0: write a short brief (intent, kind, route, acceptance, refs, constraints) then do the work. Ask only if a product decision is ambiguous."
+  }
+};
+process.stdout.write(JSON.stringify(out));

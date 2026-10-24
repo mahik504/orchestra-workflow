@@ -2,7 +2,7 @@
 
 Specialist capability `typography`. **Not** a section you skip inside DESIGN.md.
 
-Activate on every high-visual job (`frontend_premium`, marketing, editorial, operator HUD HUD, hiring site, showable hackathon web). Load this file. Do not load a typography skill dump.
+Activate on every high-visual job (`frontend_premium`, marketing, editorial, operator HUD, hiring site, showable hackathon web). Load this file. Do not load a typography skill dump.
 
 No high-quality **official** single agent-skill beat this protocol + platform docs (Apple HIG, Material 3 type, MDN fonts). Third-party “font pairing” skills are OPTIONAL at best and were not installed.
 

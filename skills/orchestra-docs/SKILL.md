@@ -3,7 +3,7 @@ name: orchestra-docs
 description: College/product slides, reports, and papers. Use when the user needs a PPTX, PDF report, README, or academic paper. Not for app UI. Prefer markdown then export. Do not fake citations.
 ---
 
-# Docs, slides, papers
+# Docs, slides, papers — Orchestra 3.3.5
 
 Do not install Anthropic `frontend-design`. Document skills only.
 

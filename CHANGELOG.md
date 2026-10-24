@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.3.5] - One contract, open skills, kind-based design bar
+
+*The pin in `VERSION` is 3.3.5. This is not a claim that output beats a raw host. 3H has not scored a website.*
+
+- One contract in `AGENTS.md`. Prompt-forge is step 0. Project `kind` sets the design bar.
+- Skills are the folders in `skills/`. `skills-local/` stays off git. `superpowers-planning` and `unlazy` are removed from the source set.
+- Engineering skills: systematic debugging, test-driven development, git worktrees, verification before completion, writing skills, Ponytail.
+- Hosts sync from `kit/sync-ides.ps1`. The doctor checks version, skill presence, and the private-vault heartbeat schedule without printing secrets.
+- Graphify on one local code graph scored 7 of 10 file-finding questions. It is not the code map. fallow's Windows download did not produce a runnable binary.
+- Rollback tag for the pre-change tree is the local tag `pre-3.3.5`. Public rollback remains `v3.3.1` until this tag is pushed.
+
 ## [3.3.2-3g] - Mechanisms through the measurement pilot
 *Prerelease. The contract pin stays 3.3.1. This is not the stable 3.3.2 release.*
 

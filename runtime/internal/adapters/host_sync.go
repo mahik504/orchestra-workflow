@@ -62,9 +62,7 @@ var CanonicalActiveSkills = []string{
 	"stitch-react-components",
 	"stitch-upload-to-stitch",
 	"supabase",
-	"superpowers-planning",
 	"taste-design",
-	"unlazy",
 	"web-design-guidelines",
 }
 

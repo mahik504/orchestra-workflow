@@ -56,4 +56,8 @@ __pycache__/
 # Agent metadata and runs
 .agents/
 
+# Source-available skills. Synced to this PC. Never committed.
+skills-local/
+skills/_proposed/
+
 runtime/benchmarks/results/

@@ -1,6 +1,6 @@
-# Architecture — Orchestra 3.3.1
+# Architecture — Orchestra 3.3.5
 
-The contract pin is 3.3.1. The 3.3.2 mechanisms (mission, capsule, Layer A/B, capability select, the T1/T3 pilot) are specified in [`docs/3.3.2/ORCHESTRA_3_3_2_ARCHITECTURE.md`](docs/3.3.2/ORCHESTRA_3_3_2_ARCHITECTURE.md) and summarized in the README. They do not replace this OS. Stable `v3.3.2` waits for phase 3I.
+The contract pin is 3.3.5. The 3.3.2 mechanisms (mission, capsule, Layer A/B, capability select, the T1/T3 pilot) are specified in [`docs/3.3.2/ORCHESTRA_3_3_2_ARCHITECTURE.md`](docs/3.3.2/ORCHESTRA_3_3_2_ARCHITECTURE.md) and summarized in the README. They do not replace this OS. Stable `v3.3.2` waits for phase 3I.
 
 Orchestra is a **control plane**. Your agent is the executor.
 

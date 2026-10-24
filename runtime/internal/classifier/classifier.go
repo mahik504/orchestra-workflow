@@ -8,6 +8,7 @@ package classifier
 
 import (
 	"fmt"
+	"os"
 	"regexp"
 	"sort"
 	"strings"
@@ -117,6 +118,7 @@ type Options struct {
 	ArchetypeHint string
 	SkipLab       bool
 	DeclaredType  string
+	IdeaPath      string
 }
 
 type Classifier struct {
@@ -440,6 +442,11 @@ func (c *Classifier) ClassifyBrief(rawRequest string, opts Options) *Brief {
 	b.RequiresVisual = decideVisual(b, haystack)
 	b.RequiresSecurity = decideSecurity(b, haystack)
 	applyQualityBarOverrides(b, haystack)
+	if opts.IdeaPath != "" {
+		if kind := ReadKind(opts.IdeaPath); kind != "" {
+			applyKind(b, kind, haystack)
+		}
+	}
 	b.ResearchDepth = decideResearchDepth(b)
 	b.VerifyDepth = decideVerifyDepth(b)
 	applyDesignLab(b, haystack, opts.SkipLab)
@@ -569,6 +576,51 @@ func decideSecurity(b *Brief, hay string) bool {
 		return true
 	}
 	return containsAny(hay, "auth", "login", "token", "secret", "session", "permission", "sanitiz", "injection")
+}
+
+// ReadKind returns the kind field from an idea file's frontmatter.
+// An unreadable file returns an empty string.
+func ReadKind(ideaPath string) string {
+	raw, err := os.ReadFile(ideaPath)
+	if err != nil {
+		return ""
+	}
+	text := string(raw)
+	if !strings.HasPrefix(text, "---") {
+		return ""
+	}
+	rest := text[3:]
+	end := strings.Index(rest, "\n---")
+	if end < 0 {
+		return ""
+	}
+	for _, line := range strings.Split(rest[:end], "\n") {
+		line = strings.TrimSpace(line)
+		if len(line) >= 5 && strings.EqualFold(line[:5], "kind:") {
+			return strings.Trim(strings.TrimSpace(line[5:]), `"'`)
+		}
+	}
+	return ""
+}
+
+func applyKind(b *Brief, kind, hay string) {
+	switch strings.ToLower(strings.TrimSpace(kind)) {
+	case "hiring-cv":
+		if b.RequiresVisual {
+			b.QualityBar = BarPremium
+			b.QualityBarReason = "kind hiring-cv: full design lab"
+		}
+	case "personal":
+		if b.RequiresVisual {
+			b.QualityBar = BarPremium
+			b.QualityBarReason = "kind personal: one approval covers contract and stills"
+		}
+	case "college":
+		if !strings.Contains(hay, "premium") {
+			b.QualityBar = BarStandard
+			b.QualityBarReason = "kind college: lab off unless PREMIUM is asked"
+		}
+	}
 }
 
 func applyQualityBarOverrides(b *Brief, hay string) {

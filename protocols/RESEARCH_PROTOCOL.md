@@ -10,8 +10,8 @@
 - ChatGPT Go / Perplexity: **packets**, not repo implementers
 - Playwright MCP: **our** running app, never a social/ATS crawler
 - SkillUI: one Plan-named public page
-- Agent-Reach / bulk scrapers: **REJECTED**
-- LinkedIn / Instagram / LeetCode / Workday / Easy Apply robots: **REJECTED**
+- Agent-Reach: **ACTIVE** for own profiles and public pages, read-only. Cookies stay local.
+- Bulk scrapers, write actions, and ATS or job-portal robots: **REJECTED**
 
 ## Academic
 

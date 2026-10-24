@@ -6,7 +6,7 @@ created:
 path:
 github:
 
-`kind` keeps college assignments out of the hiring story. **college** = due-now / course work / hackathon 0-to-1. **personal** = studio or parked (operator-HUD operator = Stitch + volume R3F, no kits). **hiring-cv** = public internship work (tough, shippable).
+`kind` keeps college assignments out of the hiring story. **college** = due-now / course work / hackathon 0-to-1. **personal** = studio or parked (operator HUD = Stitch + volume R3F, no kits). **hiring-cv** = public internship work (tough, shippable).
 
 ## The idea
 

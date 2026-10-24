@@ -20,7 +20,11 @@ Tint / keep-the-structure token swap stays `reverse-engineering`. Named live-sit
 
 ## Still refuse
 
-Wholesale clones, logos, trademarks, source, always-on 21st/Aceternity/Magic MCP, `kachamo/SkillUI`, LinkedIn/Instagram scrapers.
+Wholesale clones, logos, trademarks, source, always-on 21st/Aceternity/Magic MCP, `kachamo/SkillUI`.
+
+## Binary and app RE
+
+`rea` plus APKLab. Authorised targets only: own app, client contract, CTF, or open source. State which, or stop.
 
 ## Legal / trust
 

@@ -1,6 +1,7 @@
 {
-  "version": "3.3.1",
+  "version": "3.3.5",
   "skills": [
+    "agent-reach",
     "animate",
     "ci-security-scanning-with-strix",
     "diagram-generator",
@@ -15,21 +16,43 @@
     "final-showcase",
     "fix-security-vulnerabilities-with-strix",
     "fresh-context-review",
+    "graphify",
     "gsap-core",
+    "gsap-frameworks",
+    "gsap-performance",
+    "gsap-plugins",
+    "gsap-react",
+    "gsap-scrolltrigger",
+    "gsap-timeline",
+    "gsap-utils",
     "hallmark",
+    "humanizer",
     "impeccable",
+    "json-canvas",
+    "ml-experiment",
+    "obsidian-bases",
+    "obsidian-markdown",
     "orchestra-conductor",
     "orchestra-docs",
     "orchestra-ship",
     "orchestra-vault",
     "penetration-testing-with-strix",
+    "ponytail",
+    "ponytail-audit",
+    "ponytail-review",
     "postgres-best-practices",
     "pretty-mermaid",
+    "prompt-forge",
+    "r3f-shaders",
+    "rea",
     "react-best-practices",
     "refero-design",
+    "research-paper",
+    "resource-scout",
     "review-animations",
     "semgrep-adapter",
     "ship-safe",
+    "skill-forge",
     "skill-security-check",
     "stitch-code-to-design",
     "stitch-extract-design-md",
@@ -38,89 +61,286 @@
     "stitch-manage-design-system",
     "stitch-react-components",
     "stitch-upload-to-stitch",
+    "store-release",
+    "style-learner",
     "supabase",
-    "superpowers-planning",
+    "systematic-debugging",
     "taste-design",
-    "unlazy",
+    "test-driven-development",
+    "using-git-worktrees",
+    "verification-before-completion",
     "visual-forensics",
     "visual-golden-still",
-    "web-design-guidelines"
+    "web-design-guidelines",
+    "writing-skills"
   ],
   "mcp": {
     "core": [
       {
         "id": "vault-memory",
         "command": "npx",
-        "args": ["-y", "@modelcontextprotocol/server-filesystem", "REPLACE_WITH_VAULT_PATH"]
+        "args": [
+          "-y",
+          "@modelcontextprotocol/server-filesystem",
+          "REPLACE_WITH_VAULT_PATH"
+        ]
       },
       {
         "id": "stitch",
         "command": "npx",
-        "args": ["-y", "mcp-remote", "https://stitch.googleapis.com/mcp", "--header", "X-Goog-Api-Key: REPLACE_WITH_YOUR_STITCH_KEY"]
+        "args": [
+          "-y",
+          "mcp-remote",
+          "https://stitch.googleapis.com/mcp",
+          "--header",
+          "X-Goog-Api-Key: REPLACE_WITH_YOUR_STITCH_KEY"
+        ]
       },
       {
         "id": "playwright",
         "command": "npx",
-        "args": ["-y", "@playwright/mcp@latest"]
+        "args": [
+          "-y",
+          "@playwright/mcp@latest"
+        ]
       },
       {
         "id": "context7",
         "command": "npx",
-        "args": ["-y", "@upstash/context7-mcp"]
+        "args": [
+          "-y",
+          "@upstash/context7-mcp"
+        ]
       }
     ],
     "optional_by_host": {
       "cursor": [
-        { "id": "gmail", "state": "CURSOR_PLUGIN", "note": "Mail. Do not install on Antigravity." },
-        { "id": "google-calendar", "state": "CURSOR_PLUGIN", "note": "Calendar. Cursor only." },
-        { "id": "google-drive", "state": "CURSOR_PLUGIN", "note": "Drive. Cursor only." },
-        { "id": "stripe", "state": "CURSOR_PLUGIN", "note": "Payments. Cursor only." },
-        { "id": "zapier", "state": "CURSOR_PLUGIN", "note": "Cross-app glue when no native MCP exists." },
-        { "id": "shadcn", "state": "OPTIONAL", "note": "Hiring or college primitives when the plan names them. Never on an operator HUD." },
-        { "id": "mobbin", "state": "OPTIONAL", "note": "Production app screens. Connect in the host MCP UI." },
-        { "id": "github", "state": "CURSOR_PLUGIN", "note": "GitHub marketplace plugin on Cursor." },
-        { "id": "codebase-memory-mcp", "state": "OPTIONAL", "note": "Large app repos. Never auto-install. Not a second Brain." },
-        { "id": "presenton", "state": "OPTIONAL", "note": "Slide decks only. Does not replace orchestra-docs for papers." },
-        { "id": "getlayers", "state": "PURCHASE_PENDING", "note": "Full Stack lifetime purchase pending. Do not connect MCP until the operator buys and says update." },
-        { "id": "firecrawl", "state": "OPTIONAL", "note": "Public URL to markdown. Not LinkedIn/IG scrape. Key in host." },
-        { "id": "serena", "state": "OPTIONAL", "note": "Repo intelligence on a named large codebase. Never always-on." },
-        { "id": "refero", "state": "AUTH_REQUIRED", "note": "MCP is Pro. Public Refero pages are free RESOURCE. Bearer token in host. Not always-on." },
-        { "id": "21st-dev", "state": "OPTIONAL", "note": "OPTIONAL_FREE_MCP. Catalog search free. Installs capped at 2/day. Login in host. Never always-on. Do not buy Builder." },
-        { "id": "magic-ui", "state": "OPTIONAL", "note": "FREE_MCP: npx @magicuidesign/mcp@latest or npx @magicuidesign/cli@latest install cursor. Do not claim Pro." },
-        { "id": "tailkit", "state": "AUTH_REQUIRED", "note": "MCP is PAID/AUTH_REQUIRED. Public/free Tailkit pages stay RESOURCE/REFERENCE." },
-        { "id": "agent-browser", "state": "OPTIONAL", "note": "Foreign-site browser ops. Playwright stays CORE for our app. Never --tools all." }
+        {
+          "id": "gmail",
+          "state": "CURSOR_PLUGIN",
+          "note": "Mail. Do not install on Antigravity."
+        },
+        {
+          "id": "google-calendar",
+          "state": "CURSOR_PLUGIN",
+          "note": "Calendar. Cursor only."
+        },
+        {
+          "id": "google-drive",
+          "state": "CURSOR_PLUGIN",
+          "note": "Drive. Cursor only."
+        },
+        {
+          "id": "stripe",
+          "state": "CURSOR_PLUGIN",
+          "note": "Payments. Cursor only."
+        },
+        {
+          "id": "zapier",
+          "state": "CURSOR_PLUGIN",
+          "note": "Cross-app glue when no native MCP exists."
+        },
+        {
+          "id": "shadcn",
+          "state": "OPTIONAL",
+          "note": "Hiring or college primitives when the plan names them. Never on an operator HUD."
+        },
+        {
+          "id": "mobbin",
+          "state": "OPTIONAL",
+          "note": "Production app screens. Connect in the host MCP UI."
+        },
+        {
+          "id": "github",
+          "state": "CURSOR_PLUGIN",
+          "note": "GitHub marketplace plugin on Cursor."
+        },
+        {
+          "id": "codebase-memory-mcp",
+          "state": "OPTIONAL",
+          "note": "Large app repos. Never auto-install. Not a second Brain."
+        },
+        {
+          "id": "presenton",
+          "state": "OPTIONAL",
+          "note": "Slide decks only. Does not replace orchestra-docs for papers."
+        },
+        {
+          "id": "getlayers",
+          "state": "PURCHASE_PENDING",
+          "note": "Full Stack lifetime purchase pending. Do not connect MCP until the operator buys and says update."
+        },
+        {
+          "id": "firecrawl",
+          "state": "OPTIONAL",
+          "note": "Public URL to markdown. Not LinkedIn/IG scrape. Key in host."
+        },
+        {
+          "id": "serena",
+          "state": "OPTIONAL",
+          "note": "Repo intelligence on a named large codebase. Never always-on."
+        },
+        {
+          "id": "refero",
+          "state": "AUTH_REQUIRED",
+          "note": "MCP is Pro. Public Refero pages are free RESOURCE. Bearer token in host. Not always-on."
+        },
+        {
+          "id": "21st-dev",
+          "state": "OPTIONAL",
+          "note": "OPTIONAL_FREE_MCP. Catalog search free. Installs capped at 2/day. Login in host. Never always-on. Do not buy Builder."
+        },
+        {
+          "id": "magic-ui",
+          "state": "OPTIONAL",
+          "note": "FREE_MCP: npx @magicuidesign/mcp@latest or npx @magicuidesign/cli@latest install cursor. Do not claim Pro."
+        },
+        {
+          "id": "tailkit",
+          "state": "AUTH_REQUIRED",
+          "note": "MCP is PAID/AUTH_REQUIRED. Public/free Tailkit pages stay RESOURCE/REFERENCE."
+        },
+        {
+          "id": "agent-browser",
+          "state": "OPTIONAL",
+          "note": "Foreign-site browser ops. Playwright stays CORE for our app. Never --tools all."
+        }
       ],
       "antigravity": [
-        { "id": "mobbin", "state": "OPTIONAL", "note": "Connect in the MCP Store if the job needs screens." },
-        { "id": "firebase", "state": "OPTIONAL", "note": "Cloud data when AUTH is done for that job. Do not install on Cursor to match." },
-        { "id": "supabase", "state": "AUTH_REQUIRED", "note": "Unauthorized is AUTH_REQUIRED, not active." },
-        { "id": "github", "state": "OPTIONAL", "note": "Local GitHub MCP if configured; token stays in the host, never in git." },
-        { "id": "science", "state": "DISABLED_GLOBAL", "note": "Keep off as Global. Re-enable only for a job that needs it." },
-        { "id": "data-agent-kit-plugin", "state": "DISABLED_GLOBAL", "note": "Keep off as Global." },
-        { "id": "presenton", "state": "OPTIONAL", "note": "Slide decks only. Desktop/API." },
-        { "id": "getlayers", "state": "PURCHASE_PENDING", "note": "Do not Connect until purchase." },
-        { "id": "firecrawl", "state": "OPTIONAL", "note": "Public scrape to markdown. Auth in MCP Store." },
-        { "id": "serena", "state": "OPTIONAL", "note": "Repo intelligence if Connect. Never Global always-on." },
-        { "id": "refero", "state": "AUTH_REQUIRED", "note": "MCP is Pro. Public pages are free. Connect in MCP Store with Bearer token. Not Global always-on." },
-        { "id": "21st-dev", "state": "OPTIONAL", "note": "OPTIONAL_FREE_MCP if the MCP Store lists it. Do not invent support. 2 free installs/day." },
-        { "id": "magic-ui", "state": "OPTIONAL", "note": "FREE_MCP stdio npx -y @magicuidesign/mcp@latest when named. Do not claim Pro." },
-        { "id": "tailkit", "state": "AUTH_REQUIRED", "note": "MCP paid. Public Tailkit pages are RESOURCE only." },
-        { "id": "agent-browser", "state": "OPTIONAL", "note": "Foreign sites only. Playwright for our app." }
+        {
+          "id": "mobbin",
+          "state": "OPTIONAL",
+          "note": "Connect in the MCP Store if the job needs screens."
+        },
+        {
+          "id": "firebase",
+          "state": "OPTIONAL",
+          "note": "Cloud data when AUTH is done for that job. Do not install on Cursor to match."
+        },
+        {
+          "id": "supabase",
+          "state": "AUTH_REQUIRED",
+          "note": "Unauthorized is AUTH_REQUIRED, not active."
+        },
+        {
+          "id": "github",
+          "state": "OPTIONAL",
+          "note": "Local GitHub MCP if configured; token stays in the host, never in git."
+        },
+        {
+          "id": "science",
+          "state": "DISABLED_GLOBAL",
+          "note": "Keep off as Global. Re-enable only for a job that needs it."
+        },
+        {
+          "id": "data-agent-kit-plugin",
+          "state": "DISABLED_GLOBAL",
+          "note": "Keep off as Global."
+        },
+        {
+          "id": "presenton",
+          "state": "OPTIONAL",
+          "note": "Slide decks only. Desktop/API."
+        },
+        {
+          "id": "getlayers",
+          "state": "PURCHASE_PENDING",
+          "note": "Do not Connect until purchase."
+        },
+        {
+          "id": "firecrawl",
+          "state": "OPTIONAL",
+          "note": "Public scrape to markdown. Auth in MCP Store."
+        },
+        {
+          "id": "serena",
+          "state": "OPTIONAL",
+          "note": "Repo intelligence if Connect. Never Global always-on."
+        },
+        {
+          "id": "refero",
+          "state": "AUTH_REQUIRED",
+          "note": "MCP is Pro. Public pages are free. Connect in MCP Store with Bearer token. Not Global always-on."
+        },
+        {
+          "id": "21st-dev",
+          "state": "OPTIONAL",
+          "note": "OPTIONAL_FREE_MCP if the MCP Store lists it. Do not invent support. 2 free installs/day."
+        },
+        {
+          "id": "magic-ui",
+          "state": "OPTIONAL",
+          "note": "FREE_MCP stdio npx -y @magicuidesign/mcp@latest when named. Do not claim Pro."
+        },
+        {
+          "id": "tailkit",
+          "state": "AUTH_REQUIRED",
+          "note": "MCP paid. Public Tailkit pages are RESOURCE only."
+        },
+        {
+          "id": "agent-browser",
+          "state": "OPTIONAL",
+          "note": "Foreign sites only. Playwright for our app."
+        }
       ],
       "claude": [
-        { "id": "github", "state": "OPTIONAL", "note": "Claude Code MCP if you add it locally." },
-        { "id": "shadcn", "state": "OPTIONAL", "note": "Same rule as Cursor: never on an operator HUD." },
-        { "id": "codebase-memory-mcp", "state": "OPTIONAL", "note": "Large app repos. Never auto-install. Not a second Brain." },
-        { "id": "serena", "state": "OPTIONAL", "note": "Repo intelligence. Never auto-install." },
-        { "id": "refero", "state": "AUTH_REQUIRED", "note": "MCP is Pro. claude mcp add --transport http refero https://api.refero.design/mcp — token in host env." },
-        { "id": "21st-dev", "state": "OPTIONAL", "note": "OPTIONAL_FREE_MCP if you add the official CLI/MCP locally. 2 free installs/day. Do not invent." },
-        { "id": "magic-ui", "state": "OPTIONAL", "note": "FREE_MCP: npx @magicuidesign/cli@latest install claude, or stdio @magicuidesign/mcp. Do not claim Pro." },
-        { "id": "tailkit", "state": "AUTH_REQUIRED", "note": "MCP paid. Public Tailkit pages are RESOURCE only." },
-        { "id": "getlayers", "state": "PURCHASE_PENDING", "note": "Do not add until purchase." },
-        { "id": "agent-browser", "state": "OPTIONAL", "note": "Foreign-site browser. Not --tools all." }
+        {
+          "id": "github",
+          "state": "OPTIONAL",
+          "note": "Claude Code MCP if you add it locally."
+        },
+        {
+          "id": "shadcn",
+          "state": "OPTIONAL",
+          "note": "Same rule as Cursor: never on an operator HUD."
+        },
+        {
+          "id": "codebase-memory-mcp",
+          "state": "OPTIONAL",
+          "note": "Large app repos. Never auto-install. Not a second Brain."
+        },
+        {
+          "id": "serena",
+          "state": "OPTIONAL",
+          "note": "Repo intelligence. Never auto-install."
+        },
+        {
+          "id": "refero",
+          "state": "AUTH_REQUIRED",
+          "note": "MCP is Pro. claude mcp add --transport http refero https://api.refero.design/mcp — token in host env."
+        },
+        {
+          "id": "21st-dev",
+          "state": "OPTIONAL",
+          "note": "OPTIONAL_FREE_MCP if you add the official CLI/MCP locally. 2 free installs/day. Do not invent."
+        },
+        {
+          "id": "magic-ui",
+          "state": "OPTIONAL",
+          "note": "FREE_MCP: npx @magicuidesign/cli@latest install claude, or stdio @magicuidesign/mcp. Do not claim Pro."
+        },
+        {
+          "id": "tailkit",
+          "state": "AUTH_REQUIRED",
+          "note": "MCP paid. Public Tailkit pages are RESOURCE only."
+        },
+        {
+          "id": "getlayers",
+          "state": "PURCHASE_PENDING",
+          "note": "Do not add until purchase."
+        },
+        {
+          "id": "agent-browser",
+          "state": "OPTIONAL",
+          "note": "Foreign-site browser. Not --tools all."
+        }
       ],
       "jcode": [
-        { "id": "omniroute", "state": "OPTIONAL", "note": "OpenAI-compatible default_provider. Not an MCP. Skills copy is ~/.jcode/skills. Host-local; clones use their own endpoint. Not claimed HEALTHY for every machine." }
+        {
+          "id": "omniroute",
+          "state": "OPTIONAL",
+          "note": "OpenAI-compatible default_provider. Not an MCP. Skills copy is ~/.jcode/skills. Host-local; clones use their own endpoint. Not claimed HEALTHY for every machine."
+        }
       ]
     }
   },
@@ -153,7 +373,8 @@
     "ui-ux-pro-max as a global skill",
     "Gmail on Antigravity",
     "Firebase on Cursor to match Antigravity",
-    "LinkedIn Instagram LeetCode scrapers",
+    "bulk scraping of other people's profiles",
+    "social write actions",
     "playwright-cli install --skills -g",
     "Chen 202-agent / 273-agent dumps",
     "Workday Lever Easy Apply robots",

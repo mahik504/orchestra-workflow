@@ -1,6 +1,6 @@
-# Workflow — Orchestra 3.3.1
+# Workflow — Orchestra 3.3.5
 
-The contract is `AGENTS.md`. This is the operator's walkthrough. 3.3.1 is governance on the same OS.
+The contract is `AGENTS.md`. This is the operator's walkthrough. 3.3.5 is one source of truth on the same OS.
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
 

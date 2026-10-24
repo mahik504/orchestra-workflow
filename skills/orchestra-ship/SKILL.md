@@ -1,9 +1,9 @@
 ---
 name: orchestra-ship
-description: End of a showable project. Remind git push and a real post. Never fake contribution graphs.
+description: End of a showable project. Remind git push and a real post. Public repos get real commits only.
 ---
 
-# Ship
+# Ship — Orchestra 3.3.5
 
 When a project is **done enough to show**:
 
@@ -11,6 +11,6 @@ When a project is **done enough to show**:
 2. Write `projects/<slug>/ship-post.md` from `templates/ship-post.md`. Concrete. No fake stars or users.
 3. Do not start the next product in the same breath.
 
-Never use contribution-graph generators. Never typo-a-day commits. Real commits only. Every new public repo gets a LICENSE the same day.
+Public repos get real commits only. No contribution-graph generators. The private vault heartbeat is owner-approved and out of scope. Every new public repo gets a LICENSE the same day.
 
-Do not add LinkedIn/Instagram scrapers or MCP. GitHub profile README = a public repo named exactly the user's GitHub username.
+Agent-Reach may read the operator's own profiles for a visibility audit. Posting stays manual. GitHub profile README is a public repo named exactly the user's GitHub username.

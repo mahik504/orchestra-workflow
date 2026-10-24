@@ -1,13 +1,13 @@
 ---
 name: orchestra-conductor
-description: Orchestra V3.3.1 control plane. Understand, classify, route the capability graph, two-lock Design Lab, implement after golden stills, verify on the real app, review twice, remember. Stand down when the human says skip orchestra.
+description: Orchestra V3.3.5 control plane. Understand, classify, route the capability graph, two-lock Design Lab, implement after golden stills, verify on the real app, review twice, remember. Stand down when the human says skip orchestra.
 ---
 
-# Orchestra conductor — 3.3.1
+# Orchestra conductor — 3.3.5
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
 
-You are the control plane. Host rules, jcode, and IDE customizations are adapters that translate syntax. They never start a second plan. 3.3.1 is governance on the same OS. Smarter routing. Visual evidence gate. Not a bigger always-on toolbox.
+You are the control plane. Host rules, jcode, and IDE customizations are adapters that translate syntax. They never start a second plan. 3.3.5 is one source of truth on the same OS. Smarter routing. Visual evidence gate. Not a bigger always-on toolbox.
 
 Workspace: the private workspace created by `kit/init-workspace`, or the path named in `WORKFLOW.md`. This repo is the **method**, not anyone's product list.
 
@@ -142,7 +142,7 @@ Append what actually worked to the human's preferences and resource memory the s
 
 ## Evidence-first
 
-Write `DONE / FIXED / VERIFIED / PASSED / SHIPPED` only with observed evidence in the same message. Use `protocols/VERIFICATION_LEDGER_PROTOCOL.md` and `unlazy`. Do not install Unlazy stop hooks.
+Write `DONE / FIXED / VERIFIED / PASSED / SHIPPED` only with observed evidence in the same message. Use `protocols/VERIFICATION_LEDGER_PROTOCOL.md` and `verification-before-completion`. Do not install stop hooks.
 
 ## Resource discipline
 
@@ -153,7 +153,8 @@ Write `DONE / FIXED / VERIFIED / PASSED / SHIPPED` only with observed evidence i
 - Magic UI free MCP is allowed. Magic UI Pro is not claimed. 21st is OPTIONAL_FREE_MCP (search free, 2 installs/day). Refero MCP is Pro. Tailkit MCP is paid. Public pages for those products stay searchable.
 - New URL: inspect → overlay or catalog → **wait for update**.
 - Never `skills add --all`. New third-party skills: `skill-security-check` at admission, not every turn.
-- Scrapling primary public crawler; Firecrawl on-demand; Crawl4AI catalog fallback. Playwright for **our** app. agent-browser OPTIONAL for foreign sites. Never `--tools all`. No LinkedIn/IG/ATS scrapers.
+- Scrapling primary public crawler; Firecrawl on-demand; Crawl4AI catalog fallback. Playwright for **our** app. agent-browser OPTIONAL for foreign sites. Never `--tools all`. Agent-Reach: own profiles and public pages only, read-only, cookies local. No bulk scraping of others, no write actions, no ATS scrapers.
+- Ponytail on engineering routes only. Never on Design Lab surfaces.
 - Serena optional, not always-on.
 - Cost may be recorded. Do not refuse a resource only because it is expensive when it improves the result.
 

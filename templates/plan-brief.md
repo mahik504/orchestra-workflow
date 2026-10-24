@@ -12,7 +12,7 @@ PLAY STORE THIS VERSION? yes/no
   if 3D: what moves, why it is not decoration:
 SEXY IN PLAIN WORDS (materials, light, density — not “make it premium”):
 VISUAL WORLD (pick one): swiss | editorial | apple-ios | bento | bauhaus | glass | clay | neo | none
-  neo = neobrutalism.com (college / loud marketing; not operator-HUD HUD)
+  neo = neobrutalism.com (college / loud marketing; not an operator HUD)
 MOTION (only if earned, list or none): hover | loader | entrance | micro | stagger | parallax | 3d-hero
 MUST NOT LOOK LIKE:
 KIND (required): college | personal | hiring-cv   (college includes hackathon)
