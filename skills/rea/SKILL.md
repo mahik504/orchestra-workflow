@@ -1,13 +1,13 @@
 ---
 name: rea
-description: Reverse engineer native, managed, Electron/JavaScript, packaged, firmware, and browser targets with REA. Use shipped-artifact or requested runtime evidence to explain features, compare versions, decompile code, or guide a reconstruction. Skip REA for ordinary source-repository architecture analysis.
+description: Reverse engineer native, managed, Electron/JavaScript, packaged, firmware, and browser targets with REA. Use shipped-artifact or requested runtime evidence to explain features, compare versions, decompile code, or guide a reconstruction. Skip REA for ordinary source-repository architecture analysis. Not on the default Load line until Java is installed.
 metadata:
   version: "46"
 ---
 
 # REA
 
-Authorised targets only. The task must say own app, client contract, CTF, or open source. Otherwise stop.
+Authorised targets only. The task must say own app, client contract, CTF, or open source. Otherwise stop. APKLab is not ready until Java is installed. Until then the Load line says `not ready`.
 
 # REA
 

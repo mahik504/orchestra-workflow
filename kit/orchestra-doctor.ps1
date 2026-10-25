@@ -1,4 +1,4 @@
-# Orchestra 3.3.5 doctor. Prints failures first. Never prints secret values.
+# Orchestra 3.3.6 doctor. Prints failures first. Never prints secret values.
 param([switch]$Json)
 
 $ErrorActionPreference = "Continue"
@@ -7,9 +7,24 @@ $problems = @()
 $warnings = @()
 
 $version = (Get-Content (Join-Path $Root "VERSION") -Raw).Trim()
-if ($version -ne "3.3.5") { $problems += "VERSION is $version" }
+if ($version -ne "3.3.6") { $problems += "VERSION is $version" }
 $agents = Get-Content (Join-Path $Root "AGENTS.md") -TotalCount 1
-if ($agents -notmatch "3\.3\.5") { $problems += "AGENTS.md title is not 3.3.5" }
+if ($agents -notmatch "3\.3\.6") { $problems += "AGENTS.md title is not 3.3.6" }
+
+$linkLines = @(git -C $Root ls-files -s 2>$null | Select-String -Pattern "^160000")
+foreach ($link in $linkLines) {
+  $problems += ("gitlink " + (($link.Line -split "`t")[-1]))
+}
+Get-ChildItem (Join-Path $Root "skills") -Recurse -Filter SKILL.md -File -ErrorAction SilentlyContinue | ForEach-Object {
+  $bytes = [System.IO.File]::ReadAllBytes($_.FullName)
+  $bad = $false
+  if ($bytes.Length -ge 2 -and (($bytes[0] -eq 255 -and $bytes[1] -eq 254) -or ($bytes[0] -eq 254 -and $bytes[1] -eq 255))) { $bad = $true }
+  $limit = [Math]::Min(400, $bytes.Length)
+  for ($i = 0; $i -lt $limit; $i++) {
+    if ($bytes[$i] -eq 0) { $bad = $true; break }
+  }
+  if ($bad) { $problems += ("UTF-16 or NUL in " + $_.FullName.Substring($Root.Length).TrimStart('\')) }
+}
 
 $want = Get-ChildItem (Join-Path $Root "skills") -Directory | Where-Object { Test-Path (Join-Path $_.FullName "SKILL.md") } | ForEach-Object Name
 $localRoot = Join-Path $Root "skills-local"
@@ -29,14 +44,18 @@ Get-ChildItem (Join-Path $Root "skills") -Recurse -Filter SKILL.md | ForEach-Obj
 }
 if ($desc -gt 120000) { $warnings += "skill descriptions are large ($desc chars)" }
 
-$vaultName = "orchestra-" + "brain"
-$vault = Join-Path "C:\projects" $vaultName
-$note = Join-Path $vault "protocols"
-if (Test-Path $note) {
-  $extra = @(Get-ChildItem $note -File | Where-Object { $_.Name -ne "NOTE.md" })
-  if ($extra.Count -gt 0) { $problems += "vault protocols has files other than NOTE.md" }
+$vault = $env:ORCHESTRA_VAULT
+if ([string]::IsNullOrWhiteSpace($vault)) {
+  $warnings += "ORCHESTRA_VAULT unset; vault and heartbeat checks skipped"
+} else {
+  $note = Join-Path $vault "protocols"
+  if (Test-Path $note) {
+    $extra = @(Get-ChildItem $note -File | Where-Object { $_.Name -ne "NOTE.md" })
+    if ($extra.Count -gt 0) { $problems += "vault protocols has files other than NOTE.md" }
+  }
 }
 
+if (-not [string]::IsNullOrWhiteSpace($vault)) {
 try {
   $task = Get-ScheduledTask -TaskName "OrchestraBrainVaultSync" -ErrorAction Stop
   $hasLogon = $false
@@ -54,12 +73,15 @@ try {
 } catch {
   $problems += "heartbeat task missing"
 }
+}
 
 $patterns = @("li_at=", "auth_token=", "ct0=", "sessionid=")
-foreach ($tree in @($Root, $vault)) {
+$trees = @($Root)
+if (-not [string]::IsNullOrWhiteSpace($vault)) { $trees += $vault }
+foreach ($tree in $trees) {
   if (-not (Test-Path $tree)) { continue }
   Get-ChildItem $tree -Recurse -File -Include *.md,*.json,*.ps1,*.txt -ErrorAction SilentlyContinue |
-    Where-Object { $_.FullName -notmatch '\\node_modules\\|\\\.git\\|orchestra-doctor\.ps1|3\.3\.5-' } |
+    Where-Object { $_.FullName -notmatch '\\node_modules\\|\\\.git\\|orchestra-doctor\.ps1|3\.3\.\d+-' } |
     ForEach-Object {
       foreach ($pat in $patterns) {
         if (Select-String -Path $_.FullName -Pattern $pat -Quiet -ErrorAction SilentlyContinue) {

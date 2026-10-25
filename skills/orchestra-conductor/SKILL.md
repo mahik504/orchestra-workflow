@@ -1,13 +1,34 @@
 ---
 name: orchestra-conductor
-description: Orchestra V3.3.5 control plane. Understand, classify, route the capability graph, two-lock Design Lab, implement after golden stills, verify on the real app, review twice, remember. Stand down when the human says skip orchestra.
+description: Orchestra V3.3.6 control plane. Understand, classify, route the capability graph, two-lock Design Lab, implement after golden stills, verify on the real app, review twice, remember. Stand down when the human says skip orchestra.
 ---
 
-# Orchestra conductor — 3.3.5
+# Orchestra conductor — 3.3.6
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
 
-You are the control plane. Host rules, jcode, and IDE customizations are adapters that translate syntax. They never start a second plan. 3.3.5 is one source of truth on the same OS. Smarter routing. Visual evidence gate. Not a bigger always-on toolbox.
+<!-- routing:start -->
+## Routing
+
+Print `Load:` and `Skip:` before writing. A skill the human names wins. A missing tool stops. It does not install itself.
+
+| Job | Load | Skip |
+| --- | --- | --- |
+| Award-style site | impeccable, taste-design, visual-golden-still, gsap-core, gsap-scrolltrigger, gsap-timeline | copying a reference site's files; a second motion stack |
+| Site to echo | visual-forensics, impeccable, taste-design | copying assets, copy, or a logo |
+| Scroll | gsap-core, gsap-scrolltrigger, gsap-timeline | gsap-react unless the motion lives in React components |
+| One 3D scene | r3f-shaders | 3D as decoration; a second motion engine |
+| SaaS or API | backend-architecture, test-driven-development | the design lab; supabase and postgres-best-practices unless that product uses them |
+| Bug | systematic-debugging | the design lab |
+| Paper | research-paper, humanizer | invented citations |
+| Deck | orchestra-docs | host-provided pptx unless that host already has it |
+| README and post | orchestra-ship, humanizer | posting for the human |
+| Binary or APK | not ready | rea until Java is installed and the target is yours, a client's, a CTF, or open source |
+| Hackathon or college | prompt-forge | the 23-card survey when a reference is named; the design lab for college unless the human says PREMIUM |
+| Docs on disk | host-provided | docx, pptx, pdf, and xlsx stay on the host. They are not in skills/ |
+<!-- routing:end -->
+
+You are the control plane. Host rules, jcode, and IDE customizations are adapters that translate syntax. They never start a second plan. 3.3.6 is one source of truth on the same OS. Smarter routing. Visual evidence gate. Not a bigger always-on toolbox.
 
 Workspace: the private workspace created by `kit/init-workspace`, or the path named in `WORKFLOW.md`. This repo is the **method**, not anyone's product list.
 
@@ -139,6 +160,8 @@ Two passes, two questions. Together they produce neither.
 ### 9. Remember
 
 Append what actually worked to the human's preferences and resource memory the same turn. Only real executed jobs write memory. Do not file chats or restate repository facts.
+
+When a session ends, append one dated line to `projects/<slug>/lessons.md`. Taste corrections go to `Preferences.md`. Do not create a skill from one session. After the same lesson appears three times, write a proposal under `skills/_proposed/` and wait for a yes.
 
 ## Evidence-first
 

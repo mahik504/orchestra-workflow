@@ -1,4 +1,4 @@
-# Orchestra 3.3.5
+# Orchestra 3.3.6
 
 [![CI](https://github.com/mahik504/orchestra-workflow/actions/workflows/ci.yml/badge.svg)](https://github.com/mahik504/orchestra-workflow/actions/workflows/ci.yml)
 [![Hygiene](https://github.com/mahik504/orchestra-workflow/actions/workflows/hygiene.yml/badge.svg)](https://github.com/mahik504/orchestra-workflow/actions/workflows/hygiene.yml)
@@ -9,7 +9,7 @@ A **control plane for agentic development**. One conductor. Four hosts. A capabi
 
 Orchestra is a markdown **contract** your agent already knows how to read, plus an optional **Go engine** that enforces the parts a contract cannot. Clone it. Keep products in a private workspace. This repository is the method.
 
-The contract pin in `VERSION` is **`3.3.5`**. The 3.3.2 mechanisms stay in this tree. They are not a separate product. A public claim that 3.3.5 beats a raw host waits for the 3H measurement.
+The contract pin in `VERSION` is **`3.3.6`**. The 3.3.2 mechanisms stay in this tree. They are not a separate product. A public claim that this tree beats a raw host waits for the 3H measurement.
 
 ```
 ORCHESTRA  = CONTROL PLANE
@@ -89,7 +89,8 @@ Status tracker: [`docs/3.3.2/ORCHESTRA_3_3_2_AUDIT.md`](docs/3.3.2/ORCHESTRA_3_3
 | 3F, 3F.1 | In the engine | Brain notes stay notes. Health does not invent a requirement. A missing Brain file does not stop the run. |
 | 3G – 3G.2.4 | Measured | T1 and T3 host pairs. `claim: none`. T2 and T4–T10 stay off. |
 | 3H | Not a website score | Product-class runs against a raw host are still open. `claim` stays none. |
-| 3.3.5 | Pin moved | `VERSION` is 3.3.5. See the changelog. This is not phase 3I's "better than 3.3.1" proof. |
+| 3.3.5 | Pin moved, checks red | `VERSION` was 3.3.5. GitHub CI and Hygiene failed on that commit. See `docs/3.3.5/VALIDATION.md`. |
+| 3.3.6 | Patch | Humanizer is real files. CI checks `gofmt -l` and does not rewrite. `claim` stays none. |
 
 `claim` for output quality stays **`none`**. Cleaner docs are not success. A finished pair is not proof that a website got better.
 
@@ -99,8 +100,8 @@ Status tracker: [`docs/3.3.2/ORCHESTRA_3_3_2_AUDIT.md`](docs/3.3.2/ORCHESTRA_3_3
 
 | | 3.2.0 | 3.3.0 | 3.3.1 | This tree |
 | --- | --- | --- | --- | --- |
-| Git tag | `v3.2.0` | `v3.3.0` | `v3.3.1` | `v3.3.5` when the maintainer pushes it |
-| Contract pin | 3.2.0 | 3.3.0 | 3.3.1 | 3.3.5 |
+| Git tag | `v3.2.0` | `v3.3.0` | `v3.3.1` | `v3.3.6` when the maintainer pushes it |
+| Contract pin | 3.2.0 | 3.3.0 | 3.3.1 | 3.3.6 |
 | Capability routes | prior graph | 13, each with a trigger and a skip | 17 | 17 |
 | Global skills | 30 | about 40, plus job packs | 44, four of them job-loaded | open set in `skills/`. The host-stack lists the folders |
 | Design Lab | short directions, then a contract | 23 cards, then one `DESIGN.md` | two locks; named visual refs take exactly 3 translations | same locks; flagship work gets 3–5 lightweight directions, then one build |
@@ -244,7 +245,7 @@ Start with [`CONTRIBUTING.md`](CONTRIBUTING.md). Open an issue for a graph miss 
 
 There is no study in this repository that shows Orchestra produces better websites than the host alone. The T3 pair is a tie on a one-line Go fix, and Orchestra was slower. Token columns without a measured test are guesses — we do not publish them.
 
-- `VERSION` is `3.3.5`. A better-than-raw claim waits for the 3H measurement.
+- `VERSION` is `3.3.6`. A better-than-raw claim waits for the 3H measurement.
 - Research in the Go engine runs **offline by default**. Live sources are opt-in.
 - The engine enforces **structure**, not taste.
 - Visual QA needs a **running app**.
@@ -272,9 +273,9 @@ kit/                 host setup, sync, rollback
 docs/3.3.1/          governance release notes
 docs/3.3.2/          3.3.2 spec, phase reports, audit
 docs/diagrams/       figures
-templates/           packets and job packs
+templates/           packets, job packs, and the Next starter
 workspace-template/  empty workspace shape
-VERSION              contract pin, 3.3.5
+VERSION              contract pin, 3.3.6
 ```
 
 ---

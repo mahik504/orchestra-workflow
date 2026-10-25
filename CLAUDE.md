@@ -1,8 +1,29 @@
-# Claude Code adapter — Orchestra 3.3.5
+# Claude Code adapter — Orchestra 3.3.6
 
 `AGENTS.md` is the contract. This file only maps it onto Claude Code. It does not define a second orchestration policy.
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
+
+<!-- routing:start -->
+## Routing
+
+Print `Load:` and `Skip:` before writing. A skill the human names wins. A missing tool stops. It does not install itself.
+
+| Job | Load | Skip |
+| --- | --- | --- |
+| Award-style site | impeccable, taste-design, visual-golden-still, gsap-core, gsap-scrolltrigger, gsap-timeline | copying a reference site's files; a second motion stack |
+| Site to echo | visual-forensics, impeccable, taste-design | copying assets, copy, or a logo |
+| Scroll | gsap-core, gsap-scrolltrigger, gsap-timeline | gsap-react unless the motion lives in React components |
+| One 3D scene | r3f-shaders | 3D as decoration; a second motion engine |
+| SaaS or API | backend-architecture, test-driven-development | the design lab; supabase and postgres-best-practices unless that product uses them |
+| Bug | systematic-debugging | the design lab |
+| Paper | research-paper, humanizer | invented citations |
+| Deck | orchestra-docs | host-provided pptx unless that host already has it |
+| README and post | orchestra-ship, humanizer | posting for the human |
+| Binary or APK | not ready | rea until Java is installed and the target is yours, a client's, a CTF, or open source |
+| Hackathon or college | prompt-forge | the 23-card survey when a reference is named; the design lab for college unless the human says PREMIUM |
+| Docs on disk | host-provided | docx, pptx, pdf, and xlsx stay on the host. They are not in skills/ |
+<!-- routing:end -->
 
 ## Where Claude Code is strongest
 

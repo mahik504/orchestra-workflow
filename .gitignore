@@ -38,6 +38,7 @@ runtime/go-portable/
 runtime/go-portable.zip
 
 runtime/node_modules/
+templates/starters/**/node_modules/
 runtime/test-results/
 runtime/playwright-report/
 runtime/blob-report/

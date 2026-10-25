@@ -20,3 +20,14 @@ Run this before classify. Then do the work. Ask only when the task is truly ambi
 | Out of scope | What this pass will not do |
 
 Show the brief in a few lines. Do not wait for approval unless a requirement that changes product behavior is missing.
+
+## Load line
+
+Before any file write, print two lines taken from the routing table in `AGENTS.md`:
+
+```
+Load: skill-a, skill-b
+Skip: what this pass will not load
+```
+
+A skill the human names replaces the table for that pass. If a named tool is not installed, stop. Do not install it. If the line is wrong, one sentence from the human corrects it.

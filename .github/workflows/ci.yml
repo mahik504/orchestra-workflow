@@ -28,8 +28,14 @@ jobs:
     - name: Build
       run: go build -v ./...
 
-    - name: Run go fmt
-      run: if [ "$(go fmt ./... | wc -l)" -gt 0 ]; then exit 1; fi
+    - name: Check gofmt
+      run: |
+        unformatted=$(gofmt -l . | grep -v '^benchmarks/fixtures/t3-debug/' || true)
+        if [ -n "$unformatted" ]; then
+          echo "gofmt would change:"
+          echo "$unformatted"
+          exit 1
+        fi
 
     - name: Validate Schemas
       run: |

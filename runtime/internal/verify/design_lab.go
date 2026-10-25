@@ -168,18 +168,18 @@ type StillsApproval struct {
 
 // DesignLab holds the gate state for one task.
 type DesignLab struct {
-	TaskID              string
-	WorkspaceRoot       string
-	State               GateState
-	Reason              string
-	Cards               []DirectionCard
-	SurveySkipped       bool
-	SkipReason          string
-	NamedReferenceMode  bool
-	Directions          []Direction
-	Approved            *Approval
-	Stills              *StillsApproval
-	rejections          []Rejection
+	TaskID             string
+	WorkspaceRoot      string
+	State              GateState
+	Reason             string
+	Cards              []DirectionCard
+	SurveySkipped      bool
+	SkipReason         string
+	NamedReferenceMode bool
+	Directions         []Direction
+	Approved           *Approval
+	Stills             *StillsApproval
+	rejections         []Rejection
 }
 
 // NewDesignLab derives the gate from the brief. This is the only place that

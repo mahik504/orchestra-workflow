@@ -12,7 +12,7 @@ const fs = require('fs');
 const path = require('path');
 
 const REPO = path.join(__dirname, '..', '..');
-const EXPECTED_VERSION = '3.3.5';
+const EXPECTED_VERSION = '3.3.6';
 
 // These files define or document the rules, so they contain the patterns by design.
 const SELF = new Set([
@@ -48,21 +48,50 @@ const RULES = [
 
 const BINARY = new Set(['.png', '.jpg', '.jpeg', '.gif', '.webp', '.ico', '.pdf', '.zip', '.exe', '.woff', '.woff2', '.ttf']);
 
-let files;
+let entries;
 try {
-  files = execSync('git ls-files', { cwd: REPO, encoding: 'utf8' }).split('\n').filter(Boolean);
+  entries = execSync('git ls-files -s', { cwd: REPO, encoding: 'utf8' }).split('\n').filter(Boolean);
 } catch (e) {
   console.error('not a git repository, or git is unavailable');
   process.exit(2);
 }
 
 const failures = [];
+const files = [];
+for (const line of entries) {
+  const tab = line.indexOf('\t');
+  if (tab < 0) continue;
+  const rel = line.slice(tab + 1).replace(/\\/g, '/');
+  const mode = line.slice(0, tab).split(' ')[0];
+  if (mode === '160000') {
+    failures.push(`${rel}  gitlink (mode 160000): commit the files, not a nested repository`);
+    continue;
+  }
+  files.push(rel);
+}
+
 for (const rel of files) {
   if (SELF.has(rel)) continue;
   if (BINARY.has(path.extname(rel).toLowerCase())) continue;
   const abs = path.join(REPO, rel);
   if (!fs.existsSync(abs)) continue;
-  const lines = fs.readFileSync(abs, 'utf8').split(/\r?\n/);
+  const stat = fs.statSync(abs);
+  if (stat.isDirectory()) {
+    failures.push(`${rel}  tracked path is a directory`);
+    continue;
+  }
+  let text;
+  try {
+    text = fs.readFileSync(abs, 'utf8');
+  } catch (e) {
+    failures.push(`${rel}  unreadable: ${e.code || e.message}`);
+    continue;
+  }
+  if (text.includes('\u0000')) {
+    failures.push(`${rel}  contains NUL bytes (UTF-16 or a binary mislabeled as text)`);
+    continue;
+  }
+  const lines = text.split(/\r?\n/);
   lines.forEach((line, i) => {
     for (const rule of RULES) {
       const m = line.match(rule.re);
@@ -96,6 +125,7 @@ if (failures.length) process.exit(1);
 
 try {
   execSync('node runtime/tools/check-host-stack.js', { cwd: REPO, stdio: 'inherit' });
+  execSync('node runtime/tools/check-routing.js', { cwd: REPO, stdio: 'inherit' });
 } catch (e) {
   process.exit(1);
 }

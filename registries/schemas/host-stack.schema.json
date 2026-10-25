@@ -7,11 +7,11 @@
   "required": ["version", "skills", "mcp", "plugins", "refused", "resources"],
   "additionalProperties": false,
   "properties": {
-    "version": { "type": "string", "const": "3.3.5" },
+    "version": { "type": "string", "const": "3.3.6" },
     "skills": {
       "type": "array",
       "minItems": 40,
-      "maxItems": 50,
+      "maxItems": 80,
       "items": { "type": "string", "pattern": "^[a-z0-9-]+$" }
     },
     "mcp": {

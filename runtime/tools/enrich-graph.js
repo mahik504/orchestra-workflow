@@ -268,7 +268,7 @@ for (const [id, cap] of Object.entries(graph.capabilities)) {
   if (typeof cap.risk_rank !== 'number') problems.push(`${id}: no risk_rank`);
 }
 
-graph.version = '3.3.5';
+graph.version = '3.3.6';
 
 // Schema must allow the new fields (additionalProperties is false).
 const schema = JSON.parse(fs.readFileSync(SCHEMA, 'utf8'));

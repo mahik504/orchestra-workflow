@@ -1,0 +1,24 @@
+name: Lighthouse
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm run start &
+      - run: npx --yes wait-on http://localhost:3000 -t 60000
+      - run: npx --yes lighthouse http://localhost:3000 --only-categories=performance,accessibility,best-practices,seo --chrome-flags="--headless --no-sandbox" --output=json --output-path=./lighthouse.json
+      - name: Print scores
+        run: node -e "const r=require('./lighthouse.json'); for (const [k,v] of Object.entries(r.categories||{})) console.log(k, Math.round((v.score||0)*100));"

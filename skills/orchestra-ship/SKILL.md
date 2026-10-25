@@ -3,7 +3,7 @@ name: orchestra-ship
 description: End of a showable project. Remind git push and a real post. Public repos get real commits only.
 ---
 
-# Ship — Orchestra 3.3.5
+# Ship — Orchestra 3.3.6
 
 When a project is **done enough to show**:
 

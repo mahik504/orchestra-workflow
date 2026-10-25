@@ -3,7 +3,7 @@ name: orchestra-vault
 description: Maintain the private Orchestra workspace and its memory. Jump one note. Lasting files only. Record real outcomes, never synthetic ones. No secrets.
 ---
 
-# Orchestra vault — 3.3.5
+# Orchestra vault — 3.3.6
 
 **BRAIN = MEMORY.** The workspace is where Orchestra remembers; it is not a second control plane.
 
@@ -50,6 +50,12 @@ Do not file chat transcripts. Do not restate facts the repository already shows.
 ## Learning
 
 After a like, a hate, a finished task, or a genuinely useful find, append to `Preferences.md` in the **same turn**. Taste is allowed to change; prefer editing the existing bullet. Do not create a second taste file.
+
+When a session ends, append one dated line to `projects/<slug>/lessons.md`. One line. What happened, and what to do next time. Do not paste the chat.
+
+A new skill is a proposal, not an install. After the same lesson appears three times, and the human says yes, write `skills/_proposed/<name>/SKILL.md` from `templates/custom-skill.md`. Stop there. Do not copy it into `skills/` and do not sync it. One job. A narrow description. A way to verify.
+
+If the human rewrites a draft and asks to keep the change, append one line to `Preferences.md` naming the concrete edit. Do not rewrite old taste. Do not train a model.
 
 ## Git
 

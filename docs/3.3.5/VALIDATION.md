@@ -1,11 +1,11 @@
 # Validation for 3.3.5
 
-| Check | Pass |
-| --- | --- |
-| `go test ./...` in `runtime` | No new failures |
-| `node runtime/tools/hygiene.js` | 0 failures |
-| `node runtime/tools/check-host-stack.js` | 0 problems |
-| `kit/orchestra-doctor.ps1` | 0 problems |
-| 3H | Three tasks, raw host versus this tree. `claim` stays none until a repeat agrees |
+The pin moved. The published tree did not pass its own checks.
 
-Do not write a better-than-raw sentence in the README until that table has numbers.
+| Check | Result on `7543293` |
+| --- | --- |
+| GitHub CI | Red. [run 40074533564](https://github.com/mahik504/orchestra-workflow/actions/runs/40074533564) died at `go fmt` |
+| GitHub Hygiene | Red. [run 40074533531](https://github.com/mahik504/orchestra-workflow/actions/runs/40074533531) crashed with `EISDIR` on the `skills/humanizer` gitlink |
+| 3H | Not run. `claim` stays none |
+
+Do not treat the 3.3.5 pin as a green release. 3.3.6 is the patch that fixes these two checks.

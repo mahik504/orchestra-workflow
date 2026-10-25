@@ -1,6 +1,6 @@
 ---
 name: agent-reach
-description: Read the operator's own public profiles and public Reddit, X, and YouTube pages. Read only. No posting, likes, DMs, or applications.
+description: Read the operator's own public profiles and public Reddit, X, and YouTube pages. Read only. No posting, likes, DMs, or applications. Not on the default Load line. Setup is not part of this release.
 metadata:
   homepage: https://github.com/Panniantong/Agent-Reach
   version: "{{VERSION}}"

@@ -439,4 +439,3 @@ func TestGate_StillsRequiredBeforeProductUI(t *testing.T) {
 		t.Errorf("product UI still blocked after stills: %v", err)
 	}
 }
-

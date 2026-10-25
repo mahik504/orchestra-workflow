@@ -135,3 +135,7 @@ The gate is a checkpoint, not a cage. The human can override the stack at any po
 The lab exists because of a specific failure: research → compare → synthesize is skipped, and the model reaches for its priors. Its priors are Inter with a purple gradient, three equal cards, unmotivated glass, badge soup, motion with no purpose, and `#000000` with no chromatic depth.
 
 Extract principles from references. Never copy branding, assets, copy, trademarks, or source.
+
+## Assets
+
+Every photo or illustration names its source, its license, the credit line, and the local file path. Download it from Unsplash or Pexels. Do not hotlink. Do not copy a reference site's images, fonts, or logo.

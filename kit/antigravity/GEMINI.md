@@ -1,16 +1,37 @@
-# Orchestra 3.3.5 — Antigravity global adapter
+# Orchestra 3.3.6 — Antigravity global adapter
 
-<!-- BEGIN ORCHESTRA 3.3.5 -->
+<!-- BEGIN ORCHESTRA 3.3.6 -->
 
-You are running **Orchestra 3.3.5**. This file is an adapter. It does not invent a second loop. 3.3.5 is governance on the same OS. Visual evidence gate. Not a bigger toolbox.
+You are running **Orchestra 3.3.6**. This file is an adapter. It does not invent a second loop. 3.3.6 is governance on the same OS. Visual evidence gate. Not a bigger toolbox.
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
+
+<!-- routing:start -->
+## Routing
+
+Print `Load:` and `Skip:` before writing. A skill the human names wins. A missing tool stops. It does not install itself.
+
+| Job | Load | Skip |
+| --- | --- | --- |
+| Award-style site | impeccable, taste-design, visual-golden-still, gsap-core, gsap-scrolltrigger, gsap-timeline | copying a reference site's files; a second motion stack |
+| Site to echo | visual-forensics, impeccable, taste-design | copying assets, copy, or a logo |
+| Scroll | gsap-core, gsap-scrolltrigger, gsap-timeline | gsap-react unless the motion lives in React components |
+| One 3D scene | r3f-shaders | 3D as decoration; a second motion engine |
+| SaaS or API | backend-architecture, test-driven-development | the design lab; supabase and postgres-best-practices unless that product uses them |
+| Bug | systematic-debugging | the design lab |
+| Paper | research-paper, humanizer | invented citations |
+| Deck | orchestra-docs | host-provided pptx unless that host already has it |
+| README and post | orchestra-ship, humanizer | posting for the human |
+| Binary or APK | not ready | rea until Java is installed and the target is yours, a client's, a CTF, or open source |
+| Hackathon or college | prompt-forge | the 23-card survey when a reference is named; the design lab for college unless the human says PREMIUM |
+| Docs on disk | host-provided | docx, pptx, pdf, and xlsx stay on the host. They are not in skills/ |
+<!-- routing:end -->
 
 Fill VAULT and ENGINE once on your machine. If the vault is not in this workspace, tell the human to Add Folder it.
 
 ## Mode
 
-- Default: **conductor**. Talk normally. Run the 3.3.5 loop. Do not wait for a pasted MASTER-PROMPT.
+- Default: **conductor**. Talk normally. Run the 3.3.6 loop. Do not wait for a pasted MASTER-PROMPT.
 - Step 0 is prompt-forge. Show a short brief, then work. Ask only when the task is truly ambiguous.
 - If the human pastes `MODE: specialist` or a Cursor packet: you are a worker. Do that packet only. Write `projects/<slug>/handoff.md`. Do not start a second plan.
 
@@ -38,4 +59,4 @@ MCP: `HEALTHY` / `OPTIONAL` / `AUTH_REQUIRED` / `BROKEN` / `DISABLED` / `PURCHAS
 
 `DONE / FIXED / VERIFIED / PASSED / SHIPPED` need observed evidence in the same message.
 
-Say **skip orchestra** to stand this down. Say **skip the lab** to bypass Design Lab for one task. `ORCHESTRA_CONTRACT` unset means 3.3.5. Plain text. Not a slash command.
+Say **skip orchestra** to stand this down. Say **skip the lab** to bypass Design Lab for one task. `ORCHESTRA_CONTRACT` unset means 3.3.6. Plain text. Not a slash command.

@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.3.6] - Green release checks
+
+*The pin in `VERSION` is 3.3.6. This is not a claim that output beats a raw host.*
+
+- `skills/humanizer` is files in the clone, including its MIT license. It is no longer a gitlink.
+- Hygiene skips a tracked directory instead of crashing, and fails when a path is mode `160000`.
+- CI runs `gofmt -l`. It does not rewrite files. `*.go` is stored with LF line endings. The T3 benchmark fixture stays CRLF so its recorded hash still matches.
+- The doctor reads `ORCHESTRA_VAULT` and skips vault checks when that variable is unset. It fails on UTF-16 skill files and gitlinks.
+- `v3.3.5` stays on `7543293`. That commit's CI and Hygiene runs were red.
+- The routing table is copied into the host files. `Load:` and `Skip:` are printed before a write. A check fails if a named skill is missing. `docx`, `pptx`, `pdf`, and `xlsx` stay host-provided.
+- Graphify, the unused GSAP catalogs, Obsidian Bases, and JSON Canvas sit in `templates/shelf/`. Skill drafts and taste edits live in the vault skill.
+- `templates/starters/next-react/` is a current Next app with lint, typecheck, build, and a Lighthouse job that warns. `templates/packs/hackathon.md` is one day and one demo.
+
 ## [3.3.5] - One contract, open skills, kind-based design bar
 
 *The pin in `VERSION` is 3.3.5. This is not a claim that output beats a raw host. 3H has not scored a website.*
