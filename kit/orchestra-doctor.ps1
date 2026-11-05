@@ -59,17 +59,20 @@ if (-not [string]::IsNullOrWhiteSpace($vault)) {
 try {
   $task = Get-ScheduledTask -TaskName "OrchestraBrainVaultSync" -ErrorAction Stop
   $hasLogon = $false
-  $has16 = $false
   $has12 = $false
+  $has16 = $false
+  $hasNet = $false
   foreach ($tr in $task.Triggers) {
     if ($tr.CimClass.CimClassName -eq "MSFT_TaskLogonTrigger") { $hasLogon = $true }
+    if ($tr.CimClass.CimClassName -eq "MSFT_TaskEventTrigger") { $hasNet = $true }
     $interval = [string]$tr.Repetition.Interval
-    if ($interval -eq "PT16H") { $has16 = $true }
     if ($interval -eq "PT12H") { $has12 = $true }
+    if ($interval -eq "PT16H") { $has16 = $true }
   }
   if (-not $hasLogon) { $problems += "heartbeat has no logon trigger" }
-  if (-not $has16) { $problems += "heartbeat has no 16 hour trigger" }
-  if ($has12) { $problems += "heartbeat still has a 12 hour trigger" }
+  if (-not $has12) { $problems += "heartbeat has no 12 hour trigger" }
+  if ($has16) { $problems += "heartbeat still has a 16 hour trigger" }
+  if (-not $hasNet) { $problems += "heartbeat has no network-connect trigger" }
 } catch {
   $problems += "heartbeat task missing"
 }
