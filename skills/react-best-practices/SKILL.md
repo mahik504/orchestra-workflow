@@ -19,3 +19,5 @@ React or Next.js implementation or review. Skip for Expo-only native, PySimpleGU
 3. Beautiful + slow is a fail on PREMIUM.
 
 Does not replace `web-design-guidelines` (a11y/forms). Load both only when the job needs both.
+
+Before adding a named npm package, check its published size. Bundlephobia is a lookup, not a skill. State the assumption before editing a waterfall. Do not rewrite the data layer in that pass.

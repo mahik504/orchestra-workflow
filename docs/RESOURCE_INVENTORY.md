@@ -1,3 +1,5 @@
+> Historical snapshot. The live contract is the pin in `VERSION`.
+
 # Resource inventory — Orchestra 3.3.0
 
 Available ≠ loaded. Registered ≠ active. Discovered ≠ verified. Machine-readable rows: `registries/resources.json`. Local OSS metadata (not clones): `registries/oss-index.json`. Health: [`RESOURCE_HEALTH.md`](RESOURCE_HEALTH.md). Combination: [`DESIGN_RESOURCE_ROUTING.md`](DESIGN_RESOURCE_ROUTING.md).

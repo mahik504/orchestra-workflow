@@ -1,8 +1,10 @@
-# Using Orchestra 3.3
+# Using Orchestra 4.0.0
 
-This page is a pointer, not a second kernel.
+This page is a pointer. The contract is [`AGENTS.md`](../AGENTS.md). Setup is [`getting-started.md`](getting-started.md).
 
-Read [`AGENTS.md`](../AGENTS.md) and [`WORKFLOW.md`](../WORKFLOW.md). Classify into one capability. Design Lab is a write lock on PREMIUM / EXPERIMENTAL visual work: 23 short cards, then one `DESIGN.md`. Host files are adapters:
+Classify one route. Print `Load:` and `Skip:` before writing. Design Lab blocks product UI on flagship and premium visual work until the contract and the stills are approved. The 23-card lab still runs for an open premium visual job. Host files are adapters:
+
+New routes in the same table: Deck or slides, architecture diagram, one control, Next.js speed, TypeScript review, ship a deployed app, what people said recently, marketing copy, rendered video, and career notes. One control loads `none` and still classifies `interaction-components`.
 
 - Cursor: `.cursorrules`
 - Claude Code: `CLAUDE.md`

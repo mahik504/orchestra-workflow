@@ -1,4 +1,4 @@
-# Merge kit/mcp-core.json into host MCP configs.
+﻿# Merge kit/mcp-core.json into host MCP configs.
 # Keeps an existing server's env block. Never prints secret values.
 # Does not remove servers unless -Remove is passed.
 param(
@@ -16,7 +16,8 @@ $vaultId = "orchestra-" + "brain"
 $files = @(
   (Join-Path $env:USERPROFILE ".cursor\mcp.json"),
   (Join-Path $env:USERPROFILE ".gemini\config\mcp_config.json"),
-  (Join-Path $env:USERPROFILE ".claude\settings.json")
+  (Join-Path $env:USERPROFILE ".claude\settings.json"),
+  (Join-Path $env:USERPROFILE ".claude.json")
 )
 
 $aliases = @{ stitch = @("stitch", "StitchMCP"); vault = @("vault", $vaultId) }
@@ -55,3 +56,4 @@ foreach ($file in $files) {
   $json | ConvertTo-Json -Depth 12 | Set-Content -Path $file -Encoding utf8
 }
 Write-Host "done"
+

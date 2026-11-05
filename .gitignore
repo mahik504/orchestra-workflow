@@ -60,5 +60,11 @@ __pycache__/
 # Source-available skills. Synced to this PC. Never committed.
 skills-local/
 skills/_proposed/
+skills/docx/
+skills/pdf/
+skills/pptx/
+skills/xlsx/
+skills/fullstack-mastery/
+skills/creative-3d-web/
 
 runtime/benchmarks/results/

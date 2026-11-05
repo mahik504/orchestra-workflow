@@ -9,6 +9,10 @@ allowed-tools:
 
 # Stitch Design Taste — Semantic Design System Skill
 
+## Orchestra
+
+One DESIGN.md. This skill locks the visual world. Impeccable reviews a surface that already exists. UI UX Pro Max is a method source, not a third system and not a pack install. A component catalog is not a motion runtime.
+
 ## Overview
 This skill generates `DESIGN.md` files optimized for Google Stitch screen generation. It translates the battle-tested anti-slop frontend engineering directives into Stitch's native semantic design language — descriptive, natural-language rules paired with precise values that Stitch's AI agent can interpret to produce premium, non-generic interfaces.
 

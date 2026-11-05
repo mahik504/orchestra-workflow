@@ -108,6 +108,7 @@ type Brief struct {
 	Assumed            bool        `json:"assumed"`
 	AssumptionNote     string      `json:"assumption_note,omitempty"`
 	UnknownTechnology  []string    `json:"unknown_technology,omitempty"`
+	Skills             []string    `json:"skills,omitempty"`
 }
 
 // Options carries signals the caller already knows so the classifier does not
@@ -451,8 +452,35 @@ func (c *Classifier) ClassifyBrief(rawRequest string, opts Options) *Brief {
 	b.VerifyDepth = decideVerifyDepth(b)
 	applyDesignLab(b, haystack, opts.SkipLab)
 	b.UnknownTechnology = detectUnknownTech(haystack, c.graph)
+	c.attachSkills(b)
 
 	return b
+}
+
+func (c *Classifier) attachSkills(b *Brief) {
+	if b == nil {
+		return
+	}
+	if b.CapabilityID != "" && c.graph != nil {
+		if cap := c.graph.Capabilities[b.CapabilityID]; cap != nil {
+			b.Skills = append([]string{}, cap.Skills...)
+		}
+	}
+	if b.CapabilityID == "" && b.Type == TypeBugfix {
+		b.Skills = appendSkill(b.Skills, "systematic-debugging")
+	}
+	if strings.Contains(strings.ToLower(b.RawRequest), "supabase") {
+		b.Skills = appendSkill(b.Skills, "supabase")
+	}
+}
+
+func appendSkill(skills []string, id string) []string {
+	for _, s := range skills {
+		if s == id {
+			return skills
+		}
+	}
+	return append(skills, id)
 }
 
 // ResolveSilence applies the no-answer rule: take the lower-risk of the two
@@ -536,7 +564,7 @@ func detectType(hay, declared string) string {
 		return TypeSecurity
 	case containsAny(hay, "bug", "broken", "crash", "regression", "not working", "fails", "error",
 		"throws", "exception", "stack trace", "traceback", "doesn't work", "does not work",
-		"stopped working", "500", "502", "504", "undefined is not"):
+		"stopped working", "500", "502", "504", "undefined is not", "debug"):
 		return TypeBugfix
 	case containsAny(hay, "refactor", "clean up", "cleanup", "simplify", "rename", "dedupe"):
 		return TypeRefactor
@@ -563,7 +591,10 @@ func decideVisual(b *Brief, hay string) bool {
 		return true
 	}
 	switch b.CapabilityID {
-	case "security-audit", "research-paper":
+	case "security-audit", "research-paper",
+		"typescript-review", "slides", "recent-research", "marketing-copy",
+		"rendered-video", "deployed-errors", "career-notes",
+		"architecture-diagram", "nextjs-speed":
 		return false
 	case "":
 		return containsAny(hay, "ui", "frontend", "css", "layout", "screen", "page", "component", "styling")

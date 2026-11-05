@@ -37,11 +37,13 @@ const GOV = {
       'The human said "skip the lab" and only wants the page wired up',
       'A 3D scene is the point rather than the decoration — route to 3d-portfolio',
     ],
+    skills: ['impeccable', 'taste-design', 'visual-golden-still', 'gsap-core', 'gsap-scrolltrigger', 'gsap-timeline'],
   },
   '3d-portfolio': {
     quality_bar: 'EXPERIMENTAL',
     risk_rank: 8,
     platform: 'web',
+    skills: ['r3f-shaders'],
     trigger_conditions: [
       'The brief names WebGL, Three.js, R3F, shaders, or a 3D scene',
       'Camera movement or spatial navigation is part of the concept',
@@ -124,6 +126,7 @@ const GOV = {
       'The brief is a marketing page about research',
       'The request is a UI or dashboard, not a document',
     ],
+    skills: ['research-paper', 'humanizer'],
   },
   'micro-interactions': {
     quality_bar: 'PREMIUM',
@@ -172,6 +175,7 @@ const GOV = {
       'The surface is live operational control — route to operator-hud',
       'The page is public marketing — route to premium-website',
     ],
+    skills: ['backend-architecture', 'test-driven-development'],
   },
   'mobile-app': {
     quality_bar: 'PREMIUM',
@@ -203,6 +207,7 @@ const GOV = {
       'The request is a feature build; security review is a later gate, not this route',
       'The finding is a plain bug with no security consequence',
     ],
+    skills: ['ship-safe'],
   },
   'reverse-engineering': {
     quality_bar: 'STANDARD',
@@ -227,16 +232,156 @@ const GOV = {
     platform: 'web',
     trigger_conditions: [
       'The unit of work is a control (button, card, drawer, input), not a whole product',
-      'The brief names a kit (shadcn, React Bits, Magic UI, Aceternity, Kokonut, Cult, HyperUI, Tailkit free, 21st free, Motion Primitives)',
+      'The brief names a kit (shadcn, React Bits, Watermelon, Magic UI, Aceternity, Kokonut, Cult, HyperUI, Tailkit free, 21st free, Motion Primitives)',
       'The brief names a control kind: primary, secondary, destructive, loading, success, disabled, icon, magnetic, shimmer, gradient, ripple, particle, liquid, glass, command, hold, stateful',
       'Existing project components must be inspected before generating another',
+      'Pick one source in this order: existing project components, then shadcn for app chrome, then React Bits for one interaction, then Watermelon for one production-style block when the reference row exists, then Magic UI or Aceternity for one marketing effect, then Motion Primitives for one motion on the current runtime, then GSAP only when the route is scroll',
     ],
+    add_trigger_tags: ['watermelon'],
     skip_conditions: [
       'The job is a full page, product, or app — route to premium-website, saas-dashboard, mobile-app, or 3d-portfolio first',
       'No product surface exists yet to attach the control to',
       '3D/WebGL is the point — route to 3d-portfolio',
       'The platform is native mobile — route to mobile-app',
+      'A sample that needs a second motion runtime',
     ],
+    skills: [],
+  },
+  'visual-forensics': {
+    quality_bar: 'PREMIUM',
+    risk_rank: 4,
+    platform: 'web',
+    trigger_conditions: [
+      'The brief names visual-forensics or a reference-benchmark file',
+      'The job is to measure composition, interaction, and typography of a named live website',
+      'The output is REFERENCE_BENCHMARK.md with mechanism vs identity and forbidden identity',
+      'A visual recreation of a live product needs a translation matrix before Design Lab',
+    ],
+    skip_conditions: [
+      'The goal is only tint, recolor, or keep-the-structure token swap — route to reverse-engineering',
+      'No named site, screenshot, or public source was supplied',
+      'The intent is to copy branding, assets, copy, or source',
+      'A locked DESIGN.md and golden stills already exist and the job is implementation',
+    ],
+    skills: ['visual-forensics'],
+  },
+  'visual-golden-still': {
+    quality_bar: 'PREMIUM',
+    risk_rank: 5,
+    platform: 'web',
+    trigger_conditions: [
+      'The brief names golden-still or visual-golden-still',
+      'The job is a representative desktop opening scene and mobile opening scene',
+      'Visual evidence PASS/FAIL is owed before product implementation',
+      'A DESIGN.md exists and stills are the next gate',
+    ],
+    skip_conditions: [
+      'The lab was waived with skip the lab',
+      'The work is STANDARD backend, paper, or security with no UI',
+      'Stills already human-approved and the job is implementation',
+      'The request is a full product build with no stills gate named — classify the product route first',
+    ],
+  },
+  'fresh-context-review': {
+    quality_bar: 'STANDARD',
+    risk_rank: 3,
+    platform: 'web',
+    trigger_conditions: [
+      'The brief names fresh-context-review or independent review of a completed phase',
+      'The human said the work is ready for review or pre-release',
+      'The question is what is wrong that the builder cannot see',
+      'A major frontend milestone needs a clean-context critic',
+    ],
+    skip_conditions: [
+      'The phase is not complete — this is not a planning or implementation route',
+      'The request is to build or redesign from scratch',
+      'The human asked the same chat that built the work to rubber-stamp it without a fresh context',
+    ],
+  },
+  'final-showcase': {
+    quality_bar: 'STANDARD',
+    risk_rank: 1,
+    platform: 'web',
+    trigger_conditions: [
+      'The brief names final-showcase or brag as a delivery step',
+      'The product is production-ready and the verification ledger is green',
+      'The human approved recording a walkthrough and showcase stills',
+      'README or social showcase assets are owed after ship, not before',
+    ],
+    skip_conditions: [
+      'Design Lab or golden stills are still unpaid',
+      'Implementation is in progress',
+      'The verification ledger is not green',
+      'The human has not approved production readiness',
+      'The request is to change product behaviour or visuals — that is not showcase',
+    ],
+    skills: ['orchestra-ship'],
+  },
+  'typescript-review': {
+    quality_bar: 'STANDARD', risk_rank: 2, platform: 'any',
+    skills: ['orchestra-typescript'],
+    trigger_conditions: [
+      'The job is a TypeScript review of types at a boundary',
+      'The brief names Zod or a typed parser at the edge of the program',
+    ],
+    skip_conditions: ['The job is a visual redesign', 'The job is to adopt a new framework'],
+  },
+  'slides': {
+    quality_bar: 'STANDARD', risk_rank: 2, platform: 'any',
+    skills: ['orchestra-docs', 'orchestra-presentation'],
+    trigger_conditions: ['The deliverable is a slide deck', 'The brief asks for speaker notes on slides'],
+    skip_conditions: ['The job is a methods paper or a thesis', 'The deliverable is a rendered mp4'],
+  },
+  'recent-research': {
+    quality_bar: 'STANDARD', risk_rank: 2, platform: 'any',
+    skills: ['orchestra-research'],
+    trigger_conditions: [
+      'The question is what people said recently in public',
+      'Public discussions from the last month need a dated source',
+    ],
+    skip_conditions: ['The job is a methods paper or a thesis', 'The request asks to scrape, post, or send messages'],
+  },
+  'marketing-copy': {
+    quality_bar: 'STANDARD', risk_rank: 2, platform: 'any',
+    skills: ['orchestra-marketing', 'humanizer'],
+    trigger_conditions: ['The job is the page title or the on-page wording', 'The brief asks for a positioning line'],
+    skip_conditions: ['The job is a visual redesign or a new design system', 'The request invents a metric'],
+  },
+  'rendered-video': {
+    quality_bar: 'STANDARD', risk_rank: 5, platform: 'any',
+    skills: ['orchestra-video'],
+    trigger_conditions: ['The deliverable is a rendered mp4', 'The brief names HyperFrames for an mp4 file'],
+    skip_conditions: ['The job is scroll animation', 'The deliverable is a slide deck'],
+  },
+  'deployed-errors': {
+    quality_bar: 'STANDARD', risk_rank: 2, platform: 'any',
+    skills: ['ship-safe', 'orchestra-observability'],
+    trigger_conditions: [
+      'A deployed application is throwing a production error',
+      'The brief names a production error in a shipped app',
+    ],
+    skip_conditions: ['The request is to scan a third-party URL', 'The job is a local bug with no deployment'],
+  },
+  'career-notes': {
+    quality_bar: 'STANDARD', risk_rank: 2, platform: 'any',
+    skills: ['orchestra-career'],
+    trigger_conditions: [
+      'The job is to tailor a CV from notes already on disk',
+      'The brief asks for a role brief from notes the human already has',
+    ],
+    skip_conditions: ['The request is to scrape a job board', 'The request is to apply on the human behalf'],
+  },
+  'architecture-diagram': {
+    quality_bar: 'STANDARD', risk_rank: 2, platform: 'any',
+    skills: ['diagram-generator', 'pretty-mermaid'],
+    trigger_conditions: ['The deliverable is one architecture diagram'],
+    skip_conditions: ['The request wants a second diagram system', 'The request fills a README with charts'],
+  },
+  'nextjs-speed': {
+    quality_bar: 'STANDARD', risk_rank: 2, platform: 'any',
+    skills: ['react-best-practices'],
+    trigger_conditions: ['The job is Next.js speed or a request waterfall', 'The brief asks about a published package size'],
+    skip_conditions: ['The job is a visual redesign', 'The request is a bulk install of Vercel skills'],
   },
 };
 
@@ -268,7 +413,7 @@ for (const [id, cap] of Object.entries(graph.capabilities)) {
   if (typeof cap.risk_rank !== 'number') problems.push(`${id}: no risk_rank`);
 }
 
-graph.version = '3.3.6';
+graph.version = '4.0.0';
 
 // Schema must allow the new fields (additionalProperties is false).
 const schema = JSON.parse(fs.readFileSync(SCHEMA, 'utf8'));

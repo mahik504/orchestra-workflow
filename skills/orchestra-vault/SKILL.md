@@ -3,15 +3,15 @@ name: orchestra-vault
 description: Maintain the private Orchestra workspace and its memory. Jump one note. Lasting files only. Record real outcomes, never synthetic ones. No secrets.
 ---
 
-# Orchestra vault — 3.3.6
+# Orchestra vault — 4.0.0
 
-**BRAIN = MEMORY.** The workspace is where Orchestra remembers; it is not a second control plane.
+**BRAIN = MEMORY.** The workspace is where Orchestra remembers; it is not a second control plane. Claude-Mem is not a second brain.
 
-Root: the private workspace created by `kit/init-workspace`, or the path named in `WORKFLOW.md`. Not this public repo.
+Root: the private vault on the operator's machine. It is not a path in this method repo. The vault MCP can read it. Do not paste that path into a public file.
 
 ## Read
 
-Do not open the whole workspace. `routes.md` → one file → the app repo. Catalog files only when asked to catalog.
+Do not open the whole workspace. `routes.md` → one file → the app repo. User preferences and stack stay in that vault. Catalog files only when asked to catalog.
 
 ## Layout
 

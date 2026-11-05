@@ -8,7 +8,7 @@ description: >
   the last commit", "review my PR", "is this over-engineered", /ponytail-review.
 ---
 
-Review a change like the senior developer who will be paged when it breaks.
+Review a change like the senior developer who will be paged when it breaks. gstack's review stages inform the order below. gstack is not installed.
 Order of importance: correct, safe, holds under load, tested, fast, lean.
 Lean still matters: every extra line must be read, tested and fixed later.
 This is a report the user asked for, so give it in full.

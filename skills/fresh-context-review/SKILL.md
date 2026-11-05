@@ -7,7 +7,7 @@ description: Independent review of a completed phase from a clean context. Ask w
 
 Job-loaded. Skip unless the human said a milestone is ready for review, pre-release, or named `fresh-context-review`.
 
-This is a critic, not a planner. The conductor remains the chat the human is talking to.
+This is a critic, not a planner. The conductor remains the chat the human is talking to. gstack's review roles inform this pass. gstack is not installed and does not open a plan.
 
 ## Skip
 

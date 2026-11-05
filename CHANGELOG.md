@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.0.0] - Routed skills, same conductor
+
+*The pin in `VERSION` is 4.0.0. There is no study in this repository that shows Orchestra produces better pages than a raw host. The saved one-line Go pair is still the same 183-byte change, and Orchestra was slower. That pair does not score a website.*
+
+- Eight original skills: focus, presentation, research, typescript, observability, video, marketing, career. The allowlist cap stays 80. Canonical skill count is 73.
+- The Deck row stays. Deck or slides also loads `orchestra-presentation`.
+- One control loads `none` and still classifies `interaction-components`. The component order is existing project components, shadcn, React Bits, Watermelon when the reference row exists, Magic UI or Aceternity, Motion Primitives, then GSAP only for scroll.
+- Watermelon is a REFERENCE row. No Watermelon MCP and no Sentry MCP.
+- ECC, GSD, BMAD, gstack, and Claude-Mem are not installed as systems. Methods that belonged in a file we already had were written there.
+- No new packages in this method repo.
+- A capability names the skill folders it loads. The classifier resolves those IDs and the MCP candidates that route already lists. A route-owned ID is kept even when the keyword filter would drop it. An unhealthy optional tool is skipped. An unhealthy required tool stops for a human. The gateway does not install or call a tool. `capability.json` records the skills, resources, and tools. A registry row is not a connected tool.
+
 ## [3.3.6] - Green release checks
 
 *The pin in `VERSION` is 3.3.6. This is not a claim that output beats a raw host.*
@@ -12,6 +24,7 @@
 - The routing table is copied into the host files. `Load:` and `Skip:` are printed before a write. A check fails if a named skill is missing. `docx`, `pptx`, `pdf`, and `xlsx` stay host-provided.
 - Graphify, the unused GSAP catalogs, Obsidian Bases, and JSON Canvas sit in `templates/shelf/`. Skill drafts and taste edits live in the vault skill.
 - `templates/starters/next-react/` is a current Next app with lint, typecheck, build, and a Lighthouse job that warns. `templates/packs/hackathon.md` is one day and one demo.
+- The public page is `README.md`, with the install prompt and the comparison in behavior. Phase reports under `docs/3.3.1/`, `docs/3.3.2/`, `docs/3.3.5/`, `docs/3.3.6/`, and `docs/history/` are not in the tree.
 
 ## [3.3.5] - One contract, open skills, kind-based design bar
 

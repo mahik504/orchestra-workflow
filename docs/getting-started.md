@@ -5,11 +5,10 @@ The **chat is Orchestra**. After bootstrap, open the app repo plus your private 
 This repository is the **Orchestra Workflow** (public method). Your notes and products belong in a **separate private Brain**. Named skills, MCP templates, and the public resource catalog ship with the clone. Your taste, keys, and overlay memory do not.
 
 ```
-clone → bootstrap (pick hosts) → paste your keys → restart → chat
-optional: persist ORCHESTRA_HOME, install orchestra.exe, doctor / classify / plan
+clone → bootstrap (pick hosts) → sign in to GitHub, Playwright, and Context7 → set ORCHESTRA_VAULT → restart → chat
 ```
 
-Reference URLs (awwwards, shadcn/ui, GSAP, R3F, Drei, React Bits, …) live in [`registries/resources.json`](../registries/resources.json). Host extras (Gmail, Stripe, …) are a **checklist**, not a git install. See [`registries/host-stack.json`](../registries/host-stack.json).
+Reference URLs live in [`registries/resources.json`](../registries/resources.json). Host extras are a checklist, not a git install. See [`registries/host-stack.json`](../registries/host-stack.json). The install prompt is in the README.
 
 ## 1. Clone
 
@@ -47,7 +46,7 @@ Bootstrap will:
 2. Copy the canonical skills onto the hosts you picked.
 3. Copy `AGENTS.md` and the matching adapter (`.cursorrules`, `CLAUDE.md`, Antigravity MASTER-PROMPT).
 4. Write MCP **templates** with `REPLACE_WITH_*` placeholders. It will not overwrite a live `mcp_config.json`.
-5. Print the marketplace plugin checklist. You click Connect. Orchestra cannot log into Google, Stripe, or Stitch for you.
+5. Print the marketplace plugin checklist. You click Connect. Sign in to GitHub, Playwright, and Context7 on Cursor, Antigravity, and Claude Code. The token stays in the host. GitHub is for reading the repo, reviewing a diff, and opening a pull request. Orchestra does not push `main` for you.
 
 It does **not** run `npx skills add --all`. It does not copy anyone's Brain.
 
@@ -55,7 +54,7 @@ It does **not** run `npx skills add --all`. It does not copy anyone's Brain.
 
 1. Open **the app repo** you are building. Add the private workspace as a second folder.
 2. Paste API keys in the **agent's** MCP UI — never in git.
-3. Edit workspace `Preferences.md` (your taste) and `routes.md` (your slugs).
+3. Set `ORCHESTRA_VAULT` to that private workspace. Edit `Preferences.md` and `routes.md` there.
 
 Restart the IDE. The next chat in that workspace reads `AGENTS.md`. Antigravity: still paste `kit/antigravity/MASTER-PROMPT.md` once per **new** AG chat (VAULT + APP ROOT). See [`kit/antigravity/ALWAYS-ON.md`](../kit/antigravity/ALWAYS-ON.md).
 
@@ -83,15 +82,15 @@ A fresh clone without `ORCHESTRA_HOME` writes only under that clone's `.orchestr
 
 ## 5. Route the task (in chat)
 
-Say what you are building. The conductor should:
+Say what you are building. Before any write, the conductor prints `Load:` and `Skip:` from the routing table in `AGENTS.md`.
 
-1. Re-brief (archetype, quality bar, platform, hard constraints).
-2. Classify into one capability. Load that route. Leave other routes closed.
-3. Open the **app repo** before trusting a brief.
+1. Re-brief: kind, quality bar, platform, hard constraints.
+2. Classify one capability. Load that route.
+3. Open the app repo before trusting a brief.
 
-PREMIUM / EXPERIMENTAL visual work: **Design Lab is a write lock**. Do not write product frontend files until golden stills are approved (`CONTRACT_APPROVED` then `ApproveStills`). Named visual refs = 3 translations, not a skip. Say `skip the lab` to bypass one task.
+Flagship and premium visual work wait for a contract and stills. College work and bugs skip the lab unless you say PREMIUM. A named visual reference takes three translations. Say **skip the lab** to bypass one task.
 
-Installing Stitch, Fiber, or Stripe does not load them on every prompt.
+Signing in to GitHub, Playwright, or Context7 does not load them on every prompt.
 
 ## 6. Load relevant capabilities
 

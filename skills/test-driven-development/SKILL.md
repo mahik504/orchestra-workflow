@@ -11,6 +11,8 @@ Write the test first. Watch it fail. Write minimal code to pass.
 
 **Core principle:** If you didn't watch the test fail, you don't know if it tests the right thing.
 
+This folder is the Superpowers test method Orchestra keeps. The Superpowers plugin does not start a plan. On a Vite repo, the test runner is Vitest when that repo already uses it.
+
 **Violating the letter of the rules is violating the spirit of the rules.**
 
 ## When to Use

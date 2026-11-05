@@ -15,17 +15,27 @@ if (!fs.existsSync(stackPath)) {
 
 const stack = JSON.parse(fs.readFileSync(stackPath, 'utf8'));
 
-if (stack.version !== '3.3.6') {
-  problems.push(`host-stack version is "${stack.version}", expected 3.3.6`);
+if (stack.version !== '4.0.0') {
+  problems.push(`host-stack version is "${stack.version}", expected 4.0.0`);
 }
 
+const schema = JSON.parse(fs.readFileSync(path.join(REPO, 'registries', 'schemas', 'host-stack.schema.json'), 'utf8'));
+const cap = schema.properties && schema.properties.skills && schema.properties.skills.maxItems;
+if (cap !== 80) problems.push(`host-stack maxItems is ${cap}, expected 80`);
+
 const listed = Array.isArray(stack.skills) ? stack.skills : [];
+// Host copies that stay on this PC and are not canonical skills.
+const hostLocal = new Set(['docx', 'pdf', 'pptx', 'xlsx', 'fullstack-mastery', 'creative-3d-web']);
 const dirs = fs.readdirSync(skillsDir).filter((n) => {
+  if (hostLocal.has(n)) return false;
   const p = path.join(skillsDir, n);
   return fs.statSync(p).isDirectory() && fs.existsSync(path.join(p, 'SKILL.md'));
 }).sort();
 
 const listedSorted = [...listed].sort();
+const unique = new Set(listed);
+if (unique.size !== listed.length) problems.push('host-stack skills has duplicate IDs');
+if (listed.length !== 73) problems.push(`host-stack skill count is ${listed.length}, expected 73`);
 if (listedSorted.length !== dirs.length) {
   problems.push(`skill count mismatch: host-stack has ${listedSorted.length}, skills/ has ${dirs.length}`);
 }

@@ -1,6 +1,6 @@
-# AGENTS — Orchestra 3.3.6
+# AGENTS — Orchestra 4.0.0
 
-You are running **Orchestra 3.3.6**. One contract, one conductor, open skills. Not a second toolbox.
+You are running **Orchestra 4.0.0**. One contract, one conductor, open skills. Not a second toolbox.
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
 
@@ -8,7 +8,7 @@ Host rules are adapters. They do not invent a second plan. If two hosts could pl
 
 ## Loop
 
-1. **Forge.** `prompt-forge` writes a short brief: intent, kind, route, acceptance, refs, constraints, out of scope. Then work. Ask only when a product decision is truly ambiguous. If it names a repo or a file, open the repo before trusting any brief.
+1. **Forge.** `prompt-forge` and `orchestra-focus` write a short brief: intent, kind, route, acceptance, refs, constraints, out of scope. Then work. Ask only when a product decision is truly ambiguous. If it names a repo or a file, open the repo before trusting any brief.
 2. **Classify** one route from `registries/design-resource-graph.json`. Load that route, not every skill. The **graph** (`registries/design-resource-graph.json`) is capability routes. The registry is resource knowledge.
 3. **Kind** sets the design bar. `skip the lab` still bypasses it.
 
@@ -34,11 +34,37 @@ Print `Load:` and `Skip:` before writing. A skill the human names wins. A missin
 | Bug | systematic-debugging | the design lab |
 | Paper | research-paper, humanizer | invented citations |
 | Deck | orchestra-docs | host-provided pptx unless that host already has it |
+| Deck or slides | orchestra-docs, orchestra-presentation | copying a pptx skill file; purple template dumps |
+| Architecture diagram | diagram-generator, pretty-mermaid | a second diagram system; a README full of charts |
+| One control | none | loading every component kit; duplicating a control the project already has |
+| Next.js speed | react-best-practices | a redesign; a bulk Vercel skill install |
+| TypeScript review | orchestra-typescript | a visual redesign; a new framework |
+| Ship a deployed app | ship-safe, orchestra-observability | scanning a third-party URL; a global Sentry install |
+| What people said recently | orchestra-research | a last-30-days pack; scraping; posting; DMs |
+| Marketing copy | orchestra-marketing, humanizer | invented metrics; a design system rewrite |
+| Rendered video | orchestra-video | the GSAP route; installing a video suite into this method repo |
+| Career notes | orchestra-career | job-board scraping; applying on your behalf |
 | README and post | orchestra-ship, humanizer | posting for the human |
 | Binary or APK | not ready | rea until Java is installed and the target is yours, a client's, a CTF, or open source |
 | Hackathon or college | prompt-forge | the 23-card survey when a reference is named; the design lab for college unless the human says PREMIUM |
 | Docs on disk | host-provided | docx, pptx, pdf, and xlsx stay on the host. They are not in skills/ |
 <!-- routing:end -->
+
+## Precedence
+
+- `prompt-forge` and `orchestra-focus` run before classify.
+- One control loads `none`. Classify still opens `interaction-components`.
+- A slide deck uses the Deck or slides row.
+- Taste locks the visual world. Impeccable reviews a surface that already exists. One DESIGN.md. UI UX Pro Max is a method source for those two files, not a third design system.
+- One motion runtime per surface. GSAP owns scroll. A component catalog is not a runtime. If a sample needs a second engine, adapt it or pick another sample.
+- Playwright is the journey. Lighthouse is the perf budget. axe-core is violation evidence on a running page. Golden stills are the visual contract.
+- Ponytail is the diff. `ponytail-review` is the change. `ponytail-audit` is the repo. Graphify and Serena stay optional tools on that audit, not a second map.
+- `r3f-shaders` owns the one 3D scene. Do not load `creative-3d-web` beside it.
+- `backend-architecture` plus `react-best-practices` own the build. Do not load `fullstack-mastery` on top. The product note picks Supabase, Firebase, Clerk, Prisma, or Drizzle.
+- Superpowers, Caveman, GSD, BMAD, gstack, and ECC do not open a second plan.
+- The vault is the only long-term memory. Claude-Mem is not a second memory.
+- A large job becomes capsules with one owner. The acceptance line moves only when the human changes it.
+- A rendered video is HyperFrames in the product repo. It does not load the GSAP route. Worker capsules limit what a worker sees. Headroom is not installed.
 
 4. **Implement** only after the lab is cleared for visual work. A DESIGN.md is not visual evidence.
 5. **Verify** on the running app. `verification-before-completion` plus the ledger. Then `fresh-context-review`.

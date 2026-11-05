@@ -133,7 +133,7 @@ func TestPhase3F1_PublicSerialize(t *testing.T) {
 	if _, err := SerializePublic(PrivateFixtureMark+" marked public", true); err != nil {
 		t.Fatal(err)
 	}
-	ref, err := SerializePublic("docs/3.3.2/ORCHESTRA_3_3_2_ARCHITECTURE.md", false)
+	ref, err := SerializePublic("ARCHITECTURE.md", false)
 	if err != nil || strings.Contains(ref, "FULL COPY") {
 		t.Fatal(err)
 	}
@@ -232,17 +232,30 @@ func TestPhase3F1_RegistryCountsStayPut(t *testing.T) {
 		t.Fatal(err)
 	}
 	verified, unverified := SplitVerification(rows)
-	if len(rows) != 168 || verified != 42 || unverified != 126 {
+	if len(rows) != 175 || verified != 49 || unverified != 126 {
 		t.Fatalf("rows=%d verified=%d unverified=%d", len(rows), verified, unverified)
 	}
 	if verified == unverified {
 		t.Fatal("unverified counted as verified")
 	}
 	dated := 0
+	checkedOn := map[string]string{
+		"watermelon-ui":          "2026-11-05",
+		"archify":                "2026-11-05",
+		"understand-anything":    "2026-11-05",
+		"markitdown":             "2026-11-05",
+		"data-engineer-handbook": "2026-11-05",
+		"storybook":              "2026-11-05",
+		"chromatic":              "2026-11-05",
+	}
 	for _, row := range rows {
 		if ResourceVerified(row.LastVerified) {
 			dated++
-			if row.LastVerified != "2026-09-06" {
+			want := "2026-09-06"
+			if day, ok := checkedOn[row.ID]; ok {
+				want = day
+			}
+			if row.LastVerified != want {
 				t.Fatalf("%s date %s", row.ID, row.LastVerified)
 			}
 		}

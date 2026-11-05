@@ -43,6 +43,10 @@ Take the first option that fully works:
 
 Never cut: validation at trust boundaries, error handling that prevents data loss, security, accessibility, the calibration real hardware needs, anything the user asked for.
 
+## Karpathy
+
+Source: the community Karpathy guidelines. The repo is not installed. Think in the brief before editing. The smallest complete change is this skill. Touch only the code the request names. Done means `verification-before-completion` has a check, not a claim.
+
 ## Levels
 
 | Level | Behavior |

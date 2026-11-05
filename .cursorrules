@@ -1,8 +1,39 @@
-# Cursor adapter — Orchestra 3.3.6
+# Cursor adapter — Orchestra 4.0.0
 
 `AGENTS.md` is the contract. This file only maps it onto Cursor. It does not define a second orchestration policy.
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
+
+<!-- routing:start -->
+## Routing
+
+Print `Load:` and `Skip:` before writing. A skill the human names wins. A missing tool stops. It does not install itself.
+
+| Job | Load | Skip |
+| --- | --- | --- |
+| Award-style 3D / creative site | creative-3d-web, r3f-shaders, gsap-core, gsap-scrolltrigger, impeccable, taste-design, visual-golden-still | copying a reference site's files; a second motion stack |
+| Full-stack SaaS or web app | fullstack-mastery, backend-architecture, test-driven-development, verification-before-completion | the design lab; supabase and postgres-best-practices unless that product uses them |
+| Site to echo | visual-forensics, impeccable, taste-design | copying assets, copy, or a logo |
+| Scroll | gsap-core, gsap-scrolltrigger, gsap-timeline | gsap-react unless the motion lives in React components |
+| One 3D scene | r3f-shaders | 3D as decoration; a second motion engine |
+| SaaS or API | backend-architecture, test-driven-development | the design lab; supabase and postgres-best-practices unless that product uses them |
+| Bug | systematic-debugging | the design lab |
+| Paper | research-paper, humanizer | invented citations |
+| Deck or slides | orchestra-docs, orchestra-presentation | copying a pptx skill file; purple template dumps |
+| Architecture diagram | diagram-generator, pretty-mermaid | a second diagram system; a README full of charts |
+| One control | none | loading every component kit; duplicating a control the project already has |
+| Next.js speed | react-best-practices | a redesign; a bulk Vercel skill install |
+| TypeScript review | orchestra-typescript | a visual redesign; a new framework |
+| Ship a deployed app | ship-safe, orchestra-observability | scanning a third-party URL; a global Sentry install |
+| What people said recently | orchestra-research | a last-30-days pack; scraping; posting; DMs |
+| Marketing copy | orchestra-marketing, humanizer | invented metrics; a design system rewrite |
+| Rendered video | orchestra-video | the GSAP route; installing a video suite into this method repo |
+| Career notes | orchestra-career | job-board scraping; applying on your behalf |
+| README and post | orchestra-ship, humanizer | posting for the human |
+| Binary or APK | not ready | rea until Java is installed and the target is yours, a client's, a CTF, or open source |
+| Hackathon or college | prompt-forge | the 23-card survey when a reference is named; the design lab for college unless the human says PREMIUM |
+| Docs on disk | host-provided | docx, pptx, pdf, and xlsx stay on the host. They are not in skills/ |
+<!-- routing:end -->
 
 ## The loop in Cursor
 
@@ -12,12 +43,26 @@
 4. **Verify on the real app** with the browser tools or `orchestra verify`. Multi-viewport, zero console errors, no horizontal overflow on mobile.
 5. **Correctness review**, then a separate **simplify review**.
 
-## Cursor specifics
+## Code Quality & Engineering Standards
 
-- Subagents carry work this chat's model is weak at. Do not spawn agents just to look parallel.
-- Cursor plugins are **optional host capabilities**. Use one when the job names it.
-- GetLayers: do not Connect while `PURCHASE_PENDING`.
-- After skill changes, run `kit/sync-ides.ps1` so jcode and Claude dirs match.
+- **Zero-Stub Policy**: Never emit `// TODO`, `// Add implementation here`, or truncated placeholders. Provide complete, fully-implemented, compilable production code.
+- **Strict Full-Stack Standards**: Follow `fullstack-mastery` — TypeScript strict mode (no `any`), Zod input validation on all Server Actions and API boundaries, TanStack Query for dynamic caching, and resilient error/loading boundaries.
+- **Award-Winning 3D & Creative Web**: Follow `creative-3d-web` and `r3f-shaders` — 60fps frame budgets, clamped DPR (`[1, 2]`), custom GLSL shaders, strict WebGL memory disposal, and seamless Lenis + GSAP ScrollTrigger choreographies.
+- **Integrity**: Maintain documentation integrity, preserve existing comments and structure, and verify in the real runtime before claiming completion.
+
+## Skills, MCP, and Resource Knowledge
+
+The canonical skills are the folders in `skills/`. The allowlist cap is 80.
+
+Core MCP servers:
+- **vault**: The private memory vault. Read `routes.md` first, then one note. Taste lives in that vault's preferences. Do not copy the vault path into this repo.
+- **stitch**: Google Stitch MCP for UI design system generation, tokens, and visual variants.
+- **playwright**: Browser automation and multi-viewport screenshots for real visual verification.
+- **context7**: Up-to-date framework & library documentation resolver.
+
+Resource Libraries:
+- Master Resource Catalog: `registries/resources.json` (use `resource-scout` to query trigger tags).
+- Design Resource Graph: `registries/design-resource-graph.json`.
 
 ## Evidence-first
 

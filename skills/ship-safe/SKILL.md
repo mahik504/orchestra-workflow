@@ -62,3 +62,7 @@ If Docker/Strix is not installed yet, say so and give the install steps. Do not 
 ## Output
 
 When you add security or CI, also add a short review note in the vault so Claude/Antigravity can audit it later.
+
+## When the app is deployed
+
+`orchestra-observability` covers the tracker, traces, and dependency or image scans in that product repo. OWASP ASVS is the acceptance list for auth and access control. This skill does not replace those checks, and it does not scan a site the operator does not own.

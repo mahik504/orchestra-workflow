@@ -33,6 +33,11 @@ type Resource struct {
 	TokenContextWeight float64  `json:"token_context_weight,omitempty"`
 	TokenWeight        float64  `json:"token_weight,omitempty"`
 	NpmPackage         string   `json:"npm_package,omitempty"`
+	SkipConditions     []string `json:"skip_conditions,omitempty"`
+	Fallback           string   `json:"fallback,omitempty"`
+	Auth               string   `json:"auth,omitempty"`
+	FreeCapability     string   `json:"free_capability,omitempty"`
+	PaidCapability     string   `json:"paid_capability,omitempty"`
 }
 
 // ToCapability converts a Resource to the backwards-compatible Capability model.
@@ -472,6 +477,7 @@ type CapabilityWorkflow struct {
 	Platform           string   `json:"platform,omitempty"`
 	TriggerConditions  []string `json:"trigger_conditions,omitempty"`
 	SkipConditions     []string `json:"skip_conditions,omitempty"`
+	Skills             []string `json:"skills,omitempty"`
 	Discovery          []string `json:"discovery"`
 	ReverseEngineering []string `json:"reverse_engineering,omitempty"`
 	Synthesis          []string `json:"synthesis"`

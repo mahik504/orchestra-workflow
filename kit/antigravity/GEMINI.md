@@ -1,8 +1,8 @@
-# Orchestra 3.3.6 — Antigravity global adapter
+# Orchestra 4.0.0 — Antigravity global adapter
 
-<!-- BEGIN ORCHESTRA 3.3.6 -->
+<!-- BEGIN ORCHESTRA 4.0.0 -->
 
-You are running **Orchestra 3.3.6**. This file is an adapter. It does not invent a second loop. 3.3.6 is governance on the same OS. Visual evidence gate. Not a bigger toolbox.
+You are running **Orchestra 4.0.0**. This file is an adapter. It does not invent a second loop. 4.0.0 is governance on the same OS. Visual evidence gate. Not a bigger toolbox.
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
 
@@ -21,6 +21,16 @@ Print `Load:` and `Skip:` before writing. A skill the human names wins. A missin
 | Bug | systematic-debugging | the design lab |
 | Paper | research-paper, humanizer | invented citations |
 | Deck | orchestra-docs | host-provided pptx unless that host already has it |
+| Deck or slides | orchestra-docs, orchestra-presentation | copying a pptx skill file; purple template dumps |
+| Architecture diagram | diagram-generator, pretty-mermaid | a second diagram system; a README full of charts |
+| One control | none | loading every component kit; duplicating a control the project already has |
+| Next.js speed | react-best-practices | a redesign; a bulk Vercel skill install |
+| TypeScript review | orchestra-typescript | a visual redesign; a new framework |
+| Ship a deployed app | ship-safe, orchestra-observability | scanning a third-party URL; a global Sentry install |
+| What people said recently | orchestra-research | a last-30-days pack; scraping; posting; DMs |
+| Marketing copy | orchestra-marketing, humanizer | invented metrics; a design system rewrite |
+| Rendered video | orchestra-video | the GSAP route; installing a video suite into this method repo |
+| Career notes | orchestra-career | job-board scraping; applying on your behalf |
 | README and post | orchestra-ship, humanizer | posting for the human |
 | Binary or APK | not ready | rea until Java is installed and the target is yours, a client's, a CTF, or open source |
 | Hackathon or college | prompt-forge | the 23-card survey when a reference is named; the design lab for college unless the human says PREMIUM |
@@ -31,7 +41,7 @@ Fill VAULT and ENGINE once on your machine. If the vault is not in this workspac
 
 ## Mode
 
-- Default: **conductor**. Talk normally. Run the 3.3.6 loop. Do not wait for a pasted MASTER-PROMPT.
+- Default: **conductor**. Talk normally. Run the 4.0.0 loop. Do not wait for a pasted MASTER-PROMPT.
 - Step 0 is prompt-forge. Show a short brief, then work. Ask only when the task is truly ambiguous.
 - If the human pastes `MODE: specialist` or a Cursor packet: you are a worker. Do that packet only. Write `projects/<slug>/handoff.md`. Do not start a second plan.
 
@@ -59,4 +69,4 @@ MCP: `HEALTHY` / `OPTIONAL` / `AUTH_REQUIRED` / `BROKEN` / `DISABLED` / `PURCHAS
 
 `DONE / FIXED / VERIFIED / PASSED / SHIPPED` need observed evidence in the same message.
 
-Say **skip orchestra** to stand this down. Say **skip the lab** to bypass Design Lab for one task. `ORCHESTRA_CONTRACT` unset means 3.3.6. Plain text. Not a slash command.
+Say **skip orchestra** to stand this down. Say **skip the lab** to bypass Design Lab for one task. `ORCHESTRA_CONTRACT` unset means 4.0.0. Plain text. Not a slash command.

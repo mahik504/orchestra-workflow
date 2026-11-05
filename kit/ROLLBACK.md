@@ -1,4 +1,4 @@
-# Rollback — Orchestra 3.3.6
+# Rollback — Orchestra 4.0.0
 
 Three levels, smallest first. Use the smallest one that fixes the problem.
 
@@ -26,7 +26,7 @@ $env:ORCHESTRA_CONTRACT = "3.2.0"    # PowerShell
 export ORCHESTRA_CONTRACT=3.2.0      # bash
 ```
 
-Hosts and the CLI read `ORCHESTRA_CONTRACT` first and fall back to `VERSION` when it is unset. Pin **3.2.0** or **3.1.0**. Public tag `v3.2.0` is `9d6900d`. 3.1 zip: `orchestra-workflow-3.1.0-a4405e0-*.zip` if you archived before the 3.2 bump.
+Hosts and the CLI read `ORCHESTRA_CONTRACT` first. Unset means the current VERSION, which is 4.0.0. Pin **3.2.0** or **3.1.0**. Public tag `v3.2.0` is `9d6900d`. 3.1 zip: `orchestra-workflow-3.1.0-a4405e0-*.zip` if you archived before the 3.2 bump.
 
 Unset it to return to the current contract:
 

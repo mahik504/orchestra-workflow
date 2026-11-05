@@ -11,6 +11,8 @@ Random fixes waste time and create new bugs. Quick patches mask underlying issue
 
 **Core principle:** ALWAYS find root cause before attempting fixes. Symptom fixes are failure.
 
+This folder is the Superpowers debug method Orchestra keeps. The Superpowers plugin does not start a plan.
+
 **Violating the letter of this process is violating the spirit of debugging.**
 
 ## The Iron Law

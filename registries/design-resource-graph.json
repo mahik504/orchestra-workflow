@@ -1,7 +1,7 @@
 {
   "$schema": "./schemas/design-resource-graph.schema.json",
-  "version": "3.3.6",
-  "description": "Canonical Orchestra V3 Capability-to-Resource Execution Graph mapping task archetypes across Discovery, Synthesis, Implementation, and QA phases.",
+  "version": "4.0.0",
+  "description": "Canonical Orchestra 4.0.0 Capability-to-Resource Execution Graph mapping task archetypes across Discovery, Synthesis, Implementation, and QA phases.",
   "domains": {
     "visual_research": [
       "awwwards",
@@ -92,6 +92,7 @@
     "interaction_components": [
       "shadcn-ui",
       "react-bits",
+      "watermelon-ui",
       "kokonut-ui",
       "cult-ui",
       "hyperui",
@@ -312,6 +313,14 @@
         "The product is a dense data tool — route to saas-dashboard or b2b-portal",
         "The human said \"skip the lab\" and only wants the page wired up",
         "A 3D scene is the point rather than the decoration — route to 3d-portfolio"
+      ],
+      "skills": [
+        "impeccable",
+        "taste-design",
+        "visual-golden-still",
+        "gsap-core",
+        "gsap-scrolltrigger",
+        "gsap-timeline"
       ]
     },
     "3d-portfolio": {
@@ -368,6 +377,9 @@
         "Physics simulation is the point rather than presentation — route to physics-canvas",
         "Checkout or an orders console is the job rather than a spatial scene",
         "PlayCanvas or any WebGPU engine is named without showing why CSS, DOM, Canvas 2D, or R3F cannot produce the result — keep PROJECT_ONLY / EXPERIMENTAL"
+      ],
+      "skills": [
+        "r3f-shaders"
       ]
     },
     "operator-hud": {
@@ -574,6 +586,10 @@
         "The job is a reading viewer or arXiv app — route to academic-reader",
         "The brief is a marketing page about research",
         "The request is a UI or dashboard, not a document"
+      ],
+      "skills": [
+        "research-paper",
+        "humanizer"
       ]
     },
     "micro-interactions": {
@@ -721,6 +737,10 @@
         "The screens are records and forms rather than charts — route to b2b-portal",
         "The surface is live operational control — route to operator-hud",
         "The page is public marketing — route to premium-website"
+      ],
+      "skills": [
+        "backend-architecture",
+        "test-driven-development"
       ]
     },
     "mobile-app": {
@@ -816,6 +836,9 @@
         "The target is not owned by the human — never scan someone else's system",
         "The request is a feature build; security review is a later gate, not this route",
         "The finding is a plain bug with no security consequence"
+      ],
+      "skills": [
+        "ship-safe"
       ]
     },
     "reverse-engineering": {
@@ -883,7 +906,7 @@
     },
     "interaction-components": {
       "name": "Interaction component search",
-      "description": "Search registered free component kits for one control. Inspect existing project components before generating another. Synthesize into the approved design system — not a collage.",
+      "description": "Search registered free component kits for one control. Inspect existing project components before generating another. Pick one source in order: existing components, shadcn for app chrome, React Bits for one interaction, Watermelon for one production-style block when the reference row exists, Magic UI or Aceternity for one marketing effect, Motion Primitives for one motion on the current runtime, GSAP only when the route is scroll. A catalog is not a second motion runtime. Synthesize into the approved design system — not a collage.",
       "primary_archetype": "interaction_design",
       "trigger_tags": [
         "interaction-components",
@@ -897,6 +920,7 @@
         "command-button",
         "hold-button",
         "react-bits",
+        "watermelon",
         "kokonut",
         "cult-ui",
         "hyperui",
@@ -931,16 +955,19 @@
       "platform": "web",
       "trigger_conditions": [
         "The unit of work is a control (button, card, drawer, input), not a whole product",
-        "The brief names a kit (shadcn, React Bits, Magic UI, Aceternity, Kokonut, Cult, HyperUI, Tailkit free, 21st free, Motion Primitives)",
+        "The brief names a kit (shadcn, React Bits, Watermelon, Magic UI, Aceternity, Kokonut, Cult, HyperUI, Tailkit free, 21st free, Motion Primitives)",
         "The brief names a control kind: primary, secondary, destructive, loading, success, disabled, icon, magnetic, shimmer, gradient, ripple, particle, liquid, glass, command, hold, stateful",
-        "Existing project components must be inspected before generating another"
+        "Existing project components must be inspected before generating another",
+        "Pick one source in this order: existing project components, then shadcn for app chrome, then React Bits for one interaction, then Watermelon for one production-style block when the reference row exists, then Magic UI or Aceternity for one marketing effect, then Motion Primitives for one motion on the current runtime, then GSAP only when the route is scroll"
       ],
       "skip_conditions": [
         "The job is a full page, product, or app — route to premium-website, saas-dashboard, mobile-app, or 3d-portfolio first",
         "No product surface exists yet to attach the control to",
         "3D/WebGL is the point — route to 3d-portfolio",
-        "The platform is native mobile — route to mobile-app"
-      ]
+        "The platform is native mobile — route to mobile-app",
+        "A sample that needs a second motion runtime"
+      ],
+      "skills": []
     },
     "visual-forensics": {
       "name": "Visual forensics and reference benchmark",
@@ -994,6 +1021,9 @@
         "No named site, screenshot, or public source was supplied",
         "The intent is to copy branding, assets, copy, or source",
         "A locked DESIGN.md and golden stills already exist and the job is implementation"
+      ],
+      "skills": [
+        "visual-forensics"
       ]
     },
     "visual-golden-still": {
@@ -1130,6 +1160,256 @@
         "The verification ledger is not green",
         "The human has not approved production readiness",
         "The request is to change product behaviour or visuals — that is not showcase"
+      ],
+      "skills": [
+        "orchestra-ship"
+      ]
+    },
+    "typescript-review": {
+      "name": "TypeScript review",
+      "description": "Types at the boundary. orchestra-typescript is the instruction. Not a visual route.",
+      "primary_archetype": "type_review",
+      "trigger_tags": [
+        "typescript-review",
+        "zod-boundary"
+      ],
+      "discovery": [],
+      "synthesis": [],
+      "implementation": [],
+      "qa": [],
+      "quality_bar": "STANDARD",
+      "risk_rank": 2,
+      "platform": "any",
+      "trigger_conditions": [
+        "The job is a TypeScript review of types at a boundary",
+        "The brief names Zod or a typed parser at the edge of the program"
+      ],
+      "skip_conditions": [
+        "The job is a visual redesign",
+        "The job is to adopt a new framework"
+      ],
+      "skills": [
+        "orchestra-typescript"
+      ]
+    },
+    "slides": {
+      "name": "Slide deck",
+      "description": "A slide deck. orchestra-docs owns the file. orchestra-presentation owns the story.",
+      "primary_archetype": "slides",
+      "trigger_tags": [
+        "deck-or-slides",
+        "slide-deck",
+        "speaker-notes"
+      ],
+      "discovery": [],
+      "synthesis": [],
+      "implementation": [],
+      "qa": [],
+      "quality_bar": "STANDARD",
+      "risk_rank": 2,
+      "platform": "any",
+      "trigger_conditions": [
+        "The deliverable is a slide deck",
+        "The brief asks for speaker notes on slides"
+      ],
+      "skip_conditions": [
+        "The job is a methods paper or a thesis",
+        "The deliverable is a rendered mp4"
+      ],
+      "skills": [
+        "orchestra-docs",
+        "orchestra-presentation"
+      ]
+    },
+    "recent-research": {
+      "name": "Recent public research",
+      "description": "What people said recently. Dated sources. Not a thesis.",
+      "primary_archetype": "recent_research",
+      "trigger_tags": [
+        "recent-research",
+        "what-people-said"
+      ],
+      "discovery": [],
+      "synthesis": [],
+      "implementation": [],
+      "qa": [],
+      "quality_bar": "STANDARD",
+      "risk_rank": 2,
+      "platform": "any",
+      "trigger_conditions": [
+        "The question is what people said recently in public",
+        "Public discussions from the last month need a dated source"
+      ],
+      "skip_conditions": [
+        "The job is a methods paper or a thesis",
+        "The request asks to scrape, post, or send messages"
+      ],
+      "skills": [
+        "orchestra-research"
+      ]
+    },
+    "marketing-copy": {
+      "name": "Marketing copy",
+      "description": "Page title and on-page wording. Not a new visual world.",
+      "primary_archetype": "marketing_copy",
+      "trigger_tags": [
+        "marketing-copy",
+        "page-title",
+        "on-page-wording"
+      ],
+      "discovery": [],
+      "synthesis": [],
+      "implementation": [],
+      "qa": [],
+      "quality_bar": "STANDARD",
+      "risk_rank": 2,
+      "platform": "any",
+      "trigger_conditions": [
+        "The job is the page title or the on-page wording",
+        "The brief asks for a positioning line"
+      ],
+      "skip_conditions": [
+        "The job is a visual redesign or a new design system",
+        "The request invents a metric"
+      ],
+      "skills": [
+        "orchestra-marketing",
+        "humanizer"
+      ]
+    },
+    "rendered-video": {
+      "name": "Rendered video",
+      "description": "A rendered mp4 in the product repo. Not the scroll route and not a slide deck.",
+      "primary_archetype": "rendered_video",
+      "trigger_tags": [
+        "rendered-video",
+        "rendered-mp4"
+      ],
+      "discovery": [],
+      "synthesis": [],
+      "implementation": [],
+      "qa": [],
+      "quality_bar": "STANDARD",
+      "risk_rank": 5,
+      "platform": "any",
+      "trigger_conditions": [
+        "The deliverable is a rendered mp4",
+        "The brief names HyperFrames for an mp4 file"
+      ],
+      "skip_conditions": [
+        "The job is scroll animation",
+        "The deliverable is a slide deck"
+      ],
+      "skills": [
+        "orchestra-video"
+      ]
+    },
+    "deployed-errors": {
+      "name": "Deployed production errors",
+      "description": "An error in an application that is already deployed. Not a third-party scan.",
+      "primary_archetype": "deployed_errors",
+      "trigger_tags": [
+        "deployed-errors",
+        "production-error"
+      ],
+      "discovery": [],
+      "synthesis": [],
+      "implementation": [],
+      "qa": [],
+      "quality_bar": "STANDARD",
+      "risk_rank": 2,
+      "platform": "any",
+      "trigger_conditions": [
+        "A deployed application is throwing a production error",
+        "The brief names a production error in a shipped app"
+      ],
+      "skip_conditions": [
+        "The request is to scan a third-party URL",
+        "The job is a local bug with no deployment"
+      ],
+      "skills": [
+        "ship-safe",
+        "orchestra-observability"
+      ]
+    },
+    "career-notes": {
+      "name": "Career notes",
+      "description": "Tailor a CV from notes already on disk. The human submits.",
+      "primary_archetype": "career_notes",
+      "trigger_tags": [
+        "career-notes",
+        "role-brief"
+      ],
+      "discovery": [],
+      "synthesis": [],
+      "implementation": [],
+      "qa": [],
+      "quality_bar": "STANDARD",
+      "risk_rank": 2,
+      "platform": "any",
+      "trigger_conditions": [
+        "The job is to tailor a CV from notes already on disk",
+        "The brief asks for a role brief from notes the human already has"
+      ],
+      "skip_conditions": [
+        "The request is to scrape a job board",
+        "The request is to apply on the human behalf"
+      ],
+      "skills": [
+        "orchestra-career"
+      ]
+    },
+    "architecture-diagram": {
+      "name": "Architecture diagram",
+      "description": "One diagram. Mermaid stays the renderer.",
+      "primary_archetype": "architecture_diagram",
+      "trigger_tags": [
+        "architecture-diagram"
+      ],
+      "discovery": [],
+      "synthesis": [],
+      "implementation": [],
+      "qa": [],
+      "quality_bar": "STANDARD",
+      "risk_rank": 2,
+      "platform": "any",
+      "trigger_conditions": [
+        "The deliverable is one architecture diagram"
+      ],
+      "skip_conditions": [
+        "The request wants a second diagram system",
+        "The request fills a README with charts"
+      ],
+      "skills": [
+        "diagram-generator",
+        "pretty-mermaid"
+      ]
+    },
+    "nextjs-speed": {
+      "name": "Next.js speed",
+      "description": "A Next.js speed pass. Not a visual redesign.",
+      "primary_archetype": "nextjs_speed",
+      "trigger_tags": [
+        "nextjs-speed",
+        "next.js"
+      ],
+      "discovery": [],
+      "synthesis": [],
+      "implementation": [],
+      "qa": [],
+      "quality_bar": "STANDARD",
+      "risk_rank": 2,
+      "platform": "any",
+      "trigger_conditions": [
+        "The job is Next.js speed or a request waterfall",
+        "The brief asks about a published package size"
+      ],
+      "skip_conditions": [
+        "The job is a visual redesign",
+        "The request is a bulk install of Vercel skills"
+      ],
+      "skills": [
+        "react-best-practices"
       ]
     }
   }

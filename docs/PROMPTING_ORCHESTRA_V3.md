@@ -1,11 +1,18 @@
-# Prompting Orchestra 3.3
+# Prompting Orchestra 4.0.0
 
-A brief still needs intent, context, constraints, and what done looks like. Orchestra 3.3 classifies that brief against `registries/design-resource-graph.json`. It does not invent a second prompting language.
+Read [`AGENTS.md`](../AGENTS.md). The agent prints `Load:` and `Skip:` from the routing table before it writes. A skill you name wins. A missing tool stops. The 23-card lab still applies when the job is open premium visual work.
 
-Read [`AGENTS.md`](../AGENTS.md) and [`WORKFLOW.md`](../WORKFLOW.md).
-
-- Name the product type (restaurant site, school SaaS, 3D portfolio) so the classifier can pick a route.
-- For showable UI, Design Lab is 23 short cards then one `DESIGN.md` — or say `skip the lab`. If you name a site, skill, MCP, pack, or paste a `DESIGN.md`, that outranks the graph.
+- Say the kind: college, personal, client, or hiring-cv.
+- A named visual reference takes three translations, then one contract, then stills.
+- College work skips the design lab unless you say PREMIUM.
+- A bug loads `systematic-debugging` and skips the lab.
+- A deck loads `orchestra-docs`. A slide story also loads `orchestra-presentation`.
+- A diagram loads `diagram-generator` and `pretty-mermaid`.
+- One control loads `none`. Classify still opens `interaction-components`.
+- Next.js speed loads `react-best-practices`. A TypeScript review loads `orchestra-typescript`.
+- A deployed app loads `ship-safe` and `orchestra-observability`.
+- A question about recent public talk loads `orchestra-research`.
+- Marketing copy loads `orchestra-marketing` and `humanizer`.
+- A rendered video loads `orchestra-video` and does not load GSAP.
+- Career notes load `orchestra-career`. You still submit.
 - Say **skip orchestra** to stand the contract down for the session.
-
-Host adapters (`.cursorrules`, `CLAUDE.md`) translate syntax. They do not replace the re-brief or the gate.

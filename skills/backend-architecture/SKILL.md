@@ -22,4 +22,6 @@ Write the shape before the handlers. There is no 23-card survey.
 
 `test-driven-development` for the behavior. `supabase` and `postgres-best-practices` only if this product uses them. `ship-safe` when the change touches auth, public routes, or secrets.
 
+The product note picks Supabase, Firebase, Clerk, Prisma, or Drizzle. This skill does not.
+
 Do not add a service, a queue, or a second database until a route needs it.

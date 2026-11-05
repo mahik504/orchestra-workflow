@@ -22,3 +22,5 @@ Guidelines source (fetch fresh):
 ```
 https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/command.md
 ```
+
+On a running page, axe-core violations are evidence. This guideline fetch stays the review. Keyboard and screen reader stay manual.

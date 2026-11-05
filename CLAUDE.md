@@ -1,4 +1,4 @@
-# Claude Code adapter — Orchestra 3.3.6
+# Claude Code adapter — Orchestra 4.0.0
 
 `AGENTS.md` is the contract. This file only maps it onto Claude Code. It does not define a second orchestration policy.
 
@@ -19,6 +19,16 @@ Print `Load:` and `Skip:` before writing. A skill the human names wins. A missin
 | Bug | systematic-debugging | the design lab |
 | Paper | research-paper, humanizer | invented citations |
 | Deck | orchestra-docs | host-provided pptx unless that host already has it |
+| Deck or slides | orchestra-docs, orchestra-presentation | copying a pptx skill file; purple template dumps |
+| Architecture diagram | diagram-generator, pretty-mermaid | a second diagram system; a README full of charts |
+| One control | none | loading every component kit; duplicating a control the project already has |
+| Next.js speed | react-best-practices | a redesign; a bulk Vercel skill install |
+| TypeScript review | orchestra-typescript | a visual redesign; a new framework |
+| Ship a deployed app | ship-safe, orchestra-observability | scanning a third-party URL; a global Sentry install |
+| What people said recently | orchestra-research | a last-30-days pack; scraping; posting; DMs |
+| Marketing copy | orchestra-marketing, humanizer | invented metrics; a design system rewrite |
+| Rendered video | orchestra-video | the GSAP route; installing a video suite into this method repo |
+| Career notes | orchestra-career | job-board scraping; applying on your behalf |
 | README and post | orchestra-ship, humanizer | posting for the human |
 | Binary or APK | not ready | rea until Java is installed and the target is yours, a client's, a CTF, or open source |
 | Hackathon or college | prompt-forge | the 23-card survey when a reference is named; the design lab for college unless the human says PREMIUM |
@@ -29,7 +39,14 @@ Print `Load:` and `Skip:` before writing. A skill the human names wins. A missin
 
 Terminal execution, backend refactoring, server-side auditing, and hostile review of another agent's diff. Claude Code is an executor and a reviewer, not a second conductor. When another host is already conducting a job, take the packet and return the diff.
 
-A random college folder still reads `~/.claude/CLAUDE.md` unless that folder ships a competing `CLAUDE.md`.
+A random folder still reads `~/.claude/CLAUDE.md` unless that folder ships a competing `CLAUDE.md`.
+
+## Code Quality & Engineering Standards
+
+- **Zero-Stub Policy**: Never emit `// TODO`, `// Add implementation here`, or truncated placeholders. Provide complete, fully-implemented, compilable production code.
+- **Strict Full-Stack Standards**: Follow `fullstack-mastery` — TypeScript strict mode (no `any`), Zod input validation on all Server Actions and API boundaries, TanStack Query for dynamic caching, and resilient error/loading boundaries.
+- **Award-Winning 3D & Creative Web**: Follow `creative-3d-web` and `r3f-shaders` — 60fps frame budgets, clamped DPR (`[1, 2]`), custom GLSL shaders, strict WebGL memory disposal, and seamless Lenis + GSAP ScrollTrigger choreographies.
+- **Integrity**: Maintain documentation integrity, preserve existing comments and structure, and verify in the real runtime before claiming completion.
 
 ## Commands
 
@@ -51,11 +68,19 @@ A random college folder still reads `~/.claude/CLAUDE.md` unless that folder shi
 
 `DONE / FIXED / VERIFIED / PASSED / SHIPPED` require observed evidence in the same message. Report failures and skips before successes.
 
-## Skills and MCP
+## Skills, MCP, and Resource Knowledge
 
-The active skill set is whatever `kit/sync-ides` placed in `~/.claude/skills`. Do not claim a skill count from memory — list the directory.
+The canonical skills are the folders in `skills/`. The allowlist cap is 80. Do not claim a skill count from memory — list the directory.
 
-Core MCP servers: vault memory, browser automation, documentation lookup, and the design tool when a visual job needs it. States: `HEALTHY` / `OPTIONAL` / `AUTH_REQUIRED` / `BROKEN` / `DISABLED` / `PURCHASE_PENDING`. GetLayers stays purchase-pending.
+Core MCP servers:
+- **vault**: The private memory vault. Read `routes.md` first, then one note. Taste lives in that vault's preferences. Do not copy the vault path into this repo.
+- **stitch**: Google Stitch MCP for UI design system generation, tokens, and visual variants.
+- **playwright**: Browser automation and multi-viewport screenshots for real visual verification.
+- **context7**: Up-to-date framework & library documentation resolver.
+
+Resource Libraries:
+- Master Resource Catalog: `registries/resources.json` (use `resource-scout` to query trigger tags).
+- Design Resource Graph: `registries/design-resource-graph.json`.
 
 ## Boundaries
 

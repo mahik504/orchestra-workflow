@@ -60,6 +60,7 @@ type MCPCandidate struct {
 	ID       string `json:"id,omitempty"`
 	Health   string `json:"health,omitempty"`
 	Required bool   `json:"required,omitempty"`
+	Fallback string `json:"fallback,omitempty"`
 }
 
 type Input struct {
@@ -73,6 +74,8 @@ type Input struct {
 	ScreenshotEvalAvailable *bool
 	DiscoveredModels        []string
 	Judge                   *visual.JudgeInput
+	// Trusted IDs were named by the winning route. They skip the keyword filter.
+	Trusted []string
 }
 
 type Item struct {
@@ -96,9 +99,9 @@ type Decision struct {
 	Rejected    []Item     `json:"rejected,omitempty"`
 	Unavailable []Item     `json:"unavailable,omitempty"`
 	HostLabel   string     `json:"host_label,omitempty"`
-	Skills      []string   `json:"-"`
-	Resources   []string   `json:"-"`
-	Tools       []string   `json:"-"`
+	Skills      []string   `json:"skills,omitempty"`
+	Resources   []string   `json:"resources,omitempty"`
+	Tools       []string   `json:"tools,omitempty"`
 	HumanDetail string     `json:"-"`
 }
 
@@ -299,9 +302,10 @@ func Select(in Input) (Decision, error) {
 	}
 
 	cats := selectedCategories(d)
-	d.Skills = filterIDs(in.Skills, cats, MaxSkills, CatSkill, &d)
-	d.Resources = filterIDs(in.Resources, cats, MaxResources, CatResource, &d)
-	tools, err := filterMCP(in.MCP, cats, &d)
+	trust := trustedSet(in.Trusted)
+	d.Skills = filterIDs(in.Skills, cats, MaxSkills, CatSkill, &d, trust)
+	d.Resources = filterIDs(in.Resources, cats, MaxResources, CatResource, &d, trust)
+	tools, err := filterMCP(in.MCP, cats, &d, trust)
 	if err != nil {
 		return d, err
 	}
@@ -372,7 +376,18 @@ func selectedCategories(d Decision) map[string]bool {
 	return out
 }
 
-func filterIDs(ids []string, cats map[string]bool, capN int, category string, d *Decision) []string {
+func trustedSet(ids []string) map[string]bool {
+	out := map[string]bool{}
+	for _, raw := range ids {
+		id := strings.TrimSpace(raw)
+		if id != "" {
+			out[id] = true
+		}
+	}
+	return out
+}
+
+func filterIDs(ids []string, cats map[string]bool, capN int, category string, d *Decision, trust map[string]bool) []string {
 	seen := map[string]bool{}
 	var out []string
 	for _, raw := range ids {
@@ -381,7 +396,7 @@ func filterIDs(ids []string, cats map[string]bool, capN int, category string, d 
 			continue
 		}
 		seen[id] = true
-		if !idRelevant(id, cats) {
+		if !trust[id] && !idRelevant(id, cats) {
 			addRejected(d, Item{
 				ID:       id,
 				Category: category,
@@ -411,7 +426,7 @@ func filterIDs(ids []string, cats map[string]bool, capN int, category string, d 
 	return out
 }
 
-func filterMCP(cands []MCPCandidate, cats map[string]bool, d *Decision) ([]string, error) {
+func filterMCP(cands []MCPCandidate, cats map[string]bool, d *Decision, trust map[string]bool) ([]string, error) {
 	seen := map[string]bool{}
 	var out []string
 	for _, c := range cands {
@@ -438,13 +453,18 @@ func filterMCP(cands []MCPCandidate, cats map[string]bool, d *Decision) ([]strin
 			}
 			item.Strength = StrengthOptional
 			d.Unavailable = append(d.Unavailable, item)
+			reason := "optional MCP skipped: " + health
+			if c.Fallback != "" {
+				reason = "optional MCP skipped: " + health + "; fallback: " + c.Fallback
+				d.Fallbacks = append(d.Fallbacks, Fallback{Requested: id, Reason: c.Fallback})
+			}
 			addRejected(d, Item{
 				ID: id, Category: CatMCPTool, Strength: StrengthOptional,
-				Reason: "optional MCP skipped: " + health,
+				Reason: reason,
 			})
 			continue
 		}
-		if !idRelevant(id, cats) {
+		if !trust[id] && !idRelevant(id, cats) {
 			addRejected(d, Item{
 				ID: id, Category: CatMCPTool, Strength: StrengthOptional,
 				Reason: "not relevant to selected categories",

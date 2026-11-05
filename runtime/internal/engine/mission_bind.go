@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/mahik504/orchestra-workflow/runtime/internal/capability"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/classifier"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/mission"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/visual"
 )
@@ -106,6 +107,20 @@ func capabilityInput(ctx *TaskContext) capability.Input {
 		for _, r := range ctx.Classification.ResolvedRoutes {
 			in.Skills = append(in.Skills, r.CapabilityID)
 		}
+		if ctx.Classification.Brief != nil {
+			brief := ctx.Classification.Brief
+			in.Skills = append(in.Skills, brief.Skills...)
+			in.Trusted = append(in.Trusted, brief.Skills...)
+			if ctx.Graph != nil && brief.CapabilityID != "" {
+				if cap := ctx.Graph.Capabilities[brief.CapabilityID]; cap != nil {
+					mcp := classifier.ResolveMCP(brief.CapabilityID, cap, ctx.Catalog, in.MCP, brief.RawRequest)
+					for _, c := range mcp {
+						in.Trusted = append(in.Trusted, c.ID)
+					}
+					in.MCP = mergeMCP(mcp, in.MCP)
+				}
+			}
+		}
 	}
 	if in.PlaywrightAvailable == nil && ctx.Verifier != nil {
 		if _, ok := ctx.Verifier.(*PlaywrightVerifier); !ok {
@@ -120,6 +135,28 @@ func capabilityInput(ctx *TaskContext) capability.Input {
 		}
 	}
 	return in
+}
+
+func mergeMCP(route, extra []capability.MCPCandidate) []capability.MCPCandidate {
+	seen := map[string]bool{}
+	var out []capability.MCPCandidate
+	for _, c := range route {
+		id := strings.TrimSpace(c.ID)
+		if id == "" || seen[id] {
+			continue
+		}
+		seen[id] = true
+		out = append(out, c)
+	}
+	for _, c := range extra {
+		id := strings.TrimSpace(c.ID)
+		if id == "" || seen[id] {
+			continue
+		}
+		seen[id] = true
+		out = append(out, c)
+	}
+	return out
 }
 
 func compileBuilderCapsule(ctx *TaskContext) {

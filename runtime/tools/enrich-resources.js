@@ -202,6 +202,35 @@ const UPSERTS = {
 
 const NEW_ROWS = [
   row({
+    id: 'watermelon-ui',
+    name: 'Watermelon UI',
+    canonical_url: 'https://ui.watermelon.sh/',
+    source_type: 'component_gallery',
+    source_repository: 'https://github.com/WatermelonCorp/watermelon-platform',
+    documentation_url: 'https://ui.watermelon.sh/',
+    license: 'MIT',
+    category: ['components', 'frontend'],
+    representation: 'reference',
+    routing_tags: ['watermelon', 'component', 'block'],
+    acquisition_method: 'none',
+    runtime_method: 'reference_only',
+    status: 'REFERENCE',
+    trigger_conditions: [
+      'one control needs a production-style block after existing components, shadcn, and React Bits',
+    ],
+    avoid_conditions: [
+      'installing the Watermelon MCP',
+      'using every kit on one surface',
+    ],
+    skip_conditions: [
+      'loading every kit',
+      'installing the Watermelon MCP',
+      'using it as a second motion runtime',
+    ],
+    policy_verdict: 'REFERENCE',
+    rationale: 'Site and WatermelonCorp/watermelon-platform responded. GitHub license SPDX is MIT. Reference only. Not a global MCP.',
+  }),
+  row({
     id: 'magic-ui-mcp',
     name: 'Magic UI free MCP',
     canonical_url: 'https://magicui.design/docs/mcp',
@@ -705,11 +734,12 @@ req.add('skip_conditions');
 item.required = [...req];
 
 const graph = load('design-resource-graph.json');
-graph.version = '3.3.6';
+graph.version = '4.0.0';
 const d = graph.domains;
 d.visual_research = Array.from(new Set([...(d.visual_research || []), 'lapa', 'saasframe', 'refero-public']));
 d.interaction_components = Array.from(new Set([
   ...(d.interaction_components || []),
+  'watermelon-ui',
   'aceternity-ui',
   'tailkit',
   'twenty-first-dev',
@@ -723,7 +753,7 @@ d.saas_research = Array.from(new Set([...(d.saas_research || []), 'saasframe', '
 
 graph.capabilities['interaction-components'] = {
   name: 'Interaction component search',
-  description: 'Search registered free component kits for one control. Inspect existing project components before generating another. Synthesize into the approved design system — not a collage.',
+  description: 'Search registered free component kits for one control. Inspect existing project components before generating another. Pick one source in order: existing components, shadcn for app chrome, React Bits for one interaction, Watermelon for one production-style block when the reference row exists, Magic UI or Aceternity for one marketing effect, Motion Primitives for one motion on the current runtime, GSAP only when the route is scroll. A catalog is not a second motion runtime. Synthesize into the approved design system — not a collage.',
   primary_archetype: 'interaction_design',
   trigger_tags: [
     'interaction-components',
@@ -737,6 +767,7 @@ graph.capabilities['interaction-components'] = {
     'command-button',
     'hold-button',
     'react-bits',
+    'watermelon',
     'kokonut',
     'cult-ui',
     'hyperui',
@@ -759,16 +790,19 @@ graph.capabilities['interaction-components'] = {
   platform: 'web',
   trigger_conditions: [
     'The unit of work is a control (button, card, drawer, input), not a whole product',
-    'The brief names a kit (shadcn, React Bits, Magic UI, Aceternity, Kokonut, Cult, HyperUI, Tailkit free, 21st free, Motion Primitives)',
+    'The brief names a kit (shadcn, React Bits, Watermelon, Magic UI, Aceternity, Kokonut, Cult, HyperUI, Tailkit free, 21st free, Motion Primitives)',
     'The brief names a control kind: primary, secondary, destructive, loading, success, disabled, icon, magnetic, shimmer, gradient, ripple, particle, liquid, glass, command, hold, stateful',
     'Existing project components must be inspected before generating another',
+    'Pick one source in this order: existing project components, then shadcn for app chrome, then React Bits for one interaction, then Watermelon for one production-style block when the reference row exists, then Magic UI or Aceternity for one marketing effect, then Motion Primitives for one motion on the current runtime, then GSAP only when the route is scroll',
   ],
   skip_conditions: [
     'The job is a full page, product, or app — route to premium-website, saas-dashboard, mobile-app, or 3d-portfolio first',
     'No product surface exists yet to attach the control to',
     '3D/WebGL is the point — route to 3d-portfolio',
     'The platform is native mobile — route to mobile-app',
+    'A sample that needs a second motion runtime',
   ],
+  skills: [],
 };
 
 const re = graph.capabilities['reverse-engineering'];
@@ -788,10 +822,11 @@ if (re) {
 }
 
 const oss = {
-  version: '3.3.6',
+  version: '4.0.0',
   description: 'Searchable metadata for redistributable OSS. Not the Brain. Proprietary sites stay URL-only. No giant clones.',
   generated: TODAY,
   entries: [
+    { id: 'watermelon-ui', source_url: 'https://github.com/WatermelonCorp/watermelon-platform', license: 'MIT', acquisition: 'metadata-only', local_copy: false, date: TODAY, capability: 'component blocks', categories: ['components'] },
     { id: 'shadcn-ui', source_url: 'https://github.com/shadcn-ui/ui', license: 'MIT', acquisition: 'metadata-only', local_copy: false, date: TODAY, capability: 'component foundation', categories: ['components'] },
     { id: 'react-bits', source_url: 'https://github.com/DavidHDev/react-bits', license: 'see-upstream', acquisition: 'metadata-only', local_copy: false, date: TODAY, capability: 'motion components', categories: ['motion', 'components'] },
     { id: 'magic-ui-oss', source_url: 'https://github.com/magicuidesign/magicui', license: 'MIT', acquisition: 'metadata-only', local_copy: false, date: TODAY, capability: 'animated UI OSS', categories: ['components'] },

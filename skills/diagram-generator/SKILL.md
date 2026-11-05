@@ -14,6 +14,7 @@ README, ARCHITECTURE.md, onboarding a clone, explaining a capability graph. Skip
 ## How
 
 1. Read **this** repository (or the app repo). Do not invent boxes.
-2. Prefer a small set: context, containers, request flow, data model, capability graph.
-3. Output Mermaid in markdown. Pretty-mermaid renders SVG if needed.
-4. Do not generate 23 diagrams inline in README. README embeds a few; `docs/diagrams/` holds the rest.
+2. One abstraction, one reading direction, stable names, few crossings, a small bundle. Source method: Diagram Design. It is not a second skill. Archify is a reference, not a replacement.
+3. Prefer a small set: context, containers, request flow, data model, capability graph.
+4. Output Mermaid in markdown. Pretty-mermaid renders SVG if needed.
+5. Do not generate 23 diagrams inline in README. README embeds a few; `docs/diagrams/` holds the rest.

@@ -1,3 +1,5 @@
+> Historical snapshot. The live contract is the pin in `VERSION`.
+
 # Adapters
 
 Orchestra is **agent-agnostic markdown**: skills, protocols, registries, templates. You attach it to the IDE or CLI you already pay for.

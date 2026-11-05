@@ -1,6 +1,6 @@
-# Architecture — Orchestra 3.3.6
+# Architecture — Orchestra 4.0.0
 
-The contract pin is 3.3.6. The 3.3.2 mechanisms (mission, capsule, Layer A/B, capability select, the T1/T3 pilot) are specified in [`docs/3.3.2/ORCHESTRA_3_3_2_ARCHITECTURE.md`](docs/3.3.2/ORCHESTRA_3_3_2_ARCHITECTURE.md) and summarized in the README. They do not replace this OS. Stable `v3.3.2` waits for phase 3I.
+The contract pin is 4.0.0. The engine keeps a mission, a worker capsule, a derived budget, and a browser check on a running app. Those sit around the eight stages. They do not replace them. A model name does not pick a skill.
 
 Orchestra is a **control plane**. Your agent is the executor.
 

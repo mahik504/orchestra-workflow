@@ -201,6 +201,7 @@ func TestPhase3E1_EvidenceStaysCompact(t *testing.T) {
 	allowed := map[string]bool{
 		"mission_id": true, "selected": true, "fallbacks": true,
 		"rejected": true, "unavailable": true, "host_label": true,
+		"skills": true, "resources": true, "tools": true,
 	}
 	for k := range keys {
 		if !allowed[k] {

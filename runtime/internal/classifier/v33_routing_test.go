@@ -7,8 +7,8 @@ import (
 
 func TestV33_SeventeenCapabilitiesHaveTriggerAndSkip(t *testing.T) {
 	g := loadRealGraph(t)
-	if len(g.Capabilities) != 17 {
-		t.Fatalf("capabilities = %d, want 17", len(g.Capabilities))
+	if len(g.Capabilities) != 26 {
+		t.Fatalf("capabilities = %d, want 26", len(g.Capabilities))
 	}
 	for _, id := range []string{
 		"interaction-components",

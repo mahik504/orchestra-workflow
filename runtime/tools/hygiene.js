@@ -12,7 +12,7 @@ const fs = require('fs');
 const path = require('path');
 
 const REPO = path.join(__dirname, '..', '..');
-const EXPECTED_VERSION = '3.3.6';
+const EXPECTED_VERSION = '4.0.0';
 
 // These files define or document the rules, so they contain the patterns by design.
 const SELF = new Set([
@@ -126,6 +126,7 @@ if (failures.length) process.exit(1);
 try {
   execSync('node runtime/tools/check-host-stack.js', { cwd: REPO, stdio: 'inherit' });
   execSync('node runtime/tools/check-routing.js', { cwd: REPO, stdio: 'inherit' });
+  execSync('node runtime/tools/check-route-agreement.js', { cwd: REPO, stdio: 'inherit' });
 } catch (e) {
   process.exit(1);
 }

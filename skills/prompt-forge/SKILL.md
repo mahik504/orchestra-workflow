@@ -5,7 +5,7 @@ description: Turn a plain request into a short brief before any other skill runs
 
 # Prompt forge
 
-Run this before classify. Then do the work. Ask only when the task is truly ambiguous.
+Run this before classify, then `orchestra-focus`. Then do the work. Ask only when the task is truly ambiguous.
 
 ## Brief
 
