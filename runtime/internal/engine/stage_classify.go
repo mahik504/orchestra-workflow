@@ -1,6 +1,7 @@
 package engine
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 	"time"
@@ -184,6 +185,25 @@ func (s *ClassifyStage) Execute(ctx *TaskContext) (*StageResult, error) {
 
 	refineMissionFromClassification(ctx)
 	if err := selectCapabilities(ctx); err != nil {
+		// Plan is a dry run. A missing harness is recorded on the manifest.
+		// Execute still stops before any code is written.
+		if ctx.Task != nil && ctx.Task.DryRun && errors.Is(err, ErrHumanGateRequired) {
+			if ctx.Classification != nil {
+				ctx.Classification.RequiresHumanGate = true
+				if ctx.Capability != nil && ctx.Capability.HumanDetail != "" {
+					ctx.Classification.GateReason = ctx.Capability.HumanDetail
+				}
+			}
+			_ = persistMission(ctx, "capability_select_dry_run")
+			return &StageResult{
+				StageName: StageClassify,
+				Status:    StatusCompleted,
+				StartTime: start,
+				EndTime:   time.Now(),
+				Duration:  time.Since(start),
+				Output:    ctx.Classification,
+			}, nil
+		}
 		persistMission(ctx, "capability_select")
 		return &StageResult{
 			StageName: StageClassify,

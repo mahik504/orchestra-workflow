@@ -1,0 +1,11 @@
+#!/bin/sh
+# Drop the Cursor agent trailer so the commit author stays the human.
+# Matches the line with LF or CRLF. Other Co-authored-by lines stay.
+msg_file=$1
+if [ -z "$msg_file" ] || [ ! -f "$msg_file" ]; then
+  exit 0
+fi
+tmp="${msg_file}.orchestra-strip"
+sed '/^Co-authored-by: Cursor <cursoragent@cursor.com>[[:space:]]*$/d' "$msg_file" > "$tmp" || exit 0
+mv "$tmp" "$msg_file"
+exit 0

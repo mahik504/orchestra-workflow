@@ -5,6 +5,7 @@ import (
 	"errors"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 
 	"github.com/mahik504/orchestra-workflow/runtime/internal/classifier"
@@ -197,6 +198,42 @@ func TestGate_StillsApprovalUnlocksProductPage(t *testing.T) {
 	}
 	if err := lab.GuardWrite(filepath.Join(workdir, "app", "page.tsx")); err != nil {
 		t.Fatalf("product page.tsx still blocked after stills: %v", err)
+	}
+}
+
+func TestPlan_DryRunRecordsMissingPlaywright(t *testing.T) {
+	cat, graph, workdir := setupEngineFixtures(t)
+	defer os.RemoveAll(workdir)
+
+	pipeline := NewDesignPipeline(cat, graph, nil, nil)
+	pw := false
+	plan, err := pipeline.Plan(context.Background(), &TaskRequest{
+		ID:             "plan-missing-browser",
+		RawRequest:     "Build 3D interactive portfolio with WebGL",
+		WorkspaceRoot:  workdir,
+		SkipVisualGate: true,
+		Parameters:     map[string]any{"playwright_available": pw},
+	})
+	if err != nil {
+		t.Fatalf("plan is a dry run and must record the stop: %v", err)
+	}
+	if plan == nil || !plan.RequiresHumanGate {
+		t.Fatalf("plan %+v", plan)
+	}
+	if !strings.Contains(plan.ApprovalReason, "browser.playwright") {
+		t.Fatalf("approval reason: %s", plan.ApprovalReason)
+	}
+
+	_, blocked := pipeline.Execute(context.Background(), &TaskRequest{
+		ID:             "exec-missing-browser",
+		RawRequest:     "Build a settings screen for profile CRUD",
+		WorkspaceRoot:  workdir,
+		Type:           "FEATURE",
+		SkipVisualGate: true,
+		Parameters:     map[string]any{"playwright_available": pw},
+	})
+	if !errors.Is(blocked, ErrHumanGateRequired) {
+		t.Fatalf("execute must still stop, got %v", blocked)
 	}
 }
 
