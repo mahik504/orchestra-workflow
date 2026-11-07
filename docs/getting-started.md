@@ -98,7 +98,7 @@ Read the protocol files for **this** job. Examples:
 
 - Showable web: `protocols/DESIGN_SYSTEM_PROTOCOL.md` + `TYPOGRAPHY_PROTOCOL.md` + `VISUAL_QA_PROTOCOL.md`
 - "Make it like this URL": `REVERSE_ENGINEERING_PROTOCOL.md` then originality gate
-- Auth/payments: `SECURITY_PROTOCOL.md` (ship-safe + Strix on **your** app)
+- Auth/payments: `SECURITY_PROTOCOL.md` (ow-ship-safe + Strix on **your** app)
 
 ## 7. Execute
 
@@ -107,7 +107,7 @@ Implement in the **application repository**. One spec story per pass. Packet a w
 ## 8. Verify
 
 UI: visual QA protocol on a running app (Playwright or the agent's browser). Zero screenshots is not a Playwright pass.
-Security: ship-safe always; Strix only on your code.
+Security: ow-ship-safe always; Strix only on your code.
 Never claim "looks good" from a single chat screenshot. `DONE` / `VERIFIED` needs evidence in the same message.
 
 ## 9. Persist (small)

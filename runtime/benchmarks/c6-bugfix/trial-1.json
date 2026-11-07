@@ -1,0 +1,24 @@
+{
+  "benchmark_id": "c6-bugfix",
+  "status": "partial",
+  "claim": "none",
+  "enabled": false,
+  "date": "2026-11-08",
+  "model": "composer-2.5-fast",
+  "trials_planned": 3,
+  "trials_recorded": 1,
+  "task": "sum.Add returned a + b + 1. The test expects Add(1, 2) == 3. Change only the bug.",
+  "arms": {
+    "raw": {
+      "prompt": "skip orchestra. Fix sum.go so go test passes.",
+      "result": "Add returns a + b",
+      "go_test": "1 passed"
+    },
+    "orchestra": {
+      "prompt": "Use systematic debugging. Fix sum.go so go test passes.",
+      "result": "Add returns a + b",
+      "go_test": "1 passed"
+    }
+  },
+  "note": "Trial 1 of 3. Both arms made the same edit and go test passed. Trials 2 and 3 are separate files. This trial is not a win for either arm. c6 stays disabled in compare.go."
+}

@@ -124,7 +124,7 @@ Standard `eas.json` for production deployments:
 
 ## Automated Releases
 
-EAS Workflows automate the build → submit → update pipeline for CI/CD. See ./references/workflows.md for store-release examples. To author or validate workflow YAML, use the `eas-workflows` skill - it works from the live workflow schema.
+EAS Workflows automate the build → submit → update pipeline for CI/CD. See ./references/workflows.md for ow-store-release examples. To author or validate workflow YAML, use the `eas-workflows` skill - it works from the live workflow schema.
 
 ## Version Management
 

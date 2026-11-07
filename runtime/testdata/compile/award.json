@@ -1,0 +1,15 @@
+{
+  "task": "Build an award-style agency site",
+  "host": "cursor",
+  "route": "Award-style site",
+  "skills": [
+    "impeccable",
+    "taste-design",
+    "ow-golden-still",
+    "gsap-core",
+    "gsap-scrolltrigger",
+    "gsap-timeline"
+  ],
+  "model_class": "frontend-design-high",
+  "disclosure": "L1"
+}

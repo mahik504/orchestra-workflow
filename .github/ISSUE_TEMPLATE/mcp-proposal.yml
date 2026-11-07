@@ -1,0 +1,28 @@
+name: MCP proposal
+description: An MCP server, with its permission and a fallback
+body:
+  - type: input
+    id: server
+    attributes:
+      label: Server
+      description: Package or URL, and the docs page you read.
+    validations:
+      required: true
+  - type: dropdown
+    id: permission
+    attributes:
+      label: Permission
+      options:
+        - read-only
+        - project-write
+        - external-write
+        - destructive
+        - keyed
+    validations:
+      required: true
+  - type: textarea
+    id: fallback
+    attributes:
+      label: Fallback when it is missing
+    validations:
+      required: true

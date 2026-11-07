@@ -37,13 +37,13 @@ const GOV = {
       'The human said "skip the lab" and only wants the page wired up',
       'A 3D scene is the point rather than the decoration — route to 3d-portfolio',
     ],
-    skills: ['impeccable', 'taste-design', 'visual-golden-still', 'gsap-core', 'gsap-scrolltrigger', 'gsap-timeline'],
+    skills: ['impeccable', 'taste-design', 'ow-golden-still', 'gsap-core', 'gsap-scrolltrigger', 'gsap-timeline'],
   },
   '3d-portfolio': {
     quality_bar: 'EXPERIMENTAL',
     risk_rank: 8,
     platform: 'web',
-    skills: ['r3f-shaders'],
+    skills: ['ow-3d-engineering'],
     trigger_conditions: [
       'The brief names WebGL, Three.js, R3F, shaders, or a 3D scene',
       'Camera movement or spatial navigation is part of the concept',
@@ -108,10 +108,10 @@ const GOV = {
       'The content is short marketing copy',
       'Interaction or dashboards dominate the surface',
       'The brief wants heavy motion; this route protects reading',
-      'The job is to write a paper or produce citations rather than a reading surface — route to research-paper',
+      'The job is to write a paper or produce citations rather than a reading surface — route to ow-research-paper',
     ],
   },
-  'research-paper': {
+  'ow-research-paper': {
     quality_bar: 'STANDARD',
     risk_rank: 2,
     platform: 'any',
@@ -126,7 +126,7 @@ const GOV = {
       'The brief is a marketing page about research',
       'The request is a UI or dashboard, not a document',
     ],
-    skills: ['research-paper', 'humanizer'],
+    skills: ['ow-research-paper', 'humanizer'],
   },
   'micro-interactions': {
     quality_bar: 'PREMIUM',
@@ -175,7 +175,7 @@ const GOV = {
       'The surface is live operational control — route to operator-hud',
       'The page is public marketing — route to premium-website',
     ],
-    skills: ['backend-architecture', 'test-driven-development'],
+    skills: ['ow-backend-architecture', 'test-driven-development'],
   },
   'mobile-app': {
     quality_bar: 'PREMIUM',
@@ -207,7 +207,7 @@ const GOV = {
       'The request is a feature build; security review is a later gate, not this route',
       'The finding is a plain bug with no security consequence',
     ],
-    skills: ['ship-safe'],
+    skills: ['ow-ship-safe'],
   },
   'reverse-engineering': {
     quality_bar: 'STANDARD',
@@ -247,12 +247,12 @@ const GOV = {
     ],
     skills: [],
   },
-  'visual-forensics': {
+  'ow-reference-forensics': {
     quality_bar: 'PREMIUM',
     risk_rank: 4,
     platform: 'web',
     trigger_conditions: [
-      'The brief names visual-forensics or a reference-benchmark file',
+      'The brief names ow-reference-forensics or a reference-benchmark file',
       'The job is to measure composition, interaction, and typography of a named live website',
       'The output is REFERENCE_BENCHMARK.md with mechanism vs identity and forbidden identity',
       'A visual recreation of a live product needs a translation matrix before Design Lab',
@@ -263,14 +263,14 @@ const GOV = {
       'The intent is to copy branding, assets, copy, or source',
       'A locked DESIGN.md and golden stills already exist and the job is implementation',
     ],
-    skills: ['visual-forensics'],
+    skills: ['ow-reference-forensics'],
   },
-  'visual-golden-still': {
+  'ow-golden-still': {
     quality_bar: 'PREMIUM',
     risk_rank: 5,
     platform: 'web',
     trigger_conditions: [
-      'The brief names golden-still or visual-golden-still',
+      'The brief names golden-still or ow-golden-still',
       'The job is a representative desktop opening scene and mobile opening scene',
       'Visual evidence PASS/FAIL is owed before product implementation',
       'A DESIGN.md exists and stills are the next gate',
@@ -282,12 +282,12 @@ const GOV = {
       'The request is a full product build with no stills gate named — classify the product route first',
     ],
   },
-  'fresh-context-review': {
+  'ow-fresh-review': {
     quality_bar: 'STANDARD',
     risk_rank: 3,
     platform: 'web',
     trigger_conditions: [
-      'The brief names fresh-context-review or independent review of a completed phase',
+      'The brief names ow-fresh-review or independent review of a completed phase',
       'The human said the work is ready for review or pre-release',
       'The question is what is wrong that the builder cannot see',
       'A major frontend milestone needs a clean-context critic',
@@ -298,12 +298,12 @@ const GOV = {
       'The human asked the same chat that built the work to rubber-stamp it without a fresh context',
     ],
   },
-  'final-showcase': {
+  'ow-showcase': {
     quality_bar: 'STANDARD',
     risk_rank: 1,
     platform: 'web',
     trigger_conditions: [
-      'The brief names final-showcase or brag as a delivery step',
+      'The brief names ow-showcase or brag as a delivery step',
       'The product is production-ready and the verification ledger is green',
       'The human approved recording a walkthrough and showcase stills',
       'README or social showcase assets are owed after ship, not before',
@@ -315,11 +315,11 @@ const GOV = {
       'The human has not approved production readiness',
       'The request is to change product behaviour or visuals — that is not showcase',
     ],
-    skills: ['orchestra-ship'],
+    skills: ['ow-ship'],
   },
   'typescript-review': {
     quality_bar: 'STANDARD', risk_rank: 2, platform: 'any',
-    skills: ['orchestra-typescript'],
+    skills: ['ow-typescript'],
     trigger_conditions: [
       'The job is a TypeScript review of types at a boundary',
       'The brief names Zod or a typed parser at the edge of the program',
@@ -328,13 +328,13 @@ const GOV = {
   },
   'slides': {
     quality_bar: 'STANDARD', risk_rank: 2, platform: 'any',
-    skills: ['orchestra-docs', 'orchestra-presentation'],
+    skills: ['ow-docs', 'ow-presentation'],
     trigger_conditions: ['The deliverable is a slide deck', 'The brief asks for speaker notes on slides'],
     skip_conditions: ['The job is a methods paper or a thesis', 'The deliverable is a rendered mp4'],
   },
   'recent-research': {
     quality_bar: 'STANDARD', risk_rank: 2, platform: 'any',
-    skills: ['orchestra-research'],
+    skills: ['ow-research'],
     trigger_conditions: [
       'The question is what people said recently in public',
       'Public discussions from the last month need a dated source',
@@ -343,19 +343,19 @@ const GOV = {
   },
   'marketing-copy': {
     quality_bar: 'STANDARD', risk_rank: 2, platform: 'any',
-    skills: ['orchestra-marketing', 'humanizer'],
+    skills: ['ow-marketing', 'humanizer'],
     trigger_conditions: ['The job is the page title or the on-page wording', 'The brief asks for a positioning line'],
     skip_conditions: ['The job is a visual redesign or a new design system', 'The request invents a metric'],
   },
   'rendered-video': {
     quality_bar: 'STANDARD', risk_rank: 5, platform: 'any',
-    skills: ['orchestra-video'],
+    skills: ['ow-video'],
     trigger_conditions: ['The deliverable is a rendered mp4', 'The brief names HyperFrames for an mp4 file'],
     skip_conditions: ['The job is scroll animation', 'The deliverable is a slide deck'],
   },
   'deployed-errors': {
     quality_bar: 'STANDARD', risk_rank: 2, platform: 'any',
-    skills: ['ship-safe', 'orchestra-observability'],
+    skills: ['ow-ship-safe', 'ow-observability'],
     trigger_conditions: [
       'A deployed application is throwing a production error',
       'The brief names a production error in a shipped app',
@@ -364,7 +364,7 @@ const GOV = {
   },
   'career-notes': {
     quality_bar: 'STANDARD', risk_rank: 2, platform: 'any',
-    skills: ['orchestra-career'],
+    skills: ['ow-career'],
     trigger_conditions: [
       'The job is to tailor a CV from notes already on disk',
       'The brief asks for a role brief from notes the human already has',
@@ -373,7 +373,7 @@ const GOV = {
   },
   'architecture-diagram': {
     quality_bar: 'STANDARD', risk_rank: 2, platform: 'any',
-    skills: ['diagram-generator', 'pretty-mermaid'],
+    skills: ['ow-diagrams', 'pretty-mermaid'],
     trigger_conditions: ['The deliverable is one architecture diagram'],
     skip_conditions: ['The request wants a second diagram system', 'The request fills a README with charts'],
   },

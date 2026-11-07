@@ -16,7 +16,7 @@ Verification date for this table: **2026-09-06**.
 
 | Name | URL | Type | Representation | Free capability | Paid capability | Install | Auth | License | Trigger | Skip | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| orchestra-conductor | this repo | skill | skill | control plane | none | sync-ides | NONE | MIT | every Orchestra job | skip orchestra | ACTIVE |
+| ow-conductor | this repo | skill | skill | control plane | none | sync-ides | NONE | MIT | every Orchestra job | skip orchestra | ACTIVE |
 | taste-design | wrapper in this repo | skill | skill | DESIGN.md wrapper | Taste v2 pack not installed | sync-ides | NONE | MIT | visual direction | backend-only | ACTIVE |
 | refero-design | https://github.com/referodesign/refero_skill | skill | skill | methodology + public pages | Pro MCP | sync-ides | NONE | site-terms | product UI research | MCP-only jobs without Pro | ACTIVE |
 | hallmark | https://github.com/Nutlope/hallmark | skill | skill | post-implement audit | none | sync-ides | NONE | see-upstream | after stills | using it as the generator | ACTIVE |
@@ -26,10 +26,10 @@ Verification date for this table: **2026-09-06**.
 | gsap-core | https://github.com/greensock/gsap | skill | skill | GSAP core motion | Club plugins if any | sync-ides | NONE | see-upstream | timeline motion named | stacking every animation lib | ACTIVE |
 | supabase | https://github.com/supabase/agent-skills | skill | skill | relevant Supabase areas | unused pack skills | sync-ides | NONE | Apache-2.0 | project uses Supabase | non-Supabase apps | ACTIVE |
 | postgres-best-practices | https://github.com/neondatabase/postgres-skills | skill | skill | schema/index/query | rest of neon pack | sync-ides | NONE | see-upstream | Postgres/Supabase schema | no database | ACTIVE |
-| diagram-generator | https://github.com/jovd83/diagram-generator | skill | skill | grounded Mermaid authoring | none | sync-ides | NONE | see-upstream | architecture docs | invented architecture | ACTIVE |
-| pretty-mermaid | https://github.com/imxv/Pretty-mermaid-skills | skill | skill | render Mermaid | none | sync-ides | NONE | see-upstream | after diagram-generator | no Mermaid source | ACTIVE |
-| skill-security-check | https://github.com/aliksir/claude-code-skill-security-check | skill | skill | admission review | none | sync-ides | NONE | see-upstream | new external skill | ordinary coding turn | ACTIVE |
-| stitch-* / expo-* / strix / impeccable / emil / animate / ship-safe / orchestra-* | this repo + upstream | skill | skill | host adapters and job skills | none extra | sync-ides | NONE | mixed | matching job | wrong platform | ACTIVE |
+| ow-diagrams | https://github.com/jovd83/ow-diagrams | skill | skill | grounded Mermaid authoring | none | sync-ides | NONE | see-upstream | architecture docs | invented architecture | ACTIVE |
+| pretty-mermaid | https://github.com/imxv/Pretty-mermaid-skills | skill | skill | render Mermaid | none | sync-ides | NONE | see-upstream | after ow-diagrams | no Mermaid source | ACTIVE |
+| ow-skill-security-check | https://github.com/aliksir/claude-code-ow-skill-security-check | skill | skill | admission review | none | sync-ides | NONE | see-upstream | new external skill | ordinary coding turn | ACTIVE |
+| stitch-* / expo-* / strix / impeccable / emil / animate / ow-ship-safe / orchestra-* | this repo + upstream | skill | skill | host adapters and job skills | none extra | sync-ides | NONE | mixed | matching job | wrong platform | ACTIVE |
 
 TOTAL ACTIVE CURATED SKILLS = **40**.
 
@@ -139,20 +139,20 @@ Triggers: 3D website, WebGL, interactive 3D, portfolio, spatial experience, shad
 | Name | URL | Representation | Notes |
 | --- | --- | --- | --- |
 | devops-skills | https://github.com/arjunprabhulal/devops-skills | quarantined_reference | Do not install all 88. Themes only: CI/CD, Docker, deploy, observability, security, reliability, infra, performance |
-| ship-safe / strix / semgrep-adapter | this repo | skills | Prefer these over dumping devops-skills |
+| ow-ship-safe / strix / ow-semgrep | this repo | skills | Prefer these over dumping devops-skills |
 
 ## L. SECURITY SOURCES
 
 | Name | Trigger | Skip |
 | --- | --- | --- |
-| skill-security-check | new external skill admission | ordinary coding |
-| strix / semgrep-adapter | owned-app security jobs | scanning systems you do not own |
+| ow-skill-security-check | new external skill admission | ordinary coding |
+| strix / ow-semgrep | owned-app security jobs | scanning systems you do not own |
 
 ## M. ARCHITECTURE / DIAGRAM SOURCES
 
 | Name | Role |
 | --- | --- |
-| diagram-generator | architecture analysis → Mermaid, grounded in the repo |
+| ow-diagrams | architecture analysis → Mermaid, grounded in the repo |
 | mermaid | diagram language |
 | pretty-mermaid | optional render |
 

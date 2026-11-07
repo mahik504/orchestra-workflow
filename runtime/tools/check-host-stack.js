@@ -14,14 +14,17 @@ if (!fs.existsSync(stackPath)) {
 }
 
 const stack = JSON.parse(fs.readFileSync(stackPath, 'utf8'));
+const expectedVersion = JSON.parse(
+  fs.readFileSync(path.join(REPO, 'registries', 'versions.json'), 'utf8')
+).current;
 
-if (stack.version !== '4.2.0') {
-  problems.push(`host-stack version is "${stack.version}", expected 4.2.0`);
+if (stack.version !== expectedVersion) {
+  problems.push(`host-stack version is "${stack.version}", expected ${expectedVersion}`);
 }
 
 const schema = JSON.parse(fs.readFileSync(path.join(REPO, 'registries', 'schemas', 'host-stack.schema.json'), 'utf8'));
 const cap = schema.properties && schema.properties.skills && schema.properties.skills.maxItems;
-if (cap !== 80) problems.push(`host-stack maxItems is ${cap}, expected 80`);
+if (cap != null) problems.push(`host-stack maxItems is ${cap}; the description budget replaced the slot cap`);
 
 const listed = Array.isArray(stack.skills) ? stack.skills : [];
 // Host copies that stay on this PC and are not canonical skills.
@@ -35,7 +38,6 @@ const dirs = fs.readdirSync(skillsDir).filter((n) => {
 const listedSorted = [...listed].sort();
 const unique = new Set(listed);
 if (unique.size !== listed.length) problems.push('host-stack skills has duplicate IDs');
-if (listed.length !== 78) problems.push(`host-stack skill count is ${listed.length}, expected 78`);
 if (listedSorted.length !== dirs.length) {
   problems.push(`skill count mismatch: host-stack has ${listedSorted.length}, skills/ has ${dirs.length}`);
 }

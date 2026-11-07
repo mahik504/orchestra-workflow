@@ -1,4 +1,4 @@
-// Reminds Claude Code to run prompt-forge. Does not rewrite the prompt.
+// Reminds Claude Code to run ow-forge. Does not rewrite the prompt.
 const out = {
   hookSpecificOutput: {
     hookEventName: "UserPromptSubmit",

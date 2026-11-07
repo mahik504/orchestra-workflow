@@ -129,7 +129,7 @@ func (s *SynthesizeStage) Execute(ctx *TaskContext) (*StageResult, error) {
 	// 4. Security Directives
 	if ctx.Classification != nil && ctx.Classification.RequiresSecurity {
 		secDir := &router.CapabilityExecutionDirective{
-			CapabilityID: "semgrep-adapter",
+			CapabilityID: "ow-semgrep",
 			ActionableRules: []string{
 				"Audit all external API routes for input sanitization and honeypot spam traps",
 				"Ensure zero client-side leakage of serverless environment secrets",

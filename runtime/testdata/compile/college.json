@@ -1,0 +1,10 @@
+{
+  "task": "College assignment, keep the lab off",
+  "host": "cursor",
+  "route": "Hackathon or college",
+  "skills": [
+    "ow-forge"
+  ],
+  "model_class": "coding-fast",
+  "disclosure": "L0"
+}

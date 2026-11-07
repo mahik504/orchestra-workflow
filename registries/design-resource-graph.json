@@ -104,7 +104,7 @@
       "magic-ui-mcp"
     ],
     "diagrams": [
-      "diagram-generator",
+      "ow-diagrams",
       "pretty-mermaid",
       "mermaid"
     ],
@@ -116,7 +116,7 @@
       "hallmark",
       "unlazy",
       "react-best-practices",
-      "skill-security-check"
+      "ow-skill-security-check"
     ],
     "design_synthesis": [
       "taste-design",
@@ -181,7 +181,7 @@
       "elevenlabs"
     ],
     "security": [
-      "ship-safe",
+      "ow-ship-safe",
       "strix",
       "semgrep"
     ],
@@ -192,7 +192,7 @@
       "no-ai-slop"
     ],
     "academic_docs": [
-      "orchestra-docs"
+      "ow-docs"
     ],
     "repo_intelligence": [
       "serena",
@@ -320,7 +320,7 @@
       "skills": [
         "impeccable",
         "taste-design",
-        "visual-golden-still",
+        "ow-golden-still",
         "gsap-core",
         "gsap-scrolltrigger",
         "gsap-timeline"
@@ -383,7 +383,7 @@
         "PlayCanvas or any WebGPU engine is named without showing why CSS, DOM, Canvas 2D, or R3F cannot produce the result — keep PROJECT_ONLY / EXPERIMENTAL"
       ],
       "skills": [
-        "r3f-shaders"
+        "ow-3d-engineering"
       ]
     },
     "operator-hud": {
@@ -506,7 +506,7 @@
       "primary_archetype": "longform_reading",
       "trigger_tags": [
         "academic-reader",
-        "research-paper",
+        "ow-research-paper",
         "editorial-reader",
         "arxiv-viewer",
         "distraction-free",
@@ -546,12 +546,12 @@
         "The content is short marketing copy",
         "Interaction or dashboards dominate the surface",
         "The brief wants heavy motion; this route protects reading",
-        "The job is to write a paper or produce citations rather than a reading surface — route to research-paper"
+        "The job is to write a paper or produce citations rather than a reading surface — route to ow-research-paper"
       ]
     },
-    "research-paper": {
+    "ow-research-paper": {
       "name": "Research Paper & Academic Writing",
-      "description": "Methods writeup, thesis, or cited paper. Prose is the product. orchestra-docs is the skill. Citations are never invented.",
+      "description": "Methods writeup, thesis, or cited paper. Prose is the product. ow-docs is the skill. Citations are never invented.",
       "primary_archetype": "academic_writing",
       "trigger_tags": [
         "citations",
@@ -568,10 +568,10 @@
         "academic_docs"
       ],
       "implementation": [
-        "orchestra-docs"
+        "ow-docs"
       ],
       "qa": [
-        "orchestra-docs"
+        "ow-docs"
       ],
       "anti_patterns": [
         "Invented citations, DOIs, or quotes",
@@ -592,7 +592,7 @@
         "The request is a UI or dashboard, not a document"
       ],
       "skills": [
-        "research-paper",
+        "ow-research-paper",
         "humanizer"
       ]
     },
@@ -743,7 +743,7 @@
         "The page is public marketing — route to premium-website"
       ],
       "skills": [
-        "backend-architecture",
+        "ow-backend-architecture",
         "test-driven-development"
       ]
     },
@@ -842,7 +842,7 @@
         "The finding is a plain bug with no security consequence"
       ],
       "skills": [
-        "ship-safe"
+        "ow-ship-safe"
       ]
     },
     "reverse-engineering": {
@@ -973,12 +973,12 @@
       ],
       "skills": []
     },
-    "visual-forensics": {
+    "ow-reference-forensics": {
       "name": "Visual forensics and reference benchmark",
       "description": "Inspect a named live site or public source, measure composition, separate mechanism from identity, and write REFERENCE_BENCHMARK.md. Hands off to Design Lab. Not a clone factory and not a tint/token pass.",
       "primary_archetype": "visual_forensics",
       "trigger_tags": [
-        "visual-forensics",
+        "ow-reference-forensics",
         "reference-benchmark",
         "composition-forensics",
         "mechanism-vs-identity",
@@ -1015,7 +1015,7 @@
       "risk_rank": 4,
       "platform": "web",
       "trigger_conditions": [
-        "The brief names visual-forensics or a reference-benchmark file",
+        "The brief names ow-reference-forensics or a reference-benchmark file",
         "The job is to measure composition, interaction, and typography of a named live website",
         "The output is REFERENCE_BENCHMARK.md with mechanism vs identity and forbidden identity",
         "A visual recreation of a live product needs a translation matrix before Design Lab"
@@ -1027,15 +1027,15 @@
         "A locked DESIGN.md and golden stills already exist and the job is implementation"
       ],
       "skills": [
-        "visual-forensics"
+        "ow-reference-forensics"
       ]
     },
-    "visual-golden-still": {
+    "ow-golden-still": {
       "name": "Golden still visual evidence",
       "description": "Render and evaluate a representative desktop still and a representative mobile still. PASS/FAIL only. No application-wide implementation.",
       "primary_archetype": "visual_evidence",
       "trigger_tags": [
-        "visual-golden-still",
+        "ow-golden-still",
         "golden-still",
         "opening-scene-still",
         "desktop-still",
@@ -1064,7 +1064,7 @@
       "risk_rank": 5,
       "platform": "web",
       "trigger_conditions": [
-        "The brief names golden-still or visual-golden-still",
+        "The brief names golden-still or ow-golden-still",
         "The job is a representative desktop opening scene and mobile opening scene",
         "Visual evidence PASS/FAIL is owed before product implementation",
         "A DESIGN.md exists and stills are the next gate"
@@ -1076,12 +1076,12 @@
         "The request is a full product build with no stills gate named — classify the product route first"
       ]
     },
-    "fresh-context-review": {
+    "ow-fresh-review": {
       "name": "Fresh-context independent review",
       "description": "Evaluate a completed phase from a clean context without the builder's assumptions. Ask what is wrong that the builder can no longer see. Not a second conductor.",
       "primary_archetype": "independent_review",
       "trigger_tags": [
-        "fresh-context-review",
+        "ow-fresh-review",
         "independent-review",
         "builder-blind-spot",
         "pre-release-review"
@@ -1109,7 +1109,7 @@
       "risk_rank": 3,
       "platform": "web",
       "trigger_conditions": [
-        "The brief names fresh-context-review or independent review of a completed phase",
+        "The brief names ow-fresh-review or independent review of a completed phase",
         "The human said the work is ready for review or pre-release",
         "The question is what is wrong that the builder cannot see",
         "A major frontend milestone needs a clean-context critic"
@@ -1120,12 +1120,12 @@
         "The human asked the same chat that built the work to rubber-stamp it without a fresh context"
       ]
     },
-    "final-showcase": {
+    "ow-showcase": {
       "name": "Final showcase recording",
       "description": "After human approval, production readiness, and a green verification ledger, record a walkthrough and capture showcase assets. Must never influence implementation or design.",
       "primary_archetype": "final_delivery",
       "trigger_tags": [
-        "final-showcase",
+        "ow-showcase",
         "brag",
         "showcase-recording",
         "walkthrough-video",
@@ -1153,7 +1153,7 @@
       "risk_rank": 1,
       "platform": "web",
       "trigger_conditions": [
-        "The brief names final-showcase or brag as a delivery step",
+        "The brief names ow-showcase or brag as a delivery step",
         "The product is production-ready and the verification ledger is green",
         "The human approved recording a walkthrough and showcase stills",
         "README or social showcase assets are owed after ship, not before"
@@ -1166,12 +1166,12 @@
         "The request is to change product behaviour or visuals — that is not showcase"
       ],
       "skills": [
-        "orchestra-ship"
+        "ow-ship"
       ]
     },
     "typescript-review": {
       "name": "TypeScript review",
-      "description": "Types at the boundary. orchestra-typescript is the instruction. Not a visual route.",
+      "description": "Types at the boundary. ow-typescript is the instruction. Not a visual route.",
       "primary_archetype": "type_review",
       "trigger_tags": [
         "typescript-review",
@@ -1193,12 +1193,12 @@
         "The job is to adopt a new framework"
       ],
       "skills": [
-        "orchestra-typescript"
+        "ow-typescript"
       ]
     },
     "slides": {
       "name": "Slide deck",
-      "description": "A slide deck. orchestra-docs owns the file. orchestra-presentation owns the story.",
+      "description": "A slide deck. ow-docs owns the file. ow-presentation owns the story.",
       "primary_archetype": "slides",
       "trigger_tags": [
         "deck-or-slides",
@@ -1221,8 +1221,8 @@
         "The deliverable is a rendered mp4"
       ],
       "skills": [
-        "orchestra-docs",
-        "orchestra-presentation"
+        "ow-docs",
+        "ow-presentation"
       ]
     },
     "recent-research": {
@@ -1249,7 +1249,7 @@
         "The request asks to scrape, post, or send messages"
       ],
       "skills": [
-        "orchestra-research"
+        "ow-research"
       ]
     },
     "marketing-copy": {
@@ -1277,7 +1277,7 @@
         "The request invents a metric"
       ],
       "skills": [
-        "orchestra-marketing",
+        "ow-marketing",
         "humanizer"
       ]
     },
@@ -1305,7 +1305,7 @@
         "The deliverable is a slide deck"
       ],
       "skills": [
-        "orchestra-video"
+        "ow-video"
       ]
     },
     "deployed-errors": {
@@ -1332,8 +1332,8 @@
         "The job is a local bug with no deployment"
       ],
       "skills": [
-        "ship-safe",
-        "orchestra-observability"
+        "ow-ship-safe",
+        "ow-observability"
       ]
     },
     "career-notes": {
@@ -1360,7 +1360,7 @@
         "The request is to apply on the human behalf"
       ],
       "skills": [
-        "orchestra-career"
+        "ow-career"
       ]
     },
     "architecture-diagram": {
@@ -1385,7 +1385,7 @@
         "The request fills a README with charts"
       ],
       "skills": [
-        "diagram-generator",
+        "ow-diagrams",
         "pretty-mermaid"
       ]
     },

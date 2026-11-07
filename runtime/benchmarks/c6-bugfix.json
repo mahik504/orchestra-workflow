@@ -1,0 +1,18 @@
+{
+  "benchmark_id": "c6-bugfix",
+  "status": "recorded",
+  "claim": "none",
+  "enabled": false,
+  "date": "2026-11-08",
+  "model": "composer-2.5-fast",
+  "trials_planned": 3,
+  "trials_recorded": 3,
+  "result": "All three trials, both arms, changed Add from a + b + 1 to a + b. go test passed on every arm. The arms tied. c6 stays disabled in compare.go.",
+  "captures": {
+    "layer_a_desktop": false,
+    "layer_a_mobile": false,
+    "axe": false,
+    "lighthouse": false,
+    "reason": "The task is a Go function. There is no page to capture."
+  }
+}

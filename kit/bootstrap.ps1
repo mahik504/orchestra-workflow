@@ -1,4 +1,4 @@
-# Wire Orchestra 4.2.0 onto chosen hosts. No secrets. No skills add --all.
+# Wire Orchestra 4.5.0 onto chosen hosts. No secrets. No skills add --all.
 #
 #   powershell -NoProfile -ExecutionPolicy Bypass -File kit/bootstrap.ps1
 #   powershell -NoProfile -ExecutionPolicy Bypass -File kit/bootstrap.ps1 -Hosts cursor,antigravity -Target D:\work\my-orchestra
@@ -18,7 +18,7 @@ function Resolve-Hosts([string]$raw) {
     if ($raw) {
         return @($raw.Split(",") | ForEach-Object { $_.Trim().ToLower() } | Where-Object { $_ -ne "" })
     }
-    Write-Host "Which hosts should use Orchestra 4.2.0?"
+    Write-Host "Which hosts should use Orchestra 4.5.0?"
     Write-Host "  [1] Cursor"
     Write-Host "  [2] Antigravity"
     Write-Host "  [3] Claude Code"
@@ -63,31 +63,19 @@ $skillDest = @{
 
 foreach ($h in $chosen) {
     if (-not $skillDest.ContainsKey($h)) { continue }
-    $d = $skillDest[$h]
-    if (-not (Test-Path -LiteralPath $d)) {
-        New-Item -ItemType Directory -Path $d | Out-Null
-        Write-Host "created $d"
-    }
-    foreach ($n in $stack.skills) {
-        $src = Join-Path $Root "skills\$n"
-        if (-not (Test-Path -LiteralPath $src)) { throw "missing skill $n" }
-        $dst = Join-Path $d $n
-        if (Test-Path -LiteralPath $dst) { Remove-Item -LiteralPath $dst -Recurse -Force }
-        Copy-Item -LiteralPath $src -Destination $dst -Recurse
-    }
-    Write-Host ("copied {0} skills -> {1}" -f $stack.skills.Count, $d)
+    & node (Join-Path $Root "runtime\tools\ow-sync.mjs") --apply --host $h
+    if ($LASTEXITCODE -ne 0) { throw "skill sync failed for $h" }
 }
 
 $adapters = Join-Path $Target "kit"
 if (-not (Test-Path -LiteralPath $adapters)) { New-Item -ItemType Directory -Path $adapters | Out-Null }
 
+$stamp = Join-Path $Root "runtime\tools\stamp-adapter.mjs"
 if ($chosen -contains "cursor") {
-    Copy-Item (Join-Path $Root ".cursorrules") (Join-Path $Target ".cursorrules") -Force
-    Write-Host "wrote workspace .cursorrules"
+    & node $stamp --dest (Join-Path $Target ".cursorrules") --source (Join-Path $Root ".cursorrules")
 }
 if ($chosen -contains "claude") {
-    Copy-Item (Join-Path $Root "CLAUDE.md") (Join-Path $Target "CLAUDE.md") -Force
-    Write-Host "wrote workspace CLAUDE.md"
+    & node $stamp --dest (Join-Path $Target "CLAUDE.md") --source (Join-Path $Root "CLAUDE.md")
 }
 if ($chosen -contains "antigravity") {
     $ag = Join-Path $Target "kit\antigravity"
@@ -108,7 +96,7 @@ if ($chosen -contains "antigravity") {
 }
 
 Copy-Item (Join-Path $Root "mcp_config.example.json") (Join-Path $Target "mcp_config.example.json") -Force
-Copy-Item (Join-Path $Root "AGENTS.md") (Join-Path $Target "AGENTS.md") -Force
+& node $stamp --dest (Join-Path $Target "AGENTS.md") --source (Join-Path $Root "AGENTS.md")
 
 Write-Host ""
 Write-Host "Marketplace plugins (install yourself; we cannot log into Google, Stripe, or Stitch for you):"
@@ -122,7 +110,7 @@ if ($chosen -contains "antigravity") {
 }
 
 Write-Host ""
-Write-Host "Restart the IDE. Next chat in this workspace uses Orchestra 4.2.0 (AGENTS.md)."
+Write-Host "Restart the IDE. Next chat in this workspace uses Orchestra 4.5.0 (AGENTS.md)."
 Write-Host "Optional Cursor User Rule for chats outside this folder: GLOBAL until I say skip orchestra."
 Write-Host "We cannot log into Google, Stripe, or Stitch for you."
 Write-Host "Private workspace: $Target"

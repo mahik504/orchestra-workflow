@@ -1,13 +1,12 @@
 # Orchestra Workflow
 
-An intelligent, provider-neutral control plane for agentic development. One conductor. The same skills on Cursor, Antigravity, Claude Code, and jcode. A human gate before showable UI.
+<p align="center">
+  <img src="assets/brand/ow-mark.svg" width="96" height="96" alt="OW monogram">
+</p>
 
-[![CI](https://github.com/mahik504/orchestra-workflow/actions/workflows/ci.yml/badge.svg)](https://github.com/mahik504/orchestra-workflow/actions/workflows/ci.yml)
-[![Hygiene](https://github.com/mahik504/orchestra-workflow/actions/workflows/hygiene.yml/badge.svg)](https://github.com/mahik504/orchestra-workflow/actions/workflows/hygiene.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Release](https://img.shields.io/github/v/release/mahik504/orchestra-workflow?sort=semver)](https://github.com/mahik504/orchestra-workflow/releases)
+Orchestra 4.5.0 is the control plane for this workspace. Skills, MCPs, plugins, and libraries are capabilities. Agents execute. The vault remembers. The registries say what exists. Host files are adapters.
 
-The pin in [`VERSION`](VERSION) is **4.2.0**.
+The pin in [`VERSION`](VERSION) is **4.5.0**.
 
 ```
 ORCHESTRA  = CONTROL PLANE
@@ -19,429 +18,122 @@ REGISTRY   = RESOURCE KNOWLEDGE
 
 This repository is the method. Products, keys, and taste stay in a private workspace.
 
-## What Orchestra is
+[CI](https://github.com/mahik504/orchestra-workflow/actions/workflows/ci.yml) and [Hygiene](https://github.com/mahik504/orchestra-workflow/actions/workflows/hygiene.yml) run on `main`. A badge is a link. The run page is the result.
 
-Orchestra tells the agent which skills, MCP servers, plugins, and libraries belong to this job. A registry row is knowledge. It is loaded only when the route selects it. A skill you name wins unless it is unsafe next to the route that already owns the work. A missing tool stops. It does not install itself.
+## What's new in 4.5.0
 
-When the task loads nothing new, the agent does not print an empty routing note.
+- The current version lives in [`registries/versions.json`](registries/versions.json). Check scripts read it.
+- Orchestra-owned skills are `ow-*`. Old ids are in [`registries/skill-aliases.json`](registries/skill-aliases.json). GSAP, Expo, Stitch, Superpowers, and the other upstream skills kept their names.
+- [`registries/skills.json`](registries/skills.json) is the skill list: owner, license, hosts, and description length.
+- `kit/sync-ides.ps1` copies through `runtime/tools/ow-sync.mjs`. A skill you edited locally stays. `-Prune` is refused.
+- `orchestra compile --task "..." --host cursor --json` prints the route, the skills, the model class, and the disclosure level.
+- `find-skills` is vendored from vercel-labs/skills (MIT, commit `d3701c11`). `ow-skill-advisor` does not run a global install unless you insist, and then it records the install.
+- Codex, OpenCode, and Kimi have adapters under `kit/`. The routing table is rendered from [`registries/routing.json`](registries/routing.json).
 
-## Why it exists
+## How a task moves
 
-A host agent loads whatever skills happen to be in context. A bug then opens a design survey, and a landing page loads every component kit. Orchestra classifies one route from [`registries/design-resource-graph.json`](registries/design-resource-graph.json) and loads that route.
-
-Showable UI waits for a design contract and golden stills. Bugs, APIs, and college work skip that gate unless you say otherwise.
-
-## How a job runs
-
-```
-Understand → Classify → Load the route → Design Lab or a technical plan → HUMAN GATE
-  → Implement → Verify on the running app → Review twice → Remember
-```
-
-![The human talks to one conductor](docs/diagrams/assets/control-plane.svg)
-
-![Eight stages, with a human gate before implementation](docs/diagrams/assets/the-loop.svg)
+`ow-forge` writes a short brief when the job is open. A STANDARD fix that already names the file skips the brief. `orchestra compile` prints the manifest. The Design Lab still blocks product UI on PREMIUM work until the contract and the stills are approved. Execute still stops when a visual review needs a browser and Playwright is missing. `orchestra plan` records that gate and prints the manifest anyway.
 
 ```mermaid
 flowchart LR
-  discover[1 Discover]
-  classify[2 Classify]
-  research[3 Research]
-  synth[4 Synthesize]
-  design[5 Design]
-  gate[Human gate]
-  implement[6 Implement]
-  verify[7 Verify]
-  remember[8 Remember]
-  discover --> classify --> research --> synth --> design --> gate --> implement --> verify --> remember
+  brief[Brief] --> compile[Compile]
+  compile --> lab[Design lab]
+  lab --> build[Implement]
+  build --> verify[Verify on the app]
+  verify --> review[Two reviews]
 ```
 
-The engine wraps that loop with a mission, one worker capsule, and a budget derived from the task. Ordinary work stays small. A flagship page can take a few directions, then one contract.
+```mermaid
+flowchart TB
+  conductor[Orchestra]
+  conductor --> skills[Skills]
+  conductor --> mcp[MCPs]
+  conductor --> regs[Registries]
+  skills --> hosts["Cursor, Claude, Antigravity, Codex, jcode"]
+```
 
 ```mermaid
 flowchart LR
-  mission[Mission]
-  capsule[Worker capsule]
-  budget[Derived budget]
-  run[Execution]
-  evidence[Evidence]
-  fail[Failure class]
-  recover[Recovery or human gate]
-  mission --> capsule --> budget --> run --> evidence --> fail --> recover
+  discovered --> candidate --> evaluated --> approved --> installed
+  installed --> configured --> healthy --> verified --> monitored
 ```
-
-Capsule roles are planner, builder, and judge. The acceptance line moves when you change it. A retry needs budget remaining and a real change. The same failure replayed unchanged stops. A missing credential, a brand choice, or a conflict in the contract stops for you.
-
-Playwright checks the running app. The model dropdown stays yours. Orchestra does not turn a model name into a skill list.
-
-## What's new in 4.2.0
-
-4.1.0 already selected skills on one conductor. 4.2.0 keeps that conductor and closes the second one that was starting beside it.
-
-- Five skills, copied with their licenses: `grilling`, `domain-modeling`, and `to-tickets` from Matt Pocock at `4ae2317`; `constraint-driven-development` from Addy Osmani at `301b02b`; `receiving-code-review` from Superpowers 6.1.1. The canonical count is 78. The cap stays 80.
-- `to-tickets` writes local files under `.scratch/<feature>/issues/`. GitHub issues only when the task names GitHub.
-- A decision in `templates/contracts/DECISIONS.md` is one line that links the ADR `domain-modeling` writes.
-- A startup idea gets one scope question: expand, hold, or reduce.
-- The Superpowers plugin, the bulk Vercel plugin, and caveman stay off. The vendored Superpowers skills stay.
-- `kit/git-hooks/commit-msg` drops `Co-authored-by: Cursor <cursoragent@cursor.com>`. `kit/install-git-hooks.ps1` points this repo at that hook.
-- `orchestra plan` records a missing browser harness and still prints the manifest. A real run still stops.
-- The premium landing comparison was not run. `c1-premium-landing` stays disabled.
-
-## What's new in 4.1.0
-
-4.0.0 already had the eight stages, the 26-route graph, the design gate, 73 skills, and host sync. 4.1.0 adds selection on that same conductor.
-
-- The routing note names skills, MCPs, plugins, and libraries only when the task loads them.
-- Design domains annotate existing routes: premium sites, editorial, shops, portfolios, 3D, shaders, SaaS, dashboards, and mission control. Responsive layout is a gate on the parent route.
-- Technology rules keep one scroll owner, one scene, one HTTP stack, and one bundler. Redis, a queue, Supabase, Lenis, Theatre.js, and a scroll rig are selected when the brief needs them.
-- [`templates/contracts/`](templates/contracts/) is the design pack. A bug, a typo, or one control does not generate it.
-- Review lenses are requirements, build, visual, architecture, security, performance, and simplify. A typo stays with the builder. A visual judge needs a screenshot from the run.
-
-No new skill folder. The cap stays 80. No new package in this repo.
-
-## Compared with earlier releases
-
-| | 3.3.6 | 4.0.0 | 4.1.0 | 4.2.0 |
-| --- | --- | --- | --- | --- |
-| Contract | One `AGENTS.md`. `Load` and `Skip` required before a write | Same contract. Eight more skills. 73 canonical skills. Cap 80 | Same contract. The note lists only what this task loads | Same contract. 78 canonical skills. Cap 80 |
-| Routes | Job table copied into the host files | The graph names the skill folders. An unhealthy required tool stops | Domains and technology rules sit on those routes | Same routes. The engineering table names the five new skills |
-| Design | Kind sets the bar. College skips the lab unless you say PREMIUM | One component source, in a fixed order. A catalog is not a motion runtime | Contract templates in `templates/contracts/`. Golden stills still come first | `DECISIONS.md` is one line per decision, linking an ADR |
-| Hosts | Cursor, Antigravity, Claude Code, jcode | Same four. No new global MCP | Same four. Limitless Claude stays a separate repo | Same four. Superpowers, the bulk Vercel plugin, and caveman stay off |
-| Check | CI and Hygiene green on that release | Routing check matches the job cell | Same checks, plus design-domain and technology-policy checks | A dry-run plan records a missing browser. Execute still stops |
-
-Older tags remain: `v3.3.6`, `v3.3.1`, `v3.3.0`, `v3.2.0`. The phase write-ups that used to live under `docs/3.3.*` are not in this tree. [`CHANGELOG.md`](CHANGELOG.md) is the record.
-
-## Compared with other harnesses
-
-These are skill libraries or their own lifecycles. Orchestra decides which method runs. Replacing it with a pack drops routing, the design gate, host sync, and the vault. Installing a pack beside it starts a second conductor.
-
-| | What it is | What Orchestra did |
-| --- | --- | --- |
-| [Matt Pocock skills](https://github.com/mattpocock/skills) | Composable skills. No takeover hook. MIT | `grilling`, `domain-modeling`, and `to-tickets` are in `skills/` at commit `4ae2317`. `grill-with-docs` is a pointer at the first two, so it is not a fourth skill |
-| [Superpowers](https://github.com/obra/superpowers) | A methodology plugin. Its SessionStart hook tells the model to invoke its skills before any response. MIT | The skills Orchestra uses are vendored. `receiving-code-review` is the one added here, from plugin 6.1.1. The plugin stays off |
-| [agent-skills](https://github.com/addyosmani/agent-skills) | A skill library. The router hook is left unwired. MIT | `constraint-driven-development` is in `skills/` at commit `301b02b`. It catches an agent silencing checks to get green. The rest of the pack stays rejected |
-| [gstack](https://github.com/garrytan/gstack) | A full lifecycle. `/autoplan` and `/ship` take over. Windows support is thin. MIT | Not installed. A startup idea gets one scope question in the brief: expand, hold, or reduce |
-| [Spec Kit](https://github.com/github/spec-kit) | A command lifecycle and a Python CLI. MIT | Not installed. The brief, the contract, and `to-tickets` cover that ground |
-| ECC, oh-my-claudecode, GSD | Full harnesses with SessionStart, UserPromptSubmit, or PreToolUse hooks | Not installed. They are on the refused list |
-| BMAD | A methodology with personas. v7 is in alpha | Not installed |
-| Agency Agents | A large persona pack | Not installed. Cursor and Claude subagents, plus the planner, builder, and judge capsules, already cover a worker |
-
-The one saved paired measurement in this repo is a one-line Go fix. Both arms made the same 183-byte change. Orchestra took longer. That pair does not score a website. The premium landing comparison (`c1-premium-landing`) was not run: it needs two chats on the same model, Layer A at desktop and mobile, axe, Lighthouse, and a blind judge. It stays disabled. The record is [`runtime/benchmarks/c1-premium-landing.json`](runtime/benchmarks/c1-premium-landing.json).
-
-## Architecture
 
 ```mermaid
-flowchart TD
-  person[Human]
-  conductor[One conductor]
-  capGraph[Capability graph]
-  picked[Skills MCP plugins libraries]
-  hostRow[Cursor Antigravity Claude Code jcode]
-  memory[Private Brain]
-  person --> conductor
-  conductor --> capGraph
-  conductor --> picked
-  conductor --> hostRow
-  conductor --> memory
+flowchart LR
+  source[skills folder] --> hash[Hash the tree]
+  hash --> same{Destination matches}
+  same -->|missing| copy[Copy]
+  same -->|our previous hash| replace[Replace after backup]
+  same -->|local edit| keep[Leave it]
 ```
-
-| Piece | Where |
-| --- | --- |
-| Contract | [`AGENTS.md`](AGENTS.md) |
-| System design | [`ARCHITECTURE.md`](ARCHITECTURE.md) |
-| Adapters | [`.cursorrules`](.cursorrules), [`CLAUDE.md`](CLAUDE.md), [`kit/antigravity/`](kit/antigravity/) |
-| Routes | [`registries/design-resource-graph.json`](registries/design-resource-graph.json) |
-| Design domains | [`registries/design-domains.json`](registries/design-domains.json) |
-| Technology rules | [`registries/technology-policy.json`](registries/technology-policy.json) |
-| MCP call rules | [`registries/mcp-contracts.json`](registries/mcp-contracts.json) |
-| Resource catalog | [`registries/resources.json`](registries/resources.json) |
-| Engine | [`runtime/`](runtime/) |
-| Skills | [`skills/`](skills/) |
-| Protocols | [`protocols/`](protocols/) |
-| Figures | [`docs/diagrams/`](docs/diagrams/) |
-
-A resource moves one step at a time: discovered, installed, available, selected, executed, verified, successful. A catalog row stays at discovered until a run records evidence.
 
 ```mermaid
-flowchart TD
-  brief[Brief]
-  route[One capability]
-  domain[Design domain on that route]
-  stack[Technology rules]
-  note[Loaded skills MCP plugins libraries]
-  brief --> route --> domain
-  route --> stack --> note
+flowchart LR
+  task[Task text] --> route[routing.json]
+  route --> manifest[JSON manifest]
+  manifest --> class[Model class]
 ```
-
-More figures: [`docs/diagrams/system.md`](docs/diagrams/system.md) and the eight notes in [`docs/diagrams/`](docs/diagrams/).
-
-## Routes
-
-The graph has 26 capabilities. A restaurant page, a school dashboard, and a 3D portfolio resolve to three different routes.
-
-| Job | Route | What loads |
-| --- | --- | --- |
-| A public brand page | `premium-website` | impeccable, taste-design, visual-golden-still, GSAP |
-| A school or metrics dashboard | `saas-dashboard` | backend-architecture, test-driven-development |
-| A spatial scene | `3d-portfolio` | r3f-shaders |
-
-The full job table is in [`AGENTS.md`](AGENTS.md): a bug, a paper, a deck, one control, a diagram, a TypeScript review, a deployed app, recent public sources, marketing copy, a rendered video, career notes. One control loads no specialist. Components already in the project come first, then one catalog. GSAP is for scroll.
-
-## Design
-
-Premium and experimental visual work writes [`templates/contracts/DESIGN.md`](templates/contracts/DESIGN.md), then golden stills, then code.
 
 ```mermaid
-flowchart TD
-  cards[23 cards or 3 translations]
-  contractFile[DESIGN.md]
-  stills[Golden stills]
-  code[Implementation]
-  cards --> contractFile --> stills --> code
+flowchart LR
+  diff[Diff] --> correct[Correctness review]
+  correct --> simple[Simplify review]
 ```
-
-Open-ended premium work uses 23 short cards. A named reference gets three translations. A pasted contract skips the survey. Stills are still required.
-
-The contract covers brand, type, color, space, breakpoints, components, motion, scroll, cursor, 3D, shaders, accessibility, and the budgets for that page. Take principles from references. Leave their logo, copy, and source files alone.
-
-The premium route refuses Inter or Space Grotesk on a creative headline, an equal three-column card grid, a purple gradient as the brand, repeated glass, decorative blobs, and a 3D object that does not explain the product.
-
-## Frontend and 3D
-
-| Need | Choice |
-| --- | --- |
-| A document | HTML and CSS |
-| A small script | JavaScript |
-| A production app | TypeScript |
-| Components | React |
-| Server rendering and SEO | Next.js |
-| A client bundle you named | Vite |
-| A content site | Astro |
-| Scroll, pin, scrub | GSAP |
-| Hover, layout, drag | Motion for React |
-| Smooth scroll, when asked | Lenis, sharing one scroller with ScrollTrigger |
-| A scene in React | React Three Fiber. Three.js is that scene's renderer |
-| Controls for that scene | Drei |
-| A custom GPU effect | GLSL |
-| The deliverable is a Framer file | Framer, separate from the application repo |
-
-GSAP owns scroll. Motion does not drive that same container. One canvas. Device pixel ratio stays between 1 and 2 unless the contract sets a tighter cap. The scene disposes geometries, materials, textures, and the renderer on unmount. Reduced motion and a failed WebGL context keep a local still. Scenes target WebGL 2.
 
 ```mermaid
-flowchart TD
-  still[Local still]
-  canvas[One canvas]
-  fiber[React Three Fiber]
-  renderer[Three.js]
-  dispose[Dispose on unmount]
-  still --> canvas --> fiber --> renderer --> dispose
+flowchart TB
+  l0[L0 task and acceptance]
+  l1[L1 route row]
+  l2[L2 selected skill]
+  l3[L3 references]
+  l4[L4 tool output]
+  l0 --> l1 --> l2 --> l3 --> l4
 ```
-
-The Next.js starter at [`templates/starters/next-react`](templates/starters/next-react) has lint, typecheck, build, and a Lighthouse job that warns.
-
-## Backend and data
-
-Write the shape before the handlers: tables, keys, constraints, indexes, who can call each route, how bad input is rejected, and which fields are never logged.
 
 ```mermaid
-flowchart TD
-  durable{Durable data?}
-  noDb[No database]
-  pg[Postgres]
-  named{Product note names Supabase?}
-  supa[Supabase]
-  cache{Cache, TTL, or rate limit?}
-  redis[Redis]
-  durable -->|no| noDb
-  durable -->|yes| pg --> named
-  named -->|yes| supa
-  named -->|no| cache
-  cache -->|yes| redis
+flowchart LR
+  branch[release branch] --> checks[Tests and hygiene]
+  checks --> main[main]
+  main --> tag[Tag v4.5.0]
 ```
 
-| Store | When |
-| --- | --- |
-| Postgres | Relational data that must survive a restart |
-| Supabase | The product note already names it |
-| Redis | A cache, a TTL, or a rate limit |
-| Express | A small HTTP API the repo does not already serve |
-| FastAPI | Python inference or data processing |
-| BullMQ | A background job that already needs Redis |
-| Node | The TypeScript server |
+The eight diagrams above are the mermaid source. [`render-readme-diagrams.mjs`](docs/diagrams/assets/render-readme-diagrams.mjs) still writes the three paper figures in [`docs/diagrams/assets/`](docs/diagrams/assets/).
 
-`supabase` and `postgres-best-practices` load when that product uses them.
+## Benchmarks
 
-## Mobile, research, and documents
+On 2026-11-08 three bugfix trials ran on `composer-2.5-fast`. In every trial both the raw arm and the Orchestra arm changed `Add` from `a + b + 1` to `a + b`, and `go test` passed. The records are [`runtime/benchmarks/c6-bugfix.json`](runtime/benchmarks/c6-bugfix.json) and the three files under [`runtime/benchmarks/c6-bugfix/`](runtime/benchmarks/c6-bugfix/). The arms tied. Neither arm gets a win.
 
-Expo skills cover a React Native app: routing, native UI, data fetching, a dev client, upgrades, and store submit. An iOS device build needs a Mac and Xcode. Android uses the SDK on the machine that builds it.
+The landing comparison is in [`runtime/benchmarks/c1-premium-landing.json`](runtime/benchmarks/c1-premium-landing.json). Three trials on `composer-2.5-fast`. Every arm built, Layer A captured desktop and mobile, axe reported no violations, and Lighthouse accessibility was 100. Performance was 97, 98, and 99 on the raw arm, and 93, 100, and 99 on the Orchestra arm. A blind judge preferred the Orchestra page twice and called the third a tie. That is not a win. `c1` stays disabled in `compare.go`.
 
-A paper loads `research-paper` and `humanizer`. Citations get checked. A deck loads `orchestra-docs` and `orchestra-presentation`. Word, PowerPoint, PDF, and Excel skills stay on the host. They are not copied into `skills/`.
+## Other harnesses
 
-An ML fine-tune loads `ml-experiment` and reports the eval from that run. `rea` runs on a binary or APK when Java is installed and the target is yours, a client's, a CTF, or open source.
+Superpowers skills that we use are vendored. The plugin stays off. GSD, gstack, BMAD, ECC, and Spec Kit did not become a second conductor. Notes with the commits we actually opened are in [`docs/evaluations/`](docs/evaluations/).
 
-## Quality
+## Versions
 
-Playwright walks the running app. The harness lives in `runtime/` and uses the project Playwright library plus Chromium. Lighthouse is the performance budget for that project. axe-core is the violation list on the running page. Golden stills are the visual contract. Later UI changes compare against those stills. Mask clocks, random ids, and canvases that are not the subject.
-
-Correctness and simplify are two passes.
-
-## Brain
-
-Set `ORCHESTRA_VAULT` to your private notes. The vault holds taste, decisions, and one lesson line per finished session. This clone does not contain it. A decision note starts from [`templates/memory/decision.md`](templates/memory/decision.md).
-
-## Hosts
-
-![One contract, synced to the hosts you pick](docs/diagrams/assets/four-hosts.svg)
-
-| Host | Role | Adapter |
-| --- | --- | --- |
-| Cursor | Usual conductor | [`.cursorrules`](.cursorrules) |
-| Antigravity | Visual QA | [`kit/antigravity/`](kit/antigravity/) |
-| Claude Code | Terminal and review | [`CLAUDE.md`](CLAUDE.md) |
-| jcode | Same skills, fourth executor | [`templates/jcode-omniroute-packet.md`](templates/jcode-omniroute-packet.md) |
-
-Sign in to GitHub, Playwright, and Context7 in the host UI. Tokens stay there. Core MCP templates are in [`registries/host-stack.json`](registries/host-stack.json): vault files, Stitch, Playwright, Context7. Firecrawl and Serena run when that job has already enabled them.
-
-Manual steps that only a person can do: [`docs/manual-setup/`](docs/manual-setup/).
+| | 4.1.0 | 4.2.0 | 4.5.0 |
+| --- | --- | --- | --- |
+| Conductor | one | one, plugins off | one |
+| Receipt | prints loaded lines | same | same, and `orchestra compile` |
+| Skills | allowlist | 78, five added | `ow-*` for Orchestra skills, manifest, no slot cap |
+| Sync | delete and copy | delete and copy | hash, conflict skip, backup |
+| Benchmark claim | none | none | none |
 
 ## Install
 
-You need Git. Go 1.22 runs the engine. Node runs the hygiene checks and the Next starter.
-
-```bash
-git clone https://github.com/mahik504/orchestra-workflow.git
-cd orchestra-workflow
-```
-
-### Windows
+[`INSTALL.md`](INSTALL.md) has the clone, the sync, the one-line paste for a host that does not read `AGENTS.md`, and the uninstall. [`docs/migration-4.5.md`](docs/migration-4.5.md) is the move from 4.2.0. [`docs/hosts.md`](docs/hosts.md) lists Cursor, Claude Code, Antigravity, Codex, OpenCode, Kimi, and jcode.
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File kit/bootstrap.ps1
-```
-
-Bootstrap asks which hosts to wire and copies `skills/` onto them. To refresh skills after a pull:
-
-```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File kit/sync-ides.ps1
 powershell -NoProfile -ExecutionPolicy Bypass -File kit/sync-ides.ps1 -Sync
 ```
 
-Non-interactive:
+## Learn
 
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File kit/bootstrap.ps1 -Hosts cursor,antigravity,claude -Target "$env:USERPROFILE\orchestra-workspace"
-```
+[Working](docs/learn/working.md), [design](docs/learn/design.md), [motion](docs/learn/motion.md), [3D](docs/learn/3d.md), [deploy](docs/learn/deploy.md), [research](docs/learn/research.md), [presentations](docs/learn/presentations.md), [README](docs/learn/readme.md), [reverse engineering](docs/learn/reverse.md), [hackathons](docs/learn/hackathon.md), [brainstorm](docs/learn/brainstorm.md), [coach](docs/learn/coach.md). Skill and MCP authoring sit beside those pages.
 
-### macOS and Linux
+## Credits
 
-```bash
-chmod +x kit/bootstrap.sh kit/init-workspace.sh kit/install-local-engine.sh
-./kit/bootstrap.sh
-```
+Mahaveer Singh Gehlot. Upstream licenses are in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md). The default mark is `assets/brand/ow-mark-bars.svg`. Two alternates sit beside it.
 
-Or name the hosts:
-
-```bash
-./kit/bootstrap.sh --hosts cursor,antigravity,claude --target "$HOME/orchestra-workspace"
-```
-
-Run the same command again after a pull to refresh those skill folders. The engine binary, if you want it on `PATH`:
-
-```bash
-./kit/install-local-engine.sh
-```
-
-### After install
-
-Set `ORCHESTRA_VAULT` to your private notes folder. Restart the IDE. The next chat in this repo reads [`AGENTS.md`](AGENTS.md).
-
-Walkthrough: [`docs/getting-started.md`](docs/getting-started.md).
-
-Say **skip orchestra** to stand down for the session. Say **skip the lab** to bypass the design gate for one task.
-
-### First task
-
-Open the product repo. Say what it is and who it is for. The conductor classifies one route and names what it loads. For a public page, approve the contract and the stills before implementation. For a bug, it loads `systematic-debugging` and skips the lab.
-
-## Test
-
-From `runtime/`:
-
-```bash
-go test ./...
-```
-
-From the repo root:
-
-```bash
-node runtime/tools/hygiene.js
-node runtime/tools/check-registry.js
-node runtime/tools/check-routing.js
-node runtime/tools/check-41.js
-node runtime/tools/check-design-contract.js templates/contracts spatial
-```
-
-CI on `main` and on pull requests runs `go test`, `gofmt -l`, and a JSON check. [Hygiene](.github/workflows/hygiene.yml) is a separate workflow. Live browser tests run when `runtime/node_modules` has the Playwright library and Chromium. Without that install they are skipped.
-
-## Security
-
-Secrets stay in the host. Hygiene rejects credential-shaped strings, private vault paths, and personal product names in tracked files. The engine blocks a global package install. `ship-safe` loads when a change touches auth, public routes, or secrets. Details: [`docs/security-and-privacy.md`](docs/security-and-privacy.md).
-
-## Documentation
-
-| Doc | What it is |
-| --- | --- |
-| [`AGENTS.md`](AGENTS.md) | The contract and the job table |
-| [`ARCHITECTURE.md`](ARCHITECTURE.md) | Stages, mission, gates |
-| [`WORKFLOW.md`](WORKFLOW.md) | How a session runs |
-| [`docs/getting-started.md`](docs/getting-started.md) | Clone, bootstrap, vault |
-| [`docs/workflow.md`](docs/workflow.md) | Short pointer at the loop |
-| [`docs/using.md`](docs/using.md) | Day-to-day use |
-| [`docs/prompting.md`](docs/prompting.md) | What to say in the brief |
-| [`docs/diagrams/`](docs/diagrams/) | SVG figures and Mermaid sources |
-| [`docs/DESIGN_RESOURCE_ROUTING.md`](docs/DESIGN_RESOURCE_ROUTING.md) | One design system per job |
-| [`docs/RESOURCE_INVENTORY.md`](docs/RESOURCE_INVENTORY.md) | How the catalog is organized |
-| [`docs/RESOURCE_HEALTH.md`](docs/RESOURCE_HEALTH.md) | What "healthy" means for an MCP |
-| [`docs/security-and-privacy.md`](docs/security-and-privacy.md) | Secrets and scope |
-| [`docs/adapters.md`](docs/adapters.md) | Which host conducts |
-| [`protocols/`](protocols/) | Design lab, type, visual QA, security |
-| [`CHANGELOG.md`](CHANGELOG.md) | Release record |
-| [`kit/ROLLBACK.md`](kit/ROLLBACK.md) | Pin or check out an older tree |
-| [`CONTRIBUTING.md`](CONTRIBUTING.md) | What to send |
-
-## Migration from 4.0.0
-
-```bash
-git pull origin main
-```
-
-Capability ids are unchanged. Existing resource rows still load. Refresh host skills with the install commands above.
-
-`ORCHESTRA_CONTRACT` changes the label the doctor prints. The 4.1 selector is code in the tree you checked out. To run 4.0.0 behavior, check out that tag and refresh skills from it.
-
-```powershell
-$env:ORCHESTRA_CONTRACT = "4.0.0"
-```
-
-```bash
-export ORCHESTRA_CONTRACT=4.0.0
-```
-
-Do not force-push `main`. See [`kit/ROLLBACK.md`](kit/ROLLBACK.md).
-
-## Contributing
-
-Useful changes are an install fix, a registry row with a license, and a test around the design gate or the routing check. Leave out skill dumps, secrets, and personal notes. See [`CONTRIBUTING.md`](CONTRIBUTING.md).
-
-## Limits
-
-- One conductor. A second plan loses.
-- The model dropdown is yours.
-- Visual QA needs a running app.
-- An MCP you have not signed in to is not connected.
-- GetLayers stays purchase-pending until you buy it and say to update.
-- iOS device builds need a Mac and Xcode.
-- Swift, Kotlin, and Flutter are outside this skill set.
-
-## License
-
-MIT. See [LICENSE](LICENSE).
+Say **skip orchestra** to stand this down for a session.

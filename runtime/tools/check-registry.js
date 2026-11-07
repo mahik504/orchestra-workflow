@@ -83,7 +83,7 @@ for (const r of rows) {
 }
 
 // 4. personal markers across all of registries/
-const LEAK = /mahik504(?!\/orchestra-workflow)|AstroVerse|AirLens|YUMIT|ODYSS|EvoNex|XplainAI|orchestra-brain|C:\\\\Users|C:\\\\projects|gehlot\.mahisingh/i;
+const LEAK = /mahik504(?!\/(?:orchestra-workflow|limitless-claude))|AstroVerse|AirLens|YUMIT|ODYSS|EvoNex|XplainAI|orchestra-brain|C:\\\\Users|C:\\\\projects|gehlot\.mahisingh/i;
 for (const f of fs.readdirSync(REGDIR)) {
   const p = path.join(REGDIR, f);
   if (!fs.statSync(p).isFile()) continue;

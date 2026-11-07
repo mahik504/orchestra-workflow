@@ -2830,11 +2830,11 @@
     ]
   },
   {
-    "id": "ship-safe",
+    "id": "ow-ship-safe",
     "name": "Ship-Safe Defensive Security Baseline",
-    "canonical_url": "https://github.com/orchestra-org/ship-safe",
+    "canonical_url": "https://github.com/orchestra-org/ow-ship-safe",
     "source_type": "agent_skill",
-    "documentation_url": "https://github.com/orchestra-org/ship-safe/blob/main/README.md",
+    "documentation_url": "https://github.com/orchestra-org/ow-ship-safe/blob/main/README.md",
     "category": [
       "defensive_security",
       "ci_cd",
@@ -2842,7 +2842,7 @@
     ],
     "representation": "skill",
     "routing_tags": [
-      "ship-safe",
+      "ow-ship-safe",
       "defensive-hardening",
       "secrets-prevention",
       "ci-security"
@@ -3713,12 +3713,12 @@
     ]
   },
   {
-    "id": "orchestra-docs",
+    "id": "ow-docs",
     "name": "Orchestra Docs",
     "canonical_url": "https://github.com/mahik504/orchestra-workflow",
     "source_type": "agent_skill",
     "source_repository": "https://github.com/mahik504/orchestra-workflow.git",
-    "documentation_url": "https://github.com/mahik504/orchestra-workflow/blob/main/skills/orchestra-docs/SKILL.md",
+    "documentation_url": "https://github.com/mahik504/orchestra-workflow/blob/main/skills/ow-docs/SKILL.md",
     "license": "MIT",
     "category": [
       "documentation",
@@ -4110,7 +4110,7 @@
       "always-on MCP"
     ],
     "policy_verdict": "CURATED OPTIONAL",
-    "rationale": "Self-hosted / API slide generator for deck jobs. Does not replace orchestra-docs for papers. Not a 31st Cursor skill.",
+    "rationale": "Self-hosted / API slide generator for deck jobs. Does not replace ow-docs for papers. Not a 31st Cursor skill.",
     "skip_conditions": [
       "methods paper",
       "thesis citations",
@@ -4397,7 +4397,7 @@
       "detector-evasion for academic fraud"
     ],
     "policy_verdict": "CURATED OPTIONAL",
-    "rationale": "Wikipedia Signs of AI writing as a method. orchestra-docs + Preferences already carry the Evocentric voice. Load the pattern list on a named humanize job. Do not install globally.",
+    "rationale": "Wikipedia Signs of AI writing as a method. ow-docs + Preferences already carry the Evocentric voice. Load the pattern list on a named humanize job. Do not install globally.",
     "skip_conditions": [
       "31st global skill",
       "npx skills add --global",
@@ -4667,12 +4667,12 @@
     "last_verified": "2026-09-06"
   },
   {
-    "id": "diagram-generator",
+    "id": "ow-diagrams",
     "name": "Diagram Generator",
-    "canonical_url": "https://github.com/jovd83/diagram-generator",
+    "canonical_url": "https://github.com/jovd83/ow-diagrams",
     "source_type": "agent_skill",
-    "source_repository": "https://github.com/jovd83/diagram-generator.git",
-    "documentation_url": "https://github.com/jovd83/diagram-generator",
+    "source_repository": "https://github.com/jovd83/ow-diagrams.git",
+    "documentation_url": "https://github.com/jovd83/ow-diagrams",
     "license": "see-upstream",
     "category": [
       "docs",
@@ -4725,7 +4725,7 @@
     "runtime_method": "global_active_skill",
     "status": "ACTIVE",
     "trigger_conditions": [
-      "render Mermaid to SVG after diagram-generator"
+      "render Mermaid to SVG after ow-diagrams"
     ],
     "avoid_conditions": [
       "inventing architecture here"
@@ -4738,12 +4738,12 @@
     "last_verified": "2026-09-06"
   },
   {
-    "id": "skill-security-check",
+    "id": "ow-skill-security-check",
     "name": "Skill Security Check",
-    "canonical_url": "https://github.com/aliksir/claude-code-skill-security-check",
+    "canonical_url": "https://github.com/aliksir/claude-code-ow-skill-security-check",
     "source_type": "agent_skill",
-    "source_repository": "https://github.com/aliksir/claude-code-skill-security-check.git",
-    "documentation_url": "https://github.com/aliksir/claude-code-skill-security-check",
+    "source_repository": "https://github.com/aliksir/claude-code-ow-skill-security-check.git",
+    "documentation_url": "https://github.com/aliksir/claude-code-ow-skill-security-check",
     "license": "see-upstream",
     "category": [
       "security",
@@ -5619,7 +5619,7 @@
     "status": "ACTIVE",
     "trigger_conditions": [
       "architecture diagram in README or docs",
-      "diagram-generator produced Mermaid source"
+      "ow-diagrams produced Mermaid source"
     ],
     "avoid_conditions": [
       "invented architecture",
@@ -5630,7 +5630,7 @@
       "the human asked for a raster screenshot only"
     ],
     "policy_verdict": "GROUNDED DIAGRAM SOURCE",
-    "rationale": "diagram-generator writes Mermaid; pretty-mermaid may render. Source of truth is the repo.",
+    "rationale": "ow-diagrams writes Mermaid; pretty-mermaid may render. Source of truth is the repo.",
     "auth": "NONE",
     "free_capability": "OSS diagram language",
     "paid_capability": "none",
@@ -5669,14 +5669,14 @@
     ],
     "skip_conditions": [
       "ordinary coding turn",
-      "an Orchestra skill already covers the job (ship-safe, strix, semgrep-adapter)"
+      "an Orchestra skill already covers the job (ow-ship-safe, strix, ow-semgrep)"
     ],
     "policy_verdict": "QUARANTINED REFERENCE — EXTRACT THEMES ONLY",
     "rationale": "Do not vendor the dump. Use as a map: CI/CD, Docker, deployment, observability, security, reliability, infrastructure, performance.",
     "auth": "NONE",
     "free_capability": "public skill markdown as reference",
     "paid_capability": "none",
-    "fallback": "ship-safe"
+    "fallback": "ow-ship-safe"
   },
   {
     "id": "gsd-archived",
@@ -5791,7 +5791,7 @@
     ],
     "representation": "cli",
     "routing_tags": [
-      "final-showcase",
+      "ow-showcase",
       "walkthrough",
       "brag"
     ],
@@ -5799,7 +5799,7 @@
     "runtime_method": "on_demand_cli",
     "status": "PROJECT_ONLY",
     "trigger_conditions": [
-      "final-showcase after production-ready green ledger"
+      "ow-showcase after production-ready green ledger"
     ],
     "avoid_conditions": [
       "design phase",
@@ -5807,7 +5807,7 @@
       "using demo video to decide visuals"
     ],
     "policy_verdict": "PROJECT-ONLY FINAL SHOWCASE",
-    "rationale": "Activate only on the final-showcase route after human approval and a green verification ledger. Never influences implementation.",
+    "rationale": "Activate only on the ow-showcase route after human approval and a green verification ledger. Never influences implementation.",
     "skip_conditions": [
       "design or implementation in progress",
       "ledger not green"
@@ -5933,14 +5933,14 @@
     "representation": "research_source",
     "routing_tags": [
       "latex",
-      "research-paper",
+      "ow-research-paper",
       "overleaf"
     ],
     "acquisition_method": "none",
     "runtime_method": "reference_only",
     "status": "REFERENCE",
     "trigger_conditions": [
-      "research-paper or methods writeup needs LaTeX collaboration"
+      "ow-research-paper or methods writeup needs LaTeX collaboration"
     ],
     "avoid_conditions": [
       "frontend implementation",
@@ -6083,9 +6083,16 @@
     "source_repository": "https://github.com/WatermelonCorp/watermelon-platform",
     "documentation_url": "https://ui.watermelon.sh/",
     "license": "MIT",
-    "category": ["components", "frontend"],
+    "category": [
+      "components",
+      "frontend"
+    ],
     "representation": "reference",
-    "routing_tags": ["watermelon", "component", "block"],
+    "routing_tags": [
+      "watermelon",
+      "component",
+      "block"
+    ],
     "acquisition_method": "none",
     "runtime_method": "reference_only",
     "status": "REFERENCE",
@@ -6112,17 +6119,29 @@
     "source_type": "github_repository",
     "source_repository": "https://github.com/RiantRedwood/Archify",
     "documentation_url": "https://github.com/RiantRedwood/Archify",
-    "category": ["diagrams", "reference"],
+    "category": [
+      "diagrams",
+      "reference"
+    ],
     "representation": "reference",
-    "routing_tags": ["archify", "diagram", "reference"],
+    "routing_tags": [
+      "archify",
+      "diagram",
+      "reference"
+    ],
     "acquisition_method": "none",
     "runtime_method": "reference_only",
     "status": "REFERENCE",
     "last_verified": "2026-11-05",
-    "trigger_conditions": ["a diagram job wants a second look at structure after diagram-generator"],
-    "skip_conditions": ["replacing Mermaid", "installing Archify as a skill pack"],
+    "trigger_conditions": [
+      "a diagram job wants a second look at structure after ow-diagrams"
+    ],
+    "skip_conditions": [
+      "replacing Mermaid",
+      "installing Archify as a skill pack"
+    ],
     "policy_verdict": "REFERENCE",
-    "rationale": "GitHub responded 200 on 2026-11-05. Reference only. diagram-generator and Mermaid stay the route."
+    "rationale": "GitHub responded 200 on 2026-11-05. Reference only. ow-diagrams and Mermaid stay the route."
   },
   {
     "id": "understand-anything",
@@ -6131,15 +6150,28 @@
     "source_type": "github_repository",
     "source_repository": "https://github.com/Egonex-AI/Understand-Anything",
     "documentation_url": "https://github.com/Egonex-AI/Understand-Anything",
-    "category": ["research", "reference"],
+    "category": [
+      "research",
+      "reference"
+    ],
     "representation": "reference",
-    "routing_tags": ["understand-anything", "repo-map", "reference"],
+    "routing_tags": [
+      "understand-anything",
+      "repo-map",
+      "reference"
+    ],
     "acquisition_method": "none",
     "runtime_method": "reference_only",
     "status": "REFERENCE",
     "last_verified": "2026-11-05",
-    "trigger_conditions": ["a repo audit wants an optional second explanation of a codebase"],
-    "skip_conditions": ["replacing ponytail-audit", "replacing Graphify", "installing the pack"],
+    "trigger_conditions": [
+      "a repo audit wants an optional second explanation of a codebase"
+    ],
+    "skip_conditions": [
+      "replacing ponytail-audit",
+      "replacing Graphify",
+      "installing the pack"
+    ],
     "policy_verdict": "REFERENCE",
     "rationale": "GitHub responded 200 on 2026-11-05. Optional reference. ponytail-audit plus Graphify stays the map."
   },
@@ -6150,17 +6182,29 @@
     "source_type": "github_repository",
     "source_repository": "https://github.com/microsoft/markitdown",
     "documentation_url": "https://github.com/microsoft/markitdown",
-    "category": ["documents", "reference"],
+    "category": [
+      "documents",
+      "reference"
+    ],
     "representation": "reference",
-    "routing_tags": ["markitdown", "markdown", "conversion"],
+    "routing_tags": [
+      "markitdown",
+      "markdown",
+      "conversion"
+    ],
     "acquisition_method": "none",
     "runtime_method": "reference_only",
     "status": "REFERENCE",
     "last_verified": "2026-11-05",
-    "trigger_conditions": ["a document the operator already has needs a markdown conversion"],
-    "skip_conditions": ["copying the tool into this method repo", "inventing a new docs skill"],
+    "trigger_conditions": [
+      "a document the operator already has needs a markdown conversion"
+    ],
+    "skip_conditions": [
+      "copying the tool into this method repo",
+      "inventing a new docs skill"
+    ],
     "policy_verdict": "REFERENCE",
-    "rationale": "GitHub responded 200 on 2026-11-05. orchestra-docs may point at it. Not a skill folder."
+    "rationale": "GitHub responded 200 on 2026-11-05. ow-docs may point at it. Not a skill folder."
   },
   {
     "id": "data-engineer-handbook",
@@ -6169,15 +6213,27 @@
     "source_type": "github_repository",
     "source_repository": "https://github.com/DataExpert-io/data-engineer-handbook",
     "documentation_url": "https://github.com/DataExpert-io/data-engineer-handbook",
-    "category": ["data", "reference"],
+    "category": [
+      "data",
+      "reference"
+    ],
     "representation": "reference",
-    "routing_tags": ["data", "handbook", "reference"],
+    "routing_tags": [
+      "data",
+      "handbook",
+      "reference"
+    ],
     "acquisition_method": "none",
     "runtime_method": "reference_only",
     "status": "REFERENCE",
     "last_verified": "2026-11-05",
-    "trigger_conditions": ["a data-engineering question needs a public handbook"],
-    "skip_conditions": ["installing it as a skill", "treating the handbook as a product decision"],
+    "trigger_conditions": [
+      "a data-engineering question needs a public handbook"
+    ],
+    "skip_conditions": [
+      "installing it as a skill",
+      "treating the handbook as a product decision"
+    ],
     "policy_verdict": "REFERENCE",
     "rationale": "GitHub responded 200 on 2026-11-05. Reference only."
   },
@@ -6188,15 +6244,27 @@
     "source_type": "github_repository",
     "source_repository": "https://github.com/storybookjs/storybook",
     "documentation_url": "https://github.com/storybookjs/storybook",
-    "category": ["components", "reference"],
+    "category": [
+      "components",
+      "reference"
+    ],
     "representation": "reference",
-    "routing_tags": ["storybook", "components", "reference"],
+    "routing_tags": [
+      "storybook",
+      "components",
+      "reference"
+    ],
     "acquisition_method": "none",
     "runtime_method": "reference_only",
     "status": "REFERENCE",
     "last_verified": "2026-11-05",
-    "trigger_conditions": ["a product repo already uses Storybook for one component"],
-    "skip_conditions": ["adding Storybook to this method repo", "a new skill that only names the binary"],
+    "trigger_conditions": [
+      "a product repo already uses Storybook for one component"
+    ],
+    "skip_conditions": [
+      "adding Storybook to this method repo",
+      "a new skill that only names the binary"
+    ],
     "policy_verdict": "REFERENCE",
     "rationale": "GitHub responded 200 on 2026-11-05. Reference only. Not a skill folder."
   },
@@ -6206,15 +6274,27 @@
     "canonical_url": "https://www.chromatic.com/",
     "source_type": "web_reference",
     "documentation_url": "https://www.chromatic.com/",
-    "category": ["qa", "reference"],
+    "category": [
+      "qa",
+      "reference"
+    ],
     "representation": "reference",
-    "routing_tags": ["chromatic", "visual", "paid"],
+    "routing_tags": [
+      "chromatic",
+      "visual",
+      "paid"
+    ],
     "acquisition_method": "none",
     "runtime_method": "reference_only",
     "status": "REFERENCE",
     "last_verified": "2026-11-05",
-    "trigger_conditions": ["a product repo already pays for Chromatic"],
-    "skip_conditions": ["claiming Chromatic is connected", "adding a Chromatic skill"],
+    "trigger_conditions": [
+      "a product repo already pays for Chromatic"
+    ],
+    "skip_conditions": [
+      "claiming Chromatic is connected",
+      "adding a Chromatic skill"
+    ],
     "policy_verdict": "REFERENCE",
     "rationale": "chromatic.com responded 200 on 2026-11-05. Paid. Not connected. Not a skill folder."
   },
@@ -6226,14 +6306,26 @@
     "source_repository": "https://github.com/mattpocock/skills",
     "documentation_url": "https://github.com/mattpocock/skills/blob/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/productivity/grilling/SKILL.md",
     "license": "MIT",
-    "category": ["skill", "planning"],
+    "category": [
+      "skill",
+      "planning"
+    ],
     "representation": "skill",
-    "routing_tags": ["grilling", "brief", "new-product"],
+    "routing_tags": [
+      "grilling",
+      "brief",
+      "new-product"
+    ],
     "acquisition_method": "manual",
     "runtime_method": "global_active_skill",
     "status": "ACTIVE",
-    "trigger_conditions": ["intent or acceptance is unclear on a new product"],
-    "skip_conditions": ["the brief already names intent and acceptance", "installing the rest of the Pocock pack"],
+    "trigger_conditions": [
+      "intent or acceptance is unclear on a new product"
+    ],
+    "skip_conditions": [
+      "the brief already names intent and acceptance",
+      "installing the rest of the Pocock pack"
+    ],
     "policy_verdict": "ONE SKILL",
     "rationale": "Copied from mattpocock/skills at 4ae2317 after a file read. grill-with-docs is only a pointer, so it was not copied.",
     "upstream_version": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
@@ -6249,14 +6341,26 @@
     "source_repository": "https://github.com/mattpocock/skills",
     "documentation_url": "https://github.com/mattpocock/skills/blob/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/engineering/domain-modeling/SKILL.md",
     "license": "MIT",
-    "category": ["skill", "planning"],
+    "category": [
+      "skill",
+      "planning"
+    ],
     "representation": "skill",
-    "routing_tags": ["glossary", "adr", "domain"],
+    "routing_tags": [
+      "glossary",
+      "adr",
+      "domain"
+    ],
     "acquisition_method": "manual",
     "runtime_method": "global_active_skill",
     "status": "ACTIVE",
-    "trigger_conditions": ["a new product needs a glossary or an ADR"],
-    "skip_conditions": ["reading an existing glossary without changing the model", "installing the rest of the Pocock pack"],
+    "trigger_conditions": [
+      "a new product needs a glossary or an ADR"
+    ],
+    "skip_conditions": [
+      "reading an existing glossary without changing the model",
+      "installing the rest of the Pocock pack"
+    ],
     "policy_verdict": "ONE SKILL",
     "rationale": "Copied from mattpocock/skills at 4ae2317 after a file read. DECISIONS.md points at the ADR this skill writes.",
     "upstream_version": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
@@ -6272,14 +6376,27 @@
     "source_repository": "https://github.com/mattpocock/skills",
     "documentation_url": "https://github.com/mattpocock/skills/blob/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/engineering/to-tickets/SKILL.md",
     "license": "MIT",
-    "category": ["skill", "planning"],
+    "category": [
+      "skill",
+      "planning"
+    ],
     "representation": "skill",
-    "routing_tags": ["tickets", "plan", "tracer-bullet"],
+    "routing_tags": [
+      "tickets",
+      "plan",
+      "tracer-bullet"
+    ],
     "acquisition_method": "manual",
     "runtime_method": "global_active_skill",
     "status": "ACTIVE",
-    "trigger_conditions": ["a plan needs to become work items"],
-    "skip_conditions": ["the task is one ticket already", "publishing GitHub issues when the task did not name GitHub", "running /setup-matt-pocock-skills"],
+    "trigger_conditions": [
+      "a plan needs to become work items"
+    ],
+    "skip_conditions": [
+      "the task is one ticket already",
+      "publishing GitHub issues when the task did not name GitHub",
+      "running /setup-matt-pocock-skills"
+    ],
     "policy_verdict": "ONE SKILL",
     "rationale": "Copied from mattpocock/skills at 4ae2317. Orchestra defaults the tracker to local files under .scratch.",
     "upstream_version": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
@@ -6295,14 +6412,27 @@
     "source_repository": "https://github.com/addyosmani/agent-skills",
     "documentation_url": "https://github.com/addyosmani/agent-skills/blob/301b02b12bff98e4688e6984af6556802322bbde/skills/constraint-driven-development/SKILL.md",
     "license": "MIT",
-    "category": ["skill", "quality"],
+    "category": [
+      "skill",
+      "quality"
+    ],
     "representation": "skill",
-    "routing_tags": ["constraints", "quality-bar", "floor"],
+    "routing_tags": [
+      "constraints",
+      "quality-bar",
+      "floor"
+    ],
     "acquisition_method": "manual",
     "runtime_method": "global_active_skill",
     "status": "ACTIVE",
-    "trigger_conditions": ["a quality bar is needed before a build", "an agent is silencing checks to get green"],
-    "skip_conditions": ["installing the rest of the Addy Osmani pack", "npx skills add"],
+    "trigger_conditions": [
+      "a quality bar is needed before a build",
+      "an agent is silencing checks to get green"
+    ],
+    "skip_conditions": [
+      "installing the rest of the Addy Osmani pack",
+      "npx skills add"
+    ],
     "policy_verdict": "ONE SKILL FROM A REJECTED PACK",
     "rationale": "Copied from addyosmani/agent-skills at 301b02b, including references/floor-guard.md and scripts/quality-gate.mjs. The pack row stays REJECTED.",
     "upstream_version": "301b02b12bff98e4688e6984af6556802322bbde",
@@ -6318,19 +6448,394 @@
     "source_repository": "https://github.com/obra/superpowers",
     "documentation_url": "https://github.com/obra/superpowers",
     "license": "MIT",
-    "category": ["skill", "review"],
+    "category": [
+      "skill",
+      "review"
+    ],
     "representation": "skill",
-    "routing_tags": ["code-review", "feedback"],
+    "routing_tags": [
+      "code-review",
+      "feedback"
+    ],
     "acquisition_method": "manual",
     "runtime_method": "global_active_skill",
     "status": "ACTIVE",
-    "trigger_conditions": ["review feedback arrives before the next edit"],
-    "skip_conditions": ["enabling the Superpowers plugin", "performative agreement without checking the code"],
+    "trigger_conditions": [
+      "review feedback arrives before the next edit"
+    ],
+    "skip_conditions": [
+      "enabling the Superpowers plugin",
+      "performative agreement without checking the code"
+    ],
     "policy_verdict": "VENDORED SKILL",
     "rationale": "Copied from the Superpowers 6.1.1 plugin cache d884ae04edebef577e82ff7c4e143debd0bbec99 with LICENSE.superpowers. The plugin stays off.",
     "upstream_version": "6.1.1+d884ae04edebef577e82ff7c4e143debd0bbec99",
     "last_verified": "2026-11-07",
     "usage_evidence": "none recorded in this registry",
     "lifecycle_stage": "discovered"
+  },
+  {
+    "id": "godly",
+    "name": "Godly",
+    "canonical_url": "https://godly.website",
+    "source_type": "component_gallery",
+    "license": "unspecified",
+    "category": [
+      "reference"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "reference",
+      "visual"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "a visual task needs a public reference"
+    ],
+    "skip_conditions": [
+      "copying the asset, the copy, or the logo"
+    ],
+    "rationale": "Sites with a strong first screen.",
+    "usage_evidence": "none recorded in this registry",
+    "lifecycle_stage": "discovered",
+    "admission_state": "discovered"
+  },
+  {
+    "id": "lapa-ninja",
+    "name": "Lapa Ninja",
+    "canonical_url": "https://www.lapa.ninja",
+    "source_type": "web_reference",
+    "license": "unspecified",
+    "category": [
+      "reference"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "reference",
+      "visual"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "a visual task needs a public reference"
+    ],
+    "skip_conditions": [
+      "copying the asset, the copy, or the logo"
+    ],
+    "rationale": "Landing page structure references.",
+    "usage_evidence": "none recorded in this registry",
+    "lifecycle_stage": "discovered",
+    "admission_state": "discovered"
+  },
+  {
+    "id": "mobbin",
+    "name": "Mobbin",
+    "canonical_url": "https://mobbin.com",
+    "source_type": "web_reference",
+    "license": "unspecified",
+    "category": [
+      "reference"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "reference",
+      "visual"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "a visual task needs a public reference"
+    ],
+    "skip_conditions": [
+      "copying the asset, the copy, or the logo"
+    ],
+    "rationale": "Product UI flows.",
+    "usage_evidence": "none recorded in this registry",
+    "lifecycle_stage": "discovered",
+    "admission_state": "discovered"
+  },
+  {
+    "id": "refero-design-gallery",
+    "name": "Refero",
+    "canonical_url": "https://refero.design",
+    "source_type": "web_reference",
+    "license": "unspecified",
+    "category": [
+      "reference"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "reference",
+      "visual"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "a visual task needs a public reference"
+    ],
+    "skip_conditions": [
+      "copying the asset, the copy, or the logo"
+    ],
+    "rationale": "Product screens. The refero-design skill stays the method.",
+    "usage_evidence": "none recorded in this registry",
+    "lifecycle_stage": "discovered",
+    "admission_state": "discovered"
+  },
+  {
+    "id": "codrops",
+    "name": "Codrops",
+    "canonical_url": "https://tympanus.net/codrops/",
+    "source_type": "web_reference",
+    "license": "unspecified",
+    "category": [
+      "reference"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "reference",
+      "visual"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "a visual task needs a public reference"
+    ],
+    "skip_conditions": [
+      "copying the asset, the copy, or the logo"
+    ],
+    "rationale": "Interaction articles and demos.",
+    "usage_evidence": "none recorded in this registry",
+    "lifecycle_stage": "discovered",
+    "admission_state": "discovered"
+  },
+  {
+    "id": "fontshare",
+    "name": "Fontshare",
+    "canonical_url": "https://www.fontshare.com",
+    "source_type": "asset_archive",
+    "license": "unspecified",
+    "category": [
+      "reference"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "reference",
+      "visual"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "a visual task needs a public reference"
+    ],
+    "skip_conditions": [
+      "copying the asset, the copy, or the logo"
+    ],
+    "rationale": "Free display and text faces.",
+    "usage_evidence": "none recorded in this registry",
+    "lifecycle_stage": "discovered",
+    "admission_state": "discovered"
+  },
+  {
+    "id": "fontsource",
+    "name": "Fontsource",
+    "canonical_url": "https://fontsource.org",
+    "source_type": "npm_package",
+    "license": "unspecified",
+    "category": [
+      "reference"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "reference",
+      "visual"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "a visual task needs a public reference"
+    ],
+    "skip_conditions": [
+      "copying the asset, the copy, or the logo"
+    ],
+    "rationale": "Self-hosted font packages.",
+    "usage_evidence": "none recorded in this registry",
+    "lifecycle_stage": "discovered",
+    "admission_state": "discovered"
+  },
+  {
+    "id": "lucide",
+    "name": "Lucide",
+    "canonical_url": "https://lucide.dev",
+    "source_type": "component_gallery",
+    "license": "unspecified",
+    "category": [
+      "reference"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "reference",
+      "visual"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "a visual task needs a public reference"
+    ],
+    "skip_conditions": [
+      "copying the asset, the copy, or the logo"
+    ],
+    "rationale": "Stroke icons.",
+    "usage_evidence": "none recorded in this registry",
+    "lifecycle_stage": "discovered",
+    "admission_state": "discovered"
+  },
+  {
+    "id": "phosphor-icons",
+    "name": "Phosphor",
+    "canonical_url": "https://phosphoricons.com",
+    "source_type": "component_gallery",
+    "license": "unspecified",
+    "category": [
+      "reference"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "reference",
+      "visual"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "a visual task needs a public reference"
+    ],
+    "skip_conditions": [
+      "copying the asset, the copy, or the logo"
+    ],
+    "rationale": "Icon set with weights.",
+    "usage_evidence": "none recorded in this registry",
+    "lifecycle_stage": "discovered",
+    "admission_state": "discovered"
+  },
+  {
+    "id": "unsplash",
+    "name": "Unsplash",
+    "canonical_url": "https://unsplash.com",
+    "source_type": "asset_archive",
+    "license": "unspecified",
+    "category": [
+      "reference"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "reference",
+      "visual"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "a visual task needs a public reference"
+    ],
+    "skip_conditions": [
+      "copying the asset, the copy, or the logo"
+    ],
+    "rationale": "Photographs with a stated license on the photo.",
+    "usage_evidence": "none recorded in this registry",
+    "lifecycle_stage": "discovered",
+    "admission_state": "discovered"
+  },
+  {
+    "id": "pexels",
+    "name": "Pexels",
+    "canonical_url": "https://www.pexels.com",
+    "source_type": "asset_archive",
+    "license": "unspecified",
+    "category": [
+      "reference"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "reference",
+      "visual"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "a visual task needs a public reference"
+    ],
+    "skip_conditions": [
+      "copying the asset, the copy, or the logo"
+    ],
+    "rationale": "Photographs and video with a stated license.",
+    "usage_evidence": "none recorded in this registry",
+    "lifecycle_stage": "discovered",
+    "admission_state": "discovered"
+  },
+  {
+    "id": "rive",
+    "name": "Rive",
+    "canonical_url": "https://rive.app",
+    "source_type": "web_reference",
+    "license": "unspecified",
+    "category": [
+      "reference"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "reference",
+      "visual"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "a visual task needs a public reference"
+    ],
+    "skip_conditions": [
+      "copying the asset, the copy, or the logo"
+    ],
+    "rationale": "State-machine motion. Not a second scroll runtime.",
+    "usage_evidence": "none recorded in this registry",
+    "lifecycle_stage": "discovered",
+    "admission_state": "discovered"
+  },
+  {
+    "id": "threejs",
+    "name": "Three.js",
+    "canonical_url": "https://threejs.org",
+    "source_type": "web_reference",
+    "license": "unspecified",
+    "category": [
+      "reference"
+    ],
+    "representation": "reference",
+    "routing_tags": [
+      "reference",
+      "visual"
+    ],
+    "acquisition_method": "web_fetch",
+    "runtime_method": "reference_only",
+    "status": "ACTIVE",
+    "trigger_conditions": [
+      "a visual task needs a public reference"
+    ],
+    "skip_conditions": [
+      "copying the asset, the copy, or the logo"
+    ],
+    "rationale": "The renderer under ow-3d-engineering.",
+    "usage_evidence": "none recorded in this registry",
+    "lifecycle_stage": "discovered",
+    "admission_state": "discovered"
   }
 ]

@@ -242,14 +242,14 @@ func (r *Router) Compose(task *classifier.Task) *CompositionPlan {
 
 	// 4. Security & Code Integrity
 	if task.RequiresSecurity {
-		if secCap := findCap("semgrep-adapter"); secCap != nil {
+		if secCap := findCap("ow-semgrep"); secCap != nil {
 			addCap(secCap)
 		} else {
 			plan.EstimatedTokenCost += 1200
 		}
 
 		plan.ExecutionDirectives = append(plan.ExecutionDirectives, &CapabilityExecutionDirective{
-			CapabilityID: "semgrep-adapter",
+			CapabilityID: "ow-semgrep",
 			ActionableRules: []string{
 				"Audit all external API routes for input sanitization and honeypot spam traps",
 				"Ensure zero client-side leakage of serverless environment secrets",

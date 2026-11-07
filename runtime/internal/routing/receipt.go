@@ -157,14 +157,14 @@ func mergeNamed(route, named, known []string) (load, missing, skips []string) {
 func incompatible(id string, load []string) string {
 	switch id {
 	case "creative-3d-web":
-		if contains(load, "r3f-shaders") {
-			return "unsafe alongside r3f-shaders; one scene owner"
+		if contains(load, "ow-3d-engineering") {
+			return "unsafe alongside ow-3d-engineering; one scene owner"
 		}
 	case "fullstack-mastery":
-		if contains(load, "backend-architecture") {
-			return "unsafe alongside backend-architecture; one build owner"
+		if contains(load, "ow-backend-architecture") {
+			return "unsafe alongside ow-backend-architecture; one build owner"
 		}
-	case "orchestra-video":
+	case "ow-video":
 		if contains(load, "gsap-core") {
 			return "unsafe alongside the GSAP route"
 		}

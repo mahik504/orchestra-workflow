@@ -1,0 +1,10 @@
+{
+  "task": "TypeScript review of the client boundary",
+  "host": "cursor",
+  "route": "TypeScript review",
+  "skills": [
+    "ow-typescript"
+  ],
+  "model_class": "coding-precise",
+  "disclosure": "L1"
+}

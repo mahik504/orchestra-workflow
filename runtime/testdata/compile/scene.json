@@ -1,0 +1,10 @@
+{
+  "task": "One 3D scene with a shader",
+  "host": "cursor",
+  "route": "One 3D scene",
+  "skills": [
+    "ow-3d-engineering"
+  ],
+  "model_class": "frontend-design-high",
+  "disclosure": "L2"
+}

@@ -1,0 +1,11 @@
+{
+  "task": "Design the SaaS API for billing",
+  "host": "cursor",
+  "route": "SaaS or API",
+  "skills": [
+    "ow-backend-architecture",
+    "test-driven-development"
+  ],
+  "model_class": "reasoning-high",
+  "disclosure": "L1"
+}

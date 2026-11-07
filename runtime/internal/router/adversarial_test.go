@@ -92,7 +92,7 @@ func TestAdversarial_Router_All10DesignArchetypesTokenScaling(t *testing.T) {
 			Name:                  "Academic Reader & Research Paper Viewer",
 			RequiresVisual:        true,
 			RequiresSec:           false,
-			Keywords:              []string{"academic-reader", "research-paper", "reading"},
+			Keywords:              []string{"academic-reader", "ow-research-paper", "reading"},
 			MinTokens:             8000,
 			MaxTokens:             60000,
 			ExpectedDirectivesMin: 3,

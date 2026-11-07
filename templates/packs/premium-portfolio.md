@@ -4,12 +4,12 @@ Load when the job is a PREMIUM personal site or spatial showcase a stranger will
 
 Loop:
 
-1. Classify (usually `premium-website` or `3d-portfolio`; named live references → `visual-forensics` first)
+1. Classify (usually `premium-website` or `3d-portfolio`; named live references → `ow-reference-forensics` first)
 2. Reference forensics → `REFERENCE_BENCHMARK.md` when a site or still is named
 3. Design exploration — **exactly 3** evidence-backed translations if references exist; 23 cards only for open-ended “surprise me”
 4. One locked `DESIGN.md` (LOCKED vs OPEN — `protocols/DESIGN_SYSTEM_PROTOCOL.md`)
 5. Human **contract** gate (`CONTRACT_APPROVED`)
-6. Golden stills (`visual-golden-still`) — desktop + mobile, PASS/FAIL
+6. Golden stills (`ow-golden-still`) — desktop + mobile, PASS/FAIL
 7. Human **visual** gate (`APPROVED`)
 8. One golden interactive scene, then rooms — product UI only after stills
 9. Real browser QA (Playwright on **our** app)

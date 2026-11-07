@@ -207,7 +207,7 @@ func LoadResourceCatalog(path string) (*ResourceCatalog, error) {
 			catalog.aliases[strings.TrimSuffix(lowerID, "-effect")] = res
 		}
 		if lowerID == "semgrep" {
-			catalog.aliases["semgrep-adapter"] = res
+			catalog.aliases["ow-semgrep"] = res
 		}
 		if lowerID == "awesome-design-md" {
 			catalog.aliases["designmd"] = res

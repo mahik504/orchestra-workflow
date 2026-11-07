@@ -1,0 +1,16 @@
+name: Resource update
+description: A registry row is wrong or a new public reference should be added
+body:
+  - type: input
+    id: url
+    attributes:
+      label: URL
+    validations:
+      required: true
+  - type: textarea
+    id: use
+    attributes:
+      label: How a task should use it
+      description: Category, and whether it is a reference, a catalog, or something you run.
+    validations:
+      required: true

@@ -1,0 +1,32 @@
+{
+  "current": "4.5.0",
+  "graph_version": "4.0.0",
+  "graph_version_note": "enrich-graph.js assigns graph.version. Leave registries/design-resource-graph.json at graph_version until that script changes.",
+  "live_files": [
+    "VERSION",
+    "AGENTS.md",
+    "CLAUDE.md",
+    ".cursorrules",
+    "kit/antigravity/GEMINI.md",
+    "kit/antigravity/MASTER-PROMPT.md",
+    "kit/antigravity/ALWAYS-ON.md",
+    "STACK.md",
+    "WORKFLOW.md",
+    "ARCHITECTURE.md",
+    "kit/HOST_CAPABILITIES.md",
+    "kit/ROLLBACK.md",
+    "kit/bootstrap.ps1",
+    "skills/ow-conductor/SKILL.md",
+    "kit/codex/AGENTS.md",
+    "kit/opencode/AGENTS.md",
+    "kit/kimi/AGENTS.md",
+    "README.md"
+  ],
+  "readers_must_not_hardcode_current": [
+    "runtime/tools/hygiene.js",
+    "runtime/tools/check-host-stack.js",
+    "runtime/tools/doctor-ag.js",
+    "kit/orchestra-doctor.ps1",
+    "registries/schemas/host-stack.schema.json"
+  ]
+}

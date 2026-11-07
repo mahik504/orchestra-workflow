@@ -1,4 +1,4 @@
-# Claude Code adapter — Orchestra 4.2.0
+# Claude Code adapter — Orchestra 4.5.0
 
 `AGENTS.md` is the contract. This file only maps it onto Claude Code. It does not define a second orchestration policy.
 
@@ -11,27 +11,27 @@ Name the skills, MCPs, plugins, and libraries this task loads. Omit that line wh
 
 | Job | Load | Skip |
 | --- | --- | --- |
-| Award-style site | impeccable, taste-design, visual-golden-still, gsap-core, gsap-scrolltrigger, gsap-timeline | copying a reference site's files; a second motion stack |
-| Site to echo | visual-forensics, impeccable, taste-design | copying assets, copy, or a logo |
+| Award-style site | impeccable, taste-design, ow-golden-still, gsap-core, gsap-scrolltrigger, gsap-timeline | copying a reference site's files; a second motion stack |
+| Site to echo | ow-reference-forensics, impeccable, taste-design | copying assets, copy, or a logo |
 | Scroll | gsap-core, gsap-scrolltrigger, gsap-timeline | gsap-react unless the motion lives in React components |
-| One 3D scene | r3f-shaders | 3D as decoration; a second motion engine |
-| SaaS or API | backend-architecture, test-driven-development | the design lab; supabase and postgres-best-practices unless that product uses them |
+| One 3D scene | ow-3d-engineering | 3D as decoration; a second motion engine |
+| SaaS or API | ow-backend-architecture, test-driven-development | the design lab; supabase and postgres-best-practices unless that product uses them |
 | Bug | systematic-debugging | the design lab |
-| Paper | research-paper, humanizer | invented citations |
-| Deck | orchestra-docs | host-provided pptx unless that host already has it |
-| Deck or slides | orchestra-docs, orchestra-presentation | copying a pptx skill file; purple template dumps |
-| Architecture diagram | diagram-generator, pretty-mermaid | a second diagram system; a README full of charts |
+| Paper | ow-research-paper, humanizer | invented citations |
+| Deck | ow-docs | host-provided pptx unless that host already has it |
+| Deck or slides | ow-docs, ow-presentation | copying a pptx skill file; purple template dumps |
+| Architecture diagram | ow-diagrams, pretty-mermaid | a second diagram system; a README full of charts |
 | One control | none | loading every component kit; duplicating a control the project already has |
 | Next.js speed | react-best-practices | a redesign; a bulk Vercel skill install |
-| TypeScript review | orchestra-typescript | a visual redesign; a new framework |
-| Ship a deployed app | ship-safe, orchestra-observability | scanning a third-party URL; a global Sentry install |
-| What people said recently | orchestra-research | a last-30-days pack; scraping; posting; DMs |
-| Marketing copy | orchestra-marketing, humanizer | invented metrics; a design system rewrite |
-| Rendered video | orchestra-video | the GSAP route; installing a video suite into this method repo |
-| Career notes | orchestra-career | job-board scraping; applying on your behalf |
-| README and post | orchestra-ship, humanizer | posting for the human |
+| TypeScript review | ow-typescript | a visual redesign; a new framework |
+| Ship a deployed app | ow-ship-safe, ow-observability | scanning a third-party URL; a global Sentry install |
+| What people said recently | ow-research | a last-30-days pack; scraping; posting; DMs |
+| Marketing copy | ow-marketing, humanizer | invented metrics; a design system rewrite |
+| Rendered video | ow-video | the GSAP route; installing a video suite into this method repo |
+| Career notes | ow-career | job-board scraping; applying on your behalf |
+| README and post | ow-ship, humanizer | posting for the human |
 | Binary or APK | not ready | rea until Java is installed and the target is yours, a client's, a CTF, or open source |
-| Hackathon or college | prompt-forge | the 23-card survey when a reference is named; the design lab for college unless the human says PREMIUM |
+| Hackathon or college | ow-forge | the 23-card survey when a reference is named; the design lab for college unless the human says PREMIUM |
 | Docs on disk | host-provided | docx, pptx, pdf, and xlsx stay on the host. They are not in skills/ |
 <!-- routing:end -->
 
@@ -45,7 +45,7 @@ A random folder still reads `~/.claude/CLAUDE.md` unless that folder ships a com
 
 - **Zero-Stub Policy**: Never emit `// TODO`, `// Add implementation here`, or truncated placeholders. Provide complete, fully-implemented, compilable production code.
 - **Strict Full-Stack Standards**: Follow `fullstack-mastery` — TypeScript strict mode (no `any`), Zod input validation on all Server Actions and API boundaries, TanStack Query for dynamic caching, and resilient error/loading boundaries.
-- **Award-Winning 3D & Creative Web**: Follow `creative-3d-web` and `r3f-shaders` — 60fps frame budgets, clamped DPR (`[1, 2]`), custom GLSL shaders, strict WebGL memory disposal, and seamless Lenis + GSAP ScrollTrigger choreographies.
+- **Award-Winning 3D & Creative Web**: Follow `creative-3d-web` and `ow-3d-engineering` — 60fps frame budgets, clamped DPR (`[1, 2]`), custom GLSL shaders, strict WebGL memory disposal, and seamless Lenis + GSAP ScrollTrigger choreographies.
 - **Integrity**: Maintain documentation integrity, preserve existing comments and structure, and verify in the real runtime before claiming completion.
 
 ## Commands
@@ -70,7 +70,7 @@ A random folder still reads `~/.claude/CLAUDE.md` unless that folder ships a com
 
 ## Skills, MCP, and Resource Knowledge
 
-The canonical skills are the folders in `skills/`. The allowlist cap is 80. Do not claim a skill count from memory — list the directory.
+The canonical skills are the folders in `skills/`. The list is `registries/skills.json`. Do not claim a skill count from memory. List the directory.
 
 Core MCP servers:
 - **vault**: The private memory vault. Read `routes.md` first, then one note. Taste lives in that vault's preferences. Do not copy the vault path into this repo.
@@ -79,7 +79,7 @@ Core MCP servers:
 - **context7**: Up-to-date framework & library documentation resolver.
 
 Resource Libraries:
-- Master Resource Catalog: `registries/resources.json` (use `resource-scout` to query trigger tags).
+- Master Resource Catalog: `registries/resources.json` (use `ow-resource-scout` to query trigger tags).
 - Design Resource Graph: `registries/design-resource-graph.json`.
 
 ## Boundaries

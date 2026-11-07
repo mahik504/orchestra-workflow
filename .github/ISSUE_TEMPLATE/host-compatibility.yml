@@ -1,0 +1,24 @@
+name: Host compatibility
+description: A host adapter did the wrong thing
+body:
+  - type: dropdown
+    id: host
+    attributes:
+      label: Host
+      options:
+        - Cursor
+        - Claude Code
+        - Antigravity
+        - Codex
+        - OpenCode
+        - Kimi
+        - jcode
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: The command, the path, and the output you saw.
+    validations:
+      required: true

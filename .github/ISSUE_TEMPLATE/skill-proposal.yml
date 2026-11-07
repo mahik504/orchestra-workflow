@@ -1,0 +1,24 @@
+name: Skill proposal
+description: A skill to add, with a source and a license
+body:
+  - type: input
+    id: source
+    attributes:
+      label: Source URL
+      description: The repository, the path, and the commit you read.
+    validations:
+      required: true
+  - type: input
+    id: license
+    attributes:
+      label: License
+      description: SPDX id, or "none" if the repo has no license file.
+    validations:
+      required: true
+  - type: textarea
+    id: gap
+    attributes:
+      label: What the canonical skills miss
+      description: Name the existing skill you checked first.
+    validations:
+      required: true

@@ -10,38 +10,23 @@ const FILES = [
   'AGENTS.md',
   'CLAUDE.md',
   'kit/antigravity/GEMINI.md',
-  'skills/orchestra-conductor/SKILL.md',
+  'skills/ow-conductor/SKILL.md',
+  'skills/ow-conductor/SKILL.md',
   '.cursorrules',
-];
+  'kit/codex/AGENTS.md',
+  'kit/opencode/AGENTS.md',
+  'kit/kimi/AGENTS.md',
+].filter((rel) => fs.existsSync(path.join(REPO, rel)));
 const START = '<!-- routing:start -->';
 const END = '<!-- routing:end -->';
 const RESERVED = new Set(['not ready', 'host-provided', 'none']);
 
-// Exact job cell, exact Load tokens, required Skip phrases.
-const EXPECTED = [
-  { job: 'Award-style site', load: ['impeccable', 'taste-design', 'visual-golden-still', 'gsap-core', 'gsap-scrolltrigger', 'gsap-timeline'], skip: ['copying a reference site\'s files', 'a second motion stack'] },
-  { job: 'Site to echo', load: ['visual-forensics', 'impeccable', 'taste-design'], skip: ['copying assets, copy, or a logo'] },
-  { job: 'Scroll', load: ['gsap-core', 'gsap-scrolltrigger', 'gsap-timeline'], skip: ['gsap-react unless the motion lives in React components'] },
-  { job: 'One 3D scene', load: ['r3f-shaders'], skip: ['3D as decoration', 'a second motion engine'] },
-  { job: 'SaaS or API', load: ['backend-architecture', 'test-driven-development'], skip: ['the design lab'] },
-  { job: 'Bug', load: ['systematic-debugging'], skip: ['the design lab'] },
-  { job: 'Paper', load: ['research-paper', 'humanizer'], skip: ['invented citations'] },
-  { job: 'Deck', load: ['orchestra-docs'], skip: ['host-provided pptx unless that host already has it'] },
-  { job: 'Deck or slides', load: ['orchestra-docs', 'orchestra-presentation'], skip: ['copying a pptx skill file', 'purple template dumps'] },
-  { job: 'Architecture diagram', load: ['diagram-generator', 'pretty-mermaid'], skip: ['a second diagram system', 'a README full of charts'] },
-  { job: 'One control', load: ['none'], skip: ['loading every component kit', 'duplicating a control the project already has'] },
-  { job: 'Next.js speed', load: ['react-best-practices'], skip: ['a redesign', 'a bulk Vercel skill install'] },
-  { job: 'TypeScript review', load: ['orchestra-typescript'], skip: ['a visual redesign', 'a new framework'] },
-  { job: 'Ship a deployed app', load: ['ship-safe', 'orchestra-observability'], skip: ['scanning a third-party URL', 'a global Sentry install'] },
-  { job: 'What people said recently', load: ['orchestra-research'], skip: ['a last-30-days pack', 'scraping', 'posting', 'DMs'] },
-  { job: 'Marketing copy', load: ['orchestra-marketing', 'humanizer'], skip: ['invented metrics', 'a design system rewrite'] },
-  { job: 'Rendered video', load: ['orchestra-video'], skip: ['the GSAP route', 'installing a video suite into this method repo'] },
-  { job: 'Career notes', load: ['orchestra-career'], skip: ['job-board scraping', 'applying on your behalf'] },
-  { job: 'README and post', load: ['orchestra-ship', 'humanizer'], skip: ['posting for the human'] },
-  { job: 'Binary or APK', load: ['not ready'], skip: ['rea until Java is installed'] },
-  { job: 'Hackathon or college', load: ['prompt-forge'], skip: ['the 23-card survey when a reference is named'] },
-  { job: 'Docs on disk', load: ['host-provided'], skip: ['docx, pptx, pdf, and xlsx stay on the host'] },
-];
+const routingDoc = JSON.parse(fs.readFileSync(path.join(REPO, 'registries', 'routing.json'), 'utf8'));
+const EXPECTED = routingDoc.routes.map((route) => ({
+  job: route.job,
+  load: route.load,
+  skip: route.skip_phrases,
+}));
 
 function section(file) {
   const text = fs.readFileSync(path.join(REPO, file), 'utf8').replace(/\r\n/g, '\n');
@@ -137,7 +122,10 @@ if (blocks[0]) {
     problems.push('substring route "app" matches a real job');
   }
 
-  const conductor = fs.readFileSync(path.join(REPO, 'skills/orchestra-conductor/SKILL.md'), 'utf8');
+  const conductorRel = fs.existsSync(path.join(REPO, 'skills/ow-conductor/SKILL.md'))
+    ? 'skills/ow-conductor/SKILL.md'
+    : 'skills/ow-conductor/SKILL.md';
+  const conductor = fs.readFileSync(path.join(REPO, conductorRel), 'utf8');
   const outside = conductor.replace(/<!-- routing:start -->[\s\S]*<!-- routing:end -->/, '');
   if (!outside.includes('interaction-components')) {
     problems.push('conductor body outside the routing block does not name interaction-components');

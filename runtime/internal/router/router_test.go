@@ -26,8 +26,8 @@ func setupTestRegistry() *resources.Registry {
 		Name:               "Impeccable Design",
 		TokenContextWeight: 1800,
 	}
-	reg.Capabilities["semgrep-adapter"] = &resources.Capability{
-		ID:                 "semgrep-adapter",
+	reg.Capabilities["ow-semgrep"] = &resources.Capability{
+		ID:                 "ow-semgrep",
 		Name:               "Semgrep Security Adapter",
 		TokenContextWeight: 1200,
 	}
@@ -157,7 +157,7 @@ func TestMixedApplicationRouting(t *testing.T) {
 		if cap.ID == "taste-skill" {
 			hasVisual = true
 		}
-		if cap.ID == "semgrep-adapter" {
+		if cap.ID == "ow-semgrep" {
 			hasSecurity = true
 		}
 	}

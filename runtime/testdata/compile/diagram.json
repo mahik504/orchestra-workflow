@@ -1,0 +1,11 @@
+{
+  "task": "Draw an architecture diagram in mermaid",
+  "host": "cursor",
+  "route": "Architecture diagram",
+  "skills": [
+    "ow-diagrams",
+    "pretty-mermaid"
+  ],
+  "model_class": "documentation",
+  "disclosure": "L1"
+}

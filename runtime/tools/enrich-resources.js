@@ -602,7 +602,7 @@ const NEW_ROWS = [
     status: 'ACTIVE',
     trigger_conditions: [
       'architecture diagram in README or docs',
-      'diagram-generator produced Mermaid source',
+      'ow-diagrams produced Mermaid source',
     ],
     avoid_conditions: [
       'invented architecture',
@@ -613,7 +613,7 @@ const NEW_ROWS = [
       'the human asked for a raster screenshot only',
     ],
     policy_verdict: 'GROUNDED DIAGRAM SOURCE',
-    rationale: 'diagram-generator writes Mermaid; pretty-mermaid may render. Source of truth is the repo.',
+    rationale: 'ow-diagrams writes Mermaid; pretty-mermaid may render. Source of truth is the repo.',
     auth: 'NONE',
     free_capability: 'OSS diagram language',
     paid_capability: 'none',
@@ -643,14 +643,14 @@ const NEW_ROWS = [
     ],
     skip_conditions: [
       'ordinary coding turn',
-      'an Orchestra skill already covers the job (ship-safe, strix, semgrep-adapter)',
+      'an Orchestra skill already covers the job (ow-ship-safe, strix, ow-semgrep)',
     ],
     policy_verdict: 'QUARANTINED REFERENCE — EXTRACT THEMES ONLY',
     rationale: 'Do not vendor the dump. Use as a map: CI/CD, Docker, deployment, observability, security, reliability, infrastructure, performance.',
     auth: 'NONE',
     free_capability: 'public skill markdown as reference',
     paid_capability: 'none',
-    fallback: 'ship-safe',
+    fallback: 'ow-ship-safe',
   }),
 ];
 

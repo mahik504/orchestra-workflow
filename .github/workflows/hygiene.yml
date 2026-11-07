@@ -1,10 +1,6 @@
 name: Hygiene
 
-# Public-repo guard. Fails the build if the operator's private paths, personal
-# product catalog, or credential-shaped strings reach this repository, or if the
-# contract version and the immutable control-plane rule drift out of sync.
-#
-# The same script runs locally:  node runtime/tools/hygiene.js
+# Public-repo guard. The same scripts run locally.
 
 on:
   push:
@@ -13,15 +9,24 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   hygiene:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
-          node-version: '20'
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: runtime/package-lock.json
+
+      - name: Install tool dependencies
+        working-directory: ./runtime
+        run: npm ci
 
       - name: Personal data, secrets, VERSION, and contract check
         run: node runtime/tools/hygiene.js
@@ -29,8 +34,17 @@ jobs:
       - name: Registry integrity
         run: node runtime/tools/check-registry.js
 
+      - name: Registry schemas
+        run: node runtime/tools/check-schemas.mjs
+
       - name: Host-stack skill parity
         run: node runtime/tools/check-host-stack.js
+
+      - name: Skill manifest
+        run: node runtime/tools/check-skills.js
+
+      - name: Version manifest
+        run: node runtime/tools/check-versions.js
 
       - name: No private workspace committed
         run: |

@@ -14,8 +14,8 @@ func TestCompileCapsuleScopesContext(t *testing.T) {
 		Role:                RoleBuilder,
 		Files:               []string{"internal/http/health.go", "README.md"},
 		UnrelatedFiles:      []string{"README.md"},
-		Skills:              []string{"orchestra-conductor", "gsap-core"},
-		AllSkills:           []string{"orchestra-conductor", "gsap-core", "hallmark", "supabase"},
+		Skills:              []string{"ow-conductor", "gsap-core"},
+		AllSkills:           []string{"ow-conductor", "gsap-core", "hallmark", "supabase"},
 		Resources:           []string{"playwright"},
 		ExpectedOutput:      "patched handler plus test evidence",
 		ToolsAllowed:        []string{"go-test"},
@@ -84,7 +84,7 @@ func TestCompileCapsuleProviderNeutral(t *testing.T) {
 		Mission:        m,
 		Role:           RoleBuilder,
 		ExpectedOutput: "diff",
-		Skills:         []string{"orchestra-conductor"},
+		Skills:         []string{"ow-conductor"},
 	})
 	if err != nil {
 		t.Fatal(err)
@@ -111,8 +111,8 @@ func TestCompileIgnoresExtraIrrelevantContext(t *testing.T) {
 		Mission:             m,
 		Role:                RoleBuilder,
 		Files:               []string{"internal/http/health.go"},
-		Skills:              []string{"orchestra-conductor"},
-		AllSkills:           []string{"orchestra-conductor", "hallmark", "supabase", "gsap-core"},
+		Skills:              []string{"ow-conductor"},
+		AllSkills:           []string{"ow-conductor", "hallmark", "supabase", "gsap-core"},
 		UnrelatedFiles:      []string{"STACK.md", "CHANGELOG.md"},
 		ConversationHistory: []string{"long forgotten thread about fonts"},
 		MCPCatalog:          []string{"playwright", "context7", "stitch", "mobbin"},

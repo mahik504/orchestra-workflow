@@ -2,7 +2,7 @@
 
 ## Defaults
 
-- `ship-safe` on **your** application: secrets in env, authz not only auth, validation, no secrets in git.
+- `ow-ship-safe` on **your** application: secrets in env, authz not only auth, validation, no secrets in git.
 - Strix skills only when you scan **your** app. Never scan third-party production.
 
 ## Optional higher-risk

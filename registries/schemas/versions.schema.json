@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OrchestraVersions",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["current", "graph_version", "live_files", "readers_must_not_hardcode_current"],
+  "properties": {
+    "current": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "graph_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "graph_version_note": { "type": "string" },
+    "live_files": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "readers_must_not_hardcode_current": { "type": "array", "items": { "type": "string" } }
+  }
+}

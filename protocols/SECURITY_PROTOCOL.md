@@ -4,7 +4,7 @@ Layered. Always defensive on **our** code. Never scan third-party production.
 
 ## Always
 
-`ship-safe`: secrets in env, authz not only auth, validation, no secrets in vault/git, Expo secure store on device.
+`ow-ship-safe`: secrets in env, authz not only auth, validation, no secrets in vault/git, Expo secure store on device.
 
 ## When we scan our app
 
@@ -12,7 +12,7 @@ Strix trio skills. Docker when required. Findings → `projects/<slug>/security.
 
 ## Higher-risk (SPECIALIST / OPTIONAL — not always-on)
 
-Normal path stays `ship-safe` + Strix on **our** app.
+Normal path stays `ow-ship-safe` + Strix on **our** app.
 
 When the Plan is auth/payments/public API: may **read** [OWASP/secure-agent-playbook](https://github.com/OWASP/secure-agent-playbook) `code-review-security` (SPECIALIST, registry-only). Do **not** install the whole playbook or UnitOneAI/SecuritySkills / Semgrep skill dumps. Still never scan third-party production.
 

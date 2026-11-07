@@ -1,0 +1,32 @@
+{
+  "note": "Old id to current id. Upstream skills are absent because their names do not change.",
+  "aliases": {
+    "orchestra-conductor": "ow-conductor",
+    "prompt-forge": "ow-forge",
+    "orchestra-focus": "ow-focus",
+    "resource-scout": "ow-resource-scout",
+    "visual-forensics": "ow-reference-forensics",
+    "visual-golden-still": "ow-golden-still",
+    "fresh-context-review": "ow-fresh-review",
+    "final-showcase": "ow-showcase",
+    "backend-architecture": "ow-backend-architecture",
+    "r3f-shaders": "ow-3d-engineering",
+    "diagram-generator": "ow-diagrams",
+    "research-paper": "ow-research-paper",
+    "ml-experiment": "ow-ml-experiment",
+    "ship-safe": "ow-ship-safe",
+    "store-release": "ow-store-release",
+    "skill-security-check": "ow-skill-security-check",
+    "semgrep-adapter": "ow-semgrep",
+    "orchestra-career": "ow-career",
+    "orchestra-docs": "ow-docs",
+    "orchestra-marketing": "ow-marketing",
+    "orchestra-observability": "ow-observability",
+    "orchestra-presentation": "ow-presentation",
+    "orchestra-research": "ow-research",
+    "orchestra-ship": "ow-ship",
+    "orchestra-typescript": "ow-typescript",
+    "orchestra-vault": "ow-vault",
+    "orchestra-video": "ow-video"
+  }
+}

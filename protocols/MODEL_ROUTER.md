@@ -4,7 +4,7 @@ Do **not** bake vendor IDs as the only source of truth. Cursor’s dropdown stil
 
 Default: **one primary** model in the conducting chat, **one consultant** packet when the bar needs it, **one verifier** (Playwright / ledger). Not a 23-option swarm of full DESIGN.md files. Combinations happen at the Design Lab (23 short cards *or* 3 named-reference translations, then one contract), not by spawning every specialist.
 
-Critics are not a second conductor. Conductor = the chat the human is in. Visual critic = one Antigravity specialist packet. Engineering critic = `fresh-context-review`. QA = Playwright + ledger.
+Critics are not a second conductor. Conductor = the chat the human is in. Visual critic = one Antigravity specialist packet. Engineering critic = `ow-fresh-review`. QA = Playwright + ledger.
 
 | Class | Use | Current mapping (2026-09, may change) |
 | --- | --- | --- |
@@ -17,7 +17,7 @@ Critics are not a second conductor. Conductor = the chat the human is in. Visual
 | security-high | threat model, authz, Strix triage | Opus Task |
 | creative | visual directions, copy tone | Fable or ChatGPT packet; Higgsfield not core |
 | debugging | runtime | Cursor **Debug** + evidence |
-| documentation | papers, decks | orchestra-docs + reasoning-high if academic |
+| documentation | papers, decks | ow-docs + reasoning-high if academic |
 | harness-optional | bounded terminal job on OmniRoute | jcode packet; evidence required |
 
 Parent Grok **cannot** become Opus. Spawn Task + tell the operator the dropdown.

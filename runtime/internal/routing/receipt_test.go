@@ -15,7 +15,7 @@ func TestReceiptNamesTheDecision(t *testing.T) {
 		Task:        "flagship",
 		RouteSkills: []string{"impeccable", "taste-design", "gsap-core", "gsap-scrolltrigger", "gsap-timeline"},
 		NamedSkills: []string{"systematic-debugging", "missing-skill"},
-		KnownSkills: []string{"impeccable", "taste-design", "gsap-core", "gsap-scrolltrigger", "gsap-timeline", "systematic-debugging", "r3f-shaders"},
+		KnownSkills: []string{"impeccable", "taste-design", "gsap-core", "gsap-scrolltrigger", "gsap-timeline", "systematic-debugging", "ow-3d-engineering"},
 		SelectedMCP: []string{"playwright"},
 		Plugins:     nil,
 		Acceptance:  []string{"the pinned section scrubs and the page still reads without motion"},
@@ -49,15 +49,15 @@ func TestNamedSceneSkillLosesToTheSceneOwner(t *testing.T) {
 		Text:        "One R3F scene",
 		Capability:  "3d-portfolio",
 		Task:        "experimental",
-		RouteSkills: []string{"r3f-shaders"},
+		RouteSkills: []string{"ow-3d-engineering"},
 		NamedSkills: []string{"creative-3d-web"},
-		KnownSkills: []string{"r3f-shaders", "creative-3d-web"},
+		KnownSkills: []string{"ow-3d-engineering", "creative-3d-web"},
 	})
 	if err != nil {
 		t.Fatal(err)
 	}
 	if contains(got.Load, "creative-3d-web") {
-		t.Fatal("creative-3d-web loaded beside r3f-shaders")
+		t.Fatal("creative-3d-web loaded beside ow-3d-engineering")
 	}
 	found := false
 	for _, line := range got.Skip {

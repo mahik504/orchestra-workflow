@@ -6,7 +6,7 @@ Use when the operator pastes a URL, a screenshot, or a GetLayers/Firecrawl job, 
 
 `reference → forensics → REFERENCE_BENCHMARK.md → 3 translations → locked DESIGN.md → golden stills → implement → verify`
 
-Tint / keep-the-structure token swap stays `reverse-engineering`. Named live-site recreation is `visual-forensics`. Never `reference → paste their CSS/assets → ship a clone`.
+Tint / keep-the-structure token swap stays `reverse-engineering`. Named live-site recreation is `ow-reference-forensics`. Never `reference → paste their CSS/assets → ship a clone`.
 
 ## Tool order
 

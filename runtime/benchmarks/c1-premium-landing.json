@@ -1,17 +1,36 @@
 {
   "benchmark_id": "c1-premium-landing",
   "task_class": "c1-premium-landing",
-  "status": "not_run",
+  "status": "recorded",
   "claim": "none",
   "enabled": false,
-  "date": "2026-11-07",
-  "arms": [],
-  "captures": {
-    "layer_a_desktop": false,
-    "layer_a_mobile": false,
-    "axe": false,
-    "lighthouse": false
+  "date": "2026-11-08",
+  "model": "composer-2.5-fast",
+  "trials_planned": 3,
+  "trials_recorded": 3,
+  "task": "Vite and React landing for a fictional instrument workshop. One display face, one text face, paper or ink, no purple gradient, no row of three equal cards. Build must pass. The page needs a title, one sentence, and a contact line.",
+  "arms": {
+    "raw": "skip orchestra, then the task",
+    "orchestra": "one short DESIGN.md, then the task"
   },
-  "judge": null,
-  "note": "The paired run was not executed. It needs two chats on the same model, one with skip orchestra and one with Orchestra, then Layer A captures at desktop and mobile, axe, Lighthouse, and a blind judge who sees only the screenshots. c1-premium-landing stays disabled in compare.go. This file records that gap. It is not a score."
+  "builds": "npm run build exited 0 on all six workspaces",
+  "captures": {
+    "layer_a_desktop": true,
+    "layer_a_mobile": true,
+    "axe_violations": 0,
+    "lighthouse_accessibility": 100
+  },
+  "lighthouse_performance": {
+    "trial_1": { "raw": 97, "orchestra": 93 },
+    "trial_2": { "raw": 98, "orchestra": 100 },
+    "trial_3": { "raw": 99, "orchestra": 99 }
+  },
+  "judge": {
+    "method": "A fresh judge saw shuffled desktop and mobile screenshots, labeled A and B, plus the brief. The map was applied after the verdict.",
+    "trial_1": "orchestra",
+    "trial_2": "orchestra",
+    "trial_3": "tie",
+    "summary": "Two trials preferred the Orchestra page. One trial was a tie. Performance averages were 98 for the raw arm and 97 for the Orchestra arm. Accessibility was 100 and axe found nothing on every arm."
+  },
+  "note": "Both arms met the acceptance line. The sample is three trials on one small page. compare.go stays disabled and the claim stays none."
 }

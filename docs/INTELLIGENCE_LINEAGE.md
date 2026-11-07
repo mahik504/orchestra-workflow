@@ -8,14 +8,14 @@ A star count is not a reason to make that repo the conductor.
 
 | Skill | Source method | URL check |
 | --- | --- | --- |
-| orchestra-focus | ADHD-style next action, no repeat questions | `ayghri/i-have-adhd` 200. Caveman stays a warning, not the brief |
-| orchestra-presentation | Slide story, type, notes, slide QA | `hugohe3/ppt-master` 200. `anthropics/skills` 200. Host pptx still builds the file |
-| orchestra-research | Dated public search and a citation | `mvanhorn/last30days-skill` 200 |
-| orchestra-typescript | Type boundaries before a TypeScript edit | `mattpocock/skills` 200. Pack not installed |
-| orchestra-observability | Errors, traces, dependency and image scans in the product repo | `getsentry/sentry-javascript` 200 |
-| orchestra-video | Rendered mp4 in the product repo | `heygen-com/hyperframes` 200. `Open-Montage-app/OpenMontage` 404, so that name is not an install target |
-| orchestra-marketing | Shipping copy without invented metrics | `coreyhaines31/marketingskills` 200 |
-| orchestra-career | CV from notes the operator already has. The operator submits | `career-ops-hq/career-ops` 200. The scraper is not installed |
+| ow-focus | ADHD-style next action, no repeat questions | `ayghri/i-have-adhd` 200. Caveman stays a warning, not the brief |
+| ow-presentation | Slide story, type, notes, slide QA | `hugohe3/ppt-master` 200. `anthropics/skills` 200. Host pptx still builds the file |
+| ow-research | Dated public search and a citation | `mvanhorn/last30days-skill` 200 |
+| ow-typescript | Type boundaries before a TypeScript edit | `mattpocock/skills` 200. Pack not installed |
+| ow-observability | Errors, traces, dependency and image scans in the product repo | `getsentry/sentry-javascript` 200 |
+| ow-video | Rendered mp4 in the product repo | `heygen-com/hyperframes` 200. `Open-Montage-app/OpenMontage` 404, so that name is not an install target |
+| ow-marketing | Shipping copy without invented metrics | `coreyhaines31/marketingskills` 200 |
+| ow-career | CV from notes the operator already has. The operator submits | `career-ops-hq/career-ops` 200. The scraper is not installed |
 
 ## Already in this repo
 
@@ -43,14 +43,14 @@ A star count is not a reason to make that repo the conductor.
 | gsd-build/get-shit-done | 200 | Same mission section. Catalog already treats the old repo as archived |
 | open-gsd/get-shit-done-redux | 301 to open-gsd/gsd-core | Not a separate product |
 | bmad-code-org/BMAD-METHOD | 200 | Same mission section. Not a second conductor |
-| garrytan/gstack | 200 | fresh-context-review and ponytail-review. Not a startup-team simulator |
-| JuliusBrussee/caveman | 200 | orchestra-focus. Short output does not replace the brief |
+| garrytan/gstack | 200 | ow-fresh-review and ponytail-review. Not a startup-team simulator |
+| JuliusBrussee/caveman | 200 | ow-focus. Short output does not replace the brief |
 | nextlevelbuilder/ui-ux-pro-max-skill | 200 | taste-design and impeccable. Not a third design system |
-| cathrynlavery/diagram-design | 200 | diagram-generator |
-| RiantRedwood/Archify | 200 | diagram-generator. Reference only. Mermaid stays the renderer |
+| cathrynlavery/diagram-design | 200 | ow-diagrams |
+| RiantRedwood/Archify | 200 | ow-diagrams. Reference only. Mermaid stays the renderer |
 | affaan-m/everything-claude-code | 301 to affaan-m/ECC | Read as a pack. Not installed. No extra skill until a named gap shows up |
 | addyosmani/agent-skills | 200 | Review habits already in ponytail-review |
-| wshobson/agents | 200 | Role ideas already in fresh-context-review. Collection not installed |
+| wshobson/agents | 200 | Role ideas already in ow-fresh-review. Collection not installed |
 | headroomlabs-ai/headroom | 200 | Not installed. Worker capsules already limit what a worker sees |
 | Egonex-AI/Understand-Anything | 200 | Optional reference. ponytail-audit plus Graphify stays the map |
 | anthropics/skills document skills | 200 | Host docx, pdf, pptx, xlsx. Not copied into skills/ |
@@ -60,12 +60,12 @@ A star count is not a reason to make that repo the conductor.
 | Source | Check | Disposition |
 | --- | --- | --- |
 | ui.watermelon.sh and WatermelonCorp/watermelon-platform | both 200. GitHub SPDX MIT | REFERENCE row `watermelon-ui`. No MCP |
-| microsoft/TypeScript | 200 | The compiler. orchestra-typescript is the instruction |
+| microsoft/TypeScript | 200 | The compiler. ow-typescript is the instruction |
 | clerk/javascript | 200 | The product note picks auth. Not a global skill |
 | Deque axe-core, Vitest, Bundlephobia | known public tools | Invoked from web-design-guidelines, test-driven-development, and react-best-practices. Not new skill folders |
 | RiantRedwood/Archify | 200 | REFERENCE row `archify`. Mermaid stays the renderer |
 | Egonex-AI/Understand-Anything | 200 | REFERENCE row `understand-anything`. ponytail-audit plus Graphify stays the map |
-| microsoft/markitdown | 200 | REFERENCE row `markitdown`. orchestra-docs can use it for a conversion |
+| microsoft/markitdown | 200 | REFERENCE row `markitdown`. ow-docs can use it for a conversion |
 | DataExpert-io/data-engineer-handbook | 200 | REFERENCE row `data-engineer-handbook` |
 | storybookjs/storybook | 200 | REFERENCE row `storybook`. Not a new skill |
 | chromatic.com | 200 | REFERENCE row `chromatic`. Paid. Not connected |
@@ -77,6 +77,6 @@ A star count is not a reason to make that repo the conductor.
 | thedotmack/claude-mem | 200 | The vault is the only long-term memory |
 | ECC, GSD, BMAD, gstack as conductors | above | One planner |
 | Headroom the product | 200 | Capsules already bound the worker context |
-| Career Ops the scraper | 200 | orchestra-career does not scrape or apply |
+| Career Ops the scraper | 200 | ow-career does not scrape or apply |
 | UI UX Pro Max as a global pack | 200 | Two design skills already share one DESIGN.md |
 | Watermelon MCP, Sentry MCP | not added | No new global MCP. Core stays the brain, Playwright, Context7, and Stitch |

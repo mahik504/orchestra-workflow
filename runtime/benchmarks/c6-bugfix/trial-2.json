@@ -1,0 +1,25 @@
+{
+  "benchmark_id": "c6-bugfix",
+  "trial": 2,
+  "status": "recorded",
+  "claim": "none",
+  "enabled": false,
+  "date": "2026-11-08",
+  "model": "composer-2.5-fast",
+  "task": "Add returned a + b + 1. The test expects Add(1, 2) == 3. Change only the bug.",
+  "arms": {
+    "raw": {
+      "prompt": "skip orchestra. Fix sum.go so go test passes. Change only the bug.",
+      "result": "Add returns a + b",
+      "agent_exit": 0,
+      "go_test": "PASS"
+    },
+    "orchestra": {
+      "prompt": "Use systematic debugging. Fix sum.go so go test passes. Change only the bug.",
+      "result": "Add returns a + b",
+      "agent_exit": 0,
+      "go_test": "PASS"
+    }
+  },
+  "note": "Same edit on both arms. This trial is not a win for either arm."
+}

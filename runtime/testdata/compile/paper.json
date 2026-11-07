@@ -1,0 +1,11 @@
+{
+  "task": "Draft the IEEE paper with citations",
+  "host": "cursor",
+  "route": "Paper",
+  "skills": [
+    "ow-research-paper",
+    "humanizer"
+  ],
+  "model_class": "documentation",
+  "disclosure": "L1"
+}

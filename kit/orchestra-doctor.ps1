@@ -1,5 +1,6 @@
-# Orchestra 4.2.0 doctor. Prints failures first. Never prints secret values.
-param([switch]$Json)
+# Orchestra doctor. Prints failures first. Never prints secret values.
+# The expected version is registries/versions.json.
+param([switch]$Json, [switch]$Private)
 
 $ErrorActionPreference = "Continue"
 $Root = Split-Path -Parent $PSScriptRoot
@@ -7,9 +8,10 @@ $problems = @()
 $warnings = @()
 
 $version = (Get-Content (Join-Path $Root "VERSION") -Raw).Trim()
-if ($version -ne "4.2.0") { $problems += "VERSION is $version" }
+$expected = (Get-Content (Join-Path $Root "registries\versions.json") -Raw | ConvertFrom-Json).current
+if ($version -ne $expected) { $problems += "VERSION is $version, expected $expected" }
 $agents = Get-Content (Join-Path $Root "AGENTS.md") -TotalCount 1
-if ($agents -notmatch "4\.2\.0") { $problems += "AGENTS.md title is not 4.2.0" }
+if ($agents -notmatch [regex]::Escape($expected)) { $problems += "AGENTS.md title is not $expected" }
 
 $linkLines = @(git -C $Root ls-files -s 2>$null | Select-String -Pattern "^160000")
 foreach ($link in $linkLines) {
@@ -26,17 +28,10 @@ Get-ChildItem (Join-Path $Root "skills") -Recurse -Filter SKILL.md -File -ErrorA
   if ($bad) { $problems += ("UTF-16 or NUL in " + $_.FullName.Substring($Root.Length).TrimStart('\')) }
 }
 
-$want = Get-ChildItem (Join-Path $Root "skills") -Directory | Where-Object { Test-Path (Join-Path $_.FullName "SKILL.md") } | ForEach-Object Name
-$localRoot = Join-Path $Root "skills-local"
-if (Test-Path $localRoot) {
-  $want += Get-ChildItem $localRoot -Directory | Where-Object { Test-Path (Join-Path $_.FullName "SKILL.md") } | ForEach-Object Name
-}
-$cursor = Join-Path $env:USERPROFILE ".cursor\skills"
-if (Test-Path $cursor) {
-  $have = Get-ChildItem $cursor -Directory | ForEach-Object Name
-  $missing = @($want | Where-Object { $have -notcontains $_ })
-  if ($missing.Count -gt 0) { $problems += ("cursor missing " + ($missing -join ", ")) }
-}
+$doctorArgs = @("--hosts")
+if ($Private) { $doctorArgs += "--private" }
+& node (Join-Path $Root "runtime\tools\ow-doctor.mjs") @doctorArgs
+if ($LASTEXITCODE -ne 0) { $problems += "ow-doctor reported a host or description problem" }
 
 $desc = 0
 Get-ChildItem (Join-Path $Root "skills") -Recurse -Filter SKILL.md | ForEach-Object {
@@ -44,38 +39,27 @@ Get-ChildItem (Join-Path $Root "skills") -Recurse -Filter SKILL.md | ForEach-Obj
 }
 if ($desc -gt 120000) { $warnings += "skill descriptions are large ($desc chars)" }
 
-$vault = $env:ORCHESTRA_VAULT
-if ([string]::IsNullOrWhiteSpace($vault)) {
-  $warnings += "ORCHESTRA_VAULT unset; vault and heartbeat checks skipped"
-} else {
-  $note = Join-Path $vault "protocols"
-  if (Test-Path $note) {
-    $extra = @(Get-ChildItem $note -File | Where-Object { $_.Name -ne "NOTE.md" })
-    if ($extra.Count -gt 0) { $problems += "vault protocols has files other than NOTE.md" }
+if ($Private -and -not [string]::IsNullOrWhiteSpace($env:ORCHESTRA_VAULT)) {
+  try {
+    $task = Get-ScheduledTask -TaskName "OrchestraBrainVaultSync" -ErrorAction Stop
+    $hasLogon = $false
+    $has12 = $false
+    $has16 = $false
+    $hasNet = $false
+    foreach ($tr in $task.Triggers) {
+      if ($tr.CimClass.CimClassName -eq "MSFT_TaskLogonTrigger") { $hasLogon = $true }
+      if ($tr.CimClass.CimClassName -eq "MSFT_TaskEventTrigger") { $hasNet = $true }
+      $interval = [string]$tr.Repetition.Interval
+      if ($interval -eq "PT12H") { $has12 = $true }
+      if ($interval -eq "PT16H") { $has16 = $true }
+    }
+    if (-not $hasLogon) { $problems += "heartbeat has no logon trigger" }
+    if (-not $has12) { $problems += "heartbeat has no 12 hour trigger" }
+    if ($has16) { $problems += "heartbeat still has a 16 hour trigger" }
+    if (-not $hasNet) { $problems += "heartbeat has no network-connect trigger" }
+  } catch {
+    $problems += "heartbeat task missing"
   }
-}
-
-if (-not [string]::IsNullOrWhiteSpace($vault)) {
-try {
-  $task = Get-ScheduledTask -TaskName "OrchestraBrainVaultSync" -ErrorAction Stop
-  $hasLogon = $false
-  $has12 = $false
-  $has16 = $false
-  $hasNet = $false
-  foreach ($tr in $task.Triggers) {
-    if ($tr.CimClass.CimClassName -eq "MSFT_TaskLogonTrigger") { $hasLogon = $true }
-    if ($tr.CimClass.CimClassName -eq "MSFT_TaskEventTrigger") { $hasNet = $true }
-    $interval = [string]$tr.Repetition.Interval
-    if ($interval -eq "PT12H") { $has12 = $true }
-    if ($interval -eq "PT16H") { $has16 = $true }
-  }
-  if (-not $hasLogon) { $problems += "heartbeat has no logon trigger" }
-  if (-not $has12) { $problems += "heartbeat has no 12 hour trigger" }
-  if ($has16) { $problems += "heartbeat still has a 16 hour trigger" }
-  if (-not $hasNet) { $problems += "heartbeat has no network-connect trigger" }
-} catch {
-  $problems += "heartbeat task missing"
-}
 }
 
 $claudeSettings = Join-Path $env:USERPROFILE ".claude\settings.json"
@@ -99,7 +83,7 @@ if (Test-Path -LiteralPath $claudeSettings) {
 
 $patterns = @("li_at=", "auth_token=", "ct0=", "sessionid=")
 $trees = @($Root)
-if (-not [string]::IsNullOrWhiteSpace($vault)) { $trees += $vault }
+if ($Private -and -not [string]::IsNullOrWhiteSpace($env:ORCHESTRA_VAULT)) { $trees += $env:ORCHESTRA_VAULT }
 foreach ($tree in $trees) {
   if (-not (Test-Path $tree)) { continue }
   Get-ChildItem $tree -Recurse -File -Include *.md,*.json,*.ps1,*.txt -ErrorAction SilentlyContinue |

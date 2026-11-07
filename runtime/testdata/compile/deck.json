@@ -1,0 +1,10 @@
+{
+  "task": "Make a slide deck for the review",
+  "host": "cursor",
+  "route": "Deck",
+  "skills": [
+    "ow-docs"
+  ],
+  "model_class": "documentation",
+  "disclosure": "L1"
+}

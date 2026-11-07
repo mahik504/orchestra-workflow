@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OrchestraRouting",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["preamble", "routes", "engineering"],
+  "properties": {
+    "preamble": { "type": "string", "minLength": 20 },
+    "routes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["job", "load", "skip", "skip_phrases", "match", "model_class", "disclosure"],
+        "properties": {
+          "job": { "type": "string" },
+          "load": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "skip": { "type": "string" },
+          "skip_phrases": { "type": "array", "items": { "type": "string" } },
+          "match": { "type": "array", "items": { "type": "string" } },
+          "model_class": { "type": "string" },
+          "disclosure": { "type": "string", "enum": ["L0", "L1", "L2", "L3", "L4"] }
+        }
+      }
+    },
+    "engineering": { "type": "array", "minItems": 1 }
+  }
+}

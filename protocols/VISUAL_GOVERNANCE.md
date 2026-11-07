@@ -36,7 +36,7 @@ A **pasted** `DESIGN.md` (or a named skill/MCP/pack that already *is* the contra
 | --- | --- |
 | Conductor | The chat the human is talking to |
 | Visual critic | One Antigravity specialist packet (`templates/design-critic-packet.md`) |
-| Engineering critic | `fresh-context-review` from a clean context |
+| Engineering critic | `ow-fresh-review` from a clean context |
 | QA | Playwright on **our** app + verification ledger |
 
 Never two plans in parallel. A critic issues Keep / Rework / Kill / Park. It does not start a new loop.

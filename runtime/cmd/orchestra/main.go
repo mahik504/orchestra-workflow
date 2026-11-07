@@ -12,6 +12,7 @@ import (
 
 	"github.com/mahik504/orchestra-workflow/runtime/internal/adapters"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/classifier"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/compile"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/engine"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/handoff"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/memory"
@@ -50,6 +51,8 @@ func main() {
 		runMemory(args)
 	case "add":
 		runAdd(args)
+	case "compile":
+		runCompile(args)
 	case "lifecycle":
 		runLifecycle(args)
 	default:
@@ -59,8 +62,16 @@ func main() {
 	}
 }
 
+func contractVersion() string {
+	raw, err := os.ReadFile(filepath.Join(resolveWorkflowRoot(), "VERSION"))
+	if err != nil {
+		return "unknown"
+	}
+	return strings.TrimSpace(string(raw))
+}
+
 func printUsage() {
-	fmt.Println("Orchestra 4.1.0 — control plane for agentic IDEs")
+	fmt.Printf("Orchestra %s — control plane for agentic IDEs\n", contractVersion())
 	fmt.Println("ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.")
 	if pin := os.Getenv("ORCHESTRA_CONTRACT"); pin != "" {
 		fmt.Printf("ORCHESTRA_CONTRACT pin: %s (see kit/ROLLBACK.md)\n", pin)
@@ -78,6 +89,7 @@ func printUsage() {
 	fmt.Println("  sync      Synchronize and verify active skill parity across Cursor, Claude, Antigravity, jcode")
 	fmt.Println("  memory     Query or record private brain resource outcome memory (list, stats, record)")
 	fmt.Println("  add        Add a resource URL from user intent (Brain overlay, not the public router)")
+	fmt.Println("  compile   Print the task manifest as JSON. No installs, no writes.")
 	fmt.Println("  lifecycle  Prove submit → inspect → infer → route → memory for one resource")
 }
 
@@ -131,7 +143,7 @@ func runInit(args []string) {
 	configPath := filepath.Join(workdir, ".orchestra", "config.json")
 	if _, err := os.Stat(configPath); os.IsNotExist(err) {
 		cfg := map[string]interface{}{
-			"version":          "4.1.0",
+			"version":          contractVersion(),
 			"default_agent":    "antigravity",
 			"ponytail_mode":    "full",
 			"isolation_mode":   "strict_clean",
@@ -147,11 +159,11 @@ func runInit(args []string) {
 }
 
 func runDoctor(args []string) {
-	fmt.Println("=== Orchestra 4.1.0 Environment & System Doctor ===")
+	fmt.Printf("=== Orchestra %s Environment & System Doctor ===\n", contractVersion())
 	if pin := os.Getenv("ORCHESTRA_CONTRACT"); pin != "" {
 		fmt.Printf("Contract pin:    ORCHESTRA_CONTRACT=%s (see kit/ROLLBACK.md)\n", pin)
 	} else {
-		fmt.Println("Contract pin:    unset (using VERSION 4.1.0)")
+		fmt.Printf("Contract pin:    unset (using VERSION %s)\n", contractVersion())
 	}
 
 	checkCmd := func(name string, args ...string) (string, bool) {
@@ -893,6 +905,41 @@ func runAdd(args []string) {
 	fmt.Printf("     overlay: %s\n", onboard.ResolveOverlayPath("."))
 	fmt.Printf("     scope:   %s via %s\n", entry.InstallScope, entry.Resource.AcquisitionMethod)
 	fmt.Printf("     public registries/resources.json was not written\n")
+}
+
+func runCompile(args []string) {
+	fs := flag.NewFlagSet("compile", flag.ContinueOnError)
+	task := fs.String("task", "", "task text")
+	host := fs.String("host", "cursor", "host id")
+	asJSON := fs.Bool("json", false, "print JSON")
+	if err := fs.Parse(args); err != nil {
+		os.Exit(2)
+	}
+	if strings.TrimSpace(*task) == "" {
+		fmt.Println("usage: orchestra compile --task \"...\" --host cursor --json")
+		os.Exit(2)
+	}
+	routing := filepath.Join(resolveWorkflowRoot(), "registries", "routing.json")
+	routes, err := compile.LoadRoutes(routing)
+	if err != nil {
+		fmt.Printf("[FAIL] compile: %v\n", err)
+		os.Exit(1)
+	}
+	manifest, err := compile.Compile(*task, *host, routes)
+	if err != nil {
+		fmt.Printf("[FAIL] compile: %v\n", err)
+		os.Exit(1)
+	}
+	if !*asJSON {
+		fmt.Printf("%s on %s loads %s\n", manifest.Route, manifest.Host, strings.Join(manifest.Skills, ", "))
+		return
+	}
+	raw, err := json.MarshalIndent(manifest, "", "  ")
+	if err != nil {
+		fmt.Printf("[FAIL] compile: %v\n", err)
+		os.Exit(1)
+	}
+	fmt.Println(string(raw))
 }
 
 func runLifecycle(args []string) {

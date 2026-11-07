@@ -322,7 +322,7 @@ func (d *DesignLab) OfferSurvey(cards []DirectionCard) error {
 }
 
 // SkipSurvey is for a pasted DESIGN.md or a named skill/MCP/pack that already
-// is the contract. Named visual sites go through visual-forensics and three
+// is the contract. Named visual sites go through ow-reference-forensics and three
 // evidence-backed translations, not this skip. The reason is required.
 func (d *DesignLab) SkipSurvey(reason string) error {
 	if d.State != GatePending {

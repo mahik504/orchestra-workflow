@@ -1,0 +1,24 @@
+name: Benchmark submission
+description: A paired run with both arms on the same model
+body:
+  - type: input
+    id: class
+    attributes:
+      label: Task class
+      description: c1 through c9.
+    validations:
+      required: true
+  - type: input
+    id: model
+    attributes:
+      label: Model
+      description: The same model id for both arms.
+    validations:
+      required: true
+  - type: textarea
+    id: record
+    attributes:
+      label: Record
+      description: Trial count, what each arm changed, and the command output. A single arm is not a comparison.
+    validations:
+      required: true

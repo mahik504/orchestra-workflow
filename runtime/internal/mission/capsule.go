@@ -27,6 +27,7 @@ type Capsule struct {
 	Constraints        []string        `json:"constraints,omitempty"`
 	Surfaces           []string        `json:"surfaces,omitempty"`
 	Files              []string        `json:"files,omitempty"`
+	OwnedFiles         []string        `json:"owned_files,omitempty"`
 	Skills             []string        `json:"skills,omitempty"`
 	Resources          []string        `json:"resources,omitempty"`
 	ExpectedOutput     string          `json:"expected_output,omitempty"`
@@ -111,6 +112,7 @@ func Compile(req CompileRequest) (*Capsule, *ScopeReport, error) {
 		Constraints:    append([]string{}, req.Mission.Constraints...),
 		Surfaces:       append([]string{}, req.Mission.AffectedSurfaces...),
 		Files:          scopedFiles,
+		OwnedFiles:     append([]string{}, scopedFiles...),
 		Skills:         skills,
 		Resources:      uniqueTrim(req.Resources),
 		ExpectedOutput: req.ExpectedOutput,
@@ -184,6 +186,32 @@ func filterJudgeTools(in []string) []string {
 		out = append(out, t)
 	}
 	return out
+}
+
+func OwnershipConflict(capsules []*Capsule) []string {
+	owner := map[string]string{}
+	var conflicts []string
+	for _, capsule := range capsules {
+		if capsule == nil {
+			continue
+		}
+		for _, file := range capsule.OwnedFiles {
+			key := ownedKey(file)
+			prev, seen := owner[key]
+			if seen && prev != capsule.MissionID {
+				conflicts = append(conflicts, file+" claimed by "+prev+" and "+capsule.MissionID)
+				continue
+			}
+			owner[key] = capsule.MissionID
+		}
+	}
+	return conflicts
+}
+
+func ownedKey(file string) string {
+	file = strings.TrimSpace(file)
+	file = strings.ReplaceAll(file, "\\", "/")
+	return strings.ToLower(file)
 }
 
 func uniqueTrim(in []string) []string {

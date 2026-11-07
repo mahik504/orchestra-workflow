@@ -1,0 +1,17 @@
+{
+  "note": "A class names the job. The host, or Limitless when the operator uses it, resolves the class to a model. This file does not name a vendor model.",
+  "limitless": {
+    "optional": true,
+    "repository": "https://github.com/mahik504/limitless-claude"
+  },
+  "classes": [
+    {"id": "reasoning-high", "use": "Architecture, ambiguous product decisions, and tradeoffs."},
+    {"id": "frontend-design-high", "use": "Visual design, motion, and the one 3D scene."},
+    {"id": "coding-fast", "use": "Small edits, glue, and college work that already has a brief."},
+    {"id": "coding-precise", "use": "Bugs, migrations, and typed boundaries."},
+    {"id": "security-high", "use": "Auth, secrets, and dependency review on the operator's own app."},
+    {"id": "research-web", "use": "Public sources that need a date and a citation."},
+    {"id": "documentation", "use": "README, changelog, slides, and release notes."},
+    {"id": "review", "use": "A correctness review, then a separate simplify review."}
+  ]
+}

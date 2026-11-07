@@ -1,6 +1,6 @@
 # EAS Workflows
 
-Automate builds, submissions, and PR-preview updates with EAS Workflows. The examples below are store-release-oriented starting points.
+Automate builds, submissions, and PR-preview updates with EAS Workflows. The examples below are ow-store-release-oriented starting points.
 
 When you need to write, edit, or validate a workflow YAML file beyond these examples, use the `eas-workflows` skill. For website and API-route deploy workflows (`type: deploy`), see the `eas-hosting` skill.
 

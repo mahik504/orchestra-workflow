@@ -1,0 +1,17 @@
+name: Bug
+description: A check failed or a command did the wrong thing
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: The command, the exit code, and the output you saw.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: The contents of the VERSION file.
+    validations:
+      required: true

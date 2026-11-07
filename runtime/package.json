@@ -3,6 +3,12 @@
   "private": true,
   "description": "Project-local Playwright Node library for Orchestra Layer A. Not a test framework, not Playwright MCP.",
   "dependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
     "playwright": "1.63.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "lighthouse": "^13.6.0"
   }
 }

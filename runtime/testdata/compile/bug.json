@@ -1,0 +1,10 @@
+{
+  "task": "The failing test is a parser crash",
+  "host": "cursor",
+  "route": "Bug",
+  "skills": [
+    "systematic-debugging"
+  ],
+  "model_class": "coding-precise",
+  "disclosure": "L0"
+}

@@ -1,0 +1,11 @@
+{
+  "task": "Write the README and the ship post",
+  "host": "cursor",
+  "route": "README and post",
+  "skills": [
+    "ow-ship",
+    "humanizer"
+  ],
+  "model_class": "documentation",
+  "disclosure": "L1"
+}

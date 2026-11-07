@@ -12,7 +12,9 @@ const fs = require('fs');
 const path = require('path');
 
 const REPO = path.join(__dirname, '..', '..');
-const EXPECTED_VERSION = '4.2.0';
+const EXPECTED_VERSION = JSON.parse(
+  fs.readFileSync(path.join(REPO, 'registries', 'versions.json'), 'utf8')
+).current;
 
 // These files define or document the rules, so they contain the patterns by design.
 const SELF = new Set([
@@ -108,7 +110,7 @@ if (version !== EXPECTED_VERSION) {
 }
 
 // The contract rule must be present in every contract file.
-const CONTRACT_FILES = ['AGENTS.md', '.cursorrules', 'CLAUDE.md', 'ARCHITECTURE.md', 'WORKFLOW.md', 'skills/orchestra-conductor/SKILL.md'];
+const CONTRACT_FILES = ['AGENTS.md', '.cursorrules', 'CLAUDE.md', 'ARCHITECTURE.md', 'WORKFLOW.md', 'skills/ow-conductor/SKILL.md'];
 for (const rel of CONTRACT_FILES) {
   const abs = path.join(REPO, rel);
   if (!fs.existsSync(abs)) { failures.push(`${rel}  missing contract file`); continue; }

@@ -1,0 +1,12 @@
+{
+  "task": "Pin the hero on scroll",
+  "host": "cursor",
+  "route": "Scroll",
+  "skills": [
+    "gsap-core",
+    "gsap-scrolltrigger",
+    "gsap-timeline"
+  ],
+  "model_class": "frontend-design-high",
+  "disclosure": "L1"
+}

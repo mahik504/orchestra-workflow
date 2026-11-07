@@ -1,0 +1,12 @@
+{
+  "task": "Echo this screenshot of the homepage",
+  "host": "cursor",
+  "route": "Site to echo",
+  "skills": [
+    "ow-reference-forensics",
+    "impeccable",
+    "taste-design"
+  ],
+  "model_class": "frontend-design-high",
+  "disclosure": "L1"
+}

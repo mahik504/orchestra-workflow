@@ -1,0 +1,38 @@
+{
+  "preamble": "Name the skills, MCPs, plugins, and libraries this task loads. Omit that line when nothing new is loaded. A skill you name wins unless it is unsafe. A missing tool stops. It does not install itself.",
+  "routes": [
+    {"job": "Award-style site", "load": ["impeccable", "taste-design", "ow-golden-still", "gsap-core", "gsap-scrolltrigger", "gsap-timeline"], "skip": "copying a reference site's files; a second motion stack", "skip_phrases": ["copying a reference site's files", "a second motion stack"], "match": ["award", "awwwards", "agency site"], "model_class": "frontend-design-high", "disclosure": "L1"},
+    {"job": "Site to echo", "load": ["ow-reference-forensics", "impeccable", "taste-design"], "skip": "copying assets, copy, or a logo", "skip_phrases": ["copying assets, copy, or a logo"], "match": ["echo", "recreate this site", "match this screenshot"], "model_class": "frontend-design-high", "disclosure": "L1"},
+    {"job": "Scroll", "load": ["gsap-core", "gsap-scrolltrigger", "gsap-timeline"], "skip": "gsap-react unless the motion lives in React components", "skip_phrases": ["gsap-react unless the motion lives in React components"], "match": ["scroll", "pin", "scrolltrigger"], "model_class": "frontend-design-high", "disclosure": "L1"},
+    {"job": "One 3D scene", "load": ["ow-3d-engineering"], "skip": "3D as decoration; a second motion engine", "skip_phrases": ["3D as decoration", "a second motion engine"], "match": ["3d", "webgl", "shader", "r3f"], "model_class": "frontend-design-high", "disclosure": "L2"},
+    {"job": "SaaS or API", "load": ["ow-backend-architecture", "test-driven-development"], "skip": "the design lab; supabase and postgres-best-practices unless that product uses them", "skip_phrases": ["the design lab"], "match": ["saas", "api", "backend"], "model_class": "reasoning-high", "disclosure": "L1"},
+    {"job": "Bug", "load": ["systematic-debugging"], "skip": "the design lab", "skip_phrases": ["the design lab"], "match": ["bug", "crash", "failing test", "regression"], "model_class": "coding-precise", "disclosure": "L0"},
+    {"job": "Paper", "load": ["ow-research-paper", "humanizer"], "skip": "invented citations", "skip_phrases": ["invented citations"], "match": ["paper", "ieee", "citation"], "model_class": "documentation", "disclosure": "L1"},
+    {"job": "Deck", "load": ["ow-docs"], "skip": "host-provided pptx unless that host already has it", "skip_phrases": ["host-provided pptx unless that host already has it"], "match": ["deck", "slides"], "model_class": "documentation", "disclosure": "L1"},
+    {"job": "Deck or slides", "load": ["ow-docs", "ow-presentation"], "skip": "copying a pptx skill file; purple template dumps", "skip_phrases": ["copying a pptx skill file", "purple template dumps"], "match": ["presentation", "speaker notes"], "model_class": "documentation", "disclosure": "L1"},
+    {"job": "Architecture diagram", "load": ["ow-diagrams", "pretty-mermaid"], "skip": "a second diagram system; a README full of charts", "skip_phrases": ["a second diagram system", "a README full of charts"], "match": ["diagram", "mermaid", "architecture chart"], "model_class": "documentation", "disclosure": "L1"},
+    {"job": "One control", "load": ["none"], "skip": "loading every component kit; duplicating a control the project already has", "skip_phrases": ["loading every component kit", "duplicating a control the project already has"], "match": ["one control", "single component"], "model_class": "coding-fast", "disclosure": "L0"},
+    {"job": "Next.js speed", "load": ["react-best-practices"], "skip": "a redesign; a bulk Vercel skill install", "skip_phrases": ["a redesign", "a bulk Vercel skill install"], "match": ["next.js", "waterfall", "bundle"], "model_class": "coding-precise", "disclosure": "L1"},
+    {"job": "TypeScript review", "load": ["ow-typescript"], "skip": "a visual redesign; a new framework", "skip_phrases": ["a visual redesign", "a new framework"], "match": ["typescript review", "types only"], "model_class": "coding-precise", "disclosure": "L1"},
+    {"job": "Ship a deployed app", "load": ["ow-ship-safe", "ow-observability"], "skip": "scanning a third-party URL; a global Sentry install", "skip_phrases": ["scanning a third-party URL", "a global Sentry install"], "match": ["deploy", "ship the app", "in production"], "model_class": "security-high", "disclosure": "L1"},
+    {"job": "What people said recently", "load": ["ow-research"], "skip": "a last-30-days pack; scraping; posting; DMs", "skip_phrases": ["a last-30-days pack", "scraping", "posting", "DMs"], "match": ["what people said", "recent discussion"], "model_class": "research-web", "disclosure": "L1"},
+    {"job": "Marketing copy", "load": ["ow-marketing", "humanizer"], "skip": "invented metrics; a design system rewrite", "skip_phrases": ["invented metrics", "a design system rewrite"], "match": ["marketing", "tagline", "positioning"], "model_class": "documentation", "disclosure": "L1"},
+    {"job": "Rendered video", "load": ["ow-video"], "skip": "the GSAP route; installing a video suite into this method repo", "skip_phrases": ["the GSAP route", "installing a video suite into this method repo"], "match": ["rendered video", "mp4", "hyperframes"], "model_class": "frontend-design-high", "disclosure": "L1"},
+    {"job": "Career notes", "load": ["ow-career"], "skip": "job-board scraping; applying on your behalf", "skip_phrases": ["job-board scraping", "applying on your behalf"], "match": ["cv", "resume", "career notes"], "model_class": "documentation", "disclosure": "L1"},
+    {"job": "README and post", "load": ["ow-ship", "humanizer"], "skip": "posting for the human", "skip_phrases": ["posting for the human"], "match": ["readme", "ship post", "changelog"], "model_class": "documentation", "disclosure": "L1"},
+    {"job": "Binary or APK", "load": ["not ready"], "skip": "rea until Java is installed and the target is yours, a client's, a CTF, or open source", "skip_phrases": ["rea until Java is installed"], "match": ["apk", "binary", "reverse"], "model_class": "coding-precise", "disclosure": "L1"},
+    {"job": "Hackathon or college", "load": ["ow-forge"], "skip": "the 23-card survey when a reference is named; the design lab for college unless the human says PREMIUM", "skip_phrases": ["the 23-card survey when a reference is named"], "match": ["hackathon", "college", "assignment"], "model_class": "coding-fast", "disclosure": "L0"},
+    {"job": "Docs on disk", "load": ["host-provided"], "skip": "docx, pptx, pdf, and xlsx stay on the host. They are not in skills/", "skip_phrases": ["docx, pptx, pdf, and xlsx stay on the host"], "match": ["docx", "pptx", "xlsx", "pdf"], "model_class": "documentation", "disclosure": "L0"}
+  ],
+  "engineering": [
+    ["Bug", "`systematic-debugging`"],
+    ["Logic", "`test-driven-development`"],
+    ["Before DONE", "`verification-before-completion`"],
+    ["Diff", "`ponytail` on engineering only, never on a Design Lab surface"],
+    ["Parallel hosts", "`using-git-worktrees` and `protocols/PARALLEL_WORK_PROTOCOL.md`"],
+    ["Vague brief on a new product", "`grilling`, then `domain-modeling`"],
+    ["Plan to work items", "`to-tickets`"],
+    ["Quality bar before build", "`constraint-driven-development`"],
+    ["Review feedback", "`receiving-code-review`"]
+  ]
+}

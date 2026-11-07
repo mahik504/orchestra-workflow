@@ -6,19 +6,20 @@ on:
   pull_request:
     branches: [ "main" ]
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    
     defaults:
       run:
         working-directory: ./runtime
-        
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
 
     - name: Set up Go
-      uses: actions/setup-go@v5
+      uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff
       with:
         go-version: '1.22'
 
@@ -37,16 +38,16 @@ jobs:
           exit 1
         fi
 
-    - name: Validate Schemas
+    - name: Validate runtime schema JSON
       run: |
         shopt -s nullglob
-        for file in ./schemas/*.json; do
-          if [ -f "$file" ]; then
-            if ! jq empty "$file"; then
-              echo "Invalid JSON in $file"
-              exit 1
-            fi
-          fi
+        files=(./schemas/*.json)
+        if [ ${#files[@]} -eq 0 ]; then
+          echo "no runtime schemas found"
+          exit 1
+        fi
+        for file in "${files[@]}"; do
+          jq empty "$file"
         done
 
     - name: Test
@@ -60,3 +61,35 @@ jobs:
           cat test.log
           exit 1
         }
+
+  node:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+      with:
+        node-version: '22'
+        cache: npm
+        cache-dependency-path: runtime/package-lock.json
+    - name: Install tool dependencies
+      working-directory: ./runtime
+      run: npm ci
+    - name: Tool tests
+      run: node --test runtime/tools/*.test.mjs
+    - name: Registry schemas
+      run: node runtime/tools/check-schemas.mjs
+    - name: Diagram freshness
+      run: |
+        node docs/diagrams/assets/render-readme-diagrams.mjs
+        git diff --exit-code -- docs/diagrams/assets/*.svg
+
+  windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+      with:
+        node-version: '22'
+    - name: Sync dry-run
+      shell: pwsh
+      run: powershell -NoProfile -ExecutionPolicy Bypass -File kit/sync-ides.ps1

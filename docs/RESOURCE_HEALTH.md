@@ -39,7 +39,7 @@ Verification date: **2026-09-06**.
 | Firebase MCP | mcp | OPTIONAL | Antigravity only | EXTERNAL_AUTH_VERIFICATION_REQUIRED | AUTH_REQUIRED | cloud data when signed in | none extra | do not install on Cursor to match | skip |
 | Supabase MCP | mcp | AUTH_REQUIRED | Antigravity listed | EXTERNAL_AUTH_VERIFICATION_REQUIRED | AUTH_REQUIRED | none without auth | project | Unauthorized ≠ active | postgres skill |
 | jcode / OmniRoute | executor | OPTIONAL | jcode | host-local | local provider | terminal executor | none | not an MCP; not claimed HEALTHY for clones | Claude Code |
-| devops-skills dump | quarantined_reference | REFERENCE | none | never loaded | NONE | public markdown map | none | do not install 88 | ship-safe |
+| devops-skills dump | quarantined_reference | REFERENCE | none | never loaded | NONE | public markdown map | none | do not install 88 | ow-ship-safe |
 | awesome prompt repos | prompt_library | REFERENCE | all | N/A | NONE | targeted search | none | do not dump into context | Orchestra protocols |
 
 ## Local host smoke (this operator machine, 2026-09-06)

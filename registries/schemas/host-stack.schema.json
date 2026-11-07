@@ -7,11 +7,11 @@
   "required": ["version", "skills", "mcp", "plugins", "refused", "resources"],
   "additionalProperties": false,
   "properties": {
-    "version": { "type": "string", "const": "4.2.0" },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "skills_manifest": { "type": "string" },
     "skills": {
       "type": "array",
       "minItems": 40,
-      "maxItems": 80,
       "items": { "type": "string", "pattern": "^[a-z0-9-]+$" }
     },
     "mcp": {
@@ -60,6 +60,14 @@
       }
     },
     "refused": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "advisories": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "hard_limits": {
       "type": "array",
       "items": { "type": "string" }
     },

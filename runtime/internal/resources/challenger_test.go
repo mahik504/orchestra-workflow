@@ -604,7 +604,7 @@ func TestChallenger_Concurrency_LiveRegistriesUnderLoad(t *testing.T) {
 
 	knownIDs := []string{
 		"gsap", "threejs", "awwwards-directory", "framer-motion", "tailwind-css",
-		"semgrep", "semgrep-adapter", "godly", "godly-design", "react-bits",
+		"semgrep", "ow-semgrep", "godly", "godly-design", "react-bits",
 		"lenis", "playwright", "lucide-icons",
 	}
 

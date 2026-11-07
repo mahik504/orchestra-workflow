@@ -12,7 +12,7 @@ metadata:
 
 Own profiles and public pages only. Read-only. No post, like, connect, DM, or apply. Never print cookies. LinkedIn uses the public read first. A logged-in session is only for the operator's own profile, a few pages per run. Leave Bilibili, XiaoHongShu, Instagram, and Facebook off.
 
-A question about what people said recently is `orchestra-research`: a dated search and a cited page. Do not install a last-30-days pack. Do not scrape.
+A question about what people said recently is `ow-research`: a dated search and a cited page. Do not install a last-30-days pack. Do not scrape.
 
 # Agent Reach
 

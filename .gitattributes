@@ -1,3 +1,4 @@
 *.go text eol=lf
 kit/git-hooks/commit-msg text eol=lf
+kit/git-hooks/pre-commit text eol=lf
 runtime/benchmarks/fixtures/t3-debug/**/*.go text eol=crlf

@@ -6,13 +6,13 @@ Read [`AGENTS.md`](../AGENTS.md). When a task loads skills, an MCP, a plugin, or
 - A named visual reference takes three translations, then one contract, then stills.
 - College work skips the design lab unless you say PREMIUM.
 - A bug loads `systematic-debugging` and skips the lab.
-- A deck loads `orchestra-docs`. A slide story also loads `orchestra-presentation`.
-- A diagram loads `diagram-generator` and `pretty-mermaid`.
+- A deck loads `ow-docs`. A slide story also loads `ow-presentation`.
+- A diagram loads `ow-diagrams` and `pretty-mermaid`.
 - One control loads `none`. Classify still opens `interaction-components`.
-- Next.js speed loads `react-best-practices`. A TypeScript review loads `orchestra-typescript`.
-- A deployed app loads `ship-safe` and `orchestra-observability`.
-- A question about recent public talk loads `orchestra-research`.
-- Marketing copy loads `orchestra-marketing` and `humanizer`.
-- A rendered video loads `orchestra-video` and does not load GSAP.
-- Career notes load `orchestra-career`. You still submit.
+- Next.js speed loads `react-best-practices`. A TypeScript review loads `ow-typescript`.
+- A deployed app loads `ow-ship-safe` and `ow-observability`.
+- A question about recent public talk loads `ow-research`.
+- Marketing copy loads `ow-marketing` and `humanizer`.
+- A rendered video loads `ow-video` and does not load GSAP.
+- Career notes load `ow-career`. You still submit.
 - Say **skip orchestra** to stand the contract down for the session.

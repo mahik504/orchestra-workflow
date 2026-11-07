@@ -41,6 +41,7 @@
     {
       "id": "supabase",
       "kind": "mcp",
+      "permission_profile": "read-only-until-the-task-names-a-write",
       "invoke_when": "The product note names Supabase and the task changes its schema, auth, or policies.",
       "skip_when": "The product does not use Supabase.",
       "install": "Do not install globally from this release.",
@@ -64,6 +65,76 @@
       "install": "Do not install globally from this release.",
       "fallback": "Read the files the task names.",
       "usage_evidence": "none recorded in this registry"
+    },
+    {
+      "id": "shadcn",
+      "kind": "mcp",
+      "invoke_when": "The product already uses shadcn, or the human names it for one control.",
+      "skip_when": "The product has its own controls and the task does not name shadcn.",
+      "install": "Do not install globally from this release. Add the component in the product repo.",
+      "fallback": "Build the control with the product's existing markup.",
+      "usage_evidence": "none recorded in this registry",
+      "permission_profile": "project-write"
+    },
+    {
+      "id": "magic-ui",
+      "kind": "mcp",
+      "invoke_when": "The human names Magic UI for one motion pattern.",
+      "skip_when": "It would sit beside GSAP as a second scroll runtime.",
+      "install": "Do not install globally from this release.",
+      "fallback": "Rewrite the pattern in the product's tokens.",
+      "usage_evidence": "none recorded in this registry",
+      "permission_profile": "project-write"
+    },
+    {
+      "id": "21st-dev",
+      "kind": "mcp",
+      "invoke_when": "The human has supplied a 21st.dev key and named a component.",
+      "skip_when": "No key is in the host. Do not invent one.",
+      "install": "Do not install globally from this release. The key stays in the host.",
+      "fallback": "Use shadcn or the product's components.",
+      "usage_evidence": "none recorded in this registry",
+      "permission_profile": "keyed"
+    },
+    {
+      "id": "figma",
+      "kind": "mcp",
+      "invoke_when": "The human names a Figma file they can open and supplies access.",
+      "skip_when": "No file URL, or the file is someone else's without permission.",
+      "install": "Do not install globally from this release. The token stays in the host.",
+      "fallback": "Work from the exported still the human pasted.",
+      "usage_evidence": "none recorded in this registry",
+      "permission_profile": "keyed"
+    },
+    {
+      "id": "upstash",
+      "kind": "mcp",
+      "invoke_when": "The product note names Upstash for a cache or a rate limit.",
+      "skip_when": "Redis is not a requirement.",
+      "install": "Do not install globally from this release. The token stays in the host.",
+      "fallback": "Keep the data in Postgres until a cache is justified.",
+      "usage_evidence": "none recorded in this registry",
+      "permission_profile": "keyed"
+    },
+    {
+      "id": "rea",
+      "kind": "tool",
+      "invoke_when": "The target is yours, a client's, a CTF, or open source, and Java is installed.",
+      "skip_when": "The target is not authorized, or Java is missing.",
+      "install": "Do not install globally from this release.",
+      "fallback": "Stop and name the missing Java runtime or the missing authorization.",
+      "usage_evidence": "none recorded in this registry",
+      "permission_profile": "local-authorized"
+    },
+    {
+      "id": "fallow",
+      "kind": "tool",
+      "invoke_when": "A product audit names Fallow and the operator enabled it.",
+      "skip_when": "It is not enabled. Do not add it to look thorough.",
+      "install": "Do not install globally from this release.",
+      "fallback": "Read the files the task names.",
+      "usage_evidence": "none recorded in this registry",
+      "permission_profile": "optional"
     }
   ]
 }

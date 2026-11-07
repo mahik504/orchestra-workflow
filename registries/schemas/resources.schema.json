@@ -287,6 +287,10 @@
       "lifecycle_stage": {
         "type": "string",
         "enum": ["discovered", "installed", "available", "selected", "executed", "verified", "successful"]
+      },
+      "admission_state": {
+        "type": "string",
+        "enum": ["discovered", "candidate", "evaluated", "approved", "installed", "configured", "healthy", "verified", "monitored", "deprecated", "rejected"]
       }
     },
     "additionalProperties": false

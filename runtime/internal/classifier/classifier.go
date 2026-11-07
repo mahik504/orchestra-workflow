@@ -591,7 +591,7 @@ func decideVisual(b *Brief, hay string) bool {
 		return true
 	}
 	switch b.CapabilityID {
-	case "security-audit", "research-paper",
+	case "security-audit", "ow-research-paper",
 		"typescript-review", "slides", "recent-research", "marketing-copy",
 		"rendered-video", "deployed-errors", "career-notes",
 		"architecture-diagram", "nextjs-speed":
@@ -677,7 +677,7 @@ func applyQualityBarOverrides(b *Brief, hay string) {
 	if containsAny(hay, "client", "recruiter", "public launch", "investor", "customers will see",
 		"pitch", "showcase", "portfolio") && b.QualityBar == BarStandard {
 		switch b.CapabilityID {
-		case "final-showcase", "fresh-context-review":
+		case "ow-showcase", "ow-fresh-review":
 			// Recording or independent review is not a new PREMIUM product surface.
 			return
 		}

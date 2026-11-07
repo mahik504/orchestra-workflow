@@ -54,7 +54,7 @@ func phase7Briefs() []phase7Brief {
 		{
 			name:    "5 research paper",
 			request: "Write a methods paper with citations about capability graphs, no UI",
-			wantCap: "research-paper",
+			wantCap: "ow-research-paper",
 			wantLab: false,
 			wantBar: classifier.BarStandard,
 		},
@@ -188,24 +188,24 @@ func TestPhase7_PaperLoadsOrchestraDocs(t *testing.T) {
 	defer os.RemoveAll(workdir)
 	cls := classifier.NewClassifierWithGraph(graph)
 	b := cls.ClassifyBrief("Write a methods paper with citations about capability graphs, no UI", classifier.Options{})
-	if b.CapabilityID != "research-paper" {
-		t.Fatalf("got %s, want research-paper", b.CapabilityID)
+	if b.CapabilityID != "ow-research-paper" {
+		t.Fatalf("got %s, want ow-research-paper", b.CapabilityID)
 	}
 	if b.DesignLabRequired {
 		t.Error("a paper is not visual work")
 	}
-	route, ok := graph.ResolveCapabilityRoute("research-paper", nil)
+	route, ok := graph.ResolveCapabilityRoute("ow-research-paper", nil)
 	if !ok {
-		t.Fatal("research-paper missing")
+		t.Fatal("ow-research-paper missing")
 	}
 	found := false
 	for _, id := range route.AllResourceIDs {
-		if id == "orchestra-docs" {
+		if id == "ow-docs" {
 			found = true
 		}
 	}
 	if !found {
-		t.Errorf("research-paper route missing orchestra-docs: %v", route.AllResourceIDs)
+		t.Errorf("ow-research-paper route missing ow-docs: %v", route.AllResourceIDs)
 	}
 }
 

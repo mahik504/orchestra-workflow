@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640" role="img" aria-labelledby="title desc">
+  <title id="title">Orchestra Workflow 4.5.0</title>
+  <desc id="desc">OW monogram and the release name</desc>
+  <rect width="1280" height="640" fill="#1A1814"/>
+  <g transform="translate(96 176) scale(4.5)">
+    <path d="M14 18h10v28H14zM27 18h10l7 28h-9l-1-6H30l-1 6h-8z" fill="#F4F0E8"/>
+    <path d="M30 30h6l-3-10z" fill="#1A1814"/>
+  </g>
+  <text x="460" y="300" fill="#F4F0E8" font-family="Georgia, serif" font-size="72">Orchestra Workflow</text>
+  <text x="460" y="380" fill="#C4A46A" font-family="ui-sans-serif, Segoe UI, Helvetica, Arial, sans-serif" font-size="32">4.5.0</text>
+</svg>

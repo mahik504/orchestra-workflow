@@ -15,7 +15,7 @@
 
 ## Academic
 
-orchestra-docs first. OPTIONAL `paper-writing-suite` only if a real paper job outgrows it. Never install academic-writing-agents as a second conductor.
+ow-docs first. OPTIONAL `paper-writing-suite` only if a real paper job outgrows it. Never install academic-writing-agents as a second conductor.
 
 ## Graph miss
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## [4.5.0] - Final release
+
+The pin in `VERSION` is 4.5.0. Orchestra-owned skills are `ow-*`. Upstream names stayed. Sync hashes trees and leaves a local edit in place. `orchestra compile` prints a JSON manifest. `find-skills` is vendored from vercel-labs/skills at `d3701c11` (MIT). Three c1 landing trials and three c6 bugfix trials ran on `composer-2.5-fast`. The bugfix arms tied. The landing arms both built; a blind judge preferred the Orchestra page twice and called the third a tie, while Lighthouse performance averaged 98 and 97. No comparison claim is enabled.
+
 ## [4.2.0] - Five skills, one conductor
 
 *The pin in `VERSION` is 4.2.0. CI on `65d1720` was green before this bump. The premium landing comparison was not run, so `c1-premium-landing` stays disabled.*

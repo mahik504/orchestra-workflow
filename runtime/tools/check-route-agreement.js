@@ -1,6 +1,6 @@
 // Routing-table skills must appear on a capability skills array,
 // and every graph skill id must have skills/<id>/SKILL.md.
-// prompt-forge and orchestra-focus run before classify.
+// ow-forge and ow-focus run before classify.
 // systematic-debugging is selected from the bug type, not a new route.
 const fs = require('fs');
 const path = require('path');
@@ -9,10 +9,10 @@ const REPO = path.join(__dirname, '..', '..');
 const START = '<!-- routing:start -->';
 const END = '<!-- routing:end -->';
 const RESERVED = new Set(['none', 'not ready', 'host-provided']);
-const EXEMPT = new Set(['prompt-forge', 'orchestra-focus', 'systematic-debugging']);
+const EXEMPT = new Set(['ow-forge', 'ow-focus', 'systematic-debugging']);
 
 const problems = [];
-const conductor = fs.readFileSync(path.join(REPO, 'skills', 'orchestra-conductor', 'SKILL.md'), 'utf8').replace(/\r\n/g, '\n');
+const conductor = fs.readFileSync(path.join(REPO, 'skills', 'ow-conductor', 'SKILL.md'), 'utf8').replace(/\r\n/g, '\n');
 const a = conductor.indexOf(START);
 const b = conductor.indexOf(END);
 if (a < 0 || b < a) problems.push('conductor routing block missing');
@@ -36,8 +36,8 @@ for (const [id, cap] of Object.entries(graph.capabilities || {})) {
   if (id === 'interaction-components' && skills.length !== 0) {
     problems.push('interaction-components skills must stay empty');
   }
-  if (skills.includes('orchestra-video') && skills.includes('gsap-core')) {
-    problems.push(`${id} lists both orchestra-video and gsap-core`);
+  if (skills.includes('ow-video') && skills.includes('gsap-core')) {
+    problems.push(`${id} lists both ow-video and gsap-core`);
   }
   for (const skill of skills) {
     onGraph.add(skill);
