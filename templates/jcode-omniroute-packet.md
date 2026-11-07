@@ -1,6 +1,6 @@
 # jcode + OmniRoute packet (Antigravity / operator)
 
-jcode is a **fourth executor** under Orchestra 3.3. It is not the brain. Do not replace Cursor, Antigravity, or Claude Code. Do not claim it works without command output in this packet’s handoff.
+jcode is a fourth executor. It is not the brain. Do not replace Cursor, Antigravity, or Claude Code. Do not claim it works without command output in this packet's handoff.
 
 Upstream: https://github.com/1jehuang/jcode
 

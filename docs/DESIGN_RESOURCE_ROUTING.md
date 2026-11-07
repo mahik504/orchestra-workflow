@@ -1,6 +1,6 @@
 > Historical snapshot. The live contract is the pin in `VERSION`.
 
-# Design resource routing — Orchestra 3.3.0
+# Design resource routing
 
 Orchestra synthesizes **one** design system. It does not collage libraries onto one page.
 

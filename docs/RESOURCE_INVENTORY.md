@@ -1,6 +1,6 @@
 > Historical snapshot. The live contract is the pin in `VERSION`.
 
-# Resource inventory — Orchestra 3.3.0
+# Resource inventory
 
 Available ≠ loaded. Registered ≠ active. Discovered ≠ verified. Machine-readable rows: `registries/resources.json`. Local OSS metadata (not clones): `registries/oss-index.json`. Health: [`RESOURCE_HEALTH.md`](RESOURCE_HEALTH.md). Combination: [`DESIGN_RESOURCE_ROUTING.md`](DESIGN_RESOURCE_ROUTING.md).
 
@@ -193,6 +193,6 @@ They may remain catalog `REJECTED` or `quarantined_reference` rows with skip = n
 
 | Layer | Lives where | Clones get it? |
 | --- | --- | --- |
-| Contract, graph, skills, protocols, README | orchestra-workflow 3.3.0 | Yes |
+| Contract, graph, skills, protocols, README | this repository, pin in `VERSION` | Yes |
 | Product notes, career, Preferences | private Brain | No |
 | OmniRoute, MCP tokens, host MCP JSON | user profile | **No** |

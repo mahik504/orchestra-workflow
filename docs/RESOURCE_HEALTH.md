@@ -1,6 +1,6 @@
 > Historical snapshot. The live contract is the pin in `VERSION`.
 
-# Resource health — Orchestra 3.3.0
+# Resource health
 
 Do not call a service HEALTHY without host confirmation in this environment. Unauthorized or unpurchased is not active.
 

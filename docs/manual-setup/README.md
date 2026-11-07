@@ -1,6 +1,6 @@
 > Historical snapshot. The live contract is the pin in `VERSION`.
 
-# Manual setup — Orchestra 3.3.0
+# Manual setup
 
 Only actions a human must take. Never paste keys into git, the vault, or a prompt you will forward.
 

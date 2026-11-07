@@ -8,7 +8,7 @@ Mermaid sources for those three figures sit next to the SVGs (`.mmd`). Re-render
 node docs/diagrams/assets/render-readme-diagrams.mjs
 ```
 
-The eight notes below are the architecture set for editors. Do not paste all of them into README.
+[system.md](system.md) is the short figure set for 4.1.0. The eight notes below are the longer editor set. Do not paste all of them into README.
 
 | File | What it shows |
 | --- | --- |

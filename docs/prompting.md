@@ -1,6 +1,6 @@
-# Prompting Orchestra 4.1.0
+# Prompting Orchestra
 
-Read [`AGENTS.md`](../AGENTS.md). The agent prints `Load:` and `Skip:` from the routing table before it writes. A skill you name wins. A missing tool stops. The 23-card lab still applies when the job is open premium visual work.
+Read [`AGENTS.md`](../AGENTS.md). When a task loads skills, an MCP, a plugin, or a library, name those. Leave the line off when nothing new is loaded. A skill you name wins unless it is unsafe. A missing tool stops. The 23-card lab still applies when the job is open premium visual work.
 
 - Say the kind: college, personal, client, or hiring-cv.
 - A named visual reference takes three translations, then one contract, then stills.

@@ -71,7 +71,7 @@ Front door for a new clone: `kit/bootstrap.ps1` / `kit/bootstrap.sh` (pick hosts
 ## Hermes (and other AGENTS-compatible CLIs)
 
 - Point the agent at `AGENTS.md` + `protocols/`.
-- Same 3.3.1 contract and available ≠ loaded rules. Design Lab is a write lock on PREMIUM / EXPERIMENTAL visual work (23 cards or 3 named-reference translations → one DESIGN.md → golden stills).
+- Same contract as `AGENTS.md`. A listed resource is not a loaded one. Design Lab locks PREMIUM and EXPERIMENTAL visual work: 23 cards, or 3 translations for a named reference, then one DESIGN.md, then golden stills.
 
 ## ChatGPT / Perplexity / cloud chats
 

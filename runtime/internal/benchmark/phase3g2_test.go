@@ -6,6 +6,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"testing"
 	"time"
@@ -364,6 +365,9 @@ func runWrapper(t *testing.T, help, label, prompt string) string {
 
 func wrapperCmd(t *testing.T) string {
 	t.Helper()
+	if runtime.GOOS != "windows" {
+		t.Skip("cursor-host.cmd is a Windows launcher")
+	}
 	path, err := filepath.Abs(filepath.Join("..", "..", "benchmarks", "cursor-host.cmd"))
 	if err != nil {
 		t.Fatal(err)

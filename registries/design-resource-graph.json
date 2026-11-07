@@ -1,7 +1,7 @@
 {
   "$schema": "./schemas/design-resource-graph.schema.json",
   "version": "4.0.0",
-  "description": "Canonical Orchestra 4.0.0 Capability-to-Resource Execution Graph mapping task archetypes across Discovery, Synthesis, Implementation, and QA phases.",
+  "description": "Capability routes for the current Orchestra pin in VERSION. Each route maps discovery, synthesis, implementation, and QA.",
   "domains": {
     "visual_research": [
       "awwwards",
