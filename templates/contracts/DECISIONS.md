@@ -1,17 +1,5 @@
 # Decisions
 
-## Date
+One line each. `domain-modeling` writes the ADR. This file only points at it.
 
-When this was decided.
-
-## Decision
-
-The choice.
-
-## Reason
-
-The constraint that made it win.
-
-## Rejected
-
-The option that lost, and why.
+- YYYY-MM-DD — The decision in one sentence. ADR: docs/adr/NNNN-slug.md

@@ -232,7 +232,7 @@ func TestPhase3F1_RegistryCountsStayPut(t *testing.T) {
 		t.Fatal(err)
 	}
 	verified, unverified := SplitVerification(rows)
-	if len(rows) != 175 || verified != 49 || unverified != 126 {
+	if len(rows) != 180 || verified != 54 || unverified != 126 {
 		t.Fatalf("rows=%d verified=%d unverified=%d", len(rows), verified, unverified)
 	}
 	if verified == unverified {
@@ -240,13 +240,18 @@ func TestPhase3F1_RegistryCountsStayPut(t *testing.T) {
 	}
 	dated := 0
 	checkedOn := map[string]string{
-		"watermelon-ui":          "2026-11-05",
-		"archify":                "2026-11-05",
-		"understand-anything":    "2026-11-05",
-		"markitdown":             "2026-11-05",
-		"data-engineer-handbook": "2026-11-05",
-		"storybook":              "2026-11-05",
-		"chromatic":              "2026-11-05",
+		"watermelon-ui":                 "2026-11-05",
+		"archify":                       "2026-11-05",
+		"understand-anything":           "2026-11-05",
+		"markitdown":                    "2026-11-05",
+		"data-engineer-handbook":        "2026-11-05",
+		"storybook":                     "2026-11-05",
+		"chromatic":                     "2026-11-05",
+		"grilling":                      "2026-11-07",
+		"domain-modeling":               "2026-11-07",
+		"to-tickets":                    "2026-11-07",
+		"constraint-driven-development": "2026-11-07",
+		"receiving-code-review":         "2026-11-07",
 	}
 	for _, row := range rows {
 		if ResourceVerified(row.LastVerified) {

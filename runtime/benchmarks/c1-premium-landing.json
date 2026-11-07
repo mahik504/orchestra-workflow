@@ -1,0 +1,17 @@
+{
+  "benchmark_id": "c1-premium-landing",
+  "task_class": "c1-premium-landing",
+  "status": "not_run",
+  "claim": "none",
+  "enabled": false,
+  "date": "2026-11-07",
+  "arms": [],
+  "captures": {
+    "layer_a_desktop": false,
+    "layer_a_mobile": false,
+    "axe": false,
+    "lighthouse": false
+  },
+  "judge": null,
+  "note": "The paired run was not executed. It needs two chats on the same model, one with skip orchestra and one with Orchestra, then Layer A captures at desktop and mobile, axe, Lighthouse, and a blind judge who sees only the screenshots. c1-premium-landing stays disabled in compare.go. This file records that gap. It is not a score."
+}

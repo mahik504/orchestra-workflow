@@ -7,7 +7,7 @@ An intelligent, provider-neutral control plane for agentic development. One cond
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Release](https://img.shields.io/github/v/release/mahik504/orchestra-workflow?sort=semver)](https://github.com/mahik504/orchestra-workflow/releases)
 
-The pin in [`VERSION`](VERSION) is **4.1.0**.
+The pin in [`VERSION`](VERSION) is **4.2.0**.
 
 ```
 ORCHESTRA  = CONTROL PLANE
@@ -74,6 +74,19 @@ Capsule roles are planner, builder, and judge. The acceptance line moves when yo
 
 Playwright checks the running app. The model dropdown stays yours. Orchestra does not turn a model name into a skill list.
 
+## What's new in 4.2.0
+
+4.1.0 already selected skills on one conductor. 4.2.0 keeps that conductor and closes the second one that was starting beside it.
+
+- Five skills, copied with their licenses: `grilling`, `domain-modeling`, and `to-tickets` from Matt Pocock at `4ae2317`; `constraint-driven-development` from Addy Osmani at `301b02b`; `receiving-code-review` from Superpowers 6.1.1. The canonical count is 78. The cap stays 80.
+- `to-tickets` writes local files under `.scratch/<feature>/issues/`. GitHub issues only when the task names GitHub.
+- A decision in `templates/contracts/DECISIONS.md` is one line that links the ADR `domain-modeling` writes.
+- A startup idea gets one scope question: expand, hold, or reduce.
+- The Superpowers plugin, the bulk Vercel plugin, and caveman stay off. The vendored Superpowers skills stay.
+- `kit/git-hooks/commit-msg` drops `Co-authored-by: Cursor <cursoragent@cursor.com>`. `kit/install-git-hooks.ps1` points this repo at that hook.
+- `orchestra plan` records a missing browser harness and still prints the manifest. A real run still stops.
+- The premium landing comparison was not run. `c1-premium-landing` stays disabled.
+
 ## What's new in 4.1.0
 
 4.0.0 already had the eight stages, the 26-route graph, the design gate, 73 skills, and host sync. 4.1.0 adds selection on that same conductor.
@@ -88,27 +101,32 @@ No new skill folder. The cap stays 80. No new package in this repo.
 
 ## Compared with earlier releases
 
-| | 3.3.6 | 4.0.0 | 4.1.0 |
-| --- | --- | --- | --- |
-| Contract | One `AGENTS.md`. `Load` and `Skip` required before a write | Same contract. Eight more skills. 73 canonical skills. Cap 80 | Same contract. The note lists only what this task loads |
-| Routes | Job table copied into the host files | The graph names the skill folders. An unhealthy required tool stops | Domains and technology rules sit on those routes |
-| Design | Kind sets the bar. College skips the lab unless you say PREMIUM | One component source, in a fixed order. A catalog is not a motion runtime | Contract templates in `templates/contracts/`. Golden stills still come first |
-| Hosts | Cursor, Antigravity, Claude Code, jcode | Same four. No new global MCP | Same four. Limitless Claude stays a separate repo |
-| Check | CI and Hygiene green on that release | Routing check matches the job cell | Same checks, plus design-domain and technology-policy checks |
+| | 3.3.6 | 4.0.0 | 4.1.0 | 4.2.0 |
+| --- | --- | --- | --- | --- |
+| Contract | One `AGENTS.md`. `Load` and `Skip` required before a write | Same contract. Eight more skills. 73 canonical skills. Cap 80 | Same contract. The note lists only what this task loads | Same contract. 78 canonical skills. Cap 80 |
+| Routes | Job table copied into the host files | The graph names the skill folders. An unhealthy required tool stops | Domains and technology rules sit on those routes | Same routes. The engineering table names the five new skills |
+| Design | Kind sets the bar. College skips the lab unless you say PREMIUM | One component source, in a fixed order. A catalog is not a motion runtime | Contract templates in `templates/contracts/`. Golden stills still come first | `DECISIONS.md` is one line per decision, linking an ADR |
+| Hosts | Cursor, Antigravity, Claude Code, jcode | Same four. No new global MCP | Same four. Limitless Claude stays a separate repo | Same four. Superpowers, the bulk Vercel plugin, and caveman stay off |
+| Check | CI and Hygiene green on that release | Routing check matches the job cell | Same checks, plus design-domain and technology-policy checks | A dry-run plan records a missing browser. Execute still stops |
 
 Older tags remain: `v3.3.6`, `v3.3.1`, `v3.3.0`, `v3.2.0`. The phase write-ups that used to live under `docs/3.3.*` are not in this tree. [`CHANGELOG.md`](CHANGELOG.md) is the record.
 
 ## Compared with other harnesses
 
-| | What it does | Where Orchestra differs |
-| --- | --- | --- |
-| Raw Cursor, Antigravity, or Claude Code | The host writes from the prompt and whatever skills are already in context | Orchestra names the skills for this job, keeps one conductor, and blocks showable UI until you approve stills |
-| [Superpowers](https://github.com/obra/superpowers) | A methodology plugin. Useful as a worker for planning habits | It does not replace `AGENTS.md`. If it starts a second plan, the contract wins |
-| Ralph Loop | Repeats until a stop condition | It must not bypass the design gate or become the conductor |
-| [Limitless Claude](https://github.com/mahik504/limitless-claude) | Routes model providers for Claude Code through a local gateway. Published line 7.0.0 | Orchestra decides which skills load. Limitless decides which provider answers. Credentials stay in that project |
-| This repo | The method, the skill folders, and the engine | Your products, keys, and taste stay in a private workspace |
+These are skill libraries or their own lifecycles. Orchestra decides which method runs. Replacing it with a pack drops routing, the design gate, host sync, and the vault. Installing a pack beside it starts a second conductor.
 
-The one saved paired measurement in this repo is a one-line Go fix. Both arms made the same 183-byte change. Orchestra took longer. That pair does not score a website.
+| | What it is | What Orchestra did |
+| --- | --- | --- |
+| [Matt Pocock skills](https://github.com/mattpocock/skills) | Composable skills. No takeover hook. MIT | `grilling`, `domain-modeling`, and `to-tickets` are in `skills/` at commit `4ae2317`. `grill-with-docs` is a pointer at the first two, so it is not a fourth skill |
+| [Superpowers](https://github.com/obra/superpowers) | A methodology plugin. Its SessionStart hook tells the model to invoke its skills before any response. MIT | The skills Orchestra uses are vendored. `receiving-code-review` is the one added here, from plugin 6.1.1. The plugin stays off |
+| [agent-skills](https://github.com/addyosmani/agent-skills) | A skill library. The router hook is left unwired. MIT | `constraint-driven-development` is in `skills/` at commit `301b02b`. It catches an agent silencing checks to get green. The rest of the pack stays rejected |
+| [gstack](https://github.com/garrytan/gstack) | A full lifecycle. `/autoplan` and `/ship` take over. Windows support is thin. MIT | Not installed. A startup idea gets one scope question in the brief: expand, hold, or reduce |
+| [Spec Kit](https://github.com/github/spec-kit) | A command lifecycle and a Python CLI. MIT | Not installed. The brief, the contract, and `to-tickets` cover that ground |
+| ECC, oh-my-claudecode, GSD | Full harnesses with SessionStart, UserPromptSubmit, or PreToolUse hooks | Not installed. They are on the refused list |
+| BMAD | A methodology with personas. v7 is in alpha | Not installed |
+| Agency Agents | A large persona pack | Not installed. Cursor and Claude subagents, plus the planner, builder, and judge capsules, already cover a worker |
+
+The one saved paired measurement in this repo is a one-line Go fix. Both arms made the same 183-byte change. Orchestra took longer. That pair does not score a website. The premium landing comparison (`c1-premium-landing`) was not run: it needs two chats on the same model, Layer A at desktop and mobile, axe, Lighthouse, and a blind judge. It stays disabled. The record is [`runtime/benchmarks/c1-premium-landing.json`](runtime/benchmarks/c1-premium-landing.json).
 
 ## Architecture
 

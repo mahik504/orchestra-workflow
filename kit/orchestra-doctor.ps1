@@ -1,4 +1,4 @@
-# Orchestra 4.1.0 doctor. Prints failures first. Never prints secret values.
+# Orchestra 4.2.0 doctor. Prints failures first. Never prints secret values.
 param([switch]$Json)
 
 $ErrorActionPreference = "Continue"
@@ -7,9 +7,9 @@ $problems = @()
 $warnings = @()
 
 $version = (Get-Content (Join-Path $Root "VERSION") -Raw).Trim()
-if ($version -ne "4.1.0") { $problems += "VERSION is $version" }
+if ($version -ne "4.2.0") { $problems += "VERSION is $version" }
 $agents = Get-Content (Join-Path $Root "AGENTS.md") -TotalCount 1
-if ($agents -notmatch "4\.1\.0") { $problems += "AGENTS.md title is not 4.1.0" }
+if ($agents -notmatch "4\.2\.0") { $problems += "AGENTS.md title is not 4.2.0" }
 
 $linkLines = @(git -C $Root ls-files -s 2>$null | Select-String -Pattern "^160000")
 foreach ($link in $linkLines) {
@@ -76,6 +76,25 @@ try {
 } catch {
   $problems += "heartbeat task missing"
 }
+}
+
+$claudeSettings = Join-Path $env:USERPROFILE ".claude\settings.json"
+if (Test-Path -LiteralPath $claudeSettings) {
+  try {
+    $enabled = (Get-Content -LiteralPath $claudeSettings -Raw | ConvertFrom-Json).enabledPlugins
+    if ($null -ne $enabled) {
+      foreach ($prop in $enabled.PSObject.Properties) {
+        if ($prop.Value -ne $true) { continue }
+        foreach ($name in @("superpowers", "vercel", "caveman")) {
+          if ($prop.Name -eq $name -or $prop.Name -like "$name@*") {
+            $warnings += "Claude settings enable refused plugin $($prop.Name)"
+          }
+        }
+      }
+    }
+  } catch {
+    $warnings += "Claude settings.json could not be read"
+  }
 }
 
 $patterns = @("li_at=", "auth_token=", "ct0=", "sessionid=")

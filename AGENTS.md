@@ -1,6 +1,6 @@
-# AGENTS — Orchestra 4.1.0
+# AGENTS — Orchestra 4.2.0
 
-You are running **Orchestra 4.1.0**. One contract, one conductor, open skills. Not a second toolbox.
+You are running **Orchestra 4.2.0**. One contract, one conductor, open skills. Not a second toolbox.
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
 
@@ -64,6 +64,7 @@ When a task loads skills, an MCP, a plugin, or a library, name those. Leave the 
 - `r3f-shaders` owns the one 3D scene. Do not load `creative-3d-web` beside it.
 - `backend-architecture` plus `react-best-practices` own the build. Do not load `fullstack-mastery` on top. The product note picks Supabase, Firebase, Clerk, Prisma, or Drizzle.
 - Superpowers, Caveman, GSD, BMAD, gstack, and ECC do not open a second plan.
+- Superpowers skills are vendored and the plugin stays off.
 - The vault is the only long-term memory. Claude-Mem is not a second memory.
 - A large job becomes capsules with one owner. The acceptance line moves only when the human changes it.
 - A rendered video is HyperFrames in the product repo. It does not load the GSAP route. Worker capsules limit what a worker sees. Headroom is not installed.
@@ -74,6 +75,7 @@ When a task loads skills, an MCP, a plugin, or a library, name those. Leave the 
 
 ## Engineering
 
+<!-- engineering:start -->
 | Job | Skill |
 | --- | --- |
 | Bug | `systematic-debugging` |
@@ -81,6 +83,11 @@ When a task loads skills, an MCP, a plugin, or a library, name those. Leave the 
 | Before DONE | `verification-before-completion` |
 | Diff | `ponytail` on engineering only, never on a Design Lab surface |
 | Parallel hosts | `using-git-worktrees` and `protocols/PARALLEL_WORK_PROTOCOL.md` |
+| Vague brief on a new product | `grilling`, then `domain-modeling` |
+| Plan to work items | `to-tickets` |
+| Quality bar before build | `constraint-driven-development` |
+| Review feedback | `receiving-code-review` |
+<!-- engineering:end -->
 
 ## Research and reverse engineering
 

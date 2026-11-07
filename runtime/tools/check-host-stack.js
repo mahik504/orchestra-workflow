@@ -15,8 +15,8 @@ if (!fs.existsSync(stackPath)) {
 
 const stack = JSON.parse(fs.readFileSync(stackPath, 'utf8'));
 
-if (stack.version !== '4.1.0') {
-  problems.push(`host-stack version is "${stack.version}", expected 4.1.0`);
+if (stack.version !== '4.2.0') {
+  problems.push(`host-stack version is "${stack.version}", expected 4.2.0`);
 }
 
 const schema = JSON.parse(fs.readFileSync(path.join(REPO, 'registries', 'schemas', 'host-stack.schema.json'), 'utf8'));
@@ -35,7 +35,7 @@ const dirs = fs.readdirSync(skillsDir).filter((n) => {
 const listedSorted = [...listed].sort();
 const unique = new Set(listed);
 if (unique.size !== listed.length) problems.push('host-stack skills has duplicate IDs');
-if (listed.length !== 73) problems.push(`host-stack skill count is ${listed.length}, expected 73`);
+if (listed.length !== 78) problems.push(`host-stack skill count is ${listed.length}, expected 78`);
 if (listedSorted.length !== dirs.length) {
   problems.push(`skill count mismatch: host-stack has ${listedSorted.length}, skills/ has ${dirs.length}`);
 }

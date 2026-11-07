@@ -1,11 +1,13 @@
 {
-  "version": "4.1.0",
+  "version": "4.2.0",
   "skills": [
     "agent-reach",
     "animate",
     "backend-architecture",
     "ci-security-scanning-with-strix",
+    "constraint-driven-development",
     "diagram-generator",
+    "domain-modeling",
     "eas-app-stores",
     "emil-design-eng",
     "expo-data-fetching",
@@ -22,6 +24,7 @@
     "gsap-react",
     "gsap-scrolltrigger",
     "gsap-timeline",
+    "grilling",
     "hallmark",
     "humanizer",
     "impeccable",
@@ -49,6 +52,7 @@
     "r3f-shaders",
     "rea",
     "react-best-practices",
+    "receiving-code-review",
     "refero-design",
     "research-paper",
     "resource-scout",
@@ -68,6 +72,7 @@
     "systematic-debugging",
     "taste-design",
     "test-driven-development",
+    "to-tickets",
     "using-git-worktrees",
     "verification-before-completion",
     "visual-forensics",
@@ -354,8 +359,7 @@
       "Google Drive",
       "Stripe",
       "Zapier",
-      "shadcn",
-      "caveman"
+      "shadcn"
     ],
     "antigravity": [
       "Playwright MCP",
@@ -380,7 +384,10 @@
     "Chen 202-agent / 273-agent dumps",
     "Workday Lever Easy Apply robots",
     "GetLayers MCP before purchase",
-    "agent-browser --tools all globally"
+    "agent-browser --tools all globally",
+    "Superpowers plugin bootstrap (SessionStart injects using-superpowers). Skills are vendored. The plugin stays off.",
+    "caveman plugin. It compresses replies and fights the writing voice.",
+    "bulk Vercel plugin. The routing table skips a bulk Vercel skill install."
   ],
   "resources": {
     "see": "registries/resources.json"

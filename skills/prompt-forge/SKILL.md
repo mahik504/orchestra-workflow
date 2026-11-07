@@ -21,6 +21,12 @@ Run this before classify, then `orchestra-focus`. Then do the work. Ask only whe
 
 Show the brief in a few lines. Do not wait for approval unless a requirement that changes product behavior is missing.
 
+## New product
+
+When the intent or the acceptance line is unclear and the job is a new product, run `grilling` before the brief is treated as settled. Then `domain-modeling` writes the glossary and any ADR.
+
+For a startup idea, ask one scope question: expand, hold, or reduce. Record the answer in the brief. Do not start a second product in the same pass.
+
 ## Load line
 
 Before a write that loads something, name only what this task uses:

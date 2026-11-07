@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.2.0] - Five skills, one conductor
+
+*The pin in `VERSION` is 4.2.0. CI on `65d1720` was green before this bump. The premium landing comparison was not run, so `c1-premium-landing` stays disabled.*
+
+- `grilling`, `domain-modeling`, and `to-tickets` are copied from mattpocock/skills at `4ae2317ddb22b046e26455e4f9c9b3aaaf62212d`, with the MIT license. `to-tickets` defaults to local files. GitHub issues only when the task names GitHub.
+- `constraint-driven-development` is copied from addyosmani/agent-skills at `301b02b12bff98e4688e6984af6556802322bbde`, with its references, the quality-gate script, and the MIT license. The rest of that pack stays rejected.
+- `receiving-code-review` is vendored from Superpowers 6.1.1 with `LICENSE.superpowers`. The Superpowers plugin stays off.
+- Canonical skill count is 78. The cap stays 80.
+- `templates/contracts/DECISIONS.md` is one line per decision, linking the ADR.
+- `kit/git-hooks/commit-msg` strips the Cursor co-author trailer. `orchestra plan` records a missing browser and still prints the manifest. Execute still stops.
+- No ECC, oh-my-claudecode, GSD, gstack, BMAD, Spec Kit, or Agency Agents install. No new MCP.
+
 ## [4.1.0] - Selection receipt, same conductor
 
 *Same conductor as 4.0.0. The routing note is shorter. Design domains and technology rules sit on the existing routes.*

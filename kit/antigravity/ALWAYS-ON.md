@@ -1,6 +1,6 @@
-# Antigravity — stay on Orchestra 4.1.0
+# Antigravity — stay on Orchestra 4.2.0
 
-<!-- BEGIN ORCHESTRA 4.1.0 -->
+<!-- BEGIN ORCHESTRA 4.2.0 -->
 
 `AGENTS.md` in the workflow clone (and the vault overlay) is the contract. This file does not invent a second loop. If this note and `AGENTS.md` disagree, `AGENTS.md` wins.
 

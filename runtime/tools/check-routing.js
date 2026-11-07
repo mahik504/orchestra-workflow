@@ -146,6 +146,24 @@ if (blocks[0]) {
     problems.push('conductor body does not say One control loads none');
   }
 
+  const agents = fs.readFileSync(path.join(REPO, 'AGENTS.md'), 'utf8').replace(/\r\n/g, '\n');
+  const engStart = '<!-- engineering:start -->';
+  const engEnd = '<!-- engineering:end -->';
+  const engA = agents.indexOf(engStart);
+  const engB = agents.indexOf(engEnd);
+  if (engA < 0 || engB < engA) {
+    problems.push('AGENTS.md needs one engineering table between markers');
+  } else {
+    const block = agents.slice(engA, engB);
+    const named = new Set();
+    for (const match of block.matchAll(/`([a-z0-9-]+)`/g)) named.add(match[1]);
+    if (named.size === 0) problems.push('engineering table names no skills');
+    for (const id of named) {
+      const skill = path.join(REPO, 'skills', id, 'SKILL.md');
+      if (!fs.existsSync(skill)) problems.push(`engineering table names missing skill ${id}`);
+    }
+  }
+
   console.log('routing copies:    ' + FILES.length);
   console.log('required routes:   ' + EXPECTED.length);
   console.log('skill-path checks: ' + skillPaths);

@@ -1,6 +1,6 @@
-# Architecture — Orchestra 4.1.0
+# Architecture — Orchestra 4.2.0
 
-The contract pin is 4.1.0. The engine keeps a mission, a worker capsule, a derived budget, and a browser check on a running app. Those sit around the eight stages. They do not replace them. A model name does not pick a skill. 4.1 adds the selection receipt, design domains, and technology rules on the same loop.
+The contract pin is 4.2.0. The engine keeps a mission, a worker capsule, a derived budget, and a browser check on a running app. Those sit around the eight stages. They do not replace them. A model name does not pick a skill. 4.1 adds the selection receipt, design domains, and technology rules on the same loop. 4.2 adds five skills and keeps the same conductor.
 
 Orchestra is a **control plane**. Your agent is the executor.
 

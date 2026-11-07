@@ -1,6 +1,6 @@
-# Workflow — Orchestra 4.1.0
+# Workflow — Orchestra 4.2.0
 
-The contract is `AGENTS.md`. This is the operator's walkthrough. 4.1.0 is one source of truth on the same OS. The eight stages did not change.
+The contract is `AGENTS.md`. This is the operator's walkthrough. 4.2.0 is one source of truth on the same OS. The eight stages did not change.
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
 

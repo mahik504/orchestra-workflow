@@ -41,7 +41,6 @@ const HEADINGS = {
   '3D_SCENE.md': ['Purpose', 'Camera', 'Lighting', 'Materials', 'Loading', 'Disposal', 'DPR', 'Mobile fallback', 'Reduced motion', 'WebGL failure'],
   'API.md': ['Resources', 'Auth', 'Errors', 'Validation'],
   'QA_PLAN.md': ['Viewports', 'Interactions', 'Console', 'Network', 'Accessibility', 'Reduced motion', 'Visual baseline', 'Thresholds', 'WebGL'],
-  'DECISIONS.md': ['Date', 'Decision', 'Reason', 'Rejected'],
 };
 
 function sectionBody(text, heading) {
@@ -68,6 +67,12 @@ function checkDir(dir, profile) {
       continue;
     }
     const text = fs.readFileSync(file, 'utf8');
+    if (name === 'DECISIONS.md') {
+      const lines = text.replace(/\r\n/g, '\n').split('\n').map((line) => line.trim()).filter((line) => line.startsWith('- '));
+      if (!lines.length) problems.push('DECISIONS.md has no decision line');
+      else if (!lines.some((line) => line.includes('ADR:'))) problems.push('DECISIONS.md decision line does not link an ADR');
+      continue;
+    }
     for (const heading of HEADINGS[name] || []) {
       const body = sectionBody(text, heading);
       if (body == null) problems.push(`${name} missing heading ${heading}`);
