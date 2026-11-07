@@ -29,4 +29,4 @@ Write `REFERENCE_BENCHMARK.md` with:
 
 Hand off to Design Lab. Named visual references get **exactly 3** evidence-backed translations, not 23 cards and not a skip to one `DESIGN.md`.
 
-Never copy branding, assets, copy, trademarks, or source.
+Study the reference as principles: layout, type, grid, hierarchy, color relationships, spacing, interaction, scroll, light, camera, scene composition, loading, and the responsive change. Record those principles. Do not copy branding, assets, copy, trademarks, or source.

@@ -14,7 +14,7 @@ The eight notes below are the architecture set for editors. Do not paste all of 
 | --- | --- |
 | [01-control-plane.md](01-control-plane.md) | Human → one conductor → graph / skills / executors / memory |
 | [02-capability-graph.md](02-capability-graph.md) | Brief → one route, or research then wait for **update** |
-| [03-resource-lifecycle.md](03-resource-lifecycle.md) | discovered → selected → acquired → used → verified |
+| [03-resource-lifecycle.md](03-resource-lifecycle.md) | discovered through successful, one step at a time |
 | [04-design-lab.md](04-design-lab.md) | 23 cards → one DESIGN.md → human gate |
 | [05-research-layer.md](05-research-layer.md) | Public galleries + Scrapling. No fake MCP |
 | [06-four-hosts.md](06-four-hosts.md) | Allowlist sync to four hosts |

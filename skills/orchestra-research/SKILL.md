@@ -3,7 +3,7 @@ name: orchestra-research
 description: Dated public research with a citation. Use when the question depends on what people said recently. No scraping, posting, or DMs.
 ---
 
-# Research — 4.0.0
+# Research — 4.1.0
 
 Use this when the answer depends on recent public discussion. Source method: last-30-days. `agent-reach` stays the skill for the operator's own public profiles.
 

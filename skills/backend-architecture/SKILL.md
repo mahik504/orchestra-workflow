@@ -25,3 +25,17 @@ Write the shape before the handlers. There is no 23-card survey.
 The product note picks Supabase, Firebase, Clerk, Prisma, or Drizzle. This skill does not.
 
 Do not add a service, a queue, or a second database until a route needs it.
+
+## Data stores
+
+| Store | Use it when | Leave it out when |
+| --- | --- | --- |
+| Postgres | The data is relational, transactional, and must survive a restart | The page has no durable data |
+| Supabase | The product note already names managed Postgres, auth, row level security, storage, or realtime | You only needed Postgres |
+| Redis | A cache, a TTL, a rate limit, or ephemeral state is a requirement | You want a source of truth |
+| Node | The server is TypeScript and it is not a Python service | The service is FastAPI |
+| Express | The HTTP API is small and the repo does not already have Next or FastAPI | Next or FastAPI already owns the route |
+| FastAPI | The work is Python inference, data processing, or model serving | The UI server can do the job |
+| BullMQ | A background job needs a Redis-backed queue | The work can finish in the request |
+
+Say which tables exist, how they relate, which constraints and indexes the queries need, and how a caller is authenticated and authorized. Validate input. Use one error shape. Do not log tokens, passwords, or session cookies. Name the migration, the test, and where it is deployed.

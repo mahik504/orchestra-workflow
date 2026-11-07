@@ -23,6 +23,10 @@ Pipeline: Taste → DESIGN.md → implement → Impeccable → Playwright → De
 
 If a reference still exists: compare **ours vs reference** (language, not clone). Anatomy notes, not copied assets.
 
+## Regression
+
+After the contract and the golden stills are approved, later UI changes compare against those stills. Mask clocks, random ids, and canvases that are not the subject. Animated regions use a paused frame or a fixture. A pixel difference outside the mask fails when it exceeds the project's threshold. Do not treat a perfect score as the default. Lighthouse and axe-core run against the same origin. A phone width, a keyboard pass, reduced motion, and the WebGL fallback are part of the run when the page has those states. A mock screenshot cannot pass.
+
 Run, when loaded: frontend critique (taste-design), **impeccable** after a keepable still, **web-design-guidelines** (fetch live rules). High-end: **one** consultant packet (Antigravity or Opus Task) — not a swarm.
 
 ## Fail

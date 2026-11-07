@@ -23,11 +23,12 @@ Show the brief in a few lines. Do not wait for approval unless a requirement tha
 
 ## Load line
 
-Before any file write, print two lines taken from the routing table in `AGENTS.md`:
+Before a write that loads something, name only what this task uses:
 
 ```
 Load: skill-a, skill-b
-Skip: what this pass will not load
+MCP: playwright
+Libraries: gsap
 ```
 
-A skill the human names replaces the table for that pass. If a named tool is not installed, stop. Do not install it. If the line is wrong, one sentence from the human corrects it.
+Omit a line that would be empty. Omit the whole note when the task loads nothing new. A skill the human names wins unless it is unsafe. A missing tool stops. Do not install it.

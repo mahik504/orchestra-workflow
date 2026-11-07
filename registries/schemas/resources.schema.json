@@ -244,6 +244,49 @@
       "paid_capability": {
         "type": "string",
         "description": "What remains paid or Pro-gated"
+      },
+      "description": {
+        "type": "string",
+        "description": "What this resource is for. A catalog row is not evidence it ran."
+      },
+      "execution_phase": {
+        "type": "string",
+        "description": "discover, research, synthesis, implementation, qa, or tool"
+      },
+      "dependencies": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "install_instructions": {
+        "type": "string",
+        "description": "How to add it. Global install stays blocked."
+      },
+      "cost_class": {
+        "type": "string",
+        "enum": ["free", "paid", "freemium", "unspecified"]
+      },
+      "compatibility": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "maintenance_status": {
+        "type": "string",
+        "enum": ["active", "unmaintained", "obsolete", "unspecified"]
+      },
+      "verification_status": {
+        "type": "string",
+        "enum": ["unverified", "schema_only", "verified"]
+      },
+      "expected_output": {
+        "type": "string"
+      },
+      "usage_evidence": {
+        "type": "string",
+        "description": "A real run id, or an explicit statement that no run is recorded. Presence in the registry is not usage."
+      },
+      "lifecycle_stage": {
+        "type": "string",
+        "enum": ["discovered", "installed", "available", "selected", "executed", "verified", "successful"]
       }
     },
     "additionalProperties": false

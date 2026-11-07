@@ -1,6 +1,6 @@
-# Architecture — Orchestra 4.0.0
+# Architecture — Orchestra 4.1.0
 
-The contract pin is 4.0.0. The engine keeps a mission, a worker capsule, a derived budget, and a browser check on a running app. Those sit around the eight stages. They do not replace them. A model name does not pick a skill.
+The contract pin is 4.1.0. The engine keeps a mission, a worker capsule, a derived budget, and a browser check on a running app. Those sit around the eight stages. They do not replace them. A model name does not pick a skill. 4.1 adds the selection receipt, design domains, and technology rules on the same loop.
 
 Orchestra is a **control plane**. Your agent is the executor.
 
@@ -69,11 +69,21 @@ Quality bars remain STANDARD / PREMIUM / EXPERIMENTAL. Intensity is not a fourth
 
 ## Resource lifecycle
 
+A run may move one step at a time:
+
 ```
-discovered → selected → acquired → used → verified
+discovered → installed → available → selected → executed → verified → successful
 ```
 
-Presence in a registry is not usage. A resource counts as used only when it ran and the result was checked.
+The older names still describe the same idea: acquired is installed, used is executed. A row in `registries/resources.json` stays **discovered**. Projecting a contract does not mark it executed. `Promote` refuses a jump from discovered to successful.
+
+Presence in a registry is not usage. A resource counts as used only when a run recorded evidence (`run:` or `evidence:`).
+
+## Selection receipt (4.1)
+
+When a task loads skills, an MCP, a plugin, or a library, the conductor names those and leaves the other lines off. Design domains annotate the capability the classifier already chose. Technology rules keep one scroll owner, one HTTP stack, and one bundler. Redis waits for a cache, TTL, or rate-limit requirement. The pieces are `runtime/internal/routing`, `designdomain`, `techpolicy`, `review`, and `contractpack`. Protocols: `protocols/EXPLAINABLE_ROUTING.md`, `protocols/TECHNOLOGY_SELECTION.md`.
+
+A design pack is `templates/contracts/`. A bug, a typo, or one control does not generate it. Review lenses are chosen per task. A visual judge needs a screenshot path and cannot repeat the builder. Comparison tasks for six product classes are specified and disabled. They do not score this release.
 
 ## Quality bars
 

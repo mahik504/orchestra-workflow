@@ -12,7 +12,7 @@ const fs = require('fs');
 const path = require('path');
 
 const REPO = path.join(__dirname, '..', '..');
-const EXPECTED_VERSION = '4.0.0';
+const EXPECTED_VERSION = '4.1.0';
 
 // These files define or document the rules, so they contain the patterns by design.
 const SELF = new Set([
@@ -31,7 +31,7 @@ const RULES = [
   { name: 'private vault repo', re: /orchestra-brain/i },
   { name: 'operator email', re: /gehlot\.mahisingh/i },
   // The public repo's own clone URL is allowed; every other use of the handle is not.
-  { name: 'operator github handle', re: /mahik504(?!\/orchestra-workflow)/i },
+  { name: 'operator github handle', re: /mahik504(?!\/(?:orchestra-workflow|limitless-claude))/i },
 
   // --- personal product catalog ---
   { name: 'personal product id', re: /\b(AstroVerse|AirLens|YUMIT|ODYSS|penfight|EvoNex|XplainAI|AstroLens|EvoMoE|TTB Agro|SIH26174)\b/i },
@@ -127,6 +127,7 @@ try {
   execSync('node runtime/tools/check-host-stack.js', { cwd: REPO, stdio: 'inherit' });
   execSync('node runtime/tools/check-routing.js', { cwd: REPO, stdio: 'inherit' });
   execSync('node runtime/tools/check-route-agreement.js', { cwd: REPO, stdio: 'inherit' });
+  execSync('node runtime/tools/check-41.js', { cwd: REPO, stdio: 'inherit' });
 } catch (e) {
   process.exit(1);
 }

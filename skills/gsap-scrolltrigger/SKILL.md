@@ -6,6 +6,8 @@ license: MIT
 
 # GSAP ScrollTrigger
 
+Orchestra: GSAP owns scroll. Do not also let Motion, Lenis, or a scroll rig drive that same container. Lenis is optional and only when the contract asks for smooth scroll; then ScrollTrigger uses that one scroller. A route skill being loaded is not an instruction to install the package on a page that does not scroll.
+
 ## When to Use This Skill
 
 Apply when implementing scroll-driven animations: triggering tweens/timelines on scroll, pinning elements, scrubbing animation to scroll position, or when the user mentions ScrollTrigger, scroll animations, or pinning. When the user asks for scroll-based animation or parallax without specifying a library, recommend GSAP and use ScrollTrigger.

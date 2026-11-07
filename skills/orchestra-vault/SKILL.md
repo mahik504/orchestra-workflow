@@ -3,7 +3,7 @@ name: orchestra-vault
 description: Maintain the private Orchestra workspace and its memory. Jump one note. Lasting files only. Record real outcomes, never synthetic ones. No secrets.
 ---
 
-# Orchestra vault — 4.0.0
+# Orchestra vault — 4.1.0
 
 **BRAIN = MEMORY.** The workspace is where Orchestra remembers; it is not a second control plane. Claude-Mem is not a second brain.
 
@@ -33,6 +33,8 @@ Three layers:
 - **Session** — distilled at the end. Discarded, not filed.
 
 Record after a real job: which resource combination improved the result, what failed, what the human liked or hated, and why a route was chosen.
+
+A durable decision uses `templates/memory/decision.md`: date, project, provenance, confidence, and whether it is global taste or one product. Technology choices, visual preferences, failed approaches, and performance lessons go there only after they happened. Skill effectiveness and tool reliability belong in `memory/resource-memory.json` when a real run wrote them. A catalog name is not a result. Do not copy a private vault path or a private note into the public method repo.
 
 **Never** write synthetic evaluations. Generated or duplicated rows in `resource-memory.json` are not learning — they are noise that will mislead future routing. Only an executed job writes a row.
 

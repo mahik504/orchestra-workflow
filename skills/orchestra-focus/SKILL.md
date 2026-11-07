@@ -3,7 +3,7 @@ name: orchestra-focus
 description: Start of a job, with prompt-forge. One next action, no repeated questions, no thinner engineering. Not a substitute for the brief.
 ---
 
-# Focus — 4.0.0
+# Focus — 4.1.0
 
 Run this with `prompt-forge` before classify. Source method: ADHD-style instruction sets (`ayghri/i-have-adhd`). Caveman shortness does not replace the brief.
 

@@ -1,4 +1,4 @@
-# Orchestra 4.0.0 doctor. Prints failures first. Never prints secret values.
+# Orchestra 4.1.0 doctor. Prints failures first. Never prints secret values.
 param([switch]$Json)
 
 $ErrorActionPreference = "Continue"
@@ -7,9 +7,9 @@ $problems = @()
 $warnings = @()
 
 $version = (Get-Content (Join-Path $Root "VERSION") -Raw).Trim()
-if ($version -ne "4.0.0") { $problems += "VERSION is $version" }
+if ($version -ne "4.1.0") { $problems += "VERSION is $version" }
 $agents = Get-Content (Join-Path $Root "AGENTS.md") -TotalCount 1
-if ($agents -notmatch "4\.0\.0") { $problems += "AGENTS.md title is not 4.0.0" }
+if ($agents -notmatch "4\.1\.0") { $problems += "AGENTS.md title is not 4.1.0" }
 
 $linkLines = @(git -C $Root ls-files -s 2>$null | Select-String -Pattern "^160000")
 foreach ($link in $linkLines) {

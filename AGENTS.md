@@ -1,6 +1,6 @@
-# AGENTS — Orchestra 4.0.0
+# AGENTS — Orchestra 4.1.0
 
-You are running **Orchestra 4.0.0**. One contract, one conductor, open skills. Not a second toolbox.
+You are running **Orchestra 4.1.0**. One contract, one conductor, open skills. Not a second toolbox.
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
 
@@ -22,7 +22,7 @@ Host rules are adapters. They do not invent a second plan. If two hosts could pl
 <!-- routing:start -->
 ## Routing
 
-Print `Load:` and `Skip:` before writing. A skill the human names wins. A missing tool stops. It does not install itself.
+Name the skills, MCPs, plugins, and libraries this task loads. Omit that line when nothing new is loaded. A skill you name wins unless it is unsafe. A missing tool stops. It does not install itself.
 
 | Job | Load | Skip |
 | --- | --- | --- |
@@ -49,6 +49,8 @@ Print `Load:` and `Skip:` before writing. A skill the human names wins. A missin
 | Hackathon or college | prompt-forge | the 23-card survey when a reference is named; the design lab for college unless the human says PREMIUM |
 | Docs on disk | host-provided | docx, pptx, pdf, and xlsx stay on the host. They are not in skills/ |
 <!-- routing:end -->
+
+When a task loads skills, an MCP, a plugin, or a library, name those. Leave the line off when nothing new is loaded. Detail is in `protocols/EXPLAINABLE_ROUTING.md`.
 
 ## Precedence
 

@@ -1,4 +1,4 @@
-# Rollback — Orchestra 4.0.0
+# Rollback — Orchestra 4.1.0
 
 Three levels, smallest first. Use the smallest one that fixes the problem.
 
@@ -26,7 +26,9 @@ $env:ORCHESTRA_CONTRACT = "3.2.0"    # PowerShell
 export ORCHESTRA_CONTRACT=3.2.0      # bash
 ```
 
-Hosts and the CLI read `ORCHESTRA_CONTRACT` first. Unset means the current VERSION, which is 4.0.0. Pin **3.2.0** or **3.1.0**. Public tag `v3.2.0` is `9d6900d`. 3.1 zip: `orchestra-workflow-3.1.0-a4405e0-*.zip` if you archived before the 3.2 bump.
+Hosts and the CLI read `ORCHESTRA_CONTRACT` first. Unset means the current VERSION, which is 4.1.0. Pin **4.0.0**, **3.2.0**, or **3.1.0**. Public tag `v3.2.0` is `9d6900d`. 3.1 zip: `orchestra-workflow-3.1.0-a4405e0-*.zip` if you archived before the 3.2 bump.
+
+`ORCHESTRA_CONTRACT` changes the label the doctor prints. The 4.1 selector is code in this tree, so the label does not compile it out. To restore 4.0.0 behavior, check out that commit and sync skills from that tree. Do not force-push `main`.
 
 Unset it to return to the current contract:
 

@@ -12,32 +12,43 @@ import (
 // Resource represents a canonical machine-readable resource or capability
 // as defined in registries/resources.json.
 type Resource struct {
-	ID                 string   `json:"id"`
-	Name               string   `json:"name"`
-	CanonicalURL       string   `json:"canonical_url"`
-	SourceType         string   `json:"source_type"`                 // "github_repository", "web_reference", "npm_package", "cli_binary"
-	SourceRepository   string   `json:"source_repository,omitempty"` // Git repository URL if applicable
-	DocumentationURL   string   `json:"documentation_url,omitempty"`
-	DocURL             string   `json:"doc_url,omitempty"`
-	License            string   `json:"license,omitempty"`
-	Category           []string `json:"category"`
-	Representation     string   `json:"representation"`     // "dependency", "research_source", "skill", "cli", "mcp"
-	RoutingTags        []string `json:"routing_tags"`       // e.g. ["motion", "microinteraction", "timeline"]
-	AcquisitionMethod  string   `json:"acquisition_method"` // "npm", "git", "web_fetch", "pip"
-	RuntimeMethod      string   `json:"runtime_method"`     // "project_scoped_install", "on_demand_research", "global_active_skill", "on_demand_cli"
-	Status             string   `json:"status"`             // ACTIVE, CURATED_OPTIONAL, REJECTED, BOOKMARK, DEFERRED, CORE, REFERENCE, ARCHIVED, LEFTOVER, PURCHASE_PENDING, plus 3.3.1: PROJECT_ONLY, CATALOG, EXPERIMENTAL, PRIVILEGED, AUTH_REQUIRED, OBSOLETE (old values remain aliases)
-	TriggerConditions  []string `json:"trigger_conditions,omitempty"`
-	AvoidConditions    []string `json:"avoid_conditions,omitempty"`
-	PolicyVerdict      string   `json:"policy_verdict,omitempty"`
-	Rationale          string   `json:"rationale,omitempty"`
-	TokenContextWeight float64  `json:"token_context_weight,omitempty"`
-	TokenWeight        float64  `json:"token_weight,omitempty"`
-	NpmPackage         string   `json:"npm_package,omitempty"`
-	SkipConditions     []string `json:"skip_conditions,omitempty"`
-	Fallback           string   `json:"fallback,omitempty"`
-	Auth               string   `json:"auth,omitempty"`
-	FreeCapability     string   `json:"free_capability,omitempty"`
-	PaidCapability     string   `json:"paid_capability,omitempty"`
+	ID                  string   `json:"id"`
+	Name                string   `json:"name"`
+	CanonicalURL        string   `json:"canonical_url"`
+	SourceType          string   `json:"source_type"`                 // "github_repository", "web_reference", "npm_package", "cli_binary"
+	SourceRepository    string   `json:"source_repository,omitempty"` // Git repository URL if applicable
+	DocumentationURL    string   `json:"documentation_url,omitempty"`
+	DocURL              string   `json:"doc_url,omitempty"`
+	License             string   `json:"license,omitempty"`
+	Category            []string `json:"category"`
+	Representation      string   `json:"representation"`     // "dependency", "research_source", "skill", "cli", "mcp"
+	RoutingTags         []string `json:"routing_tags"`       // e.g. ["motion", "microinteraction", "timeline"]
+	AcquisitionMethod   string   `json:"acquisition_method"` // "npm", "git", "web_fetch", "pip"
+	RuntimeMethod       string   `json:"runtime_method"`     // "project_scoped_install", "on_demand_research", "global_active_skill", "on_demand_cli"
+	Status              string   `json:"status"`             // ACTIVE, CURATED_OPTIONAL, REJECTED, BOOKMARK, DEFERRED, CORE, REFERENCE, ARCHIVED, LEFTOVER, PURCHASE_PENDING, plus 3.3.1: PROJECT_ONLY, CATALOG, EXPERIMENTAL, PRIVILEGED, AUTH_REQUIRED, OBSOLETE (old values remain aliases)
+	TriggerConditions   []string `json:"trigger_conditions,omitempty"`
+	AvoidConditions     []string `json:"avoid_conditions,omitempty"`
+	PolicyVerdict       string   `json:"policy_verdict,omitempty"`
+	Rationale           string   `json:"rationale,omitempty"`
+	TokenContextWeight  float64  `json:"token_context_weight,omitempty"`
+	TokenWeight         float64  `json:"token_weight,omitempty"`
+	NpmPackage          string   `json:"npm_package,omitempty"`
+	SkipConditions      []string `json:"skip_conditions,omitempty"`
+	Fallback            string   `json:"fallback,omitempty"`
+	Auth                string   `json:"auth,omitempty"`
+	FreeCapability      string   `json:"free_capability,omitempty"`
+	PaidCapability      string   `json:"paid_capability,omitempty"`
+	Description         string   `json:"description,omitempty"`
+	ExecutionPhase      string   `json:"execution_phase,omitempty"`
+	Dependencies        []string `json:"dependencies,omitempty"`
+	InstallInstructions string   `json:"install_instructions,omitempty"`
+	CostClass           string   `json:"cost_class,omitempty"`
+	Compatibility       []string `json:"compatibility,omitempty"`
+	MaintenanceStatus   string   `json:"maintenance_status,omitempty"`
+	VerificationStatus  string   `json:"verification_status,omitempty"`
+	ExpectedOutput      string   `json:"expected_output,omitempty"`
+	UsageEvidence       string   `json:"usage_evidence,omitempty"`
+	LifecycleStage      string   `json:"lifecycle_stage,omitempty"`
 }
 
 // ToCapability converts a Resource to the backwards-compatible Capability model.

@@ -39,7 +39,7 @@ Human-approved **LOCKED** sections may not change without a new contract gate:
 
 | File | What |
 | --- | --- |
-| `DESIGN.md` | LOCKED point of view plus OPEN implementation intent; anti-refs; type roles; color roles; space; motion principle; 3D intent |
+| `DESIGN.md` | LOCKED point of view plus OPEN implementation intent; anti-refs; type roles; color roles; space; motion principle; 3D intent. The fill-in pack is `templates/contracts/`. A bug, a typo, or one control does not generate the pack. |
 | `design-tokens.json` | Color, type scale, space, radii, shadows |
 | `motion-spec.md` | Personality, one engine, reduced-motion |
 | `component-map.md` | Primitives vs custom vs one kit |

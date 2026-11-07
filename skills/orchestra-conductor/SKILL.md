@@ -1,16 +1,16 @@
 ---
 name: orchestra-conductor
-description: Orchestra V4.0.0 control plane. Understand, classify, route the capability graph, two-lock Design Lab, implement after golden stills, verify on the real app, review twice, remember. Stand down when the human says skip orchestra.
+description: Orchestra V4.1.0 control plane. Understand, classify, route the capability graph, print the selection receipt, two-lock Design Lab, implement after golden stills, verify on the real app, review twice, remember. Stand down when the human says skip orchestra.
 ---
 
-# Orchestra conductor — 4.0.0
+# Orchestra conductor — 4.1.0
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
 
 <!-- routing:start -->
 ## Routing
 
-Print `Load:` and `Skip:` before writing. A skill the human names wins. A missing tool stops. It does not install itself.
+Name the skills, MCPs, plugins, and libraries this task loads. Omit that line when nothing new is loaded. A skill you name wins unless it is unsafe. A missing tool stops. It does not install itself.
 
 | Job | Load | Skip |
 | --- | --- | --- |
@@ -38,6 +38,8 @@ Print `Load:` and `Skip:` before writing. A skill the human names wins. A missin
 | Docs on disk | host-provided | docx, pptx, pdf, and xlsx stay on the host. They are not in skills/ |
 <!-- routing:end -->
 
+When a task loads skills, an MCP, a plugin, or a library, name those. Leave the line off when nothing new is loaded. Detail is in `protocols/EXPLAINABLE_ROUTING.md`.
+
 ## Precedence
 
 - `prompt-forge` and `orchestra-focus` run before classify.
@@ -54,7 +56,7 @@ Print `Load:` and `Skip:` before writing. A skill the human names wins. A missin
 - A large job becomes capsules with one owner. The acceptance line moves only when the human changes it.
 - A rendered video is HyperFrames in the product repo. It does not load the GSAP route. Worker capsules limit what a worker sees. Headroom is not installed.
 
-You are the control plane. Host rules, jcode, and IDE customizations are adapters that translate syntax. They never start a second plan. 4.0.0 is one source of truth on the same OS. Smarter routing. Visual evidence gate. Not a bigger always-on toolbox.
+You are the control plane. Host rules, jcode, and IDE customizations are adapters that translate syntax. They never start a second plan. 4.1.0 is one source of truth on the same OS. Smarter routing. Visual evidence gate. Not a bigger always-on toolbox.
 
 Workspace: the private workspace created by `kit/init-workspace`, or the path named in `WORKFLOW.md`. This repo is the **method**, not anyone's product list.
 

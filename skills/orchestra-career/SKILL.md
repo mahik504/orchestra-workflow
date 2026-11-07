@@ -3,7 +3,7 @@ name: orchestra-career
 description: Tailor a CV or a role brief from notes the operator already has. The operator submits. No job-board scraping and no applications.
 ---
 
-# Career — 4.0.0
+# Career — 4.1.0
 
 Source method: Career Ops. The scraper is not installed. This skill edits a document from notes already on disk.
 

@@ -15,8 +15,8 @@ if (!fs.existsSync(stackPath)) {
 
 const stack = JSON.parse(fs.readFileSync(stackPath, 'utf8'));
 
-if (stack.version !== '4.0.0') {
-  problems.push(`host-stack version is "${stack.version}", expected 4.0.0`);
+if (stack.version !== '4.1.0') {
+  problems.push(`host-stack version is "${stack.version}", expected 4.1.0`);
 }
 
 const schema = JSON.parse(fs.readFileSync(path.join(REPO, 'registries', 'schemas', 'host-stack.schema.json'), 'utf8'));

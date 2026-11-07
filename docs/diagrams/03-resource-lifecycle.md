@@ -3,11 +3,13 @@
 ```mermaid
 flowchart LR
   d[discovered]
+  i[installed]
+  a[available]
   s[selected]
-  a[acquired]
-  u[used]
+  e[executed]
   v[verified]
-  d --> s --> a --> u --> v
+  ok[successful]
+  d --> i --> a --> s --> e --> v --> ok
 ```
 
-Registry presence is not usage. Do not claim a resource helped unless it ran. Provenance stays with acquired artifacts (`source`, version/commit, license, method, date, id).
+A catalog row stays at discovered. A later stage needs a recorded run. Installed matches the older name acquired. Executed matches the older name used.

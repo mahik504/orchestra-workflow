@@ -11,6 +11,7 @@ const FILES = [
   'CLAUDE.md',
   'kit/antigravity/GEMINI.md',
   'skills/orchestra-conductor/SKILL.md',
+  '.cursorrules',
 ];
 const START = '<!-- routing:start -->';
 const END = '<!-- routing:end -->';

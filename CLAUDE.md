@@ -1,4 +1,4 @@
-# Claude Code adapter — Orchestra 4.0.0
+# Claude Code adapter — Orchestra 4.1.0
 
 `AGENTS.md` is the contract. This file only maps it onto Claude Code. It does not define a second orchestration policy.
 
@@ -7,7 +7,7 @@
 <!-- routing:start -->
 ## Routing
 
-Print `Load:` and `Skip:` before writing. A skill the human names wins. A missing tool stops. It does not install itself.
+Name the skills, MCPs, plugins, and libraries this task loads. Omit that line when nothing new is loaded. A skill you name wins unless it is unsafe. A missing tool stops. It does not install itself.
 
 | Job | Load | Skip |
 | --- | --- | --- |

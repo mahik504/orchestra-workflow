@@ -1,0 +1,150 @@
+{
+  "version": "4.1.0",
+  "description": "Design domains annotate an existing capability. They do not add a route and they do not copy a reference site.",
+  "domains": [
+    {
+      "id": "premium-websites",
+      "label": "Premium websites",
+      "parent": "premium-website",
+      "default": true,
+      "priority": 1,
+      "triggers": ["premium website", "brand site", "launch page"],
+      "exclusions": ["staff-only", "bugfix"],
+      "documents": ["DESIGN.md", "SPEC.md", "MOTION.md", "QA_PLAN.md", "DECISIONS.md"],
+      "quality_gates": ["design-lab", "golden-stills", "playwright-journey", "axe-core", "responsive", "reduced-motion"],
+      "principles": ["composition", "typography", "hierarchy", "color relationships", "spacing", "interaction"]
+    },
+    {
+      "id": "award-agency",
+      "label": "Award-style agency websites",
+      "parent": "premium-website",
+      "priority": 5,
+      "triggers": ["award", "agency", "awwwards"],
+      "exclusions": ["staff-only dashboard"],
+      "documents": ["DESIGN.md", "SPEC.md", "MOTION.md", "QA_PLAN.md", "DECISIONS.md"],
+      "quality_gates": ["design-lab", "golden-stills", "playwright-journey", "axe-core", "responsive", "reduced-motion"],
+      "principles": ["composition", "type", "scroll choreography", "loading transition"]
+    },
+    {
+      "id": "editorial",
+      "label": "Editorial experiences",
+      "parent": "premium-website",
+      "priority": 5,
+      "triggers": ["editorial", "magazine", "longform"],
+      "exclusions": ["dashboard"],
+      "documents": ["DESIGN.md", "SPEC.md", "MOTION.md", "QA_PLAN.md", "DECISIONS.md"],
+      "quality_gates": ["design-lab", "golden-stills", "playwright-journey", "axe-core", "responsive", "reduced-motion"],
+      "principles": ["measure", "grid", "type hierarchy", "reading rhythm"]
+    },
+    {
+      "id": "ecommerce",
+      "label": "E-commerce websites",
+      "parent": "premium-website",
+      "priority": 6,
+      "triggers": ["ecommerce", "e-commerce", "storefront", "checkout", "add to cart"],
+      "exclusions": ["admin console"],
+      "documents": ["DESIGN.md", "SPEC.md", "MOTION.md", "API.md", "QA_PLAN.md", "DECISIONS.md"],
+      "quality_gates": ["design-lab", "golden-stills", "playwright-journey", "axe-core", "responsive", "form-workflow"],
+      "principles": ["product hierarchy", "trust", "checkout clarity"]
+    },
+    {
+      "id": "portfolio-site",
+      "label": "Portfolio websites",
+      "parent": "premium-website",
+      "priority": 4,
+      "triggers": ["portfolio site", "case studies"],
+      "exclusions": ["webgl", "r3f", "shader"],
+      "documents": ["DESIGN.md", "SPEC.md", "MOTION.md", "QA_PLAN.md", "DECISIONS.md"],
+      "quality_gates": ["design-lab", "golden-stills", "playwright-journey", "axe-core", "responsive"],
+      "principles": ["sequence of work", "type", "image proportion"]
+    },
+    {
+      "id": "interactive-story",
+      "label": "Interactive storytelling",
+      "parent": "premium-website",
+      "priority": 5,
+      "triggers": ["interactive story", "scrollytelling", "narrative scroll"],
+      "exclusions": ["crud"],
+      "documents": ["DESIGN.md", "SPEC.md", "MOTION.md", "QA_PLAN.md", "DECISIONS.md"],
+      "quality_gates": ["design-lab", "golden-stills", "playwright-journey", "reduced-motion", "responsive"],
+      "principles": ["chapter rhythm", "scroll choreography", "loading transition"]
+    },
+    {
+      "id": "immersive-3d",
+      "label": "Immersive 3D websites",
+      "parent": "3d-portfolio",
+      "default": true,
+      "priority": 4,
+      "triggers": ["3d", "r3f", "spatial"],
+      "exclusions": ["decorative only"],
+      "documents": ["DESIGN.md", "SPEC.md", "MOTION.md", "3D_SCENE.md", "QA_PLAN.md", "DECISIONS.md"],
+      "quality_gates": ["design-lab", "golden-stills", "playwright-journey", "webgl-fallback", "reduced-motion", "dpr-cap", "gpu-disposal"],
+      "principles": ["scene purpose", "camera", "light", "materials", "mobile fallback"]
+    },
+    {
+      "id": "webgl-experience",
+      "label": "WebGL experiences",
+      "parent": "3d-portfolio",
+      "priority": 6,
+      "triggers": ["webgl"],
+      "exclusions": ["css-only"],
+      "documents": ["DESIGN.md", "SPEC.md", "MOTION.md", "3D_SCENE.md", "QA_PLAN.md", "DECISIONS.md"],
+      "quality_gates": ["design-lab", "golden-stills", "webgl-fallback", "reduced-motion", "dpr-cap", "gpu-disposal"],
+      "principles": ["one canvas", "context loss", "still fallback"]
+    },
+    {
+      "id": "shader-experience",
+      "label": "Shader-driven experiences",
+      "parent": "3d-portfolio",
+      "priority": 8,
+      "triggers": ["shader", "glsl"],
+      "exclusions": ["no gpu"],
+      "documents": ["DESIGN.md", "SPEC.md", "MOTION.md", "3D_SCENE.md", "QA_PLAN.md", "DECISIONS.md"],
+      "quality_gates": ["design-lab", "golden-stills", "webgl-fallback", "reduced-motion", "dpr-cap", "gpu-disposal"],
+      "principles": ["one purpose per shader", "precision", "fallback still"]
+    },
+    {
+      "id": "saas-application",
+      "label": "SaaS applications",
+      "parent": "saas-dashboard",
+      "priority": 5,
+      "triggers": ["saas", "billing", "multi-tenant", "subscription"],
+      "exclusions": ["marketing only"],
+      "documents": ["SPEC.md", "DESIGN.md", "ARCHITECTURE.md", "API.md", "QA_PLAN.md", "DECISIONS.md"],
+      "quality_gates": ["tests", "playwright-journey", "axe-core", "responsive", "auth-review"],
+      "principles": ["task clarity", "density", "state visibility"]
+    },
+    {
+      "id": "data-dashboard",
+      "label": "Data dashboards",
+      "parent": "saas-dashboard",
+      "default": true,
+      "priority": 4,
+      "triggers": ["dashboard", "kpi", "charts", "analytics"],
+      "exclusions": ["marketing page"],
+      "documents": ["DESIGN.md", "ARCHITECTURE.md", "QA_PLAN.md"],
+      "quality_gates": ["tests", "playwright-journey", "axe-core", "responsive"],
+      "principles": ["comparison", "labels", "one chart job"]
+    },
+    {
+      "id": "mission-control",
+      "label": "Mission-control interfaces",
+      "parent": "operator-hud",
+      "default": true,
+      "priority": 5,
+      "triggers": ["mission control", "mission-control", "telemetry", "cockpit", "operator"],
+      "exclusions": ["marketing page"],
+      "documents": ["DESIGN.md", "ARCHITECTURE.md", "QA_PLAN.md", "MOTION.md"],
+      "quality_gates": ["design-lab", "playwright-journey", "axe-core", "reduced-motion"],
+      "principles": ["density", "status", "monospace figures", "no decorative kit"]
+    }
+  ],
+  "gates": [
+    {
+      "id": "responsive",
+      "label": "Mobile-responsive applications",
+      "note": "Responsive transformation is a gate on the parent route, not a new capability.",
+      "applies_to": ["premium-website", "3d-portfolio", "saas-dashboard", "operator-hud", "b2b-portal", "mobile-app"]
+    }
+  ]
+}

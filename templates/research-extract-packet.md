@@ -5,7 +5,7 @@ Permissioned. The human named the URL or listing.
 ```
 MODE: specialist
 KIND: research-extract
-ORCHESTRA: 4.0.0
+ORCHESTRA: 4.1.0
 URL: (one public page)
 TOOL: scrapling | firecrawl | webfetch
 NOT: LinkedIn / Instagram / LeetCode / ATS / login walls

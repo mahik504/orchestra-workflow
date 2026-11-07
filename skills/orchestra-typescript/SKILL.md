@@ -3,7 +3,7 @@ name: orchestra-typescript
 description: TypeScript boundaries and checks before an edit. Use when the repo is TypeScript and the job is not only a React waterfall. Not a visual redesign.
 ---
 
-# TypeScript — 4.0.0
+# TypeScript — 4.1.0
 
 Source method: Matt Pocock's public engineering notes. The `mattpocock/skills` pack is not installed. `react-best-practices` still owns React and Next waterfalls.
 

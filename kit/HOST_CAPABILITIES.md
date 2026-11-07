@@ -1,4 +1,4 @@
-# Host capability map — Orchestra 4.0.0
+# Host capability map — Orchestra 4.1.0
 
 Sync means **the same contract**, not the same plugin list.
 
@@ -22,6 +22,6 @@ Rules:
 - Do not install Gmail on Antigravity. Do not install Firebase on Cursor "to match."
 - A server in `AUTH_REQUIRED` or `PURCHASE_PENDING` is not active.
 - Host extras are OPTIONAL capabilities. The allowlist is the contract.
-- After `kit/bootstrap.ps1` (or `kit/sync-ides.ps1`), hosts identify as Orchestra 4.0.0.
+- After `kit/bootstrap.ps1` (or `kit/sync-ides.ps1`), hosts identify as Orchestra 4.1.0.
 
 Auth clicks: `docs/manual-setup/`. Rollback: `ORCHESTRA_CONTRACT` (see `kit/ROLLBACK.md`).

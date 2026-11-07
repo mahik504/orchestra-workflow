@@ -84,7 +84,7 @@ const control = svg(
   ${box(320, 56, 240, 52, "Human")}
   ${arrow(440, 108, 440, 142)}
   ${box(280, 148, 320, 64, "One conductor", "this session")}
-  ${box(36, 268, 186, 92, "Capability graph", "13 routes")}
+  ${box(36, 268, 186, 92, "Capability graph", "26 routes")}
   ${box(244, 268, 186, 92, "Skills · MCP", "load by job")}
   ${box(452, 268, 186, 92, "Executors", "four hosts")}
   ${box(660, 268, 184, 92, "Private Brain", "your memory")}

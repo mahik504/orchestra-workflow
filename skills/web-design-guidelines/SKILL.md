@@ -24,3 +24,5 @@ https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/comm
 ```
 
 On a running page, axe-core violations are evidence. This guideline fetch stays the review. Keyboard and screen reader stay manual.
+
+Also check the phone width, focus, and `prefers-reduced-motion`. A layout that only works at desktop width fails the audit. Do not demand a perfect Lighthouse score; use the budget in the QA plan.

@@ -295,7 +295,10 @@
         "Inter or Space Grotesk in creative headlines",
         "Generic 3-column equal card layouts",
         "Neon purple AI gradient backgrounds",
-        "Pure black #000000 surfaces without chromatic depth"
+        "Pure black #000000 surfaces without chromatic depth",
+        "Repeated glassmorphism",
+        "Decorative blobs or gradients with no role in the content",
+        "3D objects that do not explain the product"
       ],
       "quality_bar": "PREMIUM",
       "risk_rank": 6,
@@ -359,7 +362,8 @@
       "anti_patterns": [
         "Uncapped framerate animation loops causing CPU thermal throttling",
         "Missing mobile fallback for low-end WebGL GPUs",
-        "Blocking main thread during 3D asset initialization"
+        "Blocking main thread during 3D asset initialization",
+        "A 3D scene whose only job is to look expensive"
       ],
       "quality_bar": "EXPERIMENTAL",
       "risk_rank": 8,

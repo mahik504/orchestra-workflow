@@ -1,5 +1,18 @@
 # Changelog
 
+## [4.1.0] - Selection receipt, same conductor
+
+*Same conductor as 4.0.0. The routing note is shorter. Design domains and technology rules sit on the existing routes.*
+
+- The routing note names the skills, MCPs, plugins, and libraries a task loads. Empty lines stay off. A named skill wins unless it is unsafe. A missing tool is reported and left uninstalled.
+- Design domains annotate `premium-website`, `3d-portfolio`, `saas-dashboard`, and `operator-hud`. They do not add a capability. Responsive layout is a gate.
+- Technology policy refuses a second scroll owner, a second HTTP stack, a second bundler, Redis without a requirement, and a global install. Motion for React is not Framer.
+- `templates/contracts/` is the design pack. A bug, a typo, or one control does not generate it.
+- Review lenses are planner, builder, visual, architecture, security, performance, and simplify. A typo stays a builder. A visual judge needs a screenshot and cannot repeat the builder.
+- Cursor's routing table matches the contract again. It no longer loads `creative-3d-web` beside `r3f-shaders`, or `fullstack-mastery` beside `backend-architecture`.
+- No new skill. The canonical count stays 73. The cap stays 80. No new package. No MCP install. Resource rows stay `discovered` until a run records evidence.
+- Rollback of behavior is a checkout of the 4.0.0 tree. `ORCHESTRA_CONTRACT` changes the label the doctor prints.
+
 ## [4.0.0] - Routed skills, same conductor
 
 *The pin in `VERSION` is 4.0.0. There is no study in this repository that shows Orchestra produces better pages than a raw host. The saved one-line Go pair is still the same 183-byte change, and Orchestra was slower. That pair does not score a website.*

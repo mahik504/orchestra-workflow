@@ -1,4 +1,4 @@
-# Prompting Orchestra 4.0.0
+# Prompting Orchestra 4.1.0
 
 Read [`AGENTS.md`](../AGENTS.md). The agent prints `Load:` and `Skip:` from the routing table before it writes. A skill you name wins. A missing tool stops. The 23-card lab still applies when the job is open premium visual work.
 

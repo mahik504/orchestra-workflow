@@ -3,7 +3,7 @@ name: orchestra-presentation
 description: Slide story, hierarchy, type, speaker notes, and slide QA. Use with orchestra-docs for a deck. Host pptx builds the file. Not a purple template.
 ---
 
-# Presentation — 4.0.0
+# Presentation — 4.1.0
 
 `orchestra-docs` owns the deliverable. This skill owns the story. Source methods: PPT Master and Anthropic's pptx skill. Neither tree is copied. The host `pptx` skill builds the file when that host has it.
 

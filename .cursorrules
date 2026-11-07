@@ -1,4 +1,4 @@
-# Cursor adapter — Orchestra 4.0.0
+# Cursor adapter — Orchestra 4.1.0
 
 `AGENTS.md` is the contract. This file only maps it onto Cursor. It does not define a second orchestration policy.
 
@@ -7,18 +7,18 @@
 <!-- routing:start -->
 ## Routing
 
-Print `Load:` and `Skip:` before writing. A skill the human names wins. A missing tool stops. It does not install itself.
+Name the skills, MCPs, plugins, and libraries this task loads. Omit that line when nothing new is loaded. A skill you name wins unless it is unsafe. A missing tool stops. It does not install itself.
 
 | Job | Load | Skip |
 | --- | --- | --- |
-| Award-style 3D / creative site | creative-3d-web, r3f-shaders, gsap-core, gsap-scrolltrigger, impeccable, taste-design, visual-golden-still | copying a reference site's files; a second motion stack |
-| Full-stack SaaS or web app | fullstack-mastery, backend-architecture, test-driven-development, verification-before-completion | the design lab; supabase and postgres-best-practices unless that product uses them |
+| Award-style site | impeccable, taste-design, visual-golden-still, gsap-core, gsap-scrolltrigger, gsap-timeline | copying a reference site's files; a second motion stack |
 | Site to echo | visual-forensics, impeccable, taste-design | copying assets, copy, or a logo |
 | Scroll | gsap-core, gsap-scrolltrigger, gsap-timeline | gsap-react unless the motion lives in React components |
 | One 3D scene | r3f-shaders | 3D as decoration; a second motion engine |
 | SaaS or API | backend-architecture, test-driven-development | the design lab; supabase and postgres-best-practices unless that product uses them |
 | Bug | systematic-debugging | the design lab |
 | Paper | research-paper, humanizer | invented citations |
+| Deck | orchestra-docs | host-provided pptx unless that host already has it |
 | Deck or slides | orchestra-docs, orchestra-presentation | copying a pptx skill file; purple template dumps |
 | Architecture diagram | diagram-generator, pretty-mermaid | a second diagram system; a README full of charts |
 | One control | none | loading every component kit; duplicating a control the project already has |

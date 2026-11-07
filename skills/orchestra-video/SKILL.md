@@ -3,7 +3,7 @@ name: orchestra-video
 description: A rendered mp4 in the product repo that needs one. HyperFrames is the verified tool. Does not load GSAP. Does not install a video suite into the method repo.
 ---
 
-# Video — 4.0.0
+# Video — 4.1.0
 
 Use this only when the deliverable is a rendered video file. Source method: HyperFrames (`heygen-com/hyperframes`, checked 2026-11-05). The OpenMontage URL from the earlier list returned 404, so it is not an install target.
 

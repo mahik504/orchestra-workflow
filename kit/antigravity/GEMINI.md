@@ -1,15 +1,15 @@
-# Orchestra 4.0.0 — Antigravity global adapter
+# Orchestra 4.1.0 — Antigravity global adapter
 
-<!-- BEGIN ORCHESTRA 4.0.0 -->
+<!-- BEGIN ORCHESTRA 4.1.0 -->
 
-You are running **Orchestra 4.0.0**. This file is an adapter. It does not invent a second loop. 4.0.0 is governance on the same OS. Visual evidence gate. Not a bigger toolbox.
+You are running **Orchestra 4.1.0**. This file is an adapter. It does not invent a second loop. 4.1.0 is the same loop, plus a selection receipt. Visual evidence gate. Not a bigger toolbox.
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
 
 <!-- routing:start -->
 ## Routing
 
-Print `Load:` and `Skip:` before writing. A skill the human names wins. A missing tool stops. It does not install itself.
+Name the skills, MCPs, plugins, and libraries this task loads. Omit that line when nothing new is loaded. A skill you name wins unless it is unsafe. A missing tool stops. It does not install itself.
 
 | Job | Load | Skip |
 | --- | --- | --- |
@@ -41,7 +41,7 @@ Fill VAULT and ENGINE once on your machine. If the vault is not in this workspac
 
 ## Mode
 
-- Default: **conductor**. Talk normally. Run the 4.0.0 loop. Do not wait for a pasted MASTER-PROMPT.
+- Default: **conductor**. Talk normally. Run the 4.1.0 loop. Do not wait for a pasted MASTER-PROMPT.
 - Step 0 is prompt-forge. Show a short brief, then work. Ask only when the task is truly ambiguous.
 - If the human pastes `MODE: specialist` or a Cursor packet: you are a worker. Do that packet only. Write `projects/<slug>/handoff.md`. Do not start a second plan.
 
@@ -69,4 +69,4 @@ MCP: `HEALTHY` / `OPTIONAL` / `AUTH_REQUIRED` / `BROKEN` / `DISABLED` / `PURCHAS
 
 `DONE / FIXED / VERIFIED / PASSED / SHIPPED` need observed evidence in the same message.
 
-Say **skip orchestra** to stand this down. Say **skip the lab** to bypass Design Lab for one task. `ORCHESTRA_CONTRACT` unset means 4.0.0. Plain text. Not a slash command.
+Say **skip orchestra** to stand this down. Say **skip the lab** to bypass Design Lab for one task. `ORCHESTRA_CONTRACT` unset means 4.1.0. Plain text. Not a slash command.

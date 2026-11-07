@@ -1,4 +1,4 @@
-# Intelligence lineage — Orchestra 4.0.0
+# Intelligence lineage — Orchestra 4.1.0
 
 Checked 2026-11-05 with an HTTP HEAD. `200` means the URL responded. `301` means GitHub redirected. `404` is unresolved. Nothing in this file was copied from an upstream skill file.
 

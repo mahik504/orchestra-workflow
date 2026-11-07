@@ -5,7 +5,7 @@ Not always-on. Conductor fills this when PREMIUM/EXPERIMENTAL needs a second pai
 ```
 MODE: specialist
 KIND: design-critic
-ORCHESTRA: 4.0.0
+ORCHESTRA: 4.1.0
 APP ROOT:
 DESIGN.md:
 STACK CARD: (approved direction name)
