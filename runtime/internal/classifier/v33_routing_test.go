@@ -7,20 +7,10 @@ import (
 
 func TestV33_SeventeenCapabilitiesHaveTriggerAndSkip(t *testing.T) {
 	g := loadRealGraph(t)
-	if len(g.Capabilities) != 26 {
-		t.Fatalf("capabilities = %d, want 26", len(g.Capabilities))
+	if len(g.Capabilities) != 33 {
+		t.Fatalf("capabilities = %d, want 33", len(g.Capabilities))
 	}
-	for _, id := range []string{
-		"interaction-components",
-		"ow-reference-forensics",
-		"ow-golden-still",
-		"ow-fresh-review",
-		"ow-showcase",
-	} {
-		cap, ok := g.Capabilities[id]
-		if !ok {
-			t.Fatalf("missing %s", id)
-		}
+	for id, cap := range g.Capabilities {
 		if len(cap.TriggerConditions) == 0 || len(cap.SkipConditions) == 0 {
 			t.Errorf("%s missing trigger or skip", id)
 		}

@@ -318,8 +318,6 @@
         "A 3D scene is the point rather than the decoration — route to 3d-portfolio"
       ],
       "skills": [
-        "build-awwwards-quality-sites",
-        "unslop",
         "impeccable",
         "taste-design",
         "ow-golden-still",
@@ -1513,6 +1511,22 @@
       "trigger_conditions": ["The job is one ML experiment"],
       "skip_conditions": ["The request claims a benchmark win"],
       "skills": ["ow-ml-experiment"]
+    },
+    "award-site": {
+      "name": "Award site",
+      "description": "An award-style site, or a polish pass on a screen that already exists.",
+      "primary_archetype": "award_site",
+      "trigger_tags": ["award-site"],
+      "discovery": [],
+      "synthesis": [],
+      "implementation": [],
+      "qa": [],
+      "quality_bar": "PREMIUM",
+      "risk_rank": 6,
+      "platform": "web",
+      "trigger_conditions": ["The job is an award-style site or a polish pass on a screen that already exists"],
+      "skip_conditions": ["The request copies a reference site"],
+      "skills": ["build-awwwards-quality-sites", "unslop"]
     }
   }
 }

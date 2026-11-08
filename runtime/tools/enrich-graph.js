@@ -37,7 +37,7 @@ const GOV = {
       'The human said "skip the lab" and only wants the page wired up',
       'A 3D scene is the point rather than the decoration — route to 3d-portfolio',
     ],
-    skills: ['build-awwwards-quality-sites', 'unslop', 'impeccable', 'taste-design', 'ow-golden-still', 'gsap-core', 'gsap-scrolltrigger', 'gsap-timeline'],
+    skills: ['impeccable', 'taste-design', 'ow-golden-still', 'gsap-core', 'gsap-scrolltrigger', 'gsap-timeline'],
   },
   '3d-portfolio': {
     quality_bar: 'EXPERIMENTAL',
@@ -418,6 +418,12 @@ const GOV = {
     skills: ['ow-ml-experiment'],
     trigger_conditions: ['The job is one ML experiment'],
     skip_conditions: ['The request claims a benchmark win'],
+  },
+  'award-site': {
+    quality_bar: 'PREMIUM', risk_rank: 6, platform: 'web',
+    skills: ['build-awwwards-quality-sites', 'unslop'],
+    trigger_conditions: ['The job is an award-style site or a polish pass on a screen that already exists'],
+    skip_conditions: ['The request copies a reference site'],
   },
 };
 
