@@ -78,6 +78,9 @@ jobs:
       run: node --test runtime/tools/*.test.mjs
     - name: Registry schemas
       run: node runtime/tools/check-schemas.mjs
+    - name: Install Playwright Chromium
+      working-directory: ./runtime
+      run: npx playwright install --with-deps chromium
     - name: Mermaid parse
       run: node runtime/tools/check-mermaid.mjs
     - name: Skills guide freshness
