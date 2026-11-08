@@ -1,4 +1,4 @@
-# Wire Orchestra 4.5.0 onto chosen hosts. No secrets. No skills add --all.
+# Wire Orchestra 4.6.0 onto chosen hosts. No secrets. No skills add --all.
 #
 #   powershell -NoProfile -ExecutionPolicy Bypass -File kit/bootstrap.ps1
 #   powershell -NoProfile -ExecutionPolicy Bypass -File kit/bootstrap.ps1 -Hosts cursor,antigravity -Target D:\work\my-orchestra
@@ -18,7 +18,7 @@ function Resolve-Hosts([string]$raw) {
     if ($raw) {
         return @($raw.Split(",") | ForEach-Object { $_.Trim().ToLower() } | Where-Object { $_ -ne "" })
     }
-    Write-Host "Which hosts should use Orchestra 4.5.0?"
+    Write-Host "Which hosts should use Orchestra 4.6.0?"
     Write-Host "  [1] Cursor"
     Write-Host "  [2] Antigravity"
     Write-Host "  [3] Claude Code"
@@ -110,7 +110,7 @@ if ($chosen -contains "antigravity") {
 }
 
 Write-Host ""
-Write-Host "Restart the IDE. Next chat in this workspace uses Orchestra 4.5.0 (AGENTS.md)."
+Write-Host "Restart the IDE. Next chat in this workspace uses Orchestra 4.6.0 (AGENTS.md)."
 Write-Host "Optional Cursor User Rule for chats outside this folder: GLOBAL until I say skip orchestra."
 Write-Host "We cannot log into Google, Stripe, or Stitch for you."
 Write-Host "Private workspace: $Target"

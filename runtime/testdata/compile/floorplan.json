@@ -1,0 +1,11 @@
+{
+  "task": "Draw a codebase map of this repo",
+  "host": "cursor",
+  "route": "Codebase map",
+  "skills": [
+    "floorplan",
+    "ow-diagrams"
+  ],
+  "model_class": "documentation",
+  "disclosure": "L1"
+}

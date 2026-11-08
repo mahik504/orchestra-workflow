@@ -5,6 +5,7 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"strings"
 	"testing"
 )
 
@@ -76,6 +77,9 @@ func TestCompileReviewCases(t *testing.T) {
 		{"one control for the date", "One control"},
 		{"read the pdf", "Docs on disk"},
 		{"reverse this apk", "Binary or APK"},
+		{"Fix the bug in the landing page contact form", "Bug"},
+		{"Write the README for the landing page repo", "README and post"},
+		{"Write a research paper on landing page conversion", "Paper"},
 	}
 	for _, item := range cases {
 		got, err := Compile(item.task, "cursor", routes)
@@ -113,5 +117,39 @@ func TestBareAppDoesNotStealShip(t *testing.T) {
 	}
 	if got.Route == "Ship a deployed app" {
 		t.Fatalf("bare app stole the ship route: %+v", got)
+	}
+}
+
+func TestFrontendAndFullStackNameWebappTesting(t *testing.T) {
+	routes, err := LoadRoutes(filepath.Join("..", "..", "..", "registries", "routing.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	award, err := Compile("Build an award-style agency site", "cursor", routes)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(strings.Join(award.Verification, "\n"), "webapp-testing on the running app") {
+		t.Fatalf("award verification %v", award.Verification)
+	}
+	full, err := Compile("Build the full-stack app", "cursor", routes)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if full.Route != "Full-stack app" {
+		t.Fatalf("route %s", full.Route)
+	}
+	if !strings.Contains(strings.Join(full.Verification, "\n"), "webapp-testing on the running app") {
+		t.Fatalf("full-stack verification %v", full.Verification)
+	}
+	saas, err := Compile("Design the SaaS API for billing", "cursor", routes)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if saas.Route != "SaaS or API" {
+		t.Fatalf("saas route %s", saas.Route)
+	}
+	if !strings.Contains(strings.Join(saas.Constraints, "\n"), "saas-checklist.md") {
+		t.Fatalf("saas constraints %v", saas.Constraints)
 	}
 }

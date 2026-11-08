@@ -37,6 +37,39 @@ for (const name of dataFiles) {
   }
 }
 
+const current = JSON.parse(fs.readFileSync(path.join(REPO, 'registries', 'versions.json'), 'utf8')).current;
+const pluginSchema = {
+  type: 'object',
+  required: ['name'],
+  additionalProperties: true,
+  properties: {
+    name: { type: 'string', minLength: 1 },
+    version: { type: 'string', pattern: '^[0-9]+\\.[0-9]+\\.[0-9]+$' },
+    description: { type: 'string' },
+  },
+};
+const validatePlugin = ajv.compile(pluginSchema);
+const pluginFiles = [
+  '.claude-plugin/plugin.json',
+  '.claude-plugin/marketplace.json',
+  '.cursor-plugin/plugin.json',
+  '.cursor-plugin/marketplace.json',
+  '.codex-plugin/plugin.json',
+  '.plugin/plugin.json',
+  '.agents/plugins/marketplace.json',
+];
+for (const rel of pluginFiles) {
+  const data = JSON.parse(fs.readFileSync(path.join(REPO, rel), 'utf8'));
+  if (!validatePlugin(data)) {
+    for (const err of validatePlugin.errors.slice(0, 4)) {
+      problems.push(`${rel} ${err.instancePath || '/'} ${err.message}`);
+    }
+  }
+  if (rel.endsWith('plugin.json') && data.version !== current) {
+    problems.push(`${rel} version is ${data.version}, expected ${current}`);
+  }
+}
+
 console.log(`registries: ${dataFiles.length}`);
 console.log(`schemas:    ${schemaFiles.length}`);
 console.log(`problems:   ${problems.length}`);

@@ -1,0 +1,15 @@
+Orchestra vendor note
+====================
+
+Upstream: google/elephant-goldfish-model
+Commit: e9e1f06aa4e26e95cd4ed37210a0632202c429e9
+License: Apache-2.0
+
+Changes from that commit:
+
+- Vendored egm-draft, egm-review, egm-resolve, and egm-review-loop only.
+- Skipped egm-brainstorm, egm-bootstrap, and egm-drift-report.
+- Copied agents/*.md into this skill's agents/ directory.
+- Copied resources/document_standards and resources/execution_instructions.md into this skill's resources/ directory.
+- Removed the instructions to read docs/codex.md and docs/claude.md. Those files are not part of this copy. Use the host subagent tool.
+- Did not copy the plugin manifests, the site, or the test suite.

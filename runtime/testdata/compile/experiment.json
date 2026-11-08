@@ -1,0 +1,10 @@
+{
+  "task": "Run the ML experiment",
+  "host": "cursor",
+  "route": "ML experiment",
+  "skills": [
+    "ow-ml-experiment"
+  ],
+  "model_class": "reasoning-high",
+  "disclosure": "L1"
+}

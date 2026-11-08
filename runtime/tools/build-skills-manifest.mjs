@@ -38,9 +38,28 @@ const RENAME = {
 };
 
 function descriptionOf(file) {
-  const text = fs.readFileSync(file, 'utf8');
-  const match = text.match(/^description:\s*(.+)$/m);
-  return match ? match[1].trim() : '';
+  const text = fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n');
+  const front = text.match(/^---\n([\s\S]*?)\n---/);
+  const block = front ? front[1] : text;
+  const start = block.search(/^description:/m);
+  if (start < 0) return '';
+  const from = block.slice(start);
+  const folded = from.match(/^description:\s*>-\s*\n([\s\S]*)$/);
+  if (folded) {
+    const lines = [];
+    for (const line of folded[1].split('\n')) {
+      if (/^[A-Za-z][A-Za-z0-9_-]*:/.test(line)) break;
+      lines.push(line.trim());
+    }
+    return lines.filter(Boolean).join(' ');
+  }
+  const plain = from.match(/^description:\s*(.+)$/m);
+  if (!plain) return '';
+  let value = plain[1].trim();
+  if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+    value = value.slice(1, -1);
+  }
+  return value;
 }
 
 function licenseOf(dir) {
@@ -51,6 +70,7 @@ function licenseOf(dir) {
   let license = 'SEE-LICENSE-FILE';
   if (/MIT License/i.test(text)) license = 'MIT';
   else if (/Apache/i.test(text)) license = 'Apache-2.0';
+  else if (/Attribution 4\.0 International|Creative Commons Attribution 4\.0|CC BY 4\.0/i.test(text)) license = 'CC-BY-4.0';
   return { license, license_file: file };
 }
 

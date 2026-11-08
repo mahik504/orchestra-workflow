@@ -1,0 +1,12 @@
+{
+  "task": "Write the spec for billing",
+  "host": "cursor",
+  "route": "Spec or design doc",
+  "skills": [
+    "egm-draft",
+    "egm-review",
+    "egm-resolve"
+  ],
+  "model_class": "reasoning-high",
+  "disclosure": "L1"
+}

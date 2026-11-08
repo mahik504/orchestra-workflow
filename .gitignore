@@ -54,8 +54,11 @@ __pycache__/
 *.pyc
 .pytest_cache/
 
-# Agent metadata and runs
-.agents/
+# Agent metadata and runs. The Antigravity marketplace file stays in git.
+.agents/*
+!.agents/plugins/
+.agents/plugins/*
+!.agents/plugins/marketplace.json
 
 # Source-available skills. Synced to this PC. Never committed.
 skills-local/

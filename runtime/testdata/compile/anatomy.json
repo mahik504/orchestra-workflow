@@ -1,0 +1,10 @@
+{
+  "task": "Make an isometric explainer figure",
+  "host": "cursor",
+  "route": "Isometric explainer",
+  "skills": [
+    "anatomy"
+  ],
+  "model_class": "frontend-design-high",
+  "disclosure": "L1"
+}

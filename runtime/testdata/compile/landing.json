@@ -1,0 +1,16 @@
+{
+  "task": "Vite and React landing for a fictional instrument workshop. One display face, one text face, paper or ink, no purple gradient, no row of three equal cards.",
+  "host": "cursor",
+  "route": "Award-style site",
+  "skills": [
+    "build-awwwards-quality-sites",
+    "taste-design",
+    "impeccable",
+    "ow-golden-still",
+    "gsap-core",
+    "gsap-scrolltrigger",
+    "gsap-timeline"
+  ],
+  "model_class": "frontend-design-high",
+  "disclosure": "L1"
+}

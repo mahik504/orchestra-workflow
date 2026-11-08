@@ -1,6 +1,6 @@
 # Install
 
-Orchestra 4.5.0 is a folder of skills, registries, and a Go CLI. It does not install a global pack.
+Orchestra 4.6.0 is a folder of skills, registries, and a Go CLI. It does not install a global pack.
 
 ## This clone
 
@@ -38,15 +38,17 @@ Paste this into Cursor, Antigravity, Claude Code, Codex, Kimi, or OpenCode. It i
 
 ```
 You are running Orchestra. AGENTS.md in the orchestra-workflow clone is the contract.
-Detect the OS. On Windows, offer: winget install --id Obsidian.Obsidian -e
-On macOS, offer: brew install --cask obsidian
-Clone https://github.com/mahik504/orchestra-workflow.git
-Run the sync dry run (kit/sync-ides.ps1 or kit/sync-ides.sh) and show the plan before -Sync or --apply.
-Create a private vault from workspace-template/. Connect a filesystem MCP to that folder only.
-Offer the optional MCP template in templates/mcp/optional-servers.json. Leave keyed servers empty until I paste a key.
-Then follow skills/ow-onboard/SKILL.md.
-Do not run npx skills add --all. Do not commit a key.
+Clone https://github.com/mahik504/orchestra-workflow.git if it is not already on disk.
+Run kit/sync-ides.ps1 on Windows, or kit/sync-ides.sh on macOS or Linux, and show the plan.
+After I confirm, run the apply form. That copies skills, agents, commands, and the Orchestra adapters, and it adds the core MCP servers that do not need a key.
+Ask before installing Obsidian. On Windows the command is: winget install --id Obsidian.Obsidian -e
+On macOS the command is: brew install --cask obsidian
+After I confirm, create a private vault from workspace-template/ and open that folder in Obsidian.
+Learning means Preferences.md, decisions.md, and lessons.md. Write one when I like something, hate something, or make a decision. Read the matching note at the start of the next task.
+Do not run npx skills add --all. Do not commit a key. Do not install a second conductor.
 ```
+
+Plugin installs, for a machine that does not use `ow-sync`, are in the README. Using the plugin and `ow-sync` together copies each skill twice.
 
 ## Uninstall
 

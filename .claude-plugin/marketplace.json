@@ -1,0 +1,13 @@
+{
+  "name": "orchestra",
+  "owner": {
+    "name": "Mahaveer Singh Gehlot"
+  },
+  "plugins": [
+    {
+      "name": "orchestra",
+      "source": "./",
+      "description": "Control plane for Cursor, Claude Code, Antigravity, Codex, and jcode. Version 4.6.0."
+    }
+  ]
+}

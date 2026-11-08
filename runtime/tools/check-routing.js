@@ -28,6 +28,14 @@ const EXPECTED = routingDoc.routes.map((route) => ({
   skip: route.skip_phrases,
 }));
 
+function sectionOf(file, start, end) {
+  const text = fs.readFileSync(path.join(REPO, file), 'utf8').replace(/\r\n/g, '\n');
+  const a = text.indexOf(start);
+  const b = text.indexOf(end);
+  if (a < 0 || b < a) return null;
+  return text.slice(a, b + end.length);
+}
+
 function section(file) {
   const text = fs.readFileSync(path.join(REPO, file), 'utf8').replace(/\r\n/g, '\n');
   const starts = text.split(START).length - 1;
@@ -150,6 +158,19 @@ if (blocks[0]) {
       const skill = path.join(REPO, 'skills', id, 'SKILL.md');
       if (!fs.existsSync(skill)) problems.push(`engineering table names missing skill ${id}`);
     }
+  }
+
+  const RULES_START = '<!-- rules:start -->';
+  const RULES_END = '<!-- rules:end -->';
+  const ruleFiles = ['.cursorrules', 'CLAUDE.md', 'kit/antigravity/GEMINI.md'];
+  const ruleBlocks = ruleFiles.map((file) => sectionOf(file, RULES_START, RULES_END));
+  if (!ruleBlocks[0]) problems.push('.cursorrules needs one shared rules block');
+  for (let i = 1; i < ruleBlocks.length; i++) {
+    if (ruleBlocks[i] !== ruleBlocks[0]) problems.push(`${ruleFiles[i]} rules block differs from .cursorrules`);
+  }
+  const geminiPath = path.join(REPO, 'kit/antigravity/GEMINI.md');
+  if (fs.existsSync(geminiPath) && Buffer.byteLength(fs.readFileSync(geminiPath)) > 24 * 1024) {
+    problems.push('kit/antigravity/GEMINI.md exceeds 24KB');
   }
 
   console.log('routing copies:    ' + FILES.length);

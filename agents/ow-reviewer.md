@@ -1,3 +1,8 @@
+---
+name: ow-reviewer
+description: Review a finished pass and name a failing input. Do not implement the fix.
+---
+
 # OW reviewer
 
 You review a finished pass. You do not implement the fix in the same pass.

@@ -7,7 +7,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { hashTree, hostDirs } from './ow-sync.mjs';
+import { aliasIds, hashTree, hostDirs } from './ow-sync.mjs';
 
 const REPO = path.join(import.meta.dirname, '..', '..');
 
@@ -99,6 +99,23 @@ function run(argv) {
       console.log(`${host} present=${report.present} missing=${report.missing.length} extra=${report.extra.length} hash-mismatch=${report.mismatch.length}`);
       if (report.missing.length) problems.push(`${host} missing ${report.missing.length}`);
       if (report.mismatch.length) problems.push(`${host} hash mismatch ${report.mismatch.join(', ')}`);
+      const stale = report.extra.filter((id) => aliasIds(REPO).includes(id));
+      if (stale.length) problems.push(`${host} stale alias ${stale.join(', ')}`);
+    }
+  }
+  const version = JSON.parse(fs.readFileSync(path.join(REPO, 'registries', 'versions.json'), 'utf8')).current;
+  for (const file of [
+    path.join(home, '.claude', 'CLAUDE.md'),
+    path.join(home, '.gemini', 'GEMINI.md'),
+    path.join(home, '.codex', 'AGENTS.md'),
+  ]) {
+    if (!fs.existsSync(file)) continue;
+    const text = fs.readFileSync(file, 'utf8');
+    const orchestraFile = text.includes('ORCHESTRA = CONTROL PLANE')
+      || text.includes('BEGIN ORCHESTRA')
+      || text.includes('<!-- orchestra:start -->');
+    if (orchestraFile && !text.includes(`Orchestra ${version}`)) {
+      problems.push(`${path.basename(file)} is not Orchestra ${version}`);
     }
   }
   const budget = descriptionBudget(path.join(REPO, 'skills'));

@@ -8,29 +8,39 @@
   "model": "composer-2.5-fast",
   "trials_planned": 3,
   "trials_recorded": 3,
+  "lighthouse_preset": "desktop",
   "task": "Vite and React landing for a fictional instrument workshop. One display face, one text face, paper or ink, no purple gradient, no row of three equal cards. Build must pass. The page needs a title, one sentence, and a contact line.",
   "arms": {
-    "raw": "skip orchestra, then the task",
-    "orchestra": "one short DESIGN.md, then the task"
+    "raw": "skip orchestra, no AGENTS.md",
+    "orchestra": "AGENTS.md, .cursorrules, and compile.json for this task"
   },
   "builds": "npm run build exited 0 on all six workspaces",
   "captures": {
     "layer_a_desktop": true,
     "layer_a_mobile": true,
-    "axe_violations": 0,
-    "lighthouse_accessibility": 100
+    "axe_violations": {
+      "trial_1": { "raw": 0, "orchestra": 0 },
+      "trial_2": { "raw": 2, "orchestra": 0 },
+      "trial_3": { "raw": 0, "orchestra": 0 }
+    },
+    "axe_trial_2_raw": ["landmark-one-main", "region"]
   },
   "lighthouse_performance": {
-    "trial_1": { "raw": 97, "orchestra": 93 },
-    "trial_2": { "raw": 98, "orchestra": 100 },
+    "trial_1": { "raw": 100, "orchestra": 99 },
+    "trial_2": { "raw": 99, "orchestra": 98 },
     "trial_3": { "raw": 99, "orchestra": 99 }
+  },
+  "lighthouse_accessibility": {
+    "trial_1": { "raw": 100, "orchestra": 100 },
+    "trial_2": { "raw": 96, "orchestra": 100 },
+    "trial_3": { "raw": 100, "orchestra": 100 }
   },
   "judge": {
     "method": "A fresh judge saw shuffled desktop and mobile screenshots, labeled A and B, plus the brief. The map was applied after the verdict.",
-    "trial_1": "orchestra",
+    "trial_1": "tie",
     "trial_2": "orchestra",
-    "trial_3": "tie",
-    "summary": "Two trials preferred the Orchestra page. One trial was a tie. Performance averages were 98 for the raw arm and 97 for the Orchestra arm. Accessibility was 100 and axe found nothing on every arm."
+    "trial_3": "orchestra",
+    "summary": "One trial was a tie. Two trials preferred the Orchestra page."
   },
-  "note": "Both arms met the acceptance line. The sample is three trials on one small page. compare.go stays disabled and the claim stays none."
+  "note": "Both arms could see the global skills. The Orchestra arm had a stamped AGENTS.md, .cursorrules, and compile.json. The raw arm was told skip orchestra and had no AGENTS.md. One Orchestra attempt wrote no files and was rerun; that rerun is trial 3. Two Orchestra agents were stopped after the production build was on disk. compare.go stays disabled and the claim stays none."
 }

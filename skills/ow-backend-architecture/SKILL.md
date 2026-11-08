@@ -20,7 +20,7 @@ Write the shape before the handlers. There is no 23-card survey.
 
 ## Then
 
-`test-driven-development` for the behavior. `supabase` and `postgres-best-practices` only if this product uses them. `ow-ship-safe` when the change touches auth, public routes, or secrets.
+`test-driven-development` for the behavior. `supabase` and `postgres-best-practices` only if this product uses them. `ow-ship-safe` when the change touches auth, public routes, or secrets. A multi-tenant SaaS also follows `references/saas-checklist.md`.
 
 The product note picks Supabase, Firebase, Clerk, Prisma, or Drizzle. This skill does not.
 

@@ -1,7 +1,14 @@
 {
   "preamble": "Name the skills, MCPs, plugins, and libraries this task loads. Omit that line when nothing new is loaded. A skill you name wins unless it is unsafe. A missing tool stops. It does not install itself.",
+  "rules": [
+    "Do not leave a TODO or a truncated placeholder in place of the implementation.",
+    "TypeScript stays strict. Validate server and API input with Zod. Use TanStack Query for remote data.",
+    "One 3D scene loads ow-3d-engineering. Leave creative-3d-web and r3f-shaders unloaded.",
+    "A backend loads ow-backend-architecture. Leave fullstack-mastery unloaded.",
+    "Claim the work is done only after the running app or the named check has been exercised."
+  ],
   "routes": [
-    {"job": "Award-style site", "load": ["impeccable", "taste-design", "ow-golden-still", "gsap-core", "gsap-scrolltrigger", "gsap-timeline"], "skip": "copying a reference site's files; a second motion stack", "skip_phrases": ["copying a reference site's files", "a second motion stack"], "match": ["award", "awwwards", "agency site"], "model_class": "frontend-design-high", "disclosure": "L1"},
+    {"job": "Award-style site", "load": ["build-awwwards-quality-sites", "taste-design", "impeccable", "ow-golden-still", "gsap-core", "gsap-scrolltrigger", "gsap-timeline"], "skip": "copying a reference site's files; a second motion stack", "skip_phrases": ["copying a reference site's files", "a second motion stack"], "match": ["award", "awwwards", "agency site", "landing for a"], "model_class": "frontend-design-high", "disclosure": "L1"},
     {"job": "Site to echo", "load": ["ow-reference-forensics", "impeccable", "taste-design"], "skip": "copying assets, copy, or a logo", "skip_phrases": ["copying assets, copy, or a logo"], "match": ["echo", "recreate this site", "match this screenshot"], "model_class": "frontend-design-high", "disclosure": "L1"},
     {"job": "Scroll", "load": ["gsap-core", "gsap-scrolltrigger", "gsap-timeline"], "skip": "gsap-react unless the motion lives in React components", "skip_phrases": ["gsap-react unless the motion lives in React components"], "match": ["scroll", "pin", "scrolltrigger"], "model_class": "frontend-design-high", "disclosure": "L1"},
     {"job": "One 3D scene", "load": ["ow-3d-engineering"], "skip": "3D as decoration; a second motion engine", "skip_phrases": ["3D as decoration", "a second motion engine"], "match": ["3d", "webgl", "shader", "r3f"], "model_class": "frontend-design-high", "disclosure": "L2"},
@@ -22,7 +29,15 @@
     {"job": "README and post", "load": ["ow-ship", "humanizer"], "skip": "posting for the human", "skip_phrases": ["posting for the human"], "match": ["readme", "ship post", "changelog"], "model_class": "documentation", "disclosure": "L1"},
     {"job": "Binary or APK", "load": ["not ready"], "skip": "rea until Java is installed and the target is yours, a client's, a CTF, or open source", "skip_phrases": ["rea until Java is installed"], "match": ["apk", "binary", "reverse"], "model_class": "coding-precise", "disclosure": "L1"},
     {"job": "Hackathon or college", "load": ["ow-forge"], "skip": "the 23-card survey when a reference is named; the design lab for college unless the human says PREMIUM", "skip_phrases": ["the 23-card survey when a reference is named"], "match": ["hackathon", "college", "assignment"], "model_class": "coding-fast", "disclosure": "L0"},
-    {"job": "Docs on disk", "load": ["host-provided"], "skip": "docx, pptx, pdf, and xlsx stay on the host. They are not in skills/", "skip_phrases": ["docx, pptx, pdf, and xlsx stay on the host"], "match": ["docx", "pptx", "xlsx", "pdf"], "model_class": "documentation", "disclosure": "L0"}
+    {"job": "Docs on disk", "load": ["host-provided"], "skip": "docx, pptx, pdf, and xlsx stay on the host. They are not in skills/", "skip_phrases": ["docx, pptx, pdf, and xlsx stay on the host"], "match": ["docx", "pptx", "xlsx", "pdf"], "model_class": "documentation", "disclosure": "L0"},
+    {"job": "Spec or design doc", "load": ["egm-draft", "egm-review", "egm-resolve"], "skip": "a STANDARD fix that names the file; a second spec process", "skip_phrases": ["a STANDARD fix that names the file"], "match": ["design doc", "spec review", "write the spec"], "model_class": "reasoning-high", "disclosure": "L1"},
+    {"job": "Unslop a screen", "load": ["unslop", "impeccable"], "skip": "a new visual identity; copying a reference site", "skip_phrases": ["a new visual identity"], "match": ["unslop", "ai slop", "looks generated"], "model_class": "frontend-design-high", "disclosure": "L1"},
+    {"job": "Codebase map", "load": ["floorplan", "ow-diagrams"], "skip": "a second diagram system; mapping a repo you do not have", "skip_phrases": ["a second diagram system"], "match": ["codebase map", "floorplan", "map this repo"], "model_class": "documentation", "disclosure": "L1"},
+    {"job": "Isometric explainer", "load": ["anatomy"], "skip": "a software architecture chart; a second 3D engine", "skip_phrases": ["a software architecture chart"], "match": ["isometric", "explainer figure"], "model_class": "frontend-design-high", "disclosure": "L1"},
+    {"job": "Full-stack app", "load": ["ow-backend-architecture", "react-best-practices", "test-driven-development", "webapp-testing"], "skip": "the design lab; a second backend skill", "skip_phrases": ["the design lab"], "match": ["full-stack app", "fullstack app", "full stack app"], "model_class": "reasoning-high", "disclosure": "L1"},
+    {"job": "MCP server", "load": ["mcp-builder"], "skip": "a second conductor; installing every MCP", "skip_phrases": ["a second conductor"], "match": ["mcp server", "build an mcp"], "model_class": "coding-precise", "disclosure": "L1"},
+    {"job": "ML experiment", "load": ["ow-ml-experiment"], "skip": "a claimed benchmark win; training on data you do not have", "skip_phrases": ["a claimed benchmark win"], "match": ["ml experiment", "model experiment"], "model_class": "reasoning-high", "disclosure": "L1"},
+    {"job": "Essay or article", "load": ["humanizer", "ow-research"], "skip": "invented citations; posting for the human", "skip_phrases": ["invented citations"], "match": ["essay", "opinion article"], "model_class": "documentation", "disclosure": "L1"}
   ],
   "engineering": [
     ["Bug", "`systematic-debugging`"],

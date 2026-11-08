@@ -7,3 +7,4 @@ if ! command -v node >/dev/null 2>&1; then
 fi
 node "$root/runtime/tools/hygiene.js" || exit 1
 node "$root/runtime/tools/check-versions.js" || exit 1
+node "$root/runtime/tools/check-mermaid.mjs" || exit 1

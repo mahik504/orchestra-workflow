@@ -1,5 +1,9 @@
 # Changelog
 
+## [4.6.0]
+
+The pin in `VERSION` is 4.6.0. Spec review is `egm-draft`, `egm-review`, and `egm-resolve`. `unslop`, `build-awwwards-quality-sites`, `floorplan`, `anatomy`, `webapp-testing`, and `mcp-builder` keep their upstream names. Sync moves old skill names to a backup, replaces a tree whose hash matches `v4.0.0`, `v4.1.0`, `v4.5.0`, or commit `60cf9e7`, and writes the global adapters when the file is already Orchestra. Plugin manifests live at the repo root. Mermaid fences in the README and `docs/` are parsed in CI. The logo is gone. The landing record in `runtime/benchmarks/c1-premium-landing.json` is the 4.6 rerun: the Orchestra arm had `AGENTS.md`, and the claim stays none. `compare.go` stays disabled.
+
 ## [4.5.0] - Final release
 
 The pin in `VERSION` is 4.5.0. Orchestra-owned skills are `ow-*`. Upstream names stayed. Sync hashes trees and leaves a local edit in place. `orchestra compile` prints a JSON manifest. `find-skills` is vendored from vercel-labs/skills at `d3701c11` (MIT). Three c1 landing trials and three c6 bugfix trials ran on `composer-2.5-fast`. The bugfix arms tied. The landing arms both built; a blind judge preferred the Orchestra page twice and called the third a tie, while Lighthouse performance averaged 98 and 97. No comparison claim is enabled.

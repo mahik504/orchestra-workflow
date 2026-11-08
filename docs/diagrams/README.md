@@ -1,12 +1,6 @@
 # Diagrams
 
-README shows **three** committed SVGs in [`assets/`](assets/). GitHub’s Mermaid parser treats ids such as `graph` and `click` as keywords, which produced the red “Unable to render” boxes on the old README.
-
-Mermaid sources for those three figures sit next to the SVGs (`.mmd`). Re-render:
-
-```bash
-node docs/diagrams/assets/render-readme-diagrams.mjs
-```
+The README mermaid fences are the figures. `node runtime/tools/check-mermaid.mjs` parses them. Do not give a node the id `class`, `end`, `graph`, or `click`.
 
 [system.md](system.md) is the short figure set for 4.1.0. The eight notes below are the longer editor set. Do not paste all of them into README.
 

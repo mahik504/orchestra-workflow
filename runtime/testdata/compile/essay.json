@@ -1,0 +1,11 @@
+{
+  "task": "Draft the essay",
+  "host": "cursor",
+  "route": "Essay or article",
+  "skills": [
+    "humanizer",
+    "ow-research"
+  ],
+  "model_class": "documentation",
+  "disclosure": "L1"
+}

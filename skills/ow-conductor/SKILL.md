@@ -1,9 +1,9 @@
 ---
 name: ow-conductor
-description: Orchestra V4.5.0 control plane. Understand, classify, route the capability graph, print the selection receipt, two-lock Design Lab, implement after golden stills, verify on the real app, review twice, remember. Stand down when the human says skip orchestra.
+description: Orchestra 4.6.0 control plane. Classify the task, print the receipt, hold the design gate, verify on the running app, and review twice. Stand down when the human says skip orchestra.
 ---
 
-# Orchestra conductor — 4.5.0
+# Orchestra conductor — 4.6.0
 
 ## Modes
 
@@ -22,7 +22,7 @@ Name the skills, MCPs, plugins, and libraries this task loads. Omit that line wh
 
 | Job | Load | Skip |
 | --- | --- | --- |
-| Award-style site | impeccable, taste-design, ow-golden-still, gsap-core, gsap-scrolltrigger, gsap-timeline | copying a reference site's files; a second motion stack |
+| Award-style site | build-awwwards-quality-sites, taste-design, impeccable, ow-golden-still, gsap-core, gsap-scrolltrigger, gsap-timeline | copying a reference site's files; a second motion stack |
 | Site to echo | ow-reference-forensics, impeccable, taste-design | copying assets, copy, or a logo |
 | Scroll | gsap-core, gsap-scrolltrigger, gsap-timeline | gsap-react unless the motion lives in React components |
 | One 3D scene | ow-3d-engineering | 3D as decoration; a second motion engine |
@@ -44,6 +44,14 @@ Name the skills, MCPs, plugins, and libraries this task loads. Omit that line wh
 | Binary or APK | not ready | rea until Java is installed and the target is yours, a client's, a CTF, or open source |
 | Hackathon or college | ow-forge | the 23-card survey when a reference is named; the design lab for college unless the human says PREMIUM |
 | Docs on disk | host-provided | docx, pptx, pdf, and xlsx stay on the host. They are not in skills/ |
+| Spec or design doc | egm-draft, egm-review, egm-resolve | a STANDARD fix that names the file; a second spec process |
+| Unslop a screen | unslop, impeccable | a new visual identity; copying a reference site |
+| Codebase map | floorplan, ow-diagrams | a second diagram system; mapping a repo you do not have |
+| Isometric explainer | anatomy | a software architecture chart; a second 3D engine |
+| Full-stack app | ow-backend-architecture, react-best-practices, test-driven-development, webapp-testing | the design lab; a second backend skill |
+| MCP server | mcp-builder | a second conductor; installing every MCP |
+| ML experiment | ow-ml-experiment | a claimed benchmark win; training on data you do not have |
+| Essay or article | humanizer, ow-research | invented citations; posting for the human |
 <!-- routing:end -->
 
 When a task loads skills, an MCP, a plugin, or a library, name those. Leave the line off when nothing new is loaded. Detail is in `protocols/EXPLAINABLE_ROUTING.md`.
@@ -52,6 +60,9 @@ When a task loads skills, an MCP, a plugin, or a library, name those. Leave the 
 
 - `ow-forge` and `ow-focus` run before classify.
 - One control loads `none`. Classify still opens `interaction-components`.
+- `taste-design` writes `DESIGN.md`. One builder per pass. `impeccable` reviews a surface that already exists. `unslop` polishes a screen that already exists.
+- `egm-draft`, `egm-review`, and `egm-resolve` review a spec before build. A STANDARD fix that names the file skips that gate.
+- The conductor writes `.orchestra/STATE.md` at each phase: phase, done, constraints, next action. A subagent handoff carries that file. Copy it from `templates/orchestra/STATE.md`.
 - A slide deck uses the Deck or slides row.
 - Taste locks the visual world. Impeccable reviews a surface that already exists. One DESIGN.md. UI UX Pro Max is a method source for those two files, not a third design system.
 - One motion runtime per surface. GSAP owns scroll. A component catalog is not a runtime. If a sample needs a second engine, adapt it or pick another sample.
@@ -64,7 +75,7 @@ When a task loads skills, an MCP, a plugin, or a library, name those. Leave the 
 - A large job becomes capsules with one owner. The acceptance line moves only when the human changes it.
 - A rendered video is HyperFrames in the product repo. It does not load the GSAP route. Worker capsules limit what a worker sees. Headroom is not installed.
 
-You are the control plane. Host rules, jcode, and IDE customizations are adapters that translate syntax. They never start a second plan. 4.5.0 is one source of truth on the same OS. Smarter routing. Visual evidence gate. Not a bigger always-on toolbox.
+You are the control plane. Host rules, jcode, and IDE customizations are adapters that translate syntax. They never start a second plan. 4.6.0 is one source of truth on the same OS. Smarter routing. Visual evidence gate. Not a bigger always-on toolbox.
 
 Workspace: the private workspace created by `kit/init-workspace`, or the path named in `WORKFLOW.md`. This repo is the **method**, not anyone's product list.
 

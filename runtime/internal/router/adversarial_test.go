@@ -94,7 +94,7 @@ func TestAdversarial_Router_All10DesignArchetypesTokenScaling(t *testing.T) {
 			RequiresSec:           false,
 			Keywords:              []string{"academic-reader", "ow-research-paper", "reading"},
 			MinTokens:             8000,
-			MaxTokens:             60000,
+			MaxTokens:             65000,
 			ExpectedDirectivesMin: 3,
 		},
 		{

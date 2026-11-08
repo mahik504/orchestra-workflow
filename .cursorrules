@@ -1,4 +1,4 @@
-# Cursor adapter — Orchestra 4.5.0
+# Cursor adapter — Orchestra 4.6.0
 
 `AGENTS.md` is the contract. This file only maps it onto Cursor. It does not define a second orchestration policy.
 
@@ -11,7 +11,7 @@ Name the skills, MCPs, plugins, and libraries this task loads. Omit that line wh
 
 | Job | Load | Skip |
 | --- | --- | --- |
-| Award-style site | impeccable, taste-design, ow-golden-still, gsap-core, gsap-scrolltrigger, gsap-timeline | copying a reference site's files; a second motion stack |
+| Award-style site | build-awwwards-quality-sites, taste-design, impeccable, ow-golden-still, gsap-core, gsap-scrolltrigger, gsap-timeline | copying a reference site's files; a second motion stack |
 | Site to echo | ow-reference-forensics, impeccable, taste-design | copying assets, copy, or a logo |
 | Scroll | gsap-core, gsap-scrolltrigger, gsap-timeline | gsap-react unless the motion lives in React components |
 | One 3D scene | ow-3d-engineering | 3D as decoration; a second motion engine |
@@ -33,6 +33,14 @@ Name the skills, MCPs, plugins, and libraries this task loads. Omit that line wh
 | Binary or APK | not ready | rea until Java is installed and the target is yours, a client's, a CTF, or open source |
 | Hackathon or college | ow-forge | the 23-card survey when a reference is named; the design lab for college unless the human says PREMIUM |
 | Docs on disk | host-provided | docx, pptx, pdf, and xlsx stay on the host. They are not in skills/ |
+| Spec or design doc | egm-draft, egm-review, egm-resolve | a STANDARD fix that names the file; a second spec process |
+| Unslop a screen | unslop, impeccable | a new visual identity; copying a reference site |
+| Codebase map | floorplan, ow-diagrams | a second diagram system; mapping a repo you do not have |
+| Isometric explainer | anatomy | a software architecture chart; a second 3D engine |
+| Full-stack app | ow-backend-architecture, react-best-practices, test-driven-development, webapp-testing | the design lab; a second backend skill |
+| MCP server | mcp-builder | a second conductor; installing every MCP |
+| ML experiment | ow-ml-experiment | a claimed benchmark win; training on data you do not have |
+| Essay or article | humanizer, ow-research | invented citations; posting for the human |
 <!-- routing:end -->
 
 ## The loop in Cursor
@@ -43,12 +51,15 @@ Name the skills, MCPs, plugins, and libraries this task loads. Omit that line wh
 4. **Verify on the real app** with the browser tools or `orchestra verify`. Multi-viewport, zero console errors, no horizontal overflow on mobile.
 5. **Correctness review**, then a separate **simplify review**.
 
-## Code Quality & Engineering Standards
+<!-- rules:start -->
+## Shared rules
 
-- **Zero-Stub Policy**: Never emit `// TODO`, `// Add implementation here`, or truncated placeholders. Provide complete, fully-implemented, compilable production code.
-- **Strict Full-Stack Standards**: Follow `fullstack-mastery` — TypeScript strict mode (no `any`), Zod input validation on all Server Actions and API boundaries, TanStack Query for dynamic caching, and resilient error/loading boundaries.
-- **Award-Winning 3D & Creative Web**: Follow `creative-3d-web` and `r3f-shaders` — 60fps frame budgets, clamped DPR (`[1, 2]`), custom GLSL shaders, strict WebGL memory disposal, and seamless Lenis + GSAP ScrollTrigger choreographies.
-- **Integrity**: Maintain documentation integrity, preserve existing comments and structure, and verify in the real runtime before claiming completion.
+- Do not leave a TODO or a truncated placeholder in place of the implementation.
+- TypeScript stays strict. Validate server and API input with Zod. Use TanStack Query for remote data.
+- One 3D scene loads ow-3d-engineering. Leave creative-3d-web and r3f-shaders unloaded.
+- A backend loads ow-backend-architecture. Leave fullstack-mastery unloaded.
+- Claim the work is done only after the running app or the named check has been exercised.
+<!-- rules:end -->
 
 ## Skills, MCP, and Resource Knowledge
 
@@ -61,7 +72,7 @@ Core MCP servers:
 - **context7**: Up-to-date framework & library documentation resolver.
 
 Resource Libraries:
-- Master Resource Catalog: `registries/resources.json` (use `resource-scout` to query trigger tags).
+- Master Resource Catalog: `registries/resources.json` (use `ow-resource-scout` to query trigger tags).
 - Design Resource Graph: `registries/design-resource-graph.json`.
 
 ## Evidence-first

@@ -37,7 +37,7 @@ const GOV = {
       'The human said "skip the lab" and only wants the page wired up',
       'A 3D scene is the point rather than the decoration — route to 3d-portfolio',
     ],
-    skills: ['impeccable', 'taste-design', 'ow-golden-still', 'gsap-core', 'gsap-scrolltrigger', 'gsap-timeline'],
+    skills: ['build-awwwards-quality-sites', 'unslop', 'impeccable', 'taste-design', 'ow-golden-still', 'gsap-core', 'gsap-scrolltrigger', 'gsap-timeline'],
   },
   '3d-portfolio': {
     quality_bar: 'EXPERIMENTAL',
@@ -382,6 +382,42 @@ const GOV = {
     skills: ['react-best-practices'],
     trigger_conditions: ['The job is Next.js speed or a request waterfall', 'The brief asks about a published package size'],
     skip_conditions: ['The job is a visual redesign', 'The request is a bulk install of Vercel skills'],
+  },
+  'spec-review': {
+    quality_bar: 'STANDARD', risk_rank: 2, platform: 'any',
+    skills: ['egm-draft', 'egm-review', 'egm-resolve'],
+    trigger_conditions: ['The job is a spec or a design doc before the build'],
+    skip_conditions: ['A STANDARD fix already names the file'],
+  },
+  'codebase-map': {
+    quality_bar: 'STANDARD', risk_rank: 2, platform: 'any',
+    skills: ['floorplan', 'ow-diagrams'],
+    trigger_conditions: ['The job is a map of a codebase the operator has'],
+    skip_conditions: ['The repository is not on disk'],
+  },
+  'isometric-explainer': {
+    quality_bar: 'STANDARD', risk_rank: 2, platform: 'any',
+    skills: ['anatomy'],
+    trigger_conditions: ['The job is an isometric explainer'],
+    skip_conditions: ['The job is a software architecture chart'],
+  },
+  'mcp-server': {
+    quality_bar: 'STANDARD', risk_rank: 2, platform: 'any',
+    skills: ['mcp-builder'],
+    trigger_conditions: ['The job is an MCP server'],
+    skip_conditions: ['The request installs every MCP'],
+  },
+  'running-app-check': {
+    quality_bar: 'STANDARD', risk_rank: 2, platform: 'web',
+    skills: ['webapp-testing'],
+    trigger_conditions: ['The job is a full-stack app with a running page'],
+    skip_conditions: ['There is no running page'],
+  },
+  'ml-experiment': {
+    quality_bar: 'STANDARD', risk_rank: 2, platform: 'any',
+    skills: ['ow-ml-experiment'],
+    trigger_conditions: ['The job is one ML experiment'],
+    skip_conditions: ['The request claims a benchmark win'],
   },
 };
 

@@ -1,0 +1,10 @@
+{
+  "task": "Build an MCP server",
+  "host": "cursor",
+  "route": "MCP server",
+  "skills": [
+    "mcp-builder"
+  ],
+  "model_class": "coding-precise",
+  "disclosure": "L1"
+}

@@ -1,0 +1,11 @@
+{
+  "task": "Unslop this screen that looks generated",
+  "host": "cursor",
+  "route": "Unslop a screen",
+  "skills": [
+    "unslop",
+    "impeccable"
+  ],
+  "model_class": "frontend-design-high",
+  "disclosure": "L1"
+}

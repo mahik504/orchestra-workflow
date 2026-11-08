@@ -232,7 +232,7 @@ func TestPhase3F1_RegistryCountsStayPut(t *testing.T) {
 		t.Fatal(err)
 	}
 	verified, unverified := SplitVerification(rows)
-	if len(rows) != 193 || verified != 54 || unverified != 139 {
+	if len(rows) != 208 || verified != 54 || unverified != 154 {
 		t.Fatalf("rows=%d verified=%d unverified=%d", len(rows), verified, unverified)
 	}
 	if verified == unverified {

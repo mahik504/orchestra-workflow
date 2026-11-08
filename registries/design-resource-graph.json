@@ -318,6 +318,8 @@
         "A 3D scene is the point rather than the decoration — route to 3d-portfolio"
       ],
       "skills": [
+        "build-awwwards-quality-sites",
+        "unslop",
         "impeccable",
         "taste-design",
         "ow-golden-still",
@@ -1415,6 +1417,102 @@
       "skills": [
         "react-best-practices"
       ]
+    },
+    "spec-review": {
+      "name": "Spec review",
+      "description": "A spec is reviewed before the build.",
+      "primary_archetype": "spec_review",
+      "trigger_tags": ["spec-review"],
+      "discovery": [],
+      "synthesis": [],
+      "implementation": [],
+      "qa": [],
+      "quality_bar": "STANDARD",
+      "risk_rank": 2,
+      "platform": "any",
+      "trigger_conditions": ["The job is a spec or a design doc before the build"],
+      "skip_conditions": ["A STANDARD fix already names the file"],
+      "skills": ["egm-draft", "egm-review", "egm-resolve"]
+    },
+    "codebase-map": {
+      "name": "Codebase map",
+      "description": "A map of a repository that is on disk.",
+      "primary_archetype": "codebase_map",
+      "trigger_tags": ["codebase-map"],
+      "discovery": [],
+      "synthesis": [],
+      "implementation": [],
+      "qa": [],
+      "quality_bar": "STANDARD",
+      "risk_rank": 2,
+      "platform": "any",
+      "trigger_conditions": ["The job is a map of a codebase the operator has"],
+      "skip_conditions": ["The repository is not on disk"],
+      "skills": ["floorplan", "ow-diagrams"]
+    },
+    "isometric-explainer": {
+      "name": "Isometric explainer",
+      "description": "One isometric explanation of a system.",
+      "primary_archetype": "isometric_explainer",
+      "trigger_tags": ["isometric-explainer"],
+      "discovery": [],
+      "synthesis": [],
+      "implementation": [],
+      "qa": [],
+      "quality_bar": "STANDARD",
+      "risk_rank": 2,
+      "platform": "any",
+      "trigger_conditions": ["The job is an isometric explainer"],
+      "skip_conditions": ["The job is a software architecture chart"],
+      "skills": ["anatomy"]
+    },
+    "mcp-server": {
+      "name": "MCP server",
+      "description": "One MCP server.",
+      "primary_archetype": "mcp_server",
+      "trigger_tags": ["mcp-server"],
+      "discovery": [],
+      "synthesis": [],
+      "implementation": [],
+      "qa": [],
+      "quality_bar": "STANDARD",
+      "risk_rank": 2,
+      "platform": "any",
+      "trigger_conditions": ["The job is an MCP server"],
+      "skip_conditions": ["The request installs every MCP"],
+      "skills": ["mcp-builder"]
+    },
+    "running-app-check": {
+      "name": "Running app check",
+      "description": "The running app is exercised in a browser.",
+      "primary_archetype": "running_app_check",
+      "trigger_tags": ["running-app-check"],
+      "discovery": [],
+      "synthesis": [],
+      "implementation": [],
+      "qa": [],
+      "quality_bar": "STANDARD",
+      "risk_rank": 2,
+      "platform": "web",
+      "trigger_conditions": ["The job is a full-stack app with a running page"],
+      "skip_conditions": ["There is no running page"],
+      "skills": ["webapp-testing"]
+    },
+    "ml-experiment": {
+      "name": "ML experiment",
+      "description": "One model experiment with the data that is already here.",
+      "primary_archetype": "ml_experiment",
+      "trigger_tags": ["ml-experiment"],
+      "discovery": [],
+      "synthesis": [],
+      "implementation": [],
+      "qa": [],
+      "quality_bar": "STANDARD",
+      "risk_rank": 2,
+      "platform": "any",
+      "trigger_conditions": ["The job is one ML experiment"],
+      "skip_conditions": ["The request claims a benchmark win"],
+      "skills": ["ow-ml-experiment"]
     }
   }
 }

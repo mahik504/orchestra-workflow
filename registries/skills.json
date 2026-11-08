@@ -21,6 +21,26 @@
       "context_chars": 7155
     },
     {
+      "id": "anatomy",
+      "rename_to": "",
+      "owner": "upstream",
+      "tier": "vendored",
+      "source": "vendored",
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "hosts": [
+        "cursor",
+        "claude",
+        "antigravity",
+        "codex",
+        "jcode",
+        "agents"
+      ],
+      "description_chars": 1018,
+      "triggers": "Build crafted, highly detailed, interactive isometric SVG figures that explain a technical idea as a real physical object (a test rig, a dial gauge, a cabinet of drawers, a plotter, a lock), with many small precise solid parts, four-tone shading, correct painter's order, a framed card with title, hi",
+      "context_chars": 33589
+    },
+    {
       "id": "animate",
       "rename_to": "",
       "owner": "upstream",
@@ -39,6 +59,26 @@
       "description_chars": 418,
       "triggers": "Build an animation from scratch, making the decisions in the order that determines whether it feels right — should it animate at all, what purpose, which tool, which properties, which curve and duration, how it interrupts, how it exits. Writes the implementation. Use when asked to animate something,",
       "context_chars": 11511
+    },
+    {
+      "id": "build-awwwards-quality-sites",
+      "rename_to": "",
+      "owner": "upstream",
+      "tier": "vendored",
+      "source": "vendored",
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "hosts": [
+        "cursor",
+        "claude",
+        "antigravity",
+        "codex",
+        "jcode",
+        "agents"
+      ],
+      "description_chars": 493,
+      "triggers": "Art-direct and implement distinctive, motion-rich marketing, editorial, portfolio, and landing websites with original reference-inspired imagery, standout heroes, GSAP choreography, one smooth-scroll engine, optional Three.js shaders, honest icon and logo sourcing, photo avatars, accessibility, and ",
+      "context_chars": 7281
     },
     {
       "id": "ci-security-scanning-with-strix",
@@ -119,6 +159,86 @@
       "description_chars": 594,
       "triggers": "EAS service (paid). Deploy Expo apps to the app stores with EAS - build and submit to the iOS App Store, Google Play Store, and TestFlight, configure eas.json build and submit profiles, manage app versions and build numbers, and publish App Store metadata and ASO. Use whenever the user wants to depl",
       "context_chars": 5158
+    },
+    {
+      "id": "egm-draft",
+      "rename_to": "",
+      "owner": "upstream",
+      "tier": "vendored",
+      "source": "vendored",
+      "license": "Apache-2.0",
+      "license_file": "LICENSE",
+      "hosts": [
+        "cursor",
+        "claude",
+        "antigravity",
+        "codex",
+        "jcode",
+        "agents"
+      ],
+      "description_chars": 262,
+      "triggers": "Drafts a design document section-by-section using the concepts brief from egm-brainstorm (or user notes). This is the second step in the Elephant-Goldfish (EGM) feature flow. Use when you are ready to write a design doc after aligning on requirements + solution.",
+      "context_chars": 17736
+    },
+    {
+      "id": "egm-resolve",
+      "rename_to": "",
+      "owner": "upstream",
+      "tier": "vendored",
+      "source": "vendored",
+      "license": "Apache-2.0",
+      "license_file": "LICENSE",
+      "hosts": [
+        "cursor",
+        "claude",
+        "antigravity",
+        "codex",
+        "jcode",
+        "agents"
+      ],
+      "description_chars": 232,
+      "triggers": "The Elephant resolution skill. Ingests flat deficiency reports from concurrent Goldfish reviewers, applies automated fixes for PROPOSE FIX items via UI multiple-choice gates, and presents interactive negotiation/re-sync checkpoints.",
+      "context_chars": 8664
+    },
+    {
+      "id": "egm-review",
+      "rename_to": "",
+      "owner": "upstream",
+      "tier": "vendored",
+      "source": "vendored",
+      "license": "Apache-2.0",
+      "license_file": "LICENSE",
+      "hosts": [
+        "cursor",
+        "claude",
+        "antigravity",
+        "codex",
+        "jcode",
+        "agents"
+      ],
+      "description_chars": 267,
+      "triggers": "Orchestrates the EGM Goldfish Review Protocol. Used as part of the EGM process to perform design document reviews. Executes five review phases: Initial Zoom Out Review, Comprehension Review, Design Critique, Intermediate Zoom Out Review, and Implementation Readiness.",
+      "context_chars": 24619
+    },
+    {
+      "id": "egm-review-loop",
+      "rename_to": "",
+      "owner": "upstream",
+      "tier": "vendored",
+      "source": "vendored",
+      "license": "Apache-2.0",
+      "license_file": "LICENSE",
+      "hosts": [
+        "cursor",
+        "claude",
+        "antigravity",
+        "codex",
+        "jcode",
+        "agents"
+      ],
+      "description_chars": 367,
+      "triggers": "Executes the Antagonistic-Review process from the Elephant-Goldfish Model (EGM) via an automated multi-agent review loop to audit documents against qualitative standards and structural templates, and automatically apply approved fixes. Use when reviewing design docs, READMEs, feature specifications,",
+      "context_chars": 10460
     },
     {
       "id": "emil-design-eng",
@@ -278,7 +398,7 @@
       ],
       "description_chars": 303,
       "triggers": "Helps users discover and install agent skills when they ask questions like \"how do I do X\", \"find a skill for X\", \"is there a skill that can...\", or express interest in extending capabilities. This skill should be used when the user is looking for functionality that might exist as an installable ski",
-      "context_chars": 5792
+      "context_chars": 5937
     },
     {
       "id": "fix-security-vulnerabilities-with-strix",
@@ -299,6 +419,26 @@
       "description_chars": 502,
       "triggers": "Fix security vulnerabilities found by a Strix pentest (open-source CLI or app.strix.ai cloud) — triage by severity, patch the root cause rather than the symptom, and re-run Strix to prove each fix actually closes the exploit. Handles injection, XSS, SSRF, broken access control, IDOR, and other valid",
       "context_chars": 5851
+    },
+    {
+      "id": "floorplan",
+      "rename_to": "",
+      "owner": "upstream",
+      "tier": "vendored",
+      "source": "vendored",
+      "license": "MIT",
+      "license_file": "LICENSE",
+      "hosts": [
+        "cursor",
+        "claude",
+        "antigravity",
+        "codex",
+        "jcode",
+        "agents"
+      ],
+      "description_chars": 934,
+      "triggers": "Draw a floorplan of an app's codebase (one repo or several side by side), an interactive node-graph map where every subsystem, module, file and HTTP route has a human-readable name and a one-line description, connected by the imports and HTTP calls between them, at several zoom levels. It is saved a",
+      "context_chars": 24040
     },
     {
       "id": "grilling",
@@ -481,6 +621,26 @@
       "context_chars": 10950
     },
     {
+      "id": "mcp-builder",
+      "rename_to": "",
+      "owner": "upstream",
+      "tier": "vendored",
+      "source": "vendored",
+      "license": "Apache-2.0",
+      "license_file": "LICENSE.txt",
+      "hosts": [
+        "cursor",
+        "claude",
+        "antigravity",
+        "codex",
+        "jcode",
+        "agents"
+      ],
+      "description_chars": 277,
+      "triggers": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).",
+      "context_chars": 11381
+    },
+    {
       "id": "obsidian-markdown",
       "rename_to": "",
       "owner": "upstream",
@@ -538,7 +698,7 @@
       ],
       "description_chars": 131,
       "triggers": "Shape a SaaS or API before code. Routes, auth, schema, migrations, errors, and logs. Use for a backend or API. Skip the design lab.",
-      "context_chars": 3099
+      "context_chars": 3164
     },
     {
       "id": "ow-benchmark",
@@ -558,7 +718,7 @@
       ],
       "description_chars": 192,
       "triggers": "Compare Orchestra to a raw agent on a fixture. Same model, three trials, Layer A when the page is visual. Record the numbers you measured. Leave the claim disabled when the run did not happen.",
-      "context_chars": 1064
+      "context_chars": 1084
     },
     {
       "id": "ow-brainstorm",
@@ -578,7 +738,7 @@
       ],
       "description_chars": 160,
       "triggers": "Pressure-test one idea before anyone builds it. Name the user, the job, the constraint, and the reason not to build it. File a note. Do not start four products.",
-      "context_chars": 943
+      "context_chars": 967
     },
     {
       "id": "ow-career",
@@ -618,7 +778,7 @@
       ],
       "description_chars": 162,
       "triggers": "Teach the next step of a workflow the operator is already in. One concept, one command, one check. No course, no quiz, no extra tools installed to explain a tool.",
-      "context_chars": 827
+      "context_chars": 850
     },
     {
       "id": "ow-component-discovery",
@@ -638,7 +798,7 @@
       ],
       "description_chars": 186,
       "triggers": "Find an existing component before building one. Search the product, then shadcn, Magic UI, and React Bits. Adapt the pattern. Do not add a second component kit or leave an always-on MCP.",
-      "context_chars": 1104
+      "context_chars": 1128
     },
     {
       "id": "ow-conductor",
@@ -656,9 +816,9 @@
         "jcode",
         "agents"
       ],
-      "description_chars": 257,
-      "triggers": "Orchestra V4.5.0 control plane. Understand, classify, route the capability graph, print the selection receipt, two-lock Design Lab, implement after golden stills, verify on the real app, review twice, remember. Stand down when the human says skip orchestra.",
-      "context_chars": 17981
+      "description_chars": 182,
+      "triggers": "Orchestra 4.6.0 control plane. Classify the task, print the receipt, hold the design gate, verify on the running app, and review twice. Stand down when the human says skip orchestra.",
+      "context_chars": 19209
     },
     {
       "id": "ow-deploy",
@@ -678,7 +838,7 @@
       ],
       "description_chars": 182,
       "triggers": "Ship the app the product already builds. Pick the host from the project note, run its preview, then production. No new platform, no invented URL, no global CLI login from this skill.",
-      "context_chars": 1118
+      "context_chars": 1140
     },
     {
       "id": "ow-design-intelligence",
@@ -698,7 +858,7 @@
       ],
       "description_chars": 198,
       "triggers": "Choose type, color, layout, and motion before taste-design writes DESIGN.md. One direction, named references, and a short rationale. Feeds taste-design. Does not replace it and does not copy a site.",
-      "context_chars": 1368
+      "context_chars": 1396
     },
     {
       "id": "ow-diagrams",
@@ -878,7 +1038,7 @@
       ],
       "description_chars": 185,
       "triggers": "Decide whether something should move, which runtime owns it, and how it respects reduced motion. GSAP owns scroll. Cursor, transitions, and exits get durations. One runtime per surface.",
-      "context_chars": 1457
+      "context_chars": 1481
     },
     {
       "id": "ow-observability",
@@ -918,7 +1078,7 @@
       ],
       "description_chars": 181,
       "triggers": "Open a product repo onto Orchestra. Stamp adapters between markers, sync skills without deleting local edits, and write the project passport. Do not overwrite an unmarked AGENTS.md.",
-      "context_chars": 934
+      "context_chars": 954
     },
     {
       "id": "ow-presentation",
@@ -1018,7 +1178,7 @@
       ],
       "description_chars": 125,
       "triggers": "Look up one to three resources for the current job. Use when the user names a tool, a style, or asks what we have for a task.",
-      "context_chars": 1278
+      "context_chars": 1261
     },
     {
       "id": "ow-review-panel",
@@ -1038,7 +1198,7 @@
       ],
       "description_chars": 162,
       "triggers": "Run two reviews in order. Correctness first, from a clean context. Simplify second, on the diff only. Findings need a file and a failure. No score, no style nits.",
-      "context_chars": 882
+      "context_chars": 902
     },
     {
       "id": "ow-semgrep",
@@ -1058,7 +1218,7 @@
       ],
       "description_chars": 63,
       "triggers": "Security static analysis validation utilizing Semgrep rulesets.",
-      "context_chars": 227
+      "context_chars": 232
     },
     {
       "id": "ow-ship",
@@ -1138,7 +1298,7 @@
       ],
       "description_chars": 246,
       "triggers": "Decide whether a task needs a new skill. Check skills/ first, then skills.sh and GitHub. Recommend use-existing, install-upstream, write ow-*, or install because the human insisted. Record that install. Do not run a global skills add on your own.",
-      "context_chars": 1617
+      "context_chars": 1649
     },
     {
       "id": "ow-skill-security-check",
@@ -1218,7 +1378,7 @@
       ],
       "description_chars": 147,
       "triggers": "Maintain the private Orchestra workspace and its memory. Jump one note. Lasting files only. Record real outcomes, never synthetic ones. No secrets.",
-      "context_chars": 3704
+      "context_chars": 3768
     },
     {
       "id": "ow-video",
@@ -1476,8 +1636,8 @@
         "jcode",
         "agents"
       ],
-      "description_chars": 2,
-      "triggers": ">-",
+      "description_chars": 481,
+      "triggers": "Convert frontend code (Vite, React, Angular, Vue, etc.) to a Stitch Design by chaining static HTML extraction, design system extraction, and file upload. **ALWAYS** use this skill when the user's intent is to move existing web apps or React/Angular/Vue components into Stitch (e.g., requests to \"save",
       "context_chars": 3754
     },
     {
@@ -1496,8 +1656,8 @@
         "jcode",
         "agents"
       ],
-      "description_chars": 2,
-      "triggers": ">-",
+      "description_chars": 642,
+      "triggers": "Extract a comprehensive design system (DESIGN.md) directly from frontend source code — React, Vue, Svelte, Angular, plain HTML/CSS, or any web framework. Analyzes component files, stylesheets, Tailwind configs, theme definitions, and design tokens to produce a rich, Stitch-compatible design system d",
       "context_chars": 14443
     },
     {
@@ -1516,8 +1676,8 @@
         "jcode",
         "agents"
       ],
-      "description_chars": 2,
-      "triggers": ">-",
+      "description_chars": 313,
+      "triggers": "Extract self-contained static HTML from a built web application or React components by inlining CSS and images. Use this skill whenever you need to capture a specific UI state, share a static version of a page, or prepare assets for Stitch upload, even if the user just asks to 'save the HTML' or 'mo",
       "context_chars": 11018
     },
     {
@@ -1536,8 +1696,8 @@
         "jcode",
         "agents"
       ],
-      "description_chars": 2,
-      "triggers": ">-",
+      "description_chars": 289,
+      "triggers": "Generate new screens from text prompts or images, edit existing screens with prompts and design system tokens, and generate design variants using Stitch MCP. Includes prompt enhancement pipeline, design mappings, professional UI/UX terminology, design tokens and theme system capabilities.",
       "context_chars": 11335
     },
     {
@@ -1556,8 +1716,8 @@
         "jcode",
         "agents"
       ],
-      "description_chars": 2,
-      "triggers": ">-",
+      "description_chars": 152,
+      "triggers": "Manage design systems in Stitch using MCP tools. Includes retrieval of assets, creating/updating design systems in Stitch, and applying them to screens.",
       "context_chars": 5586
     },
     {
@@ -1576,8 +1736,8 @@
         "jcode",
         "agents"
       ],
-      "description_chars": 2,
-      "triggers": ">-",
+      "description_chars": 203,
+      "triggers": "Converts Stitch designs into modular Vite and React components, or syncs/updates existing React components to align with the latest Stitch designs, using system-level networking and AST-based validation.",
       "context_chars": 8878
     },
     {
@@ -1596,8 +1756,8 @@
         "jcode",
         "agents"
       ],
-      "description_chars": 2,
-      "triggers": ">-",
+      "description_chars": 275,
+      "triggers": "Upload local assets (images, mockups, extracted HTML, design markdown) to a Stitch project. ALWAYS use this skill when you need to upload visual assets, HTML pages, or design docs to Stitch, particularly when direct MCP tool calls fail or truncate due to base64 token limits.",
       "context_chars": 4300
     },
     {
@@ -1701,6 +1861,26 @@
       "context_chars": 6107
     },
     {
+      "id": "unslop",
+      "rename_to": "",
+      "owner": "upstream",
+      "tier": "vendored",
+      "source": "vendored",
+      "license": "CC-BY-4.0",
+      "license_file": "LICENSE",
+      "hosts": [
+        "cursor",
+        "claude",
+        "antigravity",
+        "codex",
+        "jcode",
+        "agents"
+      ],
+      "description_chars": 670,
+      "triggers": "Turns vibecoded, AI-looking UI into a designed interface with its own character. Finds a direction from the product itself, then fixes spacing, color, icons, copy, type, layout, details, visuals and motion in that order, and can generate a real hero visual with an image tool when one is available. U",
+      "context_chars": 31560
+    },
+    {
       "id": "using-git-worktrees",
       "rename_to": "",
       "owner": "upstream",
@@ -1759,6 +1939,26 @@
       "description_chars": 231,
       "triggers": "Review UI code for Web Interface Guidelines compliance. Use when asked to \"review my UI\", \"check accessibility\", \"audit design\", \"review UX\", or \"check my site against best practices\". Do not load on Plan-only or backend-only jobs.",
       "context_chars": 1186
+    },
+    {
+      "id": "webapp-testing",
+      "rename_to": "",
+      "owner": "upstream",
+      "tier": "vendored",
+      "source": "vendored",
+      "license": "Apache-2.0",
+      "license_file": "LICENSE.txt",
+      "hosts": [
+        "cursor",
+        "claude",
+        "antigravity",
+        "codex",
+        "jcode",
+        "agents"
+      ],
+      "description_chars": 204,
+      "triggers": "Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing browser screenshots, and viewing browser logs.",
+      "context_chars": 4008
     },
     {
       "id": "writing-skills",

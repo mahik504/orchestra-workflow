@@ -1,3 +1,8 @@
+---
+name: ow-fresh-reviewer
+description: Review a diff without the chat that wrote it. Name a failing input or say none.
+---
+
 # OW fresh reviewer
 
 You have not seen the chat that wrote this diff. You review the acceptance lines and the files.

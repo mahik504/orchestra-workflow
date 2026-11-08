@@ -101,7 +101,13 @@ func Compile(task, host string, routes []Route) (Manifest, error) {
 	manifest.Disclosure = best.Disclosure
 	if best.ModelClass == "frontend-design-high" {
 		manifest.MCP = []string{"playwright"}
-		manifest.Verification = append(manifest.Verification, "playwright journey on the running app")
+		manifest.Verification = append(manifest.Verification, "playwright journey on the running app", "webapp-testing on the running app")
+	}
+	if best.Job == "Full-stack app" {
+		manifest.Verification = append(manifest.Verification, "webapp-testing on the running app")
+	}
+	if best.Job == "SaaS or API" || best.Job == "Full-stack app" {
+		manifest.Constraints = append(manifest.Constraints, "follow skills/ow-backend-architecture/references/saas-checklist.md")
 	}
 	for _, id := range best.Load {
 		if id == "ow-3d-engineering" {

@@ -1,0 +1,13 @@
+{
+  "task": "Build the full-stack app",
+  "host": "cursor",
+  "route": "Full-stack app",
+  "skills": [
+    "ow-backend-architecture",
+    "react-best-practices",
+    "test-driven-development",
+    "webapp-testing"
+  ],
+  "model_class": "reasoning-high",
+  "disclosure": "L1"
+}

@@ -1,0 +1,382 @@
+{
+  "note": "v4.2.0 is not a tag. 60cf9e7 is that release commit.",
+  "generated_from": [
+    "v4.0.0",
+    "v4.1.0",
+    "v4.5.0",
+    "60cf9e7"
+  ],
+  "hashes": {
+    "agent-reach": [
+      "3b1eac7abba8c9435e499604e78ec7df83903b21824bc08762553f72ec9da931",
+      "1340fb10778a6be48046f55f0784b6ebdc8b35734db27a51edde228dfc5557d9"
+    ],
+    "animate": [
+      "8de2c2ab161729a2d6a4b9b86bd823512e9bdaad40d3b83646c1bb4fb66731d8"
+    ],
+    "backend-architecture": [
+      "ff7295d7516d4f80fb594afe25446e8662b6c7cf6e944381462c5c7f23d36929",
+      "9715295601cfacd515f11e8013d33c862b5a8b62e4a56ffc8af16f0edd6a6947"
+    ],
+    "ci-security-scanning-with-strix": [
+      "160ccb04b1ea9ed8d8e4e781a8e7531cb75ea2ed59cf45f9bc42db04e6361d5c"
+    ],
+    "diagram-generator": [
+      "f5fab511295fdcacc3a56f389df8ee70d4e6e6a9a398cf28904d6dbc4be4e7e5"
+    ],
+    "eas-app-stores": [
+      "6165140d37c1a4339843afa7159841a308397a5c41deecffbcc2c76f389090df",
+      "f8d6bc416b3f0d899425d86e45a9d81a5d4fa2d66547825182261a261b78db9a"
+    ],
+    "emil-design-eng": [
+      "cf2824fd94bdfb7e8e2f8541b7649277ef7aa2dfece4ee0b7983fca645df1546"
+    ],
+    "expo-data-fetching": [
+      "d9129cd9390e06a46eb574f9accbc88abdbba6b27190bfff9ccaf2ef11fefa2f"
+    ],
+    "expo-dev-client": [
+      "933f8ba906930448bcd0f09eada30c0bc848b18609afe9644a144749373d50c3"
+    ],
+    "expo-native-ui": [
+      "6fd54c00b01b31b5a3d620e2179ce3d3b2f117a8d31640ab531dba6dc942e6ca"
+    ],
+    "expo-project-structure": [
+      "cc59b959e806563d2f7cf6aa0297235f19818e36367d7fdef1d374cad08c688b"
+    ],
+    "expo-router": [
+      "6835a1bd102d081be2ae4639b30ecf0ce8eb575479a790dbb3d0adbbd3dd0307"
+    ],
+    "expo-upgrade": [
+      "7816f5bc25c6a79af0bd948a6d413ba120439e2269d850c52cede892332ee87d"
+    ],
+    "final-showcase": [
+      "fc280644f25c215723a080c7dfc6fd793d6f9940a8e9b3cd272dac4edfb820bd"
+    ],
+    "fix-security-vulnerabilities-with-strix": [
+      "cf92b63bb09a3f611f2e39413ca1c4be3be1bd4ca92f01f7f9ab682576ae47ac"
+    ],
+    "fresh-context-review": [
+      "17ffee2641881fbd20d541c0f390716b8d199950286af503913c070aa1d13f97"
+    ],
+    "gsap-core": [
+      "3d5db8798f4fbefb95765a8176ae2612949a022a3ed1da7f202510796f130d10"
+    ],
+    "gsap-performance": [
+      "0d35f273883683875d7f29a3e57812822a79c94d8a5f1b6f4d62fa030932b0dd"
+    ],
+    "gsap-react": [
+      "49338cfa212e578ff077c11f3d9ee73ecbcd9ad32a70474ae915967ad7612de9"
+    ],
+    "gsap-scrolltrigger": [
+      "4ae913227638d60b2abf4ccb7676a702df4d1fb06304635c54d6bfaa295284b7",
+      "1d49eaa703363d09076b93736c1630e7cc5d050bd338f0d7c97376a418fd1ebb"
+    ],
+    "gsap-timeline": [
+      "aae3ca93560953de83f7fdf56bf05fe3484a87bf5a22621a278e0f8cc7e5d694"
+    ],
+    "hallmark": [
+      "8841c716e67f98e0068d55f42df834156bdb755e2ab73e5848338e4ad2a39a57"
+    ],
+    "humanizer": [
+      "69316794e9f6056c9d2f54eb75b75f6aca7d5010095651c6aea851adddfcc9c0"
+    ],
+    "impeccable": [
+      "8c4caed66c4e3941b9dda92c4b7ebf39bb382f7e76de98da17511adfe1d00ea1"
+    ],
+    "ml-experiment": [
+      "ea60f794fbf45e8d88703da014516ecdddd813ed80e09b3b09dc0d8851500019"
+    ],
+    "obsidian-markdown": [
+      "d347682c2e2b7570d8b3cc442feddb4fad4457b3458e89da36012a7c7fa9e8a9"
+    ],
+    "orchestra-career": [
+      "83b084d7f03e5fab6c0b733c7d8dd91b2f92b59c62f207a12ce86054d504e5a0",
+      "0deff18ca028127e6507e598adab9a51795dc7d0c32fba945283cf8462d4f72b"
+    ],
+    "orchestra-conductor": [
+      "545d7b7b85ec71e6476c3fca94e88fd80dde02f7f446d445f21099e892b6996f",
+      "2dd3812d7abe95d349d6441399cc593d236f7b203df9043a443b220e76df1425",
+      "2c26a802f48137fd3875f91e915f60e897126369032a1541521637906942ca9a"
+    ],
+    "orchestra-docs": [
+      "bc97ca76d59552e7671859ef6788e52b9a3c5ee20c3bd115bad0398151127a8f",
+      "47121eab8cdd920c9f732b20ced4a674bedb7a97f3f555503ccb739afdde3389"
+    ],
+    "orchestra-focus": [
+      "88d5739ec8aebb469ebeed3e6b77c0bb711fda15f1aff2aec9a0d76a15bab2b4",
+      "50e3ee2aad7688d1c30325f5899a4b041714059c92cb48974983c3dfcdbba4b3"
+    ],
+    "orchestra-marketing": [
+      "1d1e817b04c7bd6f1af9f4100d55d125f55bed7ff6cf433df047417cf816c425",
+      "1f94ecb64f966d6776dae85b655a47bac36ed085ff501ba18ad033074ce478e3"
+    ],
+    "orchestra-observability": [
+      "0bfbc17c63250c2740187fbd3d0b70710b54d77eb58a095df026eabd7db19de9",
+      "5c5531a3a743794970f4bc75dd6eb710c56c8eeb75d5398876e35f439da56431"
+    ],
+    "orchestra-presentation": [
+      "f9cdac52ededf61888ec540f25eb2cd28839472c5f33ccdd2a31e81509fabec3",
+      "d6a2e9420952a9c99513988c2cb4396f07c140b699a9a8db642a103d41dd52d9"
+    ],
+    "orchestra-research": [
+      "18bc5d2ca7acc1adf1603646994a5f318b0f0dabe4b6f1d2934a823204d4cffc",
+      "742a4ebc4715360f7b6bf7579c0d732defb0507570d76aa4478aa82b1944fe14"
+    ],
+    "orchestra-ship": [
+      "1d2f300e14887bfdcc2fe8454c65c84e2c6dd8edb368f569222b0d2ce24f02fd",
+      "4ce89873fe43cd9a930b216c4380e328b3730c4a98506eb69d23c670a4d3ae63"
+    ],
+    "orchestra-typescript": [
+      "c9d39a9a0c631a70b0fb060428a153b991b480707b08865ab4913e3cd62e2fc2",
+      "6291966527c308ac0b6aed01c0a915cef753291018623922acdb390a7d1e89be"
+    ],
+    "orchestra-vault": [
+      "d71c9e68443cc9bb1ae06014e00c363533369643117cee7a547f04d219f71e7b",
+      "3272f906ef70a5a50e5292830b636dbddef960818eb367f9687e8de5c7a6173a"
+    ],
+    "orchestra-video": [
+      "2a7021f8d8bb1a2a3159cd76684ac04f132416a38d9b320af621db2bb2649f79",
+      "83105495e5b012838e0b5502dc2f65938571d51375284499a42ac7865550f8af"
+    ],
+    "penetration-testing-with-strix": [
+      "717a0a61ba11f5fc256e06a6fcae68ca7bea907e77c9bd772ad7fc2475d4d29d"
+    ],
+    "ponytail": [
+      "f0d3fd0da02d62ee24e8a7f99411861520ce121332552100bf3659b7600b6d94"
+    ],
+    "ponytail-audit": [
+      "206f4aeb9a2c527c223a58b89ea5162334af274277eb699d8db61a0b85287ad8"
+    ],
+    "ponytail-review": [
+      "8074c76847dfbbb23f3529677c303eea9cbe4e4d6ef2741c1b504229246619bb"
+    ],
+    "postgres-best-practices": [
+      "9d6048030c534fcde72ce0b100b8fee68928da62a5fc4808a040fd3509d9cf3b"
+    ],
+    "pretty-mermaid": [
+      "8a6ecdb78c82bc13747597c454fe3aee7bb186507f11bcd343647d80a5308e83",
+      "f191c23e141c5db005e016aafdefdee184077055611b63850b0a336a40f0ceff"
+    ],
+    "prompt-forge": [
+      "447b7ae64e79cdbde15918bfb8ac423ace3cb42579789e81408a1f7478099c7a",
+      "b9ff8d93b53d3b081b1c23e0703d9fc9a5c9064904dbd7a66264fda5814e1dd9",
+      "bcf6f17bff4017118e62b3dab0c1c6c73f18f7e554538c3296a4488643bb47fa"
+    ],
+    "r3f-shaders": [
+      "28e2ccfcc6b6b85e0c8566c3b8a3c100e555d073f11003fe30e7e1cffb4d0e72",
+      "865eb3d2622f80129370a02be1ba51279c78df5f55025b1a3b39d2d14e9ef56f"
+    ],
+    "rea": [
+      "be53ea101c1bc6a9f962ba97a8beafc28103ccf6153504f0959e4612294edc09"
+    ],
+    "react-best-practices": [
+      "39d02624d650f8568b308a2ae0c588ef295f75075cf0e41740e978dea921f507"
+    ],
+    "refero-design": [
+      "9fd759f962b4fdbdb0de8d52b6d8f79b3fe2665eb40a5ee35fb35af4d04c0ba3"
+    ],
+    "research-paper": [
+      "9e60909d56750b5be8a2efa79fbf729fc75a5238e4351adc75045698bbd71fcd"
+    ],
+    "resource-scout": [
+      "5bd86f4b9fbdb43f3256e6044b0361771dfd7de806a34112ef8388e80109ea9e"
+    ],
+    "review-animations": [
+      "306c3415e0f579919a32896cc7c5841e8f5fa7d10ef32b30e12184e3a79cbf87"
+    ],
+    "semgrep-adapter": [
+      "68b95817c886a78bdcaa036442b4a5ac769dad0c20a1e1833ea339158ea4b3e4"
+    ],
+    "ship-safe": [
+      "5987e4bd4316f84f0a821033a1f9e7d4e46a26424a6d17293925c093fd519c31"
+    ],
+    "skill-security-check": [
+      "47a3f23e2f8d1b16423ae16477ac3b43b8f9da6ad83045231acc6590ecab0051"
+    ],
+    "stitch-code-to-design": [
+      "9ca2555539c7036cca9fd2de0d6d44d56a9cf6f2f820bf3b112c6ba63178bc77"
+    ],
+    "stitch-extract-design-md": [
+      "a376ca774353eeac0d1e4d9f11a277cf4b51c3760d02ed24c40c4b51350009ab"
+    ],
+    "stitch-extract-static-html": [
+      "f4369917872e68b1db9dc6cbf0c0022362dc7767b54eb3e7864e47432820990a"
+    ],
+    "stitch-generate-design": [
+      "56adc8d5d97cdeb45c3ecbb11b9cae59c318fff12269c17134ada5f43653b240"
+    ],
+    "stitch-manage-design-system": [
+      "b71d7852252f32582092551c3c7673b402b062ed3f13434e19428fc4703c3be9"
+    ],
+    "stitch-react-components": [
+      "17765d1885068e0bc96443438c5af6aa51b8607aa59e28407af032e610f7b40f"
+    ],
+    "stitch-upload-to-stitch": [
+      "471230956c5246b5b416115d049e9f662cd0341f3b51f17a87363e114007c921"
+    ],
+    "store-release": [
+      "c926122686fd8873ee8cdfd8c853f4a3b30a7516026cc2075c3127d4af9e711d"
+    ],
+    "supabase": [
+      "d6201e75c70dbf5e559e95b5e86ff6aa0c98696b80c4e9cbe2fc4ca7811fc55e"
+    ],
+    "systematic-debugging": [
+      "9cac50a4fac17d50d7c0894b4f68a3baf9e1e8b8934fb92bd5ac375026cb340e"
+    ],
+    "taste-design": [
+      "eeef43286821a33cfddbb510811fa26621827fa5f13850cbbe41dc51696db45d"
+    ],
+    "test-driven-development": [
+      "db8b7423d36a61158974df582321ecfc7b82b9ea0f1ce024314994eae7e63aa3"
+    ],
+    "using-git-worktrees": [
+      "16751f188436858d996b91bf9fe6af85d57e2d98545290c65129d28336ac163a"
+    ],
+    "verification-before-completion": [
+      "9bbfb6e6e86cc0bcd8283683079e3c376f78c4792a5b8e76dcd140fb99fdf8a4"
+    ],
+    "visual-forensics": [
+      "d3df9fa25ddf964f9cd33c7a86f1e7cfc721434d2ce89990591c57722be228e6",
+      "d2ab6ee3111eae5766b2ebe1d6e78fb0a194415ed0078c2968b95d7062f92e1f"
+    ],
+    "visual-golden-still": [
+      "8fa2b483e077b69febd3528bf72d7576691372fc96eaf07fe61ade336585d742"
+    ],
+    "web-design-guidelines": [
+      "9727ef8e45c5878cd8cfa1077e69fe22cc1baaad0475dc147301400c24fd9c5b",
+      "2443953afbc1fcc83220efebe7ac819bd5d2ab68cb61b4152773df96f89cbe1f"
+    ],
+    "writing-skills": [
+      "e185b0ed3e1fd062391ef0b00ceff04e4e1606b1a0788ca9ac9d659c8ac4f59a"
+    ],
+    "constraint-driven-development": [
+      "5f5c8d0f3cabc329fb07c03c61e10ae4d449b314fe1803535a7d976007a8fa1e"
+    ],
+    "domain-modeling": [
+      "1bf1214948f42ae89725eb32f58f70dcd5d4c326d163e8bf9d2a327f9b36dc83"
+    ],
+    "find-skills": [
+      "36e553cf581f7a2d9793fcafeeeb2eb2c7f703f5d8bcc4bfdb2692fc9408f5e6"
+    ],
+    "grilling": [
+      "79b61c72f6e0dbc85a290c184ac0f5f380cf93aa6abe1388ba16977182640f6d"
+    ],
+    "ow-3d-engineering": [
+      "36b0614a75d7518ff40d06afe24c69d3a66730278a8624a21efb921394746b0b"
+    ],
+    "ow-backend-architecture": [
+      "a2b5503c34d0eeb780ff9f0a73894ded4011289e84a4a555f86b3292e3b6a7da"
+    ],
+    "ow-benchmark": [
+      "a9f3218f2a9b6e4748d1617e46c0f86d4afd5781dbf42e3303ee1510a6bfba8c"
+    ],
+    "ow-brainstorm": [
+      "2f08b995da6bd644b760bf2eb5c6b317319a2c7e4b86a22ac25570bd2aea48eb"
+    ],
+    "ow-career": [
+      "15214389586572a15dd944950a2d9b0d34427c0af6e550e7aa064c19fba2a3a8"
+    ],
+    "ow-coach": [
+      "4d37657b1c295c707423286f23d25f01da135c548e4d24433ff180716f0d1117"
+    ],
+    "ow-component-discovery": [
+      "9134070236127d1a0186c5ed80303eadbc3b0edca858e6a5bd96df387d76ec2c"
+    ],
+    "ow-conductor": [
+      "f5f1797145b23f9b3d4a4fa6022d1e5501741f5e3bce6af2c22b2b25573b5422"
+    ],
+    "ow-deploy": [
+      "42f880d96cd52164c1ea4eee860035e4c8be11416e830022fadc7d078d6fe2da"
+    ],
+    "ow-design-intelligence": [
+      "5ff1902405440eba017c4769e834cc7d384ffc63306f576614844adf5e8e9b31"
+    ],
+    "ow-diagrams": [
+      "d1710993d234c9a2c714e8e2d91754b31119e5f5fe7a1abe547ebfc1f5cb345a"
+    ],
+    "ow-docs": [
+      "cb29e352f6a7e83f2245c92636056a214c719b8a033bf389be931f9b9c468177"
+    ],
+    "ow-focus": [
+      "85d4b41e5ae59c905d288184b3132256a7317df7fc89c274dae0453041dc5e84"
+    ],
+    "ow-forge": [
+      "299bea8e94597a8e518aa831a7b733bafa9c5945d5885b6af9b8366c565f8cec"
+    ],
+    "ow-fresh-review": [
+      "8e74a789670693a6f5f99dc9d0a8daff3b3f75fd3b392b8d967d4bacd1226a89"
+    ],
+    "ow-golden-still": [
+      "b52e49025f811cfc654a49b5f0145d2b626a6a1e51fd077a2ed311f9dddfdf16"
+    ],
+    "ow-marketing": [
+      "cbbee922c8e690508480d71db1935b9d7a7f259dacfcde8b5e40e73f0cbfbac0"
+    ],
+    "ow-ml-experiment": [
+      "9fa26d106b57f913f8ebdf8b0a53607ae756c654c720f80db364910306f11f5b"
+    ],
+    "ow-motion-engineering": [
+      "f3909937d493d08a2207c75655740f93448354bf336a80764dd7af62c3b225e0"
+    ],
+    "ow-observability": [
+      "d231ae8d7e7ba7857b61841d0828f0d84d891858b68bb20b9f506e3143c27c35"
+    ],
+    "ow-onboard": [
+      "4939e14d89dc34d98efbd8575da49e787e852707572b59532c4fdb364d32a1a1"
+    ],
+    "ow-presentation": [
+      "e0a09fec514a96cbe1a30be8bb43a6aab204fdacb464f040044ae3d81eb9b508"
+    ],
+    "ow-reference-forensics": [
+      "cbac57cf8590fa67643e943cb3deef2ac49ac89c8478ef2befa0b2447044650b"
+    ],
+    "ow-research": [
+      "a74e4cad064ea55f9e2ef8599f53a4b6d13b452e36ee7b8ef465ac11876fd522"
+    ],
+    "ow-research-paper": [
+      "570d3a87cc42ab7183fe9105234746f821fb775a1c191a682301894dafdd5793"
+    ],
+    "ow-resource-scout": [
+      "e4242368c8b74e2f98a2c02e08f08701d287cda17eb9baae5d90245cc8a94c95"
+    ],
+    "ow-review-panel": [
+      "054a1062ac918ec30382595256387b1d08d4b2e81e9dc0cd27eeb81ab26cb4f3"
+    ],
+    "ow-semgrep": [
+      "5987281478a4208d12abd45176a4b9d10807dc796cb7f6a7ab88e2f5a85a1820"
+    ],
+    "ow-ship": [
+      "ccda07a6984256d9af3c211e45b0201e0969a34c0dceb344813d4bba84d2926a"
+    ],
+    "ow-ship-safe": [
+      "101ef71641f4aaaba9e87845011365da3e3817f8ddb3a47942c9877b53ed6473"
+    ],
+    "ow-showcase": [
+      "adef40d367cc84544c7f2853f16b5395954bc5be39faebca824800b38dafb2b4"
+    ],
+    "ow-skill-advisor": [
+      "97b537e2d6d3d990723eea660f91cfa97372cc6f2b8c2c842a0976e653f3a037"
+    ],
+    "ow-skill-security-check": [
+      "1411d95da5ee2f3995e3518e0a8a2f30e762ee51c81922e9ab10bc68e5250138"
+    ],
+    "ow-store-release": [
+      "0b1c1b01f9c1138ecd7dbb6f4748b52d8ab33a97a29685301ca9fccac98b9d3f"
+    ],
+    "ow-typescript": [
+      "501304941b87378fc649584dd9dbe275d468eae5f862f2822a867b9fda19391b"
+    ],
+    "ow-vault": [
+      "73db85f2e99abae17a408b4fca7d660b922cf074018552ac6d75e751a3ec779a"
+    ],
+    "ow-video": [
+      "908d275461277ee29b65c7a2efb584060a648a2e82c206b9d191746435dce05b"
+    ],
+    "receiving-code-review": [
+      "39e256772f0d4e69f0849c6b9dd71a5affcd3665c4eeb3d9039a64aed3ba7c30"
+    ],
+    "to-tickets": [
+      "5f4fdc2afa4c04a531b775a5c25cc60a01613159854a0eb39b16f9eec8548766"
+    ]
+  }
+}

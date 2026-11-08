@@ -8,12 +8,12 @@ GitHub renders these from the implementation. The three README figures are SVGs 
 flowchart TD
   human[Human]
   conductor[One conductor]
-  graph[Capability graph]
+  capability[Capability graph]
   note[Routing note]
   hosts[Host adapters]
   brain[Private Brain]
   human --> conductor
-  conductor --> graph
+  conductor --> capability
   conductor --> note
   conductor --> hosts
   conductor --> brain

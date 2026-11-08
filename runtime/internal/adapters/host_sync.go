@@ -4,8 +4,8 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"fmt"
-	"io"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"sort"
 	"strings"
@@ -230,74 +230,30 @@ func (e *HostSyncEngine) AuditActiveSkills(userHome string) (*ParityReport, erro
 	return report, nil
 }
 
-// SyncAll synchronizes canonical skills from the workspace repository into target hosts
+// SyncAll delegates to ow-sync. It does not copy over a local edit by itself.
 func (e *HostSyncEngine) SyncAll(userHome string, targetHost string) error {
 	if err := resources.CheckQuarantineBoundary(userHome); err != nil {
 		return fmt.Errorf("userHome violates quarantine: %w", err)
 	}
-
-	sourceDir := filepath.Join(e.WorkspaceRoot, "skills")
-	if _, err := os.Stat(sourceDir); os.IsNotExist(err) {
-		// Fallback to Cursor skills or Gemini skills as source
-		cand1 := filepath.Join(userHome, ".cursor", "skills")
-		cand2 := filepath.Join(userHome, ".gemini", "config", "skills")
-		if _, err := os.Stat(cand1); err == nil {
-			sourceDir = cand1
-		} else if _, err := os.Stat(cand2); err == nil {
-			sourceDir = cand2
-		} else {
-			return fmt.Errorf("no valid skill source directory found (checked %s, %s, %s)", sourceDir, cand1, cand2)
-		}
+	script := filepath.Join(e.WorkspaceRoot, "runtime", "tools", "ow-sync.mjs")
+	if _, err := os.Stat(script); err != nil {
+		return fmt.Errorf("ow-sync missing: %w", err)
 	}
-
-	if err := resources.CheckQuarantineBoundary(sourceDir); err != nil {
-		return fmt.Errorf("source skills directory violates quarantine: %w", err)
+	args := []string{script, "--apply"}
+	host := strings.ToLower(strings.TrimSpace(targetHost))
+	if host == "gemini" {
+		host = "antigravity"
 	}
-
-	hostDirs := e.ResolveHostDirs(userHome)
-
-	var targets []HostType
-	switch strings.ToLower(targetHost) {
-	case "cursor":
-		targets = []HostType{HostCursor}
-	case "claude":
-		targets = []HostType{HostClaudeCode}
-	case "antigravity", "gemini":
-		targets = []HostType{HostAntigravity}
-	case "agents":
-		targets = []HostType{HostAgents}
-	case "jcode":
-		targets = []HostType{HostJcode}
-	case "all", "":
-		targets = []HostType{HostCursor, HostClaudeCode, HostAntigravity, HostAgents, HostJcode}
-	default:
-		return fmt.Errorf("unknown target host: %s", targetHost)
+	if host != "" && host != "all" {
+		args = append(args, "--host", host)
 	}
-
-	for _, host := range targets {
-		destDir := hostDirs[host]
-		if err := resources.CheckQuarantineBoundary(destDir); err != nil {
-			return fmt.Errorf("target directory %s violates quarantine: %w", destDir, err)
-		}
-
-		if err := os.MkdirAll(destDir, 0755); err != nil {
-			return fmt.Errorf("failed creating host dir %s: %w", destDir, err)
-		}
-
-		for _, skill := range CanonicalActiveSkills {
-			srcSkill := filepath.Join(sourceDir, skill)
-			destSkill := filepath.Join(destDir, skill)
-
-			if _, err := os.Stat(srcSkill); os.IsNotExist(err) {
-				continue
-			}
-
-			if err := copyDir(srcSkill, destSkill); err != nil {
-				return fmt.Errorf("failed copying skill %s to %s: %w", skill, destSkill, err)
-			}
-		}
+	cmd := exec.Command("node", args...)
+	cmd.Dir = e.WorkspaceRoot
+	cmd.Env = append(os.Environ(), "OW_SYNC_HOME="+userHome)
+	out, err := cmd.CombinedOutput()
+	if err != nil {
+		return fmt.Errorf("ow-sync: %w: %s", err, out)
 	}
-
 	return nil
 }
 
@@ -336,52 +292,4 @@ func ComputeSkillDirHash(dirPath string) (string, error) {
 	}
 
 	return hex.EncodeToString(hasher.Sum(nil)), nil
-}
-
-// copyDir recursively copies files from src to dst
-func copyDir(src string, dst string) error {
-	if err := os.MkdirAll(dst, 0755); err != nil {
-		return err
-	}
-
-	entries, err := os.ReadDir(src)
-	if err != nil {
-		return err
-	}
-
-	for _, entry := range entries {
-		srcPath := filepath.Join(src, entry.Name())
-		dstPath := filepath.Join(dst, entry.Name())
-
-		if entry.IsDir() {
-			if err := copyDir(srcPath, dstPath); err != nil {
-				return err
-			}
-		} else {
-			if err := copyFile(srcPath, dstPath); err != nil {
-				return err
-			}
-		}
-	}
-
-	return nil
-}
-
-func copyFile(src, dst string) error {
-	in, err := os.Open(src)
-	if err != nil {
-		return err
-	}
-	defer in.Close()
-
-	out, err := os.Create(dst)
-	if err != nil {
-		return err
-	}
-	defer out.Close()
-
-	if _, err := io.Copy(out, in); err != nil {
-		return err
-	}
-	return out.Sync()
 }

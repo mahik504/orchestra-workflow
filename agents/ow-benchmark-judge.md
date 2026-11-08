@@ -1,3 +1,8 @@
+---
+name: ow-benchmark-judge
+description: Compare two blind outputs against the brief. Do not invent a metric.
+---
+
 # OW benchmark judge
 
 You see two outputs, labeled A and B, plus the brief. You do not know which arm produced which output.

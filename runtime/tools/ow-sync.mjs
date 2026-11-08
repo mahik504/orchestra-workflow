@@ -1,5 +1,5 @@
 // Transactional skill sync. Dry-run unless --apply.
-// Never deletes a skill that this tool did not install.
+// A skill this tool did not install stays, except old Orchestra names, which move to a backup.
 //
 //   node runtime/tools/ow-sync.mjs
 //   node runtime/tools/ow-sync.mjs --apply --host cursor
@@ -70,7 +70,7 @@ function writeManifest(destRoot, manifest) {
   fs.writeFileSync(path.join(destRoot, '.ow-manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
 }
 
-export function planSync({ sourceIds, sourceRoot, destRoot, backupAndReplace }) {
+export function planSync({ sourceIds, sourceRoot, destRoot, backupAndReplace, knownHashes = {} }) {
   const manifest = readManifest(destRoot);
   const actions = [];
   for (const id of sourceIds) {
@@ -87,15 +87,60 @@ export function planSync({ sourceIds, sourceRoot, destRoot, backupAndReplace }) 
     }
     const dstHash = hashTree(dst);
     const recorded = manifest.skills && manifest.skills[id] && manifest.skills[id].sha256;
+    const known = new Set(knownHashes[id] || []);
     if (dstHash === srcHash) {
       actions.push({ id, action: 'unchanged', srcHash });
-    } else if (recorded === dstHash || backupAndReplace) {
+    } else if (recorded === dstHash || known.has(dstHash) || backupAndReplace) {
       actions.push({ id, action: 'replace', srcHash, dstHash });
     } else {
       actions.push({ id, action: 'conflict', srcHash, dstHash });
     }
   }
   return { manifest, actions };
+}
+
+export const RETIRED_EXTRA = ['creative-3d-web', 'fullstack-mastery'];
+
+export function aliasIds(repo) {
+  const file = path.join(repo, 'registries', 'skill-aliases.json');
+  if (!fs.existsSync(file)) return [...RETIRED_EXTRA];
+  const doc = JSON.parse(fs.readFileSync(file, 'utf8'));
+  return [...new Set([...Object.keys(doc.aliases || {}), ...RETIRED_EXTRA])];
+}
+
+export function loadKnownHashes(repo) {
+  const file = path.join(repo, 'registries', 'known-skill-hashes.json');
+  if (!fs.existsSync(file)) return {};
+  return JSON.parse(fs.readFileSync(file, 'utf8')).hashes || {};
+}
+
+export function planRetire(destRoot, ids) {
+  return ids.filter((id) => {
+    const dir = path.join(destRoot, id);
+    return fs.existsSync(dir) && fs.statSync(dir).isDirectory();
+  }).map((id) => ({ id, action: 'retire' }));
+}
+
+export function applyRetire({ destRoot, ids, backupRoot }) {
+  const present = planRetire(destRoot, ids).map((item) => item.id);
+  if (!present.length) return [];
+  const mark = stamp();
+  const applied = [];
+  for (const id of present) {
+    const dst = path.join(destRoot, id);
+    const bucket = path.join(backupRoot, mark, id);
+    fs.mkdirSync(path.dirname(bucket), { recursive: true });
+    moveDir(dst, bucket);
+    applied.push({ id, backup: bucket });
+  }
+  if (fs.existsSync(path.join(destRoot, '.ow-manifest.json'))) {
+    const manifest = readManifest(destRoot);
+    for (const id of present) {
+      if (manifest.skills) delete manifest.skills[id];
+    }
+    writeManifest(destRoot, manifest);
+  }
+  return applied;
 }
 
 function copyTree(src, dst) {
@@ -121,6 +166,26 @@ function stamp() {
   return new Date().toISOString().replace(/[:.]/g, '-');
 }
 
+function moveDir(from, to) {
+  fs.mkdirSync(path.dirname(to), { recursive: true });
+  let last;
+  for (let attempt = 0; attempt < 6; attempt++) {
+    try {
+      fs.renameSync(from, to);
+      return;
+    } catch (error) {
+      last = error;
+      if (error.code === 'EXDEV') break;
+      if (!['EPERM', 'EBUSY', 'EACCES'].includes(error.code)) throw error;
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 200);
+    }
+  }
+  if (!last || last.code !== 'EXDEV') throw last;
+  fs.cpSync(from, to, { recursive: true });
+  fs.rmSync(from, { recursive: true, force: true });
+  if (fs.existsSync(from)) throw last;
+}
+
 export function applySync({ sourceRoot, destRoot, actions, backupRoot, source = 'orchestra' }) {
   const manifest = readManifest(destRoot);
   manifest.skills = manifest.skills || {};
@@ -139,11 +204,11 @@ export function applySync({ sourceRoot, destRoot, actions, backupRoot, source = 
     if (item.action === 'replace') {
       const bucket = path.join(backupRoot, stamp(), item.id);
       fs.mkdirSync(path.dirname(bucket), { recursive: true });
-      fs.renameSync(dst, bucket);
+      moveDir(dst, bucket);
       applied.push({ id: item.id, backup: bucket, previous: item.dstHash });
     }
     fs.mkdirSync(path.dirname(dst), { recursive: true });
-    fs.renameSync(staged, dst);
+    moveDir(staged, dst);
     fs.rmSync(stage, { recursive: true, force: true });
     manifest.skills[item.id] = { sha256: item.srcHash, source };
   }
@@ -187,6 +252,192 @@ export function restoreStamp({ destRoot, backupStampDir, apply }) {
 export function canonicalIds(repo) {
   const stack = JSON.parse(fs.readFileSync(path.join(repo, 'registries', 'host-stack.json'), 'utf8'));
   return [...stack.skills].sort();
+}
+
+export function renderAgent(markdown, host) {
+  const text = markdown.replace(/\r\n/g, '\n');
+  const match = text.match(/^---\n([\s\S]*?)\n---\n?/);
+  let body = text;
+  let name = 'agent';
+  let description = 'Orchestra agent';
+  if (match) {
+    body = text.slice(match[0].length).replace(/^\n/, '');
+    const nameMatch = match[1].match(/^name:\s*(.+)$/m);
+    const descMatch = match[1].match(/^description:\s*(.+)$/m);
+    if (nameMatch) name = nameMatch[1].trim();
+    if (descMatch) description = descMatch[1].trim();
+  }
+  const lines = ['---', `name: ${name}`, `description: ${description}`];
+  if (host === 'cursor') lines.push('model: inherit', 'readonly: true', 'is_background: false');
+  lines.push('---', '');
+  return lines.join('\n') + (body.endsWith('\n') ? body : `${body}\n`);
+}
+
+export function syncAgents({ repo, destDir, host, apply }) {
+  const src = path.join(repo, 'agents');
+  if (!fs.existsSync(src)) return [];
+  const actions = [];
+  for (const name of fs.readdirSync(src).filter((item) => item.endsWith('.md')).sort()) {
+    const body = renderAgent(fs.readFileSync(path.join(src, name), 'utf8'), host);
+    const dest = path.join(destDir, name);
+    const current = fs.existsSync(dest) ? fs.readFileSync(dest, 'utf8') : '';
+    const action = !current ? 'copy' : current === body ? 'unchanged' : 'replace';
+    actions.push({ id: name, action });
+    if (apply && action !== 'unchanged') {
+      fs.mkdirSync(destDir, { recursive: true });
+      fs.writeFileSync(dest, body);
+    }
+  }
+  return actions;
+}
+
+export function syncCommands({ repo, destDir, apply }) {
+  const src = path.join(repo, 'commands');
+  if (!fs.existsSync(src)) return [];
+  const actions = [];
+  for (const name of fs.readdirSync(src).filter((item) => item.endsWith('.md')).sort()) {
+    const body = fs.readFileSync(path.join(src, name));
+    const dest = path.join(destDir, name);
+    const current = fs.existsSync(dest) ? fs.readFileSync(dest) : null;
+    const action = !current ? 'copy' : current.equals(body) ? 'unchanged' : 'replace';
+    actions.push({ id: name, action });
+    if (apply && action !== 'unchanged') {
+      fs.mkdirSync(destDir, { recursive: true });
+      fs.writeFileSync(dest, body);
+    }
+  }
+  return actions;
+}
+
+export function orchestraAdapter(body) {
+  const text = body.replace(/\r\n/g, '\n');
+  if (text.includes('<!-- orchestra:start -->')) return text.endsWith('\n') ? text : `${text}\n`;
+  const inner = text.endsWith('\n') ? text : `${text}\n`;
+  return `<!-- orchestra:start -->\n${inner}<!-- orchestra:end -->\n`;
+}
+
+export function adapterLooksLikeOrchestra(text) {
+  return text.includes('ORCHESTRA = CONTROL PLANE')
+    || text.includes('BEGIN ORCHESTRA')
+    || text.includes('<!-- orchestra:start -->');
+}
+
+function spliceAdapter(current, body) {
+  const start = '<!-- orchestra:start -->';
+  const end = '<!-- orchestra:end -->';
+  const text = current.replace(/\r\n/g, '\n');
+  const inner = body.replace(/\r\n/g, '\n');
+  const at = text.indexOf(start);
+  const close = text.indexOf(end);
+  if (at < 0 || close < at) return inner;
+  return text.slice(0, at) + inner + text.slice(close + end.length);
+}
+
+export function planAdapter({ file, body, maxBytes = 0 }) {
+  if (maxBytes && Buffer.byteLength(body) > maxBytes) {
+    throw new Error(`${path.basename(file)} exceeds ${maxBytes} bytes`);
+  }
+  if (!fs.existsSync(file)) return { action: 'copy' };
+  const current = fs.readFileSync(file, 'utf8');
+  if (!current.trim()) return { action: 'replace', body };
+  if (!adapterLooksLikeOrchestra(current)) return { action: 'leave' };
+  const next = spliceAdapter(current, body);
+  if (current.replace(/\r\n/g, '\n') === next) return { action: 'unchanged' };
+  return { action: 'replace', body: next };
+}
+
+export function applyAdapter({ file, body, backupRoot, maxBytes = 0 }) {
+  const decision = planAdapter({ file, body, maxBytes });
+  if (decision.action === 'unchanged' || decision.action === 'leave') return decision;
+  body = decision.body || body;
+  if (fs.existsSync(file)) {
+    const bucket = path.join(backupRoot, stamp(), path.basename(file));
+    fs.mkdirSync(path.dirname(bucket), { recursive: true });
+    fs.copyFileSync(file, bucket);
+    decision.backup = bucket;
+  }
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, body);
+  return decision;
+}
+
+const CLAUDE_MCP = {
+  shadcn: { command: 'npx', args: ['shadcn@latest', 'mcp'] },
+  'magic-ui': { command: 'npx', args: ['-y', '@magicuidesign/mcp@latest'] },
+};
+
+export function planClaudeMcp(file) {
+  if (!fs.existsSync(file)) return { action: 'absent', added: [] };
+  const json = JSON.parse(fs.readFileSync(file, 'utf8'));
+  const servers = json.mcpServers || {};
+  const added = Object.keys(CLAUDE_MCP).filter((name) => !servers[name]);
+  return { action: added.length ? 'add' : 'unchanged', added };
+}
+
+export function applyClaudeMcp({ file, backupRoot }) {
+  const decision = planClaudeMcp(file);
+  if (decision.action !== 'add') return decision;
+  const json = JSON.parse(fs.readFileSync(file, 'utf8'));
+  json.mcpServers = json.mcpServers || {};
+  for (const name of decision.added) json.mcpServers[name] = CLAUDE_MCP[name];
+  const bucket = path.join(backupRoot, stamp(), 'claude-settings.json');
+  fs.mkdirSync(path.dirname(bucket), { recursive: true });
+  fs.copyFileSync(file, bucket);
+  fs.writeFileSync(file, JSON.stringify(json, null, 2) + '\n');
+  return decision;
+}
+
+function syncSurface(home, selected, apply, backupRoot) {
+  const want = new Set(selected);
+  if (want.has('cursor')) {
+    printActions('cursor-agents', syncAgents({
+      repo: REPO,
+      destDir: path.join(home, '.cursor', 'agents'),
+      host: 'cursor',
+      apply,
+    }));
+    printActions('cursor-commands', syncCommands({
+      repo: REPO,
+      destDir: path.join(REPO, '.cursor', 'commands'),
+      apply,
+    }));
+  }
+  if (want.has('claude')) {
+    printActions('claude-agents', syncAgents({
+      repo: REPO,
+      destDir: path.join(home, '.claude', 'agents'),
+      host: 'claude',
+      apply,
+    }));
+    printActions('claude-commands', syncCommands({
+      repo: REPO,
+      destDir: path.join(home, '.claude', 'commands'),
+      apply,
+    }));
+    const claudeBody = orchestraAdapter(fs.readFileSync(path.join(REPO, 'CLAUDE.md'), 'utf8'));
+    const claudeFile = path.join(home, '.claude', 'CLAUDE.md');
+    const claudePlan = planAdapter({ file: claudeFile, body: claudeBody });
+    console.log(`claude-adapter  ${claudePlan.action}  CLAUDE.md`);
+    if (apply) applyAdapter({ file: claudeFile, body: claudeBody, backupRoot });
+    const mcpFile = path.join(home, '.claude', 'settings.json');
+    const mcpPlan = planClaudeMcp(mcpFile);
+    console.log(`claude-mcp  ${mcpPlan.action}  ${mcpPlan.added.join(',')}`);
+    if (apply) applyClaudeMcp({ file: mcpFile, backupRoot });
+  }
+  if (want.has('antigravity')) {
+    const body = orchestraAdapter(fs.readFileSync(path.join(REPO, 'kit', 'antigravity', 'GEMINI.md'), 'utf8'));
+    const file = path.join(home, '.gemini', 'GEMINI.md');
+    const decision = planAdapter({ file, body, maxBytes: 24 * 1024 });
+    console.log(`gemini-adapter  ${decision.action}  GEMINI.md`);
+    if (apply) applyAdapter({ file, body, backupRoot, maxBytes: 24 * 1024 });
+  }
+  if (want.has('codex')) {
+    const body = orchestraAdapter(fs.readFileSync(path.join(REPO, 'kit', 'codex', 'AGENTS.md'), 'utf8'));
+    const file = path.join(home, '.codex', 'AGENTS.md');
+    const decision = planAdapter({ file, body });
+    console.log(`codex-adapter  ${decision.action}  AGENTS.md`);
+    if (apply) applyAdapter({ file, body, backupRoot });
+  }
 }
 
 function parseArgs(argv) {
@@ -246,7 +497,7 @@ function runCli(argv) {
         }
         const bucket = path.join(backupRoot, stamp(), id);
         fs.mkdirSync(path.dirname(bucket), { recursive: true });
-        fs.renameSync(dst, bucket);
+        moveDir(dst, bucket);
         delete manifest.skills[id];
         writeManifest(dest, manifest);
         console.log(`${host}  retired  ${id}`);
@@ -259,6 +510,7 @@ function runCli(argv) {
       sourceRoot: path.join(REPO, 'skills'),
       destRoot: dest,
       backupAndReplace: args.backupAndReplace,
+      knownHashes: loadKnownHashes(REPO),
     });
     printActions(host, canonical.actions);
     if (args.apply) {
@@ -287,7 +539,13 @@ function runCli(argv) {
         });
       }
     }
+    const retired = planRetire(dest, aliasIds(REPO));
+    printActions(host, retired);
+    if (args.apply && retired.length) {
+      applyRetire({ destRoot: dest, ids: retired.map((item) => item.id), backupRoot });
+    }
   }
+  if (!args.restore && !args.retire.length) syncSurface(home, selected, args.apply, backupRoot);
   if (!args.apply) console.log('dry-run. Pass --apply to write.');
 }
 

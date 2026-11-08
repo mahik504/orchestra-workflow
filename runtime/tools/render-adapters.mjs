@@ -26,6 +26,13 @@ export function routingMarkdown(doc) {
   return lines.join('\n');
 }
 
+export function rulesMarkdown(doc) {
+  const lines = ['<!-- rules:start -->', '## Shared rules', ''];
+  for (const rule of doc.rules || []) lines.push(`- ${rule}`);
+  lines.push('<!-- rules:end -->');
+  return lines.join('\n');
+}
+
 export function engineeringMarkdown(doc) {
   const lines = [ENG_START, '| Job | Skill |', '| --- | --- |'];
   for (const [job, skill] of doc.engineering) {
@@ -45,6 +52,7 @@ function replaceBlock(text, start, end, block) {
 const version = JSON.parse(fs.readFileSync(path.join(REPO, 'registries', 'versions.json'), 'utf8')).current;
 const doc = JSON.parse(fs.readFileSync(path.join(REPO, 'registries', 'routing.json'), 'utf8'));
 const routing = routingMarkdown(doc);
+const rules = rulesMarkdown(doc);
 const engineering = engineeringMarkdown(doc);
 
 const copies = [
@@ -63,7 +71,15 @@ for (const rel of copies) {
     console.error(`${rel} has no routing markers`);
     process.exit(1);
   }
-  fs.writeFileSync(file, next);
+  let withRules = next;
+  if (next.includes('<!-- rules:start -->')) {
+    withRules = replaceBlock(next, '<!-- rules:start -->', '<!-- rules:end -->', rules);
+    if (!withRules) {
+      console.error(`${rel} has a broken rules block`);
+      process.exit(1);
+    }
+  }
+  fs.writeFileSync(file, withRules);
   console.log(`rendered ${rel}`);
 }
 
