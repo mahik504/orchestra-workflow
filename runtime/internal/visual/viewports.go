@@ -1,6 +1,9 @@
 package visual
 
-import "strings"
+import (
+	"fmt"
+	"strings"
+)
 
 type Viewport struct {
 	Name   string `json:"name"`
@@ -42,4 +45,32 @@ func NeedsTablet(objective string, parameters map[string]any) bool {
 		}
 	}
 	return strings.Contains(strings.ToLower(objective), "tablet")
+}
+
+func SelectViewports(spec string) ([]Viewport, error) {
+	catalog := map[string]Viewport{
+		ViewportDesktop: {Name: ViewportDesktop, Width: 1440, Height: 900},
+		ViewportMobile:  {Name: ViewportMobile, Width: 390, Height: 844},
+		ViewportTablet:  {Name: ViewportTablet, Width: 768, Height: 1024},
+	}
+	spec = strings.TrimSpace(spec)
+	if spec == "" {
+		return DefaultViewports(true), nil
+	}
+	var out []Viewport
+	for _, part := range strings.Split(spec, ",") {
+		name := strings.ToLower(strings.TrimSpace(part))
+		if name == "" {
+			continue
+		}
+		vp, ok := catalog[name]
+		if !ok {
+			return nil, fmt.Errorf("unknown viewport %q", name)
+		}
+		out = append(out, vp)
+	}
+	if len(out) == 0 {
+		return nil, fmt.Errorf("no viewports selected")
+	}
+	return out, nil
 }

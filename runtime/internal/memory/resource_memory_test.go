@@ -4,6 +4,7 @@ import (
 	"errors"
 	"os"
 	"path/filepath"
+	"strings"
 	"sync"
 	"testing"
 
@@ -299,5 +300,67 @@ func TestResolveDefaultMemoryPath_HomeBeatsWorkspaceSeed(t *testing.T) {
 	want = filepath.Join(clone, ".orchestra", "memory", "resource-memory.json")
 	if got != filepath.Clean(want) {
 		t.Fatalf("HOME unset: got %s want %s (must not pick clone memory/ seed)", got, want)
+	}
+}
+
+func TestMissingLedgerIsNotPresent(t *testing.T) {
+	store, err := NewResourceMemoryStore(filepath.Join(t.TempDir(), "missing.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if store.Exists() {
+		t.Fatal("a missing file was treated as a ledger")
+	}
+}
+
+func TestRecordStoresFingerprintNotPrompt(t *testing.T) {
+	memFile := filepath.Join(t.TempDir(), "memory.json")
+	store, err := NewResourceMemoryStore(memFile)
+	if err != nil {
+		t.Fatal(err)
+	}
+	secret := "sk-test-secret-value"
+	prompt := "please store this prompt verbatim"
+	err = store.Record(&ResourceEvaluation{
+		ResourceID:   "playwright",
+		Domain:       "qa",
+		Capability:   "visual",
+		TaskContext:  prompt,
+		Outcome:      OutcomeSuccess,
+		QualityScore: 1,
+		Notes:        "note " + secret,
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	raw, err := os.ReadFile(memFile)
+	if err != nil {
+		t.Fatal(err)
+	}
+	text := string(raw)
+	if strings.Contains(text, prompt) || strings.Contains(text, secret) {
+		t.Fatalf("ledger kept private text: %s", text)
+	}
+	if !strings.Contains(text, Fingerprint(prompt)) || !strings.Contains(text, "[redacted]") {
+		t.Fatalf("ledger missing fingerprint or redaction: %s", text)
+	}
+}
+
+func TestRetentionKeepsLast500(t *testing.T) {
+	store, err := NewResourceMemoryStore(filepath.Join(t.TempDir(), "memory.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	for i := 0; i < MaxEvaluations+1; i++ {
+		if err := store.Record(&ResourceEvaluation{
+			ResourceID:   "playwright",
+			Outcome:      OutcomeSuccess,
+			QualityScore: 1,
+		}); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if len(store.doc.Evaluations) != MaxEvaluations {
+		t.Fatalf("kept %d", len(store.doc.Evaluations))
 	}
 }

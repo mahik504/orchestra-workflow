@@ -30,6 +30,20 @@ function descriptionChars() {
   return { total, ow, over };
 }
 
+function routeBytes() {
+  const rows = [];
+  for (const route of routing.routes) {
+    if (!['Award-style site', 'Full-stack app', 'Mobile app'].includes(route.job)) continue;
+    let bytes = 0;
+    for (const id of route.load) {
+      const file = path.join(REPO, 'skills', id, 'SKILL.md');
+      if (fs.existsSync(file)) bytes += fs.statSync(file).size;
+    }
+    rows.push({ job: route.job, skills: route.load.length, bytes });
+  }
+  return rows;
+}
+
 const agents = chars(path.join(REPO, 'AGENTS.md'));
 const routing = JSON.parse(fs.readFileSync(path.join(REPO, 'registries', 'routing.json'), 'utf8'));
 const routingChars = JSON.stringify(routing.routes.map((route) => ({
@@ -78,10 +92,41 @@ if (desc.over.length) {
   lines.push('');
 }
 
+const heavy = routeBytes();
+lines.push('## Heavy routes');
+lines.push('');
+lines.push('| Route | Skills | SKILL.md bytes |');
+lines.push('| --- | ---: | ---: |');
+for (const row of heavy) {
+  lines.push(`| ${row.job} | ${row.skills} | ${row.bytes} |`);
+}
+lines.push('');
+lines.push('These sizes are a measurement. They are not a cap.');
+lines.push('');
+
 const out = path.join(REPO, 'docs', 'CONTEXT-BUDGET.md');
-fs.writeFileSync(out, lines.join('\n'));
+const check = process.argv.includes('--check');
 console.log(`AGENTS.md ${agents}`);
 console.log(`descriptions ${desc.total}`);
 console.log(`ow over 300: ${desc.over.length}`);
-console.log(`wrote ${out}`);
-if (desc.over.length) process.exit(1);
+for (const row of heavy) console.log(`${row.job} ${row.skills} skills ${row.bytes} bytes`);
+if (check) {
+  let failed = false;
+  if (agents > 3072) {
+    console.log(`AGENTS.md is ${agents} characters; cap is 3072`);
+    failed = true;
+  }
+  const existing = fs.existsSync(out) ? fs.readFileSync(out, 'utf8') : '';
+  const baseline = Number((existing.match(/Skill descriptions, all canonical skills \| (\d+)/) || [])[1] || desc.total);
+  if (desc.total > baseline) {
+    console.log(`descriptions ${desc.total} exceed the recorded baseline ${baseline}`);
+    failed = true;
+  }
+  if (desc.over.length) failed = true;
+  if (failed) process.exit(1);
+  console.log('check ok');
+} else {
+  fs.writeFileSync(out, lines.join('\n'));
+  console.log(`wrote ${out}`);
+  if (desc.over.length) process.exit(1);
+}

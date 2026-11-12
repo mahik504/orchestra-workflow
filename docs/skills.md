@@ -26,7 +26,7 @@ Owner: upstream. License: MIT.
 
 Build an animation from scratch, making the decisions in the order that determines whether it feels right — should it animate at all, what purpose, which tool, which properties, which curve and duration, how it interrupts, how it exits. Writes the implementation. Use when asked to animate something,
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: MIT.
 
 No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
 
@@ -44,7 +44,7 @@ Owner: upstream. License: MIT.
 
 Add security scanning to CI/CD with Strix — GitHub Actions, GitLab CI, or any pipeline — so every pull request gets a diff-scoped AI pentest that blocks vulnerable code before it merges, with results as PR comments and SARIF uploaded to code scanning. Covers both the self-hosted open-source CLI (run
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: Apache-2.0.
 
 No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
 
@@ -68,7 +68,7 @@ No route loads this skill by itself. It runs when you name it, or when an engine
 
 EAS service (paid). Deploy Expo apps to the app stores with EAS - build and submit to the iOS App Store, Google Play Store, and TestFlight, configure eas.json build and submit profiles, manage app versions and build numbers, and publish App Store metadata and ASO. Use whenever the user wants to depl
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: MIT.
 
 No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
 
@@ -114,7 +114,7 @@ No route loads this skill by itself. It runs when you name it, or when an engine
 
 This skill encodes Emil Kowalski's philosophy on UI polish, component design, animation decisions, and the invisible details that make software feel great.
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: MIT.
 
 No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
 
@@ -122,7 +122,7 @@ No route loads this skill by itself. It runs when you name it, or when an engine
 
 Framework (OSS). Use when implementing or debugging ANY network request, API call, or data fetching. Covers fetch API, React Query, SWR, error handling, caching, offline support, and Expo Router data loaders (`useLoaderData`).
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: MIT.
 
 | Route | Skip |
 | --- | --- |
@@ -132,7 +132,7 @@ Owner: upstream. License: unspecified.
 
 Framework (OSS). Build and distribute Expo development clients locally or via TestFlight for internal testing. For production TestFlight releases and store submission, use the eas-app-stores skill.
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: MIT.
 
 | Route | Skip |
 | --- | --- |
@@ -142,7 +142,7 @@ Owner: upstream. License: unspecified.
 
 Framework (OSS). Build beautiful, native-feeling Expo screens. Covers Apple HIG styling, semantic colors, native controls, SF Symbols, media, animations, visual effects, gradients, storage, and responsive layout. For routing and navigation, use the expo-router skill.
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: MIT.
 
 | Route | Skip |
 | --- | --- |
@@ -152,7 +152,7 @@ Owner: upstream. License: unspecified.
 
 Framework (OSS). Folder structure for a new Expo app. Use when scaffolding or laying out a new Expo project with Expo Router, or deciding where a file should live in one. For new projects only — never restructure an existing app to match.
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: MIT.
 
 | Route | Skip |
 | --- | --- |
@@ -162,7 +162,7 @@ Owner: upstream. License: unspecified.
 
 Framework (OSS). Navigation and routing for Expo Router. Covers file-based routes, groups and dynamic routes, folder organization, Link with previews and context menus, native Stack, page titles, modals and form sheets, NativeTabs, headers and toolbars, and header search bars.
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: MIT.
 
 | Route | Skip |
 | --- | --- |
@@ -172,7 +172,7 @@ Owner: upstream. License: unspecified.
 
 Framework (OSS). Guidelines for upgrading Expo SDK versions and fixing dependency issues
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: MIT.
 
 No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
 
@@ -188,7 +188,7 @@ No route loads this skill by itself. It runs when you name it, or when an engine
 
 Fix security vulnerabilities found by a Strix pentest (open-source CLI or app.strix.ai cloud) — triage by severity, patch the root cause rather than the symptom, and re-run Strix to prove each fix actually closes the exploit. Handles injection, XSS, SSRF, broken access control, IDOR, and other valid
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: Apache-2.0.
 
 No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
 
@@ -214,7 +214,7 @@ No route loads this skill by itself. It runs when you name it, or when an engine
 
 GSAP core motion. Use when the approved Design Lab motion engine is GSAP. One motion engine per product. Not stacked with React Bits + Motion.dev on the same surface.
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: MIT.
 
 | Route | Skip |
 | --- | --- |
@@ -263,7 +263,7 @@ Owner: upstream. License: MIT.
 
 Post-implementation design audit / anti-slop gates. Use after Playwright stills exist. Not a generator. Does not replace Impeccable or Taste.
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: MIT.
 
 No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
 
@@ -284,7 +284,7 @@ Owner: upstream. License: MIT.
 
 Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt, animate, colorize, extract, or otherwise improve a frontend interface. Covers websites, landing pages, dashboards, product UI, app shells, components, forms, settings, onboarding, 
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: Apache-2.0.
 
 | Route | Skip |
 | --- | --- |
@@ -401,7 +401,7 @@ No route loads this skill by itself. It runs when you name it, or when an engine
 
 ## ow-conductor
 
-Orchestra 5.0.0 control plane. Classify the task, print the receipt, hold the design gate, verify on the running app, and review twice. Stand down when the human says skip orchestra.
+Orchestra 5.5.0 control plane. Classify the task, print the receipt, hold the design gate, verify on the running app, and review twice. Stand down when the human says skip orchestra.
 
 Owner: orchestra. License: MIT.
 
@@ -561,7 +561,9 @@ Turn a bug on the running app into a failing browser check, then a fix, then a r
 
 Owner: orchestra. License: MIT.
 
-No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
+| Route | Skip |
+| --- | --- |
+| Browser regression | a second browser harness |
 
 ## ow-reference-forensics
 
@@ -742,7 +744,7 @@ Owner: orchestra. License: MIT.
 
 Pentest a web app, API, codebase, repository, URL, domain, or IP with Strix — autonomous AI penetration testing that exploits and proves vulnerabilities (OWASP Top 10 and beyond — injection, XSS, SSRF, auth/access-control flaws, IDOR, business logic) instead of just flagging them. Runs self-hosted w
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: Apache-2.0.
 
 No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
 
@@ -774,7 +776,7 @@ No route loads this skill by itself. It runs when you name it, or when an engine
 
 Postgres schema, indexes, query mistakes. Use on Supabase/Postgres schema work. Not an ORM dump.
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: Apache-2.0.
 
 No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
 
@@ -782,7 +784,7 @@ No route loads this skill by itself. It runs when you name it, or when an engine
 
 Render Mermaid to SVG or themed ASCII. Use after ow-diagrams. Not the author of architecture.
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: MIT.
 
 | Route | Skip |
 | --- | --- |
@@ -800,7 +802,7 @@ No route loads this skill by itself. It runs when you name it, or when an engine
 
 Vercel React/Next performance rules. Use on React/Next apps for waterfalls, bundle size, server/client fetching, rerenders. Not a design skill. Fetch latest upstream rules when reviewing.
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: Apache-2.0.
 
 | Route | Skip |
 | --- | --- |
@@ -819,7 +821,7 @@ No route loads this skill by itself. It runs when you name it, or when an engine
 
 Product UX research from real apps. Use when the job needs screens, flows, onboarding, dashboards, or mobile/iOS patterns. MCP is AUTH_REQUIRED. Not a clone factory. Not always-on.
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: MIT.
 
 No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
 
@@ -827,7 +829,7 @@ No route loads this skill by itself. It runs when you name it, or when an engine
 
 Reviews animation and motion code against a high craft bar derived from Emil Kowalski's design engineering philosophy. Default to flagging; approval is earned.
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: MIT.
 
 No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
 
@@ -835,7 +837,7 @@ No route loads this skill by itself. It runs when you name it, or when an engine
 
 Convert frontend code (Vite, React, Angular, Vue, etc.) to a Stitch Design by chaining static HTML extraction, design system extraction, and file upload. **ALWAYS** use this skill when the user's intent is to move existing web apps or React/Angular/Vue components into Stitch (e.g., requests to "save
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: Apache-2.0.
 
 No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
 
@@ -843,7 +845,7 @@ No route loads this skill by itself. It runs when you name it, or when an engine
 
 Extract a comprehensive design system (DESIGN.md) directly from frontend source code — React, Vue, Svelte, Angular, plain HTML/CSS, or any web framework. Analyzes component files, stylesheets, Tailwind configs, theme definitions, and design tokens to produce a rich, Stitch-compatible design system d
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: Apache-2.0.
 
 No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
 
@@ -851,7 +853,7 @@ No route loads this skill by itself. It runs when you name it, or when an engine
 
 Extract self-contained static HTML from a built web application or React components by inlining CSS and images. Use this skill whenever you need to capture a specific UI state, share a static version of a page, or prepare assets for Stitch upload, even if the user just asks to 'save the HTML' or 'mo
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: Apache-2.0.
 
 No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
 
@@ -859,7 +861,7 @@ No route loads this skill by itself. It runs when you name it, or when an engine
 
 Generate new screens from text prompts or images, edit existing screens with prompts and design system tokens, and generate design variants using Stitch MCP. Includes prompt enhancement pipeline, design mappings, professional UI/UX terminology, design tokens and theme system capabilities.
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: Apache-2.0.
 
 No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
 
@@ -867,7 +869,7 @@ No route loads this skill by itself. It runs when you name it, or when an engine
 
 Manage design systems in Stitch using MCP tools. Includes retrieval of assets, creating/updating design systems in Stitch, and applying them to screens.
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: Apache-2.0.
 
 No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
 
@@ -875,7 +877,7 @@ No route loads this skill by itself. It runs when you name it, or when an engine
 
 Converts Stitch designs into modular Vite and React components, or syncs/updates existing React components to align with the latest Stitch designs, using system-level networking and AST-based validation.
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: Apache-2.0.
 
 No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
 
@@ -883,7 +885,7 @@ No route loads this skill by itself. It runs when you name it, or when an engine
 
 Upload local assets (images, mockups, extracted HTML, design markdown) to a Stitch project. ALWAYS use this skill when you need to upload visual assets, HTML pages, or design docs to Stitch, particularly when direct MCP tool calls fail or truncate due to base64 token limits.
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: Apache-2.0.
 
 No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
 
@@ -891,7 +893,7 @@ No route loads this skill by itself. It runs when you name it, or when an engine
 
 Supabase database, auth, RLS, storage, edge functions. Use when the product actually uses Supabase. Not a second backend framework. Secrets stay in the host.
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: MIT.
 
 No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
 
@@ -909,7 +911,7 @@ Owner: upstream. License: MIT.
 
 Semantic Design System Skill for Google Stitch. Generates agent-friendly DESIGN.md files that enforce premium, anti-generic UI standards — strict typography, calibrated color, asymmetric layouts, perpetual micro-motion, and hardware-accelerated performance.
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: Apache-2.0.
 
 | Route | Skip |
 | --- | --- |
@@ -965,7 +967,7 @@ No route loads this skill by itself. It runs when you name it, or when an engine
 
 Review UI code for Web Interface Guidelines compliance. Use when asked to "review my UI", "check accessibility", "audit design", "review UX", or "check my site against best practices". Do not load on Plan-only or backend-only jobs.
 
-Owner: upstream. License: unspecified.
+Owner: upstream. License: MIT.
 
 No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
 

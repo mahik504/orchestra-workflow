@@ -26,6 +26,7 @@ type VisualVerifier interface {
 type PlaywrightVerifier struct {
 	OutputDir string
 	Runner    visual.Runner
+	Viewports []visual.Viewport
 }
 
 func NewPlaywrightVerifier(outputDir string) *PlaywrightVerifier {
@@ -100,11 +101,15 @@ func (v *PlaywrightVerifier) Verify(ctx context.Context, taskCtx *TaskContext) (
 		}
 	}
 
+	viewports := v.Viewports
+	if len(viewports) == 0 {
+		viewports = visual.DefaultViewports(visual.NeedsTablet(objectiveOf(taskCtx), paramsOf(taskCtx)))
+	}
 	req := visual.LayerARequest{
 		BaseURL:   appURL(taskCtx),
 		OutputDir: outDir,
 		Routes:    appRoutes(taskCtx),
-		Viewports: visual.DefaultViewports(visual.NeedsTablet(objectiveOf(taskCtx), paramsOf(taskCtx))),
+		Viewports: viewports,
 		Surface:   surfaceOf(taskCtx),
 	}
 	if req.BaseURL == "" {

@@ -13,6 +13,8 @@ import {
   hashBytes,
   hashTree,
   hashTreeRaw,
+  hostDirs,
+  optionalHostDirs,
   planAdapter,
   planClaudeMcp,
   planSync,
@@ -255,4 +257,13 @@ test('a recorded raw hash is safe to replace after the hash normalization', () =
     knownHashes: {},
   });
   assert.equal(planned.actions[0].action, 'replace');
+});
+
+test('codex is a default host and the CLI path is opt-in', () => {
+  const home = 'C:/home';
+  const dirs = hostDirs(home);
+  assert.ok(dirs.codex.endsWith(`${path.sep}.codex${path.sep}skills`));
+  assert.equal(dirs['antigravity-cli'], undefined);
+  const optional = optionalHostDirs(home);
+  assert.ok(optional['antigravity-cli'].includes(`${path.sep}antigravity-cli${path.sep}skills`));
 });

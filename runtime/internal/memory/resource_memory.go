@@ -82,6 +82,7 @@ type ResourceMemoryDocument struct {
 type ResourceMemoryStore struct {
 	filePath string
 	doc      ResourceMemoryDocument
+	present  bool
 	mu       sync.RWMutex
 }
 
@@ -153,7 +154,15 @@ func (s *ResourceMemoryStore) load() error {
 	}
 
 	s.doc = doc
+	s.present = true
 	return nil
+}
+
+// Exists reports whether the ledger file was on disk. A missing file is not a valid ledger.
+func (s *ResourceMemoryStore) Exists() bool {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	return s.present
 }
 
 // Record appends an evaluation record and updates running historical aggregations
@@ -174,6 +183,9 @@ func (s *ResourceMemoryStore) Record(eval *ResourceEvaluation) error {
 	defer s.mu.Unlock()
 
 	eval.ResourceID = resID
+	eval.TaskContext = Fingerprint(eval.TaskContext)
+	eval.Notes = Redact(eval.Notes)
+	eval.ErrorDetails = Redact(eval.ErrorDetails)
 	if eval.EvaluationTimestamp == "" {
 		eval.EvaluationTimestamp = time.Now().UTC().Format(time.RFC3339)
 	}
@@ -233,10 +245,47 @@ func (s *ResourceMemoryStore) Record(eval *ResourceEvaluation) error {
 	agg.LastOutcome = eval.Outcome
 
 	s.doc.Evaluations = append(s.doc.Evaluations, *eval)
+	if len(s.doc.Evaluations) > MaxEvaluations {
+		s.doc.Evaluations = s.doc.Evaluations[len(s.doc.Evaluations)-MaxEvaluations:]
+	}
 	s.doc.TotalEvaluations = len(s.doc.Evaluations)
 	s.doc.LastUpdated = time.Now().UTC().Format(time.RFC3339)
 
-	return s.saveLocked()
+	if err := s.saveLocked(); err != nil {
+		return err
+	}
+	s.present = true
+	return nil
+}
+
+// Scrub rewrites stored task text that is not already a fingerprint.
+// A missing ledger is left missing.
+func (s *ResourceMemoryStore) Scrub() (int, error) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	if !s.present {
+		return 0, nil
+	}
+	changed := 0
+	for i := range s.doc.Evaluations {
+		ev := &s.doc.Evaluations[i]
+		next := Fingerprint(ev.TaskContext)
+		notes := Redact(ev.Notes)
+		details := Redact(ev.ErrorDetails)
+		if next != ev.TaskContext || notes != ev.Notes || details != ev.ErrorDetails {
+			ev.TaskContext = next
+			ev.Notes = notes
+			ev.ErrorDetails = details
+			changed++
+		}
+	}
+	if changed == 0 {
+		return 0, nil
+	}
+	if err := s.saveLocked(); err != nil {
+		return changed, err
+	}
+	return changed, nil
 }
 
 // saveLocked performs an atomic, Windows-safe file write
@@ -245,10 +294,15 @@ func (s *ResourceMemoryStore) saveLocked() error {
 		return fmt.Errorf("cannot persist memory: %w", err)
 	}
 
+	if info, err := os.Lstat(s.filePath); err == nil && info.Mode()&os.ModeSymlink != 0 {
+		return fmt.Errorf("refusing to write memory through a symlink: %s", s.filePath)
+	}
+
 	dir := filepath.Dir(s.filePath)
-	if err := os.MkdirAll(dir, 0755); err != nil {
+	if err := os.MkdirAll(dir, 0700); err != nil {
 		return fmt.Errorf("failed creating directory %s: %w", dir, err)
 	}
+	_ = os.Chmod(dir, 0700)
 
 	data, err := json.MarshalIndent(s.doc, "", "  ")
 	if err != nil {
@@ -256,7 +310,7 @@ func (s *ResourceMemoryStore) saveLocked() error {
 	}
 
 	tmpFile := fmt.Sprintf("%s.tmp.%d", s.filePath, time.Now().UnixNano())
-	if err := os.WriteFile(tmpFile, data, 0644); err != nil {
+	if err := os.WriteFile(tmpFile, data, 0600); err != nil {
 		return fmt.Errorf("failed writing tmp memory file: %w", err)
 	}
 
@@ -265,13 +319,14 @@ func (s *ResourceMemoryStore) saveLocked() error {
 		_ = os.Remove(s.filePath)
 		if err := os.Rename(tmpFile, s.filePath); err != nil {
 			// Direct write fallback
-			if err := os.WriteFile(s.filePath, data, 0644); err != nil {
+			if err := os.WriteFile(s.filePath, data, 0600); err != nil {
 				_ = os.Remove(tmpFile)
 				return fmt.Errorf("failed writing memory file: %w", err)
 			}
 			_ = os.Remove(tmpFile)
 		}
 	}
+	_ = os.Chmod(s.filePath, 0600)
 
 	return nil
 }

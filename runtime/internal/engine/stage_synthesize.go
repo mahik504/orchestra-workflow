@@ -41,27 +41,29 @@ func (s *SynthesizeStage) Execute(ctx *TaskContext) (*StageResult, error) {
 	var verificationChecks []string
 	var directives []*router.CapabilityExecutionDirective
 
-	// 1. Baseline Engineering Directives
-	superpowersDir := &router.CapabilityExecutionDirective{
-		CapabilityID: "superpowers-planning",
-		ActionableRules: []string{
-			"Deconstruct task into independent testable milestones before coding",
-			"Execute Phase 0 (Contract & Spec Lock) prior to modifying production code",
-			"Enforce adversarial verification gates at each milestone",
-		},
-		AntiPatterns: []string{
-			"No coding without approved design/contract specification",
-			"No merging without explicit multi-viewport verification",
-		},
-		VerificationChecklist: []string{
-			"Does an approved specification or DESIGN.md contract exist?",
-			"Are milestone deliverables independently verified?",
-		},
+	// 1. Baseline Engineering Directives. A fast task skips this estimate.
+	if !fastTask(ctx) {
+		superpowersDir := &router.CapabilityExecutionDirective{
+			CapabilityID: "superpowers-planning",
+			ActionableRules: []string{
+				"Deconstruct task into independent testable milestones before coding",
+				"Execute Phase 0 (Contract & Spec Lock) prior to modifying production code",
+				"Enforce adversarial verification gates at each milestone",
+			},
+			AntiPatterns: []string{
+				"No coding without approved design/contract specification",
+				"No merging without explicit multi-viewport verification",
+			},
+			VerificationChecklist: []string{
+				"Does an approved specification or DESIGN.md contract exist?",
+				"Are milestone deliverables independently verified?",
+			},
+		}
+		directives = append(directives, superpowersDir)
+		actionableRules = append(actionableRules, superpowersDir.ActionableRules...)
+		antiPatterns = append(antiPatterns, superpowersDir.AntiPatterns...)
+		verificationChecks = append(verificationChecks, superpowersDir.VerificationChecklist...)
 	}
-	directives = append(directives, superpowersDir)
-	actionableRules = append(actionableRules, superpowersDir.ActionableRules...)
-	antiPatterns = append(antiPatterns, superpowersDir.AntiPatterns...)
-	verificationChecks = append(verificationChecks, superpowersDir.VerificationChecklist...)
 
 	// 2. Visual & Architectural Directives
 	if ctx.Classification != nil && ctx.Classification.RequiresVisual {
@@ -168,8 +170,12 @@ func (s *SynthesizeStage) Execute(ctx *TaskContext) (*StageResult, error) {
 		verificationChecks = append(verificationChecks, gapDir.VerificationChecklist...)
 	}
 
-	// 6. Cumulative Token Context Cost Calculation
-	totalTokenCost := 1500.0 // Baseline superpowers-planning
+	// 6. Cumulative Token Context Cost Calculation.
+	// 1500 is an estimate for the planning directive, not a measurement.
+	totalTokenCost := 1500.0
+	if fastTask(ctx) {
+		totalTokenCost = 0
+	}
 	seenResources := make(map[string]bool)
 
 	if ctx.Classification != nil && ctx.Catalog != nil {
@@ -230,4 +236,12 @@ func (s *SynthesizeStage) Execute(ctx *TaskContext) (*StageResult, error) {
 		Duration:  time.Since(start),
 		Output:    ctx.Synthesis,
 	}, nil
+}
+
+func fastTask(ctx *TaskContext) bool {
+	if ctx == nil || ctx.Task == nil || ctx.Task.Parameters == nil {
+		return false
+	}
+	fast, ok := ctx.Task.Parameters["fast"].(bool)
+	return ok && fast
 }

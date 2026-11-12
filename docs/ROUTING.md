@@ -15,6 +15,7 @@ Name the skills, MCPs, plugins, and libraries this task loads. Omit that line wh
 | One 3D scene | ow-3d-engineering | 3D as decoration; a second motion engine |
 | SaaS or API | ow-backend-architecture, test-driven-development | the design lab; supabase and postgres-best-practices unless that product uses them |
 | Bug | systematic-debugging | the design lab | <!-- tiny -->
+| Browser regression | ow-qa | a second browser harness | <!-- tiny -->
 | Paper | ow-research-paper, humanizer | invented citations |
 | Deck | ow-docs | host-provided pptx unless that host already has it |
 | Deck or slides | ow-docs, ow-presentation | copying a pptx skill file; purple template dumps |

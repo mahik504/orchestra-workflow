@@ -56,13 +56,19 @@ if (id === 'read') {
 
 if (id === 'mcp') {
   const server = String(input.server || input.mcp_server || input.tool_input?.server || '');
-  if (server && !mcpAllowed(server)) {
+  const allowed = mcpAllowed(server);
+  if (allowed === 'missing') {
+    decide('ask', 'kit/mcp-core.json is missing; the MCP server was not checked');
+  }
+  if (server && allowed !== true) {
     decide('deny', `MCP server ${server} is not in kit/mcp-core.json`);
   }
   allow();
 }
 
 if (id === 'edit') {
+  const why = protectedWrite(filePath);
+  if (why) decide('ask', why);
   const note = editNote(filePath);
   emit({ permission: 'allow', additional_context: note || '' });
 }
@@ -76,7 +82,8 @@ if (id === 'stop') {
   const claims = /\b(DONE|FIXED|VERIFIED|PASSED|SHIPPED)\b/.test(text);
   const evidence = /exit code|\$ |npm test|go test|node --test|EXIT /.test(text);
   if (claims && !evidence) {
-    const message = 'Completion claim has no command output in the hook payload.';
+    const count = bumpClaimWarnings();
+    const message = `Completion claim has no command output in the hook payload. Warnings: ${count}.`;
     if (profile === 'strict') emit({ followup_message: message, permission: 'deny' }, 2);
     emit({ followup_message: message, permission: 'allow' });
   }
@@ -92,8 +99,8 @@ if (id === 'subagent-start' || id === 'subagent-stop') {
     files: input.files || input.owned_files || [],
   };
   fs.writeFileSync(path.join(dir, 'subagent.json'), JSON.stringify(record, null, 2));
-  if (id === 'subagent-stop' && profile === 'strict' && input.wrote_outside) {
-    decide('deny', 'subagent wrote outside its file list');
+  if (id === 'subagent-stop' && input.wrote_outside) {
+    decide('ask', 'subagent wrote outside its file list');
   }
   allow();
 }
@@ -102,8 +109,11 @@ allow();
 
 function shellDeny(cmd) {
   if (!cmd) return '';
-  if (/npx\s+skills\s+add\s+--all\b/.test(cmd) || /\bskills\s+add\s+-g\s+-y\b/.test(cmd)) {
+  if (/\bskills\s+add\b[^\n]*--all\b/.test(cmd) || /\bskills\s+add\s+-g\s+-y\b/.test(cmd)) {
     return 'skills add --all and global yes-installs are refused';
+  }
+  if (/\biex\b[^\n]*\birm\b/i.test(cmd)) {
+    return 'remote script execution is refused';
   }
   if (/\bgit\s+push\b[^\n]*--force\b/.test(cmd) || /\bgit\s+push\b[^\n]*(^|\s)-f(\s|$)/.test(cmd)) {
     return 'force-push is refused';
@@ -145,9 +155,33 @@ function readDeny(file) {
 
 function mcpAllowed(server) {
   const file = path.join(process.cwd(), 'kit', 'mcp-core.json');
-  if (!fs.existsSync(file)) return true;
+  if (!fs.existsSync(file)) return 'missing';
   const text = fs.readFileSync(file, 'utf8');
   return text.includes(`"${server}"`);
+}
+
+function protectedWrite(file) {
+  const norm = file.replace(/\\/g, '/');
+  if (!norm) return '';
+  if (/(^|\/)\.git\//.test(norm)) return 'writing under .git needs approval';
+  if (/(^|\/)\.claude\/settings/.test(norm)) return 'writing Claude settings needs approval';
+  if (/(^|\/)\.cursor\/mcp\.json$/.test(norm)) return 'writing Cursor MCP config needs approval';
+  if (/(^|\/)kit\/hooks\//.test(norm)) return 'writing kit/hooks needs approval';
+  return '';
+}
+
+function bumpClaimWarnings() {
+  const file = process.env.ORCHESTRA_CLAIM_LOG || path.join(process.cwd(), '.orchestra', 'handoff', 'claim-warnings.json');
+  let count = 0;
+  try {
+    count = JSON.parse(fs.readFileSync(file, 'utf8')).count || 0;
+  } catch {
+    count = 0;
+  }
+  count += 1;
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, JSON.stringify({ count }));
+  return count;
 }
 
 function editNote(file) {

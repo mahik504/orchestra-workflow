@@ -3,6 +3,7 @@ package main
 import (
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 )
 
@@ -89,5 +90,31 @@ func TestCLI_Init_Execution(t *testing.T) {
 		if fi, err := os.Stat(p); err != nil || !fi.IsDir() {
 			t.Errorf("Expected directory %s to exist", p)
 		}
+	}
+}
+
+func TestPlanTaskRequiresText(t *testing.T) {
+	if _, err := planTask("", nil); err == nil {
+		t.Fatal("empty task was accepted")
+	}
+	got, err := planTask("", []string{"fix", "the", "parser"})
+	if err != nil || got != "fix the parser" {
+		t.Fatalf("%q %v", got, err)
+	}
+}
+
+func TestQuarantineReportDoesNotInventACount(t *testing.T) {
+	missing := quarantineReport(t.TempDir(), filepath.Join(t.TempDir(), "skills_library"))
+	if strings.Contains(missing, "1598") || strings.Contains(missing, "[PASS]") || !strings.Contains(missing, "[ABSENT]") {
+		t.Fatal(missing)
+	}
+	workspace := t.TempDir()
+	inside := filepath.Join(workspace, "skills_library")
+	if err := os.Mkdir(inside, 0700); err != nil {
+		t.Fatal(err)
+	}
+	failed := quarantineReport(workspace, inside)
+	if !strings.Contains(failed, "[FAIL]") || strings.Contains(failed, "1598") {
+		t.Fatal(failed)
 	}
 }

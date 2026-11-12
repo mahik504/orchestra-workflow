@@ -1,6 +1,6 @@
 {
-  "current": "5.0.0",
-  "graph_version": "5.0.0",
+  "current": "5.5.0",
+  "graph_version": "5.5.0",
   "graph_version_note": "enrich-graph.js and enrich-resources.js write graph.version from VERSION. graph_version matches that pin.",
   "live_files": [
     "VERSION",
@@ -28,6 +28,12 @@
     ".codex-plugin/plugin.json",
     ".plugin/plugin.json",
     ".agents/plugins/marketplace.json"
+  ],
+  "no_stale_contract_pin": [
+    "ARCHITECTURE.md",
+    "WORKFLOW.md",
+    "kit/antigravity/ALWAYS-ON.md",
+    "docs/CONDUCTOR.md"
   ],
   "readers_must_not_hardcode_current": [
     "runtime/tools/hygiene.js",

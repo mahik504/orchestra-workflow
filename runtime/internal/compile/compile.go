@@ -47,6 +47,7 @@ type Manifest struct {
 	Confidence   float64    `json:"confidence"`
 	Ambiguous    bool       `json:"ambiguous"`
 	SessionSize  string     `json:"session_size"`
+	Fast         bool       `json:"fast"`
 	Rejected     []Rejected `json:"rejected,omitempty"`
 	Missing      []string   `json:"missing,omitempty"`
 }
@@ -114,9 +115,10 @@ func Compile(task, host string, routes []Route) (Manifest, error) {
 		ModelClass:   "coding-fast",
 		Disclosure:   "L0",
 		SessionSize:  "tiny",
-		Confidence:   1,
+		Confidence:   0,
 	}
 	if len(hits) == 0 {
+		applyFast(&manifest, task)
 		return manifest, nil
 	}
 	best := hits[0].route
@@ -134,9 +136,12 @@ func Compile(task, host string, routes []Route) (Manifest, error) {
 			{Job: hits[0].route.Job, Score: hits[0].score, Reason: "tied for first"},
 			{Job: hits[1].route.Job, Score: hits[1].score, Reason: "tied for first"},
 		}
+		applyFast(&manifest, task)
 		return manifest, nil
 	}
-	if second > 0 {
+	if second == 0 {
+		manifest.Confidence = 1
+	} else {
 		manifest.Confidence = float64(bestScore) / float64(bestScore+second)
 	}
 	for _, item := range hits[1:] {
@@ -176,7 +181,18 @@ func Compile(task, host string, routes []Route) (Manifest, error) {
 			manifest.Libraries = []string{"three", "r3f"}
 		}
 	}
+	applyFast(&manifest, task)
 	return manifest, nil
+}
+
+func applyFast(manifest *Manifest, task string) {
+	if manifest.Disclosure == "L0" && looksLikePath(task) {
+		manifest.Fast = true
+	}
+}
+
+func looksLikePath(task string) bool {
+	return regexp.MustCompile(`(?:^|[\s"'(]|` + "`" + `)(?:\./|\.\./|[A-Za-z]:)?[A-Za-z0-9_.-]+(?:[/\\][A-Za-z0-9_.-]+)+`).MatchString(task)
 }
 
 func sessionSize(route *Route) string {

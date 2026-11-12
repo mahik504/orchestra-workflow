@@ -101,6 +101,30 @@ func TestHostSyncEngine_VerifyParity_IsolatedTemp(t *testing.T) {
 	}
 }
 
+func TestHostMapIncludesCodex(t *testing.T) {
+	home := t.TempDir()
+	dirs := NewHostSyncEngine(".").ResolveHostDirs(home)
+	got := dirs[HostCodex]
+	want := filepath.Join(home, ".codex", "skills")
+	if got != want {
+		t.Fatalf("codex dir %s, want %s", got, want)
+	}
+}
+
+func TestParityAbsentHostsAreNotComplete(t *testing.T) {
+	home := t.TempDir()
+	report, err := NewHostSyncEngine(".").VerifyParity(home)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if report.IsParityComplete || report.HostsPresent != 0 {
+		t.Fatalf("empty home reported complete: %+v", report)
+	}
+	if len(report.AbsentHosts) == 0 {
+		t.Fatal("missing hosts were not recorded")
+	}
+}
+
 func TestHostSyncEngine_QuarantineRejection(t *testing.T) {
 	fakeHome := t.TempDir()
 	quarantineHome := filepath.Join(fakeHome, "skills_library")

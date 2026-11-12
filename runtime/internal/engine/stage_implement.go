@@ -349,7 +349,7 @@ func (s *ImplementStage) Execute(ctx *TaskContext) (*StageResult, error) {
 		TargetAgent:    "cursor",
 		ActiveTasks:    []string{ctx.Task.ID},
 		ChangedFiles:   modifiedFiles,
-		CompletedSteps: []string{"Discover", "Classify", "Research", "Synthesize", "DesignSystem", "Implement"},
+		CompletedSteps: completedStageNames(ctx),
 		Timestamp:      time.Now().UTC().Format(time.RFC3339),
 	}
 
@@ -425,4 +425,17 @@ func artifactOrPending(res *resources.Resource, taskID, source, version, hash, i
 		version = "pending"
 	}
 	return nonArtifactEntry(res, taskID, acquisition.KindPending, source, version)
+}
+
+func completedStageNames(ctx *TaskContext) []string {
+	order := []StageName{StageDiscover, StageClassify, StageResearch, StageSynthesize, StageDesignSystem}
+	out := make([]string, 0, len(order)+1)
+	for _, name := range order {
+		res := ctx.GetStageResult(name)
+		if res == nil || res.Status == StatusSkipped {
+			continue
+		}
+		out = append(out, string(name))
+	}
+	return append(out, string(StageImplement))
 }

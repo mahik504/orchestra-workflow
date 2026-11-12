@@ -1,6 +1,4 @@
 ---
-stub: true
-stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-backend-architecture
 description: Shape a SaaS or API before code. Routes, auth, schema, migrations, errors, and logs. Use for a backend or API. Skip the design lab.
 ---
@@ -55,3 +53,25 @@ Pick from the project note. Do not add a second database because a tutorial used
 | Queues | BullMQ only when a job must leave the request and Redis is already justified. |
 
 Write the migration, the constraint, and the test that fails when the constraint is missing.
+
+
+## Preconditions
+
+- The task names the files or the acceptance line.
+
+## Procedure
+
+1. The task's paths and acceptance line win.
+2. Write the route, auth, schema, and error shape before the handler.
+
+## Output
+
+The change, the command that checked it, and what that command printed.
+
+## Verify
+
+Say the work is done only after that command has been run.
+
+## Skip
+
+Skip when the human says skip orchestra. Do not add a second conductor.

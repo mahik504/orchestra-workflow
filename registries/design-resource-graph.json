@@ -1,6 +1,6 @@
 {
   "$schema": "./schemas/design-resource-graph.schema.json",
-  "version": "5.0.0",
+  "version": "5.5.0",
   "description": "Capability routes for the current Orchestra pin in VERSION. Each route maps discovery, synthesis, implementation, and QA.",
   "domains": {
     "visual_research": [
@@ -1494,7 +1494,7 @@
       "platform": "web",
       "trigger_conditions": ["The job is a full-stack app with a running page"],
       "skip_conditions": ["There is no running page"],
-      "skills": ["webapp-testing"]
+      "skills": ["webapp-testing", "ow-qa"]
     },
     "ml-experiment": {
       "name": "ML experiment",

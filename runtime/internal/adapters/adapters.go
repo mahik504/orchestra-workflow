@@ -39,11 +39,7 @@ func (a *CursorAdapter) GenerateConfig(destDir string) error {
 	if _, err := os.Stat(rulesPath); err == nil {
 		return nil
 	}
-	content := `# Cursor Rules — Orchestra V3 Architecture & Capability Contract
-You are executing tasks within the Orchestra V3 Resource Ecosystem.
-Orchestra V3 operates on an 8-stage capability pipeline:
-Discover -> Classify -> Research -> Synthesize -> Design System -> Implement -> Visual QA -> Iterate.
-`
+	content := "# Orchestra\n\nThe contract is AGENTS.md. This file is a local adapter.\n"
 	return os.WriteFile(rulesPath, []byte(content), 0644)
 }
 
@@ -64,9 +60,7 @@ func (a *ClaudeAdapter) GenerateConfig(destDir string) error {
 	if _, err := os.Stat(claudePath); err == nil {
 		return nil
 	}
-	content := `# Claude Code Agentic System Matrix — Orchestra V3
-You are Claude Code operating in the Orchestra V3 framework.
-`
+	content := "# Orchestra\n\nThe contract is AGENTS.md. This file is a local adapter.\n"
 	return os.WriteFile(claudePath, []byte(content), 0644)
 }
 

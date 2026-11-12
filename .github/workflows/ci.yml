@@ -76,6 +76,8 @@ jobs:
       run: npm ci
     - name: Tool tests
       run: node --test runtime/tools/*.test.mjs
+    - name: Context budget
+      run: node runtime/tools/measure-context.mjs --check
     - name: Hook tests
       run: node --test kit/hooks/*.test.mjs
     - name: Config lint

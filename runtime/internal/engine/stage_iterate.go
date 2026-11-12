@@ -31,11 +31,14 @@ func (s *IterateStage) Execute(ctx *TaskContext) (*StageResult, error) {
 		if ctx.RunState != nil {
 			ctx.RunState.PendingHuman = nil
 		}
-		ctx.Iteration.FinalVerdict = "PASSED"
+		verdict := "PASSED"
 		if ctx.VisualQA != nil && ctx.VisualQA.Verdict == CheckNotApplicable {
-			ctx.Iteration.FinalVerdict = "NOT_APPLICABLE"
+			verdict = CheckNotApplicable
 		}
-		recordIterateMemory(ctx, "PASSED", time.Since(start).Milliseconds())
+		ctx.Iteration.FinalVerdict = verdict
+		if verdict != CheckNotApplicable {
+			recordIterateMemory(ctx, verdict, time.Since(start).Milliseconds())
+		}
 		return &StageResult{
 			StageName: StageIterate,
 			Status:    StatusCompleted,
@@ -152,6 +155,9 @@ func (s *IterateStage) Execute(ctx *TaskContext) (*StageResult, error) {
 }
 
 func recordIterateMemory(ctx *TaskContext, verdict string, latencyMs int64) {
+	if verdict == CheckNotApplicable {
+		return
+	}
 	if ctx.Implementation == nil || len(ctx.Implementation.AcquiredResources) == 0 {
 		return
 	}

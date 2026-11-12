@@ -1,5 +1,5 @@
 {
-  "version": "5.0.0",
+  "version": "5.5.0",
   "skills_manifest": "registries/skills.json",
   "skills": [
     "agent-reach",

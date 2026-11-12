@@ -131,7 +131,7 @@ func (p *DesignPipeline) Plan(ctx context.Context, req *TaskRequest) (*router.Co
 		EstimatedTokenCost:  taskCtx.Synthesis.TokenContextCost,
 		RequiresHumanGate:   taskCtx.Classification.RequiresHumanGate,
 		ApprovalReason:      taskCtx.Classification.GateReason,
-		PipelineStage:       "Discover -> Classify -> Research -> Synthesize -> Design System -> Implement -> Visual QA -> Iterate",
+		PipelineStage:       planStageNames(taskCtx),
 		GapResearchNeeded:   taskCtx.Classification.GapTechnologies,
 	}
 
@@ -149,6 +149,15 @@ func (p *DesignPipeline) Plan(ctx context.Context, req *TaskRequest) (*router.Co
 	}
 
 	return plan, nil
+}
+
+func planStageNames(taskCtx *TaskContext) string {
+	names := []string{"Discover", "Classify"}
+	if research := taskCtx.GetStageResult(StageResearch); research != nil && research.Status != StatusSkipped {
+		names = append(names, "Research")
+	}
+	names = append(names, "Synthesize")
+	return strings.Join(names, " -> ")
 }
 
 // Execute runs the full 8-stage closed-loop pipeline
@@ -246,6 +255,24 @@ func (p *DesignPipeline) Execute(ctx context.Context, req *TaskRequest) (*Design
 		currentStageIdx++
 	}
 
+	if taskCtx.VisualQA != nil {
+		switch taskCtx.VisualQA.Verdict {
+		case CheckFail, CheckBlocked, CheckNotRun:
+			if taskCtx.RunState != nil {
+				taskCtx.RunState.Status = mission.StatusFailed
+				if taskCtx.Mission != nil {
+					taskCtx.Mission.Status = mission.StatusFailed
+				}
+				if err := persistMission(taskCtx, "visual_"+taskCtx.VisualQA.Verdict); err != nil {
+					return p.buildResult(taskCtx, PipelineStatusFailed, stageResultsList, startTime, err), err
+				}
+			}
+			result := p.buildResult(taskCtx, PipelineStatusFailed, stageResultsList, startTime, nil)
+			_ = p.RecordPipelineMemory(taskCtx, result)
+			return result, nil
+		}
+	}
+
 	if taskCtx.RunState != nil {
 		taskCtx.RunState.Status = mission.StatusSucceeded
 		taskCtx.RunState.PendingHuman = nil
@@ -336,6 +363,9 @@ func (p *DesignPipeline) buildResult(
 // RecordPipelineMemory persists evaluations into private brain memory for all active resources
 func (p *DesignPipeline) RecordPipelineMemory(taskCtx *TaskContext, res *DesignExecutionResult) error {
 	if taskCtx == nil || res == nil {
+		return nil
+	}
+	if taskCtx.VisualQA != nil && taskCtx.VisualQA.Verdict == CheckNotApplicable {
 		return nil
 	}
 	memPath := memory.ResolveDefaultMemoryPath(taskCtx.Task.WorkspaceRoot)

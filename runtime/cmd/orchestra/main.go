@@ -22,6 +22,8 @@ import (
 	"github.com/mahik504/orchestra-workflow/runtime/internal/visual"
 )
 
+var buildVersion = "dev"
+
 func main() {
 	if len(os.Args) < 2 {
 		printUsage()
@@ -46,6 +48,8 @@ func main() {
 		os.Exit(runVerify(args))
 	case "handoff":
 		runHandoff(args)
+	case "receipt":
+		runReceipt(args)
 	case "sync":
 		runSync(args)
 	case "memory":
@@ -66,6 +70,71 @@ func main() {
 		printUsage()
 		os.Exit(1)
 	}
+}
+
+func binaryLine() string {
+	pin := contractVersion()
+	if buildVersion == pin {
+		return fmt.Sprintf("Binary:         [OK] %s\n", pin)
+	}
+	return fmt.Sprintf("Binary:         [NOTE] process reports %s; VERSION is %s. Rebuild with kit/install-local-engine.ps1\n", buildVersion, pin)
+}
+
+func quarantineReport(workspace, quarantinePath string) string {
+	info, err := os.Stat(quarantinePath)
+	if err != nil || !info.IsDir() {
+		return fmt.Sprintf("Quarantine:      [ABSENT] %s\n", quarantinePath)
+	}
+	status, _ := resources.AuditQuarantineState(workspace, quarantinePath)
+	if status != nil && !status.IsStrictlyIsolated {
+		return fmt.Sprintf("Quarantine:      [FAIL] %s is inside the workspace\n", quarantinePath)
+	}
+	count := 0
+	if status != nil {
+		count = status.QuarantinedCount
+	}
+	return fmt.Sprintf("Quarantine:      [ISOLATED] %d entries at %s\n", count, quarantinePath)
+}
+
+func parityDoctorLine(report *adapters.ParityReport, err error) string {
+	if err != nil || report == nil {
+		return fmt.Sprintf("Host Parity:     [FAIL] Could not verify host skill parity: %v\n", err)
+	}
+	if report.HostsPresent == 0 {
+		return "Host Parity:     [NOT_RUN] no host skill directory exists\n"
+	}
+	if !report.IsParityComplete {
+		return fmt.Sprintf("Host Parity:     [WARN] present=%d absent=%s\n", report.HostsPresent, report.AbsentHosts)
+	}
+	return fmt.Sprintf("Host Parity:     [OK] %d skills on %d hosts\n", report.CanonicalSkillCount, report.HostsPresent)
+}
+
+func planTask(flagValue string, rest []string) (string, error) {
+	raw := strings.TrimSpace(flagValue)
+	if raw == "" && len(rest) > 0 {
+		raw = strings.TrimSpace(strings.Join(rest, " "))
+	}
+	if raw == "" {
+		return "", fmt.Errorf("task is required")
+	}
+	return raw, nil
+}
+
+func printCompileManifest(task, host string) error {
+	routes, err := compile.LoadRoutes(resolveRegistryFile("routing.json", ""))
+	if err != nil {
+		return err
+	}
+	manifest, err := compile.Compile(task, host, routes)
+	if err != nil {
+		return err
+	}
+	raw, err := json.MarshalIndent(manifest, "", "  ")
+	if err != nil {
+		return err
+	}
+	fmt.Println(string(raw))
+	return nil
 }
 
 func contractVersion() string {
@@ -92,8 +161,9 @@ func printUsage() {
 	fmt.Println("  run       Execute full 8-stage pipeline (Discover -> Classify -> Research -> Synthesize -> Design System -> Implement -> Visual QA -> Iterate)")
 	fmt.Println("  verify    Run standalone multi-viewport Visual QA and project verification")
 	fmt.Println("  handoff   Inspect or initialize state handoff between agents")
-	fmt.Println("  sync      Synchronize and verify active skill parity across Cursor, Claude, Antigravity, jcode")
-	fmt.Println("  memory     Query or record private brain resource outcome memory (list, stats, record)")
+	fmt.Println("  receipt   Write an execution receipt for a capsule that was run")
+	fmt.Println("  sync      Synchronize and verify active skill parity across configured hosts")
+	fmt.Println("  memory    Query, record, or scrub private resource telemetry (list, stats, record, scrub)")
 	fmt.Println("  add        Add a resource URL from user intent (Brain overlay, not the public router)")
 	fmt.Println("  compile   Print the task manifest as JSON. No installs, no writes.")
 	fmt.Println("  mcp-serve Experimental stdio MCP for compile and provenance_check")
@@ -194,6 +264,7 @@ func runDoctor(args []string) {
 	fmt.Printf("npm:             %s\n", npmOut)
 	fmt.Printf("Go Runtime:      %s\n", goOut)
 	fmt.Printf("Python:          %s\n", pyOut)
+	fmt.Print(binaryLine())
 
 	// 2. Canonical Registries & Graph
 	catPath := resolveRegistryFile("resources.json", "")
@@ -216,17 +287,7 @@ func runDoctor(args []string) {
 	if quarantinePath == "" {
 		quarantinePath = filepath.Join(homeDir, ".gemini", "config", "skills_library")
 	}
-	qErr := resources.CheckQuarantineBoundary(quarantinePath)
-	qStatus, _ := resources.AuditQuarantineState(".", quarantinePath)
-	if qErr != nil && (qStatus == nil || !qStatus.QuarantineDirectoryExists || qStatus.IsStrictlyIsolated) {
-		count := 1598
-		if qStatus != nil && qStatus.QuarantinedCount > 0 {
-			count = qStatus.QuarantinedCount
-		}
-		fmt.Printf("Quarantine:      [PASS] %d-skill library quarantined (runtime boundary enforced)\n", count)
-	} else {
-		fmt.Printf("Quarantine:      [FAIL] Quarantine boundary check failed to reject isolated library\n")
-	}
+	fmt.Print(quarantineReport(".", quarantinePath))
 
 	// 4. Visual QA Tooling (project-local Playwright library + Chromium).
 	// Playwright MCP / Cursor browser are host adapters, not Layer A owners.
@@ -242,13 +303,15 @@ func runDoctor(args []string) {
 	// 5. Resource memory diagnostics
 	workdir, _ := os.Getwd()
 	memPath := memory.ResolveDefaultMemoryPath(workdir)
-	if store, err := memory.NewResourceMemoryStore(memPath); err == nil {
+	if store, err := memory.NewResourceMemoryStore(memPath); err != nil {
+		fmt.Printf("Memory:          [NOTE] %s (%v)\n", memPath, err)
+	} else if !store.Exists() {
+		fmt.Printf("Memory:          [NOT_RUN] %s is absent\n", memPath)
+	} else {
 		total, _, _, rate := store.GetSummary()
 		aggs := store.ListAggregates()
 		fmt.Printf("Memory:          [OK] %s (%d resources, %d evaluations, %.1f%% success rate)\n",
 			memPath, len(aggs), total, rate*100)
-	} else {
-		fmt.Printf("Memory:          [NOTE] %s ready for milestone sync (%v)\n", memPath, err)
 	}
 
 	overlayPath := onboard.ResolveOverlayPath(workdir)
@@ -261,14 +324,8 @@ func runDoctor(args []string) {
 	// 6. Host Synchronization & Skill Parity
 	syncEngine := adapters.NewHostSyncEngine(workdir)
 	userHome, _ := os.UserHomeDir()
-	if parityRep, err := syncEngine.VerifyParity(userHome); err == nil && parityRep.IsParityComplete {
-		fmt.Printf("Host Parity:     [OK] %d/%d active skills synchronized across Cursor, Antigravity, Claude\n",
-			parityRep.CanonicalSkillCount, parityRep.CanonicalSkillCount)
-	} else if parityRep != nil {
-		fmt.Printf("Host Parity:     [WARN] Active skill parity discrepancy detected across hosts (run 'orchestra sync')\n")
-	} else {
-		fmt.Printf("Host Parity:     [FAIL] Could not verify host skill parity: %v\n", err)
-	}
+	parityRep, parityErr := syncEngine.VerifyParity(userHome)
+	fmt.Print(parityDoctorLine(parityRep, parityErr))
 
 	// 7. Antigravity customization budget
 	if budget, err := adapters.CheckAntigravityBudget(userHome); err == nil {
@@ -394,14 +451,19 @@ func runPlan(args []string) {
 	graphPath := fs.String("graph", "", "Path to design-resource-graph.json")
 	outputFormat := fs.String("output", "manifest", "Output format: manifest, json, summary")
 	skipGate := fs.Bool("skip-visual-gate", false, "Bypass human approval gate")
+	showCompile := fs.Bool("manifest", false, "Also print the compile manifest")
 	_ = fs.Parse(args)
 
-	rawTask := *taskStr
-	if rawTask == "" && len(fs.Args()) > 0 {
-		rawTask = strings.Join(fs.Args(), " ")
+	rawTask, err := planTask(*taskStr, fs.Args())
+	if err != nil {
+		fmt.Println("Usage: orchestra plan --task \"<task description>\"")
+		os.Exit(1)
 	}
-	if rawTask == "" {
-		rawTask = "Build modern responsive web feature with strict typography and security headers"
+	if *showCompile {
+		if err := printCompileManifest(rawTask, "cursor"); err != nil {
+			fmt.Printf("[FAIL] compile manifest: %v\n", err)
+			os.Exit(1)
+		}
 	}
 
 	resolvedCat := resolveRegistryFile("resources.json", *catalogPath)
@@ -460,15 +522,19 @@ func runRun(args []string) {
 	maxIterations := fs.Int("max-iterations", 3, "Max QA iteration loops")
 	catalogPath := fs.String("catalog", "", "Path to resources.json")
 	graphPath := fs.String("graph", "", "Path to design-resource-graph.json")
+	showCompile := fs.Bool("manifest", false, "Also print the compile manifest")
 	_ = fs.Parse(args)
 
-	rawTask := *taskStr
-	if rawTask == "" && len(fs.Args()) > 0 {
-		rawTask = strings.Join(fs.Args(), " ")
-	}
-	if rawTask == "" {
+	rawTask, err := planTask(*taskStr, fs.Args())
+	if err != nil {
 		fmt.Println("Usage: orchestra run --task \"<task description>\" [--auto-approve]")
 		os.Exit(1)
+	}
+	if *showCompile {
+		if err := printCompileManifest(rawTask, "cursor"); err != nil {
+			fmt.Printf("[FAIL] compile manifest: %v\n", err)
+			os.Exit(1)
+		}
 	}
 
 	resolvedCat := resolveRegistryFile("resources.json", *catalogPath)
@@ -534,6 +600,11 @@ func runVerify(args []string) int {
 	_ = fs.Parse(args)
 
 	fmt.Println("=== Orchestra V3 Multi-Viewport Visual QA Runner ===")
+	selected, err := visual.SelectViewports(*viewportsStr)
+	if err != nil {
+		fmt.Printf("[FAIL] %v\n", err)
+		return 1
+	}
 	fmt.Printf("Viewports:       %s\n", *viewportsStr)
 	fmt.Printf("Report Dir:      %s\n", *outDir)
 
@@ -544,6 +615,7 @@ func runVerify(args []string) int {
 	}
 
 	verifier := engine.NewPlaywrightVerifier(*outDir)
+	verifier.Viewports = selected
 	taskCtx := &engine.TaskContext{
 		Task: &engine.TaskRequest{
 			WorkspaceRoot: workdir,
@@ -594,26 +666,31 @@ func runVerify(args []string) int {
 	// 2. Host Active Skill Parity Verification
 	syncEngine := adapters.NewHostSyncEngine(workdir)
 	userHome, _ := os.UserHomeDir()
-	if parityRep, err := syncEngine.VerifyParity(userHome); err == nil {
-		if parityRep.IsParityComplete {
-			fmt.Printf("Host Parity:     [PASS] %d/%d active skills synchronized across hosts (byte-identical=%v)\n",
-				parityRep.CanonicalSkillCount, parityRep.CanonicalSkillCount, parityRep.ByteIdentical)
-		} else {
-			warnings = true
-			fmt.Printf("Host Parity:     [WARN] Incomplete parity across hosts: missing=%v, byte-identical=%v\n",
-				parityRep.MissingSkills, parityRep.ByteIdentical)
-		}
+	if parityRep, err := syncEngine.VerifyParity(userHome); err != nil || parityRep == nil {
+		warnings = true
+		fmt.Printf("Host Parity:     [FAIL] %v\n", err)
+	} else if parityRep.HostsPresent == 0 {
+		fmt.Printf("Host Parity:     [NOT_RUN] no host skill directory exists\n")
+	} else if !parityRep.IsParityComplete {
+		warnings = true
+		fmt.Printf("Host Parity:     [WARN] present=%d absent=%s byte-identical=%v\n",
+			parityRep.HostsPresent, parityRep.AbsentHosts, parityRep.ByteIdentical)
+	} else {
+		fmt.Printf("Host Parity:     [PASS] %d skills on %d hosts (byte-identical=%v)\n",
+			parityRep.CanonicalSkillCount, parityRep.HostsPresent, parityRep.ByteIdentical)
 	}
 
 	// 3. Resource memory integrity verification
 	memPath := memory.ResolveDefaultMemoryPath(workdir)
-	if store, err := memory.NewResourceMemoryStore(memPath); err == nil {
+	if store, err := memory.NewResourceMemoryStore(memPath); err != nil {
+		warnings = true
+		fmt.Printf("Memory:          [WARN] %s unreadable: %v\n", memPath, err)
+	} else if !store.Exists() {
+		fmt.Printf("Memory:          [NOT_RUN] %s is absent\n", memPath)
+	} else {
 		total, succ, fail, rate := store.GetSummary()
 		fmt.Printf("Memory:          [PASS] %s valid (total=%d, succ=%d, fail=%d, rate=%.1f%%)\n",
 			memPath, total, succ, fail, rate*100)
-	} else {
-		warnings = true
-		fmt.Printf("Memory:          [WARN] %s unreadable: %v\n", memPath, err)
 	}
 	return verifyExitCode(qaRes.Verdict, qaRes.AllPassed, *strict, warnings)
 }
@@ -722,8 +799,10 @@ func runSync(args []string) {
 		os.Exit(1)
 	}
 
-	if report.IsParityComplete && report.ByteIdentical {
-		fmt.Println("\n[PASS] 100% byte-identical active skill parity verified across Cursor, Claude, and Antigravity.")
+	if report.HostsPresent == 0 {
+		fmt.Println("\n[NOT_RUN] no host skill directory exists.")
+	} else if report.IsParityComplete && report.ByteIdentical {
+		fmt.Printf("\n[PASS] skill bytes match on %d hosts.\n", report.HostsPresent)
 	} else if report.IsParityComplete {
 		fmt.Println("\n[NOTE] Skill names match across hosts, but minor file differences were detected.")
 	} else {
@@ -732,6 +811,37 @@ func runSync(args []string) {
 			os.Exit(1)
 		}
 	}
+}
+
+func runReceipt(args []string) {
+	fs := flag.NewFlagSet("receipt", flag.ExitOnError)
+	capsule := fs.String("capsule", "", "Capsule hash")
+	host := fs.String("host", "", "Host that ran the capsule")
+	command := fs.String("command", "", "Command that ran")
+	exitCode := fs.Int("exit", 0, "Exit code of that command")
+	changed := fs.String("file", "", "Changed file")
+	verdict := fs.String("verdict", "", "PASS marks the receipt VERIFIED")
+	root := fs.String("workdir", ".", "Workspace root")
+	_ = fs.Parse(args)
+
+	receipt := handoff.Receipt{
+		CapsuleHash: *capsule,
+		Host:        *host,
+		Verdict:     *verdict,
+	}
+	if *command != "" {
+		receipt.Commands = []string{*command}
+		receipt.ExitCodes = []int{*exitCode}
+	}
+	if *changed != "" {
+		receipt.ChangedFiles = []string{*changed}
+	}
+	path, err := handoff.WriteReceipt(*root, receipt)
+	if err != nil {
+		fmt.Printf("[FAIL] %v\n", err)
+		os.Exit(1)
+	}
+	fmt.Printf("[OK] %s status=%s\n", path, receipt.StatusFor())
 }
 
 func runMemory(args []string) {
@@ -831,8 +941,20 @@ func runMemory(args []string) {
 		fmt.Printf("Failed Runs:         %d\n", fail)
 		fmt.Printf("Overall Success:     %.1f%%\n", rate*100)
 
+	case "scrub":
+		if !store.Exists() {
+			fmt.Printf("[NOT_RUN] %s is absent\n", memPath)
+			return
+		}
+		n, err := store.Scrub()
+		if err != nil {
+			fmt.Printf("[FAIL] scrub: %v\n", err)
+			os.Exit(1)
+		}
+		fmt.Printf("[OK] scrubbed %d evaluation(s) in %s\n", n, memPath)
+
 	default:
-		fmt.Printf("Unknown memory command: %s. Use list, record, or stats.\n", sub)
+		fmt.Printf("Unknown memory command: %s. Use list, record, stats, or scrub.\n", sub)
 	}
 }
 

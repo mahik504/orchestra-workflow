@@ -1,6 +1,6 @@
-# Antigravity adapter — Orchestra 5.0.0
+# Antigravity adapter — Orchestra 5.5.0
 
-`AGENTS.md` is the contract. Antigravity is visual QA. Orchestra 5.0.0. `ORCHESTRA_CONTRACT` unset means that pin.
+`AGENTS.md` is the contract. Antigravity is visual QA. Orchestra 5.5.0. `ORCHESTRA_CONTRACT` unset means that pin.
 
 <!-- routing:start -->
 ## Routing

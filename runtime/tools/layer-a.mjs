@@ -154,6 +154,17 @@ try {
       await page.goto(url, { waitUntil: "load", timeout: 20000 });
       await settle(page);
 
+      let axeNote = [];
+      try {
+        const { AxeBuilder } = require("@axe-core/playwright");
+        const axe = await new AxeBuilder({ page }).analyze();
+        axeNote = (axe.violations || [])
+          .filter((item) => item.impact === "critical" || item.impact === "serious")
+          .map((item) => item.id);
+      } catch {
+        axeNote = ["axe-unavailable"];
+      }
+
       for (const sel of spec.required_selectors || []) {
         const loc = page.locator(sel);
         if ((await loc.count()) === 0) {
@@ -228,7 +239,7 @@ try {
         computed: { fontFamily: metrics.font, fontSize: metrics.size },
         passed: true,
         failures: [],
-        a11y: metrics.a11y,
+        a11y: (metrics.a11y || []).concat(axeNote),
         byte_size: buf.length,
         png_magic: pngMagic(buf),
         url,

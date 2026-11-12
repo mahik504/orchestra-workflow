@@ -1,6 +1,4 @@
 ---
-stub: true
-stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-research-paper
 description: Draft or polish a research paper with real citations. Use for IEEE, LaTeX, or a professor manuscript. Do not invent metrics or DOIs.
 ---
@@ -27,3 +25,25 @@ description: Draft or polish a research paper with real citations. Use for IEEE,
 Humanizer may pass the prose. It may not change results.
 
 The draft leads with the result. Collaborators are named. A citation that you did not open does not stay in the bibliography.
+
+
+## Preconditions
+
+- The task names the files or the acceptance line.
+
+## Procedure
+
+1. The task's paths and acceptance line win.
+2. Keep a citation only when the source was opened.
+
+## Output
+
+The change, the command that checked it, and what that command printed.
+
+## Verify
+
+Say the work is done only after that command has been run.
+
+## Skip
+
+Skip when the human says skip orchestra. Do not add a second conductor.

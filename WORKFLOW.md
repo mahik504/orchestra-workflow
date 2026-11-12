@@ -1,6 +1,6 @@
-# Workflow — Orchestra 5.0.0
+# Workflow — Orchestra 5.5.0
 
-The contract is `AGENTS.md`. This is the operator's walkthrough. 4.5.0 is one source of truth on the same OS. The eight stages did not change.
+The contract is `AGENTS.md`. This is the operator's walkthrough. The pin is the VERSION file. The eight stages did not change.
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
 
@@ -24,7 +24,7 @@ Correct the re-brief now. It is cheaper than correcting a build.
 ## 2. Classify
 
 ```
-orchestra classify --task "<description>"
+orchestra classify "<description>"
 ```
 
 Produces task type, product archetype, quality bar, platform, visual importance, security level, research depth, and the verification set.

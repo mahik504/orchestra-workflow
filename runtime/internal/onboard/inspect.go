@@ -17,9 +17,12 @@ const inspectBodyLimit = 64 * 1024
 // HTTPClient is the inspect transport. Tests replace it.
 var HTTPClient = &http.Client{
 	Timeout: 12 * time.Second,
-	CheckRedirect: func(_ *http.Request, via []*http.Request) error {
+	CheckRedirect: func(req *http.Request, via []*http.Request) error {
 		if len(via) >= 5 {
 			return fmt.Errorf("stopped after 5 redirects")
+		}
+		if err := resources.RejectPrivateURL(req.URL.String()); err != nil {
+			return err
 		}
 		return nil
 	},
@@ -95,7 +98,7 @@ func Inspect(rawURL string) Inspection {
 	if probe.Error != "" && insp.Error == "" {
 		insp.Error = probe.Error
 	}
-	insp.BodyExcerpt = excerpt(body)
+	insp.BodyExcerpt = labelFetched(excerpt(body))
 	insp.Title = htmlTitle(body)
 	insp.ContentType = contentTypeFrom(body)
 
@@ -115,7 +118,7 @@ func Inspect(rawURL string) Inspection {
 					insp.HasMCPManifest = true
 				case "README.md":
 					if insp.BodyExcerpt == "" {
-						insp.BodyExcerpt = excerpt(b)
+						insp.BodyExcerpt = labelFetched(excerpt(b))
 					}
 					low := strings.ToLower(b)
 					if strings.Contains(low, "model context protocol") || strings.Contains(low, "mcp server") {
@@ -129,8 +132,19 @@ func Inspect(rawURL string) Inspection {
 	return insp
 }
 
+func labelFetched(text string) string {
+	if text == "" {
+		return ""
+	}
+	return "untrusted fetched text:\n" + text
+}
+
 func get(target string) (string, Probe) {
 	p := Probe{URL: target}
+	if err := resources.RejectPrivateURL(target); err != nil {
+		p.Error = err.Error()
+		return "", p
+	}
 	req, err := http.NewRequest(http.MethodGet, target, nil)
 	if err != nil {
 		p.Error = err.Error()

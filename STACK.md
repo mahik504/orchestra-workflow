@@ -8,7 +8,7 @@
 | Performance QA | Lighthouse |
 | Security | Semgrep |
 | Target Output | Agent-Agnostic Execution Manifests |
-| Control plane | Orchestra 5.0.0 (`AGENTS.md` + engine) |
+| Control plane | Orchestra 5.5.0 (`AGENTS.md` + engine) |
 | Hosts | Cursor, Antigravity, Claude Code, jcode (executor) |
 | Resource knowledge | `registries/resources.json` + `design-resource-graph.json` |
 | Local OSS metadata | `registries/oss-index.json` (not the Brain) |

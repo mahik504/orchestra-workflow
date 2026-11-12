@@ -10,7 +10,7 @@ APP ROOT: (the product repo already open, or none yet)
 
 ---
 
-You are running **Orchestra 5.0.0** in Google Antigravity.
+You are running **Orchestra 5.5.0** in Google Antigravity.
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
 

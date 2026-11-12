@@ -1,8 +1,12 @@
 # Changelog
 
+## [5.5.0]
+
+The pin in `VERSION` is 5.5.0. The 5.0.0 tag stays on `24ad53c`. A miss scores confidence 0. Doctor and verify print NOT_RUN when the check did not run. Memory rows store a sha256, and `orchestra memory scrub` rewrites an older raw task field. Codex is a default host. The Antigravity CLI skill directory is opt-in. Browser regression loads `ow-qa`. Browserize and author stay commands. Thirty unspecified licenses were named from the file or the upstream repository. The Go suite after these edits was 795 passed in 26 packages. Route agreement reported 47 routed and 11 off the graph. The paired eval was not run. The claim stays none.
+
 ## [5.0.0]
 
-The pin in `VERSION` is 5.0.0. Site recon, app recon, scrape, UI assembly, browserize, QA, waves, author, and MCP audit are routes. [`docs/audit/EVAL-5.0.md`](docs/audit/EVAL-5.0.md) records that the fixtures stayed `not_run`. No skill was promoted. `orchestra mcp-serve` is experimental. The claim stays none.
+The pin in `VERSION` is 5.0.0. Site recon, app recon, scrape, UI assembly, browserize, QA, waves, author, and MCP audit are routes. A later correction: browserize and author stay commands. Browser regression is the route that loads `ow-qa`. [`docs/audit/EVAL-5.0.md`](docs/audit/EVAL-5.0.md) records that the fixtures stayed `not_run`. No skill was promoted. `orchestra mcp-serve` is experimental. The claim stays none.
 
 ## [4.7.0]
 

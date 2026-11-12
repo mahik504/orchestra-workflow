@@ -15,15 +15,28 @@ import path from 'node:path';
 
 const REPO = path.join(import.meta.dirname, '..', '..');
 
+function hostSpec() {
+  return JSON.parse(fs.readFileSync(path.join(REPO, 'registries', 'host-dirs.json'), 'utf8'));
+}
+
+function joinHost(home, parts) {
+  return path.join(home, ...parts);
+}
+
 export function hostDirs(home) {
-  return {
-    cursor: path.join(home, '.cursor', 'skills'),
-    claude: path.join(home, '.claude', 'skills'),
-    antigravity: path.join(home, '.gemini', 'config', 'skills'),
-    agents: path.join(home, '.agents', 'skills'),
-    jcode: path.join(home, '.jcode', 'skills'),
-    codex: path.join(home, '.codex', 'skills'),
-  };
+  const out = {};
+  for (const [name, parts] of Object.entries(hostSpec().hosts || {})) {
+    out[name] = joinHost(home, parts);
+  }
+  return out;
+}
+
+export function optionalHostDirs(home) {
+  const out = {};
+  for (const [name, parts] of Object.entries(hostSpec().optional || {})) {
+    out[name] = joinHost(home, parts);
+  }
+  return out;
 }
 
 export function listSkillIds(sourceRoot) {
@@ -525,13 +538,14 @@ function runCli(argv) {
   const args = parseArgs(argv);
   const home = process.env.OW_SYNC_HOME || os.homedir();
   const dirs = hostDirs(home);
+  const optional = optionalHostDirs(home);
   const selected = args.hosts.length ? args.hosts : Object.keys(dirs);
   const backupRoot = defaultBackupRoot(home);
   const ids = canonicalIds(REPO);
   const localRoot = path.join(REPO, 'skills-local');
   const localIds = listSkillIds(localRoot);
   for (const host of selected) {
-    const dest = dirs[host];
+    const dest = dirs[host] || optional[host];
     if (!dest) throw new Error(`unknown host ${host}`);
     if (args.restore) {
       const stampDir = path.join(backupRoot, args.restore);

@@ -9,6 +9,7 @@
     "graph_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
     "graph_version_note": { "type": "string" },
     "live_files": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "no_stale_contract_pin": { "type": "array", "items": { "type": "string" } },
     "readers_must_not_hardcode_current": { "type": "array", "items": { "type": "string" } }
   }
 }

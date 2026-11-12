@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OrchestraHostDirs",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["hosts"],
+  "properties": {
+    "hosts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cursor", "claude", "antigravity", "agents", "jcode", "codex"],
+      "properties": {
+        "cursor": { "$ref": "#/definitions/parts" },
+        "claude": { "$ref": "#/definitions/parts" },
+        "antigravity": { "$ref": "#/definitions/parts" },
+        "agents": { "$ref": "#/definitions/parts" },
+        "jcode": { "$ref": "#/definitions/parts" },
+        "codex": { "$ref": "#/definitions/parts" }
+      }
+    },
+    "optional": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/definitions/parts" }
+    }
+  },
+  "definitions": {
+    "parts": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    }
+  }
+}

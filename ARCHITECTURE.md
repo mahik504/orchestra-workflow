@@ -1,12 +1,12 @@
-# Architecture — Orchestra 5.0.0
+# Architecture — Orchestra 5.5.0
 
-The contract pin is 4.6.0. The engine keeps a mission, a worker capsule, a derived budget, and a browser check on a running app. Those sit around the eight stages. They do not replace them. A model name does not pick a skill. 4.1 adds the selection receipt, design domains, and technology rules on the same loop. 4.2 adds five skills and keeps the same conductor.
+The contract pin is the VERSION file. The engine keeps a mission, a worker capsule, a derived budget, and a browser check on a running app. Those sit around the eight stages. They do not replace them. A model name does not pick a skill.
 
 Orchestra is a **control plane**. Your agent is the executor.
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
 
-The **registry** is the resource catalog. The **graph** is capability routes (17 rows, each with trigger and skip). Host rules and IDE customizations are adapters. They never implement a competing orchestration policy.
+The **registry** is the resource catalog. The **graph** is capability routes in `registries/design-resource-graph.json` (33 capabilities, 42 domains, each with trigger and skip). Host rules and IDE customizations are adapters. They never implement a competing orchestration policy.
 
 ## The eight stages
 

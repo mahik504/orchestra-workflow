@@ -1,0 +1,13 @@
+{
+  "hosts": {
+    "cursor": [".cursor", "skills"],
+    "claude": [".claude", "skills"],
+    "antigravity": [".gemini", "config", "skills"],
+    "agents": [".agents", "skills"],
+    "jcode": [".jcode", "skills"],
+    "codex": [".codex", "skills"]
+  },
+  "optional": {
+    "antigravity-cli": [".gemini", "antigravity-cli", "skills"]
+  }
+}

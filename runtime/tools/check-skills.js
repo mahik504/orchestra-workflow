@@ -4,7 +4,18 @@ const fs = require('fs');
 const path = require('path');
 
 const REPO = path.join(__dirname, '..', '..');
-const HOST_LOCAL = new Set(['docx', 'pdf', 'pptx', 'xlsx', 'fullstack-mastery', 'creative-3d-web']);
+
+function hostLocalFromGitignore() {
+  const text = fs.readFileSync(path.join(REPO, '.gitignore'), 'utf8');
+  const names = new Set();
+  for (const line of text.split(/\r?\n/)) {
+    const match = line.match(/^skills\/([A-Za-z0-9._-]+)\/$/);
+    if (match) names.add(match[1]);
+  }
+  return names;
+}
+
+const HOST_LOCAL = hostLocalFromGitignore();
 const problems = [];
 
 const catalog = JSON.parse(fs.readFileSync(path.join(REPO, 'registries', 'skills.json'), 'utf8'));
@@ -37,6 +48,9 @@ for (const row of rows) {
   if (row.owner === 'orchestra' && row.license !== 'MIT') {
     problems.push(`${row.id} is orchestra-owned and its license is ${row.license}`);
   }
+  if (row.tier === 'vendored' && (!row.license || row.license === 'unspecified')) {
+    problems.push(`${row.id} vendored license is unspecified`);
+  }
   if (row.id.startsWith('ow-') && row.description_chars > 300) {
     problems.push(`${row.id} description is ${row.description_chars} characters; budget is 300`);
   }
@@ -48,8 +62,11 @@ for (const row of rows) {
     const text = raw.toString('utf8');
     if (!text.startsWith('---\n') && !text.startsWith('---\r\n')) problems.push(`${row.id} SKILL.md has no frontmatter`);
     if (row.id.startsWith('ow-') && !/^description:/m.test(text)) problems.push(`${row.id} SKILL.md has no description`);
-    const front = text.match(/^---\n([\s\S]*?)\n---/);
+    const front = text.match(/^---\r?\n([\s\S]*?)\r?\n---/);
     const stub = front && /stub:\s*true/.test(front[1]);
+    if (row.id.startsWith('ow-') && !stub && raw.length > 6 * 1024) {
+      problems.push(`${row.id} body is ${raw.length} bytes; cap is 6144`);
+    }
     if (row.owner === 'orchestra' && !stub) {
       for (const heading of ['Preconditions', 'Procedure', 'Output', 'Verify', 'Skip']) {
         if (!text.includes(`## ${heading}`)) problems.push(`${row.id} missing ## ${heading} (or set stub: true with a reason)`);

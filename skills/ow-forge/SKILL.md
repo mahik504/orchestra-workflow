@@ -1,6 +1,4 @@
 ---
-stub: true
-stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-forge
 description: Turn a plain request into a short brief before any other skill runs. Use at the start of a job. Do not rewrite the user's words in secret.
 ---
@@ -40,3 +38,25 @@ Libraries: gsap
 ```
 
 Omit a line that would be empty. Omit the whole note when the task loads nothing new. A skill the human names wins unless it is unsafe. A missing tool stops. Do not install it.
+
+
+## Preconditions
+
+- The task names the files or the acceptance line.
+
+## Procedure
+
+1. The task's paths and acceptance line win.
+2. Write the brief fields that are still missing. Stop when the acceptance line is clear.
+
+## Output
+
+The change, the command that checked it, and what that command printed.
+
+## Verify
+
+Say the work is done only after that command has been run.
+
+## Skip
+
+Skip when the human says skip orchestra. Do not add a second conductor.

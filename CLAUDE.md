@@ -1,6 +1,6 @@
-# Claude Code adapter — Orchestra 5.0.0
+# Claude Code adapter — Orchestra 5.5.0
 
-`AGENTS.md` is the contract. Claude Code executes and reviews. It does not open a second plan. Orchestra 5.0.0.
+`AGENTS.md` is the contract. Claude Code executes and reviews. It does not open a second plan. Orchestra 5.5.0.
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
 

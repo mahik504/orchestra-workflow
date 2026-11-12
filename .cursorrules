@@ -1,6 +1,6 @@
-# Cursor adapter — Orchestra 5.0.0
+# Cursor adapter — Orchestra 5.5.0
 
-`AGENTS.md` is the contract. This file is a pointer. Rules live in `.cursor/rules/`. Orchestra 5.0.0.
+`AGENTS.md` is the contract. This file is a pointer. Rules live in `.cursor/rules/`. Orchestra 5.5.0.
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
 

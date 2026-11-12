@@ -1,8 +1,8 @@
 # Orchestra Workflow
 
-Orchestra 5.0.0 is the control plane for Cursor, Claude Code, Antigravity, Codex, jcode, and the agents host. Skills, MCPs, plugins, and libraries are capabilities. Agents execute. The vault remembers. The registries say what exists. Host files are adapters.
+Orchestra 5.5.0 is the control plane for Cursor, Claude Code, Antigravity, Codex, jcode, and the agents host. Skills, MCPs, plugins, and libraries are capabilities. Agents execute. The vault remembers. The registries say what exists. Host files are adapters.
 
-The pin in [`VERSION`](VERSION) is **5.0.0**. The 4.7.0 tag stays where it was.
+The pin in [`VERSION`](VERSION) is **5.5.0**. The 4.7.0 tag stays where it was.
 
 ```
 ORCHESTRA  = CONTROL PLANE
@@ -15,6 +15,19 @@ REGISTRY   = RESOURCE KNOWLEDGE
 This repository is the method. Products, keys, and taste stay in a private workspace.
 
 [CI](https://github.com/mahik504/orchestra-workflow/actions/workflows/ci.yml) and [Hygiene](https://github.com/mahik504/orchestra-workflow/actions/workflows/hygiene.yml) run on `main`. A badge is a link. The run page is the result.
+
+## What's new in 5.5.0
+
+- A route miss has confidence 0. A unique hit stays at 1. Confidence on a split is the winner's score divided by the two top scores.
+- `orchestra doctor` prints ABSENT when the quarantine directory is missing and does not invent a count. Zero hosts, and a missing memory file, print NOT_RUN.
+- A visual check that does not apply is `NOT_APPLICABLE`. That result is not stored as a successful iteration. An empty `orchestra plan` exits 1.
+- Resource memory stores a sha256 of the task text, redacts secret-shaped notes, keeps the last 500 rows, and refuses a symlink. `orchestra memory scrub` rewrites an older raw task field. Run `node runtime/tools/ow-sync.mjs --apply` after this pin.
+- Codex is on the default host map. The Antigravity CLI path is opt-in. Desktop skills stay in `~/.gemini/config/skills`.
+- Browser regression loads `ow-qa`. `ow-browserize` and `ow-author` stay commands.
+- Thirty vendored rows that said `unspecified` now name a license read from the skill file or the upstream repository. No skill was added.
+- Before these edits, `go test -count=1 ./...` from `runtime/` reported 776 passed in 26 packages. After the edits, the same command reported 795 passed in 26 packages.
+- Route agreement reported 36 skills, 47 routed, 11 off the graph, and 0 problems. Heavy-route skill bytes: award-style site 56621, full-stack app 18698, mobile app 39661. `AGENTS.md` is 2047 characters. Skill descriptions total 25614.
+- The paired eval was not run. `compare.go` stays disabled. The claim stays none. The 5.0.0 tag stays on `24ad53c`.
 
 ## What's new in 5.0.0
 
@@ -102,7 +115,7 @@ sequenceDiagram
   Compile-->>Conductor: Route skills model class disclosure
 ```
 
-`orchestra compile --task "..." --host cursor --json` is the command. Keyword length scores the route. A tie at a score above zero prefers the Bug row.
+`orchestra compile --task "..." --host cursor --json` is the command. Keyword length scores the route. A tie at a score above zero is ambiguous. Confidence is the winner's score divided by the two top scores. A miss has confidence 0.
 
 ## Spec gate
 

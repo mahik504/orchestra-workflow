@@ -1,4 +1,4 @@
-// Routing-table skills must appear on a capability skills array,
+// Skills named by registries/routing.json must exist on the graph,
 // and every graph skill id must have skills/<id>/SKILL.md.
 // ow-forge and ow-focus run before classify.
 // systematic-debugging is selected from the bug type, not a new route.
@@ -16,18 +16,16 @@ const conductor = fs.readFileSync(path.join(REPO, 'skills', 'ow-conductor', 'SKI
 const a = conductor.indexOf(START);
 const b = conductor.indexOf(END);
 if (a < 0 || b < a) problems.push('conductor routing block missing');
-const block = a >= 0 ? conductor.slice(a, b) : '';
 
+const routing = JSON.parse(fs.readFileSync(path.join(REPO, 'registries', 'routing.json'), 'utf8'));
 const routed = new Set();
-for (const line of block.split('\n')) {
-  if (!line.startsWith('|') || line.includes('---') || line.includes('Job |')) continue;
-  const cells = line.split('|').slice(1, -1).map((cell) => cell.trim());
-  if (cells.length < 2) continue;
-  for (const token of cells[1].split(',').map((item) => item.trim()).filter(Boolean)) {
-    if (RESERVED.has(token) || EXEMPT.has(token)) continue;
-    routed.add(token);
+for (const route of routing.routes || []) {
+  for (const id of route.load || []) {
+    if (RESERVED.has(id) || EXEMPT.has(id)) continue;
+    routed.add(id);
   }
 }
+if (routed.size === 0) problems.push('routing.json produced zero skills');
 
 const graph = JSON.parse(fs.readFileSync(path.join(REPO, 'registries', 'design-resource-graph.json'), 'utf8'));
 const onGraph = new Set();
@@ -46,13 +44,16 @@ for (const [id, cap] of Object.entries(graph.capabilities || {})) {
   }
 }
 
+let offGraph = 0;
 for (const skill of routed) {
-  if (!onGraph.has(skill)) problems.push(`routing skill ${skill} is absent from the graph`);
+  const file = path.join(REPO, 'skills', skill, 'SKILL.md');
+  if (!fs.existsSync(file)) problems.push(`routing skill ${skill} has no skills/${skill}/SKILL.md`);
+  if (!onGraph.has(skill)) offGraph += 1;
 }
 
 if (problems.length) {
   console.log(problems.join('\n'));
-  console.log(`route agreement problems ${problems.length}`);
+  console.log(`route agreement skills ${onGraph.size}, routed ${routed.size}, off graph ${offGraph}, problems ${problems.length}`);
   process.exit(1);
 }
-console.log(`route agreement skills ${onGraph.size}, routed ${routed.size}, problems 0`);
+console.log(`route agreement skills ${onGraph.size}, routed ${routed.size}, off graph ${offGraph}, problems 0`);

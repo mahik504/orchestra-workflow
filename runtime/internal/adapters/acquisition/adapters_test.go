@@ -499,11 +499,28 @@ func TestWebAdapter_OfflineFixtureFallback(t *testing.T) {
 		t.Fatalf("Offline fixture fallback failed: %v", err)
 	}
 
-	if result.Metadata["source"] != "offline_fixture" {
-		t.Errorf("expected offline_fixture source, got %q", result.Metadata["source"])
+	if result.Metadata["source"] != "offline_fixture" || result.Metadata["kind"] != "DRY_RUN" {
+		t.Errorf("expected a dry-run offline fixture, got %+v", result.Metadata)
 	}
-	if result.SHA256Hash == "" {
-		t.Errorf("expected valid SHA256 hash for fixture")
+	if result.SHA256Hash != "" {
+		t.Errorf("a dry-run fixture must not carry a hash, got %s", result.SHA256Hash)
+	}
+}
+
+func TestWebAdapter_NetworkFailureIsAnError(t *testing.T) {
+	adapter := NewWebAdapter(false)
+	adapter.httpClient.Timeout = 5 * time.Second
+	res := &resources.Resource{
+		ID:                "not-a-curated-id",
+		CanonicalURL:      "https://example.invalid/orchestra",
+		AcquisitionMethod: "web_fetch",
+	}
+	result, err := adapter.Acquire(context.Background(), res, "")
+	if err == nil {
+		t.Fatalf("network failure returned nil error: %+v", result)
+	}
+	if result != nil && result.Metadata["source"] == "network_fallback_fixture" {
+		t.Fatal("network failure returned a fallback fixture")
 	}
 }
 

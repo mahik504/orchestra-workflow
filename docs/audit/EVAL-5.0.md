@@ -6,4 +6,6 @@ The fixtures under `runtime/benchmarks/orchestra-47/fixtures/` stay `not_run`. `
 
 `ow-site-recon`, `ow-app-recon`, `ow-scrape`, `ow-ui-assembly`, `ow-browserize`, `ow-qa`, `ow-wave`, `ow-author`, and `ow-mcp-audit` are on routes so a task can load them. That is not a measured improvement over 4.7.0. `compare.go` stays disabled. The claim stays none.
 
+Correction, 2026-11-13: `ow-qa` is a route. `ow-browserize` and `ow-author` stay commands. The sentence above listed all three as routes.
+
 `orchestra mcp-serve` is experimental. Its test checks compile and a rejected synthetic provenance URL. It does not score a product.

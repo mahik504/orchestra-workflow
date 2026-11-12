@@ -46,6 +46,16 @@ const RULES = [
   { name: 'google api key', re: /\bAIza[0-9A-Za-z_-]{30,}/ },
   { name: 'xai key', re: /\bxai-[A-Za-z0-9]{20,}/ },
   { name: 'bearer token', re: /bearer\s+[A-Za-z0-9._-]{24,}/i },
+  { name: 'anthropic document license', re: /materials outside the Services/ },
+];
+
+const LOCAL_SKILL_PREFIXES = [
+  'skills/docx/',
+  'skills/pdf/',
+  'skills/pptx/',
+  'skills/xlsx/',
+  'skills/fullstack-mastery/',
+  'skills/creative-3d-web/',
 ];
 
 const BINARY = new Set(['.png', '.jpg', '.jpeg', '.gif', '.webp', '.ico', '.pdf', '.zip', '.exe', '.woff', '.woff2', '.ttf']);
@@ -73,6 +83,9 @@ for (const line of entries) {
 }
 
 for (const rel of files) {
+  for (const prefix of LOCAL_SKILL_PREFIXES) {
+    if (rel.startsWith(prefix)) failures.push(`${rel} is a host-local skill and must stay gitignored`);
+  }
   if (SELF.has(rel)) continue;
   if (BINARY.has(path.extname(rel).toLowerCase())) continue;
   const abs = path.join(REPO, rel);

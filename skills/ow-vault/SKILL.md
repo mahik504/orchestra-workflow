@@ -1,6 +1,4 @@
 ---
-stub: true
-stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-vault
 description: Maintain the private Orchestra workspace and its memory. Jump one note. Lasting files only. Record real outcomes, never synthetic ones. No secrets.
 ---
@@ -64,3 +62,25 @@ If the human rewrites a draft and asks to keep the change, append one line to `P
 ## Git
 
 The workspace may have a **private** remote. This public template is a different repo. Do not flip a populated workspace public — its history contains personal files.
+
+
+## Preconditions
+
+- The task names the files or the acceptance line.
+
+## Procedure
+
+1. The task's paths and acceptance line win.
+2. Open one note. Append a lesson only after the human says yes.
+
+## Output
+
+The change, the command that checked it, and what that command printed.
+
+## Verify
+
+Say the work is done only after that command has been run.
+
+## Skip
+
+Skip when the human says skip orchestra. Do not add a second conductor.

@@ -46,6 +46,15 @@ jobs:
       - name: Version manifest
         run: node runtime/tools/check-versions.js
 
+      - name: Routing table
+        run: node runtime/tools/check-routing.js
+
+      - name: Route agreement
+        run: node runtime/tools/check-route-agreement.js
+
+      - name: Context budget
+        run: node runtime/tools/measure-context.mjs --check
+
       - name: No private workspace committed
         run: |
           set -e

@@ -26,6 +26,16 @@ if (graph.version !== current) {
   problems.push(`graph.version is "${graph.version}", expected ${current}`);
 }
 
+for (const rel of manifest.no_stale_contract_pin || []) {
+  const file = path.join(REPO, rel);
+  if (!fs.existsSync(file)) {
+    problems.push(`stale-pin file missing: ${rel}`);
+    continue;
+  }
+  const text = fs.readFileSync(file, 'utf8');
+  if (/\b4\.(?:5|6)\.0\b/.test(text)) problems.push(`${rel} still pins 4.5.0 or 4.6.0`);
+}
+
 for (const rel of manifest.live_files || []) {
   const file = path.join(REPO, rel);
   if (rel === 'VERSION') continue;

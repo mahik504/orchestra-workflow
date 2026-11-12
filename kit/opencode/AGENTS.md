@@ -1,6 +1,6 @@
-# OpenCode adapter — Orchestra 5.0.0
+# OpenCode adapter — Orchestra 5.5.0
 
-You are running **Orchestra 5.0.0**. This file is an adapter. It does not invent a second loop.
+You are running **Orchestra 5.5.0**. This file is an adapter. It does not invent a second loop.
 
 <!-- routing:start -->
 ## Routing

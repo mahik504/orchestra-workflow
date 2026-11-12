@@ -1,6 +1,4 @@
 ---
-stub: true
-stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-ship-safe
 description: Defensive security and CI/CD baseline for the user's own apps. Use when adding auth, APIs, env vars, GitHub Actions, deploy, or when they ask to harden, scan, or ship. Not for attacking third-party systems.
 ---
@@ -68,3 +66,25 @@ When you add security or CI, also add a short review note in the vault so Claude
 ## When the app is deployed
 
 `ow-observability` covers the tracker, traces, and dependency or image scans in that product repo. OWASP ASVS is the acceptance list for auth and access control. This skill does not replace those checks, and it does not scan a site the operator does not own.
+
+
+## Preconditions
+
+- The task names the files or the acceptance line.
+
+## Procedure
+
+1. The task's paths and acceptance line win.
+2. Check auth, secrets, and the workflow file the change touches.
+
+## Output
+
+The change, the command that checked it, and what that command printed.
+
+## Verify
+
+Say the work is done only after that command has been run.
+
+## Skip
+
+Skip when the human says skip orchestra. Do not add a second conductor.

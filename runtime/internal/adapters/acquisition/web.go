@@ -5,10 +5,8 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io"
-	"net"
 	"net/http"
 	"net/url"
 	"os"
@@ -47,23 +45,8 @@ func NewWebAdapter(offlineMode bool) *WebAdapter {
 			if len(via) >= 10 {
 				return fmt.Errorf("stopped after 10 redirects")
 			}
-			// Block redirects to private, loopback, link-local, unspecified, or metadata IPs
-			h := req.URL.Hostname()
-			if strings.EqualFold(h, "localhost") {
-				return fmt.Errorf("%w: redirect to localhost blocked", ErrSSRFDetected)
-			}
-			if ip := net.ParseIP(h); ip != nil {
-				if ip.IsLoopback() || ip.IsPrivate() || ip.IsLinkLocalUnicast() || ip.IsLinkLocalMulticast() || ip.IsUnspecified() || ip.String() == "169.254.169.254" {
-					return fmt.Errorf("%w: redirect to blocked IP %s", ErrSSRFDetected, ip.String())
-				}
-			}
-			ips, err := net.LookupIP(h)
-			if err == nil {
-				for _, ip := range ips {
-					if ip.IsLoopback() || ip.IsPrivate() || ip.IsLinkLocalUnicast() || ip.IsLinkLocalMulticast() || ip.IsUnspecified() || ip.String() == "169.254.169.254" {
-						return fmt.Errorf("%w: redirect resolved to blocked IP %s", ErrSSRFDetected, ip.String())
-					}
-				}
+			if err := resources.RejectPrivateURL(req.URL.String()); err != nil {
+				return fmt.Errorf("%w: %v", ErrSSRFDetected, err)
 			}
 			return nil
 		},
@@ -105,27 +88,9 @@ func (w *WebAdapter) validateTargetURL(urlStr string) (*url.URL, error) {
 		return nil, fmt.Errorf("%w: %s", ErrUnsupportedURLScheme, u.Scheme)
 	}
 
-	hostname := u.Hostname()
 	if !w.allowPrivateIP {
-		if strings.EqualFold(hostname, "localhost") {
-			return nil, fmt.Errorf("%w: localhost address blocked", ErrSSRFDetected)
-		}
-		if parsedIP := net.ParseIP(hostname); parsedIP != nil {
-			if parsedIP.IsLoopback() || parsedIP.IsPrivate() || parsedIP.IsLinkLocalUnicast() || parsedIP.IsLinkLocalMulticast() || parsedIP.IsUnspecified() || parsedIP.String() == "169.254.169.254" {
-				return nil, fmt.Errorf("%w: resolved to blocked IP %s", ErrSSRFDetected, parsedIP.String())
-			}
-		}
-		ips, err := net.LookupIP(hostname)
-		if err == nil {
-			for _, ip := range ips {
-				if ip.IsLoopback() || ip.IsPrivate() || ip.IsLinkLocalUnicast() || ip.IsLinkLocalMulticast() || ip.IsUnspecified() {
-					return nil, fmt.Errorf("%w: resolved to blocked IP %s", ErrSSRFDetected, ip.String())
-				}
-				// Metadata IP check (AWS, GCP, Azure 169.254.169.254)
-				if ip.String() == "169.254.169.254" {
-					return nil, fmt.Errorf("%w: cloud metadata IP blocked", ErrSSRFDetected)
-				}
-			}
+		if err := resources.RejectPrivateURL(urlStr); err != nil {
+			return nil, fmt.Errorf("%w: %v", ErrSSRFDetected, err)
 		}
 	}
 
@@ -137,17 +102,6 @@ func (w *WebAdapter) getOfflineFixture(resID string) ([]byte, bool) {
 	fixture, exists := research.CuratedSourceFixtures[resID]
 	if exists {
 		data, err := json.MarshalIndent(fixture, "", "  ")
-		if err == nil {
-			return data, true
-		}
-	}
-	if resID != "" {
-		fallback := map[string]any{
-			"source_id": resID,
-			"status":    "offline_fixture",
-			"timestamp": time.Now().UTC().Format(time.RFC3339),
-		}
-		data, err := json.MarshalIndent(fallback, "", "  ")
 		if err == nil {
 			return data, true
 		}
@@ -176,28 +130,29 @@ func (w *WebAdapter) Acquire(ctx context.Context, res *resources.Resource, dest 
 
 	// 1. Offline Mode Fast-Path
 	if w.offlineMode {
-		if fixtureData, ok := w.getOfflineFixture(res.ID); ok {
-			h := sha256.Sum256(fixtureData)
-			shaHex := hex.EncodeToString(h[:])
-			return &AcquisitionResult{
-				ResourceID:        res.ID,
-				AdapterName:       w.Name(),
-				AcquisitionMethod: "web_fetch",
-				SourceURL:         targetURL,
-				VersionOrSHA:      shaHex[:16],
-				SHA256Hash:        shaHex,
-				InstalledPath:     "",
-				ResolvedTarget:    targetURL,
-				AlreadyInstalled:  false,
-				Ephemeral:         true,
-				Duration:          time.Since(start),
-				Output:            string(fixtureData),
-				Metadata: map[string]string{
-					"source":  "offline_fixture",
-					"offline": "true",
-				},
-			}, nil
+		fixtureData, ok := w.getOfflineFixture(res.ID)
+		source := "offline_fixture"
+		if !ok {
+			fixtureData = []byte(`{"status":"no_curated_fixture"}`)
+			source = "offline_uncurated"
 		}
+		return &AcquisitionResult{
+			ResourceID:        res.ID,
+			AdapterName:       w.Name(),
+			AcquisitionMethod: "web_fetch",
+			SourceURL:         targetURL,
+			InstalledPath:     "",
+			ResolvedTarget:    targetURL,
+			AlreadyInstalled:  false,
+			Ephemeral:         true,
+			Duration:          time.Since(start),
+			Output:            string(fixtureData),
+			Metadata: map[string]string{
+				"source":  source,
+				"offline": "true",
+				"kind":    "DRY_RUN",
+			},
+		}, nil
 	}
 
 	// 2. Validate URL and SSRF Safety
@@ -215,33 +170,6 @@ func (w *WebAdapter) Acquire(ctx context.Context, res *resources.Resource, dest 
 
 	resp, err := w.httpClient.Do(req)
 	if err != nil {
-		// Do NOT mask SSRF errors with offline fixtures!
-		if errors.Is(err, ErrSSRFDetected) {
-			return nil, err
-		}
-		// Network failure fallback to curated fixture
-		if fixtureData, ok := w.getOfflineFixture(res.ID); ok {
-			h := sha256.Sum256(fixtureData)
-			shaHex := hex.EncodeToString(h[:])
-			return &AcquisitionResult{
-				ResourceID:        res.ID,
-				AdapterName:       w.Name(),
-				AcquisitionMethod: "web_fetch",
-				SourceURL:         targetURL,
-				VersionOrSHA:      shaHex[:16],
-				SHA256Hash:        shaHex,
-				InstalledPath:     "",
-				ResolvedTarget:    targetURL,
-				AlreadyInstalled:  false,
-				Ephemeral:         true,
-				Duration:          time.Since(start),
-				Output:            string(fixtureData),
-				Metadata: map[string]string{
-					"source": "network_fallback_fixture",
-					"error":  err.Error(),
-				},
-			}, nil
-		}
 		return nil, fmt.Errorf("failed fetching URL %s: %w", targetURL, err)
 	}
 	defer resp.Body.Close()

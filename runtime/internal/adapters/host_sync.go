@@ -23,6 +23,7 @@ const (
 	HostAntigravity HostType = "antigravity"
 	HostAgents      HostType = "agents"
 	HostJcode       HostType = "jcode"
+	HostCodex       HostType = "codex"
 )
 
 func init() {
@@ -117,6 +118,8 @@ type ParityReport struct {
 	QuarantineViolations []string              `json:"quarantine_violations"`
 	ByteIdentical        bool                  `json:"byte_identical"`
 	MismatchDetails      []string              `json:"mismatch_details"`
+	HostsPresent         int                   `json:"hosts_present"`
+	AbsentHosts          []HostType            `json:"absent_hosts,omitempty"`
 }
 
 // HostSyncEngine manages generation, validation, and synchronization of host configurations
@@ -132,15 +135,47 @@ func NewHostSyncEngine(workspaceRoot string) *HostSyncEngine {
 	return &HostSyncEngine{WorkspaceRoot: workspaceRoot}
 }
 
-// ResolveHostDirs returns the map of active host directories for a user home
+// ResolveHostDirs returns the map of active host directories for a user home.
+// The list is registries/host-dirs.json, shared with ow-sync.
 func (e *HostSyncEngine) ResolveHostDirs(userHome string) map[HostType]string {
-	return map[HostType]string{
-		HostCursor:      filepath.Join(userHome, ".cursor", "skills"),
-		HostClaudeCode:  filepath.Join(userHome, ".claude", "skills"),
-		HostAntigravity: filepath.Join(userHome, ".gemini", "config", "skills"),
-		HostAgents:      filepath.Join(userHome, ".agents", "skills"),
-		HostJcode:       filepath.Join(userHome, ".jcode", "skills"),
+	out := map[HostType]string{}
+	for name, parts := range loadHostSegments() {
+		segs := append([]string{userHome}, parts...)
+		out[HostType(name)] = filepath.Join(segs...)
 	}
+	return out
+}
+
+func loadHostSegments() map[string][]string {
+	fallback := map[string][]string{
+		"cursor":      {".cursor", "skills"},
+		"claude":      {".claude", "skills"},
+		"antigravity": {".gemini", "config", "skills"},
+		"agents":      {".agents", "skills"},
+		"jcode":       {".jcode", "skills"},
+		"codex":       {".codex", "skills"},
+	}
+	dir, err := os.Getwd()
+	if err != nil {
+		return fallback
+	}
+	for i := 0; i < 8; i++ {
+		raw, err := os.ReadFile(filepath.Join(dir, "registries", "host-dirs.json"))
+		if err == nil {
+			var doc struct {
+				Hosts map[string][]string `json:"hosts"`
+			}
+			if json.Unmarshal(raw, &doc) == nil && len(doc.Hosts) > 0 {
+				return doc.Hosts
+			}
+		}
+		parent := filepath.Dir(dir)
+		if parent == dir {
+			break
+		}
+		dir = parent
+	}
+	return fallback
 }
 
 // VerifyParity audits installed skill directories across hosts and validates 100% byte parity
@@ -168,7 +203,9 @@ func (e *HostSyncEngine) VerifyParity(userHome string) (*ParityReport, error) {
 	activeHosts := make([]HostType, 0)
 
 	for host, dir := range hostDirs {
-		if _, err := os.Stat(dir); os.IsNotExist(err) {
+		if _, err := os.Stat(dir); err != nil {
+			report.AbsentHosts = append(report.AbsentHosts, host)
+			report.IsParityComplete = false
 			continue
 		}
 		activeHosts = append(activeHosts, host)
@@ -218,6 +255,11 @@ func (e *HostSyncEngine) VerifyParity(userHome string) (*ParityReport, error) {
 				report.IsParityComplete = false
 			}
 		}
+	}
+
+	report.HostsPresent = len(activeHosts)
+	if len(activeHosts) == 0 {
+		report.IsParityComplete = false
 	}
 
 	// Verify byte-identical parity across hosts for each skill

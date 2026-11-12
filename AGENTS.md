@@ -1,6 +1,6 @@
-# AGENTS — Orchestra 5.0.0
+# AGENTS — Orchestra 5.5.0
 
-You are running **Orchestra 5.0.0**. One conductor.
+You are running **Orchestra 5.5.0**. One conductor.
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
 

@@ -1,8 +1,6 @@
 ---
-stub: true
-stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-conductor
-description: Orchestra 5.0.0 control plane. Classify the task, print the receipt, hold the design gate, verify on the running app, and review twice. Stand down when the human says skip orchestra.
+description: Orchestra 5.5.0 control plane. Classify the task, print the receipt, hold the design gate, verify on the running app, and review twice. Stand down when the human says skip orchestra.
 ---
 
 # Orchestra conductor
@@ -26,3 +24,25 @@ One control loads `none`. Classify still opens `interaction-components`.
 Open-ended PREMIUM is 23 cards. A named visual reference is 3 translations. A pasted DESIGN.md skips the survey and still owes stills.
 
 Write DONE, FIXED, VERIFIED, PASSED, or SHIPPED only with observed evidence in the same message.
+
+
+## Preconditions
+
+- The task names the files or the acceptance line.
+
+## Procedure
+
+1. The task's paths and acceptance line win.
+2. Name the route from docs/ROUTING.md, then do the work.
+
+## Output
+
+The change, the command that checked it, and what that command printed.
+
+## Verify
+
+Say the work is done only after that command has been run.
+
+## Skip
+
+Skip when the human says skip orchestra. Do not add a second conductor.

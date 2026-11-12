@@ -175,3 +175,51 @@ func TestWebsiteDoesNotTakeMobile(t *testing.T) {
 		t.Fatalf("%s %s", mobile.Route, mobile.SessionSize)
 	}
 }
+
+func TestCompileMissHasZeroConfidence(t *testing.T) {
+	routes := []Route{{Job: "Bug", Match: []string{"bug"}, Disclosure: "L0", Load: []string{"systematic-debugging"}}}
+	got, err := Compile("zzzz-no-such-route", "cursor", routes)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.Route != "unspecified" || got.Confidence != 0 || got.Fast {
+		t.Fatalf("route %s confidence %v fast %v", got.Route, got.Confidence, got.Fast)
+	}
+}
+
+func TestCompileUniqueHitKeepsFullConfidence(t *testing.T) {
+	routes := []Route{{Job: "Bug", Match: []string{"bug"}, Disclosure: "L0", Load: []string{"systematic-debugging"}}}
+	got, err := Compile("fix a bug", "cursor", routes)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.Route != "Bug" || got.Confidence != 1 || got.Fast {
+		t.Fatalf("%s %v fast %v", got.Route, got.Confidence, got.Fast)
+	}
+}
+
+func TestCompileFastWhenL0AndPath(t *testing.T) {
+	routes := []Route{{Job: "Bug", Match: []string{"bug"}, Disclosure: "L0", Load: []string{"systematic-debugging"}}}
+	miss, err := Compile("fix nil pointer in runtime/internal/compile/compile.go", "cursor", routes)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if miss.Route != "unspecified" || miss.Confidence != 0 || !miss.Fast {
+		t.Fatalf("path miss %+v", miss)
+	}
+	hit, err := Compile("bug in runtime/internal/compile/compile.go", "cursor", routes)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if hit.Route != "Bug" || hit.Confidence != 1 || !hit.Fast {
+		t.Fatalf("bug path %+v", hit)
+	}
+	visual := []Route{{Job: "Scroll", Match: []string{"scroll"}, Disclosure: "L1", Load: []string{"gsap-core"}}}
+	page, err := Compile("scroll in src/app/page.tsx", "cursor", visual)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if page.Fast {
+		t.Fatal("a visual path is not fast")
+	}
+}
