@@ -74,7 +74,7 @@ Then:
 
 ```bash
 orchestra doctor
-orchestra classify --task "optional: score this brief"
+orchestra classify "optional: score this brief"
 orchestra plan --task "optional: dry-run the pipeline"
 ```
 

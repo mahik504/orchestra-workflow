@@ -1,8 +1,8 @@
 # Competitor matrix 5.5
 
-Recorded 2026-11-12. Cells are judgments about files this session opened. They are not task scores. Stars are API `stargazers_count` the same day, and they do not fill a cell. `Unknown` means the relevant file was not opened. Detail and URLs are in `COMPETITIVE-ANALYSIS-5.5.md`.
+Recorded 2026-11-12 against commit `24ad53c`. Cells are judgments about files that session opened. They are not task scores. The star table in that file is that day's API count. `Unknown` means the relevant file was not opened. Detail is in `COMPETITIVE-ANALYSIS-5.5.md`.
 
-Orchestra column is this repo at `24ad53c`.
+5.5.0, commit `f13f17e`, changed four cells in the Orchestra column. A route miss now scores confidence 0. A check that did not run prints NOT_RUN and is not stored as success. Codex is on the default host map. The long conductor note was replaced by a short pointer. The README comparison is the current table. This file stays the 2026-11-12 reading.
 
 ## Popularity, separate from the matrix
 
