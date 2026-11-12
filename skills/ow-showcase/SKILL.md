@@ -1,4 +1,6 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-showcase
 description: Record a walkthrough and capture ship assets after human approval, production readiness, and a green ledger. Load only on the ow-showcase route. Never influences implementation.
 ---

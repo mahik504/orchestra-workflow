@@ -1,4 +1,6 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-fresh-review
 description: Independent review of a completed phase from a clean context. Ask what is wrong that the builder cannot see. Load only on the ow-fresh-review route. Not a second conductor.
 ---

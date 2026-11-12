@@ -25,7 +25,16 @@ var (
 	ErrIntegrityCheckFailed   = errors.New("provenance integrity verification failed")
 )
 
-// ProvenanceEntry models the mandatory 9-field provenance ledger record.
+const (
+	KindRealArtifact  = "REAL_ARTIFACT"
+	KindReferenceOnly = "REFERENCE_ONLY"
+	KindPending       = "PENDING"
+	KindDryRun        = "DRY_RUN"
+	KindFailed        = "FAILED"
+)
+
+// ProvenanceEntry models a ledger row. Kind says whether SHA256Hash is an
+// artifact hash. A non-artifact row must not carry one.
 type ProvenanceEntry struct {
 	ResourceID          string `json:"resource_id"`
 	AcquisitionMethod   string `json:"acquisition_method"`
@@ -36,6 +45,7 @@ type ProvenanceEntry struct {
 	Timestamp           string `json:"timestamp"`
 	JustificationTaskID string `json:"justification_task_id"`
 	IsQuarantined       bool   `json:"is_quarantined"`
+	Kind                string `json:"kind,omitempty"`
 }
 
 // ProvenanceDocument represents the persisted JSON structure at .orchestra/provenance.json.
@@ -128,7 +138,9 @@ func (s *ProvenanceStore) load() error {
 	return nil
 }
 
-// ValidateEntry ensures all 9 fields conform to schema requirements.
+// ValidateEntry checks a ledger row. Legacy rows (no Kind) still require a
+// source, a version, and a hash. A REAL_ARTIFACT row requires those too.
+// REFERENCE_ONLY, PENDING, DRY_RUN, and FAILED must not carry a hash.
 func ValidateEntry(entry *ProvenanceEntry) error {
 	if strings.TrimSpace(entry.ResourceID) == "" {
 		return fmt.Errorf("%w: resource_id is required", ErrProvenanceEntryInvalid)
@@ -136,17 +148,33 @@ func ValidateEntry(entry *ProvenanceEntry) error {
 	if strings.TrimSpace(entry.AcquisitionMethod) == "" {
 		return fmt.Errorf("%w: acquisition_method is required", ErrProvenanceEntryInvalid)
 	}
-	if strings.TrimSpace(entry.SourceURL) == "" {
-		return fmt.Errorf("%w: source_url is required", ErrProvenanceEntryInvalid)
-	}
-	if strings.TrimSpace(entry.VersionOrSHA) == "" {
-		return fmt.Errorf("%w: version_or_sha is required", ErrProvenanceEntryInvalid)
-	}
-	if strings.TrimSpace(entry.SHA256Hash) == "" {
-		return fmt.Errorf("%w: sha256_hash is required", ErrProvenanceEntryInvalid)
-	}
 	if strings.TrimSpace(entry.JustificationTaskID) == "" {
 		return fmt.Errorf("%w: justification_task_id is required", ErrProvenanceEntryInvalid)
+	}
+	if strings.Contains(entry.SourceURL, "orchestra.internal") {
+		return fmt.Errorf("%w: synthetic source url", ErrProvenanceEntryInvalid)
+	}
+	switch entry.Kind {
+	case KindRealArtifact:
+		if strings.TrimSpace(entry.SourceURL) == "" || strings.TrimSpace(entry.VersionOrSHA) == "" || strings.TrimSpace(entry.SHA256Hash) == "" {
+			return fmt.Errorf("%w: real artifact needs source, version, and sha256", ErrProvenanceEntryInvalid)
+		}
+	case KindReferenceOnly, KindPending, KindDryRun, KindFailed:
+		if strings.TrimSpace(entry.SHA256Hash) != "" {
+			return fmt.Errorf("%w: %s must not carry an artifact hash", ErrProvenanceEntryInvalid, entry.Kind)
+		}
+	case "":
+		if strings.TrimSpace(entry.SourceURL) == "" {
+			return fmt.Errorf("%w: source_url is required", ErrProvenanceEntryInvalid)
+		}
+		if strings.TrimSpace(entry.VersionOrSHA) == "" {
+			return fmt.Errorf("%w: version_or_sha is required", ErrProvenanceEntryInvalid)
+		}
+		if strings.TrimSpace(entry.SHA256Hash) == "" {
+			return fmt.Errorf("%w: sha256_hash is required", ErrProvenanceEntryInvalid)
+		}
+	default:
+		return fmt.Errorf("%w: unknown kind %s", ErrProvenanceEntryInvalid, entry.Kind)
 	}
 	return nil
 }
@@ -281,6 +309,11 @@ func (s *ProvenanceStore) VerifyIntegrity(workspaceRoot string) (*IntegrityRepor
 
 		// 1. Ephemeral resource check (installed_path is empty)
 		if entry.InstalledPath == "" {
+			switch entry.Kind {
+			case KindReferenceOnly, KindPending, KindDryRun, KindFailed:
+				report.PassedCount++
+				continue
+			}
 			if len(entry.SHA256Hash) < 8 {
 				report.AllValid = false
 				report.FailedCount++

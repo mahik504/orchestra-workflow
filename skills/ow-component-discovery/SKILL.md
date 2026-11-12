@@ -1,4 +1,6 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-component-discovery
 description: Find an existing component before building one. Search the product, then shadcn, Magic UI, and React Bits. Adapt the pattern. Do not add a second component kit or leave an always-on MCP.
 ---

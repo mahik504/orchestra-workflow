@@ -54,7 +54,7 @@ const UPSERTS = {
       'the job is a full page — route the page first',
     ],
     policy_verdict: 'FREE OSS + FREE MCP; PRO NOT CLAIMED',
-    rationale: 'Official free MCP is npx @magicuidesign/mcp@latest (or npx @magicuidesign/cli@latest install cursor). Do not buy Pro. Do not claim Pro blocks.',
+    rationale: 'Official free MCP is npx @magicuidesign/mcp@2.1.0 (or npx @magicuidesign/cli@1.1.0 install cursor). Do not buy Pro. Do not claim Pro blocks.',
     auth: 'NONE',
     free_capability: 'OSS components + free MCP catalog',
     paid_capability: 'Magic UI Pro blocks/templates',
@@ -257,7 +257,7 @@ const NEW_ROWS = [
       'another motion kit already chosen',
     ],
     policy_verdict: 'FREE_MCP',
-    rationale: 'Official install: npx @magicuidesign/cli@latest install cursor, or mcpServers.magicuidesign-mcp = npx -y @magicuidesign/mcp@latest. Pro is separate and unpaid.',
+    rationale: 'Official install: npx @magicuidesign/cli@1.1.0 install cursor, or mcpServers.magicuidesign-mcp = npx -y @magicuidesign/mcp@2.1.0. Pro is separate and unpaid.',
     auth: 'HOST_CONNECT',
     free_capability: 'free Magic UI MCP component catalog',
     paid_capability: 'Magic UI Pro',
@@ -734,7 +734,7 @@ req.add('skip_conditions');
 item.required = [...req];
 
 const graph = load('design-resource-graph.json');
-graph.version = '4.0.0';
+graph.version = fs.readFileSync(path.join(__dirname, '..', '..', 'VERSION'), 'utf8').trim();
 const d = graph.domains;
 d.visual_research = Array.from(new Set([...(d.visual_research || []), 'lapa', 'saasframe', 'refero-public']));
 d.interaction_components = Array.from(new Set([

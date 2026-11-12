@@ -1,4 +1,6 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-deploy
 description: Ship the app the product already builds. Pick the host from the project note, run its preview, then production. No new platform, no invented URL, no global CLI login from this skill.
 ---

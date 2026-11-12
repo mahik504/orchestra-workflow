@@ -1,0 +1,25 @@
+{
+  "claim": "none",
+  "trials_required": 3,
+  "cost_cap": 1.1,
+  "arms": [
+    {
+      "id": "A",
+      "home": "clean",
+      "routing": false,
+      "skills": []
+    },
+    {
+      "id": "B",
+      "home": "orchestra",
+      "routing": true,
+      "skills": ["control-plane"]
+    },
+    {
+      "id": "C",
+      "home": "orchestra",
+      "routing": true,
+      "skills": ["routed"]
+    }
+  ]
+}

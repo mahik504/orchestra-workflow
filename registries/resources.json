@@ -4906,7 +4906,7 @@
       "the job is a full page — route the page first"
     ],
     "policy_verdict": "FREE OSS + FREE MCP; PRO NOT CLAIMED",
-    "rationale": "Official free MCP is npx @magicuidesign/mcp@latest (or npx @magicuidesign/cli@latest install cursor). Do not buy Pro. Do not claim Pro blocks.",
+    "rationale": "Official free MCP is npx @magicuidesign/mcp@2.1.0 (or npx @magicuidesign/cli@1.1.0 install cursor). Do not buy Pro. Do not claim Pro blocks.",
     "last_verified": "2026-09-06",
     "source_repository": "https://github.com/magicuidesign/magicui.git",
     "auth": "NONE",
@@ -5185,7 +5185,7 @@
       "another motion kit already chosen"
     ],
     "policy_verdict": "FREE_MCP",
-    "rationale": "Official install: npx @magicuidesign/cli@latest install cursor, or mcpServers.magicuidesign-mcp = npx -y @magicuidesign/mcp@latest. Pro is separate and unpaid.",
+    "rationale": "Official install: npx @magicuidesign/cli@1.1.0 install cursor, or mcpServers.magicuidesign-mcp = npx -y @magicuidesign/mcp@2.1.0. Pro is separate and unpaid.",
     "auth": "HOST_CONNECT",
     "free_capability": "free Magic UI MCP component catalog",
     "paid_capability": "Magic UI Pro",

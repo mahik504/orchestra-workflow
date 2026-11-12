@@ -11,7 +11,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "owner", "tier", "source", "license", "hosts", "description_chars", "context_chars"],
+        "required": ["id", "owner", "tier", "source", "license", "hosts", "description_chars", "context_chars", "invocation"],
         "properties": {
           "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
           "rename_to": { "type": "string" },
@@ -23,7 +23,8 @@
           "hosts": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
           "description_chars": { "type": "integer", "minimum": 0 },
           "triggers": { "type": "string" },
-          "context_chars": { "type": "integer", "minimum": 1 }
+          "context_chars": { "type": "integer", "minimum": 1 },
+          "invocation": { "type": "string", "enum": ["user", "model"] }
         }
       }
     }

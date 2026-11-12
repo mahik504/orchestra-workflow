@@ -1,9 +1,11 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-marketing
 description: Positioning, a page title, and on-page copy for a product that is shipping. humanizer edits the voice. No invented metrics.
 ---
 
-# Marketing — 4.1.0
+# Marketing
 
 Source method: marketing-skills (`coreyhaines31/marketingskills`). The pack is not installed. `humanizer` still edits the voice after the claims are true.
 

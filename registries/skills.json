@@ -18,7 +18,8 @@
       ],
       "description_chars": 197,
       "triggers": "Read the operator's own public profiles and public Reddit, X, and YouTube pages. Read only. No posting, likes, DMs, or applications. Not on the default Load line. Setup is not part of this release.",
-      "context_chars": 7155
+      "context_chars": 7155,
+      "invocation": "model"
     },
     {
       "id": "anatomy",
@@ -38,7 +39,8 @@
       ],
       "description_chars": 1018,
       "triggers": "Build crafted, highly detailed, interactive isometric SVG figures that explain a technical idea as a real physical object (a test rig, a dial gauge, a cabinet of drawers, a plotter, a lock), with many small precise solid parts, four-tone shading, correct painter's order, a framed card with title, hi",
-      "context_chars": 33589
+      "context_chars": 33774,
+      "invocation": "model"
     },
     {
       "id": "animate",
@@ -58,7 +60,8 @@
       ],
       "description_chars": 418,
       "triggers": "Build an animation from scratch, making the decisions in the order that determines whether it feels right — should it animate at all, what purpose, which tool, which properties, which curve and duration, how it interrupts, how it exits. Writes the implementation. Use when asked to animate something,",
-      "context_chars": 11511
+      "context_chars": 11511,
+      "invocation": "model"
     },
     {
       "id": "build-awwwards-quality-sites",
@@ -78,7 +81,8 @@
       ],
       "description_chars": 493,
       "triggers": "Art-direct and implement distinctive, motion-rich marketing, editorial, portfolio, and landing websites with original reference-inspired imagery, standout heroes, GSAP choreography, one smooth-scroll engine, optional Three.js shaders, honest icon and logo sourcing, photo avatars, accessibility, and ",
-      "context_chars": 7281
+      "context_chars": 7281,
+      "invocation": "model"
     },
     {
       "id": "ci-security-scanning-with-strix",
@@ -98,7 +102,8 @@
       ],
       "description_chars": 577,
       "triggers": "Add security scanning to CI/CD with Strix — GitHub Actions, GitLab CI, or any pipeline — so every pull request gets a diff-scoped AI pentest that blocks vulnerable code before it merges, with results as PR comments and SARIF uploaded to code scanning. Covers both the self-hosted open-source CLI (run",
-      "context_chars": 8156
+      "context_chars": 8156,
+      "invocation": "model"
     },
     {
       "id": "constraint-driven-development",
@@ -118,7 +123,8 @@
       ],
       "description_chars": 880,
       "triggers": "Establishes a project's quality bar as a written contract and stops agents quietly lowering it. Interviews the user on which dimensions matter, supplies sane default thresholds when they have no number in mind, records everything in CONSTRAINTS.md, and watches the diff for a weakened bar — new @ts-i",
-      "context_chars": 22216
+      "context_chars": 22216,
+      "invocation": "model"
     },
     {
       "id": "domain-modeling",
@@ -138,7 +144,8 @@
       ],
       "description_chars": 151,
       "triggers": "Build and sharpen a project's domain model. Use when discussing codebase terminology, writing or editing a GLOSSARY.md, or recording or editing an ADR.",
-      "context_chars": 3420
+      "context_chars": 3420,
+      "invocation": "model"
     },
     {
       "id": "eas-app-stores",
@@ -158,7 +165,8 @@
       ],
       "description_chars": 594,
       "triggers": "EAS service (paid). Deploy Expo apps to the app stores with EAS - build and submit to the iOS App Store, Google Play Store, and TestFlight, configure eas.json build and submit profiles, manage app versions and build numbers, and publish App Store metadata and ASO. Use whenever the user wants to depl",
-      "context_chars": 5158
+      "context_chars": 5158,
+      "invocation": "model"
     },
     {
       "id": "egm-draft",
@@ -178,7 +186,8 @@
       ],
       "description_chars": 262,
       "triggers": "Drafts a design document section-by-section using the concepts brief from egm-brainstorm (or user notes). This is the second step in the Elephant-Goldfish (EGM) feature flow. Use when you are ready to write a design doc after aligning on requirements + solution.",
-      "context_chars": 17736
+      "context_chars": 17737,
+      "invocation": "user"
     },
     {
       "id": "egm-resolve",
@@ -198,7 +207,8 @@
       ],
       "description_chars": 232,
       "triggers": "The Elephant resolution skill. Ingests flat deficiency reports from concurrent Goldfish reviewers, applies automated fixes for PROPOSE FIX items via UI multiple-choice gates, and presents interactive negotiation/re-sync checkpoints.",
-      "context_chars": 8664
+      "context_chars": 8665,
+      "invocation": "user"
     },
     {
       "id": "egm-review",
@@ -218,7 +228,8 @@
       ],
       "description_chars": 267,
       "triggers": "Orchestrates the EGM Goldfish Review Protocol. Used as part of the EGM process to perform design document reviews. Executes five review phases: Initial Zoom Out Review, Comprehension Review, Design Critique, Intermediate Zoom Out Review, and Implementation Readiness.",
-      "context_chars": 24619
+      "context_chars": 24620,
+      "invocation": "user"
     },
     {
       "id": "egm-review-loop",
@@ -238,7 +249,8 @@
       ],
       "description_chars": 367,
       "triggers": "Executes the Antagonistic-Review process from the Elephant-Goldfish Model (EGM) via an automated multi-agent review loop to audit documents against qualitative standards and structural templates, and automatically apply approved fixes. Use when reviewing design docs, READMEs, feature specifications,",
-      "context_chars": 10460
+      "context_chars": 10461,
+      "invocation": "user"
     },
     {
       "id": "emil-design-eng",
@@ -258,7 +270,8 @@
       ],
       "description_chars": 155,
       "triggers": "This skill encodes Emil Kowalski's philosophy on UI polish, component design, animation decisions, and the invisible details that make software feel great.",
-      "context_chars": 27900
+      "context_chars": 27900,
+      "invocation": "model"
     },
     {
       "id": "expo-data-fetching",
@@ -278,7 +291,8 @@
       ],
       "description_chars": 226,
       "triggers": "Framework (OSS). Use when implementing or debugging ANY network request, API call, or data fetching. Covers fetch API, React Query, SWR, error handling, caching, offline support, and Expo Router data loaders (`useLoaderData`).",
-      "context_chars": 11831
+      "context_chars": 11831,
+      "invocation": "model"
     },
     {
       "id": "expo-dev-client",
@@ -298,7 +312,8 @@
       ],
       "description_chars": 197,
       "triggers": "Framework (OSS). Build and distribute Expo development clients locally or via TestFlight for internal testing. For production TestFlight releases and store submission, use the eas-app-stores skill.",
-      "context_chars": 4920
+      "context_chars": 4920,
+      "invocation": "model"
     },
     {
       "id": "expo-native-ui",
@@ -318,7 +333,8 @@
       ],
       "description_chars": 267,
       "triggers": "Framework (OSS). Build beautiful, native-feeling Expo screens. Covers Apple HIG styling, semantic colors, native controls, SF Symbols, media, animations, visual effects, gradients, storage, and responsive layout. For routing and navigation, use the expo-router skill.",
-      "context_chars": 9189
+      "context_chars": 9189,
+      "invocation": "model"
     },
     {
       "id": "expo-project-structure",
@@ -338,7 +354,8 @@
       ],
       "description_chars": 238,
       "triggers": "Framework (OSS). Folder structure for a new Expo app. Use when scaffolding or laying out a new Expo project with Expo Router, or deciding where a file should live in one. For new projects only — never restructure an existing app to match.",
-      "context_chars": 6617
+      "context_chars": 6617,
+      "invocation": "model"
     },
     {
       "id": "expo-router",
@@ -358,7 +375,8 @@
       ],
       "description_chars": 277,
       "triggers": "Framework (OSS). Navigation and routing for Expo Router. Covers file-based routes, groups and dynamic routes, folder organization, Link with previews and context menus, native Stack, page titles, modals and form sheets, NativeTabs, headers and toolbars, and header search bars.",
-      "context_chars": 7104
+      "context_chars": 7104,
+      "invocation": "model"
     },
     {
       "id": "expo-upgrade",
@@ -378,7 +396,8 @@
       ],
       "description_chars": 88,
       "triggers": "Framework (OSS). Guidelines for upgrading Expo SDK versions and fixing dependency issues",
-      "context_chars": 7363
+      "context_chars": 7363,
+      "invocation": "model"
     },
     {
       "id": "find-skills",
@@ -398,7 +417,8 @@
       ],
       "description_chars": 303,
       "triggers": "Helps users discover and install agent skills when they ask questions like \"how do I do X\", \"find a skill for X\", \"is there a skill that can...\", or express interest in extending capabilities. This skill should be used when the user is looking for functionality that might exist as an installable ski",
-      "context_chars": 5937
+      "context_chars": 5937,
+      "invocation": "model"
     },
     {
       "id": "fix-security-vulnerabilities-with-strix",
@@ -418,7 +438,8 @@
       ],
       "description_chars": 502,
       "triggers": "Fix security vulnerabilities found by a Strix pentest (open-source CLI or app.strix.ai cloud) — triage by severity, patch the root cause rather than the symptom, and re-run Strix to prove each fix actually closes the exploit. Handles injection, XSS, SSRF, broken access control, IDOR, and other valid",
-      "context_chars": 5851
+      "context_chars": 5851,
+      "invocation": "model"
     },
     {
       "id": "floorplan",
@@ -438,7 +459,8 @@
       ],
       "description_chars": 934,
       "triggers": "Draw a floorplan of an app's codebase (one repo or several side by side), an interactive node-graph map where every subsystem, module, file and HTTP route has a human-readable name and a one-line description, connected by the imports and HTTP calls between them, at several zoom levels. It is saved a",
-      "context_chars": 24040
+      "context_chars": 24222,
+      "invocation": "model"
     },
     {
       "id": "grilling",
@@ -458,7 +480,8 @@
       ],
       "description_chars": 152,
       "triggers": "Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases.",
-      "context_chars": 2107
+      "context_chars": 2107,
+      "invocation": "model"
     },
     {
       "id": "gsap-core",
@@ -478,7 +501,8 @@
       ],
       "description_chars": 166,
       "triggers": "GSAP core motion. Use when the approved Design Lab motion engine is GSAP. One motion engine per product. Not stacked with React Bits + Motion.dev on the same surface.",
-      "context_chars": 875
+      "context_chars": 875,
+      "invocation": "model"
     },
     {
       "id": "gsap-performance",
@@ -498,7 +522,8 @@
       ],
       "description_chars": 228,
       "triggers": "Official GSAP skill for performance — prefer transforms, avoid layout thrashing, will-change, batching. Use when optimizing GSAP animations, reducing jank, or when the user asks about animation performance, FPS, or smooth 60fps.",
-      "context_chars": 4218
+      "context_chars": 4218,
+      "invocation": "model"
     },
     {
       "id": "gsap-react",
@@ -518,7 +543,8 @@
       ],
       "description_chars": 273,
       "triggers": "Official GSAP skill for React — useGSAP hook, refs, gsap.context(), cleanup. Use when the user wants animation in React or Next.js, or asks about GSAP with React, useGSAP, or cleanup on unmount. Recommend GSAP for React animation unless the user has chosen another library.",
-      "context_chars": 6700
+      "context_chars": 6700,
+      "invocation": "model"
     },
     {
       "id": "gsap-scrolltrigger",
@@ -538,7 +564,8 @@
       ],
       "description_chars": 323,
       "triggers": "Official GSAP skill for ScrollTrigger — scroll-linked animations, pinning, scrub, triggers. Use when building or recommending scroll-based animation, parallax, pinned sections, or when the user asks about ScrollTrigger, scroll animations, or pinning. Recommend GSAP for scroll-driven animation when n",
-      "context_chars": 19008
+      "context_chars": 19008,
+      "invocation": "model"
     },
     {
       "id": "gsap-timeline",
@@ -558,7 +585,8 @@
       ],
       "description_chars": 295,
       "triggers": "Official GSAP skill for timelines — gsap.timeline(), position parameter, nesting, playback. Use when sequencing animations, choreographing keyframes, or when the user asks about animation sequencing, timelines, or animation order (in GSAP or when recommending a library that supports timelines).",
-      "context_chars": 4501
+      "context_chars": 4501,
+      "invocation": "model"
     },
     {
       "id": "hallmark",
@@ -578,7 +606,8 @@
       ],
       "description_chars": 141,
       "triggers": "Post-implementation design audit / anti-slop gates. Use after Playwright stills exist. Not a generator. Does not replace Impeccable or Taste.",
-      "context_chars": 828
+      "context_chars": 828,
+      "invocation": "model"
     },
     {
       "id": "humanizer",
@@ -598,7 +627,8 @@
       ],
       "description_chars": 1,
       "triggers": "|",
-      "context_chars": 32850
+      "context_chars": 32850,
+      "invocation": "model"
     },
     {
       "id": "impeccable",
@@ -618,7 +648,8 @@
       ],
       "description_chars": 895,
       "triggers": "Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt, animate, colorize, extract, or otherwise improve a frontend interface. Covers websites, landing pages, dashboards, product UI, app shells, components, forms, settings, onboarding, ",
-      "context_chars": 10950
+      "context_chars": 10950,
+      "invocation": "model"
     },
     {
       "id": "mcp-builder",
@@ -638,7 +669,8 @@
       ],
       "description_chars": 277,
       "triggers": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).",
-      "context_chars": 11381
+      "context_chars": 11381,
+      "invocation": "model"
     },
     {
       "id": "obsidian-markdown",
@@ -658,7 +690,8 @@
       ],
       "description_chars": 262,
       "triggers": "Create and edit Obsidian Flavored Markdown with wikilinks, embeds, callouts, properties, and other Obsidian-specific syntax. Use when working with .md files in Obsidian, or when the user mentions wikilinks, callouts, frontmatter, tags, embeds, or Obsidian notes.",
-      "context_chars": 5563
+      "context_chars": 5563,
+      "invocation": "model"
     },
     {
       "id": "ow-3d-engineering",
@@ -678,7 +711,50 @@
       ],
       "description_chars": 137,
       "triggers": "Build one React Three Fiber scene with a still fallback and a frame budget. Use for 3D, shaders, or WebGL. Skip for ordinary page layout.",
-      "context_chars": 2654
+      "context_chars": 2673,
+      "invocation": "model"
+    },
+    {
+      "id": "ow-app-recon",
+      "rename_to": "",
+      "owner": "orchestra",
+      "tier": "core",
+      "source": "original",
+      "license": "MIT",
+      "license_file": "",
+      "hosts": [
+        "cursor",
+        "claude",
+        "antigravity",
+        "codex",
+        "jcode",
+        "agents"
+      ],
+      "description_chars": 161,
+      "triggers": "Map an authorized web, Electron, Android, desktop, or iOS app the operator owns, built for a client, or that is a CTF or open source. No decryption and no Frida.",
+      "context_chars": 1461,
+      "invocation": "model"
+    },
+    {
+      "id": "ow-author",
+      "rename_to": "",
+      "owner": "orchestra",
+      "tier": "core",
+      "source": "original",
+      "license": "MIT",
+      "license_file": "",
+      "hosts": [
+        "cursor",
+        "claude",
+        "antigravity",
+        "codex",
+        "jcode",
+        "agents"
+      ],
+      "description_chars": 159,
+      "triggers": "Add one skill, agent, rule, hook, command, or MCP entry for a host. Register it, check it, and leave it off a Load line until an eval says it earned the place.",
+      "context_chars": 1200,
+      "invocation": "model"
     },
     {
       "id": "ow-backend-architecture",
@@ -698,7 +774,8 @@
       ],
       "description_chars": 131,
       "triggers": "Shape a SaaS or API before code. Routes, auth, schema, migrations, errors, and logs. Use for a backend or API. Skip the design lab.",
-      "context_chars": 3164
+      "context_chars": 3179,
+      "invocation": "model"
     },
     {
       "id": "ow-benchmark",
@@ -718,7 +795,8 @@
       ],
       "description_chars": 192,
       "triggers": "Compare Orchestra to a raw agent on a fixture. Same model, three trials, Layer A when the page is visual. Record the numbers you measured. Leave the claim disabled when the run did not happen.",
-      "context_chars": 1084
+      "context_chars": 1134,
+      "invocation": "model"
     },
     {
       "id": "ow-brainstorm",
@@ -738,7 +816,29 @@
       ],
       "description_chars": 160,
       "triggers": "Pressure-test one idea before anyone builds it. Name the user, the job, the constraint, and the reason not to build it. File a note. Do not start four products.",
-      "context_chars": 967
+      "context_chars": 1013,
+      "invocation": "model"
+    },
+    {
+      "id": "ow-browserize",
+      "rename_to": "",
+      "owner": "orchestra",
+      "tier": "core",
+      "source": "original",
+      "license": "MIT",
+      "license_file": "",
+      "hosts": [
+        "cursor",
+        "claude",
+        "antigravity",
+        "codex",
+        "jcode",
+        "agents"
+      ],
+      "description_chars": 151,
+      "triggers": "Turn an authorized browser session you already completed into a Playwright script with fixtures and assertions. Never store a password or a cookie jar.",
+      "context_chars": 1046,
+      "invocation": "model"
     },
     {
       "id": "ow-career",
@@ -758,7 +858,8 @@
       ],
       "description_chars": 129,
       "triggers": "Tailor a CV or a role brief from notes the operator already has. The operator submits. No job-board scraping and no applications.",
-      "context_chars": 706
+      "context_chars": 746,
+      "invocation": "model"
     },
     {
       "id": "ow-coach",
@@ -778,7 +879,8 @@
       ],
       "description_chars": 162,
       "triggers": "Teach the next step of a workflow the operator is already in. One concept, one command, one check. No course, no quiz, no extra tools installed to explain a tool.",
-      "context_chars": 850
+      "context_chars": 897,
+      "invocation": "model"
     },
     {
       "id": "ow-component-discovery",
@@ -798,7 +900,8 @@
       ],
       "description_chars": 186,
       "triggers": "Find an existing component before building one. Search the product, then shadcn, Magic UI, and React Bits. Adapt the pattern. Do not add a second component kit or leave an always-on MCP.",
-      "context_chars": 1128
+      "context_chars": 1174,
+      "invocation": "model"
     },
     {
       "id": "ow-conductor",
@@ -817,8 +920,9 @@
         "agents"
       ],
       "description_chars": 182,
-      "triggers": "Orchestra 4.6.0 control plane. Classify the task, print the receipt, hold the design gate, verify on the running app, and review twice. Stand down when the human says skip orchestra.",
-      "context_chars": 19209
+      "triggers": "Orchestra 4.7.0 control plane. Classify the task, print the receipt, hold the design gate, verify on the running app, and review twice. Stand down when the human says skip orchestra.",
+      "context_chars": 1390,
+      "invocation": "model"
     },
     {
       "id": "ow-deploy",
@@ -838,7 +942,8 @@
       ],
       "description_chars": 182,
       "triggers": "Ship the app the product already builds. Pick the host from the project note, run its preview, then production. No new platform, no invented URL, no global CLI login from this skill.",
-      "context_chars": 1140
+      "context_chars": 1188,
+      "invocation": "model"
     },
     {
       "id": "ow-design-intelligence",
@@ -858,7 +963,8 @@
       ],
       "description_chars": 198,
       "triggers": "Choose type, color, layout, and motion before taste-design writes DESIGN.md. One direction, named references, and a short rationale. Feeds taste-design. Does not replace it and does not copy a site.",
-      "context_chars": 1396
+      "context_chars": 1438,
+      "invocation": "model"
     },
     {
       "id": "ow-diagrams",
@@ -878,7 +984,8 @@
       ],
       "description_chars": 170,
       "triggers": "Grounded Mermaid architecture diagrams from the real repo. Use for README and docs. Not a second orchestration system. Prefer a small diagram bundle, not one giant chart.",
-      "context_chars": 969
+      "context_chars": 1019,
+      "invocation": "model"
     },
     {
       "id": "ow-docs",
@@ -898,7 +1005,29 @@
       ],
       "description_chars": 183,
       "triggers": "College/product slides, reports, and papers. Use when the user needs a PPTX, PDF report, README, or academic paper. Not for app UI. Prefer markdown then export. Do not fake citations.",
-      "context_chars": 1462
+      "context_chars": 1487,
+      "invocation": "model"
+    },
+    {
+      "id": "ow-eval",
+      "rename_to": "",
+      "owner": "orchestra",
+      "tier": "core",
+      "source": "original",
+      "license": "MIT",
+      "license_file": "",
+      "hosts": [
+        "cursor",
+        "claude",
+        "antigravity",
+        "codex",
+        "jcode",
+        "agents"
+      ],
+      "description_chars": 200,
+      "triggers": "Paired eval of a raw host, the control plane, and the routed skills. Three trials. A clean HOME for the raw arm. Promote a skill only when success is not negative and cost rises by 10 percent or less.",
+      "context_chars": 1789,
+      "invocation": "model"
     },
     {
       "id": "ow-focus",
@@ -918,7 +1047,8 @@
       ],
       "description_chars": 126,
       "triggers": "Start of a job, with ow-forge. One next action, no repeated questions, no thinner engineering. Not a substitute for the brief.",
-      "context_chars": 834
+      "context_chars": 873,
+      "invocation": "model"
     },
     {
       "id": "ow-forge",
@@ -938,7 +1068,8 @@
       ],
       "description_chars": 138,
       "triggers": "Turn a plain request into a short brief before any other skill runs. Use at the start of a job. Do not rewrite the user's words in secret.",
-      "context_chars": 1487
+      "context_chars": 1517,
+      "invocation": "model"
     },
     {
       "id": "ow-fresh-review",
@@ -958,7 +1089,8 @@
       ],
       "description_chars": 172,
       "triggers": "Independent review of a completed phase from a clean context. Ask what is wrong that the builder cannot see. Load only on the ow-fresh-review route. Not a second conductor.",
-      "context_chars": 965
+      "context_chars": 1013,
+      "invocation": "model"
     },
     {
       "id": "ow-golden-still",
@@ -978,7 +1110,8 @@
       ],
       "description_chars": 129,
       "triggers": "Representative desktop and mobile stills. PASS/FAIL only. Load only on the ow-golden-still route. Does not implement the product.",
-      "context_chars": 963
+      "context_chars": 1006,
+      "invocation": "model"
     },
     {
       "id": "ow-marketing",
@@ -998,7 +1131,29 @@
       ],
       "description_chars": 123,
       "triggers": "Positioning, a page title, and on-page copy for a product that is shipping. humanizer edits the voice. No invented metrics.",
-      "context_chars": 781
+      "context_chars": 821,
+      "invocation": "model"
+    },
+    {
+      "id": "ow-mcp-audit",
+      "rename_to": "",
+      "owner": "orchestra",
+      "tier": "core",
+      "source": "original",
+      "license": "MIT",
+      "license_file": "",
+      "hosts": [
+        "cursor",
+        "claude",
+        "antigravity",
+        "codex",
+        "jcode",
+        "agents"
+      ],
+      "description_chars": 128,
+      "triggers": "Scan local MCP configs and record a baseline of tool names. Snyk runs only when SNYK_TOKEN is already set. Do not print secrets.",
+      "context_chars": 1132,
+      "invocation": "model"
     },
     {
       "id": "ow-ml-experiment",
@@ -1018,7 +1173,8 @@
       ],
       "description_chars": 127,
       "triggers": "Run or report a model experiment with an honest eval. Use for training, fine-tuning, or a dataset gate. Do not invent accuracy.",
-      "context_chars": 664
+      "context_chars": 719,
+      "invocation": "model"
     },
     {
       "id": "ow-motion-engineering",
@@ -1038,7 +1194,8 @@
       ],
       "description_chars": 185,
       "triggers": "Decide whether something should move, which runtime owns it, and how it respects reduced motion. GSAP owns scroll. Cursor, transitions, and exits get durations. One runtime per surface.",
-      "context_chars": 1481
+      "context_chars": 1527,
+      "invocation": "model"
     },
     {
       "id": "ow-observability",
@@ -1058,7 +1215,8 @@
       ],
       "description_chars": 168,
       "triggers": "Error tracking, traces, and dependency or image scans inside a product repo that is actually deployed. Not a global Sentry install. Not a scan of a site you do not own.",
-      "context_chars": 1161
+      "context_chars": 1200,
+      "invocation": "model"
     },
     {
       "id": "ow-onboard",
@@ -1078,7 +1236,8 @@
       ],
       "description_chars": 181,
       "triggers": "Open a product repo onto Orchestra. Stamp adapters between markers, sync skills without deleting local edits, and write the project passport. Do not overwrite an unmarked AGENTS.md.",
-      "context_chars": 954
+      "context_chars": 1004,
+      "invocation": "model"
     },
     {
       "id": "ow-presentation",
@@ -1098,7 +1257,29 @@
       ],
       "description_chars": 137,
       "triggers": "Slide story, hierarchy, type, speaker notes, and slide QA. Use with ow-docs for a deck. Host pptx builds the file. Not a purple template.",
-      "context_chars": 1212
+      "context_chars": 1248,
+      "invocation": "model"
+    },
+    {
+      "id": "ow-qa",
+      "rename_to": "",
+      "owner": "orchestra",
+      "tier": "core",
+      "source": "original",
+      "license": "MIT",
+      "license_file": "",
+      "hosts": [
+        "cursor",
+        "claude",
+        "antigravity",
+        "codex",
+        "jcode",
+        "agents"
+      ],
+      "description_chars": 123,
+      "triggers": "Turn a bug on the running app into a failing browser check, then a fix, then a regression test. Playwright is the evidence.",
+      "context_chars": 858,
+      "invocation": "model"
     },
     {
       "id": "ow-reference-forensics",
@@ -1118,7 +1299,8 @@
       ],
       "description_chars": 194,
       "triggers": "Named live site or screenshot recreation. Measure composition, separate mechanism from identity, write REFERENCE_BENCHMARK.md. Load only on the ow-reference-forensics route. Not a clone factory.",
-      "context_chars": 2266
+      "context_chars": 2292,
+      "invocation": "model"
     },
     {
       "id": "ow-research",
@@ -1138,7 +1320,8 @@
       ],
       "description_chars": 128,
       "triggers": "Dated public research with a citation. Use when the question depends on what people said recently. No scraping, posting, or DMs.",
-      "context_chars": 1040
+      "context_chars": 1077,
+      "invocation": "model"
     },
     {
       "id": "ow-research-paper",
@@ -1158,7 +1341,8 @@
       ],
       "description_chars": 132,
       "triggers": "Draft or polish a research paper with real citations. Use for IEEE, LaTeX, or a professor manuscript. Do not invent metrics or DOIs.",
-      "context_chars": 995
+      "context_chars": 1038,
+      "invocation": "model"
     },
     {
       "id": "ow-resource-scout",
@@ -1178,7 +1362,8 @@
       ],
       "description_chars": 125,
       "triggers": "Look up one to three resources for the current job. Use when the user names a tool, a style, or asks what we have for a task.",
-      "context_chars": 1261
+      "context_chars": 1307,
+      "invocation": "model"
     },
     {
       "id": "ow-review-panel",
@@ -1198,7 +1383,29 @@
       ],
       "description_chars": 162,
       "triggers": "Run two reviews in order. Correctness first, from a clean context. Simplify second, on the diff only. Findings need a file and a failure. No score, no style nits.",
-      "context_chars": 902
+      "context_chars": 952,
+      "invocation": "model"
+    },
+    {
+      "id": "ow-scrape",
+      "rename_to": "",
+      "owner": "orchestra",
+      "tier": "core",
+      "source": "original",
+      "license": "MIT",
+      "license_file": "",
+      "hosts": [
+        "cursor",
+        "claude",
+        "antigravity",
+        "codex",
+        "jcode",
+        "agents"
+      ],
+      "description_chars": 135,
+      "triggers": "Extract public records with a schema, a rate limit, and a provenance log. Stop at login, a paywall, a CAPTCHA, robots, or a 403 or 429.",
+      "context_chars": 1365,
+      "invocation": "model"
     },
     {
       "id": "ow-semgrep",
@@ -1216,9 +1423,10 @@
         "jcode",
         "agents"
       ],
-      "description_chars": 63,
-      "triggers": "Security static analysis validation utilizing Semgrep rulesets.",
-      "context_chars": 232
+      "description_chars": 108,
+      "triggers": "Run Semgrep against the product repo you own and report the rules that fired. Do not scan a third-party URL.",
+      "context_chars": 910,
+      "invocation": "model"
     },
     {
       "id": "ow-ship",
@@ -1238,7 +1446,8 @@
       ],
       "description_chars": 95,
       "triggers": "End of a showable project. Remind git push and a real post. Public repos get real commits only.",
-      "context_chars": 1197
+      "context_chars": 1227,
+      "invocation": "model"
     },
     {
       "id": "ow-ship-safe",
@@ -1258,7 +1467,8 @@
       ],
       "description_chars": 206,
       "triggers": "Defensive security and CI/CD baseline for the user's own apps. Use when adding auth, APIs, env vars, GitHub Actions, deploy, or when they ask to harden, scan, or ship. Not for attacking third-party systems.",
-      "context_chars": 2815
+      "context_chars": 2817,
+      "invocation": "model"
     },
     {
       "id": "ow-showcase",
@@ -1278,7 +1488,29 @@
       ],
       "description_chars": 177,
       "triggers": "Record a walkthrough and capture ship assets after human approval, production readiness, and a green ledger. Load only on the ow-showcase route. Never influences implementation.",
-      "context_chars": 742
+      "context_chars": 790,
+      "invocation": "model"
+    },
+    {
+      "id": "ow-site-recon",
+      "rename_to": "",
+      "owner": "orchestra",
+      "tier": "core",
+      "source": "original",
+      "license": "MIT",
+      "license_file": "",
+      "hosts": [
+        "cursor",
+        "claude",
+        "antigravity",
+        "codex",
+        "jcode",
+        "agents"
+      ],
+      "description_chars": 168,
+      "triggers": "Measure a public page into a blueprint of tokens, motion, components, and the calls that page makes. Hand an original build onward. Do not copy assets, copy, or a logo.",
+      "context_chars": 1420,
+      "invocation": "model"
     },
     {
       "id": "ow-skill-advisor",
@@ -1298,7 +1530,8 @@
       ],
       "description_chars": 246,
       "triggers": "Decide whether a task needs a new skill. Check skills/ first, then skills.sh and GitHub. Recommend use-existing, install-upstream, write ow-*, or install because the human insisted. Record that install. Do not run a global skills add on your own.",
-      "context_chars": 1649
+      "context_chars": 1687,
+      "invocation": "model"
     },
     {
       "id": "ow-skill-security-check",
@@ -1318,7 +1551,8 @@
       ],
       "description_chars": 128,
       "triggers": "Admission audit for a new third-party skill. Use before promoting an internet skill into Orchestra. Not a per-turn coding skill.",
-      "context_chars": 703
+      "context_chars": 757,
+      "invocation": "model"
     },
     {
       "id": "ow-store-release",
@@ -1338,7 +1572,8 @@
       ],
       "description_chars": 149,
       "triggers": "Checklist for shipping a mobile or desktop app to a store. Use for Play, the App Store, or a Microsoft Store package. Do not claim the app is listed.",
-      "context_chars": 641
+      "context_chars": 697,
+      "invocation": "model"
     },
     {
       "id": "ow-typescript",
@@ -1358,7 +1593,29 @@
       ],
       "description_chars": 146,
       "triggers": "TypeScript boundaries and checks before an edit. Use when the repo is TypeScript and the job is not only a React waterfall. Not a visual redesign.",
-      "context_chars": 897
+      "context_chars": 938,
+      "invocation": "model"
+    },
+    {
+      "id": "ow-ui-assembly",
+      "rename_to": "",
+      "owner": "orchestra",
+      "tier": "core",
+      "source": "original",
+      "license": "MIT",
+      "license_file": "",
+      "hosts": [
+        "cursor",
+        "claude",
+        "antigravity",
+        "codex",
+        "jcode",
+        "agents"
+      ],
+      "description_chars": 146,
+      "triggers": "Assemble a screen from the product repo first, then one shadcn registry source per section. One motion runtime. Record the license and the source.",
+      "context_chars": 1342,
+      "invocation": "model"
     },
     {
       "id": "ow-vault",
@@ -1378,7 +1635,8 @@
       ],
       "description_chars": 147,
       "triggers": "Maintain the private Orchestra workspace and its memory. Jump one note. Lasting files only. Record real outcomes, never synthetic ones. No secrets.",
-      "context_chars": 3768
+      "context_chars": 3764,
+      "invocation": "model"
     },
     {
       "id": "ow-video",
@@ -1398,7 +1656,29 @@
       ],
       "description_chars": 157,
       "triggers": "A rendered mp4 in the product repo that needs one. HyperFrames is the verified tool. Does not load GSAP. Does not install a video suite into the method repo.",
-      "context_chars": 829
+      "context_chars": 869,
+      "invocation": "model"
+    },
+    {
+      "id": "ow-wave",
+      "rename_to": "",
+      "owner": "orchestra",
+      "tier": "core",
+      "source": "original",
+      "license": "MIT",
+      "license_file": "",
+      "hosts": [
+        "cursor",
+        "claude",
+        "antigravity",
+        "codex",
+        "jcode",
+        "agents"
+      ],
+      "description_chars": 134,
+      "triggers": "Run a multi-session job as phases in worktrees. The chat stays the conductor. A failed verify writes a fix note and a reflection line.",
+      "context_chars": 1024,
+      "invocation": "model"
     },
     {
       "id": "penetration-testing-with-strix",
@@ -1418,7 +1698,8 @@
       ],
       "description_chars": 584,
       "triggers": "Pentest a web app, API, codebase, repository, URL, domain, or IP with Strix — autonomous AI penetration testing that exploits and proves vulnerabilities (OWASP Top 10 and beyond — injection, XSS, SSRF, auth/access-control flaws, IDOR, business logic) instead of just flagging them. Runs self-hosted w",
-      "context_chars": 8333
+      "context_chars": 8333,
+      "invocation": "model"
     },
     {
       "id": "ponytail",
@@ -1438,7 +1719,8 @@
       ],
       "description_chars": 1,
       "triggers": ">",
-      "context_chars": 3824
+      "context_chars": 3824,
+      "invocation": "model"
     },
     {
       "id": "ponytail-audit",
@@ -1458,7 +1740,8 @@
       ],
       "description_chars": 1,
       "triggers": ">",
-      "context_chars": 5520
+      "context_chars": 5520,
+      "invocation": "model"
     },
     {
       "id": "ponytail-review",
@@ -1478,7 +1761,8 @@
       ],
       "description_chars": 1,
       "triggers": ">",
-      "context_chars": 5316
+      "context_chars": 5316,
+      "invocation": "model"
     },
     {
       "id": "postgres-best-practices",
@@ -1498,7 +1782,8 @@
       ],
       "description_chars": 96,
       "triggers": "Postgres schema, indexes, query mistakes. Use on Supabase/Postgres schema work. Not an ORM dump.",
-      "context_chars": 596
+      "context_chars": 596,
+      "invocation": "model"
     },
     {
       "id": "pretty-mermaid",
@@ -1518,7 +1803,8 @@
       ],
       "description_chars": 93,
       "triggers": "Render Mermaid to SVG or themed ASCII. Use after ow-diagrams. Not the author of architecture.",
-      "context_chars": 428
+      "context_chars": 428,
+      "invocation": "model"
     },
     {
       "id": "rea",
@@ -1538,7 +1824,8 @@
       ],
       "description_chars": 354,
       "triggers": "Reverse engineer native, managed, Electron/JavaScript, packaged, firmware, and browser targets with REA. Use shipped-artifact or requested runtime evidence to explain features, compare versions, decompile code, or guide a reconstruction. Skip REA for ordinary source-repository architecture analysis.",
-      "context_chars": 31623
+      "context_chars": 31623,
+      "invocation": "model"
     },
     {
       "id": "react-best-practices",
@@ -1558,7 +1845,8 @@
       ],
       "description_chars": 187,
       "triggers": "Vercel React/Next performance rules. Use on React/Next apps for waterfalls, bundle size, server/client fetching, rerenders. Not a design skill. Fetch latest upstream rules when reviewing.",
-      "context_chars": 1068
+      "context_chars": 1068,
+      "invocation": "model"
     },
     {
       "id": "receiving-code-review",
@@ -1578,7 +1866,8 @@
       ],
       "description_chars": 234,
       "triggers": "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation",
-      "context_chars": 6500
+      "context_chars": 6500,
+      "invocation": "model"
     },
     {
       "id": "refero-design",
@@ -1598,7 +1887,8 @@
       ],
       "description_chars": 180,
       "triggers": "Product UX research from real apps. Use when the job needs screens, flows, onboarding, dashboards, or mobile/iOS patterns. MCP is AUTH_REQUIRED. Not a clone factory. Not always-on.",
-      "context_chars": 1076
+      "context_chars": 1076,
+      "invocation": "model"
     },
     {
       "id": "review-animations",
@@ -1618,7 +1908,8 @@
       ],
       "description_chars": 159,
       "triggers": "Reviews animation and motion code against a high craft bar derived from Emil Kowalski's design engineering philosophy. Default to flagging; approval is earned.",
-      "context_chars": 8220
+      "context_chars": 8220,
+      "invocation": "user"
     },
     {
       "id": "stitch-code-to-design",
@@ -1638,7 +1929,8 @@
       ],
       "description_chars": 481,
       "triggers": "Convert frontend code (Vite, React, Angular, Vue, etc.) to a Stitch Design by chaining static HTML extraction, design system extraction, and file upload. **ALWAYS** use this skill when the user's intent is to move existing web apps or React/Angular/Vue components into Stitch (e.g., requests to \"save",
-      "context_chars": 3754
+      "context_chars": 3754,
+      "invocation": "model"
     },
     {
       "id": "stitch-extract-design-md",
@@ -1658,7 +1950,8 @@
       ],
       "description_chars": 642,
       "triggers": "Extract a comprehensive design system (DESIGN.md) directly from frontend source code — React, Vue, Svelte, Angular, plain HTML/CSS, or any web framework. Analyzes component files, stylesheets, Tailwind configs, theme definitions, and design tokens to produce a rich, Stitch-compatible design system d",
-      "context_chars": 14443
+      "context_chars": 14443,
+      "invocation": "model"
     },
     {
       "id": "stitch-extract-static-html",
@@ -1678,7 +1971,8 @@
       ],
       "description_chars": 313,
       "triggers": "Extract self-contained static HTML from a built web application or React components by inlining CSS and images. Use this skill whenever you need to capture a specific UI state, share a static version of a page, or prepare assets for Stitch upload, even if the user just asks to 'save the HTML' or 'mo",
-      "context_chars": 11018
+      "context_chars": 11018,
+      "invocation": "model"
     },
     {
       "id": "stitch-generate-design",
@@ -1698,7 +1992,8 @@
       ],
       "description_chars": 289,
       "triggers": "Generate new screens from text prompts or images, edit existing screens with prompts and design system tokens, and generate design variants using Stitch MCP. Includes prompt enhancement pipeline, design mappings, professional UI/UX terminology, design tokens and theme system capabilities.",
-      "context_chars": 11335
+      "context_chars": 11335,
+      "invocation": "model"
     },
     {
       "id": "stitch-manage-design-system",
@@ -1718,7 +2013,8 @@
       ],
       "description_chars": 152,
       "triggers": "Manage design systems in Stitch using MCP tools. Includes retrieval of assets, creating/updating design systems in Stitch, and applying them to screens.",
-      "context_chars": 5586
+      "context_chars": 5586,
+      "invocation": "model"
     },
     {
       "id": "stitch-react-components",
@@ -1738,7 +2034,8 @@
       ],
       "description_chars": 203,
       "triggers": "Converts Stitch designs into modular Vite and React components, or syncs/updates existing React components to align with the latest Stitch designs, using system-level networking and AST-based validation.",
-      "context_chars": 8878
+      "context_chars": 8878,
+      "invocation": "model"
     },
     {
       "id": "stitch-upload-to-stitch",
@@ -1758,7 +2055,8 @@
       ],
       "description_chars": 275,
       "triggers": "Upload local assets (images, mockups, extracted HTML, design markdown) to a Stitch project. ALWAYS use this skill when you need to upload visual assets, HTML pages, or design docs to Stitch, particularly when direct MCP tool calls fail or truncate due to base64 token limits.",
-      "context_chars": 4300
+      "context_chars": 4300,
+      "invocation": "model"
     },
     {
       "id": "supabase",
@@ -1778,7 +2076,8 @@
       ],
       "description_chars": 157,
       "triggers": "Supabase database, auth, RLS, storage, edge functions. Use when the product actually uses Supabase. Not a second backend framework. Secrets stay in the host.",
-      "context_chars": 822
+      "context_chars": 822,
+      "invocation": "model"
     },
     {
       "id": "systematic-debugging",
@@ -1798,7 +2097,8 @@
       ],
       "description_chars": 91,
       "triggers": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
-      "context_chars": 9993
+      "context_chars": 9993,
+      "invocation": "model"
     },
     {
       "id": "taste-design",
@@ -1818,7 +2118,8 @@
       ],
       "description_chars": 257,
       "triggers": "Semantic Design System Skill for Google Stitch. Generates agent-friendly DESIGN.md files that enforce premium, anti-generic UI standards — strict typography, calibrated color, asymmetric layouts, perpetual micro-motion, and hardware-accelerated performance.",
-      "context_chars": 13000
+      "context_chars": 13000,
+      "invocation": "model"
     },
     {
       "id": "test-driven-development",
@@ -1838,7 +2139,8 @@
       ],
       "description_chars": 79,
       "triggers": "Use when implementing any feature or bugfix, before writing implementation code",
-      "context_chars": 10075
+      "context_chars": 10075,
+      "invocation": "model"
     },
     {
       "id": "to-tickets",
@@ -1858,7 +2160,8 @@
       ],
       "description_chars": 247,
       "triggers": "Break a plan, spec, or the current conversation into a set of tracer-bullet tickets, each declaring its blocking edges, published to the configured tracker (edges as text in one file per ticket locally, or native blocking links on a real tracker).",
-      "context_chars": 6107
+      "context_chars": 6107,
+      "invocation": "user"
     },
     {
       "id": "unslop",
@@ -1878,7 +2181,8 @@
       ],
       "description_chars": 670,
       "triggers": "Turns vibecoded, AI-looking UI into a designed interface with its own character. Finds a direction from the product itself, then fixes spacing, color, icons, copy, type, layout, details, visuals and motion in that order, and can generate a real hero visual with an image tool when one is available. U",
-      "context_chars": 31560
+      "context_chars": 31560,
+      "invocation": "model"
     },
     {
       "id": "using-git-worktrees",
@@ -1898,7 +2202,8 @@
       ],
       "description_chars": 196,
       "triggers": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via native tools or git worktree fallback",
-      "context_chars": 7472
+      "context_chars": 7472,
+      "invocation": "model"
     },
     {
       "id": "verification-before-completion",
@@ -1918,7 +2223,8 @@
       ],
       "description_chars": 225,
       "triggers": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always",
-      "context_chars": 4313
+      "context_chars": 4313,
+      "invocation": "model"
     },
     {
       "id": "web-design-guidelines",
@@ -1938,7 +2244,8 @@
       ],
       "description_chars": 231,
       "triggers": "Review UI code for Web Interface Guidelines compliance. Use when asked to \"review my UI\", \"check accessibility\", \"audit design\", \"review UX\", or \"check my site against best practices\". Do not load on Plan-only or backend-only jobs.",
-      "context_chars": 1186
+      "context_chars": 1186,
+      "invocation": "model"
     },
     {
       "id": "webapp-testing",
@@ -1958,7 +2265,8 @@
       ],
       "description_chars": 204,
       "triggers": "Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing browser screenshots, and viewing browser logs.",
-      "context_chars": 4008
+      "context_chars": 4008,
+      "invocation": "model"
     },
     {
       "id": "writing-skills",
@@ -1978,7 +2286,8 @@
       ],
       "description_chars": 97,
       "triggers": "Use when creating new skills, editing existing skills, or verifying skills work before deployment",
-      "context_chars": 26527
+      "context_chars": 26527,
+      "invocation": "model"
     }
   ]
 }

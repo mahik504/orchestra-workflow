@@ -42,6 +42,20 @@ for (const row of rows) {
   }
   const skill = path.join(REPO, 'skills', row.id, 'SKILL.md');
   if (!fs.existsSync(skill)) problems.push(`missing ${skill}`);
+  else {
+    const raw = fs.readFileSync(skill);
+    if (raw[0] === 0xef && raw[1] === 0xbb && raw[2] === 0xbf) problems.push(`${row.id} SKILL.md starts with a UTF-8 BOM`);
+    const text = raw.toString('utf8');
+    if (!text.startsWith('---\n') && !text.startsWith('---\r\n')) problems.push(`${row.id} SKILL.md has no frontmatter`);
+    if (row.id.startsWith('ow-') && !/^description:/m.test(text)) problems.push(`${row.id} SKILL.md has no description`);
+    const front = text.match(/^---\n([\s\S]*?)\n---/);
+    const stub = front && /stub:\s*true/.test(front[1]);
+    if (row.owner === 'orchestra' && !stub) {
+      for (const heading of ['Preconditions', 'Procedure', 'Output', 'Verify', 'Skip']) {
+        if (!text.includes(`## ${heading}`)) problems.push(`${row.id} missing ## ${heading} (or set stub: true with a reason)`);
+      }
+    }
+  }
   if (row.rename_to && aliases.aliases[row.id] !== row.rename_to) {
     problems.push(`alias for ${row.id} does not match rename_to`);
   }

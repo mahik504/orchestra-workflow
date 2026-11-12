@@ -4,6 +4,7 @@
 //   node runtime/tools/ow-doctor.mjs --private
 //
 // OW_SYNC_HOME overrides home (tests). Vault checks run only with --private.
+import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -28,6 +29,48 @@ export function inspectHost(expected, destRoot) {
     if (hashTree(dir) !== recorded) mismatch.push(id);
   }
   return { missing, extra, mismatch, present: have.length };
+}
+
+function mcpServerNames(file) {
+  const json = JSON.parse(fs.readFileSync(file, 'utf8'));
+  return Object.keys(json.mcpServers || json.servers || {}).sort();
+}
+
+function printMcpNames(label, file, required, problems) {
+  if (!fs.existsSync(file)) {
+    console.log(`mcp ${label} absent`);
+    return;
+  }
+  try {
+    const names = mcpServerNames(file);
+    console.log(`mcp ${label} ${names.join(',') || 'none'}`);
+    for (const name of required) {
+      if (!names.includes(name)) problems.push(`${label} missing mcp ${name}`);
+    }
+  } catch {
+    console.log(`mcp ${label} unreadable`);
+    problems.push(`${label} mcp config unreadable`);
+  }
+}
+
+function onPath(bin) {
+  const cmd = process.platform === 'win32' ? 'where.exe' : 'which';
+  const result = spawnSync(cmd, [bin], { encoding: 'utf8' });
+  return result.status === 0;
+}
+
+function reconReport() {
+  const tools = [
+    ['java', 'Install a JDK and put java on PATH. Orchestra does not install it.'],
+    ['jadx', 'Install jadx and put it on PATH. Orchestra does not install it.'],
+    ['apktool', 'Install apktool and put it on PATH. Orchestra does not install it.'],
+    ['mobsf', 'Install MobSF and put it on PATH. Orchestra does not install it.'],
+  ];
+  for (const [bin, hint] of tools) {
+    const present = onPath(bin);
+    console.log(`recon ${bin} ${present ? 'present' : 'absent'}`);
+    if (!present) console.log(`install ${hint}`);
+  }
 }
 
 function credentialReport(file) {
@@ -126,6 +169,18 @@ function run(argv) {
     if (row.server) console.log(`credential ${row.server} ${row.key || ''} ${row.state}`.replace(/\s+/g, ' ').trim());
     else console.log(`mcp file ${row.state}`);
   }
+  const appData = process.env.APPDATA || '';
+  const localApp = process.env.LOCALAPPDATA || '';
+  const mcpFiles = [
+    ['cursor', mcpFile],
+    ['claude-code', path.join(home, '.claude.json')],
+    ['antigravity', path.join(home, '.gemini', 'config', 'mcp_config.json')],
+  ];
+  if (appData) mcpFiles.push(['claude-desktop', path.join(appData, 'Claude', 'claude_desktop_config.json')]);
+  if (localApp) mcpFiles.push(['claude-desktop-3p', path.join(localApp, 'Claude-3p', 'claude_desktop_config.json')]);
+  const required = ['shadcn', 'magic-ui'];
+  for (const [label, file] of mcpFiles) printMcpNames(label, file, required, problems);
+  if (argv.includes('--recon')) reconReport();
   if (priv) {
     for (const problem of privateChecks(process.env.ORCHESTRA_VAULT || '')) problems.push(problem);
   } else {

@@ -11,6 +11,10 @@ const ENG_END = '<!-- engineering:end -->';
 
 export function routingMarkdown(doc) {
   const lines = [
+    '# Route table',
+    '',
+    'Read this file when you classify. It is not always loaded.',
+    '',
     START,
     '## Routing',
     '',
@@ -20,10 +24,21 @@ export function routingMarkdown(doc) {
     '| --- | --- | --- |',
   ];
   for (const route of doc.routes) {
-    lines.push(`| ${route.job} | ${route.load.join(', ')} | ${route.skip} |`);
+    const session = route.session ? ` <!-- ${route.session} -->` : '';
+    lines.push(`| ${route.job} | ${route.load.join(', ')} | ${route.skip} |${session}`);
   }
   lines.push(END);
   return lines.join('\n');
+}
+
+export function routingPointer() {
+  return [
+    START,
+    '## Routing',
+    '',
+    'The route table is `docs/ROUTING.md`. Read that file when you classify. Name the skills, MCPs, plugins, and libraries that row loads. Omit that line when nothing new is loaded. A missing tool stops. It does not install itself.',
+    END,
+  ].join('\n');
 }
 
 export function rulesMarkdown(doc) {
@@ -51,9 +66,11 @@ function replaceBlock(text, start, end, block) {
 
 const version = JSON.parse(fs.readFileSync(path.join(REPO, 'registries', 'versions.json'), 'utf8')).current;
 const doc = JSON.parse(fs.readFileSync(path.join(REPO, 'registries', 'routing.json'), 'utf8'));
-const routing = routingMarkdown(doc);
+const routing = routingPointer();
 const rules = rulesMarkdown(doc);
 const engineering = engineeringMarkdown(doc);
+fs.writeFileSync(path.join(REPO, 'docs', 'ROUTING.md'), routingMarkdown(doc) + '\n');
+console.log('wrote docs/ROUTING.md');
 
 const copies = [
   'AGENTS.md',
@@ -106,3 +123,15 @@ for (const [rel, title, line] of fresh) {
   fs.writeFileSync(file, adapter(title, line));
   console.log(`wrote ${rel}`);
 }
+
+const cmdSrc = path.join(REPO, 'commands');
+const cmdDst = path.join(REPO, '.cursor', 'commands');
+fs.mkdirSync(cmdDst, { recursive: true });
+const cmdNames = new Set(fs.readdirSync(cmdSrc).filter((name) => name.endsWith('.md')));
+for (const name of cmdNames) {
+  fs.copyFileSync(path.join(cmdSrc, name), path.join(cmdDst, name));
+}
+for (const name of fs.readdirSync(cmdDst)) {
+  if (name.endsWith('.md') && !cmdNames.has(name)) fs.rmSync(path.join(cmdDst, name));
+}
+console.log(`commands ${cmdNames.size}`);

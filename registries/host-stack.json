@@ -1,5 +1,5 @@
 {
-  "version": "4.6.0",
+  "version": "4.7.0",
   "skills_manifest": "registries/skills.json",
   "skills": [
     "agent-reach",
@@ -36,9 +36,12 @@
     "mcp-builder",
     "obsidian-markdown",
     "ow-3d-engineering",
+    "ow-app-recon",
+    "ow-author",
     "ow-backend-architecture",
     "ow-benchmark",
     "ow-brainstorm",
+    "ow-browserize",
     "ow-career",
     "ow-coach",
     "ow-component-discovery",
@@ -47,31 +50,38 @@
     "ow-design-intelligence",
     "ow-diagrams",
     "ow-docs",
+    "ow-eval",
     "ow-focus",
     "ow-forge",
     "ow-fresh-review",
     "ow-golden-still",
     "ow-marketing",
+    "ow-mcp-audit",
     "ow-ml-experiment",
     "ow-motion-engineering",
     "ow-observability",
     "ow-onboard",
     "ow-presentation",
+    "ow-qa",
     "ow-reference-forensics",
     "ow-research",
     "ow-research-paper",
     "ow-resource-scout",
     "ow-review-panel",
+    "ow-scrape",
     "ow-semgrep",
     "ow-ship",
     "ow-ship-safe",
     "ow-showcase",
+    "ow-site-recon",
     "ow-skill-advisor",
     "ow-skill-security-check",
     "ow-store-release",
     "ow-typescript",
+    "ow-ui-assembly",
     "ow-vault",
     "ow-video",
+    "ow-wave",
     "penetration-testing-with-strix",
     "ponytail",
     "ponytail-audit",
@@ -129,7 +139,7 @@
         "command": "npx",
         "args": [
           "-y",
-          "@playwright/mcp@latest"
+          "@playwright/mcp@0.0.85"
         ]
       },
       {
@@ -221,7 +231,7 @@
         {
           "id": "magic-ui",
           "state": "OPTIONAL",
-          "note": "FREE_MCP: npx @magicuidesign/mcp@latest or npx @magicuidesign/cli@latest install cursor. Do not claim Pro."
+          "note": "FREE_MCP: npx @magicuidesign/mcp@2.1.0 or npx @magicuidesign/cli@1.1.0 install cursor. Do not claim Pro."
         },
         {
           "id": "tailkit",
@@ -298,7 +308,7 @@
         {
           "id": "magic-ui",
           "state": "OPTIONAL",
-          "note": "FREE_MCP stdio npx -y @magicuidesign/mcp@latest when named. Do not claim Pro."
+          "note": "FREE_MCP stdio npx -y @magicuidesign/mcp@2.1.0 when named. Do not claim Pro."
         },
         {
           "id": "tailkit",
@@ -345,7 +355,7 @@
         {
           "id": "magic-ui",
           "state": "OPTIONAL",
-          "note": "FREE_MCP: npx @magicuidesign/cli@latest install claude, or stdio @magicuidesign/mcp. Do not claim Pro."
+          "note": "FREE_MCP: npx @magicuidesign/cli@1.1.0 install claude, or stdio @magicuidesign/mcp. Do not claim Pro."
         },
         {
           "id": "tailkit",

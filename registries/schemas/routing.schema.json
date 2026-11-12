@@ -20,7 +20,9 @@
           "skip_phrases": { "type": "array", "items": { "type": "string" } },
           "match": { "type": "array", "items": { "type": "string" } },
           "model_class": { "type": "string" },
-          "disclosure": { "type": "string", "enum": ["L0", "L1", "L2", "L3", "L4"] }
+          "disclosure": { "type": "string", "enum": ["L0", "L1", "L2", "L3", "L4"] },
+          "session": { "type": "string", "enum": ["tiny", "single", "multi", "brownfield"] },
+          "negative": { "type": "array", "items": { "type": "string" } }
         }
       }
     },

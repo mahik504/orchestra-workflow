@@ -1,9 +1,11 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-observability
 description: Error tracking, traces, and dependency or image scans inside a product repo that is actually deployed. Not a global Sentry install. Not a scan of a site you do not own.
 ---
 
-# Observability — 4.1.0
+# Observability
 
 Load with `ow-ship-safe` when a real app is going out. Source methods: Sentry, OpenTelemetry, Renovate, and Trivy. They are steps in that product repo, not global MCPs and not skills in this method repo.
 

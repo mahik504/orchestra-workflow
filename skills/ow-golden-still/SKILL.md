@@ -1,4 +1,6 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-golden-still
 description: Representative desktop and mobile stills. PASS/FAIL only. Load only on the ow-golden-still route. Does not implement the product.
 ---

@@ -71,12 +71,17 @@ const blocks = FILES.map((file) => {
   return found.block;
 });
 
+const tableFile = 'docs/ROUTING.md';
+const table = section(tableFile);
+if (!table.block) problems.push('docs/ROUTING.md needs one routing table');
+
 if (blocks[0]) {
   for (let i = 1; i < blocks.length; i++) {
     if (blocks[i] && blocks[i] !== blocks[0]) problems.push(`${FILES[i]} routing block differs from AGENTS.md`);
   }
+  if (blocks[0].includes('| Job |')) problems.push('always-on adapters must point at docs/ROUTING.md and not inline the table');
 
-  const rows = rowsOf(blocks[0]);
+  const rows = rowsOf(table.block || '');
   const jobs = rows.map((row) => row.job);
   const seen = new Set();
   for (const job of jobs) {
@@ -171,6 +176,35 @@ if (blocks[0]) {
   const geminiPath = path.join(REPO, 'kit/antigravity/GEMINI.md');
   if (fs.existsSync(geminiPath) && Buffer.byteLength(fs.readFileSync(geminiPath)) > 24 * 1024) {
     problems.push('kit/antigravity/GEMINI.md exceeds 24KB');
+  }
+  const caps = {
+    'AGENTS.md': 3 * 1024,
+    'CLAUDE.md': 3 * 1024,
+    '.cursorrules': 3 * 1024,
+    'kit/antigravity/GEMINI.md': 3 * 1024,
+    'kit/codex/AGENTS.md': 3 * 1024,
+    'kit/opencode/AGENTS.md': 3 * 1024,
+    'kit/kimi/AGENTS.md': 3 * 1024,
+    'skills/ow-conductor/SKILL.md': 6 * 1024,
+  };
+  for (const [rel, cap] of Object.entries(caps)) {
+    const file = path.join(REPO, rel);
+    if (!fs.existsSync(file)) continue;
+    const bytes = Buffer.byteLength(fs.readFileSync(file));
+    if (bytes > cap) problems.push(`${rel} is ${bytes} bytes; cap is ${cap}`);
+  }
+
+  const cmdSrc = path.join(REPO, 'commands');
+  const cmdDst = path.join(REPO, '.cursor', 'commands');
+  if (fs.existsSync(cmdSrc) && fs.existsSync(cmdDst)) {
+    const names = fs.readdirSync(cmdSrc).filter((name) => name.endsWith('.md')).sort();
+    for (const name of names) {
+      const a = fs.readFileSync(path.join(cmdSrc, name));
+      const bPath = path.join(cmdDst, name);
+      if (!fs.existsSync(bPath) || !a.equals(fs.readFileSync(bPath))) {
+        problems.push(`.cursor/commands/${name} is not a copy of commands/${name}`);
+      }
+    }
   }
 
   console.log('routing copies:    ' + FILES.length);

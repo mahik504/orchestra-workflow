@@ -19,8 +19,11 @@ const stack = JSON.parse(fs.readFileSync(path.join(REPO, 'registries', 'host-sta
 if (stack.version !== current) problems.push(`host-stack version is "${stack.version}", expected ${current}`);
 
 const graph = JSON.parse(fs.readFileSync(path.join(REPO, 'registries', 'design-resource-graph.json'), 'utf8'));
-if (graph.version !== manifest.graph_version) {
-  problems.push(`graph.version is "${graph.version}", expected ${manifest.graph_version}`);
+if (manifest.graph_version !== current) {
+  problems.push(`graph_version is "${manifest.graph_version}", expected ${current}`);
+}
+if (graph.version !== current) {
+  problems.push(`graph.version is "${graph.version}", expected ${current}`);
 }
 
 for (const rel of manifest.live_files || []) {
@@ -39,6 +42,26 @@ for (const rel of manifest.readers_must_not_hardcode_current || []) {
   const text = fs.readFileSync(path.join(REPO, rel), 'utf8');
   if (text.includes(pinned)) problems.push(`${rel} hardcodes ${pinned}; read registries/versions.json`);
 }
+
+function walkSkills(dir) {
+  for (const name of fs.readdirSync(dir)) {
+    const file = path.join(dir, name);
+    if (fs.statSync(file).isDirectory()) {
+      walkSkills(file);
+      continue;
+    }
+    if (name !== 'SKILL.md') continue;
+    const lines = fs.readFileSync(file, 'utf8').split(/\r?\n/);
+    for (const line of lines) {
+      if (!line.startsWith('#')) continue;
+      const found = line.match(/\b\d+\.\d+\.\d+\b/g) || [];
+      for (const version of found) {
+        if (version !== current) problems.push(`${path.relative(REPO, file)} heading pins ${version}`);
+      }
+    }
+  }
+}
+walkSkills(path.join(REPO, 'skills'));
 
 console.log(`current:  ${current}`);
 console.log(`graph:    ${manifest.graph_version}`);

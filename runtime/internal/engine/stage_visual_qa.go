@@ -44,6 +44,7 @@ func (s *VisualQAStage) Execute(ctx *TaskContext) (*StageResult, error) {
 		if wantsBrowser && !ctx.Capability.Has(capability.IDBrowserPlaywright) {
 			ctx.VisualQA = &VisualQAData{
 				AllPassed:          false,
+				Verdict:            CheckFail,
 				ViewportResults:    []ViewportCheckResult{},
 				Metrics:            map[string]float64{},
 				DetectedViolations: []string{"required browser.playwright was not selected; visual QA must not pass"},
@@ -61,15 +62,7 @@ func (s *VisualQAStage) Execute(ctx *TaskContext) (*StageResult, error) {
 			}, nil
 		}
 		if !ctx.Capability.Has(capability.IDBrowserPlaywright) {
-			ctx.VisualQA = &VisualQAData{
-				AllPassed:          true,
-				ViewportResults:    []ViewportCheckResult{},
-				Metrics:            map[string]float64{"syntax_check": 1.0, "lint_errors": 0.0},
-				DetectedViolations: []string{},
-				FailureClass:       FailureClassNone,
-				DesignClass:        string(class),
-				FinalResult:        "skipped_ordinary",
-			}
+			ctx.VisualQA = skippedVisual(class)
 			return &StageResult{
 				StageName: StageVisualQA,
 				Status:    StatusCompleted,
@@ -82,15 +75,7 @@ func (s *VisualQAStage) Execute(ctx *TaskContext) (*StageResult, error) {
 	}
 
 	if !requiresVisual && (class == visual.ClassOrdinary || review == mission.VisualReviewNone) {
-		ctx.VisualQA = &VisualQAData{
-			AllPassed:          true,
-			ViewportResults:    []ViewportCheckResult{},
-			Metrics:            map[string]float64{"syntax_check": 1.0, "lint_errors": 0.0},
-			DetectedViolations: []string{},
-			FailureClass:       FailureClassNone,
-			DesignClass:        string(class),
-			FinalResult:        "skipped_ordinary",
-		}
+		ctx.VisualQA = skippedVisual(class)
 		return &StageResult{
 			StageName: StageVisualQA,
 			Status:    StatusCompleted,

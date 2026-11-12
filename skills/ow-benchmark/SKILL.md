@@ -1,4 +1,6 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-benchmark
 description: Compare Orchestra to a raw agent on a fixture. Same model, three trials, Layer A when the page is visual. Record the numbers you measured. Leave the claim disabled when the run did not happen.
 ---

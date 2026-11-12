@@ -1,4 +1,6 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-reference-forensics
 description: Named live site or screenshot recreation. Measure composition, separate mechanism from identity, write REFERENCE_BENCHMARK.md. Load only on the ow-reference-forensics route. Not a clone factory.
 ---

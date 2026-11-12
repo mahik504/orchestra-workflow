@@ -1,4 +1,6 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-brainstorm
 description: Pressure-test one idea before anyone builds it. Name the user, the job, the constraint, and the reason not to build it. File a note. Do not start four products.
 ---

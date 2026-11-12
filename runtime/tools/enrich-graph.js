@@ -455,7 +455,7 @@ for (const [id, cap] of Object.entries(graph.capabilities)) {
   if (typeof cap.risk_rank !== 'number') problems.push(`${id}: no risk_rank`);
 }
 
-graph.version = '4.0.0';
+graph.version = fs.readFileSync(path.join(__dirname, '..', '..', 'VERSION'), 'utf8').trim();
 
 // Schema must allow the new fields (additionalProperties is false).
 const schema = JSON.parse(fs.readFileSync(SCHEMA, 'utf8'));

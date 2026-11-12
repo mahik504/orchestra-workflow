@@ -1,4 +1,6 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-3d-engineering
 description: Build one React Three Fiber scene with a still fallback and a frame budget. Use for 3D, shaders, or WebGL. Skip for ordinary page layout.
 ---

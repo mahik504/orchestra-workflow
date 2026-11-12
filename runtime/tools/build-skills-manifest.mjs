@@ -62,6 +62,14 @@ function descriptionOf(file) {
   return value;
 }
 
+function invocationOf(file) {
+  const text = fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n');
+  const front = text.match(/^---\n([\s\S]*?)\n---/);
+  const block = front ? front[1] : '';
+  if (/disable-model-invocation:\s*true/.test(block)) return 'user';
+  return 'model';
+}
+
 function licenseOf(dir) {
   const names = fs.readdirSync(dir).filter((name) => name.startsWith('LICENSE'));
   if (names.length === 0) return { license: 'MIT', license_file: '' };
@@ -100,6 +108,7 @@ const skills = ids.map((id) => {
     description_chars: description.length,
     triggers: description.slice(0, 300),
     context_chars: fs.statSync(skillFile).size,
+    invocation: invocationOf(skillFile),
   };
 });
 

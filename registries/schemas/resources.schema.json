@@ -288,6 +288,11 @@
         "type": "string",
         "enum": ["discovered", "installed", "available", "selected", "executed", "verified", "successful"]
       },
+      "capability_lifecycle": {
+        "type": "string",
+        "enum": ["DISCOVERED", "EVALUATED", "APPROVED", "AVAILABLE", "SELECTED", "EXECUTED", "VERIFIED", "MEASURED"],
+        "description": "DISCOVERED through VERIFIED may be set by a human. MEASURED is written only by ow-eval from a real trial file. AVAILABLE does not imply SELECTED."
+      },
       "admission_state": {
         "type": "string",
         "enum": ["discovered", "candidate", "evaluated", "approved", "installed", "configured", "healthy", "verified", "monitored", "deprecated", "rejected"]

@@ -1,4 +1,4 @@
-# Workflow — Orchestra 4.6.0
+# Workflow — Orchestra 4.7.0
 
 The contract is `AGENTS.md`. This is the operator's walkthrough. 4.5.0 is one source of truth on the same OS. The eight stages did not change.
 

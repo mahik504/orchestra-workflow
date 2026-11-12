@@ -4,6 +4,7 @@ import (
 	"context"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 
 	"github.com/mahik504/orchestra-workflow/runtime/internal/acquisition"
@@ -87,8 +88,20 @@ func TestImplementStage_Execute_WithAcquisitionAndProvenance(t *testing.T) {
 			t.Errorf("entry %s has wrong JustificationTaskID: expected %s, got %s",
 				entry.ResourceID, taskReq.ID, entry.JustificationTaskID)
 		}
-		if entry.SHA256Hash == "" {
-			t.Errorf("entry %s has empty SHA256Hash", entry.ResourceID)
+		if strings.Contains(entry.SourceURL, "orchestra.internal") {
+			t.Errorf("entry %s uses a synthetic source", entry.ResourceID)
+		}
+		switch entry.Kind {
+		case acquisition.KindRealArtifact:
+			if entry.SHA256Hash == "" {
+				t.Errorf("entry %s is REAL_ARTIFACT with an empty hash", entry.ResourceID)
+			}
+		case acquisition.KindPending, acquisition.KindReferenceOnly, acquisition.KindDryRun:
+			if entry.SHA256Hash != "" {
+				t.Errorf("entry %s kind %s must not carry a hash", entry.ResourceID, entry.Kind)
+			}
+		default:
+			t.Errorf("entry %s kind %q", entry.ResourceID, entry.Kind)
 		}
 	}
 
@@ -109,6 +122,12 @@ func TestImplementStage_Execute_WithAcquisitionAndProvenance(t *testing.T) {
 	}
 	if !foundProvInModified {
 		t.Errorf("expected provenance.json to be included in ModifiedFiles")
+	}
+	if taskCtx.Implementation.BuildPassed {
+		t.Fatal("implement stage must not claim a product build")
+	}
+	if taskCtx.Implementation.ExecutionStatus != ExecPrepared {
+		t.Fatalf("status %s, want PREPARED", taskCtx.Implementation.ExecutionStatus)
 	}
 }
 

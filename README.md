@@ -1,8 +1,8 @@
 # Orchestra Workflow
 
-Orchestra 4.6.0 is the control plane for Cursor, Claude Code, Antigravity, Codex, jcode, and the agents host. Skills, MCPs, plugins, and libraries are capabilities. Agents execute. The vault remembers. The registries say what exists. Host files are adapters.
+Orchestra 4.7.0 is the control plane for Cursor, Claude Code, Antigravity, Codex, jcode, and the agents host. Skills, MCPs, plugins, and libraries are capabilities. Agents execute. The vault remembers. The registries say what exists. Host files are adapters.
 
-The pin in [`VERSION`](VERSION) is **4.6.0**. The 4.5.0 tag stays where it was.
+The pin in [`VERSION`](VERSION) is **4.7.0**. The 4.6.0 tag stays where it was.
 
 ```
 ORCHESTRA  = CONTROL PLANE
@@ -15,6 +15,15 @@ REGISTRY   = RESOURCE KNOWLEDGE
 This repository is the method. Products, keys, and taste stay in a private workspace.
 
 [CI](https://github.com/mahik504/orchestra-workflow/actions/workflows/ci.yml) and [Hygiene](https://github.com/mahik504/orchestra-workflow/actions/workflows/hygiene.yml) run on `main`. A badge is a link. The run page is the result.
+
+## What's new in 4.7.0
+
+- A handoff is `PREPARED` until a real build runs. Ordinary visual QA that does not apply is `NOT_APPLICABLE`, and that is not a pass.
+- `orchestra verify` returns a non-zero exit on FAIL, BLOCKED, or NOT_RUN.
+- The route table is [`docs/ROUTING.md`](docs/ROUTING.md). Always-on adapters point at it.
+- Project hooks in `kit/hooks/` can deny a dangerous command and a secret read. The default profile warns. It does not turn on strict mode.
+- A mobile app route loads the official Expo skills. A website prompt does not take that route.
+- No study in this release shows a higher success rate than a raw host. `compare.go` stays disabled.
 
 ## What's new in 4.6.0
 

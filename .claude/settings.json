@@ -1,0 +1,30 @@
+{
+  "hooks": {
+    "SessionStart": [
+      { "hooks": [{ "type": "command", "command": "node kit/hooks/guard.mjs session" }] }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [{ "type": "command", "command": "node kit/hooks/guard.mjs shell" }]
+      },
+      {
+        "matcher": "PowerShell",
+        "hooks": [{ "type": "command", "command": "node kit/hooks/guard.mjs shell" }]
+      },
+      {
+        "matcher": "Read",
+        "hooks": [{ "type": "command", "command": "node kit/hooks/guard.mjs read" }]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit",
+        "hooks": [{ "type": "command", "command": "node kit/hooks/guard.mjs edit" }]
+      }
+    ],
+    "Stop": [
+      { "hooks": [{ "type": "command", "command": "node kit/hooks/guard.mjs stop" }] }
+    ]
+  }
+}

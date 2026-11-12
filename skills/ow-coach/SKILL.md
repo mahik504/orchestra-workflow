@@ -1,4 +1,6 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-coach
 description: Teach the next step of a workflow the operator is already in. One concept, one command, one check. No course, no quiz, no extra tools installed to explain a tool.
 ---

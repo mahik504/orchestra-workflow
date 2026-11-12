@@ -4,7 +4,7 @@
       "command": "npx",
       "args": [
         "-y",
-        "@modelcontextprotocol/server-filesystem",
+        "@modelcontextprotocol/server-filesystem@2.3.0",
         "REPLACE_WITH_VAULT_PATH"
       ]
     },
@@ -20,15 +20,15 @@
     },
     "playwright": {
       "command": "npx",
-      "args": ["-y", "@playwright/mcp@latest"]
+      "args": ["-y", "@playwright/mcp@0.0.85"]
     },
     "context7": {
       "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp"]
+      "args": ["-y", "@upstash/context7-mcp@4.6.0"]
     },
     "magicuidesign-mcp": {
       "command": "npx",
-      "args": ["-y", "@magicuidesign/mcp@latest"],
+      "args": ["-y", "@magicuidesign/mcp@2.1.0"],
       "comment": "Free Magic UI MCP. Optional. Never always-on. Do not claim Pro."
     }
   }

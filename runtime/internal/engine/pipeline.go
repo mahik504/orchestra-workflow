@@ -40,6 +40,7 @@ type DesignExecutionResult struct {
 	ModifiedFiles      []string                    `json:"modified_files,omitempty"`
 	AcquiredResources  []string                    `json:"acquired_resources,omitempty"`
 	VisualQAPassed     bool                        `json:"visual_qa_passed"`
+	VisualQAVerdict    string                      `json:"visual_qa_verdict,omitempty"`
 	Screenshots        []string                    `json:"screenshots,omitempty"`
 	QAMetrics          map[string]float64          `json:"qa_metrics,omitempty"`
 	Violations         []string                    `json:"violations,omitempty"`
@@ -306,7 +307,15 @@ func (p *DesignPipeline) buildResult(
 	}
 
 	if taskCtx.VisualQA != nil {
-		res.VisualQAPassed = taskCtx.VisualQA.AllPassed
+		res.VisualQAVerdict = taskCtx.VisualQA.Verdict
+		switch taskCtx.VisualQA.Verdict {
+		case CheckPass:
+			res.VisualQAPassed = true
+		case "":
+			res.VisualQAPassed = taskCtx.VisualQA.AllPassed
+		default:
+			res.VisualQAPassed = false
+		}
 		res.QAMetrics = taskCtx.VisualQA.Metrics
 		res.Violations = taskCtx.VisualQA.DetectedViolations
 		for _, vp := range taskCtx.VisualQA.ViewportResults {
@@ -343,7 +352,11 @@ func (p *DesignPipeline) RecordPipelineMemory(taskCtx *TaskContext, res *DesignE
 		qaOutcome := memory.OutcomeSuccess
 		qaScore := 1.0
 		errDetails := ""
-		if !taskCtx.VisualQA.AllPassed {
+		qaFailed := taskCtx.VisualQA.Verdict == CheckFail || taskCtx.VisualQA.Verdict == CheckBlocked
+		if taskCtx.VisualQA.Verdict == "" {
+			qaFailed = !taskCtx.VisualQA.AllPassed
+		}
+		if qaFailed {
 			qaOutcome = memory.OutcomeFailure
 			violationsCount := len(taskCtx.VisualQA.DetectedViolations)
 			qaScore = 1.0 - (float64(violationsCount) * 0.2)

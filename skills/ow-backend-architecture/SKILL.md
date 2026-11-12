@@ -1,4 +1,6 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-backend-architecture
 description: Shape a SaaS or API before code. Routes, auth, schema, migrations, errors, and logs. Use for a backend or API. Skip the design lab.
 ---

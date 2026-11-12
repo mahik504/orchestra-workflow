@@ -71,12 +71,13 @@ func TestCompileReviewCases(t *testing.T) {
 		route string
 	}{
 		{"fix the production crash", "Bug"},
-		{"bug in the api", "Bug"},
+		{"bug in the api", "ambiguous"},
 		{"the api is crashing", "Bug"},
 		{"add citations", "Paper"},
 		{"one control for the date", "One control"},
 		{"read the pdf", "Docs on disk"},
-		{"reverse this apk", "Binary or APK"},
+		{"reverse this apk", "App recon"},
+		{"Build an Expo app for iOS", "Mobile app"},
 		{"Fix the bug in the landing page contact form", "Bug"},
 		{"Write the README for the landing page repo", "README and post"},
 		{"Write a research paper on landing page conversion", "Paper"},
@@ -151,5 +152,26 @@ func TestFrontendAndFullStackNameWebappTesting(t *testing.T) {
 	}
 	if !strings.Contains(strings.Join(saas.Constraints, "\n"), "saas-checklist.md") {
 		t.Fatalf("saas constraints %v", saas.Constraints)
+	}
+}
+
+func TestWebsiteDoesNotTakeMobile(t *testing.T) {
+	routes, err := LoadRoutes(filepath.Join("..", "..", "..", "registries", "routing.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	got, err := Compile("Build a marketing website for the shop", "cursor", routes)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got.Route == "Mobile app" {
+		t.Fatalf("website took the mobile route")
+	}
+	mobile, err := Compile("Build an Expo app for iOS", "cursor", routes)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if mobile.Route != "Mobile app" || mobile.SessionSize != "single" {
+		t.Fatalf("%s %s", mobile.Route, mobile.SessionSize)
 	}
 }

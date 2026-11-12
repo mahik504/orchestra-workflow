@@ -4,10 +4,10 @@ Measured by `node runtime/tools/measure-context.mjs` on this tree.
 
 | What | Characters |
 | --- | ---: |
-| AGENTS.md | 8478 |
-| Routing rows as JSON | 2650 |
-| Skill descriptions, all canonical skills | 20533 |
-| Skill descriptions, ow-* only | 5828 |
+| AGENTS.md | 1847 |
+| Routing rows as JSON | 4300 |
+| Skill descriptions, all canonical skills | 25614 |
+| Skill descriptions, ow-* only | 7303 |
 | ow-* descriptions over 300 | 0 |
 
 The 4.2.0 tree had 78 canonical skills. This tree's count is in `registries/skills.json`. The slot cap of 80 is gone. The budget is the description length: 300 characters for an `ow-*` skill.

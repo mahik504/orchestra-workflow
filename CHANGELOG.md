@@ -1,5 +1,9 @@
 # Changelog
 
+## [4.7.0]
+
+The pin in `VERSION` is 4.7.0. A prepared handoff is not a passing build. A skipped visual check is not a pass. `orchestra verify` exits non-zero on a hard failure without `--strict`. Sync refuses a symlink, normalizes CRLF before hashing, and writes Claude Code MCP servers to `~/.claude.json`. The route table lives in `docs/ROUTING.md`. Adapters stay under 3 KB. Hooks warn before strict mode. There is no skill-count cap. No comparison claim is enabled.
+
 ## [4.6.0]
 
 The pin in `VERSION` is 4.6.0. Spec review is `egm-draft`, `egm-review`, and `egm-resolve`. `unslop`, `build-awwwards-quality-sites`, `floorplan`, `anatomy`, `webapp-testing`, and `mcp-builder` keep their upstream names. Sync moves old skill names to a backup, replaces a tree whose hash matches `v4.0.0`, `v4.1.0`, `v4.5.0`, or commit `60cf9e7`, and writes the global adapters when the file is already Orchestra. Plugin manifests live at the repo root. Mermaid fences in the README and `docs/` are parsed in CI. The logo is gone. The landing record in `runtime/benchmarks/c1-premium-landing.json` is the 4.6 rerun: the Orchestra arm had `AGENTS.md`, and the claim stays none. `compare.go` stays disabled.

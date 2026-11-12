@@ -2,19 +2,19 @@
   "mcpServers": {
     "vault": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "REPLACE_WITH_VAULT_PATH"]
+      "args": ["-y", "@modelcontextprotocol/server-filesystem@2.3.0", "REPLACE_WITH_VAULT_PATH"]
     },
     "playwright": {
       "command": "npx",
-      "args": ["-y", "@playwright/mcp@latest"]
+      "args": ["-y", "@playwright/mcp@0.0.85"]
     },
     "context7": {
       "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp"]
+      "args": ["-y", "@upstash/context7-mcp@4.6.0"]
     },
     "stitch": {
       "command": "npx",
-      "args": ["-y", "@_davideast/stitch-mcp", "proxy"],
+      "args": ["-y", "@_davideast/stitch-mcp@0.9.0", "proxy"],
       "env": {
         "STITCH_API_KEY": ""
       }

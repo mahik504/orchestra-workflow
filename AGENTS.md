@@ -1,105 +1,23 @@
-# AGENTS — Orchestra 4.6.0
+# AGENTS — Orchestra 4.7.0
 
-You are running **Orchestra 4.6.0**. One contract, one conductor, open skills. Not a second toolbox.
+You are running **Orchestra 4.7.0**. One conductor.
 
 **ORCHESTRA = CONTROL PLANE. SKILLS / MCPs / PLUGINS / LIBRARIES = CAPABILITIES. AGENTS = EXECUTORS. BRAIN = MEMORY. REGISTRY = RESOURCE KNOWLEDGE.**
 
-Host rules are adapters. They do not invent a second plan. If two hosts could plan, the chat the human is talking to is the conductor.
+The chat the human is in conducts. Host files are adapters. The **graph** (`registries/design-resource-graph.json`) is capability routes. If it names a repo or a file, open the repo before trusting any brief.
 
 ## Loop
 
-1. **Forge.** `ow-forge` and `ow-focus` write a short brief: intent, kind, route, acceptance, refs, constraints, out of scope. Then work. Ask only when a product decision is truly ambiguous. If it names a repo or a file, open the repo before trusting any brief.
-2. **Classify** one route from `registries/design-resource-graph.json`. Load that route, not every skill. The **graph** (`registries/design-resource-graph.json`) is capability routes. The registry is resource knowledge.
-3. **Kind** sets the design bar. `skip the lab` still bypasses it.
-
-| kind | Bar | Lab |
-| --- | --- | --- |
-| hiring-cv | FLAGSHIP | 23 cards, or 3 translations for a named reference, then contract, then stills |
-| personal or client | PREMIUM | One human message approves the contract and the stills |
-| college | STANDARD | No lab unless the human says PREMIUM |
-| backend, fix, glue | STANDARD | No lab |
+1. Forge a short brief when the job is open. A named file can skip it.
+2. Classify one route from `docs/ROUTING.md`. Load that row.
+3. Kind sets the lab. PREMIUM stills need a human yes. `skip the lab` bypasses one task.
+4. Implement, verify on the running app, then review correctness and simplify.
 
 <!-- routing:start -->
 ## Routing
 
-Name the skills, MCPs, plugins, and libraries this task loads. Omit that line when nothing new is loaded. A skill you name wins unless it is unsafe. A missing tool stops. It does not install itself.
-
-| Job | Load | Skip |
-| --- | --- | --- |
-| Award-style site | build-awwwards-quality-sites, taste-design, impeccable, ow-golden-still, gsap-core, gsap-scrolltrigger, gsap-timeline | copying a reference site's files; a second motion stack |
-| Site to echo | ow-reference-forensics, impeccable, taste-design | copying assets, copy, or a logo |
-| Scroll | gsap-core, gsap-scrolltrigger, gsap-timeline | gsap-react unless the motion lives in React components |
-| One 3D scene | ow-3d-engineering | 3D as decoration; a second motion engine |
-| SaaS or API | ow-backend-architecture, test-driven-development | the design lab; supabase and postgres-best-practices unless that product uses them |
-| Bug | systematic-debugging | the design lab |
-| Paper | ow-research-paper, humanizer | invented citations |
-| Deck | ow-docs | host-provided pptx unless that host already has it |
-| Deck or slides | ow-docs, ow-presentation | copying a pptx skill file; purple template dumps |
-| Architecture diagram | ow-diagrams, pretty-mermaid | a second diagram system; a README full of charts |
-| One control | none | loading every component kit; duplicating a control the project already has |
-| Next.js speed | react-best-practices | a redesign; a bulk Vercel skill install |
-| TypeScript review | ow-typescript | a visual redesign; a new framework |
-| Ship a deployed app | ow-ship-safe, ow-observability | scanning a third-party URL; a global Sentry install |
-| What people said recently | ow-research | a last-30-days pack; scraping; posting; DMs |
-| Marketing copy | ow-marketing, humanizer | invented metrics; a design system rewrite |
-| Rendered video | ow-video | the GSAP route; installing a video suite into this method repo |
-| Career notes | ow-career | job-board scraping; applying on your behalf |
-| README and post | ow-ship, humanizer | posting for the human |
-| Binary or APK | not ready | rea until Java is installed and the target is yours, a client's, a CTF, or open source |
-| Hackathon or college | ow-forge | the 23-card survey when a reference is named; the design lab for college unless the human says PREMIUM |
-| Docs on disk | host-provided | docx, pptx, pdf, and xlsx stay on the host. They are not in skills/ |
-| Spec or design doc | egm-draft, egm-review, egm-resolve | a STANDARD fix that names the file; a second spec process |
-| Unslop a screen | unslop, impeccable | a new visual identity; copying a reference site |
-| Codebase map | floorplan, ow-diagrams | a second diagram system; mapping a repo you do not have |
-| Isometric explainer | anatomy | a software architecture chart; a second 3D engine |
-| Full-stack app | ow-backend-architecture, react-best-practices, test-driven-development, webapp-testing | the design lab; a second backend skill |
-| MCP server | mcp-builder | a second conductor; installing every MCP |
-| ML experiment | ow-ml-experiment | a claimed benchmark win; training on data you do not have |
-| Essay or article | humanizer, ow-research | invented citations; posting for the human |
+The route table is `docs/ROUTING.md`. Read that file when you classify. Name the skills, MCPs, plugins, and libraries that row loads. Omit that line when nothing new is loaded. A missing tool stops. It does not install itself.
 <!-- routing:end -->
-
-When a task loads skills, an MCP, a plugin, or a library, name those. Leave the line off when nothing new is loaded. Detail is in `protocols/EXPLAINABLE_ROUTING.md`.
-
-## Precedence
-
-- `ow-forge` and `ow-focus` run before classify.
-- One control loads `none`. Classify still opens `interaction-components`.
-- `taste-design` writes `DESIGN.md`. One builder per pass. `impeccable` reviews a surface that already exists. `unslop` polishes a screen that already exists.
-- `egm-draft`, `egm-review`, and `egm-resolve` review a spec before build. A STANDARD fix that names the file skips that gate.
-- The conductor writes `.orchestra/STATE.md` at each phase: phase, done, constraints, next action. A subagent handoff carries that file. Copy it from `templates/orchestra/STATE.md`.
-- A slide deck uses the Deck or slides row.
-- Taste locks the visual world. Impeccable reviews a surface that already exists. One DESIGN.md. UI UX Pro Max is a method source for those two files, not a third design system.
-- One motion runtime per surface. GSAP owns scroll. A component catalog is not a runtime. If a sample needs a second engine, adapt it or pick another sample.
-- Playwright is the journey. Lighthouse is the perf budget. axe-core is violation evidence on a running page. Golden stills are the visual contract.
-- Ponytail is the diff. `ponytail-review` is the change. `ponytail-audit` is the repo. Graphify and Serena stay optional tools on that audit, not a second map.
-- `ow-3d-engineering` owns the one 3D scene. Do not load `creative-3d-web` beside it.
-- `ow-backend-architecture` plus `react-best-practices` own the build. Do not load `fullstack-mastery` on top. The product note picks Supabase, Firebase, Clerk, Prisma, or Drizzle.
-- Superpowers, Caveman, GSD, BMAD, gstack, and ECC do not open a second plan.
-- Superpowers skills are vendored and the plugin stays off.
-- The vault is the only long-term memory. Claude-Mem is not a second memory.
-- A large job becomes capsules with one owner. The acceptance line moves only when the human changes it.
-- A rendered video is HyperFrames in the product repo. It does not load the GSAP route. Worker capsules limit what a worker sees. Headroom is not installed.
-
-## Advisories and hard limits
-
-An advisory is a default. If the human insists on a skill or MCP that an advisory names, install it and record `user-installed` in the product repo. A hard limit still blocks the action.
-
-Hard limits:
-
-- No secrets and no private vault text in this public repo.
-- Commits are authored by the human. No `Co-authored-by: Cursor` trailer.
-- No destructive external action without an explicit yes.
-- Offensive security tooling runs only against a target the task names as own, client, CTF, or open source.
-- One conductor. Another harness does not open a second plan.
-- No invented metrics, star counts, or benchmark wins.
-
-`npx skills add --all` and `npx skills add -g -y` are hard limits until the human insists on one named package. `ow-skill-advisor` records that install. It does not run the global install on its own.
-
-4. **Implement** only after the lab is cleared for visual work. A DESIGN.md is not visual evidence.
-5. **Verify** on the running app. `verification-before-completion` plus the ledger. Then `ow-fresh-review`.
-6. **Remember** what actually worked. Do not invent usage.
-
-## Engineering
 
 <!-- engineering:start -->
 | Job | Skill |
@@ -115,34 +33,11 @@ Hard limits:
 | Review feedback | `receiving-code-review` |
 <!-- engineering:end -->
 
-## Research and reverse engineering
+## Hard limits
 
-Agent-Reach reads the operator's own profiles and public pages. Read-only. Cookies stay local. No bulk scraping of other people. No post, like, DM, or apply. No ATS scrapers.
+- No secrets in git. No `Co-authored-by: Cursor`. Commits stay authored by the human.
+- No `npx skills add --all`. No second conductor.
+- Recon and offensive tools only on own, client, CTF, or open source.
+- You may write **DONE / FIXED / VERIFIED / PASSED / SHIPPED** only when observed evidence is in the same message.
 
-`rea` and APKLab run only on a target the task names as own, client, CTF, or open source.
-
-## Evidence
-
-You may write **DONE / FIXED / VERIFIED / PASSED / SHIPPED** only when observed evidence is in the same message. Intention is not evidence.
-
-## Resources
-
-Available is not loaded. A registry row is not proof the tool ran. New third-party skills pass `ow-skill-security-check` before promotion. Never `skills add --all`.
-
-## Hosts
-
-The same skills and the same core MCPs. Exceptions live in `registries/host-stack.json`. `kit/orchestra-doctor.ps1` checks drift.
-
-| Host | Role |
-| --- | --- |
-| Cursor | Usual conductor |
-| Antigravity | Visual QA |
-| Claude Code | Terminal and review. The hook reminds Forge. It does not rewrite the prompt |
-| Paseo | Launches workers. Not a conductor |
-| Codex, jcode | Same skills |
-
-## Overrides
-
-- **skip orchestra** stands this down for the session.
-- **skip the lab** bypasses the design gate for one task.
-- `ORCHESTRA_CONTRACT` can pin an older contract. Rollback notes are in `kit/ROLLBACK.md`.
+**skip orchestra** stands this down. **skip the lab** bypasses the design gate for one task.

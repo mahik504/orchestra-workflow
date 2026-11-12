@@ -1,4 +1,6 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-review-panel
 description: Run two reviews in order. Correctness first, from a clean context. Simplify second, on the diff only. Findings need a file and a failure. No score, no style nits.
 ---

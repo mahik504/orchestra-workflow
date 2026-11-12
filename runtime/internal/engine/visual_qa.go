@@ -77,15 +77,14 @@ func (v *PlaywrightVerifier) Verify(ctx context.Context, taskCtx *TaskContext) (
 	}
 
 	if review == string(mission.VisualReviewNone) && class == visual.ClassOrdinary {
-		data.AllPassed = true
-		data.FinalResult = "skipped_ordinary"
-		return data, nil
+		return skippedVisual(class), nil
 	}
 
 	if taskCtx != nil && taskCtx.Capability != nil {
 		wantsBrowser := review == string(mission.VisualReviewBrowser) || review == string(mission.VisualReviewDeep)
 		if wantsBrowser && !taskCtx.Capability.Has(capability.IDBrowserPlaywright) {
 			data.AllPassed = false
+			data.Verdict = CheckFail
 			data.FinalResult = "fail"
 			data.FailureClass = FailureClassFatal
 			data.DetectedViolations = append(data.DetectedViolations, "required browser.playwright was not selected; visual QA must not pass")
@@ -97,9 +96,7 @@ func (v *PlaywrightVerifier) Verify(ctx context.Context, taskCtx *TaskContext) (
 			return data, nil
 		}
 		if !taskCtx.Capability.Has(capability.IDBrowserPlaywright) {
-			data.AllPassed = true
-			data.FinalResult = "skipped_ordinary"
-			return data, nil
+			return skippedVisual(class), nil
 		}
 	}
 
@@ -249,9 +246,15 @@ func (v *PlaywrightVerifier) Verify(ctx context.Context, taskCtx *TaskContext) (
 			data.FailureClass = FailureClassLayoutCode
 		}
 		data.FinalResult = "fail"
+		if aRep != nil && aRep.EnvironmentError != "" {
+			data.Verdict = CheckBlocked
+		} else {
+			data.Verdict = CheckFail
+		}
 	} else {
 		data.FailureClass = FailureClassNone
 		data.FinalResult = "pass"
+		data.Verdict = CheckPass
 	}
 	if taskCtx != nil && taskCtx.Iteration != nil {
 		data.RetryCount = taskCtx.Iteration.CurrentIteration
@@ -264,6 +267,35 @@ func (v *PlaywrightVerifier) Verify(ctx context.Context, taskCtx *TaskContext) (
 		data.Evidence[i].Findings = data.Findings
 	}
 	return data, nil
+}
+
+func skippedVisual(class visual.Class) *VisualQAData {
+	return &VisualQAData{
+		AllPassed:          false,
+		Verdict:            CheckNotApplicable,
+		ViewportResults:    []ViewportCheckResult{},
+		Metrics:            map[string]float64{},
+		DetectedViolations: []string{},
+		FailureClass:       FailureClassNone,
+		DesignClass:        string(class),
+		FinalResult:        "skipped_ordinary",
+	}
+}
+
+// visualClosed is true when iteration must not treat the check as a failure.
+// A skipped check is closed and is not a pass.
+func visualClosed(qa *VisualQAData) bool {
+	if qa == nil {
+		return true
+	}
+	switch qa.Verdict {
+	case CheckPass, CheckNotApplicable:
+		return true
+	case CheckFail, CheckBlocked, CheckNotRun:
+		return false
+	default:
+		return qa.AllPassed
+	}
 }
 
 func designClassOf(taskCtx *TaskContext) visual.Class {
@@ -548,11 +580,14 @@ func (m *MockVisualVerifier) Verify(ctx context.Context, taskCtx *TaskContext) (
 
 	allPassed := len(violations) == 0
 	final := "pass"
+	verdict := CheckPass
 	if !allPassed {
 		final = "fail"
+		verdict = CheckFail
 	}
 	return &VisualQAData{
 		AllPassed:          allPassed,
+		Verdict:            verdict,
 		ViewportResults:    vpResults,
 		Metrics:            map[string]float64{"cls": 0.02},
 		DetectedViolations: violations,

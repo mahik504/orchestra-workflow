@@ -27,11 +27,14 @@ func (s *IterateStage) ShouldSkip(ctx *TaskContext) (bool, string) {
 func (s *IterateStage) Execute(ctx *TaskContext) (*StageResult, error) {
 	start := time.Now()
 
-	if ctx.VisualQA == nil || ctx.VisualQA.AllPassed {
+	if visualClosed(ctx.VisualQA) {
 		if ctx.RunState != nil {
 			ctx.RunState.PendingHuman = nil
 		}
 		ctx.Iteration.FinalVerdict = "PASSED"
+		if ctx.VisualQA != nil && ctx.VisualQA.Verdict == CheckNotApplicable {
+			ctx.Iteration.FinalVerdict = "NOT_APPLICABLE"
+		}
 		recordIterateMemory(ctx, "PASSED", time.Since(start).Milliseconds())
 		return &StageResult{
 			StageName: StageIterate,

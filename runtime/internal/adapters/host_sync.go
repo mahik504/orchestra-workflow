@@ -3,6 +3,7 @@ package adapters
 import (
 	"crypto/sha256"
 	"encoding/hex"
+	"encoding/json"
 	"fmt"
 	"os"
 	"os/exec"
@@ -24,7 +25,47 @@ const (
 	HostJcode       HostType = "jcode"
 )
 
-// CanonicalActiveSkills is the allowlist in registries/host-stack.json.
+func init() {
+	if ids := skillIDsFromRegistry(); len(ids) > 0 {
+		CanonicalActiveSkills = ids
+	}
+}
+
+func skillIDsFromRegistry() []string {
+	dir, err := os.Getwd()
+	if err != nil {
+		return nil
+	}
+	for i := 0; i < 8; i++ {
+		raw, err := os.ReadFile(filepath.Join(dir, "registries", "skills.json"))
+		if err == nil {
+			var doc struct {
+				Skills []struct {
+					ID string `json:"id"`
+				} `json:"skills"`
+			}
+			if json.Unmarshal(raw, &doc) == nil && len(doc.Skills) > 0 {
+				ids := make([]string, 0, len(doc.Skills))
+				for _, row := range doc.Skills {
+					if row.ID != "" {
+						ids = append(ids, row.ID)
+					}
+				}
+				sort.Strings(ids)
+				return ids
+			}
+		}
+		parent := filepath.Dir(dir)
+		if parent == dir {
+			break
+		}
+		dir = parent
+	}
+	return nil
+}
+
+// CanonicalActiveSkills is the skill id list from registries/skills.json.
+// The slice below is the fallback when that file cannot be read.
 var CanonicalActiveSkills = []string{
 	"animate",
 	"ci-security-scanning-with-strix",

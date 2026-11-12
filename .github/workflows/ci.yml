@@ -76,6 +76,10 @@ jobs:
       run: npm ci
     - name: Tool tests
       run: node --test runtime/tools/*.test.mjs
+    - name: Hook tests
+      run: node --test kit/hooks/*.test.mjs
+    - name: Config lint
+      run: node runtime/tools/check-config-lint.mjs
     - name: Registry schemas
       run: node runtime/tools/check-schemas.mjs
     - name: Install Playwright Chromium

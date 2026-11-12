@@ -1,9 +1,11 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-typescript
 description: TypeScript boundaries and checks before an edit. Use when the repo is TypeScript and the job is not only a React waterfall. Not a visual redesign.
 ---
 
-# TypeScript — 4.1.0
+# TypeScript
 
 Source method: Matt Pocock's public engineering notes. The `mattpocock/skills` pack is not installed. `react-best-practices` still owns React and Next waterfalls.
 

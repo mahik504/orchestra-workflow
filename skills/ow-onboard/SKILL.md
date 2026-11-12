@@ -1,4 +1,6 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-onboard
 description: Open a product repo onto Orchestra. Stamp adapters between markers, sync skills without deleting local edits, and write the project passport. Do not overwrite an unmarked AGENTS.md.
 ---

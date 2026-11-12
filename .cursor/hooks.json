@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      { "command": "node kit/hooks/guard.mjs session" }
+    ],
+    "beforeShellExecution": [
+      { "command": "node kit/hooks/guard.mjs shell", "failClosed": true }
+    ],
+    "beforeReadFile": [
+      { "command": "node kit/hooks/guard.mjs read", "failClosed": true }
+    ],
+    "beforeMCPExecution": [
+      { "command": "node kit/hooks/guard.mjs mcp" }
+    ],
+    "afterFileEdit": [
+      { "command": "node kit/hooks/guard.mjs edit" }
+    ],
+    "subagentStart": [
+      { "command": "node kit/hooks/guard.mjs subagent-start" }
+    ],
+    "subagentStop": [
+      { "command": "node kit/hooks/guard.mjs subagent-stop" }
+    ],
+    "stop": [
+      { "command": "node kit/hooks/guard.mjs stop" }
+    ]
+  }
+}

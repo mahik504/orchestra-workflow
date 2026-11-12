@@ -1,4 +1,6 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-design-intelligence
 description: Choose type, color, layout, and motion before taste-design writes DESIGN.md. One direction, named references, and a short rationale. Feeds taste-design. Does not replace it and does not copy a site.
 ---

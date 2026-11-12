@@ -1,4 +1,6 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-research-paper
 description: Draft or polish a research paper with real citations. Use for IEEE, LaTeX, or a professor manuscript. Do not invent metrics or DOIs.
 ---

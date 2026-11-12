@@ -1,9 +1,11 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-vault
 description: Maintain the private Orchestra workspace and its memory. Jump one note. Lasting files only. Record real outcomes, never synthetic ones. No secrets.
 ---
 
-# Orchestra vault — 4.1.0
+# Orchestra vault
 
 **BRAIN = MEMORY.** The workspace is where Orchestra remembers; it is not a second control plane. Claude-Mem is not a second brain.
 

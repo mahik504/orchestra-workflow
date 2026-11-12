@@ -15,6 +15,7 @@ import (
 	"github.com/mahik504/orchestra-workflow/runtime/internal/compile"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/engine"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/handoff"
+	"github.com/mahik504/orchestra-workflow/runtime/internal/mcpserver"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/memory"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/onboard"
 	"github.com/mahik504/orchestra-workflow/runtime/internal/resources"
@@ -42,7 +43,7 @@ func main() {
 	case "run":
 		runRun(args)
 	case "verify":
-		runVerify(args)
+		os.Exit(runVerify(args))
 	case "handoff":
 		runHandoff(args)
 	case "sync":
@@ -53,6 +54,11 @@ func main() {
 		runAdd(args)
 	case "compile":
 		runCompile(args)
+	case "mcp-serve":
+		if err := mcpserver.Serve(os.Stdin, os.Stdout, resolveRegistryFile("routing.json", "")); err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(1)
+		}
 	case "lifecycle":
 		runLifecycle(args)
 	default:
@@ -90,6 +96,7 @@ func printUsage() {
 	fmt.Println("  memory     Query or record private brain resource outcome memory (list, stats, record)")
 	fmt.Println("  add        Add a resource URL from user intent (Brain overlay, not the public router)")
 	fmt.Println("  compile   Print the task manifest as JSON. No installs, no writes.")
+	fmt.Println("  mcp-serve Experimental stdio MCP for compile and provenance_check")
 	fmt.Println("  lifecycle  Prove submit → inspect → infer → route → memory for one resource")
 }
 
@@ -519,7 +526,7 @@ func runRun(args []string) {
 	}
 }
 
-func runVerify(args []string) {
+func runVerify(args []string) int {
 	fs := flag.NewFlagSet("verify", flag.ExitOnError)
 	viewportsStr := fs.String("viewports", "desktop,tablet,mobile", "Viewports to verify")
 	outDir := fs.String("output-dir", filepath.Join(".orchestra", "qa"), "Output directory for screenshots and report")
@@ -549,7 +556,7 @@ func runVerify(args []string) {
 	qaRes, err := verifier.Verify(context.Background(), taskCtx)
 	if err != nil {
 		fmt.Printf("[FAIL] Verification execution error: %v\n", err)
-		os.Exit(1)
+		return 1
 	}
 
 	for _, vp := range qaRes.ViewportResults {
@@ -561,16 +568,27 @@ func runVerify(args []string) {
 			vp.ViewportName, status, vp.HasOverflow, vp.ScreenshotPath)
 	}
 
-	if !qaRes.AllPassed {
+	hardFail := false
+	warnings := false
+	switch qaRes.Verdict {
+	case engine.CheckFail, engine.CheckBlocked, engine.CheckNotRun:
+		hardFail = true
+	case engine.CheckNotApplicable:
+		fmt.Println("\n[NOT_APPLICABLE] Visual QA did not run. This is not a pass.")
+	case engine.CheckPass:
+		fmt.Println("\n[PASS] All viewports verified successfully. Zero horizontal overflow.")
+	default:
+		if qaRes.AllPassed {
+			fmt.Println("\n[PASS] All viewports verified successfully. Zero horizontal overflow.")
+		} else {
+			hardFail = true
+		}
+	}
+	if hardFail {
 		fmt.Println("\n[FAIL] Visual QA defects detected:")
 		for _, d := range qaRes.DetectedViolations {
 			fmt.Printf(" - %s\n", d)
 		}
-		if *strict {
-			os.Exit(1)
-		}
-	} else {
-		fmt.Println("\n[PASS] All viewports verified successfully. Zero horizontal overflow.")
 	}
 
 	// 2. Host Active Skill Parity Verification
@@ -581,6 +599,7 @@ func runVerify(args []string) {
 			fmt.Printf("Host Parity:     [PASS] %d/%d active skills synchronized across hosts (byte-identical=%v)\n",
 				parityRep.CanonicalSkillCount, parityRep.CanonicalSkillCount, parityRep.ByteIdentical)
 		} else {
+			warnings = true
 			fmt.Printf("Host Parity:     [WARN] Incomplete parity across hosts: missing=%v, byte-identical=%v\n",
 				parityRep.MissingSkills, parityRep.ByteIdentical)
 		}
@@ -593,8 +612,21 @@ func runVerify(args []string) {
 		fmt.Printf("Memory:          [PASS] %s valid (total=%d, succ=%d, fail=%d, rate=%.1f%%)\n",
 			memPath, total, succ, fail, rate*100)
 	} else {
+		warnings = true
 		fmt.Printf("Memory:          [WARN] %s unreadable: %v\n", memPath, err)
 	}
+	return verifyExitCode(qaRes.Verdict, qaRes.AllPassed, *strict, warnings)
+}
+
+func verifyExitCode(verdict string, allPassed, strict, warnings bool) int {
+	hard := verdict == engine.CheckFail || verdict == engine.CheckBlocked || verdict == engine.CheckNotRun
+	if verdict == "" && !allPassed {
+		hard = true
+	}
+	if hard || (strict && warnings) {
+		return 1
+	}
+	return 0
 }
 
 func runHandoff(args []string) {

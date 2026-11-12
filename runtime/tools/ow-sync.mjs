@@ -30,8 +30,28 @@ export function listSkillIds(sourceRoot) {
   if (!fs.existsSync(sourceRoot)) return [];
   return fs.readdirSync(sourceRoot).filter((name) => {
     const dir = path.join(sourceRoot, name);
-    return fs.statSync(dir).isDirectory() && fs.existsSync(path.join(dir, 'SKILL.md'));
+    const st = fs.lstatSync(dir);
+    if (st.isSymbolicLink()) return false;
+    return st.isDirectory() && fs.existsSync(path.join(dir, 'SKILL.md'));
   }).sort();
+}
+
+function refuseEscape(child, root) {
+  const st = fs.lstatSync(child);
+  if (st.isSymbolicLink()) {
+    const error = new Error(`symlink refused: ${child}`);
+    error.code = 'SYMLINK';
+    throw error;
+  }
+  const real = fs.realpathSync(child);
+  const realRoot = fs.realpathSync(root);
+  const rel = path.relative(realRoot, real);
+  if (rel.startsWith('..') || path.isAbsolute(rel)) {
+    const error = new Error(`path escapes ${root}: ${child}`);
+    error.code = 'ESCAPE';
+    throw error;
+  }
+  return st;
 }
 
 function listFiles(dir) {
@@ -40,7 +60,8 @@ function listFiles(dir) {
     for (const name of fs.readdirSync(abs).sort()) {
       const child = path.join(abs, name);
       const next = rel ? `${rel}/${name}` : name;
-      if (fs.statSync(child).isDirectory()) walk(child, next);
+      const st = refuseEscape(child, dir);
+      if (st.isDirectory()) walk(child, next);
       else out.push(next);
     }
   };
@@ -48,15 +69,24 @@ function listFiles(dir) {
   return out;
 }
 
-export function hashTree(dir) {
+function hashTreeWith(dir, transform) {
   const hash = createHash('sha256');
   for (const rel of listFiles(dir)) {
     hash.update(rel);
     hash.update('\0');
-    hash.update(fs.readFileSync(path.join(dir, ...rel.split('/'))));
+    const buf = fs.readFileSync(path.join(dir, ...rel.split('/')));
+    hash.update(transform ? transform(buf) : buf);
     hash.update('\0');
   }
   return hash.digest('hex');
+}
+
+export function hashTree(dir) {
+  return hashTreeWith(dir, hashBytes);
+}
+
+export function hashTreeRaw(dir) {
+  return hashTreeWith(dir, null);
 }
 
 function readManifest(destRoot) {
@@ -67,7 +97,10 @@ function readManifest(destRoot) {
 
 function writeManifest(destRoot, manifest) {
   fs.mkdirSync(destRoot, { recursive: true });
-  fs.writeFileSync(path.join(destRoot, '.ow-manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
+  const file = path.join(destRoot, '.ow-manifest.json');
+  const tmp = `${file}.tmp`;
+  fs.writeFileSync(tmp, JSON.stringify(manifest, null, 2) + '\n');
+  fs.renameSync(tmp, file);
 }
 
 export function planSync({ sourceIds, sourceRoot, destRoot, backupAndReplace, knownHashes = {} }) {
@@ -86,11 +119,12 @@ export function planSync({ sourceIds, sourceRoot, destRoot, backupAndReplace, kn
       continue;
     }
     const dstHash = hashTree(dst);
+    const rawHash = hashTreeRaw(dst);
     const recorded = manifest.skills && manifest.skills[id] && manifest.skills[id].sha256;
     const known = new Set(knownHashes[id] || []);
     if (dstHash === srcHash) {
       actions.push({ id, action: 'unchanged', srcHash });
-    } else if (recorded === dstHash || known.has(dstHash) || backupAndReplace) {
+    } else if (recorded === dstHash || recorded === rawHash || known.has(dstHash) || known.has(rawHash) || backupAndReplace) {
       actions.push({ id, action: 'replace', srcHash, dstHash });
     } else {
       actions.push({ id, action: 'conflict', srcHash, dstHash });
@@ -153,8 +187,14 @@ function copyTree(src, dst) {
   }
 }
 
+export function hashBytes(buf) {
+  if (!buf.includes(0)) return Buffer.from(buf.toString('utf8').replace(/\r\n/g, '\n'), 'utf8');
+  return buf;
+}
+
 export function defaultBackupRoot(home) {
   if (process.env.OW_BACKUP_ROOT) return process.env.OW_BACKUP_ROOT;
+  if (process.env.OW_SYNC_HOME) return path.join(process.env.OW_SYNC_HOME, '.orchestra-backups');
   if (process.platform === 'win32') {
     const base = process.env.LOCALAPPDATA || path.join(home, 'AppData', 'Local');
     return path.join(base, 'orchestra', 'backups');
@@ -201,14 +241,21 @@ export function applySync({ sourceRoot, destRoot, actions, backupRoot, source = 
       fs.rmSync(stage, { recursive: true, force: true });
       throw new Error(`staged copy of ${item.id} did not match the planned hash`);
     }
-    if (item.action === 'replace') {
-      const bucket = path.join(backupRoot, stamp(), item.id);
-      fs.mkdirSync(path.dirname(bucket), { recursive: true });
-      moveDir(dst, bucket);
-      applied.push({ id: item.id, backup: bucket, previous: item.dstHash });
+    let bucket = '';
+    try {
+      if (item.action === 'replace') {
+        bucket = path.join(backupRoot, stamp(), item.id);
+        fs.mkdirSync(path.dirname(bucket), { recursive: true });
+        moveDir(dst, bucket);
+        applied.push({ id: item.id, backup: bucket, previous: item.dstHash });
+      }
+      fs.mkdirSync(path.dirname(dst), { recursive: true });
+      moveDir(staged, dst);
+    } catch (error) {
+      if (bucket && !fs.existsSync(dst) && fs.existsSync(bucket)) moveDir(bucket, dst);
+      fs.rmSync(stage, { recursive: true, force: true });
+      throw error;
     }
-    fs.mkdirSync(path.dirname(dst), { recursive: true });
-    moveDir(staged, dst);
     fs.rmSync(stage, { recursive: true, force: true });
     manifest.skills[item.id] = { sha256: item.srcHash, source };
   }
@@ -362,12 +409,16 @@ export function applyAdapter({ file, body, backupRoot, maxBytes = 0 }) {
 }
 
 const CLAUDE_MCP = {
-  shadcn: { command: 'npx', args: ['shadcn@latest', 'mcp'] },
-  'magic-ui': { command: 'npx', args: ['-y', '@magicuidesign/mcp@latest'] },
+  shadcn: { command: 'npx', args: ['shadcn@4.23.0', 'mcp'] },
+  'magic-ui': { command: 'npx', args: ['-y', '@magicuidesign/mcp@2.1.0'] },
 };
 
+export function claudeMcpPath(home) {
+  return path.join(home, '.claude.json');
+}
+
 export function planClaudeMcp(file) {
-  if (!fs.existsSync(file)) return { action: 'absent', added: [] };
+  if (!fs.existsSync(file)) return { action: 'add', added: Object.keys(CLAUDE_MCP) };
   const json = JSON.parse(fs.readFileSync(file, 'utf8'));
   const servers = json.mcpServers || {};
   const added = Object.keys(CLAUDE_MCP).filter((name) => !servers[name]);
@@ -377,12 +428,17 @@ export function planClaudeMcp(file) {
 export function applyClaudeMcp({ file, backupRoot }) {
   const decision = planClaudeMcp(file);
   if (decision.action !== 'add') return decision;
-  const json = JSON.parse(fs.readFileSync(file, 'utf8'));
+  const existed = fs.existsSync(file);
+  const json = existed ? JSON.parse(fs.readFileSync(file, 'utf8')) : {};
   json.mcpServers = json.mcpServers || {};
   for (const name of decision.added) json.mcpServers[name] = CLAUDE_MCP[name];
-  const bucket = path.join(backupRoot, stamp(), 'claude-settings.json');
-  fs.mkdirSync(path.dirname(bucket), { recursive: true });
-  fs.copyFileSync(file, bucket);
+  if (existed) {
+    const bucket = path.join(backupRoot, stamp(), 'claude.json');
+    fs.mkdirSync(path.dirname(bucket), { recursive: true });
+    fs.copyFileSync(file, bucket);
+    decision.backup = bucket;
+  }
+  fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, JSON.stringify(json, null, 2) + '\n');
   return decision;
 }
@@ -399,6 +455,11 @@ function syncSurface(home, selected, apply, backupRoot) {
     printActions('cursor-commands', syncCommands({
       repo: REPO,
       destDir: path.join(REPO, '.cursor', 'commands'),
+      apply,
+    }));
+    printActions('cursor-user-commands', syncCommands({
+      repo: REPO,
+      destDir: path.join(home, '.cursor', 'commands'),
       apply,
     }));
   }
@@ -419,7 +480,7 @@ function syncSurface(home, selected, apply, backupRoot) {
     const claudePlan = planAdapter({ file: claudeFile, body: claudeBody });
     console.log(`claude-adapter  ${claudePlan.action}  CLAUDE.md`);
     if (apply) applyAdapter({ file: claudeFile, body: claudeBody, backupRoot });
-    const mcpFile = path.join(home, '.claude', 'settings.json');
+    const mcpFile = path.join(home, '.claude.json');
     const mcpPlan = planClaudeMcp(mcpFile);
     console.log(`claude-mcp  ${mcpPlan.action}  ${mcpPlan.added.join(',')}`);
     if (apply) applyClaudeMcp({ file: mcpFile, backupRoot });

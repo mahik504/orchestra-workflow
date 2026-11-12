@@ -172,22 +172,7 @@ func (s *ImplementStage) Execute(ctx *TaskContext) (*StageResult, error) {
 
 		// In dry-run mode, record simulated provenance without executing subprocesses
 		if ctx.Task != nil && ctx.Task.DryRun {
-			sourceURL := res.CanonicalURL
-			if sourceURL == "" {
-				sourceURL = "https://orchestra.internal/resources/" + res.ID
-			}
-			h := sha256.Sum256([]byte(res.ID + "@dry-run"))
-			entry := acquisition.ProvenanceEntry{
-				ResourceID:          res.ID,
-				AcquisitionMethod:   res.AcquisitionMethod,
-				SourceURL:           sourceURL,
-				VersionOrSHA:        "dry-run-v1",
-				SHA256Hash:          hex.EncodeToString(h[:]),
-				InstalledPath:       "",
-				Timestamp:           time.Now().UTC().Format(time.RFC3339),
-				JustificationTaskID: ctx.Task.ID,
-				IsQuarantined:       false,
-			}
+			entry := nonArtifactEntry(res, ctx.Task.ID, acquisition.KindDryRun, res.CanonicalURL, "dry-run-v1")
 			if err := provStore.Record(entry); err != nil {
 				return &StageResult{
 					StageName: StageImplement,
@@ -205,23 +190,7 @@ func (s *ImplementStage) Execute(ctx *TaskContext) (*StageResult, error) {
 		// Look up adapter for resource acquisition method
 		adapter, err := reg.GetAdapterForMethod(res.AcquisitionMethod)
 		if err != nil {
-			// If method is none/manual or unsupported, record conceptual reference
-			sourceURL := res.CanonicalURL
-			if sourceURL == "" {
-				sourceURL = "https://orchestra.internal/resources/" + res.ID
-			}
-			h := sha256.Sum256([]byte(res.ID + "@reference"))
-			entry := acquisition.ProvenanceEntry{
-				ResourceID:          res.ID,
-				AcquisitionMethod:   res.AcquisitionMethod,
-				SourceURL:           sourceURL,
-				VersionOrSHA:        "reference",
-				SHA256Hash:          hex.EncodeToString(h[:]),
-				InstalledPath:       "",
-				Timestamp:           time.Now().UTC().Format(time.RFC3339),
-				JustificationTaskID: ctx.Task.ID,
-				IsQuarantined:       false,
-			}
+			entry := nonArtifactEntry(res, ctx.Task.ID, acquisition.KindReferenceOnly, res.CanonicalURL, "reference")
 			if err := provStore.Record(entry); err != nil {
 				return &StageResult{
 					StageName: StageImplement,
@@ -247,21 +216,10 @@ func (s *ImplementStage) Execute(ctx *TaskContext) (*StageResult, error) {
 			// If project workspace lacks package.json, record pending dependency in provenance ledger for downstream agent handoff
 			if errors.Is(err, acqAdapters.ErrPackageJSONNotFound) {
 				sourceURL := res.CanonicalURL
-				if sourceURL == "" {
+				if sourceURL == "" && (res.AcquisitionMethod == "npm" || res.AcquisitionMethod == "npx") {
 					sourceURL = "https://www.npmjs.com/package/" + res.ID
 				}
-				h := sha256.Sum256([]byte(res.ID + "@pending"))
-				entry := acquisition.ProvenanceEntry{
-					ResourceID:          res.ID,
-					AcquisitionMethod:   res.AcquisitionMethod,
-					SourceURL:           sourceURL,
-					VersionOrSHA:        "pending",
-					SHA256Hash:          hex.EncodeToString(h[:]),
-					InstalledPath:       "",
-					Timestamp:           time.Now().UTC().Format(time.RFC3339),
-					JustificationTaskID: ctx.Task.ID,
-					IsQuarantined:       false,
-				}
+				entry := nonArtifactEntry(res, ctx.Task.ID, acquisition.KindPending, sourceURL, "pending")
 				if recErr := provStore.Record(entry); recErr != nil {
 					return &StageResult{
 						StageName: StageImplement,
@@ -279,22 +237,7 @@ func (s *ImplementStage) Execute(ctx *TaskContext) (*StageResult, error) {
 			// If CLI/network acquisition failed (e.g. offline CI runner, network sandbox, timeout),
 			// record pending provenance for downstream agent execution rather than crashing pipeline
 			if res.AcquisitionMethod == "cli" || res.AcquisitionMethod == "npx" {
-				sourceURL := res.CanonicalURL
-				if sourceURL == "" {
-					sourceURL = "https://orchestra.internal/resources/" + res.ID
-				}
-				h := sha256.Sum256([]byte(res.ID + "@pending-cli"))
-				entry := acquisition.ProvenanceEntry{
-					ResourceID:          res.ID,
-					AcquisitionMethod:   res.AcquisitionMethod,
-					SourceURL:           sourceURL,
-					VersionOrSHA:        "pending",
-					SHA256Hash:          hex.EncodeToString(h[:]),
-					InstalledPath:       "",
-					Timestamp:           time.Now().UTC().Format(time.RFC3339),
-					JustificationTaskID: ctx.Task.ID,
-					IsQuarantined:       false,
-				}
+				entry := nonArtifactEntry(res, ctx.Task.ID, acquisition.KindPending, res.CanonicalURL, "pending")
 				if recErr := provStore.Record(entry); recErr == nil {
 					acquiredResources = append(acquiredResources, res.ID)
 					continue
@@ -315,30 +258,7 @@ func (s *ImplementStage) Execute(ctx *TaskContext) (*StageResult, error) {
 		if sourceURL == "" {
 			sourceURL = acqResult.SourceURL
 		}
-		if sourceURL == "" {
-			sourceURL = "https://orchestra.internal/resources/" + res.ID
-		}
-		versionOrSHA := acqResult.VersionOrSHA
-		if versionOrSHA == "" {
-			versionOrSHA = "1.0.0"
-		}
-		shaHash := acqResult.SHA256Hash
-		if shaHash == "" {
-			h := sha256.Sum256([]byte(res.ID + "@" + versionOrSHA))
-			shaHash = hex.EncodeToString(h[:])
-		}
-
-		entry := acquisition.ProvenanceEntry{
-			ResourceID:          res.ID,
-			AcquisitionMethod:   res.AcquisitionMethod,
-			SourceURL:           sourceURL,
-			VersionOrSHA:        versionOrSHA,
-			SHA256Hash:          shaHash,
-			InstalledPath:       acqResult.InstalledPath,
-			Timestamp:           time.Now().UTC().Format(time.RFC3339),
-			JustificationTaskID: ctx.Task.ID,
-			IsQuarantined:       false,
-		}
+		entry := artifactOrPending(res, ctx.Task.ID, sourceURL, acqResult.VersionOrSHA, acqResult.SHA256Hash, acqResult.InstalledPath)
 
 		if err := provStore.Record(entry); err != nil {
 			return &StageResult{
@@ -449,8 +369,9 @@ func (s *ImplementStage) Execute(ctx *TaskContext) (*StageResult, error) {
 		AcquiredResources: acquiredResources,
 		ModifiedFiles:     modifiedFiles,
 		HandoffStatePath:  statePath,
-		BuildOutput:       "Implementation completed with contract-locked design system tokens",
-		BuildPassed:       true,
+		BuildOutput:       "handoff prepared; product build was not run",
+		BuildPassed:       false,
+		ExecutionStatus:   ExecPrepared,
 		InstalledPaths:    installedPaths,
 		AcquireCommands:   acquireCommands,
 	}
@@ -466,4 +387,42 @@ func (s *ImplementStage) Execute(ctx *TaskContext) (*StageResult, error) {
 		Output:    ctx.Implementation,
 		Artifacts: []string{statePath, provPath},
 	}, nil
+}
+
+func nonArtifactEntry(res *resources.Resource, taskID, kind, source, version string) acquisition.ProvenanceEntry {
+	if strings.Contains(source, "orchestra.internal") {
+		source = ""
+	}
+	return acquisition.ProvenanceEntry{
+		ResourceID:          res.ID,
+		AcquisitionMethod:   res.AcquisitionMethod,
+		SourceURL:           source,
+		VersionOrSHA:        version,
+		Timestamp:           time.Now().UTC().Format(time.RFC3339),
+		JustificationTaskID: taskID,
+		Kind:                kind,
+	}
+}
+
+func artifactOrPending(res *resources.Resource, taskID, source, version, hash, installed string) acquisition.ProvenanceEntry {
+	if strings.Contains(source, "orchestra.internal") {
+		source = ""
+	}
+	if hash != "" && installed != "" && source != "" && version != "" {
+		return acquisition.ProvenanceEntry{
+			ResourceID:          res.ID,
+			AcquisitionMethod:   res.AcquisitionMethod,
+			SourceURL:           source,
+			VersionOrSHA:        version,
+			SHA256Hash:          hash,
+			InstalledPath:       installed,
+			Timestamp:           time.Now().UTC().Format(time.RFC3339),
+			JustificationTaskID: taskID,
+			Kind:                acquisition.KindRealArtifact,
+		}
+	}
+	if version == "" {
+		version = "pending"
+	}
+	return nonArtifactEntry(res, taskID, acquisition.KindPending, source, version)
 }

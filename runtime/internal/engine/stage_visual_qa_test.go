@@ -47,8 +47,8 @@ func TestVisualQAStage_NonVisualTask(t *testing.T) {
 	if res.Status != StatusCompleted {
 		t.Errorf("Expected StatusCompleted, got %s", res.Status)
 	}
-	if taskCtx.VisualQA == nil || !taskCtx.VisualQA.AllPassed {
-		t.Errorf("Expected VisualQA to pass for non-visual task")
+	if taskCtx.VisualQA == nil || taskCtx.VisualQA.AllPassed || taskCtx.VisualQA.Verdict != CheckNotApplicable {
+		t.Errorf("non-visual QA must be NOT_APPLICABLE, got %+v", taskCtx.VisualQA)
 	}
 }
 

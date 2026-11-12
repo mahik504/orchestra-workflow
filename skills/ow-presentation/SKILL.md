@@ -1,9 +1,11 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-presentation
 description: Slide story, hierarchy, type, speaker notes, and slide QA. Use with ow-docs for a deck. Host pptx builds the file. Not a purple template.
 ---
 
-# Presentation — 4.1.0
+# Presentation
 
 `ow-docs` owns the deliverable. This skill owns the story. Source methods: PPT Master and Anthropic's pptx skill. Neither tree is copied. The host `pptx` skill builds the file when that host has it.
 

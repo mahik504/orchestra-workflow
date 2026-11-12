@@ -1,4 +1,6 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-resource-scout
 description: Look up one to three resources for the current job. Use when the user names a tool, a style, or asks what we have for a task.
 ---

@@ -1,4 +1,6 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-store-release
 description: Checklist for shipping a mobile or desktop app to a store. Use for Play, the App Store, or a Microsoft Store package. Do not claim the app is listed.
 ---

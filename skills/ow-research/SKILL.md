@@ -1,9 +1,11 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-research
 description: Dated public research with a citation. Use when the question depends on what people said recently. No scraping, posting, or DMs.
 ---
 
-# Research — 4.1.0
+# Research
 
 Use this when the answer depends on recent public discussion. Source method: last-30-days. `agent-reach` stays the skill for the operator's own public profiles.
 

@@ -16,6 +16,26 @@ import (
 	"github.com/mahik504/orchestra-workflow/runtime/internal/visual"
 )
 
+// Execution states. PREPARED means a handoff exists. VERIFIED means a check passed.
+const (
+	ExecPrepared         = "PREPARED"
+	ExecAwaitingExecutor = "AWAITING_EXECUTOR"
+	ExecExecuted         = "EXECUTED"
+	ExecVerified         = "VERIFIED"
+	ExecPartial          = "PARTIAL"
+	ExecBlocked          = "BLOCKED"
+	ExecFailed           = "FAILED"
+)
+
+// Check verdicts. Only PASS sets AllPassed.
+const (
+	CheckPass          = "PASS"
+	CheckFail          = "FAIL"
+	CheckNotRun        = "NOT_RUN"
+	CheckNotApplicable = "NOT_APPLICABLE"
+	CheckBlocked       = "BLOCKED"
+)
+
 // Failure classification constants for closed-loop self-healing
 const (
 	FailureClassNone       = "NONE"
@@ -113,6 +133,7 @@ type ImplementationData struct {
 	HandoffStatePath  string                 `json:"handoff_state_path"`
 	BuildOutput       string                 `json:"build_output"`
 	BuildPassed       bool                   `json:"build_passed"`
+	ExecutionStatus   string                 `json:"execution_status,omitempty"`
 	InstalledPaths    map[string]string      `json:"installed_paths,omitempty"`
 	AcquireCommands   map[string]string      `json:"acquire_commands,omitempty"`
 }
@@ -133,6 +154,7 @@ type ViewportCheckResult struct {
 // VisualQAData captures verification verdict and detected defects from Stage 7
 type VisualQAData struct {
 	AllPassed          bool                  `json:"all_passed"`
+	Verdict            string                `json:"verdict,omitempty"`
 	ViewportResults    []ViewportCheckResult `json:"viewport_results"`
 	Metrics            map[string]float64    `json:"metrics"`
 	DetectedViolations []string              `json:"detected_violations"`

@@ -8,7 +8,11 @@ import {
   applyClaudeMcp,
   applyRetire,
   applySync,
+  claudeMcpPath,
+  defaultBackupRoot,
+  hashBytes,
   hashTree,
+  hashTreeRaw,
   planAdapter,
   planClaudeMcp,
   planSync,
@@ -196,4 +200,59 @@ test('claude mcp adds server names and does not echo a secret', () => {
   const after = JSON.parse(fs.readFileSync(file, 'utf8'));
   assert.equal(after.mcpServers.shadcn.command, 'npx');
   assert.equal(after.mcpServers.stitch.env.STITCH_API_KEY, secret);
+  assert.equal(claudeMcpPath(home), path.join(home, '.claude.json'));
+});
+
+test('CRLF and LF hash as the same text', () => {
+  const a = hashBytes(Buffer.from('a\r\nb\n'));
+  const b = hashBytes(Buffer.from('a\nb\n'));
+  assert.equal(a.toString('utf8'), b.toString('utf8'));
+});
+
+test('OW_SYNC_HOME owns the backup root', () => {
+  const prev = process.env.OW_SYNC_HOME;
+  const prevBackup = process.env.OW_BACKUP_ROOT;
+  delete process.env.OW_BACKUP_ROOT;
+  process.env.OW_SYNC_HOME = 'C:\\sync-home';
+  assert.equal(defaultBackupRoot('C:\\other'), path.join('C:\\sync-home', '.orchestra-backups'));
+  if (prev === undefined) delete process.env.OW_SYNC_HOME;
+  else process.env.OW_SYNC_HOME = prev;
+  if (prevBackup === undefined) delete process.env.OW_BACKUP_ROOT;
+  else process.env.OW_BACKUP_ROOT = prevBackup;
+});
+
+test('a symlink inside a skill is refused', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'ow-link-'));
+  const skillDir = path.join(root, 'demo');
+  fs.mkdirSync(skillDir);
+  fs.writeFileSync(path.join(skillDir, 'SKILL.md'), '---\nname: demo\n---\n');
+  const outside = path.join(root, 'outside.txt');
+  fs.writeFileSync(outside, 'secret');
+  try {
+    fs.symlinkSync(outside, path.join(skillDir, 'linked.txt'));
+  } catch (error) {
+    if (error.code === 'EPERM') return;
+    throw error;
+  }
+  assert.throws(() => hashTree(skillDir), /symlink refused/);
+});
+
+test('a recorded raw hash is safe to replace after the hash normalization', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'ow-raw-'));
+  const source = path.join(root, 'src');
+  const dest = path.join(root, 'dst');
+  fs.mkdirSync(path.join(source, 'demo'), { recursive: true });
+  fs.mkdirSync(path.join(dest, 'demo'), { recursive: true });
+  fs.writeFileSync(path.join(source, 'demo', 'SKILL.md'), '---\nname: demo\n---\nnew\n');
+  fs.writeFileSync(path.join(dest, 'demo', 'SKILL.md'), '---\r\nname: demo\r\n---\r\nold\r\n');
+  const raw = hashTreeRaw(path.join(dest, 'demo'));
+  fs.mkdirSync(dest, { recursive: true });
+  fs.writeFileSync(path.join(dest, '.ow-manifest.json'), JSON.stringify({ skills: { demo: { sha256: raw } } }));
+  const planned = planSync({
+    sourceIds: ['demo'],
+    sourceRoot: source,
+    destRoot: dest,
+    knownHashes: {},
+  });
+  assert.equal(planned.actions[0].action, 'replace');
 });

@@ -1,4 +1,6 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-diagrams
 description: Grounded Mermaid architecture diagrams from the real repo. Use for README and docs. Not a second orchestration system. Prefer a small diagram bundle, not one giant chart.
 ---

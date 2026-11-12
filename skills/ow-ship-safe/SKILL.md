@@ -1,4 +1,6 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-ship-safe
 description: Defensive security and CI/CD baseline for the user's own apps. Use when adding auth, APIs, env vars, GitHub Actions, deploy, or when they ask to harden, scan, or ship. Not for attacking third-party systems.
 ---

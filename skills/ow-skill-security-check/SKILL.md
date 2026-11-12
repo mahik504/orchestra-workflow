@@ -1,4 +1,6 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-skill-security-check
 description: Admission audit for a new third-party skill. Use before promoting an internet skill into Orchestra. Not a per-turn coding skill.
 ---

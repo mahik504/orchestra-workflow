@@ -1,9 +1,11 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-focus
 description: Start of a job, with ow-forge. One next action, no repeated questions, no thinner engineering. Not a substitute for the brief.
 ---
 
-# Focus — 4.1.0
+# Focus
 
 Run this with `ow-forge` before classify. Source method: ADHD-style instruction sets (`ayghri/i-have-adhd`). Caveman shortness does not replace the brief.
 

@@ -124,7 +124,9 @@ Framework (OSS). Use when implementing or debugging ANY network request, API cal
 
 Owner: upstream. License: unspecified.
 
-No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
+| Route | Skip |
+| --- | --- |
+| Mobile app | a marketing website; unofficial Expo packs |
 
 ## expo-dev-client
 
@@ -132,7 +134,9 @@ Framework (OSS). Build and distribute Expo development clients locally or via Te
 
 Owner: upstream. License: unspecified.
 
-No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
+| Route | Skip |
+| --- | --- |
+| Mobile app | a marketing website; unofficial Expo packs |
 
 ## expo-native-ui
 
@@ -140,7 +144,9 @@ Framework (OSS). Build beautiful, native-feeling Expo screens. Covers Apple HIG 
 
 Owner: upstream. License: unspecified.
 
-No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
+| Route | Skip |
+| --- | --- |
+| Mobile app | a marketing website; unofficial Expo packs |
 
 ## expo-project-structure
 
@@ -148,7 +154,9 @@ Framework (OSS). Folder structure for a new Expo app. Use when scaffolding or la
 
 Owner: upstream. License: unspecified.
 
-No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
+| Route | Skip |
+| --- | --- |
+| Mobile app | a marketing website; unofficial Expo packs |
 
 ## expo-router
 
@@ -156,7 +164,9 @@ Framework (OSS). Navigation and routing for Expo Router. Covers file-based route
 
 Owner: upstream. License: unspecified.
 
-No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
+| Route | Skip |
+| --- | --- |
+| Mobile app | a marketing website; unofficial Expo packs |
 
 ## expo-upgrade
 
@@ -310,6 +320,24 @@ Owner: orchestra. License: MIT.
 | --- | --- |
 | One 3D scene | 3D as decoration; a second motion engine |
 
+## ow-app-recon
+
+Map an authorized web, Electron, Android, desktop, or iOS app the operator owns, built for a client, or that is a CTF or open source. No decryption and no Frida.
+
+Owner: orchestra. License: MIT.
+
+| Route | Skip |
+| --- | --- |
+| App recon | rea until Java is installed and the target is yours, a client's, a CTF, or open source |
+
+## ow-author
+
+Add one skill, agent, rule, hook, command, or MCP entry for a host. Register it, check it, and leave it off a Load line until an eval says it earned the place.
+
+Owner: orchestra. License: MIT.
+
+No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
+
 ## ow-backend-architecture
 
 Shape a SaaS or API before code. Routes, auth, schema, migrations, errors, and logs. Use for a backend or API. Skip the design lab.
@@ -332,6 +360,14 @@ No route loads this skill by itself. It runs when you name it, or when an engine
 ## ow-brainstorm
 
 Pressure-test one idea before anyone builds it. Name the user, the job, the constraint, and the reason not to build it. File a note. Do not start four products.
+
+Owner: orchestra. License: MIT.
+
+No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
+
+## ow-browserize
+
+Turn an authorized browser session you already completed into a Playwright script with fixtures and assertions. Never store a password or a cookie jar.
 
 Owner: orchestra. License: MIT.
 
@@ -365,7 +401,7 @@ No route loads this skill by itself. It runs when you name it, or when an engine
 
 ## ow-conductor
 
-Orchestra 4.6.0 control plane. Classify the task, print the receipt, hold the design gate, verify on the running app, and review twice. Stand down when the human says skip orchestra.
+Orchestra 4.7.0 control plane. Classify the task, print the receipt, hold the design gate, verify on the running app, and review twice. Stand down when the human says skip orchestra.
 
 Owner: orchestra. License: MIT.
 
@@ -408,6 +444,14 @@ Owner: orchestra. License: MIT.
 | --- | --- |
 | Deck | host-provided pptx unless that host already has it |
 | Deck or slides | copying a pptx skill file; purple template dumps |
+
+## ow-eval
+
+Paired eval of a raw host, the control plane, and the routed skills. Three trials. A clean HOME for the raw arm. Promote a skill only when success is not negative and cost rises by 10 percent or less.
+
+Owner: orchestra. License: MIT.
+
+No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
 
 ## ow-focus
 
@@ -455,6 +499,16 @@ Owner: orchestra. License: MIT.
 | --- | --- |
 | Marketing copy | invented metrics; a design system rewrite |
 
+## ow-mcp-audit
+
+Scan local MCP configs and record a baseline of tool names. Snyk runs only when SNYK_TOKEN is already set. Do not print secrets.
+
+Owner: orchestra. License: MIT.
+
+| Route | Skip |
+| --- | --- |
+| MCP audit | uploading tool descriptions without a token |
+
 ## ow-ml-experiment
 
 Run or report a model experiment with an honest eval. Use for training, fine-tuning, or a dataset gate. Do not invent accuracy.
@@ -500,6 +554,14 @@ Owner: orchestra. License: MIT.
 | Route | Skip |
 | --- | --- |
 | Deck or slides | copying a pptx skill file; purple template dumps |
+
+## ow-qa
+
+Turn a bug on the running app into a failing browser check, then a fix, then a regression test. Playwright is the evidence.
+
+Owner: orchestra. License: MIT.
+
+No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
 
 ## ow-reference-forensics
 
@@ -548,9 +610,19 @@ Owner: orchestra. License: MIT.
 
 No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
 
+## ow-scrape
+
+Extract public records with a schema, a rate limit, and a provenance log. Stop at login, a paywall, a CAPTCHA, robots, or a 403 or 429.
+
+Owner: orchestra. License: MIT.
+
+| Route | Skip |
+| --- | --- |
+| Scrape | a login wall; LinkedIn or Instagram |
+
 ## ow-semgrep
 
-Security static analysis validation utilizing Semgrep rulesets.
+Run Semgrep against the product repo you own and report the rules that fired. Do not scan a third-party URL.
 
 Owner: orchestra. License: MIT.
 
@@ -583,6 +655,16 @@ Record a walkthrough and capture ship assets after human approval, production re
 Owner: orchestra. License: MIT.
 
 No route loads this skill by itself. It runs when you name it, or when an engineering row names it.
+
+## ow-site-recon
+
+Measure a public page into a blueprint of tokens, motion, components, and the calls that page makes. Hand an original build onward. Do not copy assets, copy, or a logo.
+
+Owner: orchestra. License: MIT.
+
+| Route | Skip |
+| --- | --- |
+| Site recon | copying assets, copy, or a logo |
 
 ## ow-skill-advisor
 
@@ -618,6 +700,16 @@ Owner: orchestra. License: MIT.
 | --- | --- |
 | TypeScript review | a visual redesign; a new framework |
 
+## ow-ui-assembly
+
+Assemble a screen from the product repo first, then one shadcn registry source per section. One motion runtime. Record the license and the source.
+
+Owner: orchestra. License: MIT.
+
+| Route | Skip |
+| --- | --- |
+| UI assembly | a second motion stack; loading every component kit |
+
 ## ow-vault
 
 Maintain the private Orchestra workspace and its memory. Jump one note. Lasting files only. Record real outcomes, never synthetic ones. No secrets.
@@ -635,6 +727,16 @@ Owner: orchestra. License: MIT.
 | Route | Skip |
 | --- | --- |
 | Rendered video | the GSAP route; installing a video suite into this method repo |
+
+## ow-wave
+
+Run a multi-session job as phases in worktrees. The chat stays the conductor. A failed verify writes a fix note and a reflection line.
+
+Owner: orchestra. License: MIT.
+
+| Route | Skip |
+| --- | --- |
+| Waves | a one-file fix; a second conductor |
 
 ## penetration-testing-with-strix
 

@@ -47,6 +47,21 @@ func TestCLI_Doctor_Execution(t *testing.T) {
 	runDoctor([]string{})
 }
 
+func TestVerifyExitCode(t *testing.T) {
+	if verifyExitCode("FAIL", false, false, false) != 1 {
+		t.Fatal("a failed check must exit 1 without --strict")
+	}
+	if verifyExitCode("NOT_APPLICABLE", false, false, false) != 0 {
+		t.Fatal("a skipped check is not a failure")
+	}
+	if verifyExitCode("PASS", true, false, true) != 0 {
+		t.Fatal("a warning stays 0 until --strict")
+	}
+	if verifyExitCode("PASS", true, true, true) != 1 {
+		t.Fatal("--strict turns a warning into a failure")
+	}
+}
+
 func TestCLI_Verify_Execution(t *testing.T) {
 	tempDir, err := os.MkdirTemp("", "orchestra_cli_verify_*")
 	if err != nil {

@@ -1,4 +1,6 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-forge
 description: Turn a plain request into a short brief before any other skill runs. Use at the start of a job. Do not rewrite the user's words in secret.
 ---

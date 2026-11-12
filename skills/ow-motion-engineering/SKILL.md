@@ -1,4 +1,6 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-motion-engineering
 description: Decide whether something should move, which runtime owns it, and how it respects reduced motion. GSAP owns scroll. Cursor, transitions, and exits get durations. One runtime per surface.
 ---

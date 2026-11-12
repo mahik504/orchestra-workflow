@@ -1,4 +1,6 @@
 ---
+stub: true
+stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-skill-advisor
 description: Decide whether a task needs a new skill. Check skills/ first, then skills.sh and GitHub. Recommend use-existing, install-upstream, write ow-*, or install because the human insisted. Record that install. Do not run a global skills add on your own.
 ---

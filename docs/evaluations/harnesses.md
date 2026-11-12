@@ -24,7 +24,9 @@ Commit SHAs for the skill repos we copied from are in `upstream.md`. The table b
 | `bmad-code-org/BMAD-METHOD` | `e734d3ac3c0f4ea31cc2c2bbbe79e86e54f2cae6` | 2026-11-06 | Reviewer roles are the files in `agents/`. |
 | `garrytan/gstack` | `1a29fbc3444f858c72ec001abdb4f0f3bebfa76c` | 2026-11-07 | Not installed. |
 | `affaan-m/everything-claude-code` | `d2ef2680594f9a17526a6e1a2e18b3d242c5d17b` | 2026-11-06 | Not installed. |
-| `glittercowboy/get-shit-done` | `bdcaab2c752d9a33a1a1ca9acf3a3c81fb991815` | 2026-05-31 | Not installed. Progress stays on the receipt and `orchestra compile`. |
+| `open-gsd/gsd-core` | `4226711512fb4035fcbb7d17ae64ac5419d8396a` | fetched 2026-11-12 | Not installed. The archived `glittercowboy/get-shit-done` pin is not the active repo. Progress stays on the receipt and `orchestra compile`. |
+| `EveryInc/compound-engineering-plugin` | `d8f8e03237bded06e77bcb3930b43ef841e7eeda` | fetched 2026-11-12 | Not installed. Read as a method source. |
+| `alextnetto/res` | `1d05d9c4a9f96d3cd94e9fa49609f98d7e4b4563` | fetched 2026-11-12 | Not installed. Read for the shape of a product study. |
 | `msitarzewski/agency-agents` | `b859c515d813efcfc4755d3471dd9e7686c7706d` | 2026-11-06 | Not installed. |
 | `wshobson/agents` | `4bde3168b43c0655c4d00ea2726e631719908a6d` | 2026-11-05 | Not installed. |
 | `openai/codex` | `33b3f80a0935e51a49cbbda7d6473ef757d4241b` | 2026-11-07 | Host adapter only. `kit/codex/AGENTS.md`. |

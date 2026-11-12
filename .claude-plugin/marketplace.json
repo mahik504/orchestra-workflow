@@ -7,7 +7,7 @@
     {
       "name": "orchestra",
       "source": "./",
-      "description": "Control plane for Cursor, Claude Code, Antigravity, Codex, and jcode. Version 4.6.0."
+      "description": "Control plane for Cursor, Claude Code, Antigravity, Codex, and jcode. Version 4.7.0."
     }
   ]
 }
