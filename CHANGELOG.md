@@ -1,5 +1,9 @@
 # Changelog
 
+## [5.0.0]
+
+The pin in `VERSION` is 5.0.0. Site recon, app recon, scrape, UI assembly, browserize, QA, waves, author, and MCP audit are routes. [`docs/audit/EVAL-5.0.md`](docs/audit/EVAL-5.0.md) records that the fixtures stayed `not_run`. No skill was promoted. `orchestra mcp-serve` is experimental. The claim stays none.
+
 ## [4.7.0]
 
 The pin in `VERSION` is 4.7.0. A prepared handoff is not a passing build. A skipped visual check is not a pass. `orchestra verify` exits non-zero on a hard failure without `--strict`. Sync refuses a symlink, normalizes CRLF before hashing, and writes Claude Code MCP servers to `~/.claude.json`. The route table lives in `docs/ROUTING.md`. Adapters stay under 3 KB. Hooks warn before strict mode. There is no skill-count cap. No comparison claim is enabled.

@@ -2,7 +2,7 @@
 stub: true
 stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-conductor
-description: Orchestra 4.7.0 control plane. Classify the task, print the receipt, hold the design gate, verify on the running app, and review twice. Stand down when the human says skip orchestra.
+description: Orchestra 5.0.0 control plane. Classify the task, print the receipt, hold the design gate, verify on the running app, and review twice. Stand down when the human says skip orchestra.
 ---
 
 # Orchestra conductor

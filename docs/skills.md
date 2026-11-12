@@ -401,7 +401,7 @@ No route loads this skill by itself. It runs when you name it, or when an engine
 
 ## ow-conductor
 
-Orchestra 4.7.0 control plane. Classify the task, print the receipt, hold the design gate, verify on the running app, and review twice. Stand down when the human says skip orchestra.
+Orchestra 5.0.0 control plane. Classify the task, print the receipt, hold the design gate, verify on the running app, and review twice. Stand down when the human says skip orchestra.
 
 Owner: orchestra. License: MIT.
 

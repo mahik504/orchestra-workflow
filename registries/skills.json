@@ -920,7 +920,7 @@
         "agents"
       ],
       "description_chars": 182,
-      "triggers": "Orchestra 4.7.0 control plane. Classify the task, print the receipt, hold the design gate, verify on the running app, and review twice. Stand down when the human says skip orchestra.",
+      "triggers": "Orchestra 5.0.0 control plane. Classify the task, print the receipt, hold the design gate, verify on the running app, and review twice. Stand down when the human says skip orchestra.",
       "context_chars": 1390,
       "invocation": "model"
     },

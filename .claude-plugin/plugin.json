@@ -1,7 +1,7 @@
 {
   "name": "orchestra",
   "displayName": "Orchestra",
-  "version": "4.7.0",
+  "version": "5.0.0",
   "description": "Control plane for Cursor, Claude Code, Antigravity, Codex, and jcode. One skill list and one conductor.",
   "author": {
     "name": "Mahaveer Singh Gehlot"

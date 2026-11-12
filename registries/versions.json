@@ -1,6 +1,6 @@
 {
-  "current": "4.7.0",
-  "graph_version": "4.7.0",
+  "current": "5.0.0",
+  "graph_version": "5.0.0",
   "graph_version_note": "enrich-graph.js and enrich-resources.js write graph.version from VERSION. graph_version matches that pin.",
   "live_files": [
     "VERSION",

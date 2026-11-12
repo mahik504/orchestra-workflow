@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "orchestra",
-  "version": "4.7.0",
+  "version": "5.0.0",
   "description": "Control plane for Cursor, Claude Code, Antigravity, Codex, and jcode. One skill list and one conductor.",
   "author": {
     "name": "Mahaveer Singh Gehlot"

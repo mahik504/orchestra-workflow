@@ -1,8 +1,8 @@
 # Orchestra Workflow
 
-Orchestra 4.7.0 is the control plane for Cursor, Claude Code, Antigravity, Codex, jcode, and the agents host. Skills, MCPs, plugins, and libraries are capabilities. Agents execute. The vault remembers. The registries say what exists. Host files are adapters.
+Orchestra 5.0.0 is the control plane for Cursor, Claude Code, Antigravity, Codex, jcode, and the agents host. Skills, MCPs, plugins, and libraries are capabilities. Agents execute. The vault remembers. The registries say what exists. Host files are adapters.
 
-The pin in [`VERSION`](VERSION) is **4.7.0**. The 4.6.0 tag stays where it was.
+The pin in [`VERSION`](VERSION) is **5.0.0**. The 4.7.0 tag stays where it was.
 
 ```
 ORCHESTRA  = CONTROL PLANE
@@ -15,6 +15,12 @@ REGISTRY   = RESOURCE KNOWLEDGE
 This repository is the method. Products, keys, and taste stay in a private workspace.
 
 [CI](https://github.com/mahik504/orchestra-workflow/actions/workflows/ci.yml) and [Hygiene](https://github.com/mahik504/orchestra-workflow/actions/workflows/hygiene.yml) run on `main`. A badge is a link. The run page is the result.
+
+## What's new in 5.0.0
+
+- Site recon, app recon, scrape, UI assembly, waves, and MCP audit are routes. The eval in [`docs/audit/EVAL-5.0.md`](docs/audit/EVAL-5.0.md) did not run a live model trial. Those skills are not a measured win.
+- `orchestra mcp-serve` is an experimental stdio server for compile and a provenance check.
+- `compare.go` stays disabled. The claim stays none.
 
 ## What's new in 4.7.0
 
