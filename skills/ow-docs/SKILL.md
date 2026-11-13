@@ -1,6 +1,4 @@
 ---
-stub: true
-stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-docs
 description: College/product slides, reports, and papers. Use when the user needs a PPTX, PDF report, README, or academic paper. Not for app UI. Prefer markdown then export. Do not fake citations.
 ---
@@ -25,3 +23,25 @@ Same as `Preferences.md`: no purple AI-SaaS slide templates, no fake NeurIPS cla
 
 - Dump `anthropics/skills` or academic 12-agent packs into Cursor.
 - Generate a bibliography you did not read.
+
+## Preconditions
+
+- The task names the deliverable: slides, a report, a README, or a paper.
+
+## Procedure
+
+1. The task's paths and acceptance line win.
+2. Write the content in markdown first. Export only after the structure is real.
+3. Every citation is one you opened. A missing citation is a gap, not a guessed DOI.
+
+## Output
+
+The markdown source and, if asked, the exported file.
+
+## Verify
+
+Open each citation you added. A citation you did not open comes out.
+
+## Skip
+
+Skip for app UI. A deck's story is `ow-presentation`. A paper's method is `ow-research-paper`.

@@ -1,6 +1,4 @@
 ---
-stub: true
-stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-reference-forensics
 description: Named live site or screenshot recreation. Measure composition, separate mechanism from identity, write REFERENCE_BENCHMARK.md. Load only on the ow-reference-forensics route. Not a clone factory.
 ---
@@ -44,3 +42,25 @@ Write `REFERENCE_AUDIT.md` next to the design contract:
 5. Authorization. A public page can be studied. A logged-in app, a paywall, or someone else's repo is out unless the task names it as own, client, or open source.
 
 `rea` is the binary path, and only after Java is installed and the target is yours, a client's, a CTF, or open source. A website audit is not an invitation to pull private APIs.
+
+## Preconditions
+
+- The task names a public page, a screenshot, or a target the operator owns, a client owns, or that is open source.
+
+## Procedure
+
+1. The task's paths and acceptance line win.
+2. Measure grid, type, motion, and the one interaction that matters. Write the forbidden list: logo, copy, assets, and source.
+3. Adapt the principle in the product's own components. A copied code block needs a license that allows it.
+
+## Output
+
+`REFERENCE_BENCHMARK.md` with the measurements and the forbidden list.
+
+## Verify
+
+The written notes contain no pasted asset, no copied paragraph, and no unlicensed source block.
+
+## Skip
+
+Skip when the intent is to copy the site, when no source is named, or when a locked contract and approved stills already exist.

@@ -1,6 +1,4 @@
 ---
-stub: true
-stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-3d-engineering
 description: Build one React Three Fiber scene with a still fallback and a frame budget. Use for 3D, shaders, or WebGL. Skip for ordinary page layout.
 ---
@@ -51,3 +49,25 @@ Keep one canvas. Pause it offscreen. Prefer a still over a second postprocessing
 | WebGPU | Only when the contract names it and a WebGL2 fallback exists | A blank page when WebGPU is missing |
 
 The frame budget is 60fps on the machine you measured. DPR stays in `[1, 2]`. Dispose geometries, materials, textures, and the renderer. Reduced motion and a lost context keep the still.
+
+## Preconditions
+
+- The task names one scene, or it names a film asset that stays in Blender.
+
+## Procedure
+
+1. The task's paths and acceptance line win.
+2. One React Three Fiber canvas, lazy, with a local still fallback. Blender exports a glTF. It does not run in the page.
+3. Dispose on unmount. Do not add a second motion engine.
+
+## Output
+
+The scene module, the still path, and the machine the frame budget was checked on.
+
+## Verify
+
+The page paints the still when WebGL is absent, and the render loop stops under reduced motion.
+
+## Skip
+
+Skip for ordinary layout, for 3D used as wallpaper, and for a second canvas.

@@ -33,7 +33,8 @@ Write DONE, FIXED, VERIFIED, PASSED, or SHIPPED only with observed evidence in t
 ## Procedure
 
 1. The task's paths and acceptance line win.
-2. Name the route from docs/ROUTING.md, then do the work.
+2. Name the route from docs/ROUTING.md. On a public profile, a new skill, or a visual direction, read Preferences hard hates first.
+3. Do the work. A failed check is a lesson draft after a human yes, not a new skill.
 
 ## Output
 

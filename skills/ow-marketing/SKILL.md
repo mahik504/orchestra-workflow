@@ -1,6 +1,4 @@
 ---
-stub: true
-stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-marketing
 description: Positioning, a page title, and on-page copy for a product that is shipping. humanizer edits the voice. No invented metrics.
 ---
@@ -20,3 +18,25 @@ Source method: marketing-skills (`coreyhaines31/marketingskills`). The pack is n
 - Rewrite the design system in the same pass.
 - Add SEO pages that the product does not have.
 - Post the copy. The operator posts.
+
+## Preconditions
+
+- The product exists, and the task names the reader and the action.
+
+## Procedure
+
+1. The task's paths and acceptance line win.
+2. Write one title and one first sentence. Proof is a command, a file, or a price that exists.
+3. Hand the copy to `humanizer`. Do not post it.
+
+## Output
+
+The title, the first sentence, and the fact each claim points at.
+
+## Verify
+
+Every number in the copy can be opened. An invented count comes out.
+
+## Skip
+
+Skip when the task is a design-system rewrite, or when there is no product to describe.

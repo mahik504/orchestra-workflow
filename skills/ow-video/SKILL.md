@@ -1,6 +1,4 @@
 ---
-stub: true
-stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-video
 description: A rendered mp4 in the product repo that needs one. HyperFrames is the verified tool. Does not load GSAP. Does not install a video suite into the method repo.
 ---
@@ -20,3 +18,25 @@ Use this only when the deliverable is a rendered video file. Source method: Hype
 - Load `gsap-core` or the scroll route for an mp4.
 - Add HyperFrames to this method repository.
 - Claim a render succeeded without the output file.
+
+## Preconditions
+
+- The deliverable is a rendered video file in a product repo.
+
+## Procedure
+
+1. The task's paths and acceptance line win.
+2. Write one scene list, one output size, and a caption track if there is speech.
+3. Render in the product repo. Keep a still as the fallback.
+
+## Output
+
+The mp4 path, or the still and the reason the render did not finish.
+
+## Verify
+
+The output file exists on disk. A missing file is not a successful render.
+
+## Skip
+
+Skip for page scroll, which is the GSAP route, and for installing a video suite into this method repo.

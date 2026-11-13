@@ -1,6 +1,4 @@
 ---
-stub: true
-stub_reason: Short pointer. See docs/audit/STUB-TRIAGE.md.
 name: ow-presentation
 description: Slide story, hierarchy, type, speaker notes, and slide QA. Use with ow-docs for a deck. Host pptx builds the file. Not a purple template.
 ---
@@ -24,3 +22,25 @@ description: Slide story, hierarchy, type, speaker notes, and slide QA. Use with
 ## QA
 
 Read the deck once as the audience. Every slide answers "why is this here." A slide that only decorates is cut. Speaker notes say what the mouth will add. The type sizes still work when the deck is projected, not only on a laptop.
+
+## Preconditions
+
+- The audience and the decision are named. `ow-docs` owns the file.
+
+## Procedure
+
+1. The task's paths and acceptance line win.
+2. One idea per slide: claim, evidence, consequence. Speaker notes carry the spoken sentence.
+3. Cut a slide that only decorates. Do not invent a metric.
+
+## Output
+
+The slide list and the speaker notes.
+
+## Verify
+
+Read the deck once as the audience. A slide that does not change a decision is cut.
+
+## Skip
+
+Skip for a report that is not a deck, and for a purple template used as the design.
