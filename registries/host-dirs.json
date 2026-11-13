@@ -5,7 +5,17 @@
     "antigravity": [".gemini", "config", "skills"],
     "agents": [".agents", "skills"],
     "jcode": [".jcode", "skills"],
-    "codex": [".codex", "skills"]
+    "codex": [".codex", "skills"],
+    "claude-desktop": [
+      "AppData",
+      "Local",
+      "Claude-3p",
+      "local-agent-mode-sessions",
+      "skills-plugin",
+      "00000000-0000-4000-8000-000000000001",
+      "8e2b40ae-18e9-4e7f-b0e9-f7ce6b8a75c8",
+      "skills"
+    ]
   },
   "optional": {
     "antigravity-cli": [".gemini", "antigravity-cli", "skills"]
