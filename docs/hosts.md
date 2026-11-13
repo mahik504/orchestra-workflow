@@ -1,6 +1,6 @@
 # Hosts
 
-Orchestra 4.6.0 syncs one skill set. The adapters are rendered from `registries/routing.json`.
+Orchestra 5.5.0 syncs one skill set. The adapters are rendered from `registries/routing.json`.
 
 | Host | Skills | Instructions | Commands |
 | --- | --- | --- | --- |

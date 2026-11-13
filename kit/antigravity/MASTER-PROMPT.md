@@ -44,7 +44,7 @@ You cannot log into Google for them, invent API keys, or finish OAuth. Secrets n
 - Vault = `VAULT` they filled.
 - Global skills: `%USERPROFILE%\.gemini\config\skills\` or `~/.gemini/config/skills/`
 - Also `~/.agents/skills/` and `~/.jcode/skills/` if present.
-- Contract pin: `ORCHESTRA_CONTRACT` (see `kit/ROLLBACK.md`). Unset means 5.0.0.
+- Contract pin: `ORCHESTRA_CONTRACT` (see `kit/ROLLBACK.md`). Unset means 5.5.0.
 
 Do **not** write `mcp_config.json` with real keys. Example files only.
 

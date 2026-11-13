@@ -1,6 +1,6 @@
 # Install
 
-Orchestra 4.6.0 is a folder of skills, registries, and a Go CLI. It does not install a global pack.
+Orchestra 5.5.0 is a folder of skills, registries, and a Go CLI. It does not install a global pack.
 
 ## This clone
 
